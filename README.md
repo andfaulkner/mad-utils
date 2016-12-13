@@ -1,11 +1,11 @@
 # mad-logs
 
-*   colourful, obtrusive logs for the browser.
+*   colourful, obtrusive logs (mainly) for the browser console.
 *   provides over 20 styles to ensure logs of different types stay differentiable from one another at a glance.
 *   just like with Winston, alter amount of text shown based on current log level:
-    *   comes with log levels:  silly, verbose, debug, info, warn, error, wtf
+    *   comes with levels:  silly, verbose, debug, info, warn, error, wtf
 
-*   Note: works in Node with limited functionality, but mainly intended for browser console use
+*   Note: set up to work in Node with limited functionality; improved NodeJS terminal logging coming in a future release.
 
 
 ## Usage
