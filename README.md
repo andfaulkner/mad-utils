@@ -62,4 +62,4 @@ This is what you should be doing - it's a good idea to set process.env.LOG_LEVEL
 *   xmlHell
 
 ### Log marker usage
-*   When first "constructing" the log factory, define the log marker as the second argument (as seen above 
+*   When first "constructing" the log factory, define the log marker as the second argument (as seen above)
