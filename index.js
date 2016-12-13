@@ -1,6 +1,8 @@
+/************************************** THIRD-PARTY IMPORTS ***************************************/
 const find = require('lodash.find');
 const isString = require('lodash.isstring');
 const isNode = require('detect-node');
+
 
 /************************************* IMPORT PROJECT MODULES *************************************/
 const { colours, style, logMarkers } = require('./src/theming');
@@ -11,6 +13,11 @@ const colors = (isNode)
 
 
 /*************************************** LOG LEVEL HANDLING ***************************************/
+// default log level is 'info', if no config object is given, and none is set in the environment
+const logLevelBase = (process.env.LOG_LEVEL)
+    ? process.env.LOG_LEVEL
+    : 'info';
+
 /**
  * Defines the available log levels in the application
  */
@@ -55,7 +62,11 @@ const verifyConfig = (config, next) => {
     return next;
 };
 
-const defaultLogFactoryOpts = { tagPrefix: '', tagSuffix: '', style: '' };
+/**
+ * Default configuration options
+ */
+const defLogFactoryOpts = { tagPrefix: '', tagSuffix: '', style: '' };
+const defConfig = { logLevel: logLevelBase };
 
 /**************************************************************************************************
  * 
@@ -76,7 +87,7 @@ const defaultLogFactoryOpts = { tagPrefix: '', tagSuffix: '', style: '' };
  *              A log won't display unless the global log level is higher than the log level tied
  *              to the function (e.g. if LOG_LEVEL=info, a message passed to log.debug won't show).
  */
-const logFactory = (config) => verifyConfig(config, (fileName, opts = defaultLogFactoryOpts) => {
+const logFactory = (config = defConfig) => verifyConfig(config, (fileName, opts = defLogFactoryOpts) => {
     const logLevelNum = getLogVal(config.logLevel);
     const fileTag = (isNode)
         ? `${opts.tagPrefix}[${fileName}]${opts.tagSuffix}`

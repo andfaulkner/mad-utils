@@ -31,8 +31,12 @@ describe('logFactory', function() {
         expect(logFactory({ logLevel: 'info', port: 8080, host: 'localhost' })).to.be.a('function');
     });
 
+    it('returns function if given no config object (this triggers default log level)', function() {
+        expect(logFactory).to.not.throw(TypeError);
+        expect(logFactory()).to.be.a('function');
+    });
+
     it('throws TypeError if given an invalid (or no) log level or config object', function () {
-        expect(logFactory).to.throw(TypeError);
         expect(partial(logFactory, {})).to.throw(TypeError);
         expect(partial(logFactory, '')).to.throw(TypeError);
         expect(partial(logFactory, ['asdf'])).to.throw(TypeError);
