@@ -4,7 +4,8 @@
   "description": "Winston-lite-esque Log lib for terminal and browser debugging, with piles of unignorable log tags and marker styles.",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "mocha test/",
+    "test:watch": "chokidar ./index.js ./config/** ./test/** --initial -c \"mocha test/\""
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,16 @@
   },
   "homepage": "https://github.com/andfaulkner/mad-logs#readme",
   "dependencies": {
-    "lodash.find": "^4.6.0"
+    "colors": "^1.1.2",
+    "detect-node": "^2.0.3",
+    "lodash.find": "^4.6.0",
+    "lodash.isstring": "^4.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "lodash.partial": "^4.2.1",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6",
+    "test-console": "^1.0.0"
   }
 }
