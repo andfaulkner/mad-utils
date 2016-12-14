@@ -3,7 +3,7 @@
  * Colours and styles for use in console log messages
  *
  */
-const colours = {
+export const colours = {
     violet: '#551A8B',
     orange: '#EE7600',
     brown: '#593001',
@@ -22,10 +22,10 @@ const colours = {
     gray: '#777777',
     cyan: '#00FFFF',
     black: '#000000',
-    ultraPaleGreen: '#f0fff0',        
+    ultraPaleGreen: '#f0fff0',
 };
 
-const style = {
+export const style = {
     bold: 'font-weight: bold;',
     underline: 'text-decoration: underline;',
 };
@@ -33,10 +33,19 @@ const style = {
 
 /************************************************************************************************
  *
- *         Collection of predefined styles for differentiating logs between separate files
+ *   Collection of predefined styles for differentiating logs between separate files. Values are
+ *   intended for by the logFactory, to apply a theme to a specific logger object.
+ *
+ *   -   tagPrefix:     string to show to left of module name in log output
+ *   -   tagSuffix:     string to show to right of module name, but before the message
+ *   -   style:         string of CSS style directives separated by ;s. Used to style the
+ *                      tag (i.e. ${tagPrefix}${filename}${tagSuffix}) beside each log.
+ *
+ * @example logFactory()('my-cool-file', logMarkers.cartoonSwearing)
+ * @example logFactory()('my-cool-file', logMarkers.vendetta)
  *
  */
-const logMarkers = {
+export const logMarkers = {
     angryBird: {
         tagPrefix: '＼(｀0´)／',
         tagSuffix: '',
@@ -152,12 +161,5 @@ const logMarkers = {
         tagSuffix: ' >> ',
         style: '',
     },
-}
-
-
-/********************************************* EXPORT *********************************************/
-module.exports = {
-    colours,
-    style,
-    logMarkers
 };
+

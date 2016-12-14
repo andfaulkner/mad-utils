@@ -15,7 +15,7 @@ const partial = require('lodash.partial');
 const { stderr, stdout } = require('test-console');
 
 /************************************ IMPORT FILE TO BE TESTED ************************************/
-const { logFactory, logMarkers } = require('../index');
+const { logFactory, logMarkers } = require('../lib/index');
 
 /********************************************* TESTS **********************************************/
 describe('logFactory', function() {

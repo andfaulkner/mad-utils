@@ -1,3 +1,5 @@
+.DS_Store
+
 # Logs
 logs
 *.log
@@ -36,4 +38,36 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-.node-version
+# IDE history storage
+.history/**
+
+# temporary files folder
+temp/
+temp/**
+!/*/**/*temp*
+
+**/cache/**
+
+# vim swapfile
+*.swp
+
+# backups
+.bk
+
+# local Sublime files
+*.sublime-workspace
+*.sublime-project
+
+# exclude anything that received the _OLD file suffix
+**/doc/**_OLD/**
+**/*_OLD/
+
+# personal 'recycle bin' for code
+**/doc/old_code/**
+doc/old_code
+
+# exclude local notes
+doc/local_notes
+
+.vscode
+.awcache
