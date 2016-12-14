@@ -1,8 +1,7 @@
 /************************************** THIRD-PARTY IMPORTS ***************************************/
-import { find } from 'lodash';
-import { isString } from 'lodash';
+// const find = require("lodash.find"); // const isString = require("lodash.isstring");
+import { find, isString } from 'lodash';
 import * as isNode from 'detect-node';
-
 
 /************************************* IMPORT PROJECT MODULES *************************************/
 const { colours, style, logMarkers } = require('./src/theming');
