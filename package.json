@@ -1,6 +1,6 @@
 {
   "name": "mad-logs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Winston-lite-esque Log lib for terminal and browser debugging, with piles of unignorable log tags and marker styles.",
   "main": "lib/index.js",
   "typings": "lib/index",
