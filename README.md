@@ -1,11 +1,11 @@
 # mad-logs
 
-*   colourful, obtrusive logs for the browser.
+*   colourful, obtrusive logs (mainly) for the browser console.
 *   provides over 20 styles to ensure logs of different types stay differentiable from one another at a glance.
 *   just like with Winston, alter amount of text shown based on current log level:
-    *   comes with log levels:  silly, verbose, debug, info, warn, error, wtf
+    *   comes with levels:  silly, verbose, debug, info, warn, error, wtf
 
-*   Note: works in Node with limited functionality, but mainly intended for browser console use
+*   Note: set up to work in Node with limited functionality; improved NodeJS terminal logging coming in a future release.
 
 
 ## Usage
@@ -62,4 +62,4 @@ This is what you should be doing - it's a good idea to set process.env.LOG_LEVEL
 *   xmlHell
 
 ### Log marker usage
-*   When first "constructing" the log factory, define the log marker as the second argument (as seen above 
+*   When first "constructing" the log factory, define the log marker as the second argument (as seen above)
