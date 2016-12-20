@@ -71,3 +71,4 @@ doc/local_notes
 
 .vscode
 .awcache
+*.sublime-workspace
