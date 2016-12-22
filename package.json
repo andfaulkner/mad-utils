@@ -1,6 +1,6 @@
 {
   "name": "mad-logs",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Winston-lite-esque Log lib for terminal and browser debugging, with piles of unignorable log tags and marker styles.",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -42,6 +42,7 @@
     "detect-node": "^2.0.3",
     "lodash.find": "^4.6.0",
     "lodash.isstring": "^4.0.1",
+    "lodash.isfunction": "^3.0.8",
     "string.prototype.padend": "^3.0.0"
   },
   "devDependencies": {
@@ -52,7 +53,6 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "lodash": "^4.17.2",
-    "lodash.isfunction": "^3.0.8",
     "lodash.partial": "^4.2.1",
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
