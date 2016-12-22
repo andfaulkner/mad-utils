@@ -113,7 +113,7 @@ const defConfig = { logLevel: logLevelBase };
 const logFactory = (config: AppConf = defConfig) => verifyConfig(config,
         (fileName: string, opts: LogFactoryOpts = defLogFactoryOpts): MadLog => {
     const logLevelNum = getLogVal(config.logLevel);
-    const fileTag = buildFileTag(fileName, opts)
+    const fileTag = buildFileTagForBrowser(fileName, opts)
 
     const basicLog = (...strs: any[]): void => {
         console.log(fileTag, opts.style, ...strs);
@@ -161,7 +161,7 @@ const logFactory = (config: AppConf = defConfig) => verifyConfig(config,
 
 
 /******************************************** HELPERS *********************************************/
-function buildFileTag(fileName: string, opts: LogFactoryOpts): string {
+function buildFileTagForBrowser(fileName: string, opts: LogFactoryOpts): string {
     return (isNode)
         ? `${opts.tagPrefix}[${fileName}]${opts.tagSuffix}`
         : `${((opts.style) ? '%c' : '')}${opts.tagPrefix}[${fileName}]${opts.tagSuffix} `;
@@ -175,8 +175,13 @@ function warnLogOut(fileTag: string): ToConsoleFunc {
     };
 }
 
-/**
- * @EXPORT {Object} logMarkers
- * @EXPORT {Function} logFactory :: (fileName: string, opts = {tagPrefix, tagSuffix, style}) => Object
- */
-module.exports = { logMarkers, logFactory, buildFileTagString };
+export { logMarkers, logFactory, buildFileTagString }
+
+// I am forgetful
+export { buildFileTagString as buildFileTag }
+export { buildFileTagString as buildTagString }
+export { buildFileTagString as buildTag }
+export { buildFileTagString as makeFileTagString }
+export { buildFileTagString as makeFileTag }
+export { buildFileTagString as makeTagString }
+export { buildFileTagString as makeTag }

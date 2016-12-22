@@ -16,7 +16,8 @@ const { stderr, stdout } = require('test-console');
 const colors = require('colors');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-const { buildFileTagString, logFactory, logMarkers } = require('../lib/index');
+const madLogs = require('../lib/index');
+const { buildFileTagString, logFactory, logMarkers } = madLogs;
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -223,5 +224,17 @@ describe('buildFileTagString', function() {
     });
 });
 
+const tagBuilderAliases = [
+    'buildFileTagString', 'buildFileTag', 'buildTagString', 'buildTag',
+    'makeFileTagString', 'makeFileTag', 'makeTagString', 'makeTag'
+];
+
+describe('buildFileTagString aliases e.g. buildFileTag, makeFileTagString, buildTag, etc.', function() {
+    it('is able to run all aliases of buildFileTagString:', function () {
+        tagBuilderAliases.forEach((alias) => {
+            expect(madLogs[alias]).to.exist;
+        });
+    });
+});
 // Restore original process.argv
 process.argv = Object.assign({}, oldProcArgs);
