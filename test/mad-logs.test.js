@@ -211,6 +211,16 @@ describe('buildFileTagString', function() {
             });
         });
     });
+    it('allows null as an arg for colourizer, & still pads if arg 3 is then a #', function () {
+        const testOutput = buildFileTagString('test-name', null, 25);
+        expect(testOutput).to.contain('                '); // 16 char space
+        expect(testOutput).to.not.contain('                 '); // 17 char space
+    });
+    it('allows a number as 2nd arg, & pads by that amount', function () {
+        const testOutput = buildFileTagString('test-name', 25);
+        expect(testOutput).to.contain('                '); // 16 char space
+        expect(testOutput).to.not.contain('                 '); // 17 char space
+    });
 });
 
 // Restore original process.argv

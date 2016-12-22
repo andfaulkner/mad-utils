@@ -7,7 +7,7 @@
 
 *   Note: set up to work in Node with limited functionality; improved NodeJS terminal logging coming in a future release.
 
-
+----
 ## Usage
 
     // my-fun-file.js
@@ -63,3 +63,34 @@ This is what you should be doing - it's a good idea to set process.env.LOG_LEVEL
 
 ### Log marker usage
 *   When first "constructing" the log factory, define the log marker as the second argument (as seen above)
+
+### buildFileTagString
+*   Construct a styled tag for inclusion at the beginning of console logs. Intended for use in all manual logs in a specific file. Also
+*   Reason: in some environments the stack trace gets messed up by calling a wrapper function    around console methods (console.log etc.). This provides a nice marker for such environments
+*   Note: currently optimized for terminal use - outputs terminal colour string wrappers rather than browser CSS. However, it is still usage in the browser if you do not use the 
+    colourization options
+
+####buildFileTagString Usage
+
+    (filename: string, colourizer?: Function | number, rpadSize?: string = 20): string
+
+    *   filename: tag to stylize 
+    *   colourizer: either:
+            1)   a colors.js function or a chain of composed colors.js functions, set up to apply all styles in the chain to any string passed to the filename argument
+            2)   a number, in which case this number is used as the right padding length. In this case, any value passed to rpadSize is ignored.
+    *   rpadSize: (optional) align all logs up to this length. Works like lodash's padLeft, or ES7's String.prototype.padEnd.
+
+Examples:
+
+    import { buildFileTagString } from 'mad-logs';
+    const colors = require('colors'); // required if you want to apply styles
+
+    const TAG = buildFileTagString('[current-file]', colors.black.bgGreen.bold, 25);
+
+    //...
+    if (process.env.LOG_LEVEL === 'verbose') {
+        console.log(`${TAG} Connecting to postgres...`);
+    }
+    // Output: [current-file]           Connecting to postgres...
+    //        |
+    //        |<--terminal edge here {not included in actual output}
