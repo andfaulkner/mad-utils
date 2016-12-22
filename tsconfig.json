@@ -26,6 +26,7 @@
     "include": [
         "./index.ts",
         "./index.d.ts",
-        "./src/theming.ts"
+        "./src/theming.ts",
+        "./src/build-file-tag-string.ts"
     ]
 }

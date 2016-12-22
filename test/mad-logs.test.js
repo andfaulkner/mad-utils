@@ -13,9 +13,34 @@ const fs = require('fs');
 const path = require('path');
 const partial = require('lodash.partial');
 const { stderr, stdout } = require('test-console');
+const colors = require('colors');
 
-/************************************ IMPORT FILE TO BE TESTED ************************************/
-const { logFactory, logMarkers } = require('../lib/index');
+/*********************************** IMPORT FILES TO BE TESTED ************************************/
+const { buildFileTagString, logFactory, logMarkers } = require('../lib/index');
+
+/******************************************** HELPERS *********************************************/
+/**
+ * Prevents console.error messages emitted by code from reaching the console for given function
+ * @param  {Function} fn - function to run without showing errors
+ * @return {Object<{errorLogs: string[], warnLogs: string[], result: any}>} array containing
+ *              warnings & errors outputted running the function, and the function result
+ */
+function blockErrorOutput(fn) {
+    const errorLogs = [];
+    const warnLogs = [];
+
+    const errorOrig = console.error;
+    console.error = (...msgs) => errorLogs.push(msgs);
+    const warnOrig = console.warn;
+    console.warn = (...msgs) => warnLogs.push(msgs);
+
+    const result = fn();
+
+    console.error = errorOrig;
+    console.warn = warnOrig;
+
+    return { errorLogs, warnLogs, result };
+}
 
 /********************************************* TESTS **********************************************/
 describe('logFactory', function() {
@@ -122,6 +147,69 @@ describe('logMarkers', function() {
             expect(curLogMarker.tagSuffix).to.be.a('string');
             expect(curLogMarker.style).to.be.a('string');
         })
+    });
+});
+
+describe('buildFileTagString', function() {
+    it('exists', function () {
+        expect(buildFileTagString).to.exist;
+    });
+    it('outputs a string', function() {
+        expect(buildFileTagString('test-name')).to.be.a('string');
+    });
+    it('includes the filename in the output', function () {
+        expect(buildFileTagString('test-name')).to.contain('test-name');
+    });
+    it('surrounds output w colour codes if given function chain from colours module', function () {
+        const testOutput = buildFileTagString('test-name', colors.blue);
+        expect(testOutput).to.contain('\u001b[34m');
+        expect(testOutput).to.contain('\u001b[39m');
+        expect(testOutput).to.contain('\u001b[34mtest-name\u001b[39m');
+    });
+    it('does not leave the terminal output colourized after running', function() {
+        const testOutput = buildFileTagString('test-name', colors.blue);
+        const output = stdout.inspectSync(function(out) {
+            console.log(`${testOutput} hey`);
+            console.log(`this should not contain a colour code`);
+        });
+        expect(output[0]).to.contain('\u001b');
+        expect(output[1]).to.not.contain('\u001b[39m');
+    });
+    it('pads the output to 20 characters if a pad length is not provided', function () {
+        const testOutput = buildFileTagString('test-name', colors.blue);
+        expect(testOutput).to.contain('           '); // 11 char space
+        expect(testOutput).to.not.contain('            '); // 12 char space
+        const testOutput2 = buildFileTagString('eighteen-char-str!', colors.blue);
+        expect(testOutput2).to.contain('  ');
+    });
+    it('if a pad length is provided, pads output to given # of chars', function () {
+        const testOutput = buildFileTagString('test-name', colors.blue, 25);
+        expect(testOutput).to.contain('                '); // 16 char space
+        expect(testOutput).to.not.contain('                 '); // 17 char space
+        const testOutput2 = buildFileTagString('eighteen-char-str!', colors.blue, 25);
+        expect(testOutput2).to.contain('       ');
+        expect(partial(buildFileTagString, 'test-name', colors.blue, 25)).to.not.throw(TypeError);
+    });
+    it('throws if colourizer arg is non-function or function without _styles prop', function () {
+        blockErrorOutput(() => {
+            const output = stdout.inspectSync(function(out) {
+                expect(
+                    () => buildFileTagString('test-name', 'ccawa', 25)
+                ).to.throw(TypeError);
+                expect(
+                    () => buildFileTagString('test-name', (() => 'out'), 25)
+                ).to.throw(TypeError);
+            });
+        })
+    });
+    it('does not accept non-strings as tag argument', function () {
+        blockErrorOutput(() => {
+            const output = stdout.inspectSync(function(out) {
+                expect(
+                    () => buildFileTagString((() => ''), colors.blue, 25)
+                ).to.throw(TypeError);
+            });
+        });
     });
 });
 

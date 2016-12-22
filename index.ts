@@ -1,10 +1,13 @@
 /************************************** THIRD-PARTY IMPORTS ***************************************/
-// const find = require("lodash.find"); // const isString = require("lodash.isstring");
+// const find = require("lodash.find"); 
+// const isString = require("lodash.isstring"); 
+
 import { find, isString } from 'lodash';
 import * as isNode from 'detect-node';
 
 /************************************* IMPORT PROJECT MODULES *************************************/
 const { colours, style, logMarkers } = require('./src/theming');
+const { buildFileTagString } = require('./src/build-file-tag-string');
 
 const colors = (isNode)
     ? require('colors/safe')
@@ -176,4 +179,4 @@ function warnLogOut(fileTag: string): ToConsoleFunc {
  * @EXPORT {Object} logMarkers
  * @EXPORT {Function} logFactory :: (fileName: string, opts = {tagPrefix, tagSuffix, style}) => Object
  */
-module.exports = { logMarkers, logFactory };
+module.exports = { logMarkers, logFactory, buildFileTagString };
