@@ -72,13 +72,13 @@ This is what you should be doing - it's a good idea to set process.env.LOG_LEVEL
 
 ####buildFileTagString Usage
 
-    (filename: string, colourizer?: Function | number, rpadSize?: string = 20): string
+(filename: string, colourizer?: Function | number, rpadSize?: string = 20): string
 
-    *   filename: tag to stylize 
-    *   colourizer: either:
-            1)   a colors.js function or a chain of composed colors.js functions, set up to apply all styles in the chain to any string passed to the filename argument
-            2)   a number, in which case this number is used as the right padding length. In this case, any value passed to rpadSize is ignored.
-    *   rpadSize: (optional) align all logs up to this length. Works like lodash's padLeft, or ES7's String.prototype.padEnd.
+*   filename: tag to stylize 
+*   colourizer: either:
+        1)   a colors.js function or a chain of composed colors.js functions, set up to apply all styles in the chain to any string passed to the filename argument
+        2)   a number, in which case this number is used as the right padding length. In this case, any value passed to rpadSize is ignored.
+*   rpadSize: (optional) align all logs up to this length. Works like lodash's padLeft, or ES7's String.prototype.padEnd.
 
 Examples:
 
