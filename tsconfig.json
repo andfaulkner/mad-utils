@@ -8,6 +8,7 @@
         "sourceMap": true,
         "strictNullChecks": false,
         "outDir": "lib/",
+        "declaration": true,
 
         "target": "ES6",
         "moduleResolution": "node",
@@ -15,7 +16,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "removeComments": false,
-        "allowJs": true,
         "jsx": "preserve",
         "pretty": true
     },
@@ -25,7 +25,7 @@
     ],
     "include": [
         "./index.ts",
-        "./index.d.ts",
+        "./typings/index.d.ts",
         "./src/theming.ts",
         "./src/build-file-tag-string.ts"
     ]

@@ -15,17 +15,17 @@ const colors = (isNode)
 
 
 /**************************************** TYPE DEFINITIONS ****************************************/
-interface AppConf {
+export interface AppConf {
     logLevel: string;
 }
 
-interface LogFactoryOpts {
+export interface LogFactoryOpts {
   tagPrefix: string;
   tagSuffix: string;
   style: string;
 }
 
-interface MadLog {
+export interface MadLog {
     (...strs: any[]): any;
     silly: any;
     verbose: any;
