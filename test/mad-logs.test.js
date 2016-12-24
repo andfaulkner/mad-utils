@@ -17,7 +17,7 @@ const colors = require('colors');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const madLogs = require('../lib/index');
-const { buildFileTagString, logFactory, logMarkers } = madLogs;
+const { buildFileTag, logFactory, logMarkers } = madLogs;
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -151,24 +151,24 @@ describe('logMarkers', function() {
     });
 });
 
-describe('buildFileTagString', function() {
+describe('buildFileTag', function() {
     it('exists', function () {
-        expect(buildFileTagString).to.exist;
+        expect(buildFileTag).to.exist;
     });
     it('outputs a string', function() {
-        expect(buildFileTagString('test-name')).to.be.a('string');
+        expect(buildFileTag('test-name')).to.be.a('string');
     });
     it('includes the filename in the output', function () {
-        expect(buildFileTagString('test-name')).to.contain('test-name');
+        expect(buildFileTag('test-name')).to.contain('test-name');
     });
     it('surrounds output w colour codes if given function chain from colours module', function () {
-        const testOutput = buildFileTagString('test-name', colors.blue);
+        const testOutput = buildFileTag('test-name', colors.blue);
         expect(testOutput).to.contain('\u001b[34m');
         expect(testOutput).to.contain('\u001b[39m');
         expect(testOutput).to.contain('\u001b[34mtest-name\u001b[39m');
     });
     it('does not leave the terminal output colourized after running', function() {
-        const testOutput = buildFileTagString('test-name', colors.blue);
+        const testOutput = buildFileTag('test-name', colors.blue);
         const output = stdout.inspectSync(function(out) {
             console.log(`${testOutput} hey`);
             console.log(`this should not contain a colour code`);
@@ -177,28 +177,28 @@ describe('buildFileTagString', function() {
         expect(output[1]).to.not.contain('\u001b[39m');
     });
     it('pads the output to 20 characters if a pad length is not provided', function () {
-        const testOutput = buildFileTagString('test-name', colors.blue);
+        const testOutput = buildFileTag('test-name', colors.blue);
         expect(testOutput).to.contain('           '); // 11 char space
         expect(testOutput).to.not.contain('            '); // 12 char space
-        const testOutput2 = buildFileTagString('eighteen-char-str!', colors.blue);
+        const testOutput2 = buildFileTag('eighteen-char-str!', colors.blue);
         expect(testOutput2).to.contain('  ');
     });
     it('if a pad length is provided, pads output to given # of chars', function () {
-        const testOutput = buildFileTagString('test-name', colors.blue, 25);
+        const testOutput = buildFileTag('test-name', colors.blue, 25);
         expect(testOutput).to.contain('                '); // 16 char space
         expect(testOutput).to.not.contain('                 '); // 17 char space
-        const testOutput2 = buildFileTagString('eighteen-char-str!', colors.blue, 25);
+        const testOutput2 = buildFileTag('eighteen-char-str!', colors.blue, 25);
         expect(testOutput2).to.contain('       ');
-        expect(partial(buildFileTagString, 'test-name', colors.blue, 25)).to.not.throw(TypeError);
+        expect(partial(buildFileTag, 'test-name', colors.blue, 25)).to.not.throw(TypeError);
     });
     it('throws if colourizer arg is non-function or function without _styles prop', function () {
         blockErrorOutput(() => {
             const output = stdout.inspectSync(function(out) {
                 expect(
-                    () => buildFileTagString('test-name', 'ccawa', 25)
+                    () => buildFileTag('test-name', 'ccawa', 25)
                 ).to.throw(TypeError);
                 expect(
-                    () => buildFileTagString('test-name', (() => 'out'), 25)
+                    () => buildFileTag('test-name', (() => 'out'), 25)
                 ).to.throw(TypeError);
             });
         })
@@ -207,34 +207,22 @@ describe('buildFileTagString', function() {
         blockErrorOutput(() => {
             const output = stdout.inspectSync(function(out) {
                 expect(
-                    () => buildFileTagString((() => ''), colors.blue, 25)
+                    () => buildFileTag((() => ''), colors.blue, 25)
                 ).to.throw(TypeError);
             });
         });
     });
     it('allows null as an arg for colourizer, & still pads if arg 3 is then a #', function () {
-        const testOutput = buildFileTagString('test-name', null, 25);
+        const testOutput = buildFileTag('test-name', null, 25);
         expect(testOutput).to.contain('                '); // 16 char space
         expect(testOutput).to.not.contain('                 '); // 17 char space
     });
     it('allows a number as 2nd arg, & pads by that amount', function () {
-        const testOutput = buildFileTagString('test-name', 25);
+        const testOutput = buildFileTag('test-name', 25);
         expect(testOutput).to.contain('                '); // 16 char space
         expect(testOutput).to.not.contain('                 '); // 17 char space
     });
 });
 
-const tagBuilderAliases = [
-    'buildFileTagString', 'buildFileTag', 'buildTagString', 'buildTag',
-    'makeFileTagString', 'makeFileTag', 'makeTagString', 'makeTag'
-];
-
-describe('buildFileTagString aliases e.g. buildFileTag, makeFileTagString, buildTag, etc.', function() {
-    it('is able to run all aliases of buildFileTagString:', function () {
-        tagBuilderAliases.forEach((alias) => {
-            expect(madLogs[alias]).to.exist;
-        });
-    });
-});
 // Restore original process.argv
 process.argv = Object.assign({}, oldProcArgs);

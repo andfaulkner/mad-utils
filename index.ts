@@ -8,6 +8,7 @@ import * as isNode from 'detect-node';
 /************************************* IMPORT PROJECT MODULES *************************************/
 const { colours, style, logMarkers } = require('./src/theming');
 const { buildFileTagString } = require('./src/build-file-tag-string');
+const buildFileTag = buildFileTagString;
 
 const colors = (isNode)
     ? require('colors/safe')
@@ -175,13 +176,5 @@ function warnLogOut(fileTag: string): ToConsoleFunc {
     };
 }
 
-export { logMarkers, logFactory, buildFileTagString }
+export { logMarkers, logFactory, buildFileTag }
 
-// I am forgetful
-export { buildFileTagString as buildFileTag }
-export { buildFileTagString as buildTagString }
-export { buildFileTagString as buildTag }
-export { buildFileTagString as makeFileTagString }
-export { buildFileTagString as makeFileTag }
-export { buildFileTagString as makeTagString }
-export { buildFileTagString as makeTag }

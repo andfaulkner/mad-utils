@@ -1,3 +1,4 @@
+declare const buildFileTag: any;
 /**************************************** TYPE DEFINITIONS ****************************************/
 export interface AppConf {
     logLevel: string;
@@ -31,11 +32,4 @@ export interface MadLog {
  *           to the function (e.g. if LOG_LEVEL=info, a message passed to log.debug won't show).
  */
 declare const logFactory: (config?: AppConf) => any;
-export { logMarkers, logFactory, buildFileTagString };
-export { buildFileTagString as buildFileTag };
-export { buildFileTagString as buildTagString };
-export { buildFileTagString as buildTag };
-export { buildFileTagString as makeFileTagString };
-export { buildFileTagString as makeFileTag };
-export { buildFileTagString as makeTagString };
-export { buildFileTagString as makeTag };
+export { logMarkers, logFactory, buildFileTag };
