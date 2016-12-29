@@ -1,6 +1,7 @@
 /**************************************** TYPE DEFINITIONS ****************************************/
-export interface IMyExport {
-    placeholder: string;
+export interface INodeModuleBoilerplate {
+    nodeModuleBoilerplatePlaceholder: string;
+    nodeModuleBoilerplatePlaceholderFn: (test: string) => never;
 }
-declare const myExport: IMyExport;
-export { myExport };
+declare const nodeModuleBoilerplateExport: INodeModuleBoilerplate;
+export { nodeModuleBoilerplateExport };

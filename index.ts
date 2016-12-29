@@ -9,10 +9,12 @@ const colors = (isNode)
 /**************************************** TYPE DEFINITIONS ****************************************/
 export interface INodeModuleBoilerplate {
     nodeModuleBoilerplatePlaceholder: string;
+    nodeModuleBoilerplatePlaceholderFn: (test: string) => never;
 }
 
 const nodeModuleBoilerplateExport: INodeModuleBoilerplate = {
-    nodeModuleBoilerplatePlaceholder: 'placeholder'
+    nodeModuleBoilerplatePlaceholder: 'placeholder',
+    nodeModuleBoilerplatePlaceholderFn: (test: string) => { throw new Error('Boilerplate fn called') },
 }
 
 export { nodeModuleBoilerplateExport }

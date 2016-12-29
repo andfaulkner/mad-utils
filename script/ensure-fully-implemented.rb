@@ -41,6 +41,8 @@ class Checker
                 '\'placeholder\'', 'default property still set in export object')
             check_line_has_both_matches(line, 'export',
                 '{ nodeModuleBoilerplateExport }', 'default object still being exported')
+            check_line_has_both_matches(line, 'nodeModuleBoilerplatePlaceholderFn',
+                '', 'Default function still defined')
         end.close
         reset_file_specific_vals
     end
