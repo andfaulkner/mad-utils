@@ -1,7 +1,7 @@
 {
-  "name": "mad-logs",
-  "version": "3.1.0",
-  "description": "Winston-lite-esque Log lib for terminal and browser debugging, with piles of unignorable log tags and marker styles.",
+  "name": "node-typescript-module-boilerplate",
+  "version": "1.0.0",
+  "description": "/***** TODO Stuff and things ******/",
   "main": "lib/index.js",
   "typings": "lib/index",
   "files": [
@@ -15,34 +15,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andfaulkner/mad-logs.git"
+    "url": "git+https://github.com/andfaulkner/node-typescript-module-boilerplate.git"
   },
   "keywords": [
-    "logging",
-    "logs",
-    "log",
-    "configuration",
-    "config",
-    "terminal",
-    "cli",
-    "debugger",
-    "browser",
-    "debug",
-    "errors",
-    "error-handling"
+    "/**** TODO ADD KEYWORDS ****/"
   ],
   "author": "Andrew Faulkner <andfaulkner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andfaulkner/mad-logs/issues"
+    "url": "https://github.com/andfaulkner/node-typescript-module-boilerplate/issues"
   },
-  "homepage": "https://github.com/andfaulkner/mad-logs#readme",
+  "homepage": "https://github.com/andfaulkner/node-typescript-module-boilerplate#readme",
   "dependencies": {
     "colors": "^1.1.2",
     "detect-node": "^2.0.3",
-    "lodash.find": "^4.6.0",
-    "lodash.isstring": "^4.0.1",
-    "lodash.isfunction": "^3.0.8",
     "string.prototype.padend": "^3.0.0"
   },
   "devDependencies": {
@@ -53,7 +39,6 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "lodash": "^4.17.2",
-    "lodash.partial": "^4.2.1",
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
     "test-console": "^1.0.0",
