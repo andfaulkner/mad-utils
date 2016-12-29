@@ -14,8 +14,8 @@ const path = require('path');
 const { stderr, stdout } = require('test-console');
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-const __moduleBoilerplate__ = require('../lib/index');
-const { myExport } = __moduleBoilerplate__;
+const __nodeModuleBoilerplateExport__ = require('../lib/index');
+const { nodeModuleBoilerplatePlaceholder } = __nodeModuleBoilerplateExport__;
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -42,15 +42,15 @@ function blockErrorOutput(fn) {
 }
 
 /********************************************* TESTS **********************************************/
-describe('myExport', function() {
+describe('nodeModuleBoilerplatePlaceholder', function() {
     it('exists', function() {
-        expect(myExport).to.exist;
+        expect(nodeModuleBoilerplatePlaceholder).to.exist;
     });
     it('is the thing', function() {
-        expect(myExport).to.be.a('string');
+        expect(nodeModuleBoilerplatePlaceholder).to.be.a('string');
     });
     it('is not a function, and will throw if you try to run it', function() {
-        expect(myExport).to.throw(TypeError);
+        expect(nodeModuleBoilerplatePlaceholder).to.throw(TypeError);
     });
 });
 

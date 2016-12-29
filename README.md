@@ -6,7 +6,7 @@
 ## Usage
 
     // example of code used in the README file
-    console.log('some example');
+    console.log('some __module_boilerplate_usage__ example');
 
 ----
 ### Third-level heading
@@ -16,18 +16,18 @@ A regular paragraph, no bullet. Code below:
 
 ## API
 
-### someFunction
+### someFunctionInModuleBoilerplate
 (varName: typeEg_string): returnTypeEg_number
 
 *   varName: description
 
 Examples:
 
-    someFunction('hello');
+    someFunctionInModuleBoilerplate('hello');
     // => hello output
 
 
-### anotherFunction
+### anotherModuleBoilerplateFunction
 (anotherVarName: string) => next
 
 *   anotherVarName: description of argument

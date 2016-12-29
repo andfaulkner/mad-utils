@@ -11,6 +11,7 @@
     "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
     "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
     "test": "mocha test/",
+    "boilerplate-check": "./script/ensure-fully-implemented.rb",
     "test:watch": "chokidar ./lib/** ./config/** ./test/** --initial -c \"mocha test/\""
   },
   "repository": {

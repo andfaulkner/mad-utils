@@ -7,13 +7,13 @@ const colors = (isNode)
     : {};
 
 /**************************************** TYPE DEFINITIONS ****************************************/
-export interface IMyExport {
-    placeholder: string;
+export interface INodeModuleBoilerplate {
+    nodeModuleBoilerplatePlaceholder: string;
 }
 
-const myExport: IMyExport = {
-    placeholder: 'placeholder'
+const nodeModuleBoilerplateExport: INodeModuleBoilerplate = {
+    nodeModuleBoilerplatePlaceholder: 'placeholder'
 }
 
-export { myExport }
+export { nodeModuleBoilerplateExport }
 
