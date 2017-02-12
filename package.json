@@ -1,6 +1,6 @@
 {
   "name": "node-typescript-module-boilerplate",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "/***** TODO Stuff and things ******/",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -8,11 +8,12 @@
     "lib/"
   ],
   "scripts": {
+    "prepublish": "npm run compile-ts",
     "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
     "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
-    "test": "mocha test/",
+    "test": "mocha --opts test/mocha.opts test/",
     "boilerplate-check": "./script/ensure-fully-implemented.rb",
-    "test:watch": "chokidar ./lib/** ./config/** ./test/** --initial -c \"mocha test/\""
+    "test:watch": "chokidar ./lib/** ./config/** ./test/** --initial -c \"mocha --opts test/mocha.opts test/\""
   },
   "repository": {
     "type": "git",
@@ -28,24 +29,35 @@
   },
   "homepage": "https://github.com/andfaulkner/node-typescript-module-boilerplate#readme",
   "dependencies": {
-    "colors": "^1.1.2",
     "detect-node": "^2.0.3",
     "string.prototype.padend": "^3.0.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.43",
-    "@types/node": "^6.0.52",
+    "@types/lodash": "^4.14.45",
+    "@types/mocha": "^2.2.35",
+    "@types/node": "6.0.56",
     "chai": "^3.5.0",
+    "chokidar": "^1.6.1",
     "colors": "^1.1.2",
+    "env-var-helpers": "^2.1.0",
+    "eslint": "^3.12.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
-    "lodash": "^4.17.2",
+    "fs-extra": "^2.0.0",
+    "mad-logs": "^5.3.0",
     "mocha": "^3.2.0",
     "sinon": "^1.17.6",
+    "snyk": "^1.24.6",
+    "supertest": "^2.0.1",
     "test-console": "^1.0.0",
-    "typescript": "2.1.4"
+    "tslint": "^4.4.2",
+    "tslint-eslint-rules": "^3.3.0",
+    "tslint-microsoft-contrib": "^4.0.0",
+    "ts-node": "^2.0.0",
+    "typescript": "2.2.0"
   },
   "peerDependencies": {
-    "lodash": "^4.17.2"
-  }
+    "lodash": "^4.17.4"
+  },
+  "snyk": true
 }
