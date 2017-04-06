@@ -1,0 +1,72 @@
+######################### TEST DIRECTORIES #########################
+__tests__
+tests
+spec
+powered-test
+### test ### <<< required ignoring to allow tslint to work
+### !test/parse
+
+######################### ASSET DIRECTORIES #########################
+docs
+doc
+website
+images
+# assets
+
+######################### EXAMPLES #########################
+example
+examples
+
+######################### CODE COVERAGE DIRECTORIES #########################
+coverage
+.nyc_output
+
+######################### BUILD SCRIPTS #########################
+Makefile
+Gulpfile.js
+Gruntfile.js
+brunch-config.js
+brunch-config.coffee
+mimosa-config.js
+mimosa-config.coffee
+Jakefile.js
+webpack.config.js
+
+#----- WEBPACK BUILD SCRIPT (VARIANTS) -----#
+*.webpack.config.js
+webpack.*.config.js
+webpack.config.*.js
+webpack.*.config.*.js
+*.webpack.config.*.js
+*.webpack.*.config.js
+*.webpack.*.config.*.js
+
+Gemfile
+
+######################### CONFIGS #########################
+.gitattributes
+.editorconfig
+.*ignore
+.flowconfig
+.documentup.json
+.yarn-metadata.json
+.*.yml
+*.yml
+
+#----- LINTER CONFIGS -----#
+.eslintrc
+.jshintrc
+
+#------- IDE CONFIGS ------#
+.tern-project
+.vscode
+.sublime-project
+.sublime-workspace
+.editorconfig
+
+######################### CACHE #########################
+.awcache
+
+######################### MISC #########################
+*.gz
+*.md

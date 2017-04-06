@@ -1,0 +1,34 @@
+{
+    "reporter": [
+        "lcov",
+        "text-summary",
+        "html"
+    ],
+    "require": [
+        "ts-node/register"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx",
+      ".js",
+      ".jsx"
+    ],
+    "report-dir": "./coverage",
+    "include": [
+        "src/**/*.ts",
+        "src/*.ts",
+        "index.ts"
+    ],
+    "exclude": [
+        "node_modules/",
+        "lib/",
+        "typings/",
+        "config/",
+        "**/*.d.ts",
+        "test/"
+    ],
+    "cache": true,
+    "all": true,
+    "sourceMap": true,
+    "instrument": true
+}

@@ -1,17 +1,19 @@
-// ensure environment knows testing is occurring
+/// <reference path="../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../node_modules/@types/node/index.d.ts" />
+
+// Ensure environment knows testing is occurring.
 process.env.mocha = true;
 
-// Store original process.argv
+// Store original process.argv.
 const oldProcArgs = Object.assign({}, process.argv);
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
-const { expect } = require('chai');
-const sinon = require('sinon');
-const mocha = require('mocha');
+import { expect } from 'chai';
+import * as sinon from 'sinon';
 
-const fs = require('fs');
-const path = require('path');
-const { stderr, stdout } = require('test-console');
+import * as fs from 'fs';
+import * as path from 'path';
+import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
 const __nodeModuleBoilerplate__ = require('../lib/index');
@@ -20,9 +22,9 @@ const nodeModuleBoilerplateExport = __nodeModuleBoilerplate__.nodeModuleBoilerpl
 /******************************************** HELPERS *********************************************/
 /**
  * Prevents console.error messages emitted by code from reaching the console for given function
- * @param  {Function} fn - function to run without showing errors
+ * @param  {Function} fn - function to run without showing errors.
  * @return {Object<{errorLogs: string[], warnLogs: string[], result: any}>} array containing
- *              warnings & errors outputted running the function, and the function result
+ *              warnings & errors outputted running the function, and the function result.
  */
 function blockErrorOutput(fn) {
     const errorLogs = [];
@@ -52,7 +54,11 @@ describe('nodeModuleBoilerplateExport', function() {
     it('#nodeModuleBoilerplateExport.nodeModuleBoilerplatePlaceholderFn throws if run', function() {
         expect(nodeModuleBoilerplateExport.nodeModuleBoilerplatePlaceholderFn).to.throw(Error);
     });
-});
 
-// Restore original process.argv
-process.argv = Object.assign({}, oldProcArgs);
+    /**
+     * Restore original process.argv.
+     */
+    after(function() {
+        process.argv = Object.assign({}, oldProcArgs);
+    });
+});

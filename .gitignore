@@ -72,3 +72,11 @@ doc/local_notes
 .vscode
 .awcache
 *.sublime-workspace
+
+# Redis backups
+redis-backup/**.aof
+redis-backup/**.rdb
+
+# Code coverage report
+.nyc_output/
+coverage/

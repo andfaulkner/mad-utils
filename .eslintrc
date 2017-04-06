@@ -54,7 +54,7 @@
     "indent": [1, 4, { "SwitchCase": 1}],
     "linebreak-style": [2, "unix"],
     "operator-linebreak": [1, "after", { "overrides": { "?": "before", ":": "before" } }],
-    "quotes": [0, "single"],
+    "quotes": [2, "single"],
     "quote-props": [1, "consistent-as-needed"],
     "semi": [2, "always"],
     "no-extra-semi": 1,

@@ -8,7 +8,7 @@
     ],
 
     "rules": {
-        "array-type": [true, "array-simple"],
+        "array-type": [true],
         "arrow-parens": true,
         "block-spacing": [true, "always"],
         "brace-style": [true, "1tbs", { "allowSingleLine": true }],
@@ -52,7 +52,7 @@
         "no-inferrable-types": [true, "ignore-params"],
         "no-inner-declarations": true,
         "no-internal-module": false,
-        "no-invalid-this": true,
+        "no-invalid-this": false,
         "no-invalid-regexp": true,
         "no-magic-numbers": [true, -2, -1, 0, 1, 2],
         "no-mergeable-namespace": false,
@@ -92,9 +92,8 @@
             "check-whitespace"
         ],
         "one-variable-per-declaration": true,
-        "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+        "only-arrow-functions": [false, "allow-declarations", "allow-named-functions"],
         "ordered-imports": false,
-        "prefer-array-literal": true,
         "prefer-const": true,
         "prefer-literal": [true, "object", "array", "function"],
         "promise-must-complete": true,

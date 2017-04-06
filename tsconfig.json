@@ -1,21 +1,20 @@
 {
-    "version": "2.1.4",
+    "version": "2.2.1",
     "compilerOptions": {
         "module": "commonjs",
-        "noImplicitAny": false,
         "removeComments": false,
         "preserveConstEnums": true,
         "sourceMap": true,
         "strictNullChecks": false,
         "outDir": "lib/",
         "declaration": true,
-
         "target": "ES6",
+        "skipLibCheck": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
+        "noImplicitAny": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "removeComments": false,
         "jsx": "preserve",
         "pretty": true
     },
