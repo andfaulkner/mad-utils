@@ -1,5 +1,7 @@
+/******************************************** IMPORTS *********************************************/
 import * as moment from 'moment';
 import { expect } from 'chai';
+
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
@@ -8,6 +10,7 @@ const log = nodeLogFactory(buildFileTag('misc-utils::index.ts', colors.green.bgW
 
 /************************************ CORE LANGUAGE UTILITIES *************************************/
 const isArray = (value: any): boolean => {
+    // Fully compliant ES5, ES6, ES7, ES8 ES[+] environments
     if (Array.isArray) {
         return Array.isArray(value);
     }
@@ -15,6 +18,9 @@ const isArray = (value: any): boolean => {
     return !!((value)
            && value.constructor
            && (value.constructor.name === 'Array'
+               // All ES5 and higher environments
+               || (Object.getPrototypeOf && Object.getPrototypeOf(value.constructor) === Array)
+               // Pre-ES5 web browsers
                || (value.constructor.__proto__ && value.constructor.__proto__.name === 'Array')));
 }
 
@@ -72,7 +78,7 @@ export const thirdLast = <T>(arr: T[]): T => (arr.length > 2) ? arr[arr.length -
  * @example Return current date + time as timestamp without day or second:
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
-export const now = (timestampFormat?: string = `YYYY/MM/DD : hh:mm:ss`) => {
+export const now = (timestampFormat: string = `YYYY/MM/DD : hh:mm:ss`) => {
     return moment().format(timestampFormat);
 };
 
