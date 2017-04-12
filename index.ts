@@ -73,12 +73,11 @@ export function last2 <T>(arr: T[]): T[] {
 }
 
 /**
- * Return first N items in an array. Returned undefined if you request too many items.
+ * Return last 3 items in an array.
  */
-export function firstN <T>(arr: T[], n: number): T[] {
-    return (arr.length >= n)
-        ? arrayN(n).map((__, idx) => arr[idx])
-        : arr;
+export function last3 <T>(arr: T[]): T[] {
+    return (arr.length >= 3) ? [arr[arr.length - 3], arr[arr.length - 2], arr[arr.length - 1]]
+                             : void 0;
 }
 
 /**
@@ -91,11 +90,19 @@ export function lastN <T>(arr: T[], n: number): T[] {
 }
 
 /**
- * Create empty array of given length.
+ * Return first N items in an array. Returned undefined if you request too many items.
  */
-const arrayN = (len: number): any[] => {
-    return Array.from(Array(len));
+export function firstN <T>(arr: T[], n: number): T[] {
+    return (arr.length >= n)
+        ? arrayN(n).map((__, idx) => arr[idx])
+        : arr;
 }
+
+/**
+ * Create empty array of given length.
+ * @param {number} len - Length of array to create.
+ */
+const arrayN = (len: number): any[] => Array.from(Array(len));
 
 /********************************************* DATE ***********************************************/
 /**
