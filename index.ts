@@ -163,27 +163,75 @@ const getFromStorage = (key: string, store?: Object): string | null => {
 
 /***************************************** DATA UTILITIES *****************************************/
 /**
- * Return true if argument is a multilanguage string object
+ * Return true if val is (probably) a multilanguage string object.
+ *
+ * Not foolproof - assumes one of the languages is English, and that it's either Canadian, British,
+ * or American English - or 'generic' English (with no locale specified).
+ *
+ * If English is not one of the languages, this will not work.
+ *
+ * TODO test this - a lot more.
+ *
+ * @param {val} val - Value to type check.
+ * @return {boolean} true if object's properties suggest it's a multilanguage string object.
  */
-export const isMultilangTextObj = (val: any): boolean => {
-    return !!(
-        typeof val === 'object' &&
-        Object.keys(val).length > 1 &&
-        Object.keys(val).find(matches('en')) &&
-        Object.keys(val).some(isNonexistentOrString) &&
-        isNonexistentOrString(val.en)
-    );
+export const isMultilangTextObj = (obj: any): boolean => {
+    const englishVariants = ['en', 'en_ca', 'en_gb', 'en_us'];
+    let matchingKey;
+    return !!(typeof obj === 'object'
+              && Object.keys(obj).length > 1
+              && Object.keys(obj).find(key => {
+                  if (englishVariants.find(matchesIgnoreCase(key))) {
+                      matchingKey = key;
+                      return true;
+                  }
+              })
+              && typeof matchingKey === 'string'
+              && isNonexistentOrString(obj[matchingKey]));
 };
+
+//
+// Original isMultilangTextObj:
+//
+// /**
+//  * Return true if argument is a multilanguage string object
+//  */
+// export const isMultilangTextObj = (val: any): boolean => {
+//     return !!(
+//         typeof val === 'object' &&
+//         Object.keys(val).length > 1 &&
+//         Object.keys(val).find(matches('en')) &&
+//         Object.keys(val).some(isNonexistentOrString) &&
+//         isNonexistentOrString(val.en)
+//     );
+// };
 
 /**
  * Inversion of String.prototype.match, for usage as a predicate.
+ * @param {string} matchAgainst - string to match against.
+ * @return {boolean} true if a match is found.
+ *
+ * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
 const matches = (matchAgainst: string) => (val: string): boolean => !!val.match(matchAgainst);
 
 /**
- *  Returns true if the value is null, undefined, or a string.
+ * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
+ * @param {string} matchAgainst - string to match against.
+ * @return {boolean} true if a match is found.
+ *
+ * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
  */
-const isNonexistentOrString = (val: any) => {
+const matchesIgnoreCase = (matchAgainst: string) => (val: string): boolean => {
+    return !!val.toLowerCase().match(matchAgainst.toLowerCase());
+};
+
+/**
+ *  Returns true if the value is null, undefined, or a string.
+ *  @param {any} val - Value to type check.
+ *  @return {boolean} true if val is null, undefined, or a string.
+ */
+const isNonexistentOrString = (val: any): boolean => {
     return (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
 };
 
