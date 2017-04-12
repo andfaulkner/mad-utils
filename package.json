@@ -32,6 +32,7 @@
   "homepage": "https://github.com/andfaulkner/node-typescript-module-boilerplate#readme",
   "dependencies": {
     "detect-node": "^2.0.3",
+    "fs-extra-promise": "^1.0.1",
     "moment": "^2.18.1"
   },
   "devDependencies": {

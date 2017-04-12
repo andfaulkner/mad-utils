@@ -51,18 +51,49 @@ const get = <T extends Object>(propPath: string[] | string, obj: T): any | void 
 /**
  * Return last item in an array.
  */
-export const last = <T>(arr: T[]): T => (arr.length > 0) ? arr[arr.length - 1] : void 0;
+export const last = <T>(arr: T[]): T => (arr.length >= 1) ? arr[arr.length - 1] : void 0;
 
 /**
  * Return second last item in an array.
  */
-export const secondLast = <T>(arr: T[]): T => (arr.length > 1) ? arr[arr.length - 2] : void 0;
+export const secondLast = <T>(arr: T[]): T => (arr.length >= 2) ? arr[arr.length - 2] : void 0;
 
 /**
  * Return third last item in an array.
  */
-export const thirdLast = <T>(arr: T[]): T => (arr.length > 2) ? arr[arr.length - 3] : void 0;
+export const thirdLast = <T>(arr: T[]): T => (arr.length >= 3) ? arr[arr.length - 3] : void 0;
 
+/**
+ * Return last 2 items in an array.
+ */
+export function last2 <T>(arr: T[]): T[] {
+    return (arr.length >= 2) ? [arr[arr.length - 2], arr[arr.length - 1]] : void 0;
+}
+
+/**
+ * Return first N items in an array. Returned undefined if you request too many items.
+ */
+export function firstN <T>(arr: T[], n: number): T[] {
+    return (arr.length >= n)
+        ? arrayN(n).map((__, idx) => arr[idx])
+        : arr;
+}
+
+/**
+ * Return last N items in an array.
+ */
+export function lastN <T>(arr: T[], n: number): T[] {
+    return (arr.length >= n)
+        ? arrayN(n).map((__, idx) => arr[arr.length - n + idx])
+        : arr;
+}
+
+/**
+ * Create empty array of given length.
+ */
+const arrayN = (len: number): any[] => {
+    return Array.from(Array(len));
+}
 
 /********************************************* DATE ***********************************************/
 /**
@@ -146,3 +177,31 @@ const isNonexistentOrString = (val: any) => {
     return (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
 };
 
+/******************************************* FILESYSTEM *******************************************/
+import * as path from 'path';
+import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync, writeFileSync } from 'fs-extra-promise';
+
+/**
+ * @param {string} fileOrDirPath - file system object being checked.
+ * @return {boolean} true if given file system object is a directory (if false it's a file)
+ */
+export function isDir(fileOrDirPath: string): boolean {
+    return lstatSync(fileOrDirPath).isDirectory();
+};
+
+/**
+ * Replace matching location in given file.
+ */
+export function replaceInFile(filePath: string, findString: string, replace: string): string;
+export function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
+export function replaceInFile(filePath: string, find: string | RegExp, replace: string): string {
+    const fileData   = readFileSync(filePath).toString();
+    // Hack required to make typings happy
+    const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
+                                                     : fileData.replace(find, replace);
+    writeFileSync(filePath, cleanfileData, 'utf8');
+    log.silly(`cleanjSweetBundleData: new ${filePath} contents:`, cleanfileData);
+    return cleanfileData;
+}
+
+/******************************************** STRINGS *********************************************/
