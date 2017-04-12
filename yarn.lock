@@ -2,9 +2,27 @@
 # yarn lockfile v1
 
 
+"@types/bluebird@*":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.2.tgz#ecf1104217495e50fe0b588d538146cd6f733b89"
+
 "@types/chai@^3.4.35":
   version "3.4.35"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-3.4.35.tgz#e8d65f83492d2944f816fc620741821c28a8c900"
+
+"@types/fs-extra-promise@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra-promise/-/fs-extra-promise-0.0.31.tgz#35c735cc061df9ddbf7009c16b90f871488285a3"
+  dependencies:
+    "@types/bluebird" "*"
+    "@types/fs-extra" "*"
+    "@types/node" "*"
+
+"@types/fs-extra@*":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-2.0.0.tgz#1e305d412c4e9e17e5553f59f143e4a49c5573a4"
+  dependencies:
+    "@types/node" "*"
 
 "@types/lodash":
   version "4.14.43"
@@ -20,7 +38,7 @@
   dependencies:
     moment "*"
 
-"@types/node":
+"@types/node", "@types/node@*":
   version "6.0.52"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.52.tgz#1ac3a99b42320f9e463482f25af4c2359473aaa6"
 
@@ -2293,6 +2311,10 @@ rechoir@^0.6.2:
   resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.6.2.tgz#85204b54dba82d5742e28c96756ef43af50e3384"
   dependencies:
     resolve "^1.1.6"
+
+reflect-metadata@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.10.tgz#b4f83704416acad89988c9b15635d47e03b9344a"
 
 regex-cache@^0.4.2:
   version "0.4.3"

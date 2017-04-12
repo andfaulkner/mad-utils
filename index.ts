@@ -1,4 +1,6 @@
 /******************************************** IMPORTS *********************************************/
+import 'reflect-metadata';
+
 import * as moment from 'moment';
 import { expect } from 'chai';
 
@@ -175,6 +177,31 @@ const matches = (matchAgainst: string) => (val: string): boolean => !!val.match(
  */
 const isNonexistentOrString = (val: any) => {
     return (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
+};
+
+/******************************************* DECORATORS *******************************************/
+/**
+ * Method decorator. Marks method as not being usable in a web environment. Emits a warning if
+ * method is called.
+ * Automatically adds it into a Reflect.defineMetadata compartment marking web-unfriendly methods
+ * on the class, when containing class is instantiated.
+ */
+export function notForWebUse(alternative?: string, envUsage = 'native mobile client or Java server') {
+    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        Reflect.defineMetadata('nonWebMethods', `${target.name} :: ${propertyKey}`, target,
+                               '${target.name}_${propertyKey}');
+
+        const originalMethod = descriptor.value;
+        descriptor.value = function(...args: any[]) {
+            console.warn(
+                `Method ${propertyKey} on class ${target.constructor.name} cannot be used in a ` +
+                `Javascript/Typescript environment - it is for ${envUsage} usage only. ` +
+                (alternative ? ('Use ' + alternative + ' instead.') : '')
+            );
+            return originalMethod.apply(this, args);
+        }
+        return descriptor;
+    }
 };
 
 /******************************************* FILESYSTEM *******************************************/

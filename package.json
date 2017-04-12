@@ -33,10 +33,12 @@
   "dependencies": {
     "detect-node": "^2.0.3",
     "fs-extra-promise": "^1.0.1",
-    "moment": "^2.18.1"
+    "moment": "^2.18.1",
+    "reflect-metadata": "^0.1.10"
   },
   "devDependencies": {
     "@types/chai": "^3.4.35",
+    "@types/fs-extra-promise": "^0.0.31",
     "@types/lodash": "^4.14.59",
     "@types/mocha": "^2.2.40",
     "@types/moment": "^2.13.0",
