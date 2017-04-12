@@ -379,38 +379,3 @@ function getLogAtLevel(log, level: ErrorLevels) {
             ? console.log
             : (...args: any[]) => null));
 }
-
-
-
-//**************************************************************************************************
-//
-// NODE-ONLY HELPERS / UTILS
-//
-//
-
-/******************************************* FILESYSTEM *******************************************/
-import * as path from 'path';
-import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync, writeFileSync } from 'fs-extra-promise';
-
-/**
- * @param {string} fileOrDirPath - file system object being checked.
- * @return {boolean} true if given file system object is a directory (if false it's a file)
- */
-export function isDir(fileOrDirPath: string): boolean {
-    return lstatSync(fileOrDirPath).isDirectory();
-};
-
-/**
- * Replace matching location in given file.
- */
-export function replaceInFile(filePath: string, findString: string, replace: string): string;
-export function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
-export function replaceInFile(filePath: string, find: string | RegExp, replace: string): string {
-    const fileData   = readFileSync(filePath).toString();
-    // Hack required to make typings happy
-    const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
-                                                     : fileData.replace(find, replace);
-    writeFileSync(filePath, cleanfileData, 'utf8');
-    log.silly(`cleanjSweetBundleData: new ${filePath} contents:`, cleanfileData);
-    return cleanfileData;
-}
