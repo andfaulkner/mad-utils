@@ -1,4 +1,149 @@
-/******************************************** ARRAYS **********************************************/
+/******************************************** IMPORTS *********************************************/
+import 'reflect-metadata';
+/********************************************** ENUM **********************************************/
+/**
+ * Return the string form of an enum value.
+ * Useful for cases where you're uncertain whether the value is in its numeric or string form.
+ */
+export declare function enumValToString<E>(Enum: any, val: any, caps?: 'lower' | 'upper' | null): string;
+/**
+ * Convert given enum to an array of strings, where each potential option is one item.
+ * Excludes the 'number' values in an enum.
+ * @param {Enum} enum - Enum to enumerate and extract string values from.
+ * @return {string[]} enum represented as an array of strings.
+ */
+export declare function enumToStringArray<E>(Enum: any): any[];
+export interface ClassConstructor {
+    new (...args: any[]): {};
+}
+export interface SingletonInterface<U> {
+    new (...args: any[]): U;
+    new: <Y>(...args: any[]) => Y;
+}
+/******************************************* DECORATORS *******************************************/
+/**
+ * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
+ *
+ * Any class wrapped in this decorator becomes a singleton immediately.
+ * Throws if attempt is made to wrap a non-class.
+ */
+export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+/**
+ * Method decorator factory. Marks method as not being usable in a web environment. Emits a
+ * warning if method is called. Automatically adds it into a Reflect.defineMetadata compartment
+ * marking web-unfriendly methods on the class, when containing class is instantiated.
+ *
+ * @param {string} alternative? - Method that should be used instead of the one called.
+ * @param {string} envUsage - Environment the method is intended for use in.
+ *
+ * @return {Function} Actual decorator, for wrapping methods (this is a decorator factory).
+ */
+export declare function notForWebUse(alternative?: string, envUsage?: string): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+/********************************************* ERRORS *********************************************/
+export declare type DecoratorErrorProps = {
+    message: string;
+    messageCause: string;
+    decoratorName: string;
+    wrappedItem?: any;
+};
+export interface DecoratorError {
+    new (cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
+}
+/**
+ * Throw when a decorator is improperly used. Should only be declared in a decorator function.
+ */
+export declare const DecoratorError: DecoratorError;
+/******************************************** STRINGS *********************************************/
+/**
+ * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
+ */
+export declare function cap1LowerRest(str: string): string;
+/**
+ * Capitalize the first letter of a string.
+ */
+export declare function capitalize(str: string): string;
+/**
+ * Replace all matching strings in a text segment with a given replacement string.
+ * Can also match against a regex.
+ * The main benefit is the fact that *ALL* matching strings get replaced.
+ *
+ * @param {string} text - string to search and replace in.
+ * @param {string|RegExp} find - string or RegExp to match against
+ * @param {string} replace - replacement text
+ *
+ * @return {string} text, with replacements made.
+ */
+export declare function replaceAll(text: string, find: string | RegExp, replace: string): string;
+/**
+ * Inversion of String.prototype.match, for usage as a predicate.
+ * @param {string} matchAgainst - string to match against.
+ * @return {boolean} true if a match is found.
+ *
+ * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
+ */
+export declare const matches: (matchAgainst: string) => (val: string) => boolean;
+/**
+ * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
+ * @param {string} matchAgainst - string to match against.
+ * @return {boolean} true if a match is found.
+ *
+ * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
+ */
+export declare const matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+/**
+ *  Returns true if the value is null, undefined, or a string.
+ *  @param {any} val - Value to type check.
+ *  @return {boolean} true if val is null, undefined, or a string.
+ */
+export declare const isNonexistentOrString: (val: any) => boolean;
+/**
+ * Escape a string for use as a regex. Allows repeat matching on a single string.
+ * TODO test this.
+ */
+export declare function escapeRegExp(regexStr: string): string;
+/********************************************* TYPES **********************************************/
+/**
+ * Returns true if the given argument is a number or a string.
+ */
+export declare function isNumberLike(arg: any): boolean;
+/**
+ * Returns true if the given arguments is a moment instance, Date instance, or a string.
+ */
+export declare function isDateLike(arg: any): boolean;
+/**
+ * True if the given object is an array. Robust, and works across multiple JS environments.
+ */
+export declare function isArray(value: any): boolean;
+/**
+ * Return true if val is (probably) a multilanguage string object.
+ *
+ * Not foolproof - assumes one of the languages is English, and that it's either Canadian, British,
+ * or American English - or 'generic' English (with no locale specified).
+ *
+ * If English is not one of the languages, this will not work.
+ *
+ * TODO test this - a lot more.
+ *
+ * @param {val} val - Value to type check.
+ * @return {boolean} true if object's properties suggest it's a multilanguage string object.
+ */
+export declare const isMultilangTextObj: (obj: any) => boolean;
+/**
+ * Returns true if given value is an integer.
+ *
+ * @param {any} value - value to check type of.
+ * @return {boolean} true if given value is integer.
+ *
+ * TODO TEST!
+ */
+export declare function isInt(val: any): boolean;
+/********************************** TEST (MOCHA, CHAI) UTILITIES **********************************/
+/**
+ * Expect that testValue is an empty object.
+ * @param {any} testValue - variable to check for emptiness.
+ */
+export declare const expectEmptyObject: (testValue: any) => void;
+/*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 /**
  * Return last item in an array.
  */
@@ -16,14 +161,66 @@ export declare const thirdLast: <T>(arr: T[]) => T;
  */
 export declare function last2<T>(arr: T[]): T[];
 /**
- * Return first N items in an array. Returned undefined if you request too many items.
+ * Return last 3 items in an array.
  */
-export declare function firstN<T>(arr: T[], n: number): T[];
+export declare function last3<T>(arr: T[]): T[];
 /**
  * Return last N items in an array.
  */
 export declare function lastN<T>(arr: T[], n: number): T[];
-/********************************************* DATE ***********************************************/
+/**
+ * Return first N items in an array. Returned undefined if you request too many items.
+ */
+export declare function firstN<T>(arr: T[], n: number): T[];
+/**
+ * Create empty array of given length.
+ * @param {number} len - Length of array to create.
+ */
+export declare const arrayN: (len: number) => any[];
+/**
+ * Safely get the given prop (via array of path props or 'access string') from the given object.
+ *
+ * @param {string[]|string} propPath - String in 'key1.key2.etc' form, or array of strings where
+ *                                      each item is a key to traverse into:
+ *                                      e.g.: ['key1', 'key2', 'etc'] refers to key1.key2.etc
+ * @param {Object} obj - Object to get the value from using the given path.
+ * @return {any} Value found at the given path.
+ */
+export declare const get: <T extends Object>(propPath: string | string[], obj: T) => any;
+/********************************************** DATE **********************************************/
+export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+/**
+ * True if the given year is a leap year.
+ */
+export declare function isLeapYear(year: number): boolean;
+/**
+ * Convert numeric day of the week to string day of the week.
+ * Monday is the 1st day (1 becomes 'Monday', 2 becomes 'Tuesday', 7 becomes 'Sunday')
+ * Given day must be a number between 1 and 7.
+ */
+export declare function convertDayOfWeekNumToString(day: NumRange1To7): string | never;
+export declare type ParsedDate = {
+    dateObj: Date;
+    date: number;
+    year: number;
+    month: number;
+    hour: number;
+    minute: number;
+    second: number;
+    millisecond: number;
+    ms: number;
+    isLeapYear: boolean;
+    daysInYear: number;
+    dayOfWeekNum: NumRange1To7;
+    dayOfWeekName: string;
+    dayOfWeekShortName: string;
+    timezoneOffset: number;
+    unixTimestampMs: number;
+};
+/**
+ * Split a date into a more convenient date info object
+ */
+export declare const parseDate: (date: Date) => ParsedDate;
 /**
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *
@@ -38,18 +235,194 @@ export declare function lastN<T>(arr: T[], n: number): T[];
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
 export declare const now: (timestampFormat?: string) => string;
-/***************************************** DATA UTILITIES *****************************************/
 /**
- * Return true if argument is a multilanguage string object
+ * @export mUtils - module
  */
-export declare const isMultilangTextObj: (val: any) => boolean;
-/**
- * @param {string} fileOrDirPath - file system object being checked.
- * @return {boolean} true if given file system object is a directory (if false it's a file)
- */
-export declare function isDir(fileOrDirPath: string): boolean;
-/**
- * Replace matching location in given file.
- */
-export declare function replaceInFile(filePath: string, findString: string, replace: string): string;
-export declare function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
+export declare const mUtils: {
+    array: {
+        last: <T>(arr: T[]) => T;
+        last2: <T>(arr: T[]) => T[];
+        isArray: (value: any) => boolean;
+    };
+    coll: {
+        last: <T>(arr: T[]) => T;
+        last2: <T>(arr: T[]) => T[];
+        last3: <T>(arr: T[]) => T[];
+        firstN: <T>(arr: T[], n: number) => T[];
+        lastN: <T>(arr: T[], n: number) => T[];
+        arrayN: (len: number) => any[];
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
+        isArray: (value: any) => boolean;
+        get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    collection: {
+        last: <T>(arr: T[]) => T;
+        last2: <T>(arr: T[]) => T[];
+        last3: <T>(arr: T[]) => T[];
+        firstN: <T>(arr: T[], n: number) => T[];
+        lastN: <T>(arr: T[], n: number) => T[];
+        arrayN: (len: number) => any[];
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
+        isArray: (value: any) => boolean;
+        get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    date: {
+        isLeapYear: (year: number) => boolean;
+        convertDayOfWeekNumToString: (day: NumRange1To7) => string;
+        parseDate: (date: Date) => ParsedDate;
+        now: (timestampFormat?: string) => string;
+    };
+    decorator: {
+        DecoratorError: DecoratorError;
+        notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+    };
+    enum: {
+        enumToStringArray: <E>(Enum: any) => any[];
+        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+    };
+    error: {
+        DecoratorError: DecoratorError;
+    };
+    number: {
+        isInt: (val: any) => boolean;
+        isNumberLike: (arg: any) => boolean;
+    };
+    object: {
+        isMultilangTextObj: (obj: any) => boolean;
+        get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    search: {
+        escapeRegExp: (regexStr: string) => string;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    };
+    str: {
+        cap1LowerRest: (str: string) => string;
+        capitalize: (str: string) => string;
+        escapeRegExp: (regexStr: string) => string;
+        isNonexistentOrString: (val: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    };
+    string: {
+        cap1LowerRest: (str: string) => string;
+        capitalize: (str: string) => string;
+        escapeRegExp: (regexStr: string) => string;
+        isNonexistentOrString: (val: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    };
+    test: {
+        expectEmptyObject: (testValue: any) => void;
+    };
+    type: {
+        isArray: (value: any) => boolean;
+        isDateLike: (arg: any) => boolean;
+        isNumberLike: (arg: any) => boolean;
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+        isInt: (val: any) => boolean;
+    };
+};
+export declare const _: {
+    array: {
+        last: <T>(arr: T[]) => T;
+        last2: <T>(arr: T[]) => T[];
+        isArray: (value: any) => boolean;
+    };
+    coll: {
+        last: <T>(arr: T[]) => T;
+        last2: <T>(arr: T[]) => T[];
+        last3: <T>(arr: T[]) => T[];
+        firstN: <T>(arr: T[], n: number) => T[];
+        lastN: <T>(arr: T[], n: number) => T[];
+        arrayN: (len: number) => any[];
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
+        isArray: (value: any) => boolean;
+        get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    collection: {
+        last: <T>(arr: T[]) => T;
+        last2: <T>(arr: T[]) => T[];
+        last3: <T>(arr: T[]) => T[];
+        firstN: <T>(arr: T[], n: number) => T[];
+        lastN: <T>(arr: T[], n: number) => T[];
+        arrayN: (len: number) => any[];
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
+        isArray: (value: any) => boolean;
+        get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    date: {
+        isLeapYear: (year: number) => boolean;
+        convertDayOfWeekNumToString: (day: NumRange1To7) => string;
+        parseDate: (date: Date) => ParsedDate;
+        now: (timestampFormat?: string) => string;
+    };
+    decorator: {
+        DecoratorError: DecoratorError;
+        notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+    };
+    enum: {
+        enumToStringArray: <E>(Enum: any) => any[];
+        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+    };
+    error: {
+        DecoratorError: DecoratorError;
+    };
+    number: {
+        isInt: (val: any) => boolean;
+        isNumberLike: (arg: any) => boolean;
+    };
+    object: {
+        isMultilangTextObj: (obj: any) => boolean;
+        get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    search: {
+        escapeRegExp: (regexStr: string) => string;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    };
+    str: {
+        cap1LowerRest: (str: string) => string;
+        capitalize: (str: string) => string;
+        escapeRegExp: (regexStr: string) => string;
+        isNonexistentOrString: (val: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    };
+    string: {
+        cap1LowerRest: (str: string) => string;
+        capitalize: (str: string) => string;
+        escapeRegExp: (regexStr: string) => string;
+        isNonexistentOrString: (val: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    };
+    test: {
+        expectEmptyObject: (testValue: any) => void;
+    };
+    type: {
+        isArray: (value: any) => boolean;
+        isDateLike: (arg: any) => boolean;
+        isNumberLike: (arg: any) => boolean;
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+        isInt: (val: any) => boolean;
+    };
+};
