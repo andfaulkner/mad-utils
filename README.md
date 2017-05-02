@@ -143,6 +143,9 @@ Namespace : enum
 ### enumValToString
 *   WIP
 
+### stringToEnumVal
+*   WIP
+
 
 Namespace : error
 -----------------
@@ -206,6 +209,8 @@ Namespace string (Alias: str)
 ### replaceAll
 *   WIP
 
+### stringToEnumVal
+*   WIP
 
 Namespace : test
 ----------------

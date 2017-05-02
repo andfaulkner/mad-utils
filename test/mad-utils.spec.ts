@@ -16,7 +16,7 @@ import * as path from 'path';
 import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-import { mUtils } from '../index';
+import { m_, mUtils } from '../index';
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -33,52 +33,82 @@ describe('mUtils', function() {
     it('exists', function() {
         expect(mUtils).to.exist;
     });
-    it('is the thing', function() {
+    it('is an object', function() {
         expect(mUtils).to.be.an('object');
+    });
+    it('has alias m_', function() {
+        expect(m_).to.eql(mUtils);
     });
 
     describe('[namespace', function() {
         describe('.array]', function() {
             it('-- exists', function() {
-                expect(mUtils.array).to.be.an('object');
+                expect(m_.array).to.be.an('object');
             });
         });
 
         describe('.coll]', function() {
             it('-- exists', function() {
-                expect(mUtils.coll).to.be.an('object');
+                expect(m_.coll).to.be.an('object');
             });
         });
 
         describe('.date]', function() {
             it('-- exists', function() {
-                expect(mUtils.date).to.be.an('object');
+                expect(m_.date).to.be.an('object');
             });
         });
 
         describe('.decorator]', function() {
             it('-- exists', function() {
-                expect(mUtils.decorator).to.be.an('object');
+                expect(m_.decorator).to.be.an('object');
             });
         });
 
         describe('.enum]', function() {
-            enum ColorTest {
-                BLUE, ReD, black
-            }
+            enum ColorTest { BLUE, ReD, black }
+            enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
+
             it('-- exists', function() {
-                expect(mUtils.enum).to.be.an('object');
+                expect(m_.enum).to.be.an('object');
             });
 
             it('.enumValToString -- Converts an enum item into a string', function() {
-                expect(mUtils.enum.enumValToString(ColorTest, ColorTest.ReD)).to.eql('ReD');
-                expect(mUtils.enum.enumValToString(ColorTest, ColorTest.BLUE)).to.eql('BLUE');
-                expect(mUtils.enum.enumValToString(ColorTest, ColorTest.black)).to.eql('black');
+                expect(m_.enum.enumValToString(ColorTest, ColorTest.ReD)).to.eql('ReD');
+                expect(m_.enum.enumValToString(ColorTest, ColorTest.BLUE)).to.eql('BLUE');
+                expect(m_.enum.enumValToString(ColorTest, ColorTest.black)).to.eql('black');
             });
 
             it('.enumToStringArray -- Converts an enum into an ordered array of strings', function() {
-                expect(mUtils.enum.enumToStringArray(ColorTest)).to.eql(['BLUE', 'ReD', 'black']);
-                expect(mUtils.enum.enumToStringArray(ColorTest)).to.not.eql(['ReD', 'BLUE', 'black']);
+                expect(m_.enum.enumToStringArray(ColorTest)).to.eql(['BLUE', 'ReD', 'black']);
+                expect(m_.enum.enumToStringArray(ColorTest)).to.not.eql(['ReD', 'BLUE', 'black']);
+            });
+
+            it('.stringToEnumVal -- Returns numeric enum val if given enum has given val. Handles basic caps differences.', function() {
+                expect(m_.enum.stringToEnumVal('black', ColorTest)).to.eql(2);
+                expect(m_.enum.stringToEnumVal('Black', ColorTest)).to.eql(2);
+                expect(m_.enum.stringToEnumVal('BLACK', ColorTest)).to.eql(2);
+                expect(m_.enum.stringToEnumVal('BLaCK', ColorTest)).to.eql(2);
+                expect(m_.enum.stringToEnumVal('BLUE', ColorTest)).to.eql(0);
+                expect(m_.enum.stringToEnumVal('BluE', ColorTest)).to.eql(0);
+                expect(m_.enum.stringToEnumVal('ReD', ColorTest)).to.eql(1);
+                expect(m_.enum.stringToEnumVal('RED', ColorTest)).to.eql(99999);
+            });
+
+            it('.isDataEnumItem -- Detects if a string matches an enum val, and accounts for the index values)', function() {
+                console.log("Suits['HEARTS']:", Suits['HEARTS']);
+                expect(m_.enum.isDataEnumItem('HEARTS', Suits)).to.be.true;
+
+                console.log("Suits['WRENCHES']:", Suits['WRENCHES']);
+                expect(m_.enum.isDataEnumItem('WRENCHES', Suits)).to.be.false;
+
+                console.log("Suits['1']:", Suits['1']);
+                expect(m_.enum.isDataEnumItem('1', Suits)).to.be.false;
+                expect(m_.enum.isDataEnumItem('0', Suits)).to.be.false;
+                expect(m_.enum.isDataEnumItem(1, Suits)).to.be.false;
+
+                console.log("Suits[0]:", Suits[0]);
+                expect(m_.enum.isDataEnumItem(0, Suits)).to.be.false;
             });
         });
 

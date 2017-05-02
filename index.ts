@@ -16,21 +16,60 @@ const { dateAndTime } = commonConstants;
 
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`misc-utils`, logMarkers.checkmate);
+const log = logFactory()(`mad-utils`, logMarkers.checkmate);
 
 
 /********************************************** ENUM **********************************************/
 /**
+ * @param {any} val - Value to match against enum
+ * @param {Enum} Enum - Enum to match val against.
+ * @return {boolean} true if given val is:
+ *                        a) present in the given enum; and
+ *                        b) An index/numeric value - i.e. '0', 0, '1', 1,...
+ */
+export const isNumericEnumItem = (val: any, Enum): boolean => !isDataEnumItem(val, Enum);
+export const isIndexEnumItem = isNumericEnumItem;
+
+
+/**
+ * @param {any} val - Value to match against enum
+ * @param {Enum} Enum - Enum to match val against.
+ * @return {boolean} true if given val is: a) present in the given enum; and b) A non-numeric
+ *                   'data' value (i.e. a value that was actually set).
+ * @example Below, Suits[1] & Suits['1'] are truthy (they'd return 'CLUBS'). isDataEnumItem still
+ *         knows to mark them false: it knows 0, '0', 1, '1', etc. are indexes, not actual values:
+ *             enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
+ *                 Suits['HEARTS'];                   // => 0
+ *                 isDataEnumItem('HEARTS', Suits);   // => true
+ *                 Suits['WRENCHES']                  // => undefined
+ *                 isDataEnumItem('WRENCHES', Suits); // => false
+ *                 Suits['1']                         // => 'CLUBS'
+ *                 isDataEnumItem('1', Suits);        // => false
+ */
+export const isDataEnumItem = (val: any, Enum): boolean => typeof Enum[val] === 'number';
+
+/**
  * Return the string form of an enum value.
  * Useful for cases where you're uncertain whether the value is in its numeric or string form.
  */
-export function enumValToString<E>(Enum, val, caps: 'lower' | 'upper' | null = null): string {
+export const enumValToString = <E>(Enum, val, caps: 'lower' | 'upper' | null = null): string => {
     const outVal: string = (typeof val === 'string') ? val : Enum[val] as string;
     switch(caps) {
         case 'lower': return outVal.toLowerCase();
         case 'upper': return outVal.toUpperCase();
         default: return outVal;
     }
+}
+
+export const stringToEnumVal = (val: string, Enum): number => {
+    log.verbose(`stringToEnumVal :: Enum:`, Enum, `;; val:`, val);
+    for (let item in Enum) {
+        if (isDataEnumItem(item, Enum) && item.toLowerCase() === val.toLowerCase()) {
+            return Enum[item];
+        }
+    }
+    log.warn(`WARNING: stringToEnumVal: no matches of ${val} in enum ${Enum} ...returning 99999.`);
+    return null;
 }
 
 /**
@@ -516,6 +555,7 @@ const str = {
     matches,
     matchesIgnoreCase,
     replaceAll,
+    stringToEnumVal,
 };
 
 /**
@@ -549,6 +589,10 @@ export const mUtils = {
     enum: {
         enumToStringArray,
         enumValToString,
+        stringToEnumVal,
+        isNumericEnumItem,
+        isIndexEnumItem,
+        isDataEnumItem,
     },
     error: {
         DecoratorError,
