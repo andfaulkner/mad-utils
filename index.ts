@@ -523,9 +523,15 @@ const str = {
  */
 export const mUtils = {
     array: {
+        isArray,
         last,
         last2,
-        isArray,
+        last3,
+        lastN,
+        secondLast,
+        thirdLast,
+        firstN,
+        arrayN,
     },
     coll,
     collection: coll,
@@ -578,5 +584,8 @@ export const mUtils = {
     },
 }
 
-// Easier to access the 'pseudo-namespaced' mUtils module.
+// Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
 export const _ = mUtils;
+export const __ = mUtils;
+export const m_ = mUtils;
+export const madUtils = mUtils;

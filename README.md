@@ -1,35 +1,244 @@
-# module boilerplate
+# mad-utils
 
-*   baseline for new standalone npm module projects
-
-----
-## Usage
-
-    // example of code used in the README file
-    console.log('some __module_boilerplate_usage__ example');
+*   Utilities I keep repeatedly rewriting across projects.
 
 ----
-### Third-level heading
-A regular paragraph, no bullet. Code below:
+Functions, by namespace
+=======================
+To import namespaced functions:
 
-    // Another code example
+    import { mUtils } from 'mad-utils';
 
-## API
+Access functions in namespaces via:
 
-### someFunctionInModuleBoilerplate
-(varName: typeEg_string): returnTypeEg_number
+    mUtils.search.replaceAll
+    mUtils.number.isInt
+    mUtils.date.isLeapYear
+    mUtils.enum.enumValToString
+    mUtils.collection.isArray
+    mUtils.string.cap1LowerRest
+    mUtils.array.secondLast
+    mUtils.collection.secondLast
+    ...etc...
 
-*   varName: description
+mUtils is one of the 'namespace collection' exports. You can also get it like this if you hate named imports:
 
-Examples:
+    import * as madUtils from 'mad-utils';
+    const h = madUtils._;
 
-    someFunctionInModuleBoilerplate('hello');
-    // => hello output
+Collection of namespaces available at multiple import locations. The following are all identical:
+
+    import { _, __ m_, mUtils, madUtils } from 'mad-utils';
+
+You can also just import functions one-by-one from a free-for-all top-level namespace. e.g.:
+
+    import {  }
 
 
-### anotherModuleBoilerplateFunction
-(anotherVarName: string) => next
+Inclusive, overlapping namespace strategy used.
+Namespaces treated more like keywords than parent types.
+Many functions are included in more than 1 namespace.
+*   The main purpose of this API is to make common functions maximally available.
+    *   Repeatedly checking each section hoping to remember where a function lives is annoying.
+        *   ...but having 100s of them together in a giant namespace with no other form of organization available is also annoying.
+    *   Compromise: Give everything to 
 
-*   anotherVarName: description of argument
-*   next: (err: Error, filename: string): string
-    *   example of how a callback would be described
+Function guide
+==============
+Namespace : array
+-----------------
+### last
+*   WIP
+
+### last2
+*   WIP
+
+### last3
+*   WIP
+
+### firstN
+*   WIP
+
+### lastN
+*   WIP
+
+### arrayN
+*   WIP
+
+### secondLast
+*   WIP
+
+### thirdLast
+*   WIP
+
+### isArray
+*   WIP
+
+
+Namespace : collection  (Alias: coll)
+-------------------------------------
+### last
+*   WIP
+
+### last2
+*   WIP
+
+### last3
+*   WIP
+
+### firstN
+*   WIP
+
+### lastN
+*   WIP
+
+### arrayN
+*   WIP
+
+### secondLast
+*   WIP
+
+### thirdLast
+*   WIP
+
+### isArray
+*   WIP
+
+### get
+*   WIP
+
+
+Namespace : date
+----------------
+### isLeapYear
+*   WIP
+
+### convertDayOfWeekNumToString
+*   WIP
+
+### parseDate
+*   WIP
+
+### now
+*   WIP
+
+
+Namespace : decorator
+---------------------
+### DecoratorError
+*   WIP
+
+### notForWebUse
+*   WIP
+
+### singleton
+*   WIP
+
+
+Namespace : enum
+----------------
+### enumToStringArray
+*   WIP
+
+### enumValToString
+*   WIP
+
+
+Namespace : error
+-----------------
+### DecoratorError
+*   WIP
+
+
+Namespace : number
+------------------
+### isInt
+*   WIP
+
+### isNumberLike
+*   WIP
+
+
+Namespace : object
+------------------
+### isMultilangTextObj
+*   WIP
+
+### get
+*   WIP
+
+
+Namespace : search
+------------------
+### escapeRegExp
+*   WIP
+
+### matches
+*   WIP
+
+### matchesIgnoreCase
+*   WIP
+
+### replaceAll
+*   WIP
+
+
+Namespace string (Alias: str)
+-----------------------------
+### cap1LowerRest
+*   WIP
+
+### capitalize
+*   WIP
+
+### escapeRegExp
+*   WIP
+
+### isNonexistentOrString
+*   WIP
+
+### matches
+*   WIP
+
+### matchesIgnoreCase
+*   WIP
+
+### replaceAll
+*   WIP
+
+
+Namespace : test
+----------------
+### expectEmptyObject
+*   WIP
+
+Namespace : type
+----------------
+### isArray
+*   WIP
+
+### isDateLike
+*   WIP
+
+### isNumberLike
+*   WIP
+
+### isMultilangTextObj
+*   WIP
+
+### matches
+*   WIP
+
+### matchesIgnoreCase
+*   WIP
+
+### isNonexistentOrString
+*   WIP
+
+### isInt
+*   WIP
+
+----
+
+Documentation is a major WIP.
+TODO document these at least a bit (I don't have time right now)
