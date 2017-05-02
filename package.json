@@ -1,7 +1,7 @@
 {
-  "name": "node-typescript-module-boilerplate",
-  "version": "0.0.2",
-  "description": "/***** TODO Stuff and things ******/",
+  "name": "mad-utils",
+  "version": "0.0.3",
+  "description": "A set of misc utilties I find myself repeatedly re-writing between projects.",
   "main": "lib/index.js",
   "typings": "lib/index",
   "files": [
@@ -20,17 +20,46 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andfaulkner/node-typescript-module-boilerplate.git"
+    "url": "git+https://github.com/andfaulkner/misc-ts-utils-isomorphic.git"
   },
   "keywords": [
-    "/**** TODO ADD KEYWORDS ****/"
+    "util",
+    "utils",
+    "utilities",
+    "utility",
+    "object",
+    "function",
+    "string",
+    "core",
+    "date",
+    "search",
+    "match",
+    "type",
+    "types",
+    "typing",
+    "typings",
+    "enums",
+    "enum",
+    "decorator",
+    "decorators",
+    "test",
+    "testing",
+    "tests",
+    "unit-tests",
+    "numbers",
+    "number",
+    "integer",
+    "math",
+    "collections",
+    "collection",
+    "swiss-army-knife"
   ],
   "author": "Andrew Faulkner <andfaulkner@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andfaulkner/node-typescript-module-boilerplate/issues"
+    "url": "https://github.com/andfaulkner/misc-ts-utils-isomorphic/issues"
   },
-  "homepage": "https://github.com/andfaulkner/node-typescript-module-boilerplate#readme",
+  "homepage": "https://github.com/andfaulkner/misc-ts-utils-isomorphic#readme",
   "dependencies": {
     "common-constants": "^3.0.1",
     "detect-node": "^2.0.3",
