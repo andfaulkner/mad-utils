@@ -146,10 +146,22 @@ Namespace : enum
 ### stringToEnumVal
 *   WIP
 
+### isNumericEnumItem
+*   WIP
+
+### isIndexEnumItem
+*   WIP
+
+### isDataEnumItem
+*   WIP
+
 
 Namespace : error
 -----------------
 ### DecoratorError
+*   WIP
+
+### scrubStackTrace
 *   WIP
 
 

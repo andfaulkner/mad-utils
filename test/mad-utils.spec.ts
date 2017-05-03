@@ -7,6 +7,11 @@ process.env.mocha = true;
 // Store original process.argv.
 const oldProcArgs = Object.assign({}, process.argv);
 
+/******************************************** LOGGING *********************************************/
+import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+const log = nodeLogFactory(buildFileTag('mad-utils.spec.ts', colors.green.bgWhite));
+
+
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 import { expect } from 'chai';
 import * as sinon from 'sinon';
@@ -84,31 +89,55 @@ describe('mUtils', function() {
                 expect(m_.enum.enumToStringArray(ColorTest)).to.not.eql(['ReD', 'BLUE', 'black']);
             });
 
-            it('.stringToEnumVal -- Returns numeric enum val if given enum has given val. Handles basic caps differences.', function() {
-                expect(m_.enum.stringToEnumVal('black', ColorTest)).to.eql(2);
-                expect(m_.enum.stringToEnumVal('Black', ColorTest)).to.eql(2);
-                expect(m_.enum.stringToEnumVal('BLACK', ColorTest)).to.eql(2);
-                expect(m_.enum.stringToEnumVal('BLaCK', ColorTest)).to.eql(2);
-                expect(m_.enum.stringToEnumVal('BLUE', ColorTest)).to.eql(0);
-                expect(m_.enum.stringToEnumVal('BluE', ColorTest)).to.eql(0);
-                expect(m_.enum.stringToEnumVal('ReD', ColorTest)).to.eql(1);
-                expect(m_.enum.stringToEnumVal('RED', ColorTest)).to.eql(99999);
+            describe('.stringToEnumVal --', function() {
+                it('Returns numeric enum val if given enum has given val.', function() {
+                    expect(m_.enum.stringToEnumVal('black', ColorTest)).to.eql(2);
+                    expect(m_.enum.stringToEnumVal('HEARTS', Suits)).to.eql(0);
+                    expect(m_.enum.stringToEnumVal('BLUE', ColorTest)).to.eql(0);
+                    expect(m_.enum.stringToEnumVal('ReD', ColorTest)).to.eql(1);
+                    expect(m_.enum.stringToEnumVal('SPADES', Suits)).to.eql(2);
+                    expect(m_.enum.stringToEnumVal('DIAMONDS', Suits)).to.eql(3);
+                });
+
+                it('Ignores caps.', function() {
+                    expect(m_.enum.stringToEnumVal('Black', ColorTest)).to.eql(2);
+                    expect(m_.enum.stringToEnumVal('BLACK', ColorTest)).to.eql(2);
+                    expect(m_.enum.stringToEnumVal('BLaCK', ColorTest)).to.eql(2);
+                    expect(m_.enum.stringToEnumVal('BluE', ColorTest)).to.eql(0);
+                    expect(m_.enum.stringToEnumVal('RED', ColorTest)).to.eql(1);
+                    expect(m_.enum.stringToEnumVal('diamonds', Suits)).to.eql(3);
+                    expect(m_.enum.stringToEnumVal('dIaMoNDs', Suits)).to.eql(3);
+                });
+
+                it('Return 99999 if no match, including indexes', function() {
+                    expect(m_.enum.stringToEnumVal('O_R_a_N_g_E', ColorTest)).to.eql(99999);
+                    expect(m_.enum.stringToEnumVal('1', ColorTest)).to.eql(99999);
+                    expect(m_.enum.stringToEnumVal('0', ColorTest)).to.eql(99999);
+                    expect(m_.enum.stringToEnumVal('2', Suits)).to.eql(99999);
+                });
             });
 
-            it('.isDataEnumItem -- Detects if a string matches an enum val, and accounts for the index values)', function() {
-                console.log("Suits['HEARTS']:", Suits['HEARTS']);
+
+            it('.isDataEnumItem -- Detects if a string matches an enum val, and accounts for the index values.)', function() {
+                log.silly("isDataEnumItem tests :: Suits['HEARTS']:", Suits['HEARTS']);
                 expect(m_.enum.isDataEnumItem('HEARTS', Suits)).to.be.true;
 
-                console.log("Suits['WRENCHES']:", Suits['WRENCHES']);
+                log.silly("isDataEnumItem tests :: Suits['WRENCHES']:", Suits['WRENCHES']);
                 expect(m_.enum.isDataEnumItem('WRENCHES', Suits)).to.be.false;
 
-                console.log("Suits['1']:", Suits['1']);
+                log.silly("isDataEnumItem tests :: Suits['1']:", Suits['1']);
                 expect(m_.enum.isDataEnumItem('1', Suits)).to.be.false;
                 expect(m_.enum.isDataEnumItem('0', Suits)).to.be.false;
                 expect(m_.enum.isDataEnumItem(1, Suits)).to.be.false;
 
-                console.log("Suits[0]:", Suits[0]);
+                log.silly("isDataEnumItem tests :: Suits[0]:", Suits[0]);
                 expect(m_.enum.isDataEnumItem(0, Suits)).to.be.false;
+            });
+        });
+
+        describe('.error]', function() {
+            it('-- exists', function() {
+                expect(mUtils.error).to.be.an('object');
             });
         });
 

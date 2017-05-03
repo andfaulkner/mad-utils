@@ -8,15 +8,15 @@ import * as envVarHelpers from 'env-var-helpers';
 import { commonConstants } from 'common-constants';
 const { dateAndTime } = commonConstants;
 
-// if (typeof window === 'undefined') {
-//     var window = {};
-// }
-
-// const _global = (typeof window !== 'undefined') ? window : global;
 
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`mad-utils`, logMarkers.checkmate);
+const log = logFactory()(`mad-utils`, logMarkers.default);
+
+
+/********************************************* CONFIG *********************************************/
+const stackNoiseLibsRegex = /\/node_modules(?=\/).*(\/react\/|\/mocha\/|\/ts\-node\/)/g;
+const nodeStackNoiseRegex = / \(timers\.js:[0-9]/g;
 
 
 /********************************************** ENUM **********************************************/
@@ -29,7 +29,6 @@ const log = logFactory()(`mad-utils`, logMarkers.checkmate);
  */
 export const isNumericEnumItem = (val: any, Enum): boolean => !isDataEnumItem(val, Enum);
 export const isIndexEnumItem = isNumericEnumItem;
-
 
 /**
  * @param {any} val - Value to match against enum
@@ -61,6 +60,9 @@ export const enumValToString = <E>(Enum, val, caps: 'lower' | 'upper' | null = n
     }
 }
 
+/**
+ *
+ */
 export const stringToEnumVal = (val: string, Enum): number => {
     log.verbose(`stringToEnumVal :: Enum:`, Enum, `;; val:`, val);
     for (let item in Enum) {
@@ -68,8 +70,21 @@ export const stringToEnumVal = (val: string, Enum): number => {
             return Enum[item];
         }
     }
-    log.warn(`WARNING: stringToEnumVal: no matches of ${val} in enum ${Enum} ...returning 99999.`);
-    return null;
+
+    log.warn(`stringToEnumVal ::
+        WARNING: stringToEnumVal: no matches of given value - ${val} - in given enum:
+            ${JSON.stringify(Enum)}
+        ...returning 99999.`);
+
+    let stack;
+    // NOTE: NOT AN ACTUAL ERROR CALL. THIS IS DONE TO ACQUIRE THE STACKTRACE.
+    try { throw new Error() } catch (e) { stack = e.stack; }
+
+    // Display clean stack trace up to point of 'Error' creation.
+    const cleanStack = scrubStackTrace(stack, 'stringToEnumVal');
+    console.log(cleanStack, '\n');
+
+    return 99999;
 }
 
 /**
@@ -195,6 +210,25 @@ export const DecoratorError = (() => {
     return ((DecoratorError as any) as DecoratorError);
 })();
 
+/**
+ * Remove unneeded statements from given stack trace: calls to Node core & common
+ * third-party libs. Replaces error statement with an info label. Optionally IDs
+ * the function requesting the stack.
+ */
+export function scrubStackTrace(stack: string, srcFn?: string) {
+    // Create label IDing the cleaned stack, including (optionally) IDing the requesting function.
+    const stackLabel = `  Stack (minus vendor & core) up to ${srcFn ? srcFn + ' ' : ''}call:`;
+    // Replace 'Error' statement with stack label.
+    return stack
+        .split(/^Error(?=\n)/).join(stackLabel)
+        // Filter useless stack info
+        .split(/\n    at /g)
+        // Exclude stacktrace references to mocha, react, and ts-node.
+        .filter(line => !line.match(stackNoiseLibsRegex))
+        // Exclude stacktrace references to NodeJS' internal timers.js module.
+        .filter(line => !line.match(nodeStackNoiseRegex))
+        .join('\n   |-> ')
+}
 
 /******************************************** STRINGS *********************************************/
 /**
@@ -596,6 +630,7 @@ export const mUtils = {
     },
     error: {
         DecoratorError,
+        scrubStackTrace,
     },
     number: {
         isInt,

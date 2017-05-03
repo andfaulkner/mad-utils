@@ -2,10 +2,39 @@
 import 'reflect-metadata';
 /********************************************** ENUM **********************************************/
 /**
+ * @param {any} val - Value to match against enum
+ * @param {Enum} Enum - Enum to match val against.
+ * @return {boolean} true if given val is:
+ *                        a) present in the given enum; and
+ *                        b) An index/numeric value - i.e. '0', 0, '1', 1,...
+ */
+export declare const isNumericEnumItem: (val: any, Enum: any) => boolean;
+export declare const isIndexEnumItem: (val: any, Enum: any) => boolean;
+/**
+ * @param {any} val - Value to match against enum
+ * @param {Enum} Enum - Enum to match val against.
+ * @return {boolean} true if given val is: a) present in the given enum; and b) A non-numeric
+ *                   'data' value (i.e. a value that was actually set).
+ * @example Below, Suits[1] & Suits['1'] are truthy (they'd return 'CLUBS'). isDataEnumItem still
+ *         knows to mark them false: it knows 0, '0', 1, '1', etc. are indexes, not actual values:
+ *             enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
+ *                 Suits['HEARTS'];                   // => 0
+ *                 isDataEnumItem('HEARTS', Suits);   // => true
+ *                 Suits['WRENCHES']                  // => undefined
+ *                 isDataEnumItem('WRENCHES', Suits); // => false
+ *                 Suits['1']                         // => 'CLUBS'
+ *                 isDataEnumItem('1', Suits);        // => false
+ */
+export declare const isDataEnumItem: (val: any, Enum: any) => boolean;
+/**
  * Return the string form of an enum value.
  * Useful for cases where you're uncertain whether the value is in its numeric or string form.
  */
-export declare function enumValToString<E>(Enum: any, val: any, caps?: 'lower' | 'upper' | null): string;
+export declare const enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+/**
+ *
+ */
+export declare const stringToEnumVal: (val: string, Enum: any) => number;
 /**
  * Convert given enum to an array of strings, where each potential option is one item.
  * Excludes the 'number' values in an enum.
@@ -53,6 +82,12 @@ export interface DecoratorError {
  * Throw when a decorator is improperly used. Should only be declared in a decorator function.
  */
 export declare const DecoratorError: DecoratorError;
+/**
+ * Remove unneeded statements from given stack trace: calls to Node core & common
+ * third-party libs. Replaces error statement with an info label. Optionally IDs
+ * the function requesting the stack.
+ */
+export declare function scrubStackTrace(stack: string, srcFn?: string): string;
 /******************************************** STRINGS *********************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
@@ -288,9 +323,14 @@ export declare const mUtils: {
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
+        isNumericEnumItem: (val: any, Enum: any) => boolean;
+        isIndexEnumItem: (val: any, Enum: any) => boolean;
+        isDataEnumItem: (val: any, Enum: any) => boolean;
     };
     error: {
         DecoratorError: DecoratorError;
+        scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
     number: {
         isInt: (val: any) => boolean;
@@ -314,6 +354,7 @@ export declare const mUtils: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     string: {
         cap1LowerRest: (str: string) => string;
@@ -323,6 +364,7 @@ export declare const mUtils: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     test: {
         expectEmptyObject: (testValue: any) => void;
@@ -388,9 +430,14 @@ export declare const _: {
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
+        isNumericEnumItem: (val: any, Enum: any) => boolean;
+        isIndexEnumItem: (val: any, Enum: any) => boolean;
+        isDataEnumItem: (val: any, Enum: any) => boolean;
     };
     error: {
         DecoratorError: DecoratorError;
+        scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
     number: {
         isInt: (val: any) => boolean;
@@ -414,6 +461,7 @@ export declare const _: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     string: {
         cap1LowerRest: (str: string) => string;
@@ -423,6 +471,7 @@ export declare const _: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     test: {
         expectEmptyObject: (testValue: any) => void;
@@ -488,9 +537,14 @@ export declare const __: {
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
+        isNumericEnumItem: (val: any, Enum: any) => boolean;
+        isIndexEnumItem: (val: any, Enum: any) => boolean;
+        isDataEnumItem: (val: any, Enum: any) => boolean;
     };
     error: {
         DecoratorError: DecoratorError;
+        scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
     number: {
         isInt: (val: any) => boolean;
@@ -514,6 +568,7 @@ export declare const __: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     string: {
         cap1LowerRest: (str: string) => string;
@@ -523,6 +578,7 @@ export declare const __: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     test: {
         expectEmptyObject: (testValue: any) => void;
@@ -588,9 +644,14 @@ export declare const m_: {
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
+        isNumericEnumItem: (val: any, Enum: any) => boolean;
+        isIndexEnumItem: (val: any, Enum: any) => boolean;
+        isDataEnumItem: (val: any, Enum: any) => boolean;
     };
     error: {
         DecoratorError: DecoratorError;
+        scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
     number: {
         isInt: (val: any) => boolean;
@@ -614,6 +675,7 @@ export declare const m_: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     string: {
         cap1LowerRest: (str: string) => string;
@@ -623,6 +685,7 @@ export declare const m_: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     test: {
         expectEmptyObject: (testValue: any) => void;
@@ -688,9 +751,14 @@ export declare const madUtils: {
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
+        isNumericEnumItem: (val: any, Enum: any) => boolean;
+        isIndexEnumItem: (val: any, Enum: any) => boolean;
+        isDataEnumItem: (val: any, Enum: any) => boolean;
     };
     error: {
         DecoratorError: DecoratorError;
+        scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
     number: {
         isInt: (val: any) => boolean;
@@ -714,6 +782,7 @@ export declare const madUtils: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     string: {
         cap1LowerRest: (str: string) => string;
@@ -723,6 +792,7 @@ export declare const madUtils: {
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+        stringToEnumVal: (val: string, Enum: any) => number;
     };
     test: {
         expectEmptyObject: (testValue: any) => void;
