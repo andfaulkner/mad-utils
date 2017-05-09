@@ -61,7 +61,7 @@ export const enumValToString = <E>(Enum, val, caps: 'lower' | 'upper' | null = n
 }
 
 /**
- *
+ * Convert given enum value in string form to its numeric index.
  */
 export const stringToEnumVal = (val: string, Enum): number => {
     log.verbose(`stringToEnumVal :: Enum:`, Enum, `;; val:`, val);

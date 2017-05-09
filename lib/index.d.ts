@@ -32,7 +32,7 @@ export declare const isDataEnumItem: (val: any, Enum: any) => boolean;
  */
 export declare const enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
 /**
- *
+ * Convert given enum value in string form to its numeric index.
  */
 export declare const stringToEnumVal: (val: string, Enum: any) => number;
 /**
