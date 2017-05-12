@@ -1,6 +1,6 @@
 {
   "name": "mad-utils",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A set of misc utilties I find myself repeatedly re-writing between projects.",
   "main": "lib/index.js",
   "typings": "lib/index",
