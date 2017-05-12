@@ -225,9 +225,13 @@ export declare const arrayN: (len: number) => any[];
  */
 export declare const get: <T extends Object>(propPath: string | string[], obj: T) => any;
 /**
- * Merge 2 arrays.
+ * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
+ * If either arr1 or arr2 are undefined, it ignores it and just returns the other.
+ * If both are undefined, it returns [].
+ * If a non-array value besides null is given, it wraps the item in an array before
+ * performing the concatenation.
  */
-export declare const append: (arr1: any[], arr2: any[]) => any[];
+export declare const append: (arr1: any, arr2: any) => any[];
 /********************************************** DATE **********************************************/
 export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 /**
@@ -290,7 +294,7 @@ export declare const mUtils: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any[], arr2: any[]) => any[];
+        append: (arr1: any, arr2: any) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -398,7 +402,7 @@ export declare const _: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any[], arr2: any[]) => any[];
+        append: (arr1: any, arr2: any) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -506,7 +510,7 @@ export declare const __: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any[], arr2: any[]) => any[];
+        append: (arr1: any, arr2: any) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -614,7 +618,7 @@ export declare const m_: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any[], arr2: any[]) => any[];
+        append: (arr1: any, arr2: any) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -722,7 +726,7 @@ export declare const madUtils: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any[], arr2: any[]) => any[];
+        append: (arr1: any, arr2: any) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;

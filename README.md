@@ -75,11 +75,11 @@ Namespace : array
 *   WIP
 
 ### append (arr1: any[] | any, arr2: any[] | any) => any[]
-*   append all items in arr2 to the end of arr1 (non-mutatively) and return it.
+*   Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
 *   If either arr1 or arr2 are undefined, it ignores it and just returns the other.
-*   If both are undefined, it returns []
-*   If a non-array value besides null is given, it wraps the item in an array before
-    performing the concatenation.
+*   If both are undefined, it returns [].
+*   If a non-array value besides null is given, it wraps the item in an array
+    before performing the concatenation.
 
 
 Namespace : collection  (Alias: coll)

@@ -483,6 +483,11 @@ export const get = <T extends Object>(propPath: string[] | string, obj: T): any 
  * If both are undefined, it returns [].
  * If a non-array value besides null is given, it wraps the item in an array before
  * performing the concatenation.
+ *
+ * @param {Array<RealAny>|RealAny} arr1 - If array, concatenate arr2 to the end. If value, wrap
+ *                                        in array before concatenating (e.g. 3 is treated as [3].
+ * @param {Array<RealAny>|RealAny} arr2 - Array or value to concatenate to the end of arr1
+ * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
 export const append = (arr1: RealAny[] | RealAny, arr2: RealAny[] | RealAny): RealAny[] => {
     const isArr1Undefined = typeof arr1 === 'undefined' || arr1 === null;
