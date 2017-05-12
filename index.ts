@@ -401,44 +401,33 @@ export const expectEmptyObject = (testValue: any) => {
 
 
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
-/**
- * Return last item in an array.
- */
-export const last = <T>(arr: T[]): T => (arr.length >= 1) ? arr[arr.length - 1] : void 0;
+/** Return last item in an array. */
+export const last = <T>(arr: T[]): T => arr.slice(-1)[0];
 
-/**
- * Return second last item in an array.
- */
-export const secondLast = <T>(arr: T[]): T => (arr.length >= 2) ? arr[arr.length - 2] : void 0;
+/** Return second last item in an array. */
+export const secondLast = <T>(arr: T[]): T => arr.slice(-2, -1)[0];
+/** Return third last item in an array. */
+export const thirdLast = <T>(arr: T[]): T => arr.slice(-3, -2)[0];
 
-/**
- * Return third last item in an array.
- */
-export const thirdLast = <T>(arr: T[]): T => (arr.length >= 3) ? arr[arr.length - 3] : void 0;
+/** Return last 2 items in an array. */
+export const last2 = <T>(arr: T[]): T[] => arr.slice(-2);
+/** Return last 3 items in an array. */
+export const last3 = <T>(arr: T[]): T[] => arr.slice(-3);
 
-/**
- * Return last 2 items in an array.
- */
-export function last2 <T>(arr: T[]): T[] {
-    return (arr.length >= 2) ? [arr[arr.length - 2], arr[arr.length - 1]] : void 0;
-}
+/** Return last N items in an array. */
+export const lastN = <T>(arr: T[], n: number): T[] => arr.slice(-1 * n);
 
-/**
- * Return last 3 items in an array.
- */
-export function last3 <T>(arr: T[]): T[] {
-    return (arr.length >= 3) ? [arr[arr.length - 3], arr[arr.length - 2], arr[arr.length - 1]]
-                             : void 0;
-}
+/** Return first item in an array. */
+export const first = <T>(arr: T[]): T => arr[0];
+/** Return second item in an array. */
+export const second = <T>(arr: T[]): T => arr[1];
+/** Return third item in an array. */
+export const third = <T>(arr: T[]): T => arr[2];
 
-/**
- * Return last N items in an array.
- */
-export function lastN <T>(arr: T[], n: number): T[] {
-    return (arr.length >= n)
-        ? arrayN(n).map((__, idx) => arr[arr.length - n + idx])
-        : arr;
-}
+/** Return first 2 items in an array. */
+export const first2 = <T>(arr: T[]): T[] => arr.slice(0, 2);
+/** Return first 3 items in an array. */
+export const first3 = <T>(arr: T[]): T[] => arr.slice(0, 3);
 
 /**
  * Return first N items in an array. Returned undefined if you request too many items.
@@ -454,6 +443,19 @@ export function firstN <T>(arr: T[], n: number): T[] {
  * @param {number} len - Length of array to create.
  */
 export const arrayN = (len: number): any[] => Array.from(Array(len));
+
+/**
+ * Exclude the first few or the last few items.
+ */
+export const withoutLast = <T>(arr: T[]) : T[] => arr.slice(0, -1);
+export const withoutLast2 = <T>(arr: T[]) : T[] => arr.slice(0, -2);
+export const withoutLast3 = <T>(arr: T[]) : T[] => arr.slice(0, -3);
+export const withoutLastN = <T>(arr: T[], numToRm: number) : T[] => arr.slice(0, -1 * numToRm);
+export const withoutFirst = <T>(arr: T[]) : T[] => arr.slice(1);
+export const withoutFirst2 = <T>(arr: T[]) : T[] => arr.slice(2);
+export const withoutFirst3 = <T>(arr: T[]) : T[] => arr.slice(3);
+export const withoutFirstN = <T>(arr: T[], numToRm: number) : T[] => arr.slice(1 * numToRm);
+
 
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
@@ -632,15 +634,30 @@ const str = {
 export const mUtils = {
     array: {
         isArray,
+        first,
+        second,
+        third,
+        first2,
+        first3,
         last,
+        secondLast,
+        thirdLast,
         last2,
         last3,
         lastN,
-        secondLast,
-        thirdLast,
         firstN,
         arrayN,
-        append
+        append,
+        without: {
+            last: withoutLast,
+            last2: withoutLast2,
+            last3: withoutLast3,
+            lastN: withoutLastN,
+            first: withoutFirst,
+            first2: withoutFirst2,
+            first3: withoutFirst3,
+            firstN: withoutFirstN,
+        },
     },
     coll,
     collection: coll,

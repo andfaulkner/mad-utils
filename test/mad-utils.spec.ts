@@ -21,7 +21,7 @@ import * as path from 'path';
 import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-import { m_, mUtils, append } from '../index';
+import { m_, mUtils, append, first } from '../index';
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -53,7 +53,35 @@ describe('mUtils', function() {
             it(`-- exists : #append`, function() {
                 expect(m_.array.append).to.exist;
                 expect(append).to.exist;
-            })
+            });
+            it(`-- exists : #first`, function() {
+                expect(m_.array.first).to.exist;
+                expect(first).to.exist;
+            });
+            it(`-- exists : #second`, function() { expect(m_.array.second).to.exist; });
+            it(`-- exists : #third`, function() { expect(m_.array.third).to.exist; });
+            it(`-- exists : #without.last`, function() {
+                expect(m_.array.without.last).to.exist;
+            });
+            it(`-- exists : #without.last2`, function() {
+                expect(m_.array.without.last2).to.exist;
+            });
+            it(`-- exists : #without.last3`, function() {
+                expect(m_.array.without.last3).to.exist;
+            });
+            it(`-- exists : #without.first`, function() {
+                expect(m_.array.without.first).to.exist;
+            });
+            it(`-- exists : #without.first2`, function() {
+                expect(m_.array.without.first2).to.exist;
+            });
+            it(`-- exists : #without.first3`, function() {
+                expect(m_.array.without.first3).to.exist;
+            });
+            it(`-- exists : #without.firstN`, function() {
+                expect(m_.array.without.firstN).to.exist;
+            });
+
         });
 
         describe('.coll]', function() {
