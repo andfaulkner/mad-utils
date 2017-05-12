@@ -1,5 +1,7 @@
 /******************************************** IMPORTS *********************************************/
 import 'reflect-metadata';
+/************************************ COMMON TYPE DEFINITIONS *************************************/
+export declare type RealAny = any;
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum
@@ -222,6 +224,10 @@ export declare const arrayN: (len: number) => any[];
  * @return {any} Value found at the given path.
  */
 export declare const get: <T extends Object>(propPath: string | string[], obj: T) => any;
+/**
+ * Merge 2 arrays.
+ */
+export declare const append: (arr1: any[], arr2: any[]) => any[];
 /********************************************** DATE **********************************************/
 export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 /**
@@ -284,6 +290,7 @@ export declare const mUtils: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
+        append: (arr1: any[], arr2: any[]) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -391,6 +398,7 @@ export declare const _: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
+        append: (arr1: any[], arr2: any[]) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -498,6 +506,7 @@ export declare const __: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
+        append: (arr1: any[], arr2: any[]) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -605,6 +614,7 @@ export declare const m_: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
+        append: (arr1: any[], arr2: any[]) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -712,6 +722,7 @@ export declare const madUtils: {
         thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
+        append: (arr1: any[], arr2: any[]) => any[];
     };
     coll: {
         last: <T>(arr: T[]) => T;

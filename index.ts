@@ -478,22 +478,26 @@ export const get = <T extends Object>(propPath: string[] | string, obj: T): any 
 };
 
 /**
- * Merge 2 arrays.
+ * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
+ * If either arr1 or arr2 are undefined, it ignores it and just returns the other.
+ * If both are undefined, it returns [].
+ * If a non-array value besides null is given, it wraps the item in an array before
+ * performing the concatenation.
  */
-export const append = (arr1: RealAny[], arr2: RealAny[]): RealAny[] => {
-    const cleanArr = (arr) => {
-        let cleanArr;
-        if (typeof arr1 === 'undefined' || arr1 === null) {
-            cleanArr = [];
-        } else {
-            cleanArr = ((arr1.constructor as any).name !== 'Array'
-                        && (arr1.constructor.constructor as any).name !== 'Array') ? [arr1] : arr1;
-        }
-        return cleanArr;
-    }
+export const append = (arr1: RealAny[] | RealAny, arr2: RealAny[] | RealAny): RealAny[] => {
+    const isArr1Undefined = typeof arr1 === 'undefined' || arr1 === null;
+    const isArr2Undefined = typeof arr2 === 'undefined' || arr2 === null;
+
+    if (isArr1Undefined && isArr2Undefined) return [];
+    if (isArr1Undefined)                    return arr2;
+    if (isArr2Undefined)                    return arr1;
+
+    const cleanArr = (arr: RealAny[]) =>
+        (arr.constructor.name !== 'Array' && arr.constructor.constructor.name !== 'Array')
+            ? [arr] : arr;
 
     return cleanArr(arr1).concat(cleanArr(arr2));
-}
+};
 
 
 
