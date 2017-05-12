@@ -19,6 +19,12 @@ const stackNoiseLibsRegex = /\/node_modules(?=\/).*(\/react\/|\/mocha\/|\/ts\-no
 const nodeStackNoiseRegex = / \(timers\.js:[0-9]/g;
 
 
+/************************************ COMMON TYPE DEFINITIONS *************************************/
+// For cases where something truly can be any value (contrast with the most common
+// case where 'any' is used in lieu of determining a highly complex type)
+export type RealAny = any;
+
+
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum
@@ -449,7 +455,6 @@ export function firstN <T>(arr: T[], n: number): T[] {
  */
 export const arrayN = (len: number): any[] => Array.from(Array(len));
 
-
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
@@ -460,17 +465,37 @@ export const arrayN = (len: number): any[] => Array.from(Array(len));
  * @return {any} Value found at the given path.
  */
 export const get = <T extends Object>(propPath: string[] | string, obj: T): any | void => {
-    const propPathClean: string[] = (typeof propPath === 'string')
-                                        ? propPath.split('.')
-                                        : propPath;
+    const propPathClean: string[] = (typeof propPath === 'string') ? propPath.split('.')
+                                                                   : propPath;
     return propPathClean
         .map((prop) => typeof prop === 'number' ? parseInt(prop, 10) : prop)
         .reduce((obj, propPathPart: string) => {
             if (!(obj && obj[propPathPart])) return null;
-            if (obj[propPathPart].constructor.name === 'array')
-            return (obj && obj[propPathPart]) ? obj[propPathPart] : null
+            if (obj[propPathPart].constructor.name === 'array') {
+                return (obj && obj[propPathPart]) ? obj[propPathPart] : null
+            }
         }, obj);
+};
+
+/**
+ * Merge 2 arrays.
+ */
+export const append = (arr1: RealAny[], arr2: RealAny[]): RealAny[] => {
+    const cleanArr = (arr) => {
+        let cleanArr;
+        if (typeof arr1 === 'undefined' || arr1 === null) {
+            cleanArr = [];
+        } else {
+            cleanArr = ((arr1.constructor as any).name !== 'Array'
+                        && (arr1.constructor.constructor as any).name !== 'Array') ? [arr1] : arr1;
+        }
+        return cleanArr;
+    }
+
+    return cleanArr(arr1).concat(cleanArr(arr2));
 }
+
+
 
 /********************************************** DATE **********************************************/
 export type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -606,6 +631,7 @@ export const mUtils = {
         thirdLast,
         firstN,
         arrayN,
+        append
     },
     coll,
     collection: coll,

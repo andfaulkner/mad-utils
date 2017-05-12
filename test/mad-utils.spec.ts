@@ -21,7 +21,7 @@ import * as path from 'path';
 import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-import { m_, mUtils } from '../index';
+import { m_, mUtils, append } from '../index';
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -50,6 +50,10 @@ describe('mUtils', function() {
             it('-- exists', function() {
                 expect(m_.array).to.be.an('object');
             });
+            it(`-- exists : #append`, function() {
+                expect(m_.array.append).to.exist;
+                expect(append).to.exist;
+            })
         });
 
         describe('.coll]', function() {
