@@ -491,19 +491,32 @@ export const get = <T extends Object>(propPath: string[] | string, obj: T): any 
  * @param {Array<RealAny>|RealAny} arr2 - Array or value to concatenate to the end of arr1
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
-export const append = (arr1: RealAny[] | RealAny, arr2: RealAny[] | RealAny): RealAny[] => {
+export const append =
+    (arr1: RealAny[] | RealAny, arr2: RealAny[] | RealAny, ...arrs: RealAny[]): RealAny[] =>
+{
     const isArr1Undefined = typeof arr1 === 'undefined' || arr1 === null;
     const isArr2Undefined = typeof arr2 === 'undefined' || arr2 === null;
 
-    if (isArr1Undefined && isArr2Undefined) return [];
-    if (isArr1Undefined)                    return arr2;
-    if (isArr2Undefined)                    return arr1;
+    if (arrs.length > 0) {
+        arr1 = arr1 || [];
+        arr2 = arr2 || [];
+    } else if (isArr1Undefined && isArr2Undefined) {
+        return [];
+    } else if (isArr1Undefined) {
+        return arr2;
+    } else if (isArr2Undefined) {
+        return arr1;
+    }
 
     const cleanArr = (arr: RealAny[]) =>
         (arr.constructor.name !== 'Array' && arr.constructor.constructor.name !== 'Array')
             ? [arr] : arr;
 
-    return cleanArr(arr1).concat(cleanArr(arr2));
+    const first2Arrs = cleanArr(arr1).concat(cleanArr(arr2));
+
+    return (arrs.length > 0)
+        ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs)
+        : first2Arrs;
 };
 
 

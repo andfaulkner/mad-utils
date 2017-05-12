@@ -181,30 +181,28 @@ export declare function isInt(val: any): boolean;
  */
 export declare const expectEmptyObject: (testValue: any) => void;
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
-/**
- * Return last item in an array.
- */
+/** Return last item in an array. */
 export declare const last: <T>(arr: T[]) => T;
-/**
- * Return second last item in an array.
- */
+/** Return second last item in an array. */
 export declare const secondLast: <T>(arr: T[]) => T;
-/**
- * Return third last item in an array.
- */
+/** Return third last item in an array. */
 export declare const thirdLast: <T>(arr: T[]) => T;
-/**
- * Return last 2 items in an array.
- */
-export declare function last2<T>(arr: T[]): T[];
-/**
- * Return last 3 items in an array.
- */
-export declare function last3<T>(arr: T[]): T[];
-/**
- * Return last N items in an array.
- */
-export declare function lastN<T>(arr: T[], n: number): T[];
+/** Return last 2 items in an array. */
+export declare const last2: <T>(arr: T[]) => T[];
+/** Return last 3 items in an array. */
+export declare const last3: <T>(arr: T[]) => T[];
+/** Return last N items in an array. */
+export declare const lastN: <T>(arr: T[], n: number) => T[];
+/** Return first item in an array. */
+export declare const first: <T>(arr: T[]) => T;
+/** Return second item in an array. */
+export declare const second: <T>(arr: T[]) => T;
+/** Return third item in an array. */
+export declare const third: <T>(arr: T[]) => T;
+/** Return first 2 items in an array. */
+export declare const first2: <T>(arr: T[]) => T[];
+/** Return first 3 items in an array. */
+export declare const first3: <T>(arr: T[]) => T[];
 /**
  * Return first N items in an array. Returned undefined if you request too many items.
  */
@@ -214,6 +212,17 @@ export declare function firstN<T>(arr: T[], n: number): T[];
  * @param {number} len - Length of array to create.
  */
 export declare const arrayN: (len: number) => any[];
+/**
+ * Exclude the first few or the last few items.
+ */
+export declare const withoutLast: <T>(arr: T[]) => T[];
+export declare const withoutLast2: <T>(arr: T[]) => T[];
+export declare const withoutLast3: <T>(arr: T[]) => T[];
+export declare const withoutLastN: <T>(arr: T[], numToRm: number) => T[];
+export declare const withoutFirst: <T>(arr: T[]) => T[];
+export declare const withoutFirst2: <T>(arr: T[]) => T[];
+export declare const withoutFirst3: <T>(arr: T[]) => T[];
+export declare const withoutFirstN: <T>(arr: T[], numToRm: number) => T[];
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
@@ -291,15 +300,30 @@ export declare const now: (timestampFormat?: string) => string;
 export declare const mUtils: {
     array: {
         isArray: (value: any) => boolean;
+        first: <T>(arr: T[]) => T;
+        second: <T>(arr: T[]) => T;
+        third: <T>(arr: T[]) => T;
+        first2: <T>(arr: T[]) => T[];
+        first3: <T>(arr: T[]) => T[];
         last: <T>(arr: T[]) => T;
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
         last2: <T>(arr: T[]) => T[];
         last3: <T>(arr: T[]) => T[];
         lastN: <T>(arr: T[], n: number) => T[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
         append: (arr1: any, arr2: any) => any[];
+        without: {
+            last: <T>(arr: T[]) => T[];
+            last2: <T>(arr: T[]) => T[];
+            last3: <T>(arr: T[]) => T[];
+            lastN: <T>(arr: T[], numToRm: number) => T[];
+            first: <T>(arr: T[]) => T[];
+            first2: <T>(arr: T[]) => T[];
+            first3: <T>(arr: T[]) => T[];
+            firstN: <T>(arr: T[], numToRm: number) => T[];
+        };
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -399,15 +423,30 @@ export declare const mUtils: {
 export declare const _: {
     array: {
         isArray: (value: any) => boolean;
+        first: <T>(arr: T[]) => T;
+        second: <T>(arr: T[]) => T;
+        third: <T>(arr: T[]) => T;
+        first2: <T>(arr: T[]) => T[];
+        first3: <T>(arr: T[]) => T[];
         last: <T>(arr: T[]) => T;
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
         last2: <T>(arr: T[]) => T[];
         last3: <T>(arr: T[]) => T[];
         lastN: <T>(arr: T[], n: number) => T[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
         append: (arr1: any, arr2: any) => any[];
+        without: {
+            last: <T>(arr: T[]) => T[];
+            last2: <T>(arr: T[]) => T[];
+            last3: <T>(arr: T[]) => T[];
+            lastN: <T>(arr: T[], numToRm: number) => T[];
+            first: <T>(arr: T[]) => T[];
+            first2: <T>(arr: T[]) => T[];
+            first3: <T>(arr: T[]) => T[];
+            firstN: <T>(arr: T[], numToRm: number) => T[];
+        };
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -507,15 +546,30 @@ export declare const _: {
 export declare const __: {
     array: {
         isArray: (value: any) => boolean;
+        first: <T>(arr: T[]) => T;
+        second: <T>(arr: T[]) => T;
+        third: <T>(arr: T[]) => T;
+        first2: <T>(arr: T[]) => T[];
+        first3: <T>(arr: T[]) => T[];
         last: <T>(arr: T[]) => T;
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
         last2: <T>(arr: T[]) => T[];
         last3: <T>(arr: T[]) => T[];
         lastN: <T>(arr: T[], n: number) => T[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
         append: (arr1: any, arr2: any) => any[];
+        without: {
+            last: <T>(arr: T[]) => T[];
+            last2: <T>(arr: T[]) => T[];
+            last3: <T>(arr: T[]) => T[];
+            lastN: <T>(arr: T[], numToRm: number) => T[];
+            first: <T>(arr: T[]) => T[];
+            first2: <T>(arr: T[]) => T[];
+            first3: <T>(arr: T[]) => T[];
+            firstN: <T>(arr: T[], numToRm: number) => T[];
+        };
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -615,15 +669,30 @@ export declare const __: {
 export declare const m_: {
     array: {
         isArray: (value: any) => boolean;
+        first: <T>(arr: T[]) => T;
+        second: <T>(arr: T[]) => T;
+        third: <T>(arr: T[]) => T;
+        first2: <T>(arr: T[]) => T[];
+        first3: <T>(arr: T[]) => T[];
         last: <T>(arr: T[]) => T;
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
         last2: <T>(arr: T[]) => T[];
         last3: <T>(arr: T[]) => T[];
         lastN: <T>(arr: T[], n: number) => T[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
         append: (arr1: any, arr2: any) => any[];
+        without: {
+            last: <T>(arr: T[]) => T[];
+            last2: <T>(arr: T[]) => T[];
+            last3: <T>(arr: T[]) => T[];
+            lastN: <T>(arr: T[], numToRm: number) => T[];
+            first: <T>(arr: T[]) => T[];
+            first2: <T>(arr: T[]) => T[];
+            first3: <T>(arr: T[]) => T[];
+            firstN: <T>(arr: T[], numToRm: number) => T[];
+        };
     };
     coll: {
         last: <T>(arr: T[]) => T;
@@ -723,15 +792,30 @@ export declare const m_: {
 export declare const madUtils: {
     array: {
         isArray: (value: any) => boolean;
+        first: <T>(arr: T[]) => T;
+        second: <T>(arr: T[]) => T;
+        third: <T>(arr: T[]) => T;
+        first2: <T>(arr: T[]) => T[];
+        first3: <T>(arr: T[]) => T[];
         last: <T>(arr: T[]) => T;
+        secondLast: <T>(arr: T[]) => T;
+        thirdLast: <T>(arr: T[]) => T;
         last2: <T>(arr: T[]) => T[];
         last3: <T>(arr: T[]) => T[];
         lastN: <T>(arr: T[], n: number) => T[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
         append: (arr1: any, arr2: any) => any[];
+        without: {
+            last: <T>(arr: T[]) => T[];
+            last2: <T>(arr: T[]) => T[];
+            last3: <T>(arr: T[]) => T[];
+            lastN: <T>(arr: T[], numToRm: number) => T[];
+            first: <T>(arr: T[]) => T[];
+            first2: <T>(arr: T[]) => T[];
+            first3: <T>(arr: T[]) => T[];
+            firstN: <T>(arr: T[], numToRm: number) => T[];
+        };
     };
     coll: {
         last: <T>(arr: T[]) => T;
