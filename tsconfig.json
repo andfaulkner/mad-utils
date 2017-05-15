@@ -25,6 +25,8 @@
     "include": [
         "./index.ts",
         "./typings/index.d.ts",
-        "./src/*.ts"
+        "./src/*.ts",
+        "./src/array-collection.ts",
+        "./src/types.ts"
     ]
 }
