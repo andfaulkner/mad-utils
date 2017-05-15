@@ -178,6 +178,12 @@ describe('mUtils', function() {
             });
         });
 
+        describe('.event]', function() {
+            it('-- exists', function() {
+                expect(m_.event).to.be.an('object');
+            });
+        });
+
         describe('.number]', function() {
             it('-- exists', function() {
                 expect(mUtils.number).to.be.an('object');

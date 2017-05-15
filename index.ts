@@ -15,6 +15,9 @@ import { append, arrayN, first, first2, first3, firstN, get, last, last2, last3,
          withoutLast, withoutLast2, withoutLast3, withoutLastN } from './src/array-collection';
 export * from './src/array-collection';
 
+import { mouseEventFactory } from './src/event';
+export * from './src/event';
+
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';
 const log = logFactory()(`mad-utils`, logMarkers.default);
@@ -652,6 +655,9 @@ export const mUtils = {
     error: {
         DecoratorError,
         scrubStackTrace,
+    },
+    event: {
+        mouseEventFactory,
     },
     json: {
         jsonStringifyWFuncs,

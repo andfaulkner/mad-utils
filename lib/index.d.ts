@@ -1,6 +1,7 @@
 /******************************************** IMPORTS *********************************************/
 import 'reflect-metadata';
 export * from './src/array-collection';
+export * from './src/event';
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum
@@ -319,6 +320,9 @@ export declare const mUtils: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    event: {
+        mouseEventFactory: (globalTarget?: any) => MouseEvent;
+    };
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -448,6 +452,9 @@ export declare const _: {
     error: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
+    };
+    event: {
+        mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
@@ -579,6 +586,9 @@ export declare const __: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    event: {
+        mouseEventFactory: (globalTarget?: any) => MouseEvent;
+    };
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -709,6 +719,9 @@ export declare const m_: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    event: {
+        mouseEventFactory: (globalTarget?: any) => MouseEvent;
+    };
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -838,6 +851,9 @@ export declare const madUtils: {
     error: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
+    };
+    event: {
+        mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
