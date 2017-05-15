@@ -182,6 +182,22 @@ describe('mUtils', function() {
             it('-- exists', function() {
                 expect(m_.event).to.be.an('object');
             });
+            it('has function mouseEventFactory, which builds mouse events but does nothing in Node',
+                function() {
+                    const mouseEvent = m_.event.mouseEventFactory();
+                    expect(mouseEvent).to.be.undefined; // in node it shouldn't work
+                }
+            );
+            it('has function removeClickEventFromId, which removes click events in browser but does nothing in Node',
+                function() {
+                    expect(m_.event.removeClickEventFromId()).to.be.undefined;
+                }
+            );
+            it('has function addClickEventToId, which adds click events in browser but does nothing in Node',
+                function() {
+                    expect(m_.event.addClickEventToId('', (ev: any) => '')).to.be.undefined;
+                }
+            );
         });
 
         describe('.number]', function() {

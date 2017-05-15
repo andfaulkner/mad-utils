@@ -15,8 +15,12 @@ import { append, arrayN, first, first2, first3, firstN, get, last, last2, last3,
          withoutLast, withoutLast2, withoutLast3, withoutLastN } from './src/array-collection';
 export * from './src/array-collection';
 
-import { mouseEventFactory } from './src/event';
+import * as isNode from 'detect-node';
+
+// Event import
+import * as event from './src/event';
 export * from './src/event';
+
 
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';
@@ -656,9 +660,8 @@ export const mUtils = {
         DecoratorError,
         scrubStackTrace,
     },
-    event: {
-        mouseEventFactory,
-    },
+    event,
+    isNode,
     json: {
         jsonStringifyWFuncs,
         jsonParseWFuncRehydrate_unsafe,
@@ -695,7 +698,7 @@ export const mUtils = {
         isNonexistentOrString,
         isInt,
     },
-}
+};
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
 export const _ = mUtils;

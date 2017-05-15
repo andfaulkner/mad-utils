@@ -323,6 +323,7 @@ export declare const mUtils: {
     event: {
         mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
+    isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -456,6 +457,7 @@ export declare const _: {
     event: {
         mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
+    isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -589,6 +591,7 @@ export declare const __: {
     event: {
         mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
+    isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -722,6 +725,7 @@ export declare const m_: {
     event: {
         mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
+    isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
@@ -855,6 +859,7 @@ export declare const madUtils: {
     event: {
         mouseEventFactory: (globalTarget?: any) => MouseEvent;
     };
+    isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
         jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
