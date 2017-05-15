@@ -140,7 +140,8 @@ export declare function escapeRegExp(regexStr: string): string;
 /****************************************** QUERY PARAMS ******************************************/
 /**
  * Turn query params into JS object (based on splitting on ',' & '=').
- * @return {Object} Query params as object
+ * @param {string} queryParamsString: source to parse for query params. Default: query (?) in URL.
+ * @return {Object} Query params as object.
  */
 export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
 /********************************************* TYPES **********************************************/
