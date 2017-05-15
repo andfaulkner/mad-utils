@@ -21,7 +21,7 @@ import * as path from 'path';
 import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-import { m_, mUtils, append, first } from '../index';
+import { m_, mUtils, append, first, event, addClickEventToId} from '../index';
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -190,11 +190,14 @@ describe('mUtils', function() {
             );
             it('has function removeClickEventFromId, which removes click events in browser but does nothing in Node',
                 function() {
+                    expect(event.removeClickEventFromId()).to.be.undefined;
                     expect(m_.event.removeClickEventFromId()).to.be.undefined;
                 }
             );
             it('has function addClickEventToId, which adds click events in browser but does nothing in Node',
                 function() {
+                    expect(addClickEventToId('', (ev: any) => '')).to.be.undefined;
+                    expect(event.addClickEventToId('', (ev: any) => '')).to.be.undefined;
                     expect(m_.event.addClickEventToId('', (ev: any) => '')).to.be.undefined;
                 }
             );

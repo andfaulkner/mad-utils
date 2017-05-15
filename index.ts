@@ -19,8 +19,8 @@ import * as isNode from 'detect-node';
 
 // Event import
 import * as event from './src/event';
-export * from './src/event';
-
+export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
+export { event };
 
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';

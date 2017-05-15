@@ -25,7 +25,7 @@ type EventFunction = (ev: MouseEvent) => void;
  * Output warning if function can't run in Node.
  */
 const browserOnly = (fnName: string) => (...args: any[]): void => {
-    console.log(`{$fnName} not usable in node - browser only`);
+    log.verbose(`{$fnName} not usable in node - browser only`);
 }
 
 

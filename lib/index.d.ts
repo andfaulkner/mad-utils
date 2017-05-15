@@ -2,7 +2,8 @@
 import 'reflect-metadata';
 export * from './src/array-collection';
 import * as event from './src/event';
-export * from './src/event';
+export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
+export { event };
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum
