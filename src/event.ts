@@ -19,7 +19,7 @@ var global = (isNode)
 
 
 //*************************************** TYPE DEFINITIONS ****************************************/
-type EventFunction = (ev: MouseEvent) => void;
+export type EventFunction = (ev: MouseEvent) => void;
 
 
 /******************************************** HELPERS *********************************************/
@@ -33,22 +33,31 @@ const browserOnly = (fnName: string) => (...args): void => {
 
 /**************************************** EXPORT FUNCTIONS ****************************************/
 // Construct a new click event
-export const mouseEventFactory = (isNode)
-    ? browserOnly('mouseEventFactory')
-    : (globalTarget = global) =>
+export const mouseEventFactory: ((globalTarget?: any) => MouseEvent) = (isNode)
+    ? (globalTarget = global): MouseEvent => {
+        browserOnly('mouseEventFactory');
+        return null;
+    }
+    : (globalTarget = global): MouseEvent =>
           // Triggerable built-in event.
           new MouseEvent('click', { 'view': globalTarget, 'bubbles': true, 'cancelable': true });
 
 // Generic event remover
-export const removeClickEventFromId = (isNode)
-    ? browserOnly('removeClickEventFromId')
+export const removeClickEventFromId: ((id?: string, event?) => (ev?: MouseEvent) => void) = (isNode)
+    ? (id: string = '', event = null) => {
+        browserOnly('removeClickEventFromId')
+        return null;
+    }
     : (id: string, event) => (ev: MouseEvent) => {
         $(id).removeEventListener('click', event);
     };
 
 // Generic event adder: addEventToId('id-event-2', function(ev: MouseEvent) { alert('doThing') });
-export const addClickEventToId = (isNode)
-    ? browserOnly('addClickEventToId')
+export const addClickEventToId: ((id: string, cb: EventFunction) => void) = (isNode)
+    ? (id: string = '', event = null) => {
+        browserOnly('addClickEventToId')
+        return null;
+    }
     : (id: string, cb: EventFunction) => {
           $(id).addEventListener('click', cb, false);
     }
