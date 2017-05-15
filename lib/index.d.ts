@@ -245,7 +245,7 @@ export declare const get: <T extends Object>(propPath: string | string[], obj: T
  * @param {Array<RealAny>|RealAny} arr2 - Array or value to concatenate to the end of arr1
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
-export declare const append: (arr1: any, arr2: any) => any[];
+export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
 /********************************************** DATE **********************************************/
 export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 /**
@@ -313,7 +313,7 @@ export declare const mUtils: {
         lastN: <T>(arr: T[], n: number) => T[];
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any) => any[];
+        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -436,7 +436,7 @@ export declare const _: {
         lastN: <T>(arr: T[], n: number) => T[];
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any) => any[];
+        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -559,7 +559,7 @@ export declare const __: {
         lastN: <T>(arr: T[], n: number) => T[];
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any) => any[];
+        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -682,7 +682,7 @@ export declare const m_: {
         lastN: <T>(arr: T[], n: number) => T[];
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any) => any[];
+        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -805,7 +805,7 @@ export declare const madUtils: {
         lastN: <T>(arr: T[], n: number) => T[];
         firstN: <T>(arr: T[], n: number) => T[];
         arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any) => any[];
+        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];

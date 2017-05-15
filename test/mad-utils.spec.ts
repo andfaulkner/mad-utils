@@ -190,6 +190,28 @@ describe('mUtils', function() {
             });
         });
 
+        describe('.query]', function() {
+            it('-- exists', function() {
+                expect(mUtils.query).to.be.an('object');
+            });
+            describe('.parseQueryParams]', function() {
+                it('-- exists', function() {
+                    expect(mUtils.query.parseQueryParams).to.exist;
+                });
+                it('-- is a function', function() {
+                    expect(mUtils.query.parseQueryParams).to.be.a('function');
+                });
+                it('-- parses query param strings into objects', function() {
+                    const queryParams = '?gender=female&birthdate=2013/10/20&region=AB';
+                    const queryParamsAsObj = mUtils.query.parseQueryParams(queryParams);
+                    expect(queryParamsAsObj).to.have.keys('gender', 'birthdate', 'region');
+                    expect(queryParamsAsObj['gender']).to.eql('female');
+                    expect(queryParamsAsObj['region']).to.eql('AB');
+                    expect(queryParamsAsObj['birthdate']).to.eql('2013/10/20');
+                });
+            });
+        });
+
         describe('.search]', function() {
             it('-- exists', function() {
                 expect(mUtils.search).to.be.an('object');
