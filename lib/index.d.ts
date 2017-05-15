@@ -1,6 +1,7 @@
 /******************************************** IMPORTS *********************************************/
 import 'reflect-metadata';
 export * from './src/array-collection';
+import * as event from './src/event';
 export * from './src/event';
 /********************************************** ENUM **********************************************/
 /**
@@ -320,9 +321,7 @@ export declare const mUtils: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
-    event: {
-        mouseEventFactory: (globalTarget?: any) => MouseEvent;
-    };
+    event: typeof event;
     isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
@@ -454,9 +453,7 @@ export declare const _: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
-    event: {
-        mouseEventFactory: (globalTarget?: any) => MouseEvent;
-    };
+    event: typeof event;
     isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
@@ -588,9 +585,7 @@ export declare const __: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
-    event: {
-        mouseEventFactory: (globalTarget?: any) => MouseEvent;
-    };
+    event: typeof event;
     isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
@@ -722,9 +717,7 @@ export declare const m_: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
-    event: {
-        mouseEventFactory: (globalTarget?: any) => MouseEvent;
-    };
+    event: typeof event;
     isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
@@ -856,9 +849,7 @@ export declare const madUtils: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
-    event: {
-        mouseEventFactory: (globalTarget?: any) => MouseEvent;
-    };
+    event: typeof event;
     isNode: any;
     json: {
         jsonStringifyWFuncs: (obj: Object) => string;
