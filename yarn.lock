@@ -1787,6 +1787,19 @@ lru-cache@^4.0.0:
     pseudomap "^1.0.1"
     yallist "^2.0.0"
 
+mad-logs@8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.1.0.tgz#91ebbf30f0ba70f9a815c5a24af32e2ca6a2e1ee"
+  dependencies:
+    colors "^1.1.2"
+    detect-node "^2.0.3"
+    env-var-helpers "^2.2.2"
+    global "^4.3.1"
+    lodash.find "^4.6.0"
+    lodash.isfunction "^3.0.8"
+    lodash.isstring "^4.0.1"
+    string.prototype.padend "^3.0.0"
+
 mad-logs@^5.3.0:
   version "5.4.11"
   resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-5.4.11.tgz#f99e38a356bd25e9a96ec62fa0682528259078e5"
@@ -1794,19 +1807,6 @@ mad-logs@^5.3.0:
     colors "^1.1.2"
     detect-node "^2.0.3"
     env-var-helpers "^2.0.0"
-    global "^4.3.1"
-    lodash.find "^4.6.0"
-    lodash.isfunction "^3.0.8"
-    lodash.isstring "^4.0.1"
-    string.prototype.padend "^3.0.0"
-
-mad-logs@^7.3.1:
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-7.3.1.tgz#de46b6e3a2b26d549d355b6ea5c05d192a415ed0"
-  dependencies:
-    colors "^1.1.2"
-    detect-node "^2.0.3"
-    env-var-helpers "^2.2.2"
     global "^4.3.1"
     lodash.find "^4.6.0"
     lodash.isfunction "^3.0.8"
