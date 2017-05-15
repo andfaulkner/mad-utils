@@ -1787,9 +1787,9 @@ lru-cache@^4.0.0:
     pseudomap "^1.0.1"
     yallist "^2.0.0"
 
-mad-logs@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.1.0.tgz#91ebbf30f0ba70f9a815c5a24af32e2ca6a2e1ee"
+mad-logs@8.1.1:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.1.1.tgz#97fdd13f24ad372e021834f2209987d634938680"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"

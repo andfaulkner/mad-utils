@@ -138,6 +138,12 @@ export declare const isNonexistentOrString: (val: any) => boolean;
  * TODO test this.
  */
 export declare function escapeRegExp(regexStr: string): string;
+/****************************************** QUERY PARAMS ******************************************/
+/**
+ * Turn query params into JS object (based on splitting on ',' & '=').
+ * @return {Object} Query params as object
+ */
+export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
 /********************************************* TYPES **********************************************/
 /**
  * Returns true if the given argument is a number or a string.
@@ -246,7 +252,14 @@ export declare const get: <T extends Object>(propPath: string | string[], obj: T
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
 export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
-/********************************************** DATE **********************************************/
+/***************************************** JSON UTILITIES *****************************************/
+/**
+ * Stringify, while keeping the functions in position by pre-converting them to strings.
+ * @param {Object} obj - Object to convert to a JSON string.
+ * @return {string} Stringified form of JSON.stringify with functions kept around.
+ */
+export declare const jsonStringifyWFuncs: (obj: Object) => string;
+export declare const jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
 export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 /**
  * True if the given year is a leap year.
@@ -372,6 +385,10 @@ export declare const mUtils: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    json: {
+        jsonStringifyWFuncs: (obj: Object) => string;
+        jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
+    };
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -379,6 +396,9 @@ export declare const mUtils: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    query: {
+        parseQueryParams: <T>(queryParamsString?: string) => T;
     };
     search: {
         escapeRegExp: (regexStr: string) => string;
@@ -495,6 +515,10 @@ export declare const _: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    json: {
+        jsonStringifyWFuncs: (obj: Object) => string;
+        jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
+    };
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -502,6 +526,9 @@ export declare const _: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    query: {
+        parseQueryParams: <T>(queryParamsString?: string) => T;
     };
     search: {
         escapeRegExp: (regexStr: string) => string;
@@ -618,6 +645,10 @@ export declare const __: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    json: {
+        jsonStringifyWFuncs: (obj: Object) => string;
+        jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
+    };
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -625,6 +656,9 @@ export declare const __: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    query: {
+        parseQueryParams: <T>(queryParamsString?: string) => T;
     };
     search: {
         escapeRegExp: (regexStr: string) => string;
@@ -741,6 +775,10 @@ export declare const m_: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    json: {
+        jsonStringifyWFuncs: (obj: Object) => string;
+        jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
+    };
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -748,6 +786,9 @@ export declare const m_: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    query: {
+        parseQueryParams: <T>(queryParamsString?: string) => T;
     };
     search: {
         escapeRegExp: (regexStr: string) => string;
@@ -864,6 +905,10 @@ export declare const madUtils: {
         DecoratorError: DecoratorError;
         scrubStackTrace: (stack: string, srcFn?: string) => string;
     };
+    json: {
+        jsonStringifyWFuncs: (obj: Object) => string;
+        jsonParseWFuncRehydrate_unsafe: (json: string) => Object;
+    };
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -871,6 +916,9 @@ export declare const madUtils: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+    };
+    query: {
+        parseQueryParams: <T>(queryParamsString?: string) => T;
     };
     search: {
         escapeRegExp: (regexStr: string) => string;
