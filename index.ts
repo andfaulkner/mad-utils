@@ -22,6 +22,10 @@ import * as event from './src/event';
 export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 export { event };
 
+import * as dom from './src/dom';
+export { dom }
+export { $ } from './src/dom';
+
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';
 const log = logFactory()(`mad-utils`, logMarkers.default);
@@ -648,6 +652,7 @@ export const mUtils = {
         notForWebUse,
         singleton,
     },
+    dom,
     enum: {
         enumToStringArray,
         enumValToString,

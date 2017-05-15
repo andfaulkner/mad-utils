@@ -4,6 +4,9 @@ export * from './src/array-collection';
 import * as event from './src/event';
 export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 export { event };
+import * as dom from './src/dom';
+export { dom };
+export { $ } from './src/dom';
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum
@@ -310,6 +313,7 @@ export declare const mUtils: {
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
         singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
     };
+    dom: typeof dom;
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
@@ -442,6 +446,7 @@ export declare const _: {
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
         singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
     };
+    dom: typeof dom;
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
@@ -574,6 +579,7 @@ export declare const __: {
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
         singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
     };
+    dom: typeof dom;
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
@@ -706,6 +712,7 @@ export declare const m_: {
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
         singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
     };
+    dom: typeof dom;
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
@@ -838,6 +845,7 @@ export declare const madUtils: {
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
         singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
     };
+    dom: typeof dom;
     enum: {
         enumToStringArray: <E>(Enum: any) => any[];
         enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;

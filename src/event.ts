@@ -1,3 +1,5 @@
+import { $ } from './dom';
+
 /******************************************** IMPORTS *********************************************/
 import * as isNode from 'detect-node';
 
@@ -24,9 +26,9 @@ type EventFunction = (ev: MouseEvent) => void;
 /**
  * Output warning if function can't run in Node.
  */
-const browserOnly = (fnName: string) => (...args: any[]): void => {
+const browserOnly = (fnName: string) => (...args): void => {
     log.verbose(`{$fnName} not usable in node - browser only`);
-}
+};
 
 
 /**************************************** EXPORT FUNCTIONS ****************************************/
@@ -41,12 +43,12 @@ export const mouseEventFactory = (isNode)
 export const removeClickEventFromId = (isNode)
     ? browserOnly('removeClickEventFromId')
     : (id: string, event) => (ev: MouseEvent) => {
-        document.getElementById(id).removeEventListener('click', event);
+        $(id).removeEventListener('click', event);
     };
 
 // Generic event adder: addEventToId('id-event-2', function(ev: MouseEvent) { alert('doThing') });
 export const addClickEventToId = (isNode)
     ? browserOnly('addClickEventToId')
     : (id: string, cb: EventFunction) => {
-          document.getElementById(id).addEventListener('click', cb, false);
+          $(id).addEventListener('click', cb, false);
     }

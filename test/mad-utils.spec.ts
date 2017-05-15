@@ -21,7 +21,7 @@ import * as path from 'path';
 import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-import { m_, mUtils, append, first, event, addClickEventToId} from '../index';
+import { m_, mUtils, append, first, event, addClickEventToId, $, dom } from '../index';
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -104,6 +104,18 @@ describe('mUtils', function() {
         describe('.decorator]', function() {
             it('-- exists', function() {
                 expect(m_.decorator).to.be.an('object');
+            });
+        });
+
+        describe('.dom]', function() {
+            it('-- exists', function() {
+                expect(dom).to.be.an('object');
+                expect(m_.dom).to.be.an('object');
+            });
+            it('-- has document.getElementById stand-in $', function() {
+                expect($).to.be.a('function');
+                expect(dom.$).to.be.a('function');
+                expect(m_.dom.$).to.be.a('function');
             });
         });
 
