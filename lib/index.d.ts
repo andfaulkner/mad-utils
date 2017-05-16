@@ -1,9 +1,10 @@
 /******************************************** IMPORTS *********************************************/
 import 'reflect-metadata';
+import * as collection from './src/array-collection';
 export * from './src/array-collection';
 import * as event from './src/event';
-export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 export { event };
+export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 import * as dom from './src/dom';
 export { dom };
 export { $ } from './src/dom';
@@ -278,30 +279,8 @@ export declare const mUtils: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
-    collection: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
+    coll: typeof collection;
+    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -339,6 +318,7 @@ export declare const mUtils: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+        assignClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -411,30 +391,8 @@ export declare const _: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
-    collection: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
+    coll: typeof collection;
+    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -472,6 +430,7 @@ export declare const _: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+        assignClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -544,30 +503,8 @@ export declare const __: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
-    collection: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
+    coll: typeof collection;
+    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -605,6 +542,7 @@ export declare const __: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+        assignClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -677,30 +615,8 @@ export declare const m_: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
-    collection: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
+    coll: typeof collection;
+    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -738,6 +654,7 @@ export declare const m_: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+        assignClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -810,30 +727,8 @@ export declare const madUtils: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
-    collection: {
-        last: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        isArray: (value: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-    };
+    coll: typeof collection;
+    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -871,6 +766,7 @@ export declare const madUtils: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
+        assignClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;

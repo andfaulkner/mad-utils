@@ -64,3 +64,10 @@ export declare const get: <T extends Object>(propPath: string | string[], obj: T
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
 export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+/********************************************* OBJECT *********************************************/
+/**
+ * Return a deep-frozen clone of a group of objects. Completely safe.
+ * @param {...Object[]} args - Any # of objects to merge together into the merged clone object.
+ * @return {Object} Frozen merged version of provided objects. Clones originals - no mutation.
+ */
+export declare const assignClone: <T>(...args: {}[]) => Readonly<T>;
