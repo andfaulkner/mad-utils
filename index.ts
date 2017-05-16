@@ -10,18 +10,23 @@ const { dateAndTime } = commonConstants;
 
 import { RealAny } from './src/types';
 
+// Import collection / array module
 import { append, arrayN, first, first2, first3, firstN, get, last, last2, last3, lastN, second,
          secondLast, third, thirdLast, withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
-         withoutLast, withoutLast2, withoutLast3, withoutLastN } from './src/array-collection';
+         withoutLast, withoutLast2, withoutLast3, withoutLastN, assignClone
+} from './src/array-collection';
+import * as collection from './src/array-collection';
 export * from './src/array-collection';
 
+// Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
 
-// Event import
+// Import event module
 import * as event from './src/event';
-export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 export { event };
+export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 
+// Import DOM module
 import * as dom from './src/dom';
 export { dom }
 export { $ } from './src/dom';
@@ -639,8 +644,8 @@ export const mUtils = {
             firstN: withoutFirstN,
         },
     },
-    coll,
-    collection: coll,
+    coll: collection,
+    collection,
     date: {
         isLeapYear,
         convertDayOfWeekNumToString,
@@ -678,6 +683,7 @@ export const mUtils = {
     object: {
         isMultilangTextObj,
         get,
+        assignClone,
     },
     query: {
         parseQueryParams,

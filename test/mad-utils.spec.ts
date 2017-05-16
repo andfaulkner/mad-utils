@@ -93,6 +93,30 @@ describe('mUtils', function() {
             it('-- exists', function() {
                 expect(m_.coll).to.be.an('object');
             });
+            describe(`.assignClone -- merge objs into new obj & deepfreeze the result`, function() {
+                const obj1 = { a: 1, b: 2 };
+                const obj2 = { c: 3, d: 4 };
+                const cloneObj = m_.coll.assignClone<typeof obj1 & typeof obj2>(obj1, obj2);
+
+                it('--exists', function() {
+                    expect(m_.coll.assignClone).to.exist;
+                });
+                it(`--merges objects`, function() {
+                    expect(cloneObj).to.have.keys('a', 'b', 'c', 'd');
+                    expect(cloneObj.a).to.eql(1);
+                    expect(cloneObj.b).to.eql(2);
+                    expect(cloneObj.c).to.eql(3);
+                    expect(cloneObj.d).to.eql(4);
+                });
+                it(`--does not mutate original objects`, function() {
+                    expect(obj1).to.not.have.keys('c', 'd');
+                    expect(obj2).to.not.have.keys('a', 'b');
+                });
+                it(`--freezes the resultant merged object`, function() {
+                    expect(() => { (cloneObj as any).e = 'gr' }).to.throw(TypeError);
+                    expect((cloneObj as any).e).to.not.exist;
+                });
+            });
         });
 
         describe('.date]', function() {

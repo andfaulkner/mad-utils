@@ -61,7 +61,9 @@
   },
   "homepage": "https://github.com/andfaulkner/misc-ts-utils-isomorphic#readme",
   "dependencies": {
+    "@types/deep-freeze-strict": "^1.1.0",
     "common-constants": "^3.0.1",
+    "deep-freeze-strict": "^1.1.1",
     "detect-node": "^2.0.3",
     "fs-extra-promise": "^1.0.1",
     "moment": "^2.18.1",

@@ -1,6 +1,7 @@
 /******************************************** IMPORTS *********************************************/
 import { RealAny } from './types';
 
+import deepFreeze = require('deep-freeze-strict');
 
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 /** Return last item in an array. */
@@ -119,4 +120,14 @@ export const append =
     return (arrs.length > 0)
         ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs)
         : first2Arrs;
+};
+
+/********************************************* OBJECT *********************************************/
+/**
+ * Return a deep-frozen clone of a group of objects. Completely safe.
+ * @param {...Object[]} args - Any # of objects to merge together into the merged clone object.
+ * @return {Object} Frozen merged version of provided objects. Clones originals - no mutation.
+ */
+export const assignClone = <T>(...args: {}[]): Readonly<T> => {
+    return deepFreeze<T>(Object.assign({}, ...args));
 };
