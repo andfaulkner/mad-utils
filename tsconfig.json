@@ -8,7 +8,7 @@
         "strictNullChecks": false,
         "outDir": "lib/",
         "declaration": true,
-        "target": "ES6",
+        "target": "ES5",
         "skipLibCheck": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
@@ -16,7 +16,8 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "jsx": "preserve",
-        "pretty": true
+        "pretty": true,
+        "lib": ["ES2015", "DOM"]
     },
     "exclude": [
         "*.js",

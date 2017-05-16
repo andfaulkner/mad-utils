@@ -5,8 +5,7 @@ import * as moment from 'moment';
 import { expect } from 'chai';
 import * as envVarHelpers from 'env-var-helpers';
 
-import { commonConstants } from 'common-constants';
-const { dateAndTime } = commonConstants;
+import { dateTime } from 'common-constants';
 
 import { RealAny } from './src/types';
 
@@ -572,7 +571,7 @@ export const parseDate = (date: Date): ParsedDate => {
         dayOfWeekName      : convertDayOfWeekNumToString(dayOfWeek),
         dayOfWeekShortName : date.toString().split(' ')[0],
 
-        timezoneOffset     : date.getTimezoneOffset() / dateAndTime.minutesPerHour,
+        timezoneOffset     : date.getTimezoneOffset() / dateTime.minutesPerHour,
         unixTimestampMs    : date.getTime(), // milliseconds since 01-01-1970
     };
 };
