@@ -9,6 +9,8 @@
   ],
   "scripts": {
     "prepublish": "npm run compile-ts",
+    "ts-compile": "npm run compile-ts",
+    "ts-compile:watch": "npm run compile-ts:watch",
     "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
     "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
     "test": "mocha --opts test/mocha.opts test/",
