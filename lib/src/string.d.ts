@@ -40,3 +40,7 @@ export declare function escapeRegExp(regexStr: string): string;
  * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
  */
 export declare const matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+/**
+ * Create a string that creates a blank line without using \n.
+ */
+export declare const newlineStr: string;
