@@ -1,6 +1,6 @@
 --recursive
 --compilers ts:ts-node/register,tsx:ts-node/register
 --colors
---watch-extensions ts,tsx
+--watch-extensions ts
 --growl
 --reporter list

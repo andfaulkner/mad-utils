@@ -86,37 +86,13 @@ describe('mUtils', function() {
             it(`-- exists : #without.firstN`, function() {
                 expect(m_.array.without.firstN).to.exist;
             });
-
         });
 
         describe('.coll]', function() {
             it('-- exists', function() {
                 expect(m_.coll).to.be.an('object');
             });
-            describe(`.assignFrozenClone -- merge objs into new obj & deepfreeze the result`, function() {
-                const obj1 = { a: 1, b: 2 };
-                const obj2 = { c: 3, d: 4 };
-                const cloneObj = m_.coll.assignFrozenClone<typeof obj1 & typeof obj2>(obj1, obj2);
 
-                it('--exists', function() {
-                    expect(m_.coll.assignFrozenClone).to.exist;
-                });
-                it(`--merges objects`, function() {
-                    expect(cloneObj).to.have.keys('a', 'b', 'c', 'd');
-                    expect(cloneObj.a).to.eql(1);
-                    expect(cloneObj.b).to.eql(2);
-                    expect(cloneObj.c).to.eql(3);
-                    expect(cloneObj.d).to.eql(4);
-                });
-                it(`--does not mutate original objects`, function() {
-                    expect(obj1).to.not.have.keys('c', 'd');
-                    expect(obj2).to.not.have.keys('a', 'b');
-                });
-                it(`--freezes the resultant merged object`, function() {
-                    expect(() => { (cloneObj as any).e = 'gr' }).to.throw(TypeError);
-                    expect((cloneObj as any).e).to.not.exist;
-                });
-            });
         });
 
         describe('.date]', function() {
@@ -144,68 +120,7 @@ describe('mUtils', function() {
         });
 
         describe('.enum]', function() {
-            enum ColorTest { BLUE, ReD, black }
-            enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
 
-            it('-- exists', function() {
-                expect(m_.enum).to.be.an('object');
-            });
-
-            it('.enumValToString -- Converts an enum item into a string', function() {
-                expect(m_.enum.enumValToString(ColorTest, ColorTest.ReD)).to.eql('ReD');
-                expect(m_.enum.enumValToString(ColorTest, ColorTest.BLUE)).to.eql('BLUE');
-                expect(m_.enum.enumValToString(ColorTest, ColorTest.black)).to.eql('black');
-            });
-
-            it('.enumToStringArray -- Converts an enum into an ordered array of strings', function() {
-                expect(m_.enum.enumToStringArray(ColorTest)).to.eql(['BLUE', 'ReD', 'black']);
-                expect(m_.enum.enumToStringArray(ColorTest)).to.not.eql(['ReD', 'BLUE', 'black']);
-            });
-
-            describe('.stringToEnumVal --', function() {
-                it('Returns numeric enum val if given enum has given val.', function() {
-                    expect(m_.enum.stringToEnumVal('black', ColorTest)).to.eql(2);
-                    expect(m_.enum.stringToEnumVal('HEARTS', Suits)).to.eql(0);
-                    expect(m_.enum.stringToEnumVal('BLUE', ColorTest)).to.eql(0);
-                    expect(m_.enum.stringToEnumVal('ReD', ColorTest)).to.eql(1);
-                    expect(m_.enum.stringToEnumVal('SPADES', Suits)).to.eql(2);
-                    expect(m_.enum.stringToEnumVal('DIAMONDS', Suits)).to.eql(3);
-                });
-
-                it('Ignores caps.', function() {
-                    expect(m_.enum.stringToEnumVal('Black', ColorTest)).to.eql(2);
-                    expect(m_.enum.stringToEnumVal('BLACK', ColorTest)).to.eql(2);
-                    expect(m_.enum.stringToEnumVal('BLaCK', ColorTest)).to.eql(2);
-                    expect(m_.enum.stringToEnumVal('BluE', ColorTest)).to.eql(0);
-                    expect(m_.enum.stringToEnumVal('RED', ColorTest)).to.eql(1);
-                    expect(m_.enum.stringToEnumVal('diamonds', Suits)).to.eql(3);
-                    expect(m_.enum.stringToEnumVal('dIaMoNDs', Suits)).to.eql(3);
-                });
-
-                it('Return 99999 if no match, including indexes', function() {
-                    expect(m_.enum.stringToEnumVal('O_R_a_N_g_E', ColorTest)).to.eql(99999);
-                    expect(m_.enum.stringToEnumVal('1', ColorTest)).to.eql(99999);
-                    expect(m_.enum.stringToEnumVal('0', ColorTest)).to.eql(99999);
-                    expect(m_.enum.stringToEnumVal('2', Suits)).to.eql(99999);
-                });
-            });
-
-
-            it('.isDataEnumItem -- Detects if a string matches an enum val, and accounts for the index values.)', function() {
-                log.silly("isDataEnumItem tests :: Suits['HEARTS']:", Suits['HEARTS']);
-                expect(m_.enum.isDataEnumItem('HEARTS', Suits)).to.be.true;
-
-                log.silly("isDataEnumItem tests :: Suits['WRENCHES']:", Suits['WRENCHES']);
-                expect(m_.enum.isDataEnumItem('WRENCHES', Suits)).to.be.false;
-
-                log.silly("isDataEnumItem tests :: Suits['1']:", Suits['1']);
-                expect(m_.enum.isDataEnumItem('1', Suits)).to.be.false;
-                expect(m_.enum.isDataEnumItem('0', Suits)).to.be.false;
-                expect(m_.enum.isDataEnumItem(1, Suits)).to.be.false;
-
-                log.silly("isDataEnumItem tests :: Suits[0]:", Suits[0]);
-                expect(m_.enum.isDataEnumItem(0, Suits)).to.be.false;
-            });
         });
 
         describe('.error]', function() {
@@ -218,25 +133,6 @@ describe('mUtils', function() {
             it('-- exists', function() {
                 expect(m_.event).to.be.an('object');
             });
-            it('has function mouseEventFactory, which builds mouse events but does nothing in Node',
-                function() {
-                    const mouseEvent = m_.event.mouseEventFactory();
-                    expect(mouseEvent).to.be.null; // in node it shouldn't work
-                }
-            );
-            it('has function removeClickEventFromId, which removes click events in browser but does nothing in Node',
-                function() {
-                    expect(event.removeClickEventFromId()).to.be.null;
-                    expect(m_.event.removeClickEventFromId()).to.be.null;
-                }
-            );
-            it('has function addClickEventToId, which adds click events in browser but does nothing in Node',
-                function() {
-                    expect(addClickEventToId('', (ev: any) => '')).to.be.null;
-                    expect(event.addClickEventToId('', (ev: any) => '')).to.be.null;
-                    expect(m_.event.addClickEventToId('', (ev: any) => '')).to.be.null;
-                }
-            );
         });
 
         describe('.number]', function() {
@@ -255,22 +151,6 @@ describe('mUtils', function() {
             it('-- exists', function() {
                 expect(mUtils.query).to.be.an('object');
             });
-            describe('.parseQueryParams]', function() {
-                it('-- exists', function() {
-                    expect(mUtils.query.parseQueryParams).to.exist;
-                });
-                it('-- is a function', function() {
-                    expect(mUtils.query.parseQueryParams).to.be.a('function');
-                });
-                it('-- parses query param strings into objects', function() {
-                    const queryParams = '?gender=female&birthdate=2013/10/20&region=AB';
-                    const queryParamsAsObj = mUtils.query.parseQueryParams(queryParams);
-                    expect(queryParamsAsObj).to.have.keys('gender', 'birthdate', 'region');
-                    expect(queryParamsAsObj['gender']).to.eql('female');
-                    expect(queryParamsAsObj['region']).to.eql('AB');
-                    expect(queryParamsAsObj['birthdate']).to.eql('2013/10/20');
-                });
-            });
         });
 
         describe('.search]', function() {
@@ -282,25 +162,6 @@ describe('mUtils', function() {
         describe('.string]', function() {
             it('-- exists', function() {
                 expect(mUtils.string).to.be.an('object');
-            });
-            it('.capitalize -- capitalizes first char of given string', function() {
-                expect(mUtils.string.capitalize('asdf')).to.eql('Asdf');
-                expect(mUtils.str.capitalize('the quick brown fox')).to.eql('The quick brown fox');
-                expect(mUtils.str.capitalize(' quick brown fox')).to.eql(' quick brown fox');
-                expect(mUtils.str.capitalize('Quick brown fox')).to.eql('Quick brown fox');
-                expect(mUtils.str.capitalize('The Quick Brown Fox')).to.eql('The Quick Brown Fox');
-                expect(mUtils.str.capitalize('the Quick Brown Fox')).to.eql('The Quick Brown Fox');
-                expect(mUtils.str.capitalize('THE QUICK BROWN FOX')).to.eql('THE QUICK BROWN FOX');
-            });
-
-            it('.cap1LowerRest -- capitalizes 1st char of given string, turns rest to lowercase', function() {
-                expect(mUtils.string.cap1LowerRest('asdf')).to.eql('Asdf');
-                expect(mUtils.str.cap1LowerRest('the quick brown fox')).to.eql('The quick brown fox');
-                expect(mUtils.str.cap1LowerRest(' quick brown fox')).to.eql(' quick brown fox');
-                expect(mUtils.str.cap1LowerRest('Quick brown fox')).to.eql('Quick brown fox');
-                expect(mUtils.str.cap1LowerRest('The Quick Brown Fox')).to.eql('The quick brown fox');
-                expect(mUtils.str.cap1LowerRest('the Quick Brown Fox')).to.eql('The quick brown fox');
-                expect(mUtils.str.cap1LowerRest('THE QUICK BROWN FOX')).to.eql('The quick brown fox');
             });
         });
 
