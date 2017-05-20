@@ -1,23 +1,9 @@
 /******************************************** IMPORTS *********************************************/
-import 'reflect-metadata';
-
-import * as moment from 'moment';
-import { expect } from 'chai';
-import * as envVarHelpers from 'env-var-helpers';
-
-import { dateTime } from 'common-constants';
-
-import { RealAny } from './src/types';
-
-// Import collection / array module
-import { append, arrayN, first, first2, first3, firstN, last, last2, last3, lastN, second,
-         secondLast, third, thirdLast, withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
-         withoutLast, withoutLast2, withoutLast3, withoutLastN
-} from './src/array';
-
+// Import array module
 import * as array from './src/array';
 export * from './src/array';
 
+// Import date module
 import * as date from './src/date';
 export * from './src/date';
 
@@ -60,11 +46,6 @@ import * as isNode from 'detect-node';
 import * as dom from './src/dom';
 export { dom }
 export { $ } from './src/dom';
-
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`mad-utils`, logMarkers.default);
-
 
 /******************************** EXPORT - WITH PSEUDO-NAMESPACES *********************************/
 const str = Object.assign({}, { stringToEnumVal: Enum.stringToEnumVal }, string);

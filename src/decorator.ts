@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 /**
  * Method decorator factory. Marks method as not being usable in a web environment. Emits a
  * warning if method is called. Automatically adds it into a Reflect.defineMetadata compartment
