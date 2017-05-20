@@ -2,6 +2,7 @@
 // Import array module
 import * as array from './src/array';
 export * from './src/array';
+export { array }
 
 // Import date module
 import * as date from './src/date';
@@ -22,8 +23,8 @@ export { error };
 
 // Import event module
 import * as event from './src/event';
+export * from './src/event';
 export { event };
-export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
 
 import * as json from './src/json';
 export * from './src/json';
@@ -126,9 +127,6 @@ export const mUtils = {
 };
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
-export const _ = mUtils;
 export const __ = mUtils;
 export const m_ = mUtils;
 export const madUtils = mUtils;
-
-export { array,  }
