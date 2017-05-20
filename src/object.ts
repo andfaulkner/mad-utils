@@ -1,4 +1,5 @@
-import { isNonexistentOrString } from './types'
+import { isNonexistentOrString } from './types';
+import { matchesIgnoreCase } from './string';
 import deepFreeze = require('deep-freeze-strict');
 
 /********************************************* OBJECT *********************************************/

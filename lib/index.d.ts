@@ -1,70 +1,24 @@
 /******************************************** IMPORTS *********************************************/
 import 'reflect-metadata';
-import * as collection from './src/array-collection';
-export * from './src/array-collection';
+import * as array from './src/array';
+export * from './src/array';
+import * as Enum from './src/enum';
+export * from './src/enum';
+import * as error from './src/error';
+export * from './src/error';
 import * as event from './src/event';
 export { event };
 export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
+import * as object from './src/object';
+export * from './src/object';
+import * as string from './src/string';
+export * from './src/string';
+import * as types from './src/types';
+export * from './src/types';
 import * as dom from './src/dom';
 export { dom };
 export { $ } from './src/dom';
-/********************************************** ENUM **********************************************/
-/**
- * @param {any} val - Value to match against enum
- * @param {Enum} Enum - Enum to match val against.
- * @return {boolean} true if given val is:
- *                        a) present in the given enum; and
- *                        b) An index/numeric value - i.e. '0', 0, '1', 1,...
- */
-export declare const isNumericEnumItem: (val: any, Enum: any) => boolean;
-export declare const isIndexEnumItem: (val: any, Enum: any) => boolean;
-/**
- * @param {any} val - Value to match against enum
- * @param {Enum} Enum - Enum to match val against.
- * @return {boolean} true if given val is: a) present in the given enum; and b) A non-numeric
- *                   'data' value (i.e. a value that was actually set).
- * @example Below, Suits[1] & Suits['1'] are truthy (they'd return 'CLUBS'). isDataEnumItem still
- *         knows to mark them false: it knows 0, '0', 1, '1', etc. are indexes, not actual values:
- *             enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
- *                 Suits['HEARTS'];                   // => 0
- *                 isDataEnumItem('HEARTS', Suits);   // => true
- *                 Suits['WRENCHES']                  // => undefined
- *                 isDataEnumItem('WRENCHES', Suits); // => false
- *                 Suits['1']                         // => 'CLUBS'
- *                 isDataEnumItem('1', Suits);        // => false
- */
-export declare const isDataEnumItem: (val: any, Enum: any) => boolean;
-/**
- * Return the string form of an enum value.
- * Useful for cases where you're uncertain whether the value is in its numeric or string form.
- */
-export declare const enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
-/**
- * Convert given enum value in string form to its numeric index.
- */
-export declare const stringToEnumVal: (val: string, Enum: any) => number;
-/**
- * Convert given enum to an array of strings, where each potential option is one item.
- * Excludes the 'number' values in an enum.
- * @param {Enum} enum - Enum to enumerate and extract string values from.
- * @return {string[]} enum represented as an array of strings.
- */
-export declare function enumToStringArray<E>(Enum: any): any[];
-export interface ClassConstructor {
-    new (...args: any[]): {};
-}
-export interface SingletonInterface<U> {
-    new (...args: any[]): U;
-    new: <Y>(...args: any[]) => Y;
-}
 /******************************************* DECORATORS *******************************************/
-/**
- * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
- *
- * Any class wrapped in this decorator becomes a singleton immediately.
- * Throws if attempt is made to wrap a non-class.
- */
-export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
 /**
  * Method decorator factory. Marks method as not being usable in a web environment. Emits a
  * warning if method is called. Automatically adds it into a Reflect.defineMetadata compartment
@@ -77,73 +31,6 @@ export declare const singleton: <T extends ClassConstructor>(constructor: T, ...
  */
 export declare function notForWebUse(alternative?: string, envUsage?: string): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 /********************************************* ERRORS *********************************************/
-export declare type DecoratorErrorProps = {
-    message: string;
-    messageCause: string;
-    decoratorName: string;
-    wrappedItem?: any;
-};
-export interface DecoratorError {
-    new (cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
-}
-/**
- * Throw when a decorator is improperly used. Should only be declared in a decorator function.
- */
-export declare const DecoratorError: DecoratorError;
-/**
- * Remove unneeded statements from given stack trace: calls to Node core & common
- * third-party libs. Replaces error statement with an info label. Optionally IDs
- * the function requesting the stack.
- */
-export declare function scrubStackTrace(stack: string, srcFn?: string): string;
-/******************************************** STRINGS *********************************************/
-/**
- * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
- */
-export declare function cap1LowerRest(str: string): string;
-/**
- * Capitalize the first letter of a string.
- */
-export declare function capitalize(str: string): string;
-/**
- * Replace all matching strings in a text segment with a given replacement string.
- * Can also match against a regex.
- * The main benefit is the fact that *ALL* matching strings get replaced.
- *
- * @param {string} text - string to search and replace in.
- * @param {string|RegExp} find - string or RegExp to match against
- * @param {string} replace - replacement text
- *
- * @return {string} text, with replacements made.
- */
-export declare function replaceAll(text: string, find: string | RegExp, replace: string): string;
-/**
- * Inversion of String.prototype.match, for usage as a predicate.
- * @param {string} matchAgainst - string to match against.
- * @return {boolean} true if a match is found.
- *
- * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
- */
-export declare const matches: (matchAgainst: string) => (val: string) => boolean;
-/**
- * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
- * @param {string} matchAgainst - string to match against.
- * @return {boolean} true if a match is found.
- *
- * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
- */
-export declare const matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-/**
- *  Returns true if the value is null, undefined, or a string.
- *  @param {any} val - Value to type check.
- *  @return {boolean} true if val is null, undefined, or a string.
- */
-export declare const isNonexistentOrString: (val: any) => boolean;
-/**
- * Escape a string for use as a regex. Allows repeat matching on a single string.
- * TODO test this.
- */
-export declare function escapeRegExp(regexStr: string): string;
 /****************************************** QUERY PARAMS ******************************************/
 /**
  * Turn query params into JS object (based on splitting on ',' & '=').
@@ -151,42 +38,6 @@ export declare function escapeRegExp(regexStr: string): string;
  * @return {Object} Query params as object.
  */
 export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
-/********************************************* TYPES **********************************************/
-/**
- * Returns true if the given argument is a number or a string.
- */
-export declare function isNumberLike(arg: any): boolean;
-/**
- * Returns true if the given arguments is a moment instance, Date instance, or a string.
- */
-export declare function isDateLike(arg: any): boolean;
-/**
- * True if the given object is an array. Robust, and works across multiple JS environments.
- */
-export declare function isArray(value: any): boolean;
-/**
- * Return true if val is (probably) a multilanguage string object.
- *
- * Not foolproof - assumes one of the languages is English, and that it's either Canadian, British,
- * or American English - or 'generic' English (with no locale specified).
- *
- * If English is not one of the languages, this will not work.
- *
- * TODO test this - a lot more.
- *
- * @param {val} val - Value to type check.
- * @return {boolean} true if object's properties suggest it's a multilanguage string object.
- */
-export declare const isMultilangTextObj: (obj: any) => boolean;
-/**
- * Returns true if given value is an integer.
- *
- * @param {any} value - value to check type of.
- * @return {boolean} true if given value is integer.
- *
- * TODO TEST!
- */
-export declare function isInt(val: any): boolean;
 /********************************** TEST (MOCHA, CHAI) UTILITIES **********************************/
 /**
  * Expect that testValue is an empty object.
@@ -248,26 +99,12 @@ export declare const parseDate: (date: Date) => ParsedDate;
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
 export declare const now: (timestampFormat?: string) => string;
+/********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
  */
 export declare const mUtils: {
-    array: {
-        isArray: (value: any) => boolean;
-        first: <T>(arr: T[]) => T;
-        second: <T>(arr: T[]) => T;
-        third: <T>(arr: T[]) => T;
-        first2: <T>(arr: T[]) => T[];
-        first3: <T>(arr: T[]) => T[];
-        last: <T>(arr: T[]) => T;
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+    array: {} & typeof array & {
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -279,8 +116,6 @@ export declare const mUtils: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: typeof collection;
-    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -288,23 +123,13 @@ export declare const mUtils: {
         now: (timestampFormat?: string) => string;
     };
     decorator: {
-        DecoratorError: DecoratorError;
+        DecoratorError: error.DecoratorError;
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+        singleton: <T extends types.ClassConstructor>(constructor: T, ...varargs: any[]) => types.SingletonInterface<any> & T;
     };
     dom: typeof dom;
-    enum: {
-        enumToStringArray: <E>(Enum: any) => any[];
-        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
-        stringToEnumVal: (val: string, Enum: any) => number;
-        isNumericEnumItem: (val: any, Enum: any) => boolean;
-        isIndexEnumItem: (val: any, Enum: any) => boolean;
-        isDataEnumItem: (val: any, Enum: any) => boolean;
-    };
-    error: {
-        DecoratorError: DecoratorError;
-        scrubStackTrace: (stack: string, srcFn?: string) => string;
-    };
+    enum: typeof Enum;
+    error: typeof error;
     event: typeof event;
     isNode: any;
     json: {
@@ -315,11 +140,7 @@ export declare const mUtils: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
     };
-    object: {
-        isMultilangTextObj: (obj: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
-    };
+    object: typeof object;
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
     };
@@ -329,57 +150,36 @@ export declare const mUtils: {
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
     };
-    str: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    str: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
-    string: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    } & typeof string;
+    string: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
+    } & typeof string;
     test: {
         expectEmptyObject: (testValue: any) => void;
     };
-    type: {
-        isArray: (value: any) => boolean;
-        isDateLike: (arg: any) => boolean;
-        isNumberLike: (arg: any) => boolean;
+    type: {} & typeof types & {
         isMultilangTextObj: (obj: any) => boolean;
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         isNonexistentOrString: (val: any) => boolean;
-        isInt: (val: any) => boolean;
+    };
+    types: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+    };
+    typing: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
     };
 };
 export declare const _: {
-    array: {
-        isArray: (value: any) => boolean;
-        first: <T>(arr: T[]) => T;
-        second: <T>(arr: T[]) => T;
-        third: <T>(arr: T[]) => T;
-        first2: <T>(arr: T[]) => T[];
-        first3: <T>(arr: T[]) => T[];
-        last: <T>(arr: T[]) => T;
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+    array: {} & typeof array & {
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -391,8 +191,6 @@ export declare const _: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: typeof collection;
-    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -400,23 +198,13 @@ export declare const _: {
         now: (timestampFormat?: string) => string;
     };
     decorator: {
-        DecoratorError: DecoratorError;
+        DecoratorError: error.DecoratorError;
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+        singleton: <T extends types.ClassConstructor>(constructor: T, ...varargs: any[]) => types.SingletonInterface<any> & T;
     };
     dom: typeof dom;
-    enum: {
-        enumToStringArray: <E>(Enum: any) => any[];
-        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
-        stringToEnumVal: (val: string, Enum: any) => number;
-        isNumericEnumItem: (val: any, Enum: any) => boolean;
-        isIndexEnumItem: (val: any, Enum: any) => boolean;
-        isDataEnumItem: (val: any, Enum: any) => boolean;
-    };
-    error: {
-        DecoratorError: DecoratorError;
-        scrubStackTrace: (stack: string, srcFn?: string) => string;
-    };
+    enum: typeof Enum;
+    error: typeof error;
     event: typeof event;
     isNode: any;
     json: {
@@ -427,11 +215,7 @@ export declare const _: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
     };
-    object: {
-        isMultilangTextObj: (obj: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
-    };
+    object: typeof object;
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
     };
@@ -441,57 +225,36 @@ export declare const _: {
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
     };
-    str: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    str: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
-    string: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    } & typeof string;
+    string: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
+    } & typeof string;
     test: {
         expectEmptyObject: (testValue: any) => void;
     };
-    type: {
-        isArray: (value: any) => boolean;
-        isDateLike: (arg: any) => boolean;
-        isNumberLike: (arg: any) => boolean;
+    type: {} & typeof types & {
         isMultilangTextObj: (obj: any) => boolean;
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         isNonexistentOrString: (val: any) => boolean;
-        isInt: (val: any) => boolean;
+    };
+    types: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+    };
+    typing: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
     };
 };
 export declare const __: {
-    array: {
-        isArray: (value: any) => boolean;
-        first: <T>(arr: T[]) => T;
-        second: <T>(arr: T[]) => T;
-        third: <T>(arr: T[]) => T;
-        first2: <T>(arr: T[]) => T[];
-        first3: <T>(arr: T[]) => T[];
-        last: <T>(arr: T[]) => T;
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+    array: {} & typeof array & {
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -503,8 +266,6 @@ export declare const __: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: typeof collection;
-    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -512,23 +273,13 @@ export declare const __: {
         now: (timestampFormat?: string) => string;
     };
     decorator: {
-        DecoratorError: DecoratorError;
+        DecoratorError: error.DecoratorError;
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+        singleton: <T extends types.ClassConstructor>(constructor: T, ...varargs: any[]) => types.SingletonInterface<any> & T;
     };
     dom: typeof dom;
-    enum: {
-        enumToStringArray: <E>(Enum: any) => any[];
-        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
-        stringToEnumVal: (val: string, Enum: any) => number;
-        isNumericEnumItem: (val: any, Enum: any) => boolean;
-        isIndexEnumItem: (val: any, Enum: any) => boolean;
-        isDataEnumItem: (val: any, Enum: any) => boolean;
-    };
-    error: {
-        DecoratorError: DecoratorError;
-        scrubStackTrace: (stack: string, srcFn?: string) => string;
-    };
+    enum: typeof Enum;
+    error: typeof error;
     event: typeof event;
     isNode: any;
     json: {
@@ -539,11 +290,7 @@ export declare const __: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
     };
-    object: {
-        isMultilangTextObj: (obj: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
-    };
+    object: typeof object;
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
     };
@@ -553,57 +300,36 @@ export declare const __: {
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
     };
-    str: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    str: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
-    string: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    } & typeof string;
+    string: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
+    } & typeof string;
     test: {
         expectEmptyObject: (testValue: any) => void;
     };
-    type: {
-        isArray: (value: any) => boolean;
-        isDateLike: (arg: any) => boolean;
-        isNumberLike: (arg: any) => boolean;
+    type: {} & typeof types & {
         isMultilangTextObj: (obj: any) => boolean;
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         isNonexistentOrString: (val: any) => boolean;
-        isInt: (val: any) => boolean;
+    };
+    types: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+    };
+    typing: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
     };
 };
 export declare const m_: {
-    array: {
-        isArray: (value: any) => boolean;
-        first: <T>(arr: T[]) => T;
-        second: <T>(arr: T[]) => T;
-        third: <T>(arr: T[]) => T;
-        first2: <T>(arr: T[]) => T[];
-        first3: <T>(arr: T[]) => T[];
-        last: <T>(arr: T[]) => T;
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+    array: {} & typeof array & {
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -615,8 +341,6 @@ export declare const m_: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: typeof collection;
-    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -624,23 +348,13 @@ export declare const m_: {
         now: (timestampFormat?: string) => string;
     };
     decorator: {
-        DecoratorError: DecoratorError;
+        DecoratorError: error.DecoratorError;
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+        singleton: <T extends types.ClassConstructor>(constructor: T, ...varargs: any[]) => types.SingletonInterface<any> & T;
     };
     dom: typeof dom;
-    enum: {
-        enumToStringArray: <E>(Enum: any) => any[];
-        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
-        stringToEnumVal: (val: string, Enum: any) => number;
-        isNumericEnumItem: (val: any, Enum: any) => boolean;
-        isIndexEnumItem: (val: any, Enum: any) => boolean;
-        isDataEnumItem: (val: any, Enum: any) => boolean;
-    };
-    error: {
-        DecoratorError: DecoratorError;
-        scrubStackTrace: (stack: string, srcFn?: string) => string;
-    };
+    enum: typeof Enum;
+    error: typeof error;
     event: typeof event;
     isNode: any;
     json: {
@@ -651,11 +365,7 @@ export declare const m_: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
     };
-    object: {
-        isMultilangTextObj: (obj: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
-    };
+    object: typeof object;
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
     };
@@ -665,57 +375,36 @@ export declare const m_: {
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
     };
-    str: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    str: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
-    string: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    } & typeof string;
+    string: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
+    } & typeof string;
     test: {
         expectEmptyObject: (testValue: any) => void;
     };
-    type: {
-        isArray: (value: any) => boolean;
-        isDateLike: (arg: any) => boolean;
-        isNumberLike: (arg: any) => boolean;
+    type: {} & typeof types & {
         isMultilangTextObj: (obj: any) => boolean;
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         isNonexistentOrString: (val: any) => boolean;
-        isInt: (val: any) => boolean;
+    };
+    types: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+    };
+    typing: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
     };
 };
 export declare const madUtils: {
-    array: {
-        isArray: (value: any) => boolean;
-        first: <T>(arr: T[]) => T;
-        second: <T>(arr: T[]) => T;
-        third: <T>(arr: T[]) => T;
-        first2: <T>(arr: T[]) => T[];
-        first3: <T>(arr: T[]) => T[];
-        last: <T>(arr: T[]) => T;
-        secondLast: <T>(arr: T[]) => T;
-        thirdLast: <T>(arr: T[]) => T;
-        last2: <T>(arr: T[]) => T[];
-        last3: <T>(arr: T[]) => T[];
-        lastN: <T>(arr: T[], n: number) => T[];
-        firstN: <T>(arr: T[], n: number) => T[];
-        arrayN: (len: number) => any[];
-        append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+    array: {} & typeof array & {
         without: {
             last: <T>(arr: T[]) => T[];
             last2: <T>(arr: T[]) => T[];
@@ -727,8 +416,6 @@ export declare const madUtils: {
             firstN: <T>(arr: T[], numToRm: number) => T[];
         };
     };
-    coll: typeof collection;
-    collection: typeof collection;
     date: {
         isLeapYear: (year: number) => boolean;
         convertDayOfWeekNumToString: (day: NumRange1To7) => string;
@@ -736,23 +423,13 @@ export declare const madUtils: {
         now: (timestampFormat?: string) => string;
     };
     decorator: {
-        DecoratorError: DecoratorError;
+        DecoratorError: error.DecoratorError;
         notForWebUse: (alternative?: string, envUsage?: string) => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
-        singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+        singleton: <T extends types.ClassConstructor>(constructor: T, ...varargs: any[]) => types.SingletonInterface<any> & T;
     };
     dom: typeof dom;
-    enum: {
-        enumToStringArray: <E>(Enum: any) => any[];
-        enumValToString: <E>(Enum: any, val: any, caps?: "lower" | "upper") => string;
-        stringToEnumVal: (val: string, Enum: any) => number;
-        isNumericEnumItem: (val: any, Enum: any) => boolean;
-        isIndexEnumItem: (val: any, Enum: any) => boolean;
-        isDataEnumItem: (val: any, Enum: any) => boolean;
-    };
-    error: {
-        DecoratorError: DecoratorError;
-        scrubStackTrace: (stack: string, srcFn?: string) => string;
-    };
+    enum: typeof Enum;
+    error: typeof error;
     event: typeof event;
     isNode: any;
     json: {
@@ -763,11 +440,7 @@ export declare const madUtils: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
     };
-    object: {
-        isMultilangTextObj: (obj: any) => boolean;
-        get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
-    };
+    object: typeof object;
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
     };
@@ -777,37 +450,31 @@ export declare const madUtils: {
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         replaceAll: (text: string, find: string | RegExp, replace: string) => string;
     };
-    str: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    str: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
-    string: {
-        cap1LowerRest: (str: string) => string;
-        capitalize: (str: string) => string;
-        escapeRegExp: (regexStr: string) => string;
-        isNonexistentOrString: (val: any) => boolean;
-        matches: (matchAgainst: string) => (val: string) => boolean;
-        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
-        replaceAll: (text: string, find: string | RegExp, replace: string) => string;
+    } & typeof string;
+    string: {} & {
         stringToEnumVal: (val: string, Enum: any) => number;
-    };
+    } & typeof string;
     test: {
         expectEmptyObject: (testValue: any) => void;
     };
-    type: {
-        isArray: (value: any) => boolean;
-        isDateLike: (arg: any) => boolean;
-        isNumberLike: (arg: any) => boolean;
+    type: {} & typeof types & {
         isMultilangTextObj: (obj: any) => boolean;
         matches: (matchAgainst: string) => (val: string) => boolean;
         matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
         isNonexistentOrString: (val: any) => boolean;
-        isInt: (val: any) => boolean;
+    };
+    types: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
+    };
+    typing: {} & typeof types & {
+        isMultilangTextObj: (obj: any) => boolean;
+        matches: (matchAgainst: string) => (val: string) => boolean;
+        matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+        isNonexistentOrString: (val: any) => boolean;
     };
 };

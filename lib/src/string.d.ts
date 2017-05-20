@@ -1,19 +1,12 @@
-
 /******************************************** STRINGS *********************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
  */
-export function cap1LowerRest(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-}
-
+export declare function cap1LowerRest(str: string): string;
 /**
  * Capitalize the first letter of a string.
  */
-export function capitalize(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
+export declare function capitalize(str: string): string;
 /**
  * Replace all matching strings in a text segment with a given replacement string.
  * Can also match against a regex.
@@ -25,12 +18,7 @@ export function capitalize(str: string): string {
  *
  * @return {string} text, with replacements made.
  */
-export function replaceAll(text: string, find: string | RegExp, replace: string) {
-    return (typeof find === 'string')
-            ? text.replace(new RegExp(escapeRegExp(find), 'g'), replace)
-            : text.replace(find, replace);
-}
-
+export declare function replaceAll(text: string, find: string | RegExp, replace: string): string;
 /**
  * Inversion of String.prototype.match, for usage as a predicate.
  * @param {string} matchAgainst - string to match against.
@@ -38,16 +26,12 @@ export function replaceAll(text: string, find: string | RegExp, replace: string)
  *
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
-export const matches = (matchAgainst: string) => (val: string): boolean => !!val.match(matchAgainst);
-
+export declare const matches: (matchAgainst: string) => (val: string) => boolean;
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * TODO test this.
  */
-export function escapeRegExp(regexStr: string) {
-    return regexStr.replace(/([\/\\()\[\]{}.*+^$?|=:!])/g, '\\$1');
-}
-
+export declare function escapeRegExp(regexStr: string): string;
 /**
  * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
  * @param {string} matchAgainst - string to match against.
@@ -55,12 +39,4 @@ export function escapeRegExp(regexStr: string) {
  *
  * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
  */
-export const matchesIgnoreCase = (matchAgainst: string) => (val: string): boolean => {
-    return !!val.toLowerCase().match(matchAgainst.toLowerCase());
-};
-
-/**
- * Create a string that creates a blank line without using \n.
- */
-export const newlineStr = `
-`;
+export declare const matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
