@@ -12,6 +12,8 @@ import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export { localStore };
 import * as browserTypes from './src/browser/types-browser';
+export * from './src/browser/types-browser';
+export * from './src/types-iso';
 export declare const types: {} & typeof isoTypes & typeof browserTypes;
 /********************************************* EXPORT *********************************************/
 /**

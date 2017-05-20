@@ -21,8 +21,10 @@ import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export { localStore }
 
-// Import browser-types
+// Import browser-types (including merged-in types from types-iso)
 import * as browserTypes from './src/browser/types-browser';
+export * from './src/browser/types-browser';
+export * from './src/types-iso';
 
 // Build final browser types object by merging isomorphic types with browser-specific types.
 export const types = Object.assign({}, isoTypes, browserTypes);

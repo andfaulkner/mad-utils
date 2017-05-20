@@ -25,8 +25,11 @@ export * from './src/node/file';
 export { file };
 
 // Build final NodeJS types object by merging isomorphic types with Node-specific types.
+// Export all, including merged-in types from types-iso.
 import * as nodeTypes from './src/node/types-node';
 export const types = Object.assign(isoTypes, nodeTypes);
+export * from './src/node/types-node';
+export * from './src/types-iso';
 
 
 /********************************************* EXPORT *********************************************/

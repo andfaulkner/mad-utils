@@ -16,6 +16,8 @@ export * from './src/node/file';
 export { file };
 import * as nodeTypes from './src/node/types-node';
 export declare const types: typeof isoTypes & typeof nodeTypes;
+export * from './src/node/types-node';
+export * from './src/types-iso';
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module

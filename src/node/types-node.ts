@@ -1,4 +1,4 @@
-/// <reference path="../../node_modules/@types/express/index.d.ts" />
+/// <reference types="express" />
 
 import * as connect from 'connect';
 
