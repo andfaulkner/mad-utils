@@ -1,10 +1,21 @@
 import moment from 'moment';
+import { DecoratorError } from './error';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
+export interface ClassConstructor {
+    new(...args: any[]): {};
+}
+
 // For cases where something truly can be any value (contrast with the most common
 // case where 'any' is used in lieu of determining a highly complex type)
 export type RealAny = any;
 
+export interface SingletonInterface<U> {
+    new(...args: any[]): U;
+    new: <Y>(...args: any[]) => Y;
+}
+
+/***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
  *  @param {any} val - Value to type check.
@@ -65,3 +76,35 @@ export function isInt(val) {
 
 export { isMultilangTextObj } from './object';
 
+
+/**
+ * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
+ *
+ * Any class wrapped in this decorator becomes a singleton immediately.
+ * Throws if attempt is made to wrap a non-class.
+ */
+export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => {
+    if (varargs.length > 0) {
+        throw new DecoratorError('Can only apply @singleton to classes', 'singleton', constructor);
+    }
+    const SingletonClass = class SingletonClass extends constructor {
+        private static _instance: SingletonClass = null;
+
+        public static new = (...args: any[]) => {
+            if (!SingletonClass._instance) {
+                SingletonClass._instance = new SingletonClass(...args);
+            }
+            return SingletonClass._instance;
+        }
+
+        constructor(...args: any[]) {
+            if (SingletonClass._instance) return SingletonClass._instance;
+            super(...args);
+            SingletonClass._instance = this;
+            return SingletonClass._instance;
+        }
+    }
+
+    Object.defineProperty(SingletonClass, 'name', { value: constructor.name });
+    return SingletonClass as (SingletonInterface<any> & typeof constructor);
+};

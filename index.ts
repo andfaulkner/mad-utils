@@ -18,6 +18,17 @@ import { append, arrayN, first, first2, first3, firstN, last, last2, last3, last
 import * as array from './src/array';
 export * from './src/array';
 
+import * as Enum from './src/enum';
+export * from './src/enum';
+
+import * as error from './src/error';
+export * from './src/error';
+
+// Import event module
+import * as event from './src/event';
+export { event };
+export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
+
 import * as object from './src/object';
 export * from './src/object';
 
@@ -30,11 +41,6 @@ export * from './src/types';
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
 
-// Import event module
-import * as event from './src/event';
-export { event };
-export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './src/event';
-
 // Import DOM module
 import * as dom from './src/dom';
 export { dom }
@@ -45,137 +51,7 @@ import { logFactory, logMarkers } from 'mad-logs';
 const log = logFactory()(`mad-utils`, logMarkers.default);
 
 
-/********************************************* CONFIG *********************************************/
-const stackNoiseLibsRegex = /\/node_modules(?=\/).*(\/react\/|\/mocha\/|\/ts\-node\/)/g;
-const nodeStackNoiseRegex = / \(timers\.js:[0-9]/g;
-
-/********************************************** ENUM **********************************************/
-/**
- * @param {any} val - Value to match against enum
- * @param {Enum} Enum - Enum to match val against.
- * @return {boolean} true if given val is:
- *                        a) present in the given enum; and
- *                        b) An index/numeric value - i.e. '0', 0, '1', 1,...
- */
-export const isNumericEnumItem = (val: any, Enum): boolean => !isDataEnumItem(val, Enum);
-export const isIndexEnumItem = isNumericEnumItem;
-
-/**
- * @param {any} val - Value to match against enum
- * @param {Enum} Enum - Enum to match val against.
- * @return {boolean} true if given val is: a) present in the given enum; and b) A non-numeric
- *                   'data' value (i.e. a value that was actually set).
- * @example Below, Suits[1] & Suits['1'] are truthy (they'd return 'CLUBS'). isDataEnumItem still
- *         knows to mark them false: it knows 0, '0', 1, '1', etc. are indexes, not actual values:
- *             enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
- *                 Suits['HEARTS'];                   // => 0
- *                 isDataEnumItem('HEARTS', Suits);   // => true
- *                 Suits['WRENCHES']                  // => undefined
- *                 isDataEnumItem('WRENCHES', Suits); // => false
- *                 Suits['1']                         // => 'CLUBS'
- *                 isDataEnumItem('1', Suits);        // => false
- */
-export const isDataEnumItem = (val: any, Enum): boolean => typeof Enum[val] === 'number';
-
-/**
- * Return the string form of an enum value.
- * Useful for cases where you're uncertain whether the value is in its numeric or string form.
- */
-export const enumValToString = <E>(Enum, val, caps: 'lower' | 'upper' | null = null): string => {
-    const outVal: string = (typeof val === 'string') ? val : Enum[val] as string;
-    switch(caps) {
-        case 'lower': return outVal.toLowerCase();
-        case 'upper': return outVal.toUpperCase();
-        default: return outVal;
-    }
-}
-
-/**
- * Convert given enum value in string form to its numeric index.
- */
-export const stringToEnumVal = (val: string, Enum): number => {
-    log.verbose(`stringToEnumVal :: Enum:`, Enum, `;; val:`, val);
-    for (let item in Enum) {
-        if (isDataEnumItem(item, Enum) && item.toLowerCase() === val.toLowerCase()) {
-            return Enum[item];
-        }
-    }
-
-    log.warn(`stringToEnumVal ::
-        WARNING: stringToEnumVal: no matches of given value - ${val} - in given enum:
-            ${JSON.stringify(Enum)}
-        ...returning 99999.`);
-
-    let stack;
-    // NOTE: NOT AN ACTUAL ERROR CALL. THIS IS DONE TO ACQUIRE THE STACKTRACE.
-    try { throw new Error() } catch (e) { stack = e.stack; }
-
-    // Display clean stack trace up to point of 'Error' creation.
-    const cleanStack = scrubStackTrace(stack, 'stringToEnumVal');
-    console.log(cleanStack, '\n');
-
-    return 99999;
-}
-
-/**
- * Convert given enum to an array of strings, where each potential option is one item.
- * Excludes the 'number' values in an enum.
- * @param {Enum} enum - Enum to enumerate and extract string values from.
- * @return {string[]} enum represented as an array of strings.
- */
-export function enumToStringArray<E>(Enum) {
-    let values = [];
-    // Stores all the values in the values list.
-    for (let i in Enum) {
-        if (typeof Enum[i] !== 'number') values.push(Enum[i]);
-    }
-    return values;
-}
-
-
-export interface ClassConstructor {
-    new(...args: any[]): {};
-};
-
-export interface SingletonInterface<U> {
-    new(...args: any[]): U;
-    new: <Y>(...args: any[]) => Y;
-}
-
-
-
 /******************************************* DECORATORS *******************************************/
-/**
- * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
- *
- * Any class wrapped in this decorator becomes a singleton immediately.
- * Throws if attempt is made to wrap a non-class.
- */
-export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => {
-    if (varargs.length > 0) {
-        throw new DecoratorError('Can only apply @singleton to classes', 'singleton', constructor);
-    }
-    const SingletonClass = class SingletonClass extends constructor {
-        private static _instance: SingletonClass = null;
-
-        public static new = (...args: any[]) => {
-            if (!SingletonClass._instance) {
-                SingletonClass._instance = new SingletonClass(...args);
-            }
-            return SingletonClass._instance;
-        }
-
-        constructor(...args: any[]) {
-            if (SingletonClass._instance) return SingletonClass._instance;
-            super(...args);
-            SingletonClass._instance = this;
-            return SingletonClass._instance;
-        }
-    }
-
-    Object.defineProperty(SingletonClass, 'name', { value: constructor.name });
-    return SingletonClass as (SingletonInterface<any> & typeof constructor);
-}
 
 
 /**
@@ -208,58 +84,6 @@ export function notForWebUse(alternative?: string, envUsage = 'native mobile cli
 
 
 /********************************************* ERRORS *********************************************/
-export type DecoratorErrorProps = {
-    message: string,
-    messageCause: string,
-    decoratorName: string,
-    wrappedItem?: any,
-};
-
-export interface DecoratorError {
-    new(cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
-}
-
-/**
- * Throw when a decorator is improperly used. Should only be declared in a decorator function.
- */
-export const DecoratorError = (() => {
-    function DecoratorError(cause: string, decoratorName: string, wrappedItem?: any): void {
-        Error.captureStackTrace(this);
-        this.messageCause = this.message = cause;
-        this.name = `DecoratorError`;
-        this.decoratorName = decoratorName;
-        this.wrappedItem = wrappedItem;
-        console.log('this.stack:', this.stack);
-        console.error(`ERROR :: Invalid usage of decorator ${decoratorName}. ` +
-                      (wrappedItem ? `Attempted to apply to ${wrappedItem}. ` : ``) +
-                      `Error cause: ${cause}`);
-        return this;
-    }
-
-    DecoratorError.prototype = Object.create(Error.prototype);
-    return ((DecoratorError as any) as DecoratorError);
-})();
-
-/**
- * Remove unneeded statements from given stack trace: calls to Node core & common
- * third-party libs. Replaces error statement with an info label. Optionally IDs
- * the function requesting the stack.
- */
-export function scrubStackTrace(stack: string, srcFn?: string) {
-    // Create label IDing the cleaned stack, including (optionally) IDing the requesting function.
-    const stackLabel = `  Stack (minus vendor & core) up to ${srcFn ? srcFn + ' ' : ''}call:`;
-    // Replace 'Error' statement with stack label.
-    return stack
-        .split(/^Error(?=\n)/).join(stackLabel)
-        // Filter useless stack info
-        .split(/\n    at /g)
-        // Exclude stacktrace references to mocha, react, and ts-node.
-        .filter(line => !line.match(stackNoiseLibsRegex))
-        // Exclude stacktrace references to NodeJS' internal timers.js module.
-        .filter(line => !line.match(nodeStackNoiseRegex))
-        .join('\n   |-> ')
-}
-
 
 
 /****************************************** QUERY PARAMS ******************************************/
@@ -493,23 +317,13 @@ export const mUtils = {
         now,
     },
     decorator: {
-        DecoratorError,
+        DecoratorError: error.DecoratorError,
         notForWebUse,
-        singleton,
+        singleton: types.singleton,
     },
     dom,
-    enum: {
-        enumToStringArray,
-        enumValToString,
-        stringToEnumVal,
-        isNumericEnumItem,
-        isIndexEnumItem,
-        isDataEnumItem,
-    },
-    error: {
-        DecoratorError,
-        scrubStackTrace,
-    },
+    enum: Enum,
+    error,
     event,
     isNode,
     json: {
