@@ -63,3 +63,18 @@ export const isMultilangTextObj = (obj: any): boolean => {
               && typeof matchingKey === 'string'
               && isNonexistentOrString(obj[matchingKey]));
 };
+
+/**
+ * Run the given function on the given object. Iterator operates on the value and key of any
+ * object provided, in the order "val", "key".
+ *
+ * @param {Function} func - (val, key) => void | any. Function to iterates over provided object.
+ * @param {T extends object} obj - Object to iterate over.
+ * @return {T extends Object} Returns the object initially passed in (for chaining)
+ */
+export const eachPair = <T extends Object>(func: ((val: T[keyof T], key?: keyof T) => void | any)) => (obj: T): T => {
+    Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
+    return obj;
+};
+
+eachPair((val, key) => console.log(key, ':', val))({ 'uno': 'one', 'dos': 'two', 'tres': 'three' });
