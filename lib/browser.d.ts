@@ -1,5 +1,16 @@
 import { array, date, decorator, Enum, error, json, number, object, query, search, string, types as isoTypes } from './shared';
 export { array, date, decorator, Enum, error, json, number, object, query, search, string };
+export * from './src/array';
+export * from './src/date';
+export * from './src/decorator';
+export * from './src/enum';
+export * from './src/error';
+export * from './src/json';
+export * from './src/number';
+export * from './src/object';
+export * from './src/query';
+export * from './src/search';
+export * from './src/string';
 import { isNode } from 'detect-node';
 export { isNode };
 import * as dom from './src/browser/dom';
@@ -12,6 +23,8 @@ import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export { localStore };
 import * as browserTypes from './src/browser/types-browser';
+export * from './src/browser/types-browser';
+export * from './src/types-iso';
 export declare const types: {} & typeof isoTypes & typeof browserTypes;
 /********************************************* EXPORT *********************************************/
 /**

@@ -2,6 +2,17 @@
 import { array, date, decorator, Enum, error, json, number, object, query, search, string,
          types as isoTypes } from './shared';
 export { array, date, decorator, Enum, error, json, number, object, query, search, string }
+export * from './src/array';
+export * from './src/date';
+export * from './src/decorator';
+export * from './src/enum';
+export * from './src/error';
+export * from './src/json';
+export * from './src/number';
+export * from './src/object';
+export * from './src/query';
+export * from './src/search';
+export * from './src/string';
 
 import { isNode } from 'detect-node';
 export { isNode }
@@ -21,8 +32,10 @@ import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export { localStore }
 
-// Import browser-types
+// Import browser-types (including merged-in types from types-iso)
 import * as browserTypes from './src/browser/types-browser';
+export * from './src/browser/types-browser';
+export * from './src/types-iso';
 
 // Build final browser types object by merging isomorphic types with browser-specific types.
 export const types = Object.assign({}, isoTypes, browserTypes);

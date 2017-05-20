@@ -11,7 +11,7 @@ import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/node';
-const log = nodeLogFactory(buildFileTag('misc-utils::node::file :', colors.white.bgMagenta));
+const log = nodeLogFactory(buildFileTag('misc-utils::node -- file', colors.white.bgMagenta));
 
 
 /******************************************** EXPORTS *********************************************/

@@ -1,5 +1,16 @@
 import { array, date, decorator, Enum, error, json, number, object, query, search, string, types as isoTypes } from './shared';
 export { array, date, decorator, Enum, error, json, number, object, query, search, string };
+export * from './src/array';
+export * from './src/date';
+export * from './src/decorator';
+export * from './src/enum';
+export * from './src/error';
+export * from './src/json';
+export * from './src/number';
+export * from './src/object';
+export * from './src/query';
+export * from './src/search';
+export * from './src/string';
 import { isNode } from 'detect-node';
 export { isNode };
 import * as middleware from './src/node/middleware';
@@ -16,6 +27,8 @@ export * from './src/node/file';
 export { file };
 import * as nodeTypes from './src/node/types-node';
 export declare const types: typeof isoTypes & typeof nodeTypes;
+export * from './src/node/types-node';
+export * from './src/types-iso';
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
