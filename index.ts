@@ -41,8 +41,14 @@ export * from './src/json';
 import * as object from './src/object';
 export * from './src/object';
 
+import * as query from './src/query';
+export * from './src/query';
+
 import * as string from './src/string';
 export * from './src/string';
+
+import * as test from './src/test';
+export * from './src/test';
 
 import * as types from './src/types';
 export * from './src/types';
@@ -58,36 +64,6 @@ export { $ } from './src/dom';
 /******************************************** LOGGING *********************************************/
 import { logFactory, logMarkers } from 'mad-logs';
 const log = logFactory()(`mad-utils`, logMarkers.default);
-
-/****************************************** QUERY PARAMS ******************************************/
-/**
- * Turn query params into JS object (based on splitting on ',' & '=').
- * @param {string} queryParamsString: source to parse for query params. Default: query (?) in URL.
- * @return {Object} Query params as object.
- */
-export const parseQueryParams = <T>(queryParamsString: string = window.location.search): T => {
-   return queryParamsString.replace(/^\?/, '').split('&').reduce(
-        (acc, pair) => {
-            return Object.assign(acc, {
-                [pair.split('=')[0]]: pair.split('=')[1]
-            })
-        },
-    {}) as T;
-};
-
-
-/********************************** TEST (MOCHA, CHAI) UTILITIES **********************************/
-/**
- * Expect that testValue is an empty object.
- * @param {any} testValue - variable to check for emptiness.
- */
-export const expectEmptyObject = (testValue: any) => {
-    expect(Object.keys(testValue)).to.be.empty;
-    console.log('typeof testValue:', typeof testValue);
-    expect(testValue).to.be.an('object');
-    expect(testValue).to.not.be.null;
-    expect(testValue).to.not.be.undefined;
-};
 
 
 /******************************** EXPORT - WITH PSEUDO-NAMESPACES *********************************/
@@ -118,6 +94,18 @@ const decorators = Object.assign({}, decorator, {
     singleton: types.singleton,
 });
 
+const search = {
+    escapeRegExp: string.escapeRegExp,
+    matches: string.matches,
+    matchesIgnoreCase: string.matchesIgnoreCase,
+    replaceAll: string.replaceAll,
+};
+
+const number = {
+    isInt: types.isInt,
+    isNumberLike: types.isNumberLike,
+};
+
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -133,25 +121,13 @@ export const mUtils = {
     event,
     isNode,
     json,
-    number: {
-        isInt: types.isInt,
-        isNumberLike: types.isNumberLike,
-    },
+    number,
     object,
-    query: {
-        parseQueryParams,
-    },
-    search: {
-        escapeRegExp: string.escapeRegExp,
-        matches: string.matches,
-        matchesIgnoreCase: string.matchesIgnoreCase,
-        replaceAll: string.replaceAll,
-    },
+    query,
+    search,
     str,
     string: str,
-    test: {
-        expectEmptyObject
-    },
+    test,
     type: typeMethods,
     types: typeMethods,
     typing: typeMethods,
