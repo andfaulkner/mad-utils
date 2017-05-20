@@ -1,9 +1,9 @@
-/// <reference path="../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, test } from '../index';
+import { m_, test } from '../../index';
 
 const testHelpers = m_.test;
 

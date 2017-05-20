@@ -1,9 +1,14 @@
-/// <reference path="../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+
+/******************************************** LOGGING *********************************************/
+import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+const log = nodeLogFactory(buildFileTag('enum.spec.ts', colors.blue.bgMagenta));
+
 
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, Enum } from '../index';
+import { m_, Enum } from '../../index';
 
 const en = m_.enum;
 

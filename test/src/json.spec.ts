@@ -1,10 +1,10 @@
-/// <reference path="../node_modules/@types/mocha/index.d.ts" />
-/// <reference path="../node_modules/@types/node/index.d.ts" />
+/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 import { expect } from 'chai';
 
-import { json, m_, mUtils, } from '../index';
+import { json, m_, mUtils, } from '../../index';
 
 const jsObjectNotation = m_.json;
 

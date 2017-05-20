@@ -1,12 +1,13 @@
-/// <reference path="../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, event } from '../index';
+import { m_, event, addClickEventToId, removeClickEventFromId } from '../../index';
 
 const ev = m_.event;
 
+/********************************************* TESTS **********************************************/
 describe(`event sub-module`, function() {
     it(`exists`, function() {
         expect(event).to.exist;
@@ -19,6 +20,7 @@ describe(`event sub-module`, function() {
     );
     it('has function removeClickEventFromId, which removes click events in browser but does nothing in Node',
         function() {
+            expect(removeClickEventFromId()).to.be.null;
             expect(event.removeClickEventFromId()).to.be.null;
             expect(m_.event.removeClickEventFromId()).to.be.null;
         }
