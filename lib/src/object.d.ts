@@ -29,3 +29,12 @@ export declare const get: <T extends Object>(propPath: string | string[], obj: T
  * @return {boolean} true if object's properties suggest it's a multilanguage string object.
  */
 export declare const isMultilangTextObj: (obj: any) => boolean;
+/**
+ * Run the given function on the given object. Iterator operates on the value and key of any
+ * object provided, in the order "val", "key".
+ *
+ * @param {Function} func - (val, key) => void | any. Function to iterates over provided object.
+ * @param {T extends object} obj - Object to iterate over.
+ * @return {T extends Object} Returns the object initially passed in (for chaining)
+ */
+export declare const eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
