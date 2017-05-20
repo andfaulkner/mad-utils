@@ -41,7 +41,6 @@ export function isDateLike(arg: any): boolean {
     return typeof arg === 'string' || arg instanceof moment || arg instanceof Date;
 }
 
-
 /**
  * True if the given object is an array. Robust, and works across multiple JS environments.
  */
@@ -75,7 +74,6 @@ export function isInt(val) {
 }
 
 export { isMultilangTextObj } from './object';
-
 
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
