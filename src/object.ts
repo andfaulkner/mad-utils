@@ -76,5 +76,3 @@ export const eachPair = <T extends Object>(func: ((val: T[keyof T], key?: keyof 
     Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
     return obj;
 };
-
-eachPair((val, key) => console.log(key, ':', val))({ 'uno': 'one', 'dos': 'two', 'tres': 'three' });
