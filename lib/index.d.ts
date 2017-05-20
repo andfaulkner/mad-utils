@@ -20,6 +20,12 @@ export { event };
 import * as json from './src/json';
 export * from './src/json';
 export { json };
+import * as middleware from './src/middleware';
+export * from './src/middleware';
+export { middleware };
+export { middleware as middlewares };
+export { middleware as mware };
+export { middleware as MW };
 import * as object from './src/object';
 export * from './src/object';
 export { object };
@@ -71,6 +77,8 @@ export declare const mUtils: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    middleware: typeof middleware;
+    middlewares: typeof middleware;
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -138,6 +146,8 @@ export declare const __: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    middleware: typeof middleware;
+    middlewares: typeof middleware;
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -205,6 +215,8 @@ export declare const m_: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    middleware: typeof middleware;
+    middlewares: typeof middleware;
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;
@@ -272,6 +284,8 @@ export declare const madUtils: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    middleware: typeof middleware;
+    middlewares: typeof middleware;
     number: {
         isInt: (val: any) => boolean;
         isNumberLike: (arg: any) => boolean;

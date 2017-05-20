@@ -38,3 +38,11 @@ export declare const isMultilangTextObj: (obj: any) => boolean;
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
 export declare const eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
+/**
+ * Determine if an object contains a given key.
+ *
+ * @param {Object} obj - Object to check for the given key
+ * @param {string} matchKey - key to search for in obj.
+ * @return {boolean} true if obj contains matchKey
+ */
+export declare const hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;

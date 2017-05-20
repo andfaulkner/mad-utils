@@ -72,7 +72,9 @@ export const isMultilangTextObj = (obj: any): boolean => {
  * @param {T extends object} obj - Object to iterate over.
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
-export const eachPair = <T extends Object>(func: ((val: T[keyof T], key?: keyof T) => void | any)) => (obj: T): T => {
+export const eachPair =
+    <T extends Object>(func: ((val: T[keyof T], key?: keyof T) => void | any)) => (obj: T): T =>
+{
     Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
     return obj;
 };
@@ -84,9 +86,9 @@ export const eachPair = <T extends Object>(func: ((val: T[keyof T], key?: keyof 
  * @param {string} matchKey - key to search for in obj.
  * @return {boolean} true if obj contains matchKey
  */
-export const hasKey = (obj: any, matchKey: string): boolean => {
+export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
     if (typeof obj === 'object') {
-        return Object.keys(obj).some(k => k === matchKey);
+        return Object.keys(obj).some((k: keyof T) => k === matchKey);
     }
     return false;
 };

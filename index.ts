@@ -27,6 +27,13 @@ import * as json from './src/json';
 export * from './src/json';
 export { json };
 
+import * as middleware from './src/middleware';
+export * from './src/middleware';
+export { middleware };
+export { middleware as middlewares };
+export { middleware as mware };
+export { middleware as MW }
+
 import * as object from './src/object';
 export * from './src/object';
 export { object };
@@ -111,6 +118,8 @@ export const mUtils = {
     event,
     isNode,
     json,
+    middleware,
+    middlewares: middleware,
     number,
     object,
     query,

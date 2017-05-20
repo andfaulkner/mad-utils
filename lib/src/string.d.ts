@@ -41,6 +41,16 @@ export declare function escapeRegExp(regexStr: string): string;
  */
 export declare const matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
 /**
- * Create a string that creates a blank line without using \n.
+ * String that creates a blank line without using \n.
  */
 export declare const newlineStr: string;
+/**
+ * Remove all spaces in the given string.
+ *
+ * @param {string} str - String to remove spaces from
+ * @return {string} input string with spaces removed
+ *
+ * @example elminateWhitespace(' my test  string   ');
+ *          // => myteststring
+ */
+export declare const eliminateWhitespace: (str: string) => string;

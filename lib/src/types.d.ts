@@ -1,3 +1,9 @@
+/// <reference path="../../node_modules/@types/express/index.d.ts" />
+/// <reference path="../../node_modules/@types/connect/index.d.ts" />
+/// <reference types="express" />
+/// <reference types="connect" />
+import * as connect from 'connect';
+import { Application, Router } from 'express';
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
     new (...args: any[]): {};
@@ -43,3 +49,9 @@ export { isMultilangTextObj } from './object';
  * Throws if attempt is made to wrap a non-class.
  */
 export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+export declare type MiddlewareAdder = <T>(app: T) => T;
+export declare type ExpressApp = Application | Router;
+/**
+ * Generic signature for Express (slash Connect) middlewares
+ */
+export declare type MWare<T> = (T: T) => connect.HandleFunction;

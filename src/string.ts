@@ -60,7 +60,7 @@ export const matchesIgnoreCase = (matchAgainst: string) => (val: string): boolea
 };
 
 /**
- * Create a string that creates a blank line without using \n.
+ * String that creates a blank line without using \n.
  */
 export const newlineStr = `
 `;

@@ -1,5 +1,12 @@
+/// <reference path="../node_modules/@types/express/index.d.ts" />
+
+import * as connect from 'connect';
+
 import moment from 'moment';
 import { DecoratorError } from './error';
+
+// Not a true import. Gets around it by importing the type defs.
+import { Application, Router } from 'express';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
@@ -15,36 +22,44 @@ export interface SingletonInterface<U> {
     new: <Y>(...args: any[]) => Y;
 }
 
+/**
+ * Generic signature for Express (slash Connect) middlewares
+ */
+export type MWare<T> = (T: T) => connect.HandleFunction;
+
+export type ApplyMiddlewareFn = <T>(app: T) => T;
+export type ExpressApp = Application | Router;
+
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
  *  @param {any} val - Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export const isNonexistentOrString = (val: any): boolean => {
+export const isNonexistentOrString = (val: RealAny): boolean => {
     return (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
 };
 /**
  * Returns true if the given argument is a number or a string.
  */
-export function isNumberLike(arg: any): boolean {
+export const isNumberLike = (arg: RealAny): boolean => {
     if (typeof arg === 'number') {
         return true;
     }
     return typeof arg === 'string' && !isNaN(parseInt(arg, 10));
-}
+};
 
 /**
  * Returns true if the given arguments is a moment instance, Date instance, or a string.
  */
-export function isDateLike(arg: any): boolean {
+export const isDateLike = (arg: RealAny): boolean => {
     return typeof arg === 'string' || arg instanceof moment || arg instanceof Date;
-}
+};
 
 /**
  * True if the given object is an array. Robust, and works across multiple JS environments.
  */
-export function isArray(value: any): boolean {
+export const isArray = (value: RealAny): boolean => {
     // Fully compliant ES5, ES6, ES7, ES8 ES[+] environments
     if (Array.isArray) {
         return Array.isArray(value);
@@ -57,7 +72,7 @@ export function isArray(value: any): boolean {
                || (Object.getPrototypeOf && Object.getPrototypeOf(value.constructor) === Array)
                // Pre-ES5 web browsers
                || (value.constructor.__proto__ && value.constructor.__proto__.name === 'Array')));
-}
+};
 
 /**
  * Returns true if given value is an integer.
@@ -67,13 +82,11 @@ export function isArray(value: any): boolean {
  *
  * TODO TEST!
  */
-export function isInt(val) {
+export const isInt = (val: RealAny): boolean => {
     const valAsFloat = parseFloat(val);
     return (isNaN(val)) ? false
                         : (valAsFloat | 0) === valAsFloat;
-}
-
-export { isMultilangTextObj } from './object';
+};
 
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
@@ -106,3 +119,5 @@ export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs
     Object.defineProperty(SingletonClass, 'name', { value: constructor.name });
     return SingletonClass as (SingletonInterface<any> & typeof constructor);
 };
+
+export { isMultilangTextObj } from './object';
