@@ -1,10 +1,8 @@
 /******************************************** IMPORTS *********************************************/
-// Import array module
 import * as array from './src/array';
 export * from './src/array';
 export { array }
 
-// Import date module
 import * as date from './src/date';
 export * from './src/date';
 export { date };
@@ -21,7 +19,6 @@ import * as error from './src/error';
 export * from './src/error';
 export { error };
 
-// Import event module
 import * as event from './src/event';
 export * from './src/event';
 export { event };
