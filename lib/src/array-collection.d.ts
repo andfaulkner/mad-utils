@@ -70,4 +70,4 @@ export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
  * @param {...Object[]} args - Any # of objects to merge together into the merged clone object.
  * @return {Object} Frozen merged version of provided objects. Clones originals - no mutation.
  */
-export declare const assignClone: <T>(...args: {}[]) => Readonly<T>;
+export declare const assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;

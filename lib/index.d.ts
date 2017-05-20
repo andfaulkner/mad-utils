@@ -318,7 +318,7 @@ export declare const mUtils: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignClone: <T>(...args: {}[]) => Readonly<T>;
+        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -430,7 +430,7 @@ export declare const _: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignClone: <T>(...args: {}[]) => Readonly<T>;
+        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -542,7 +542,7 @@ export declare const __: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignClone: <T>(...args: {}[]) => Readonly<T>;
+        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -654,7 +654,7 @@ export declare const m_: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignClone: <T>(...args: {}[]) => Readonly<T>;
+        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;
@@ -766,7 +766,7 @@ export declare const madUtils: {
     object: {
         isMultilangTextObj: (obj: any) => boolean;
         get: <T extends Object>(propPath: string | string[], obj: T) => any;
-        assignClone: <T>(...args: {}[]) => Readonly<T>;
+        assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     };
     query: {
         parseQueryParams: <T>(queryParamsString?: string) => T;

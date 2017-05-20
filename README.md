@@ -48,71 +48,104 @@ Function guide
 Namespace : array
 -----------------
 ### last
-*   WIP
+(arr: T[]) => T
+*   Return last item in given array
+
+    last(['a', 'b', 'c', 'd']);
+    // => 'd'
 
 ### last2
-*   WIP
+(arr: T[]) => T[]
+*   Return last 2 items in given array
+
+    last2(['a', 'b', 'c', 'd']);
+    // => ['c', 'd']
 
 ### last3
-*   WIP
+(arr: T[]) => T[]
+*   Return last 3 items in given array
+
+    last3(['a', 'b', 'c', 'd']);
+    // => ['b', 'c', 'd']
 
 ### firstN
-*   WIP
+(arr: T[], n: number) => T[]
+*   Return first 'n' number of items from given array
+
+    firstN(['a', 'b', 'c', 'd'], 2);
+    // => ['a', 'b']
 
 ### lastN
-*   WIP
+(arr: T[], n: number) => T[]
+*   Return last 'n' items from given array. Return full array if too many items requested.
 
-### arrayN
-*   WIP
+    lastN(['a', 'b', 'c', 'd'], 2)
+    // => ['c', 'd']
 
 ### secondLast
-*   WIP
+*   Return second-last item from given array. Return undefined if array has less than 2 items.
+
+    secondLast(['a', 'b', 'c', 'd'])
+    // => 'c'
 
 ### thirdLast
-*   WIP
+*   Return second-last item from given array. Return undefined if array has less than 3 items.
+
+    thirdLast(['a', 'b', 'c', 'd'])
+    // => 'b'
 
 ### isArray
-*   WIP
+*   True if item is an array
 
-### append (arr1: any[] | any, arr2: any[] | any) => any[]
-*   Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
-*   If either arr1 or arr2 are undefined, it ignores it and just returns the other.
-*   If both are undefined, it returns [].
+    isArray([]);
+    // => true
+
+    class CustomArray extends Array { }
+    isArray(new CustomArray());
+    // => true
+
+
+### arrayN
+(len: number) => undefined[]
+*   Create empty array of given length.
+
+    arrayN(6)
+    // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
+
+### append (arr1: any[] | any | void, ...arrN: (any[] | any | void)[]) => any[]
+*   Non-mutative: returns a new array.
+*   Append all items in each array in arrN to the end of arr1 (non-mutatively) and return it.
+    *   i.e. 2nd array gets appended to the 1st, after which 3rd array gets appended, & so on.
+*   If any argument is undefined, it ignores it
+*   If all arguments are undefined, it returns [].
 *   If a non-array value besides null is given, it wraps the item in an array
     before performing the concatenation.
+
+    append([1, 2, 3], [4, 5, 6]);
+    // => [1, 2, 3, 4, 5, 6]
+
+    append([1, 2, 3], 'a', [4, 5, 6]);
+    // => [1, 2, 3, 'a', 4, 5, 6]
+
+    append([1, 2, 3], 'a', null, [4, 5, 6]);
+    // => [1, 2, 3, 'a', 4, 5, 6]
 
 
 Namespace : collection  (Alias: coll)
 -------------------------------------
-### last
-*   WIP
-
-### last2
-*   WIP
-
-### last3
-*   WIP
-
-### firstN
-*   WIP
-
-### lastN
-*   WIP
-
-### arrayN
-*   WIP
-
-### secondLast
-*   WIP
-
-### thirdLast
-*   WIP
-
-### isArray
-*   WIP
+*   Also includes all items in the array category
 
 ### get
-*   WIP
+*   Get the item at the given object path.
+
+### assignFrozenClone
+*   Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result
+
+    const obj = assignFrozenClone({ a: 1, b: 2}, { c: 3, d: 4 });
+    // => { a: 1, b: 2, c: 3, d: 4 }
+    obj.a = 6;
+    obj.a // => 1
+    //          /\\--- note that it didn't change
 
 
 Namespace : date
@@ -208,10 +241,10 @@ Namespace : search
 Namespace string (Alias: str)
 -----------------------------
 ### cap1LowerRest
-*   WIP
+*   Make the first letter uppercase, and the rest lowercase.
 
 ### capitalize
-*   WIP
+*   Make the first letter uppercase, and leave the rest as-is.
 
 ### escapeRegExp
 *   WIP

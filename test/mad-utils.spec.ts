@@ -93,13 +93,13 @@ describe('mUtils', function() {
             it('-- exists', function() {
                 expect(m_.coll).to.be.an('object');
             });
-            describe(`.assignClone -- merge objs into new obj & deepfreeze the result`, function() {
+            describe(`.assignFrozenClone -- merge objs into new obj & deepfreeze the result`, function() {
                 const obj1 = { a: 1, b: 2 };
                 const obj2 = { c: 3, d: 4 };
-                const cloneObj = m_.coll.assignClone<typeof obj1 & typeof obj2>(obj1, obj2);
+                const cloneObj = m_.coll.assignFrozenClone<typeof obj1 & typeof obj2>(obj1, obj2);
 
                 it('--exists', function() {
-                    expect(m_.coll.assignClone).to.exist;
+                    expect(m_.coll.assignFrozenClone).to.exist;
                 });
                 it(`--merges objects`, function() {
                     expect(cloneObj).to.have.keys('a', 'b', 'c', 'd');

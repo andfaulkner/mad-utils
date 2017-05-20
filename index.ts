@@ -10,12 +10,22 @@ import { dateTime } from 'common-constants';
 import { RealAny } from './src/types';
 
 // Import collection / array module
-import { append, arrayN, first, first2, first3, firstN, get, last, last2, last3, lastN, second,
+import { append, arrayN, first, first2, first3, firstN, last, last2, last3, lastN, second,
          secondLast, third, thirdLast, withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
-         withoutLast, withoutLast2, withoutLast3, withoutLastN, assignClone
-} from './src/array-collection';
-import * as collection from './src/array-collection';
-export * from './src/array-collection';
+         withoutLast, withoutLast2, withoutLast3, withoutLastN
+} from './src/array';
+
+import * as array from './src/array';
+export * from './src/array';
+
+import * as object from './src/object';
+export * from './src/object';
+
+import * as string from './src/string';
+export * from './src/string';
+
+import * as types from './src/types';
+export * from './src/types';
 
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
@@ -250,74 +260,6 @@ export function scrubStackTrace(stack: string, srcFn?: string) {
         .join('\n   |-> ')
 }
 
-/******************************************** STRINGS *********************************************/
-/**
- * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
- */
-export function cap1LowerRest(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-}
-
-/**
- * Capitalize the first letter of a string.
- */
-export function capitalize(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-/**
- * Replace all matching strings in a text segment with a given replacement string.
- * Can also match against a regex.
- * The main benefit is the fact that *ALL* matching strings get replaced.
- *
- * @param {string} text - string to search and replace in.
- * @param {string|RegExp} find - string or RegExp to match against
- * @param {string} replace - replacement text
- *
- * @return {string} text, with replacements made.
- */
-export function replaceAll(text: string, find: string | RegExp, replace: string) {
-    return (typeof find === 'string')
-            ? text.replace(new RegExp(escapeRegExp(find), 'g'), replace)
-            : text.replace(find, replace);
-}
-
-/**
- * Inversion of String.prototype.match, for usage as a predicate.
- * @param {string} matchAgainst - string to match against.
- * @return {boolean} true if a match is found.
- *
- * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
- */
-export const matches = (matchAgainst: string) => (val: string): boolean => !!val.match(matchAgainst);
-
-/**
- * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
- * @param {string} matchAgainst - string to match against.
- * @return {boolean} true if a match is found.
- *
- * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
- */
-export const matchesIgnoreCase = (matchAgainst: string) => (val: string): boolean => {
-    return !!val.toLowerCase().match(matchAgainst.toLowerCase());
-};
-
-/**
- *  Returns true if the value is null, undefined, or a string.
- *  @param {any} val - Value to type check.
- *  @return {boolean} true if val is null, undefined, or a string.
- */
-export const isNonexistentOrString = (val: any): boolean => {
-    return (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
-};
-
-/**
- * Escape a string for use as a regex. Allows repeat matching on a single string.
- * TODO test this.
- */
-export function escapeRegExp(regexStr: string) {
-    return regexStr.replace(/([\/\\()\[\]{}.*+^$?|=:!])/g, '\\$1');
-}
 
 
 /****************************************** QUERY PARAMS ******************************************/
@@ -335,85 +277,6 @@ export const parseQueryParams = <T>(queryParamsString: string = window.location.
         },
     {}) as T;
 };
-
-/********************************************* TYPES **********************************************/
-/**
- * Returns true if the given argument is a number or a string.
- */
-export function isNumberLike(arg: any): boolean {
-    if (typeof arg === 'number') {
-        return true;
-    }
-    return typeof arg === 'string' && !isNaN(parseInt(arg, 10));
-}
-
-/**
- * Returns true if the given arguments is a moment instance, Date instance, or a string.
- */
-export function isDateLike(arg: any): boolean {
-    return typeof arg === 'string' || arg instanceof moment || arg instanceof Date;
-}
-
-
-/**
- * True if the given object is an array. Robust, and works across multiple JS environments.
- */
-export function isArray(value: any): boolean {
-    // Fully compliant ES5, ES6, ES7, ES8 ES[+] environments
-    if (Array.isArray) {
-        return Array.isArray(value);
-    }
-    // Browsers
-    return !!((value)
-           && value.constructor
-           && (value.constructor.name === 'Array'
-               // All ES5 and higher environments
-               || (Object.getPrototypeOf && Object.getPrototypeOf(value.constructor) === Array)
-               // Pre-ES5 web browsers
-               || (value.constructor.__proto__ && value.constructor.__proto__.name === 'Array')));
-}
-
-/**
- * Return true if val is (probably) a multilanguage string object.
- *
- * Not foolproof - assumes one of the languages is English, and that it's either Canadian, British,
- * or American English - or 'generic' English (with no locale specified).
- *
- * If English is not one of the languages, this will not work.
- *
- * TODO test this - a lot more.
- *
- * @param {val} val - Value to type check.
- * @return {boolean} true if object's properties suggest it's a multilanguage string object.
- */
-export const isMultilangTextObj = (obj: any): boolean => {
-    const englishVariants = ['en', 'en_ca', 'en_gb', 'en_us'];
-    let matchingKey;
-    return !!(typeof obj === 'object'
-              && Object.keys(obj).length > 1
-              && Object.keys(obj).find(key => {
-                  if (englishVariants.find(matchesIgnoreCase(key))) {
-                      matchingKey = key;
-                      return true;
-                  }
-              })
-              && typeof matchingKey === 'string'
-              && isNonexistentOrString(obj[matchingKey]));
-};
-
-/**
- * Returns true if given value is an integer.
- *
- * @param {any} value - value to check type of.
- * @return {boolean} true if given value is integer.
- *
- * TODO TEST!
- */
-export function isInt(val) {
-    const valAsFloat = parseFloat(val);
-    return (isNaN(val)) ? false
-                        : (valAsFloat | 0) === valAsFloat;
-}
 
 
 /********************************** TEST (MOCHA, CHAI) UTILITIES **********************************/
@@ -594,57 +457,35 @@ export const now = (timestampFormat: string = `YYYY/MM/DD : hh:mm:ss`) => {
 };
 
 /******************************** EXPORT - WITH PSEUDO-NAMESPACES *********************************/
-const coll = {
-    last,       last2,      last3,
-    firstN,     lastN,      arrayN,
-    secondLast, thirdLast,  isArray,
-    get,
-};
+const str = Object.assign({}, { stringToEnumVal }, string);
 
-const str = {
-    cap1LowerRest,
-    capitalize,
-    escapeRegExp,
-    isNonexistentOrString,
-    matches,
-    matchesIgnoreCase,
-    replaceAll,
-    stringToEnumVal,
-};
+const arr = Object.assign({}, array, {
+    without: {
+        last: array.withoutLast,
+        last2: array.withoutLast2,
+        last3: array.withoutLast3,
+        lastN: array.withoutLastN,
+        first: array.withoutFirst,
+        first2: array.withoutFirst2,
+        first3: array.withoutFirst3,
+        firstN: array.withoutFirstN,
+    }
+});
 
+const typeMethods = Object.assign({}, types, {
+    isMultilangTextObj: object.isMultilangTextObj,
+    matches: string.matches,
+    matchesIgnoreCase: string.matchesIgnoreCase,
+    isNonexistentOrString: types.isNonexistentOrString,
+});
+
+
+/********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
  */
 export const mUtils = {
-    array: {
-        isArray,
-        first,
-        second,
-        third,
-        first2,
-        first3,
-        last,
-        secondLast,
-        thirdLast,
-        last2,
-        last3,
-        lastN,
-        firstN,
-        arrayN,
-        append,
-        without: {
-            last: withoutLast,
-            last2: withoutLast2,
-            last3: withoutLast3,
-            lastN: withoutLastN,
-            first: withoutFirst,
-            first2: withoutFirst2,
-            first3: withoutFirst3,
-            firstN: withoutFirstN,
-        },
-    },
-    coll: collection,
-    collection,
+    array: arr,
     date: {
         isLeapYear,
         convertDayOfWeekNumToString,
@@ -676,38 +517,27 @@ export const mUtils = {
         jsonParseWFuncRehydrate_unsafe,
     },
     number: {
-        isInt,
-        isNumberLike,
+        isInt: types.isInt,
+        isNumberLike: types.isNumberLike,
     },
-    object: {
-        isMultilangTextObj,
-        get,
-        assignClone,
-    },
+    object,
     query: {
         parseQueryParams,
     },
     search: {
-        escapeRegExp,
-        matches,
-        matchesIgnoreCase,
-        replaceAll,
+        escapeRegExp: string.escapeRegExp,
+        matches: string.matches,
+        matchesIgnoreCase: string.matchesIgnoreCase,
+        replaceAll: string.replaceAll,
     },
     str,
     string: str,
     test: {
         expectEmptyObject
     },
-    type: {
-        isArray,
-        isDateLike,
-        isNumberLike,
-        isMultilangTextObj,
-        matches,
-        matchesIgnoreCase,
-        isNonexistentOrString,
-        isInt,
-    },
+    type: typeMethods,
+    types: typeMethods,
+    typing: typeMethods,
 };
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
