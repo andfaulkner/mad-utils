@@ -1,12 +1,5 @@
-/// <reference path="../node_modules/@types/express/index.d.ts" />
-
-import * as connect from 'connect';
-
 import moment from 'moment';
 import { DecoratorError } from './error';
-
-// Not a true import. Gets around it by importing the type defs.
-import { Application, Router } from 'express';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
@@ -21,14 +14,6 @@ export interface SingletonInterface<U> {
     new(...args: any[]): U;
     new: <Y>(...args: any[]) => Y;
 }
-
-/**
- * Generic signature for Express (slash Connect) middlewares
- */
-export type MWare<T> = (T: T) => connect.HandleFunction;
-
-export type ApplyMiddlewareFn = <T>(app: T) => T;
-export type ExpressApp = Application | Router;
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**

@@ -2,11 +2,11 @@
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
  */
-export declare function cap1LowerRest(str: string): string;
+export declare const cap1LowerRest: (str: string) => string;
 /**
  * Capitalize the first letter of a string.
  */
-export declare function capitalize(str: string): string;
+export declare const capitalize: (str: string) => string;
 /**
  * Replace all matching strings in a text segment with a given replacement string.
  * Can also match against a regex.
@@ -18,7 +18,7 @@ export declare function capitalize(str: string): string;
  *
  * @return {string} text, with replacements made.
  */
-export declare function replaceAll(text: string, find: string | RegExp, replace: string): string;
+export declare const replaceAll: (text: string, find: string | RegExp, replace: string) => string;
 /**
  * Inversion of String.prototype.match, for usage as a predicate.
  * @param {string} matchAgainst - string to match against.
@@ -31,7 +31,7 @@ export declare const matches: (matchAgainst: string) => (val: string) => boolean
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * TODO test this.
  */
-export declare function escapeRegExp(regexStr: string): string;
+export declare const escapeRegExp: (regexStr: string) => string;
 /**
  * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
  * @param {string} matchAgainst - string to match against.
@@ -39,7 +39,7 @@ export declare function escapeRegExp(regexStr: string): string;
  *
  * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
  */
-export declare const matchesIgnoreCase: (matchAgainst: string) => (val: string) => boolean;
+export declare const matchesIgnoreCase: (matchOn: string) => (val: string) => boolean;
 /**
  * String that creates a blank line without using \n.
  */
@@ -54,3 +54,4 @@ export declare const newlineStr: string;
  *          // => myteststring
  */
 export declare const eliminateWhitespace: (str: string) => string;
+export { stringToEnumVal } from './enum';

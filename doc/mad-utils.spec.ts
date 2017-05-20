@@ -21,7 +21,7 @@ import * as path from 'path';
 import { stderr, stdout } from 'test-console';
 
 /*********************************** IMPORT FILES TO BE TESTED ************************************/
-import { m_, mUtils, append, first, event, addClickEventToId, $, dom } from '../index';
+import { m_, mUtils, append, first, event, addClickEventToId, $, dom } from '../shared';
 
 /******************************************** HELPERS *********************************************/
 /**

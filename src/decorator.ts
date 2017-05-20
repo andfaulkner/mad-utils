@@ -27,3 +27,6 @@ export function notForWebUse(alternative?: string, envUsage = 'native mobile cli
         return descriptor;
     }
 };
+
+export { DecoratorError } from './error';
+export { singleton } from './types-iso';

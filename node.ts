@@ -1,41 +1,63 @@
-//**************************************************************************************************
-//
-// NODE-ONLY HELPERS / UTILS
-//
-//
+// Import shared modules, and re-export them for top-level access.
+import { array, date, decorator, Enum, error, json, number, object, query, search, string,
+         types as isoTypes } from './shared';
+export { array, date, decorator, Enum, error, json, number, object, query, search, string }
 
-/******************************************* FILESYSTEM *******************************************/
-import * as path from 'path';
-import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync, writeFileSync } from 'fs-extra-promise';
+import { isNode } from 'detect-node';
+export { isNode }
 
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+// Import middleware (and middleware-handling) module
+import * as middleware from './src/node/middleware';
+export * from './src/node/middleware';
+export { middleware };
+export { middleware as middlewares };
+export { middleware as mware };
+export { middleware as MW }
 
-const log = nodeLogFactory(buildFileTag('misc-utils::node :', colors.white.bgMagenta));
+// Import test module
+import * as test from './src/node/test';
+export * from './src/node/test';
+export { test };
 
+// Import file & file-handling module
+import * as file from './src/node/file';
+export * from './src/node/file';
+export { file };
+
+// Build final NodeJS types object by merging isomorphic types with Node-specific types.
+import * as nodeTypes from './src/node/types-node';
+export const types = Object.assign(isoTypes, nodeTypes);
+
+
+/********************************************* EXPORT *********************************************/
 /**
- * @param {string} fileOrDirPath - file system object being checked.
- * @return {boolean} true if given file system object is a directory (if false it's a file)
+ * @export mUtils - module
  */
-export function isDir(fileOrDirPath: string): boolean {
-    return lstatSync(fileOrDirPath).isDirectory();
+export const mUtils = {
+    array,
+    date,
+    decorator,
+    decorators: decorator,
+    enum: Enum,
+    Enum,
+    error,
+    file,
+    isNode,
+    json,
+    middleware,
+    number,
+    object,
+    query,
+    search,
+    str: string,
+    string,
+    test,
+    type: types,
+    types,
+    typing: types,
 };
 
-/**
- * Replace matching location in given file.
- *
- * @param {string} filePath - File to perform replacement in.
- * @param {string|RegExp} find - Match to perform against the content of the file at filePath.
- * @param {string} replace - Text to replace the matching text with.
- * @param {NodeMadLogsInstance} logger - If LOG_LEVEL=silly, show new file content. Use given logger
- *                                       (if any) to display the content (otherwise use a default).
- *@return {string} File content after the replacement.
- */
-export function replaceInFile(filePath: string, find: string | RegExp, replace: string, logger = log): string {
-    const fileData   = readFileSync(filePath).toString();
-    // Hack required to make typings happy
-    const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
-                                                     : fileData.replace(find, replace);
-    writeFileSync(filePath, cleanfileData, 'utf8');
-    logger.silly(`cleanjSweetBundleData: new ${filePath} contents:`, cleanfileData);
-    return cleanfileData;
-}
+// Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
+export const __ = mUtils;
+export const m_ = mUtils;
+export const madUtils = mUtils;

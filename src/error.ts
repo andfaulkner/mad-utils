@@ -1,4 +1,4 @@
-import { ClassConstructor, SingletonInterface, singleton } from './types';
+import { ClassConstructor, SingletonInterface, singleton } from './types-iso';
 
 const stackNoiseLibsRegex = /\/node_modules(?=\/).*(\/react\/|\/mocha\/|\/ts\-node\/)/g;
 const nodeStackNoiseRegex = / \(timers\.js:[0-9]/g;

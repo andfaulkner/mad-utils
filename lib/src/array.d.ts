@@ -55,3 +55,16 @@ export declare const withoutFirstN: <T>(arr: T[], numToRm: number) => T[];
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
 export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+/**
+ * Namespace for certain "reversed" operations.
+ */
+export declare const without: {
+    last: <T>(arr: T[]) => T[];
+    last2: <T>(arr: T[]) => T[];
+    last3: <T>(arr: T[]) => T[];
+    lastN: <T>(arr: T[], numToRm: number) => T[];
+    first: <T>(arr: T[]) => T[];
+    first2: <T>(arr: T[]) => T[];
+    first3: <T>(arr: T[]) => T[];
+    firstN: <T>(arr: T[], numToRm: number) => T[];
+};

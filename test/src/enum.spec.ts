@@ -5,10 +5,10 @@ import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('enum.spec.ts', colors.blue.bgMagenta));
 
 
-/******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
+/******************************** IMPORT ENUM MODULE FOR TESTING **********************************/
 import { expect } from 'chai';
 
-import { m_, Enum } from '../../index';
+import { m_, Enum } from '../../shared';
 
 const en = m_.enum;
 

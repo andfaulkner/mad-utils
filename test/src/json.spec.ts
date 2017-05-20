@@ -4,7 +4,7 @@
 /************************************** THIRD-PARTY IMPORTS ***************************************/
 import { expect } from 'chai';
 
-import { json, m_, mUtils, } from '../../index';
+import { json, m_, mUtils, } from '../../shared';
 
 const jsObjectNotation = m_.json;
 

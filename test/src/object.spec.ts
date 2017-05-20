@@ -1,9 +1,9 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
+/******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
 import { expect } from 'chai';
 
-import { m_, object, assignFrozenClone } from '../../index';
+import { m_, object, assignFrozenClone } from '../../shared';
 
 const obj = m_.object;
 

@@ -1,9 +1,9 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
+/******************************** IMPORT EVENT MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, event, addClickEventToId, removeClickEventFromId } from '../../index';
+import { m_, event, addClickEventToId, removeClickEventFromId } from '../../browser';
 
 const ev = m_.event;
 

@@ -1,28 +1,28 @@
 {
   "name": "mad-utils",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "A set of misc utilties I find myself repeatedly re-writing between projects.",
-  "main": "lib/index.js",
-  "typings": "lib/index",
+  "main": "lib/shared.js",
+  "typings": "lib/shared",
   "files": [
     "lib/"
   ],
   "scripts": {
-    "prepublish": "npm run compile-ts",
+    "prepublish": "npm run compile-ts; ./script/copy-output-to-root",
     "ts-compile": "npm run compile-ts",
     "ts-compile:watch": "npm run compile-ts:watch",
-    "compile-ts": "./node_modules/typescript/bin/tsc -p ./",
-    "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch",
-    "test": "mocha --opts test/mocha.opts test/",
+    "compile-ts": "./node_modules/typescript/bin/tsc -p ./; ./script/copy-output-to-root",
+    "compile-ts:watch": "./node_modules/typescript/bin/tsc -p ./ --watch && ./script/copy-output-to-root",
+    "test": "npm run compile-ts; mocha --opts test/mocha.opts test/",
     "boilerplate-check": "./script/ensure-fully-implemented.rb",
-    "test:coverage": "nyc npm test",
-    "test:watch": "chokidar ./test/** ./src/** ./*.ts -i *.d.ts -i \"/.*.((d.ts)|(js)|(map)|(opts)|(json)|(md))$/\" --initial -c \"npm run compile-ts; mocha --opts test/mocha.opts test/\"",
+    "test:coverage": "npm run compile-ts; ./script/copy-output-to-root; nyc npm test",
+    "test:watch": "chokidar ./test/** ./src/** ./*.ts -i *.d.ts -i \"/.*.((d.ts)|(js)|(map)|(opts)|(json)|(md))$/\" --initial -c \"npm run test\"",
     "start": "npm run test:watch",
-    "setup": "yarn; git remote remove origin"
+    "setup": "yarn; git remote remove origin; npm run compile-ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andfaulkner/misc-ts-utils-isomorphic.git#v0.2.7"
+    "url": "git+https://github.com/andfaulkner/misc-ts-utils-isomorphic.git#v0.3.0"
   },
   "keywords": [
     "util",
@@ -76,6 +76,7 @@
   "devDependencies": {
     "@types/chai": "^3.4.35",
     "@types/cheerio": "^0.22.1",
+    "@types/colors": "^1.1.3",
     "@types/connect": "^3.4.30",
     "@types/fs-extra-promise": "^0.0.31",
     "@types/lodash": "^4.14.59",

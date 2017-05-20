@@ -1,7 +1,6 @@
 /// <reference path="../../node_modules/@types/express/index.d.ts" />
-/// <reference path="../../node_modules/@types/connect/index.d.ts" />
-/// <reference types="express" />
 /// <reference types="connect" />
+/// <reference types="express" />
 import * as connect from 'connect';
 import { Application, Router } from 'express';
 /************************************ COMMON TYPE DEFINITIONS *************************************/
@@ -13,6 +12,12 @@ export interface SingletonInterface<U> {
     new (...args: any[]): U;
     new: <Y>(...args: any[]) => Y;
 }
+/**
+ * Generic signature for Express (slash Connect) middlewares
+ */
+export declare type MWare<T> = (T: T) => connect.HandleFunction;
+export declare type ApplyMiddlewareFn = <T>(app: T) => T;
+export declare type ExpressApp = Application | Router;
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
@@ -23,15 +28,15 @@ export declare const isNonexistentOrString: (val: any) => boolean;
 /**
  * Returns true if the given argument is a number or a string.
  */
-export declare function isNumberLike(arg: any): boolean;
+export declare const isNumberLike: (arg: any) => boolean;
 /**
  * Returns true if the given arguments is a moment instance, Date instance, or a string.
  */
-export declare function isDateLike(arg: any): boolean;
+export declare const isDateLike: (arg: any) => boolean;
 /**
  * True if the given object is an array. Robust, and works across multiple JS environments.
  */
-export declare function isArray(value: any): boolean;
+export declare const isArray: (value: any) => boolean;
 /**
  * Returns true if given value is an integer.
  *
@@ -40,8 +45,7 @@ export declare function isArray(value: any): boolean;
  *
  * TODO TEST!
  */
-export declare function isInt(val: any): boolean;
-export { isMultilangTextObj } from './object';
+export declare const isInt: (val: any) => boolean;
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
  *
@@ -49,9 +53,4 @@ export { isMultilangTextObj } from './object';
  * Throws if attempt is made to wrap a non-class.
  */
 export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
-export declare type MiddlewareAdder = <T>(app: T) => T;
-export declare type ExpressApp = Application | Router;
-/**
- * Generic signature for Express (slash Connect) middlewares
- */
-export declare type MWare<T> = (T: T) => connect.HandleFunction;
+export { isMultilangTextObj } from './object';

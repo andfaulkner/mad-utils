@@ -1,12 +1,14 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
+/********************************* IMPORT DOM MODULE FOR TESTING **********************************/
 import { expect } from 'chai';
 
-import { m_, dom, $ } from '../../index';
+import { m_, dom, $ } from '../../browser';
 
 const docObjModel = m_.dom;
 
+
+/********************************************* TESTS **********************************************/
 describe(`dom sub-module`, function() {
     it(`exists`, function() {
         expect(dom).to.exist;

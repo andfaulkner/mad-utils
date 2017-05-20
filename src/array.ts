@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { RealAny } from './types';
+import { RealAny } from './types-iso';
 
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 /** Return last item in an array. */
@@ -97,4 +97,18 @@ export const append =
     return (arrs.length > 0)
         ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs)
         : first2Arrs;
+};
+
+/**
+ * Namespace for certain "reversed" operations.
+ */
+export const without = {
+    last: withoutLast,
+    last2: withoutLast2,
+    last3: withoutLast3,
+    lastN: withoutLastN,
+    first: withoutFirst,
+    first2: withoutFirst2,
+    first3: withoutFirst3,
+    firstN: withoutFirstN,
 };

@@ -3,10 +3,12 @@
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, array, append, first } from '../../index';
+import { m_, array, append, first } from '../../shared';
 
 const arr = m_.array;
 
+
+/********************************************* TESTS **********************************************/
 describe(`array sub-module`, function() {
     it(`exists`, function() {
         expect(array).to.exist;

@@ -1,31 +1,62 @@
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`general-utils.ts`, logMarkers.checkmate);
+// Import shared modules
+import { array, date, decorator, Enum, error, json, number, object, query, search, string,
+         types as isoTypes } from './shared';
+export { array, date, decorator, Enum, error, json, number, object, query, search, string }
+
+import { isNode } from 'detect-node';
+export { isNode }
+
+// Import DOM module
+import * as dom from './src/browser/dom';
+export * from './src/browser/dom';
+export { dom }
+
+// Import event module
+import * as event from './src/browser/event';
+export * from './src/browser/event';
+export { event }
+
+// Import local-store module
+import * as localStore from './src/browser/local-store';
+export * from './src/browser/local-store';
+export { localStore }
+
+// Import browser-types
+import * as browserTypes from './src/browser/types-browser';
+
+// Build final browser types object by merging isomorphic types with browser-specific types.
+export const types = Object.assign({}, isoTypes, browserTypes);
 
 
-/******************************************** BROWSER *********************************************/
+/********************************************* EXPORT *********************************************/
 /**
- * If given a "store" object, try to get item at given key from it. Next try to get it from browser
- * localStorage or sessionStorage. Finally, try key in 'this' binding. Return null if all fail.
+ * @export mUtils - module (namespace)
  */
-export const getFromStorage = (key: string, store?: Object): string | null => {
-    // Use value from store param, if it was provided.
-    if (store && store[key]) {
-        return store[key];
-    }
-
-    // Try to grab value off the window storage objects
-    try {
-        if (window && window.sessionStorage && window.localStorage) {
-            return window.sessionStorage.getItem(key) || window.localStorage.getItem(key);
-        }
-    } catch(e) {
-        log.error('getFromStorage: not in a browser environment, cannot use window object');
-    }
-
-    // Try to grab the value from 'this' binding.
-    if (this && this[key]) {
-        return this[key];
-    }
+export const mUtils = {
+    array,
+    date,
+    decorator,
+    decorators: decorator,
+    dom,
+    enum: Enum,
+    Enum,
+    error,
+    event,
+    isNode,
+    json,
+    localStore,
+    number,
+    object,
+    query,
+    search,
+    str: string,
+    string,
+    type: types,
+    types,
+    typing: types,
 };
 
+// Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
+export const __ = mUtils;
+export const m_ = mUtils;
+export const madUtils = mUtils;

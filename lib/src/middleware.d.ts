@@ -1,4 +1,6 @@
-export { MiddlewareAdder, ExpressApp } from './types';
+/// <reference types="connect" />
+import { ApplyMiddlewareFn, ExpressApp, MWare } from './types';
+import * as connect from 'connect';
 /**
  * Returns an Express-consumable middleware if NODE_ENV is 'production'.
  * @param {Object} opts Middleware config. Normally passed directly to the middleware function.
@@ -21,4 +23,9 @@ export { MiddlewareAdder, ExpressApp } from './types';
  *                 .use(morganLogging)
  *                 .use(useMiddlewareInProdOnly()(productionLogger))
  */
-export declare const useMiddlewareInProdOnly: <T>(opts?: T) => (middleware: any) => any;
+export declare const useMiddlewareInProdOnly: <T>(opts?: T) => (middleware: MWare<T>) => connect.Server;
+/**
+ * Apply any number of middlewares to the given express application.
+ */
+export declare const composeExpressMiddlewares: <T extends ExpressApp>(app: T, ...midwareApplicators: ApplyMiddlewareFn[]) => T;
+export { composeExpressMiddlewares as composeExpressMiddlewareApplicators };

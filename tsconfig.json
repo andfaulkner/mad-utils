@@ -24,9 +24,13 @@
         "*.json"
     ],
     "include": [
-        "./index.ts",
-        "./typings/index.d.ts",
+        "./shared.ts",
+        "./node.ts",
+        "./browser.ts",
+        "./typings/shared.d.ts",
         "./src/*.ts",
+        "./src/node/*.ts",
+        "./src/browser/*.ts",
         "./src/array-collection.ts",
         "./src/types.ts"
     ]
