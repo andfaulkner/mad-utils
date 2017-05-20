@@ -76,3 +76,17 @@ export const eachPair = <T extends Object>(func: ((val: T[keyof T], key?: keyof 
     Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
     return obj;
 };
+
+/**
+ * Determine if an object contains a given key.
+ *
+ * @param {Object} obj - Object to check for the given key
+ * @param {string} matchKey - key to search for in obj.
+ * @return {boolean} true if obj contains matchKey
+ */
+export const hasKey = (obj: any, matchKey: string): boolean => {
+    if (typeof obj === 'object') {
+        return Object.keys(obj).some(k => k === matchKey);
+    }
+    return false;
+};

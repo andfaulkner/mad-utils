@@ -64,3 +64,14 @@ export const matchesIgnoreCase = (matchAgainst: string) => (val: string): boolea
  */
 export const newlineStr = `
 `;
+
+/**
+ * Remove all spaces in the given string.
+ *
+ * @param {string} str - String to remove spaces from
+ * @return {string} input string with spaces removed
+ *
+ * @example elminateWhitespace(' my test  string   ');
+ *          // => myteststring
+ */
+export const eliminateWhitespace = (str: string): string => str.replace(/ /g, '');
