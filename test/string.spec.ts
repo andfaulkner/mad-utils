@@ -3,12 +3,12 @@
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, array } from '../index';
+import { m_, string } from '../index';
 
-const arr = m_.array;
+const str = m_.string;
 
-describe(`array sub-module`, function() {
+describe(`string sub-module`, function() {
     it(`exists`, function() {
-        expect(array).to.exist;
+        expect(string).to.exist;
     });
 });

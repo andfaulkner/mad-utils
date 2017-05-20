@@ -6,15 +6,19 @@ export * from './src/array';
 // Import date module
 import * as date from './src/date';
 export * from './src/date';
+export { date };
 
 import * as decorator from './src/decorator';
 export * from './src/decorator';
+export { decorator };
 
 import * as Enum from './src/enum';
 export * from './src/enum';
+export { Enum };
 
 import * as error from './src/error';
 export * from './src/error';
+export { error };
 
 // Import event module
 import * as event from './src/event';
@@ -23,21 +27,27 @@ export { addClickEventToId, mouseEventFactory, removeClickEventFromId } from './
 
 import * as json from './src/json';
 export * from './src/json';
+export { json };
 
 import * as object from './src/object';
 export * from './src/object';
+export { object };
 
 import * as query from './src/query';
 export * from './src/query';
+export { query };
 
 import * as string from './src/string';
 export * from './src/string';
+export { string };
 
 import * as test from './src/test';
 export * from './src/test';
+export { test };
 
 import * as types from './src/types';
 export * from './src/types';
+export { types };
 
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
@@ -98,6 +108,7 @@ export const mUtils = {
     decorators,
     dom,
     enum: Enum,
+    Enum,
     error,
     event,
     isNode,
@@ -119,3 +130,5 @@ export const _ = mUtils;
 export const __ = mUtils;
 export const m_ = mUtils;
 export const madUtils = mUtils;
+
+export { array,  }

@@ -3,12 +3,12 @@
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, array } from '../index';
+import { m_, query } from '../index';
 
-const arr = m_.array;
+const queryFns = m_.query;
 
-describe(`array sub-module`, function() {
+describe(`query sub-module`, function() {
     it(`exists`, function() {
-        expect(array).to.exist;
+        expect(query).to.exist;
     });
 });
