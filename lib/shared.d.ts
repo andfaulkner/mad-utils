@@ -53,6 +53,7 @@ export declare const mUtils: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
+    stacktrace: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -73,6 +74,7 @@ export declare const __: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
+    stacktrace: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -93,6 +95,7 @@ export declare const m_: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
+    stacktrace: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -113,6 +116,7 @@ export declare const madUtils: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
+    stacktrace: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
