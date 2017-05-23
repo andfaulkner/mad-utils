@@ -13,4 +13,18 @@ describe(`error sub-module`, function() {
     it(`exists`, function() {
         expect(error).to.exist;
     });
+
+    describe(`StackUtils submodule`, function() {
+        it(`exists`, function() {
+            expect(error.StackUtils).to.exist;
+        });
+        it(`contains function to get stack items (by number)`, function() {
+            expect(error.StackUtils.getFirstStackItem).to.exist;
+            expect(error.StackUtils.getSecondStackItem).to.exist;
+            expect(error.StackUtils.getThirdStackItem).to.exist;
+        });
+        it(`contains function to remove matching items from stack`, function() {
+            expect(error.StackUtils.removeFromStack).to.exist;
+        });
+    });
 });

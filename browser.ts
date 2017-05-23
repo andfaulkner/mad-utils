@@ -62,6 +62,7 @@ export const mUtils = {
     object,
     query,
     search,
+    stacktrace: error.StackUtils,
     str: string,
     string,
     type: types,
