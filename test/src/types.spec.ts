@@ -188,6 +188,57 @@ describe(`types sub-modules`, function() {
             });
         });
 
+        describe(`isMultilangTextObj`, function() {
+            expectFunctionExists(typesIso.isMultilangTextObj);
+        });
+
+        describe(`@singleton decorator`, function() {
+            // Mock singleton class
+            @typesIso.singleton
+            class SingletonObject {
+                someString: string;
+                constructor(someString) {
+                    this.someString = someString
+                }
+            }
+
+            // Mock non-singleton class
+            class NonSingletonObject {
+                someString: string;
+                constructor(someString) {
+                    this.someString = someString
+                }
+            }
+            // Instance of singleton class.
+            let singletonObject: SingletonObject;
+
+            before(function() {
+                singletonObject = new SingletonObject('my string argument');
+            });
+
+            expectFunctionExists(typesIso.singleton);
+
+            it(`can be applied to a class`, function() {
+                expect(SingletonObject).to.exist;
+                expect(singletonObject).to.exist;
+                expect(singletonObject).to.be.instanceof(SingletonObject);
+                expect(singletonObject.someString).to.eql('my string argument');
+            });
+            it(`ensures re-instantiating a class it's applied to for a second time results in ` +
+                `returning the original object`, function()
+            {
+                const newInstance = new SingletonObject('another string');
+                expect(newInstance.someString).to.eql('my string argument');
+                expect(newInstance.someString).to.eql(singletonObject.someString);
+                expect(newInstance).to.eql(singletonObject);
+            });
+            it(`has no effect on classes it's not applied to`, function() {
+                const nonSingletonInstance = new NonSingletonObject('string one');
+                const nonSingletonInstance2 = new NonSingletonObject('string two');
+                expect(nonSingletonInstance.someString).to.eql('string one');
+                expect(nonSingletonInstance2.someString).to.eql('string two');
+            });
+        });
     });
 
     describe(`types-browser sub-module`, function() {

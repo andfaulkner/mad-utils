@@ -48,6 +48,17 @@ export declare const isInt: (val: any) => boolean;
  *
  * Any class wrapped in this decorator becomes a singleton immediately.
  * Throws if attempt is made to wrap a non-class.
+ *
+ * @example
+ *       @singleton
+ *       class SomeSingleton {
+ *           someString: string;
+ *           constructor(someString) {
+ *               this.someString = someString
+ *           }
+ *       }
+ *
+ *  // It will now only be possible to create one instance of class SomeSingleton.
  */
 export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
 export { isMultilangTextObj } from './object';
