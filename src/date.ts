@@ -3,6 +3,8 @@ import { dateTime } from 'common-constants';
 
 export type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
+export const defaultTimestampFormat = `YYYY/MM/DD : hh:mm:ss`;
+
 /**
  * True if the given year is a leap year.
  */
@@ -87,7 +89,7 @@ export const parseDate = (date: Date): ParsedDate => {
 /**
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *
- * @param {string} timestampFormat - [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
+ * @param {string} timeFormat - [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
  *                                   See https://momentjs.com/docs/#/parsing/string-format/
  * @return {string} Current date and time, formatted for use in a timestamp
  *
@@ -97,6 +99,4 @@ export const parseDate = (date: Date): ParsedDate => {
  * @example Return current date + time as timestamp without day or second:
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
-export const now = (timestampFormat: string = `YYYY/MM/DD : hh:mm:ss`) => {
-    return moment().format(timestampFormat);
-};
+export const now = (timeFormat: string = defaultTimestampFormat) => moment().format(timeFormat);

@@ -1,6 +1,1 @@
-import { isInt, isNumberLike } from './types-iso'
-
-const number = {
-    isInt,
-    isNumberLike,
-};
+export { isInt, isNumberLike } from './types-iso'
