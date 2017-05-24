@@ -21,25 +21,32 @@ export interface SingletonInterface<U> {
  *  @param {any} val - Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export const isNonexistentOrString = (val: RealAny): boolean => {
-    return (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
-};
+export const isNonexistentOrString = (val: RealAny): boolean =>
+    (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
+
 /**
- * Returns true if the given argument is a number or a string.
+ * Returns true if the given argument is a number or a string that can be parsed into a number.
+ * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
+ * @param {RealAny} arg - item being tested for number-like nature.
+ * @return {boolean} True if item is number-like, otherwise false.
  */
 export const isNumberLike = (arg: RealAny): boolean => {
-    if (typeof arg === 'number') {
-        return true;
+    if (typeof arg === 'number' && !isNaN(arg)) return true;
+    if (typeof arg === 'string') {
+        if (arg.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
+        // Let '.123' and '-.123' type strings through.
+        let cleanArg = arg.match(/^\.\d/) ? '0' + arg : arg;
+        cleanArg = arg.match(/^\-\.\d/) ? arg.replace(/^-./, '-0.') : cleanArg;
+        return !isNaN(parseInt(cleanArg, 10));
     }
-    return typeof arg === 'string' && !isNaN(parseInt(arg, 10));
+    return false;
 };
 
 /**
  * Returns true if the given arguments is a moment instance, Date instance, or a string.
  */
-export const isDateLike = (arg: RealAny): boolean => {
-    return typeof arg === 'string' || arg instanceof moment || arg instanceof Date;
-};
+export const isDateLike = (arg: RealAny): boolean =>
+    typeof arg === 'string' || arg instanceof moment || arg instanceof Date;
 
 /**
  * True if the given object is an array. Robust, and works across multiple JS environments.

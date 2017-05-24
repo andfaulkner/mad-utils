@@ -12,3 +12,17 @@ export const expectEmptyObject = (testValue: any) => {
     expect(testValue).to.not.be.null;
     expect(testValue).to.not.be.undefined;
 };
+
+/**
+ * Function exists if this runs without throwing.
+ * @param {Function} func - Function to test
+ * @param {string} name? - Name of function {OPTIONAL}
+ */
+export const expectFuncExists = (func: Function, name?: string, extraMsg?: string) => {
+    it(`has function ${name ? name : func.name}${extraMsg ? ' ' + extraMsg : ''}`, function() {
+        expect(func).to.exist;
+        expect(func).to.be.a('function');
+    })
+};
+
+export { expectFuncExists as expectFunctionExists }

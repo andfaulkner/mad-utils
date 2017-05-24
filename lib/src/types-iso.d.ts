@@ -15,7 +15,8 @@ export interface SingletonInterface<U> {
  */
 export declare const isNonexistentOrString: (val: any) => boolean;
 /**
- * Returns true if the given argument is a number or a string.
+ * Returns true if the given argument is a number or a string. Excludes NaN, which is not
+ * considered number-like. Accepts
  */
 export declare const isNumberLike: (arg: any) => boolean;
 /**

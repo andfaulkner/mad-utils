@@ -4,10 +4,15 @@
 //  FULLY TESTED
 //
 
-/******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
+/*************************************** IMPORT TEST UTILS ****************************************/
 import { expect } from 'chai';
+import { expectFunctionExists } from '../../src/node/test';
+
+
+/******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
 
 import { m_, number } from '../../shared';
+
 
 const err = m_.number;
 
@@ -19,18 +24,6 @@ describe(`number sub-module`, function() {
         console.log(`number:`, number);
     });
 
-    funcExists(number.isInt, 'number.isInt', '(from types-iso');
-    funcExists(number.isNumberLike, 'number.isInt', '(from types-iso');
+    expectFunctionExists(number.isInt, 'number.isInt', '(from types-iso');
+    expectFunctionExists(number.isNumberLike, 'number.isInt', '(from types-iso');
 });
-
-/**
- * Function exists if this runs without throwing.
- * @param {Function} func - Function to test
- * @param {string} name? - Name of function {OPTIONAL}
- */
-function funcExists(func: Function, name?: string, extraMsg?: string) {
-    it(`has function ${name ? name : func.name}${extraMsg ? ' ' + extraMsg : ''}`, function() {
-        expect(func).to.exist;
-        expect(func).to.be.a('function');
-    })
-}
