@@ -3,6 +3,8 @@ export interface ClassConstructor {
     new (...args: any[]): {};
 }
 export declare type RealAny = any;
+export declare type StringOrNonexistent = string | null | undefined;
+export { StringOrNonexistent as StrOrNonexistent };
 export interface SingletonInterface<U> {
     new (...args: any[]): U;
     new: <Y>(...args: any[]) => Y;
@@ -10,7 +12,7 @@ export interface SingletonInterface<U> {
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
- *  @param {any} val - Value to type check.
+ *  @param {StringOrNonexistent|RealAny} val - Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
 export declare const isNonexistentOrString: (val: any) => boolean;

@@ -13,7 +13,6 @@ import { expectFunctionExists } from '../../src/node/test';
 
 import { m_, number } from '../../shared';
 
-
 const err = m_.number;
 
 
