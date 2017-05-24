@@ -1,4 +1,4 @@
-import moment from 'moment';
+import * as moment from 'moment';
 import { DecoratorError } from './error';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
@@ -22,7 +22,7 @@ export interface SingletonInterface<U> {
  *  @return {boolean} true if val is null, undefined, or a string.
  */
 export const isNonexistentOrString = (val: RealAny): boolean =>
-    (val === null) || (typeof val === 'undefined') || (typeof val === 'string');
+    (typeof val === 'undefined') || (val === null) || (typeof val === 'string');
 
 /**
  * Returns true if the given argument is a number or a string that can be parsed into a number.
@@ -43,10 +43,25 @@ export const isNumberLike = (arg: RealAny): boolean => {
 };
 
 /**
- * Returns true if the given arguments is a moment instance, Date instance, or a string.
+ * Returns true if the given arguments is a moment instance, Date instance, or any string that
+ * moment is able to parse. Excludes negative numbers and strings that parse to negative numbers,
+ * and objects with date-irrelevant keys.
+ *
+ * @param {any} arg - Item to test for Date-like properties
+ * @return {boolean} True if item is date-like.
  */
-export const isDateLike = (arg: RealAny): boolean =>
-    typeof arg === 'string' || arg instanceof moment || arg instanceof Date;
+export const isDateLike = (arg: RealAny): boolean => {
+    if ((arg instanceof moment) || (arg instanceof Date)) return true;
+    if ((typeof arg === 'number' && arg < 0) || (typeof arg === 'string' && parseInt(arg) < 0)) {
+        return false;
+    }
+    if (typeof arg === 'object' && Object.keys(arg).find(key =>
+        !key.match(/((hours?)|(minutes?)|((milli)?seconds?)|(days?)|(dates?)|(months?)|(years?))/))
+    ) {
+        return false;
+    }
+    return (moment(arg) as any)._isValid;
+};
 
 /**
  * True if the given object is an array. Robust, and works across multiple JS environments.

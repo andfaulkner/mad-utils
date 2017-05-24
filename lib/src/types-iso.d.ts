@@ -15,12 +15,19 @@ export interface SingletonInterface<U> {
  */
 export declare const isNonexistentOrString: (val: any) => boolean;
 /**
- * Returns true if the given argument is a number or a string. Excludes NaN, which is not
- * considered number-like. Accepts
+ * Returns true if the given argument is a number or a string that can be parsed into a number.
+ * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
+ * @param {RealAny} arg - item being tested for number-like nature.
+ * @return {boolean} True if item is number-like, otherwise false.
  */
 export declare const isNumberLike: (arg: any) => boolean;
 /**
- * Returns true if the given arguments is a moment instance, Date instance, or a string.
+ * Returns true if the given arguments is a moment instance, Date instance, or any string that
+ * moment is able to parse. Excludes negative numbers and strings that parse to negative numbers,
+ * and objects with date-irrelevant keys.
+ *
+ * @param {any} arg - Item to test for Date-like properties
+ * @return {boolean} True if item is date-like.
  */
 export declare const isDateLike: (arg: any) => boolean;
 /**
