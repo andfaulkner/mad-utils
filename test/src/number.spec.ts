@@ -21,7 +21,6 @@ const err = m_.number;
 describe(`number sub-module`, function() {
     it(`exists`, function() {
         expect(number).to.exist;
-        console.log(`number:`, number);
     });
 
     expectFunctionExists(number.isInt, 'number.isInt', '(from types-iso');
