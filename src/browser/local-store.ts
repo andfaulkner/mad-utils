@@ -29,3 +29,13 @@ export const getFromStorage = (key: string, store?: Object): string | null => {
     }
 };
 
+/**
+ * If the user is authenticated, there will be a key in localStorage.
+ * Note that this should NEVER be used to determine permissions - this
+ * is about what to display in the UI, and nothing else. The server should
+ * determine permissions - anything less is begging to be hacked.
+ *
+ * @param {string} tknKey - Key at which the auth token can be found. Defaults to 'accessToken'.
+ * @return {boolean} true if token is found at given key in browser local storage
+ */
+export const isAuthenticated = (tknKey = 'accessToken'): boolean => !!localStorage.getItem(tknKey);
