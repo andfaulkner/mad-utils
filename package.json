@@ -66,6 +66,7 @@
     "@types/connect": "^3.4.30",
     "@types/deep-freeze-strict": "^1.1.0",
     "@types/express": "^4.0.35",
+    "app-root-path": "^2.0.1",
     "common-constants": "^3.0.1",
     "connect": "^3.6.2",
     "deep-freeze-strict": "^1.1.1",

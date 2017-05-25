@@ -8,6 +8,7 @@
 import * as path from 'path';
 import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync,
          writeFileSync } from 'fs-extra-promise';
+import { path as rootPath } from 'app-root-path';
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/node';
@@ -54,24 +55,24 @@ export const replaceInFile =
  */
 export const pathFromRoot = (filePathFromRoot: string = '') => {
     // Returning path relative to root of project mad-utils installed in, if any of next 5 match.
-    if (path.join(__dirname, '../../../../../../../../../../../../..').match(/node_modules/)) {
-        return path.join(__dirname, '../../../../../../../../../../../../../..', filePathFromRoot);
-    }
-    if (path.join(__dirname, '../../../../../../../../../../..').match(/node_modules/)) {
-        return path.join(__dirname, '../../../../../../../../../../../..', filePathFromRoot);
-    }
-    if (path.join(__dirname, '../../../../../../../../..').match(/node_modules/)) {
-        return path.join(__dirname, '../../../../../../../../../..', filePathFromRoot);
-    }
-    if (path.join(__dirname, '../../../../../../..').match(/node_modules/)) {
-        return path.join(__dirname, '../../../../../../../..', filePathFromRoot);
-    }
-    if (path.join(__dirname, '../../../../..').match(/node_modules/)) {
-        return path.join(__dirname, '../../../../../..', filePathFromRoot);
-    }
-    if (path.join(__dirname, '../../..').match(/node_modules/)) {
-        return path.join(__dirname, '../../../../', filePathFromRoot);
-    }
+    // if (path.join(__dirname, '../../../../../../../../../../../../..').match(/node_modules/)) {
+    //     return path.join(__dirname, '../../../../../../../../../../../../../..', filePathFromRoot);
+    // }
+    // if (path.join(__dirname, '../../../../../../../../../../..').match(/node_modules/)) {
+    //     return path.join(__dirname, '../../../../../../../../../../../..', filePathFromRoot);
+    // }
+    // if (path.join(__dirname, '../../../../../../../../..').match(/node_modules/)) {
+    //     return path.join(__dirname, '../../../../../../../../../..', filePathFromRoot);
+    // }
+    // if (path.join(__dirname, '../../../../../../..').match(/node_modules/)) {
+    //     return path.join(__dirname, '../../../../../../../..', filePathFromRoot);
+    // }
+    // if (path.join(__dirname, '../../../../..').match(/node_modules/)) {
+    //     return path.join(__dirname, '../../../../../..', filePathFromRoot);
+    // }
+    // if (path.join(__dirname, '../../..').match(/node_modules/)) {
+    //     return path.join(__dirname, '../../../../', filePathFromRoot);
+    // }
     // Returning path relative to mad-utils root.
-    return path.join(__dirname, '../..', filePathFromRoot);
+    return path.join(rootPath, filePathFromRoot);
 }
