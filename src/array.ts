@@ -8,12 +8,12 @@ export const last = <T>(arr: T[]): T => arr.slice(-1)[0];
 /** Return second last item in an array. */
 export const secondLast = <T>(arr: T[]): T => arr.slice(-2, -1)[0];
 /** Return third last item in an array. */
-export const thirdLast = <T>(arr: T[]): T => arr.slice(-3, -2)[0];
+export const thirdLast = <T>(arr: T[]): T => arr.slice(-3, -2)[0];  // tslint:disable-line:no-magic-numbers max-line-length
 
 /** Return last 2 items in an array. */
 export const last2 = <T>(arr: T[]): T[] => arr.slice(-2);
 /** Return last 3 items in an array. */
-export const last3 = <T>(arr: T[]): T[] => arr.slice(-3);
+export const last3 = <T>(arr: T[]): T[] => arr.slice(-3); // tslint:disable-line:no-magic-numbers
 
 /** Return last N items in an array. */
 export const lastN = <T>(arr: T[], n: number): T[] => arr.slice(-1 * n);
@@ -31,25 +31,44 @@ export const first2 = <T>(arr: T[]): T[] => arr.slice(0, 2);
 export const first3 = <T>(arr: T[]): T[] => arr.slice(0, 3);
 
 /**
+ * Create array containing requested number of repeats of a given fillValue, or containing
+ * requested number of repeats of undefined if no fillValue is given.
+ * @param {number} len - Length of array to create.
+ * @param {RealAny} fillValue [OPTIONAL]: Item to repeat 'len' number of times.
+ * @return {Array<void|typeof fillValue>} Array containing 'len' # of repeats of 'fillValue'
+ *                                        (or undefined if fillValue is not given)
+ */
+export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
+    const nonIntegerFirstArgErr = 'mad-utils :: first arg to arrayN must be an integer';
+    if (typeof len !== 'number' || isNaN(parseInt(len.toString(), 10))) {
+        throw new TypeError(nonIntegerFirstArgErr);
+    }
+    if (len < 0) {
+        throw new TypeError('mad-utils :: first arg to arrayN must be an integer above 0');
+    }
+    if (len.toString().match(/\./)) {
+        throw new TypeError(nonIntegerFirstArgErr);
+    }
+    const cleanLen = (typeof len === 'string') ? parseInt(len, 10) : len;
+    if (fillValue) return Array.from(Array(cleanLen)).map(item => fillValue);
+    return Array.from(Array(cleanLen));
+};
+
+/**
  * Return first N items in an array. Returned the whole array if you request too many items.
  */
 export function firstN <T>(arr: T[], n: number): T[] {
     return (arr.length >= n)
-        ? arrayN(n).map((__, idx) => arr[idx])
+        ? arrayN<void>(n).map((item, idx) => arr[idx])
         : arr;
 }
-
-/**
- * Create empty array of given length.
- * @param {number} len - Length of array to create.
- */
-export const arrayN = (len: number): any[] => Array.from(Array(len));
 
 /**
  * Exclude the first few or the last few items.
  */
 export const withoutLast = <T>(arr: T[]) : T[] => arr.slice(0, -1);
 export const withoutLast2 = <T>(arr: T[]) : T[] => arr.slice(0, -2);
+// tslint:disable-next-line: no-magic-numbers
 export const withoutLast3 = <T>(arr: T[]) : T[] => arr.slice(0, -3);
 export const withoutLastN = <T>(arr: T[], numToRm: number) : T[] => arr.slice(0, -1 * numToRm);
 export const withoutFirst = <T>(arr: T[]) : T[] => arr.slice(1);

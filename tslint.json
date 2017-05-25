@@ -9,7 +9,7 @@
 
     "rules": {
         "array-type": [true],
-        "arrow-parens": true,
+        "arrow-parens": false,
         "block-spacing": [true, "always"],
         "brace-style": [true, "1tbs", { "allowSingleLine": true }],
         "chai-prefer-contains-to-index-of": true,
@@ -54,7 +54,7 @@
         "no-internal-module": false,
         "no-invalid-this": false,
         "no-invalid-regexp": true,
-        "no-magic-numbers": [true, -2, -1, 0, 1, 2],
+        "no-magic-numbers": [true, -2, -1, 0, 1, 2, 10],
         "no-mergeable-namespace": false,
         "no-octal-literal": true,
         "no-param-reassign": true,

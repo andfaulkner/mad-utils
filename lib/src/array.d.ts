@@ -22,14 +22,18 @@ export declare const first2: <T>(arr: T[]) => T[];
 /** Return first 3 items in an array. */
 export declare const first3: <T>(arr: T[]) => T[];
 /**
+ * Create array containing requested number of repeats of a given fillValue, or containing
+ * requested number of repeats of undefined if no fillValue is given.
+ * @param {number} len - Length of array to create.
+ * @param {RealAny} fillValue [OPTIONAL]: Item to repeat 'len' number of times.
+ * @return {Array<void|typeof fillValue>} Array containing 'len' # of repeats of 'fillValue'
+ *                                        (or undefined if fillValue is not given)
+ */
+export declare const arrayN: <T>(len: number, fillValue?: T) => void[] | T[];
+/**
  * Return first N items in an array. Returned the whole array if you request too many items.
  */
 export declare function firstN<T>(arr: T[], n: number): T[];
-/**
- * Create empty array of given length.
- * @param {number} len - Length of array to create.
- */
-export declare const arrayN: (len: number) => any[];
 /**
  * Exclude the first few or the last few items.
  */

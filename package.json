@@ -63,14 +63,15 @@
   },
   "homepage": "https://github.com/andfaulkner/misc-ts-utils-isomorphic#readme",
   "dependencies": {
+    "@types/connect": "^3.4.30",
     "@types/deep-freeze-strict": "^1.1.0",
     "@types/express": "^4.0.35",
-    "@types/connect": "^3.4.30",
     "common-constants": "^3.0.1",
     "connect": "^3.6.2",
     "deep-freeze-strict": "^1.1.1",
     "detect-node": "^2.0.3",
     "fs-extra-promise": "^1.0.1",
+    "handlebars-webpack-plugin": "^1.2.0",
     "moment": "^2.18.1",
     "reflect-metadata": "^0.1.10"
   },
@@ -94,6 +95,7 @@
     "lodash": "4.17.4",
     "mad-logs": "^8.2.1",
     "mocha": "^3.2.0",
+    "nyc": "^10.3.2",
     "sinon": "^1.17.6",
     "snyk": "^1.24.6",
     "supertest": "^2.0.1",
@@ -102,7 +104,8 @@
     "tslint": "^4.4.2",
     "tslint-eslint-rules": "^3.3.0",
     "tslint-microsoft-contrib": "^4.0.0",
-    "typescript": "2.2.1"
+    "typescript": "2.2.1",
+    "vrsource-tslint-rules": "^5.1.0"
   },
   "peerDependencies": {
     "lodash": "^4.17.4"
