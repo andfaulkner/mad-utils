@@ -1,11 +1,12 @@
-import { array, date, decorator, Enum, error, json, number, object, query, search, string, types as isoTypes } from './shared';
-export { array, date, decorator, Enum, error, json, number, object, query, search, string };
+import { array, date, decorator, Enum, error, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
+export { array, date, decorator, Enum, error, json, locale, number, object, query, search, string };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
 export * from './src/enum';
 export * from './src/error';
 export * from './src/json';
+export * from './src/locale';
 export * from './src/number';
 export * from './src/object';
 export * from './src/query';
@@ -42,6 +43,7 @@ export declare const mUtils: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     localStore: typeof localStore;
     number: typeof number;
     object: typeof object;
@@ -66,6 +68,7 @@ export declare const __: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     localStore: typeof localStore;
     number: typeof number;
     object: typeof object;
@@ -90,6 +93,7 @@ export declare const m_: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     localStore: typeof localStore;
     number: typeof number;
     object: typeof object;
@@ -114,6 +118,7 @@ export declare const madUtils: {
     event: typeof event;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     localStore: typeof localStore;
     number: typeof number;
     object: typeof object;

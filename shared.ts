@@ -23,6 +23,10 @@ import * as json from './src/json';
 export * from './src/json';
 export { json };
 
+import * as locale from './src/locale';
+export * from './src/locale';
+export { locale };
+
 import * as number from './src/number';
 export * from './src/number';
 export { number };
@@ -64,6 +68,7 @@ export const mUtils = {
     error,
     isNode,
     json,
+    locale,
     number,
     object,
     query,

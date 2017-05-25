@@ -17,6 +17,9 @@ export { error };
 import * as json from './src/json';
 export * from './src/json';
 export { json };
+import * as locale from './src/locale';
+export * from './src/locale';
+export { locale };
 import * as number from './src/number';
 export * from './src/number';
 export { number };
@@ -49,6 +52,7 @@ export declare const mUtils: {
     error: typeof error;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     number: typeof number;
     object: typeof object;
     query: typeof query;
@@ -70,6 +74,7 @@ export declare const __: {
     error: typeof error;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     number: typeof number;
     object: typeof object;
     query: typeof query;
@@ -91,6 +96,7 @@ export declare const m_: {
     error: typeof error;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     number: typeof number;
     object: typeof object;
     query: typeof query;
@@ -112,6 +118,7 @@ export declare const madUtils: {
     error: typeof error;
     isNode: any;
     json: typeof json;
+    locale: typeof locale;
     number: typeof number;
     object: typeof object;
     query: typeof query;
