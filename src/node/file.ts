@@ -47,32 +47,28 @@ export const replaceInFile =
 /**
  * Return path relative to root of project mad-utils is installed in - or if mad-utils is
  * standalone (for development), return path relative to root of mad-utils.
- * Note: only works if mad-utils is installed no more than 6 modules deep (relative to the project
- * root) in node_modules.
  * @param {string} filePathFromRoot - file path to return relative to the root
  * @return {string} Given file path relative to project root path, or project path if
  *                  relative path arg not provided
  */
 export const pathFromRoot = (filePathFromRoot: string = '') => {
-    // Returning path relative to root of project mad-utils installed in, if any of next 5 match.
-    // if (path.join(__dirname, '../../../../../../../../../../../../..').match(/node_modules/)) {
-    //     return path.join(__dirname, '../../../../../../../../../../../../../..', filePathFromRoot);
-    // }
-    // if (path.join(__dirname, '../../../../../../../../../../..').match(/node_modules/)) {
-    //     return path.join(__dirname, '../../../../../../../../../../../..', filePathFromRoot);
-    // }
-    // if (path.join(__dirname, '../../../../../../../../..').match(/node_modules/)) {
-    //     return path.join(__dirname, '../../../../../../../../../..', filePathFromRoot);
-    // }
-    // if (path.join(__dirname, '../../../../../../..').match(/node_modules/)) {
-    //     return path.join(__dirname, '../../../../../../../..', filePathFromRoot);
-    // }
-    // if (path.join(__dirname, '../../../../..').match(/node_modules/)) {
-    //     return path.join(__dirname, '../../../../../..', filePathFromRoot);
-    // }
-    // if (path.join(__dirname, '../../..').match(/node_modules/)) {
-    //     return path.join(__dirname, '../../../../', filePathFromRoot);
-    // }
-    // Returning path relative to mad-utils root.
+    // Returning path relative to project root.
     return path.join(rootPath, filePathFromRoot);
+}
+
+const baseFilename = (filename: string) => filename.split('/').slice(-1)[0];
+
+/**
+ * Returns true if the given filename was run as a script
+ *
+ * @param {string} filename - name of the file the command was run from.
+ */
+export const wasRunAsScript = (filename: string, processArgv = process.argv, TAG = '') => {
+    const findFilename = new RegExp(baseFilename(filename).replace('.', '\.'));
+    const wasScript = !!findFilename.exec(processArgv[1]);
+    if (wasScript) {
+        log.verbose.noTag(
+            `${TAG ? (TAG + ' ') : ''}Running ${__filename} as a standalone script...`);
+    }
+    return wasScript;
 }

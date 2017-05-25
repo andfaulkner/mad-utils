@@ -20,10 +20,14 @@ export declare const replaceInFile: (filePath: string, find: string | RegExp, re
 /**
  * Return path relative to root of project mad-utils is installed in - or if mad-utils is
  * standalone (for development), return path relative to root of mad-utils.
- * Note: only works if mad-utils is installed no more than 6 modules deep (relative to the project
- * root) in node_modules.
  * @param {string} filePathFromRoot - file path to return relative to the root
  * @return {string} Given file path relative to project root path, or project path if
  *                  relative path arg not provided
  */
 export declare const pathFromRoot: (filePathFromRoot?: string) => string;
+/**
+ * Returns true if the given filename was run as a script
+ *
+ * @param {string} filename - name of the file the command was run from.
+ */
+export declare const wasRunAsScript: (filename: string, processArgv?: string[], TAG?: string) => boolean;

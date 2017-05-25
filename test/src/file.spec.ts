@@ -23,4 +23,7 @@ describe(`file sub-module`, function() {
     describe(`function pathFromRoot`, function() {
         expectFunctionExists(file.pathFromRoot);
     });
+    describe('function wasRunAsScript', function() {
+        expectFunctionExists(file.wasRunAsScript);
+    });
 });

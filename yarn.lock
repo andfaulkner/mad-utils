@@ -59,6 +59,10 @@
   version "4.14.43"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.43.tgz#0373de422e70f5bce12c15340103a3c126c81086"
 
+"@types/lodash@^4.14.64":
+  version "4.14.64"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.64.tgz#979cf3a3d4a368670840bf9b3e448dc33ffe84ee"
+
 "@types/mime@*":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-0.0.29.tgz#fbcfd330573b912ef59eeee14602bface630754b"
@@ -2149,17 +2153,16 @@ mad-logs@^5.3.0:
     lodash.isstring "^4.0.1"
     string.prototype.padend "^3.0.0"
 
-mad-logs@^8.2.1:
-  version "8.2.1"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.2.1.tgz#1d04a37a33566e41a193d5883f0091efdba20cd2"
+mad-logs@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.3.0.tgz#2efc4d09a06bc93b1eb17c1fc3acfb792ea662f5"
   dependencies:
+    "@types/lodash" "^4.14.64"
     colors "^1.1.2"
     detect-node "^2.0.3"
     env-var-helpers "^2.2.2"
     global "^4.3.1"
-    lodash.find "^4.6.0"
     lodash.isfunction "^3.0.8"
-    lodash.isstring "^4.0.1"
     string.prototype.padend "^3.0.0"
 
 make-error@^1.1.1:

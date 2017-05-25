@@ -94,7 +94,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "fs-extra": "^2.0.0",
     "lodash": "4.17.4",
-    "mad-logs": "^8.2.1",
+    "mad-logs": "^8.3.0",
     "mocha": "^3.2.0",
     "nyc": "^10.3.2",
     "sinon": "^1.17.6",
