@@ -29,6 +29,10 @@ import * as nodeTypes from './src/node/types-node';
 export declare const types: typeof isoTypes & typeof nodeTypes;
 export * from './src/node/types-node';
 export * from './src/types-iso';
+import * as webpack from './src/node/webpack';
+export * from './src/node/webpack';
+export { webpack };
+export { webpack as webpackUtils };
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -56,6 +60,8 @@ export declare const mUtils: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    webpack: typeof webpack;
+    webpackUtils: typeof webpack;
 };
 export declare const __: {
     array: typeof array;
@@ -80,6 +86,8 @@ export declare const __: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    webpack: typeof webpack;
+    webpackUtils: typeof webpack;
 };
 export declare const m_: {
     array: typeof array;
@@ -104,6 +112,8 @@ export declare const m_: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    webpack: typeof webpack;
+    webpackUtils: typeof webpack;
 };
 export declare const madUtils: {
     array: typeof array;
@@ -128,4 +138,6 @@ export declare const madUtils: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    webpack: typeof webpack;
+    webpackUtils: typeof webpack;
 };
