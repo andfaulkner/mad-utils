@@ -4,8 +4,8 @@
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, array, append, first, second, third, last, last2, last3, lastN,
-        secondLast, thirdLast, first2, first3, firstN, arrayN } from '../../shared';
+import { m_, array, append, first, second, third, last, last2, last3, lastN, secondLast, thirdLast,
+        first2, first3, firstN, arrayN, rmAllFalsy, splitLines } from '../../shared';
 import { inspect } from 'util';
 
 const arr = m_.array;
@@ -253,6 +253,15 @@ describe(`array sub-module`, function() {
         });
     });
 
+    it(`-- exists : #rmAllFalsy`, function() {
+        expect(m_.array.rmAllFalsy).to.exist;
+        expect(rmAllFalsy).to.exist;
+    });
+
+    it(`-- exists : #splitLines`, function() {
+        expect(m_.array.splitLines).to.exist;
+        expect(splitLines).to.exist;
+    });
 
     it(`-- exists : #without.last`, function() {
         expect(m_.array.without.last).to.exist;

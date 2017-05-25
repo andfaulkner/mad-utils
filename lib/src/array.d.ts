@@ -60,6 +60,22 @@ export declare const withoutFirstN: <T>(arr: T[], numToRm: number) => T[];
  */
 export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
 /**
+ * Eliminate all falsy values from the given array.
+ *
+ * @param {Array} arr - Array containing any values of any type.
+ * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
+ */
+export declare const rmAllFalsy: (arr: any[]) => any[];
+/**
+ * Split large multiline string into array where each line is an item. Also removes blank lines.
+ *
+ * @param {String} str - Multiline string to split into array where each line is an array item.
+ *                       Splits on '\n' char.
+ * @return {Array<string>} Array where each item is a line from the input string, with falsy
+ *                         values removed.
+ */
+export declare const splitLines: (str: string) => any[];
+/**
  * Namespace for certain "reversed" operations.
  */
 export declare const without: {

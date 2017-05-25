@@ -72,3 +72,5 @@ export const eliminateWhitespace = (str: string): string => str.replace(/ /g, ''
 
 
 export { stringToEnumVal } from './enum';
+export { splitLines } from './array';
+

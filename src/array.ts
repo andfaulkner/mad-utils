@@ -119,6 +119,24 @@ export const append =
 };
 
 /**
+ * Eliminate all falsy values from the given array.
+ *
+ * @param {Array} arr - Array containing any values of any type.
+ * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
+ */
+export const rmAllFalsy = (arr: RealAny[]) => arr.filter(item => !!item);
+
+/**
+ * Split large multiline string into array where each line is an item. Also removes blank lines.
+ *
+ * @param {String} str - Multiline string to split into array where each line is an array item.
+ *                       Splits on '\n' char.
+ * @return {Array<string>} Array where each item is a line from the input string, with falsy
+ *                         values removed.
+ */
+export const splitLines = (str: string) => rmAllFalsy(str.toString().split('\n'));
+
+/**
  * Namespace for certain "reversed" operations.
  */
 export const without = {

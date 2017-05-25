@@ -55,3 +55,4 @@ export declare const newlineStr: string;
  */
 export declare const eliminateWhitespace: (str: string) => string;
 export { stringToEnumVal } from './enum';
+export { splitLines } from './array';
