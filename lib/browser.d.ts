@@ -1,5 +1,7 @@
 import { array, date, decorator, Enum, error, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
 export { array, date, decorator, Enum, error, json, locale, number, object, query, search, string };
+import { StackUtils } from './src/error';
+export { StackUtils };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -50,6 +52,7 @@ export declare const mUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: {} & typeof isoTypes & typeof browserTypes;
@@ -75,6 +78,7 @@ export declare const __: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: {} & typeof isoTypes & typeof browserTypes;
@@ -100,6 +104,7 @@ export declare const m_: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: {} & typeof isoTypes & typeof browserTypes;
@@ -125,6 +130,7 @@ export declare const madUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: {} & typeof isoTypes & typeof browserTypes;

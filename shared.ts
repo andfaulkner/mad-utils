@@ -17,6 +17,8 @@ export { Enum };
 
 import * as error from './src/error';
 export * from './src/error';
+import { StackUtils } from './src/error';
+export { StackUtils }
 export { error };
 
 import * as json from './src/json';
@@ -73,7 +75,8 @@ export const mUtils = {
     object,
     query,
     search,
-    stacktrace: error.StackUtils,
+    stacktrace: StackUtils,
+    StackUtils,
     str: string,
     string,
     type: types,

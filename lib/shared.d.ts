@@ -13,6 +13,8 @@ export * from './src/enum';
 export { Enum };
 import * as error from './src/error';
 export * from './src/error';
+import { StackUtils } from './src/error';
+export { StackUtils };
 export { error };
 import * as json from './src/json';
 export * from './src/json';
@@ -58,6 +60,7 @@ export declare const mUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -80,6 +83,7 @@ export declare const __: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -102,6 +106,7 @@ export declare const m_: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -124,6 +129,7 @@ export declare const madUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error.StackUtils;
+    StackUtils: typeof error.StackUtils;
     str: typeof string;
     string: typeof string;
     type: typeof types;

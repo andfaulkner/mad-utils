@@ -3,6 +3,9 @@ import { array, date, decorator, Enum, error, json, locale, number, object, quer
          types as isoTypes } from './shared';
 export { array, date, decorator, Enum, error, json, locale, number, object, query, search, string }
 
+import { StackUtils } from './src/error';
+export { StackUtils }
+
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -70,7 +73,8 @@ export const mUtils = {
     object,
     query,
     search,
-    stacktrace: error.StackUtils,
+    stacktrace: StackUtils,
+    StackUtils,
     str: string,
     string,
     test,
