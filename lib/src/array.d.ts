@@ -88,3 +88,4 @@ export declare const without: {
     first3: <T>(arr: T[]) => T[];
     firstN: <T>(arr: T[], numToRm: number) => T[];
 };
+export { isArray } from './types-iso';

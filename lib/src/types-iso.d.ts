@@ -33,7 +33,10 @@ export declare const isNumberLike: (arg: any) => boolean;
  */
 export declare const isDateLike: (arg: any) => boolean;
 /**
- * True if the given object is an array. Robust, and works across multiple JS environments.
+ * True if the given object is an array. Robust and works across multiple JS environments.
+ *
+ * @param {any} value - Check if this is an array.
+ * @return {boolean} True if arg 'value' is an Array,
  */
 export declare const isArray: (value: any) => boolean;
 /**
