@@ -1,4 +1,4 @@
-/******************************************** STRINGS *********************************************/
+/*********************************** EXPORTED STRING FUNCTIONS ************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
  */
