@@ -54,6 +54,7 @@ export declare const newlineStr: string;
  *          // => myteststring
  */
 export declare const eliminateWhitespace: (str: string) => string;
+/************************************** STRING INTERPOLATION **************************************/
 /**
  * @export withLeftIndent
  *
@@ -87,5 +88,6 @@ export declare const eliminateWhitespace: (str: string) => string;
  * @return {string} Properly indented string.
  */
 export declare function withLeftIndent(strings: any, leftPadSize: any, log?: any): string;
+/*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
 export { splitLines } from './array';
