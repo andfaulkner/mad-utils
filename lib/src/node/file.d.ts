@@ -32,3 +32,17 @@ export declare const wasRunAsScript: (filename: string, processArgv?: string[], 
  */
 export declare function replaceInFile(filePath: string, findString: string, replace: string): string;
 export declare function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
+/**
+ * Traverse given folder & return list of all non-minified .js inodes it contains.
+ * @param {string} dir - absolute path to directory.
+ * @return {string[]} List of all non-minified .js inodes in given directory.
+ */
+export declare const getNonMinJsFilesInDir: (dir: string) => string[];
+/**
+ * Search a given directory for an inode (file or folder) with the given name.
+ *
+ * @param {string} dir - Absolute path to directory to check for file of given name.
+ * @param {string} filename - name of inode to look for in directory.
+ * @return {boolean} Return true if given filename is present in folder at given path.
+ */
+export declare const isFileInDir: (dir: string, filename: string) => boolean;

@@ -1,14 +1,16 @@
 //**************************************************************************************************
 //
-// NodeJS-only helpers / utils - for file handling
+// NodeJS-only helpers / utils - for file & filesystem handling
 //
 //
 
-/******************************************* FILESYSTEM *******************************************/
+/******************************************** IMPORTS *********************************************/
 import * as path from 'path';
 import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync,
          writeFileSync } from 'fs-extra-promise';
 import { path as rootPath } from 'app-root-path';
+
+import { isNonMinFile, endsInDotJs } from '../string';
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/node';
@@ -51,8 +53,6 @@ export const wasRunAsScript = (filename: string, processArgv = process.argv, TAG
     return wasScript;
 };
 
-
-
 /**
  * Replace matching location in given file.
  * Text in given file that matches the provided regex or string gets replaced with the
@@ -76,3 +76,24 @@ export function replaceInFile(filePath: string, find: string | RegExp, replace: 
     log.silly(`replaceInFile: new ${filePath} contents:`, cleanfileData);
     return cleanfileData;
 }
+
+
+/**
+ * Traverse given folder & return list of all .js inodes it contains.
+ * @param {string} dir - absolute path to directory.
+ * @param {boolean} excludeMin - If true, exclude all .min.js files.
+ * @return {string[]} List of all non-minified .js inodes in given directory.
+ */
+export const getJsFilesInDir = (dir: string, excludeMin = true): string[] =>
+    readdirSync(dir).filter(endsInDotJs)
+                    .filter(excludeMin ? isNonMinFile : (() => true));
+
+/**
+ * Search a given directory for an inode (file or folder) with the given name.
+ *
+ * @param {string} dir - Absolute path to directory to check for file of given name.
+ * @param {string} filename - name of inode to look for in directory.
+ * @return {boolean} Return true if given filename is present in folder at given path.
+ */
+export const isFileInDir = (dir: string, filename: string): boolean =>
+    !!readdirSync(dir).find(file => file === filename);

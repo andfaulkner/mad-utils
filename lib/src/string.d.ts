@@ -90,6 +90,19 @@ export declare const eliminateWhitespace: (str: string) => string;
  * @return {string} Properly indented string.
  */
 export declare function withLeftIndent(strings: any, leftPadSize: any, logger?: MadLog): string;
+/*************************************** FILE PATH STRINGS ****************************************/
+/**
+ * If given string ends in .js, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .js.
+ */
+export declare const endsInDotJs: (inode: string) => boolean;
+/**
+ * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)
+ * @param {string} inode - Any string, but it's intended to be a file/directory path.
+ * @return {boolean} true if file doesn't end in .min.[anyExt] (e.g. a.min.json, b.min.css)
+ */
+export declare const isNonMinFile: (inode: string) => boolean;
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
 export { splitLines } from './array';
