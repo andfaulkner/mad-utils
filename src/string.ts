@@ -77,54 +77,6 @@ export const eliminateWhitespace = (str: string): string => str.replace(/ /g, ''
 
 
 /************************************** STRING INTERPOLATION **************************************/
-
-
-/**
- * Determine what item in a array of strings has the smallest indent.
- * Purpose: to remove this amount of indent from all lines, thus preserving nested indentation.
- * We can then define the indentation ourselves in a variable.
- *
- * It's all about avoiding problems like this with multiline templates:
- *
- *         <body>
- *             <div id="project-wrapper">
- *                 <div id="react-root">
- *         <!-- Cancer -->
- *         <div id="my-inner-component">
- *             <span class="yay-a-span">
- *                 <div>*cries</div>
- *             </span>
- *         </div>
- *                 </div>
- *             </div>
- *         </body>
- */
-function _detectShortestIndentInArray(lines: string[] | string, log?): number {
-    // Ensure input is an array.
-    const lineArr = (Array.isArray(lines) ? lines : [lines]) as string[];
-
-    const shortestIndent = lineArr.reduce((acc: number, line: string) => {
-        // If any line found with no indent, prevent comparisons for the remainder of the loop.
-        if (acc === 0) return acc;
-
-        // Match on current line's indentation.
-        const match = line.match(/^\s+/m);
-
-        // If there's no match, there's no indent. Set to 0.
-        if (!match || !match.input) return 0;
-
-        // If indent length is shorter than the prior shortest, return as new shortest length.
-        const currentShortestIndent = (match.input.length < acc) ? match.input.length : acc;
-        log.silly(`_detectShortestIndentInArray: currentShortestIndent: ${currentShortestIndent}`);
-
-        return currentShortestIndent;
-    }, 120);
-
-    log.verbose(`_detectShortestIndentInArray: shortestIndent:`, shortestIndent);
-    return shortestIndent;
-}
-
-
 /**
  * @export withLeftIndent
  *
@@ -185,6 +137,8 @@ export function withLeftIndent(strings, leftPadSize, log?) {
     return retStr;
 }
 
+
+/***************************************** LOCAL HELPERS ******************************************/
 /**
  * Ensure left-size indent makes sense. It must be an integer, or string that
  * can parse to an integer.
@@ -212,5 +166,52 @@ function _validateWithLeftIndent(leftPadSize: number | string): never | void {
     }
 }
 
+/**
+ * Determine what item in a array of strings has the smallest indent.
+ * Purpose: to remove this amount of indent from all lines, thus preserving nested indentation.
+ * We can then define the indentation ourselves in a variable.
+ *
+ * It's all about avoiding problems like this with multiline templates:
+ *
+ *         <body>
+ *             <div id="project-wrapper">
+ *                 <div id="react-root">
+ *         <!-- Cancer -->
+ *         <div id="my-inner-component">
+ *             <span class="yay-a-span">
+ *                 <div>*cries</div>
+ *             </span>
+ *         </div>
+ *                 </div>
+ *             </div>
+ *         </body>
+ */
+function _detectShortestIndentInArray(lines: string[] | string, log?): number {
+    // Ensure input is an array.
+    const lineArr = (Array.isArray(lines) ? lines : [lines]) as string[];
+
+    const shortestIndent = lineArr.reduce((acc: number, line: string) => {
+        // If any line found with no indent, prevent comparisons for the remainder of the loop.
+        if (acc === 0) return acc;
+
+        // Match on current line's indentation.
+        const match = line.match(/^\s+/m);
+
+        // If there's no match, there's no indent. Set to 0.
+        if (!match || !match.input) return 0;
+
+        // If indent length is shorter than the prior shortest, return as new shortest length.
+        const currentShortestIndent = (match.input.length < acc) ? match.input.length : acc;
+        log.silly(`_detectShortestIndentInArray: currentShortestIndent: ${currentShortestIndent}`);
+
+        return currentShortestIndent;
+    }, 120);
+
+    log.verbose(`_detectShortestIndentInArray: shortestIndent:`, shortestIndent);
+    return shortestIndent;
+}
+
+
+/*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
 export { splitLines } from './array';
