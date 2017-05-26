@@ -71,4 +71,22 @@ export const wasRunAsScript = (filename: string, processArgv = process.argv, TAG
             `${TAG ? (TAG + ' ') : ''}Running ${__filename} as a standalone script...`);
     }
     return wasScript;
+};
+
+
+/**
+ * Replace matching location in given file.
+ * Text in given file that matches the provided regex or string gets replaced with the
+ * provided replacement text.
+ */
+export function replaceInFile(filePath: string, findString: string, replace: string): string;
+export function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
+export function replaceInFile(filePath: string, find: string | RegExp, replace: string): string {
+    const fileData   = readFileSync(filePath).toString();
+    // Hack required to make typings happy
+    const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
+                                                     : fileData.replace(find, replace);
+    writeFileSync(filePath, cleanfileData, 'utf8');
+    log.silly(`cleanjSweetBundleData: new ${filePath} contents:`, cleanfileData);
+    return cleanfileData;
 }
