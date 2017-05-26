@@ -32,7 +32,15 @@ export declare const replaceAll: (text: string, find: string | RegExp, replace: 
 export declare const matches: (valToFind: string | number) => (valToSearchIn: string | number) => boolean;
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
- * TODO test this.
+ * Converts string to form that lets it be used as a pure 'literal' string to match against
+ * directly if passed to new RegExp (no special chars taken into account).
+ *
+ * It essentially escapes special regex characters/metacharacters (e.g. *, ., +) in such a
+ * way that the regex builder ignores their special and instead seeks them literally.
+ *
+ * @example escapeRegExp('*.js'); //=> '\\*\\.js'
+ * @param {string} regexStr - String to escape for use in literal form in a regex builder.
+ * @return {string} escaped string.
  */
 export declare const escapeRegExp: (regexStr: string) => string;
 /**
