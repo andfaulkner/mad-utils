@@ -9,6 +9,10 @@ export interface SingletonInterface<U> {
     new (...args: any[]): U;
     new: <Y>(...args: any[]) => Y;
 }
+export declare type StrOrNum = string | number;
+export declare type NumOrStr = StrOrNum;
+export declare type StringOrNumber = StrOrNum;
+export declare type NumberOrString = StrOrNum;
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.

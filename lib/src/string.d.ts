@@ -23,12 +23,13 @@ export declare const capitalize: (str: string) => string;
 export declare const replaceAll: (text: string, find: string | RegExp, replace: string) => string;
 /**
  * Inversion of String.prototype.match, for usage as a predicate.
- * @param {string} matchAgainst - string to match against.
+ * Note that the type of the item being search and the item being searched for must match.
+ * @param {string|number} matchAgainst - string or number to match against.
  * @return {boolean} true if a match is found.
  *
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
-export declare const matches: (matchAgainst: string) => (val: string) => boolean;
+export declare const matches: (valToFind: string | number) => (valToSearchIn: string | number) => boolean;
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * TODO test this.

@@ -2,6 +2,7 @@
 import { logFactory, logMarkers, MadLog } from 'mad-logs';
 const log = logFactory()(`string.ts`, logMarkers.lakeLouise);
 
+import { StrOrNum } from './types-iso';
 
 /***************************************** LOCAL HELPERS ******************************************/
 /**
@@ -107,17 +108,28 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
 
 /**
  * Inversion of String.prototype.match, for usage as a predicate.
- * @param {string} matchAgainst - string to match against.
+ * Note that the type of the item being search and the item being searched for must match.
+ * @param {string|number} matchAgainst - string or number to match against.
  * @return {boolean} true if a match is found.
  *
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
-export const matches =
-    (matchAgainst: string) => (val: string): boolean => !!val.match(matchAgainst);
+export const matches = (valToFind: StrOrNum) => (valToSearchIn: StrOrNum): boolean => {
+    if (typeof valToFind !== typeof valToSearchIn) return false;
+    return !!valToSearchIn.toString().match(valToFind.toString());
+}
 
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
- * TODO test this.
+ * Converts string to form that lets it be used as a pure 'literal' string to match against
+ * directly if passed to new RegExp (no special chars taken into account).
+ *
+ * It essentially escapes special regex characters/metacharacters (e.g. *, ., +) in such a
+ * way that the regex builder ignores their special and instead seeks them literally.
+ *
+ * @example escapeRegExp('*.js'); //=> '\\*\\.js'
+ * @param {string} regexStr - String to escape for use in literal form in a regex builder.
+ * @return {string} escaped string.
  */
 export const escapeRegExp =
     (regexStr: string): string => regexStr.replace(/([\/\\()\[\]{}.*+^$?|=:!])/g, '\\$1');

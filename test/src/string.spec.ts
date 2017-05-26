@@ -5,9 +5,10 @@ import { expect } from 'chai';
 
 import { m_, string } from '../../shared';
 
-import { expectFunctionExists, replaceAll, cap1LowerRest, capitalize } from '../../node';
+import { expectFunctionExists } from '../../node';
 
 const str = m_.string;
+const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, eliminateWhitespace} = str;
 
 
 /********************************************* TESTS **********************************************/
@@ -50,4 +51,48 @@ describe(`string sub-module`, function() {
             expect(replacedWRegex).to.equal('The duck here is OK Jerry! OK!');
         });
     });
+
+    describe('function "matches"', function() {
+        expectFunctionExists(matches);
+        it(`should return true if used as a predicate in a find operation where the string ` +
+            `given to match can be found in the array .find is being called on`, function()
+        {
+            expect(['hello', 'everybody'].some(matches('everybody'))).to.be.true;
+            expect([1, 2, 3].some(matches(2))).to.be.true;
+            expect(['hello', 'everybody'].some(matches('dr nick'))).to.be.false;
+            expect([1, '2', 3].some(matches(2))).to.be.false;
+            expect([1, 2, 3].some(matches('2'))).to.be.false;
+        });
+    });
+
+    describe('escapeRegExp', function() {
+        expectFunctionExists(escapeRegExp);
+        it(`converts string to form that lets it be used as a pure 'literal' (where special regex` +
+            `chars in the string are escaped for use as regular, literal values) when building ` +
+            `regexes with new RegExp`, function()
+        {
+            expect(escapeRegExp('')).to.eql('');
+            expect(escapeRegExp('asdf')).to.eql('asdf');
+            expect(escapeRegExp('ok[2]')).to.eql('ok\\[2\\]');
+            expect(escapeRegExp('*.min.js')).to.eql('\\*\\.min\\.js');
+
+            const filenamesListMatches = 'config/*.ts, src/*.js, build/*.min.js, script/*.js'
+                    .match(new RegExp(escapeRegExp('*.js'), 'g'));
+            expect(filenamesListMatches).to.eql(['*.js', '*.js']);
+        });
+    });
+
+    describe('eliminateWhitespace', function() {
+        expectFunctionExists(eliminateWhitespace);
+        it(`should remove all whitespace from a string (non-mutatively)`, function() {
+            expect(eliminateWhitespace('asdf')).to.eql('asdf');
+            expect(eliminateWhitespace(' asdf ')).to.eql('asdf');
+            expect(eliminateWhitespace(' hello universe! ')).to.eql('hellouniverse!');
+            expect(eliminateWhitespace('        w ')).to.eql('w');
+            expect(eliminateWhitespace('And   Now For   Something     Completely Different     '))
+                .to.eql('AndNowForSomethingCompletelyDifferent');
+            expect(eliminateWhitespace('         ')).to.eql('');
+        });
+    });
+
 });
