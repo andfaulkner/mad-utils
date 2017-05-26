@@ -17,28 +17,41 @@ export interface DecoratorError {
  * Throw when a decorator is improperly used. Should only be declared in a decorator function.
  */
 export declare const DecoratorError: DecoratorError;
-export declare namespace StackUtils {
-    /**
-     * Remove all stack trace items containing references to any of the given libraries.
-     * Must be passed an actual stack for this to work.
-     * @param {string} stack The stacktrace itself
-     * @param {Array<string>} libsToRm Exclude all stacktrace items coming from any of these libs
-     * @return {string} Stacktrace with all items that reference any lib in libsToRm removed
-     */
-    function removeFromStack(stack: string, libsToRm?: Array<string>): string;
-    /**
-     * Split the stack trace, get the first item (aka the most recent item)
-     */
-    function getFirstStackItem(stack: string): any;
-    function getFirstStackItem<T extends Error>(error: T): any;
-    /**
-     * Split the stack trace, get the 2nd item (aka the 2nd most recent item).
-     */
-    function getSecondStackItem(stack: string): any;
-    function getSecondStackItem<T extends Error>(error: T): any;
-    /**
-     * Split the stack trace, get the 3rd item (aka the 3rd most recent item).
-     */
-    function getThirdStackItem(stack: string): any;
-    function getThirdStackItem<T extends Error>(error: T): any;
-}
+/**
+ * Remove all stack trace items containing references to any of the given libraries.
+ * Must be passed an actual stack for this to work.
+ * @param {string} stack The stacktrace itself
+ * @param {Array<string>} libsToRm Exclude all stacktrace items coming from any of these libs
+ * @return {string} Stacktrace with all items that reference any lib in libsToRm removed
+ */
+export declare function removeFromStack(stack: string, libsToRm?: Array<string>): string;
+/**
+ * Split the stack trace, get the first item (aka the most recent item)
+ */
+export declare function getFirstStackItem(stack: string): any;
+export declare function getFirstStackItem<T extends Error>(error: T): any;
+/**
+ * Split the stack trace, get the 2nd item (aka the 2nd most recent item).
+ */
+export declare function getSecondStackItem(stack: string): any;
+export declare function getSecondStackItem<T extends Error>(error: T): any;
+/**
+ * Split the stack trace, get the 3rd item (aka the 3rd most recent item).
+ */
+export declare function getThirdStackItem(stack: string): any;
+export declare function getThirdStackItem<T extends Error>(error: T): any;
+export declare const StackUtils: {
+    removeFromStack: (stack: string, libsToRm?: string[]) => string;
+    getFirstStackItem: {
+        (stack: string): any;
+        <T extends Error>(error: T): any;
+    };
+    getSecondStackItem: {
+        (stack: string): any;
+        <T extends Error>(error: T): any;
+    };
+    getThirdStackItem: {
+        (stack: string): any;
+        <T extends Error>(error: T): any;
+    };
+};

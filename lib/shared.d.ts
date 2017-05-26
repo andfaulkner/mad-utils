@@ -59,8 +59,36 @@ export declare const mUtils: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: typeof error.StackUtils;
-    StackUtils: typeof error.StackUtils;
+    stacktrace: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
+    StackUtils: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -82,8 +110,36 @@ export declare const __: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: typeof error.StackUtils;
-    StackUtils: typeof error.StackUtils;
+    stacktrace: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
+    StackUtils: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -105,8 +161,36 @@ export declare const m_: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: typeof error.StackUtils;
-    StackUtils: typeof error.StackUtils;
+    stacktrace: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
+    StackUtils: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
     str: typeof string;
     string: typeof string;
     type: typeof types;
@@ -128,8 +212,36 @@ export declare const madUtils: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: typeof error.StackUtils;
-    StackUtils: typeof error.StackUtils;
+    stacktrace: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
+    StackUtils: {
+        removeFromStack: (stack: string, libsToRm?: string[]) => string;
+        getFirstStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getSecondStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+        getThirdStackItem: {
+            (stack: string): any;
+            <T extends Error>(error: T): any;
+        };
+    };
     str: typeof string;
     string: typeof string;
     type: typeof types;

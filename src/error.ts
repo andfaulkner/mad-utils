@@ -55,82 +55,90 @@ export const DecoratorError = (() => {
     return ((DecoratorError as any) as DecoratorError);
 })();
 
+// Regex utils
+const alphaNumSet = `[a-zA-Z0-9_]+`;
+
+const defLibsToExclude = ['express', 'body-parser', 'cookie-parser'];
+
+/**
+ * Remove all stack trace items containing references to any of the given libraries.
+ * Must be passed an actual stack for this to work.
+ * @param {string} stack The stacktrace itself
+ * @param {Array<string>} libsToRm Exclude all stacktrace items coming from any of these libs
+ * @return {string} Stacktrace with all items that reference any lib in libsToRm removed
+ */
+export function removeFromStack(stack: string, libsToRm: Array<string> = defLibsToExclude): string {
+    // Partial regex for excluding all libraries in libsToRm. Inject into full regex.
+    const filterLibStr = libsToRm.reduce((acc, lib, idx) => {
+        const cleanLibName = lib.replace('-', '\-');
+        if (idx !== (libsToRm.length - 1)) {
+            acc += `(${cleanLibName})|`
+        } else {
+            acc += `(${cleanLibName}))`
+        }
+        return acc;
+    }, `(`);
+
+    // Filtering regexes
+    const stackFilterLibs = new RegExp(`node_modules\/${filterLibStr}\/lib`, '');
+    const stackFilterNode = new RegExp('[lL]oad \\(module\\.js:[0-9]', '');
+
+    // Filter the stack
+    const cleanStack = stack
+        .split('\n')
+        .filter((stackEl, idx, arr) => !(stackFilterLibs.exec(stackEl)))
+        .filter((stackEl, idx, arr) => !(stackFilterNode.exec(stackEl)))
+        .join('\n');
+
+    return cleanStack;
+}
+
+/**
+ * Split the stack trace, get the first item (aka the most recent item)
+ */
+export function getFirstStackItem(stack: string);
+export function getFirstStackItem<T extends Error>(error: T);
+export function getFirstStackItem<T extends Error>(stackOrError: string | T) {
+    if (typeof stackOrError === 'string') {
+        return stackOrError.split('\n    at ')[0];
+    }
+    return stackOrError.stack.split('\n    at ')[0];
+}
+
+/**
+ * Split the stack trace, get the 2nd item (aka the 2nd most recent item).
+ */
+export function getSecondStackItem(stack: string);
+export function getSecondStackItem<T extends Error>(error: T);
+export function getSecondStackItem<T extends Error>(stackOrError: string | T) {
+    if (typeof stackOrError === 'string') {
+        return stackOrError.split('\n    at ')[1];
+    }
+    return stackOrError.stack.split('\n    at ')[1];
+}
+
+/**
+ * Split the stack trace, get the 3rd item (aka the 3rd most recent item).
+ */
+export function getThirdStackItem(stack: string);
+export function getThirdStackItem<T extends Error>(error: T);
+export function getThirdStackItem<T extends Error>(stackOrError: string | T) {
+    if (typeof stackOrError === 'string') {
+        return stackOrError.split('\n    at ')[2];
+    }
+    return stackOrError.stack.split('\n    at ')[2];
+}
+
+
 //
 //  StackUtils sub-module
 //
 
-export namespace StackUtils {
-    // Regex utils
-    const alphaNumSet = `[a-zA-Z0-9_]+`;
-
-    const defLibsToExclude = ['express', 'body-parser', 'cookie-parser'];
-
-    /**
-     * Remove all stack trace items containing references to any of the given libraries.
-     * Must be passed an actual stack for this to work.
-     * @param {string} stack The stacktrace itself
-     * @param {Array<string>} libsToRm Exclude all stacktrace items coming from any of these libs
-     * @return {string} Stacktrace with all items that reference any lib in libsToRm removed
-     */
-    export function removeFromStack(stack: string, libsToRm: Array<string> = defLibsToExclude): string {
-        // Partial regex for excluding all libraries in libsToRm. Inject into full regex.
-        const filterLibStr = libsToRm.reduce((acc, lib, idx) => {
-            const cleanLibName = lib.replace('-', '\-');
-            if (idx !== (libsToRm.length - 1)) {
-                acc += `(${cleanLibName})|`
-            } else {
-                acc += `(${cleanLibName}))`
-            }
-            return acc;
-        }, `(`);
-
-        // Filtering regexes
-        const stackFilterLibs = new RegExp(`node_modules\/${filterLibStr}\/lib`, '');
-        const stackFilterNode = new RegExp('[lL]oad \\(module\\.js:[0-9]', '');
-
-        // Filter the stack
-        const cleanStack = stack
-            .split('\n')
-            .filter((stackEl, idx, arr) => !(stackFilterLibs.exec(stackEl)))
-            .filter((stackEl, idx, arr) => !(stackFilterNode.exec(stackEl)))
-            .join('\n');
-
-        return cleanStack;
+export const StackUtils = (() => {
+    return {
+        removeFromStack,
+        getFirstStackItem,
+        getSecondStackItem,
+        getThirdStackItem
     }
-
-    /**
-     * Split the stack trace, get the first item (aka the most recent item)
-     */
-    export function getFirstStackItem(stack: string);
-    export function getFirstStackItem<T extends Error>(error: T);
-    export function getFirstStackItem<T extends Error>(stackOrError: string | T) {
-        if (typeof stackOrError === 'string') {
-            return stackOrError.split('\n    at ')[0];
-        }
-        return stackOrError.stack.split('\n    at ')[0];
-    }
-
-    /**
-     * Split the stack trace, get the 2nd item (aka the 2nd most recent item).
-     */
-    export function getSecondStackItem(stack: string);
-    export function getSecondStackItem<T extends Error>(error: T);
-    export function getSecondStackItem<T extends Error>(stackOrError: string | T) {
-        if (typeof stackOrError === 'string') {
-            return stackOrError.split('\n    at ')[1];
-        }
-        return stackOrError.stack.split('\n    at ')[1];
-    }
-
-    /**
-     * Split the stack trace, get the 3rd item (aka the 3rd most recent item).
-     */
-    export function getThirdStackItem(stack: string);
-    export function getThirdStackItem<T extends Error>(error: T);
-    export function getThirdStackItem<T extends Error>(stackOrError: string | T) {
-        if (typeof stackOrError === 'string') {
-            return stackOrError.split('\n    at ')[2];
-        }
-        return stackOrError.stack.split('\n    at ')[2];
-    }
-}
+})();
