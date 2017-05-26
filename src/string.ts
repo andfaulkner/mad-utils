@@ -239,6 +239,12 @@ export const endsInDotJs = (inode: string) => inode.split(/\./g).reverse()[0] ==
  */
 export const isNonMinFile = (inode: string) => inode.split(/\./g).reverse()[1] !== 'min';
 
+/**
+ * Get the base filename from the given path.
+ * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
+ */
+export const getBaseFilenameFromPath = (filePath: string) => filePath.split('/').slice(-1)[0];
+
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';

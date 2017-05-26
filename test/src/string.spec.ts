@@ -1,4 +1,5 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /******************************** IMPORT STRING MODULE FOR TESTING ********************************/
 import { expect } from 'chai';
@@ -8,7 +9,8 @@ import { m_, string } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 const str = m_.string;
-const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, eliminateWhitespace} = str;
+const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
+        eliminateWhitespace, getBaseFilenameFromPath } = str;
 
 
 /********************************************* TESTS **********************************************/
@@ -95,4 +97,23 @@ describe(`string sub-module`, function() {
         });
     });
 
+    describe('matchesIgnoreCase', function() {
+        expectFunctionExists(matchesIgnoreCase);
+        it(`returns true if an item in the tested array matches the given string, even if the ` +
+            `casing (lower vs upper) is different`, function()
+        {
+            expect(matchesIgnoreCase('asdf')('asdf')).to.be.true;
+            expect(matchesIgnoreCase('AsDf')('asdf')).to.be.true;
+            expect(matchesIgnoreCase('asdf')('ASDF')).to.be.true;
+            expect(['one', 'two', '3'].find(matchesIgnoreCase('TWO'))).to.eql('two');
+        });
+    });
+
+    describe(`getBaseFilenameFromPath`, function() {
+        it(`should return just the filename given an absolute or relative file path`, function() {
+            expect(getBaseFilenameFromPath('file.ts')).to.eql('file.ts');
+            expect(getBaseFilenameFromPath('/file.ts')).to.eql('file.ts');
+            expect(getBaseFilenameFromPath('./src/somewhere/file.ts')).to.eql('file.ts');
+        });
+    });
 });

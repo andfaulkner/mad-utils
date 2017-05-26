@@ -112,6 +112,11 @@ export declare const endsInDotJs: (inode: string) => boolean;
  * @return {boolean} true if file doesn't end in .min.[anyExt] (e.g. a.min.json, b.min.css)
  */
 export declare const isNonMinFile: (inode: string) => boolean;
+/**
+ * Get the base filename from the given path.
+ * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
+ */
+export declare const getBaseFilenameFromPath: (filePath: string) => string;
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
 export { splitLines } from './array';

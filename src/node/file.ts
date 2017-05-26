@@ -10,7 +10,7 @@ import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync
          writeFileSync } from 'fs-extra-promise';
 import { path as rootPath } from 'app-root-path';
 
-import { isNonMinFile, endsInDotJs } from '../string';
+import { isNonMinFile, endsInDotJs, getBaseFilenameFromPath } from '../string';
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/node';
@@ -36,16 +36,15 @@ export const pathFromRoot = (filePathFromRoot: string = '') => {
     return path.join(rootPath, filePathFromRoot);
 }
 
-const baseFilename = (filename: string) => filename.split('/').slice(-1)[0];
-
 /**
- * Returns true if the given filename was run as a script
+ * Returns true if the given filename was run as a script.
  *
- * @param {string} filename - name of the file the command was run from.
+ * @param {string} filePathOrName - name of file (or path to file) where the command was run from.
+ * @return {boolean} true if file with given name was run as a script.
  */
-export const wasRunAsScript = (filename: string, processArgv = process.argv, TAG = '') => {
-    const findFilename = new RegExp(baseFilename(filename).replace('.', '\.'));
-    const wasScript = !!findFilename.exec(processArgv[1]);
+export const wasRunAsScript = (filePathOrName: string, argv = process.argv, TAG = ''): boolean => {
+    const findFilename = new RegExp(getBaseFilenameFromPath(filePathOrName).replace('.', '\.'));
+    const wasScript = !!findFilename.exec(argv[1]);
     if (wasScript) {
         log.verbose.noTag(
             `${TAG ? (TAG + ' ') : ''}Running ${__filename} as a standalone script...`);
@@ -98,3 +97,7 @@ export const getJsFilesInDir = (dir: string, excludeMin = true): string[] =>
  */
 export const isFileInDir = (dir: string, filename: string): boolean =>
     !!readdirSync(dir).find(file => file === filename);
+
+
+/***************** RE-EXPORT FILE-RELEVANT FUNCTIONS IMPORTED FROM OTHER MODULES ******************/
+export { isNonMinFile, endsInDotJs, getBaseFilenameFromPath }

@@ -1,3 +1,4 @@
+import { isNonMinFile, endsInDotJs, getBaseFilenameFromPath } from '../string';
 /******************************************** EXPORTS *********************************************/
 /**
  * @param {string} fileOrDirPath - file system object being checked.
@@ -13,11 +14,12 @@ export declare const isDir: (fileOrDirPath: string) => boolean;
  */
 export declare const pathFromRoot: (filePathFromRoot?: string) => string;
 /**
- * Returns true if the given filename was run as a script
+ * Returns true if the given filename was run as a script.
  *
- * @param {string} filename - name of the file the command was run from.
+ * @param {string} filePathOrName - name of file (or path to file) where the command was run from.
+ * @return {boolean} true if file with given name was run as a script.
  */
-export declare const wasRunAsScript: (filename: string, processArgv?: string[], TAG?: string) => boolean;
+export declare const wasRunAsScript: (filePathOrName: string, argv?: string[], TAG?: string) => boolean;
 /**
  * Replace matching location in given file.
  * Text in given file that matches the provided regex or string gets replaced with the
@@ -48,3 +50,5 @@ export declare const getJsFilesInDir: (dir: string, excludeMin?: boolean) => str
  * @return {boolean} Return true if given filename is present in folder at given path.
  */
 export declare const isFileInDir: (dir: string, filename: string) => boolean;
+/***************** RE-EXPORT FILE-RELEVANT FUNCTIONS IMPORTED FROM OTHER MODULES ******************/
+export { isNonMinFile, endsInDotJs, getBaseFilenameFromPath };
