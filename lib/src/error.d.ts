@@ -40,18 +40,3 @@ export declare function getSecondStackItem<T extends Error>(error: T): any;
  */
 export declare function getThirdStackItem(stack: string): any;
 export declare function getThirdStackItem<T extends Error>(error: T): any;
-export declare const StackUtils: {
-    removeFromStack: (stack: string, libsToRm?: string[]) => string;
-    getFirstStackItem: {
-        (stack: string): any;
-        <T extends Error>(error: T): any;
-    };
-    getSecondStackItem: {
-        (stack: string): any;
-        <T extends Error>(error: T): any;
-    };
-    getThirdStackItem: {
-        (stack: string): any;
-        <T extends Error>(error: T): any;
-    };
-};

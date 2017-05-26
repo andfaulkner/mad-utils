@@ -128,17 +128,3 @@ export function getThirdStackItem<T extends Error>(stackOrError: string | T) {
     }
     return stackOrError.stack.split('\n    at ')[2];
 }
-
-
-//
-//  StackUtils sub-module
-//
-
-export const StackUtils = (() => {
-    return {
-        removeFromStack,
-        getFirstStackItem,
-        getSecondStackItem,
-        getThirdStackItem
-    }
-})();

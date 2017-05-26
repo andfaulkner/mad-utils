@@ -1,7 +1,5 @@
 import { array, date, decorator, Enum, error, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
 export { array, date, decorator, Enum, error, json, locale, number, object, query, search, string };
-import { StackUtils } from './src/error';
-export { StackUtils };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -57,36 +55,7 @@ export declare const mUtils: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
-    StackUtils: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
+    stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -113,36 +82,7 @@ export declare const __: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
-    StackUtils: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
+    stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -169,36 +109,7 @@ export declare const m_: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
-    StackUtils: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
+    stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -225,36 +136,7 @@ export declare const madUtils: {
     object: typeof object;
     query: typeof query;
     search: typeof search;
-    stacktrace: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
-    StackUtils: {
-        removeFromStack: (stack: string, libsToRm?: string[]) => string;
-        getFirstStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getSecondStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-        getThirdStackItem: {
-            (stack: string): any;
-            <T extends Error>(error: T): any;
-        };
-    };
+    stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
     test: typeof test;
