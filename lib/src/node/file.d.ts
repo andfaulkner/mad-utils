@@ -31,3 +31,11 @@ export declare const pathFromRoot: (filePathFromRoot?: string) => string;
  * @param {string} filename - name of the file the command was run from.
  */
 export declare const wasRunAsScript: (filename: string, processArgv?: string[], TAG?: string) => boolean;
+/**
+ * Replace matching location in given file.
+ * Text in given file that matches the provided regex or string gets replaced with the
+ * provided replacement text.
+ */
+export declare function replaceInFile(filePath: string, findString: string, replace: string): string;
+export declare function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
+export declare function replaceInFile(filePath: string, find: string | RegExp, replace: string): string;

@@ -23,28 +23,6 @@ const log = nodeLogFactory(buildFileTag('misc-utils::node -- file', colors.white
 export const isDir = (fileOrDirPath: string): boolean => lstatSync(fileOrDirPath).isDirectory();
 
 /**
- * Replace matching location in given file.
- *
- * @param {string} filePath - File to perform replacement in.
- * @param {string|RegExp} find - Match to perform against the content of the file at filePath.
- * @param {string} replace - Text to replace the matching text with.
- * @param {NodeMadLogsInstance} logger - If LOG_LEVEL=silly, show new file content. Use given logger
- *                                       (if any) to display the content (otherwise use a default).
- *@return {string} File content after the replacement.
- */
-export const replaceInFile =
-    (filePath: string, find: string | RegExp, replace: string, logger = log): string =>
-{
-    const fileData   = readFileSync(filePath).toString();
-    // Hack required to make typings happy
-    const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
-                                                     : fileData.replace(find, replace);
-    writeFileSync(filePath, cleanfileData, 'utf8');
-    logger.silly(`cleanjSweetBundleData: new ${filePath} contents:`, cleanfileData);
-    return cleanfileData;
-};
-
-/**
  * Return path relative to root of project mad-utils is installed in - or if mad-utils is
  * standalone (for development), return path relative to root of mad-utils.
  * @param {string} filePathFromRoot - file path to return relative to the root
@@ -74,10 +52,18 @@ export const wasRunAsScript = (filename: string, processArgv = process.argv, TAG
 };
 
 
+
 /**
  * Replace matching location in given file.
  * Text in given file that matches the provided regex or string gets replaced with the
  * provided replacement text.
+ *
+ * @param {string} filePath - File to perform replacement in.
+ * @param {string|RegExp} find - Match to perform against the content of the file at filePath.
+ * @param {string} replace - Text to replace the matching text with.
+ * @param {NodeMadLogsInstance} logger - If LOG_LEVEL=silly, show new file content. Use given logger
+ *                                       (if any) to display the content (otherwise use a default).
+ *@return {string} File content after the replacement.
  */
 export function replaceInFile(filePath: string, findString: string, replace: string): string;
 export function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
@@ -87,6 +73,6 @@ export function replaceInFile(filePath: string, find: string | RegExp, replace: 
     const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
                                                      : fileData.replace(find, replace);
     writeFileSync(filePath, cleanfileData, 'utf8');
-    log.silly(`cleanjSweetBundleData: new ${filePath} contents:`, cleanfileData);
+    log.silly(`replaceInFile: new ${filePath} contents:`, cleanfileData);
     return cleanfileData;
 }
