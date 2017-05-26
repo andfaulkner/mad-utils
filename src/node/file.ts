@@ -80,6 +80,7 @@ export function replaceInFile(filePath: string, find: string | RegExp, replace: 
 
 /**
  * Traverse given folder & return list of all .js inodes it contains.
+ *
  * @param {string} dir - absolute path to directory.
  * @param {boolean} excludeMin - If true, exclude all .min.js files.
  * @return {string[]} List of all non-minified .js inodes in given directory.

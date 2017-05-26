@@ -33,11 +33,13 @@ export declare const wasRunAsScript: (filename: string, processArgv?: string[], 
 export declare function replaceInFile(filePath: string, findString: string, replace: string): string;
 export declare function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
 /**
- * Traverse given folder & return list of all non-minified .js inodes it contains.
+ * Traverse given folder & return list of all .js inodes it contains.
+ *
  * @param {string} dir - absolute path to directory.
+ * @param {boolean} excludeMin - If true, exclude all .min.js files.
  * @return {string[]} List of all non-minified .js inodes in given directory.
  */
-export declare const getNonMinJsFilesInDir: (dir: string) => string[];
+export declare const getJsFilesInDir: (dir: string, excludeMin?: boolean) => string[];
 /**
  * Search a given directory for an inode (file or folder) with the given name.
  *
