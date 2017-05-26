@@ -1,5 +1,5 @@
 /******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
+import { logFactory, logMarkers, MadLog } from 'mad-logs';
 const log = logFactory()(`string.ts`, logMarkers.lakeLouise);
 
 
@@ -183,7 +183,7 @@ export const eliminateWhitespace = (str: string): string => str.replace(/ /g, ''
  *
  * @return {string} Properly indented string.
  */
-export function withLeftIndent(strings, leftPadSize, log?) {
+export function withLeftIndent(strings, leftPadSize, logger = log) {
     _validateWithLeftIndent(leftPadSize);
 
     // |** 1 **| Convert single string with '\n' delimiting lines to an array split on \n.
@@ -193,7 +193,7 @@ export function withLeftIndent(strings, leftPadSize, log?) {
     if (lines[0].length === 0) lines.shift();
 
     // |** 3 **| Determine which line has the shortest indent.
-    const shortestIndent = _detectShortestIndentInArray(lines, log);
+    const shortestIndent = _detectShortestIndentInArray(lines, logger);
 
     // |** 4 **| Create the indentation string to add & whitespace string to split on
     const leftPadSpaces = ' '.repeat(leftPadSize);
@@ -206,7 +206,7 @@ export function withLeftIndent(strings, leftPadSize, log?) {
 
     // |** 6 **| Convert array back to string & return.
     const retStr = linesPrepped.join(`\n`);
-    log.verbose(`withLeftIndent: retStr:\n${retStr}`);
+    logger.verbose(`withLeftIndent: retStr:\n${retStr}`);
 
     return retStr;
 }
