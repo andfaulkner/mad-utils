@@ -136,6 +136,26 @@ export const rmAllFalsy = (arr: RealAny[]) => arr.filter(item => !!item);
  */
 export const splitLines = (str: string) => rmAllFalsy(str.toString().split('\n'));
 
+
+/**
+ * True if the given object is an array. Robust and works across multiple JS environments.
+ * @param {any} value - Check if this is an array.
+ * @return {boolean} True if arg 'value' is an Array,
+ */
+export function isArray(value: RealAny): boolean {
+    // Fully compliant ES5, ES6, ES7, ES8 ES[+] environments
+    if (Array.isArray) return Array.isArray(value);
+
+    // Browsers
+    return !!((value)
+           && value.constructor
+           && (value.constructor.name === 'Array'
+               // All ES5 and higher environments
+               || (Object.getPrototypeOf && Object.getPrototypeOf(value.constructor) === Array)
+               // Pre-ES5 web browsers
+               || (value.constructor.__proto__ && value.constructor.__proto__.name === 'Array')));
+}
+
 /**
  * Namespace for certain "reversed" operations.
  */
