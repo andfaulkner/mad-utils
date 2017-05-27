@@ -83,7 +83,6 @@ export function replaceInFile(filePath: string, find: string | RegExp, replace: 
     return cleanfileData;
 }
 
-
 /**
  * Traverse given folder & return list of all .js inodes it contains.
  *
