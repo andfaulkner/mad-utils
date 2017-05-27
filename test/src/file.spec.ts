@@ -65,4 +65,42 @@ describe(`file sub-module`, function() {
             expect(file.wasRunAsScript(__filename, process.argv, 'file.spec.ts')).to.be.false;
         });
     });
+
+    describe(`function getJsFilesInDir`, function() {
+        let fullPath: string;
+        let dirsAtPath: string[];
+        before(function() {
+            fullPath = path.join(rootPath, 'test/mock/mock-dir-of-files');
+            dirsAtPath = file.getJsFilesInDir(fullPath);
+        });
+        expectFunctionExists(file.getJsFilesInDir);
+        it(`returns array of all js files in the directory at given path`, function() {
+            expect(dirsAtPath).to.contain('file1.js');
+            expect(dirsAtPath).to.contain('file2.js');
+            expect(dirsAtPath).to.contain('file5.js');
+        });
+        it(`Excludes dirs contained in the folder at the given path, from the return array`,
+            function()
+        {
+            expect(dirsAtPath).to.not.contain('mock-child-dir');
+        });
+        it(`Excludes non-js files contained in the folder at the given path`, function() {
+            expect(dirsAtPath).to.not.contain('file3.ts');
+            expect(dirsAtPath).to.not.contain('file4.md');
+        });
+    });
+
+    describe('function isFileInDir', function() {
+        expectFunctionExists(file.isFileInDir);
+        it(`returns true if given filename exists in dir at given path, & false if it doesn't`,
+            function()
+        {
+            expect(
+                file.isFileInDir(path.join(rootPath, 'test/mock/mock-dir-of-files'), 'file2.js')
+            ).to.be.true;
+            expect(
+                file.isFileInDir(path.join(rootPath, 'test/mock/mock-dir-of-files'), 'file12.ts')
+            ).to.be.false;
+        });
+    });
 });
