@@ -29,9 +29,22 @@ describe(`file sub-module`, function() {
     describe(`function replaceInFile`, function() {
         expectFunctionExists(file.replaceInFile);
     });
+
     describe(`function pathFromRoot`, function() {
         expectFunctionExists(file.pathFromRoot);
+        it(`should return absolute path of mad-utils top-level dir (since it's not being ` +
+            `consumed by a project when in development) if given blank string`, function()
+        {
+            const madUtilsDirPath = file.pathFromRoot('');
+            expect(file.pathFromRoot('')).to.match(/^\/[^\/]+\/.*\/mad-utils$/);
+        });
+        it(`should return path relative to mad-utils route with given ` +
+           `string arg joined to the end.`, function()
+        {
+            expect(file.pathFromRoot('src/node')).to.match(/^\/[^\/]+\/.*\/mad-utils\/src\/node$/);
+        });
     });
+
     describe('function wasRunAsScript', function() {
         expectFunctionExists(file.wasRunAsScript);
     });
