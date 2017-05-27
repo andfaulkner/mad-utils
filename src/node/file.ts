@@ -22,7 +22,14 @@ const log = nodeLogFactory(buildFileTag('misc-utils::node -- file', colors.white
  * @param {string} fileOrDirPath - file system object being checked.
  * @return {boolean} true if given file system object is a directory (if false it's a file)
  */
-export const isDir = (fileOrDirPath: string): boolean => lstatSync(fileOrDirPath).isDirectory();
+export const isDir = (fileOrDirPath: string): boolean => {
+    try {
+        const isINodeADir = lstatSync(fileOrDirPath).isDirectory();
+        return !!isINodeADir;
+    } catch(e) {
+        return false;
+    }
+}
 
 /**
  * Return path relative to root of project mad-utils is installed in - or if mad-utils is
