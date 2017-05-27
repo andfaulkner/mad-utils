@@ -1,7 +1,7 @@
 // Import shared modules, and re-export them for top-level access.
 import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string,
          types as isoTypes } from './shared';
-export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string }
+export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string }
 
 export * from './src/array';
 export * from './src/date';
@@ -12,6 +12,7 @@ export * from './src/function';
 export * from './src/json';
 export * from './src/locale';
 export * from './src/number';
+export * from './src/node/node-error';
 export * from './src/object';
 export * from './src/query';
 export * from './src/search';
@@ -27,6 +28,17 @@ export { middleware };
 export { middleware as middlewares };
 export { middleware as mware };
 export { middleware as MW }
+
+import * as nodeError from './src/node/node-error';
+export * from './src/node/node-error';
+export { nodeError }
+
+import * as errorShared from './shared';
+export { error as errorShared } from './shared';
+
+const err = Object.assign({}, errorShared, nodeError);
+export { err }
+export { err as error }
 
 // Import test module
 import * as test from './src/node/test';
@@ -61,7 +73,9 @@ export const mUtils = {
     decorators: decorator,
     enum: Enum,
     Enum,
-    error,
+    error: err,
+    err,
+    errorShared,
     file,
     func,
     'function': func,
@@ -69,11 +83,13 @@ export const mUtils = {
     json,
     locale,
     middleware,
+    nodeErr: nodeError,
+    nodeError,
     number,
     object,
     query,
     search,
-    stacktrace: error,
+    stacktrace: err,
     str: string,
     string,
     test,

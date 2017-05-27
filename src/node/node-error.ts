@@ -12,7 +12,7 @@ import { isSilly, isInfo } from 'env-var-helpers';
  * In node, remove pointless stacktrace items (node core) and modify the
  * stacktrace length to be unlimited.
  */
-export const activateLogLevelSizedCleanStack = () => {
+export const globalActivateCleanStack = () => {
     Error.stackTraceLimit = Infinity;
     if (!isSilly) require('clarify');
 };
