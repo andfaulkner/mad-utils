@@ -14,6 +14,9 @@ export { Enum };
 import * as error from './src/error';
 export * from './src/error';
 export { error };
+import * as func from './src/function';
+export * from './src/function';
+export { func };
 import * as json from './src/json';
 export * from './src/json';
 export { json };
@@ -50,6 +53,8 @@ export declare const mUtils: {
     enum: typeof Enum;
     Enum: typeof Enum;
     error: typeof error;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;
@@ -72,6 +77,8 @@ export declare const __: {
     enum: typeof Enum;
     Enum: typeof Enum;
     error: typeof error;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;
@@ -94,6 +101,8 @@ export declare const m_: {
     enum: typeof Enum;
     Enum: typeof Enum;
     error: typeof error;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;
@@ -116,6 +125,8 @@ export declare const madUtils: {
     enum: typeof Enum;
     Enum: typeof Enum;
     error: typeof error;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;

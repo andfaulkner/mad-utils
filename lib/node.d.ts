@@ -1,10 +1,11 @@
-import { array, date, decorator, Enum, error, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
-export { array, date, decorator, Enum, error, json, locale, number, object, query, search, string };
+import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
+export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
 export * from './src/enum';
 export * from './src/error';
+export * from './src/function';
 export * from './src/json';
 export * from './src/locale';
 export * from './src/number';
@@ -47,6 +48,8 @@ export declare const mUtils: {
     Enum: typeof Enum;
     error: typeof error;
     file: typeof file;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;
@@ -74,6 +77,8 @@ export declare const __: {
     Enum: typeof Enum;
     error: typeof error;
     file: typeof file;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;
@@ -101,6 +106,8 @@ export declare const m_: {
     Enum: typeof Enum;
     error: typeof error;
     file: typeof file;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;
@@ -128,6 +135,8 @@ export declare const madUtils: {
     Enum: typeof Enum;
     error: typeof error;
     file: typeof file;
+    func: typeof func;
+    'function': typeof func;
     isNode: any;
     json: typeof json;
     locale: typeof locale;

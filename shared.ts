@@ -19,6 +19,10 @@ import * as error from './src/error';
 export * from './src/error';
 export { error };
 
+import * as func from './src/function';
+export * from './src/function';
+export { func };
+
 import * as json from './src/json';
 export * from './src/json';
 export { json };
@@ -66,6 +70,8 @@ export const mUtils = {
     enum: Enum,
     Enum,
     error,
+    func: func,
+    'function': func,
     isNode,
     json,
     locale,
