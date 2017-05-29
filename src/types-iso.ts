@@ -1,9 +1,10 @@
 import * as moment from 'moment';
 import { DecoratorError } from './error';
+import { isVerbose } from 'env-var-helpers';
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs';
-const log = nodeLogFactory(buildFileTag('types-iso.ts', colors.green.bgWhite));
+import { buildFileTag, logFactory, logMarkers } from 'mad-logs';
+const log = logFactory()('mad-utils::function', logMarkers.arrow);
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
@@ -186,11 +187,11 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
     if (isNumberLike(numLike)) return parseFloat(numLike as string);
 
     const baseErrMsg = 'castToNum can only accept numbers, #s in string form e.g. "1", or 1-item' +
-                       ` arrays containing either type. Invalid value: ${log.inspect(numLike)}`;
+                       ` arrays containing either type. Invalid value: ${numLike}`;
     if (throwOnFail) {
         throw new Error(baseErrMsg);
     } else {
-        log.verboseError(`WARNING: ${baseErrMsg}`);
+        if (isVerbose) log.error(`WARNING: ${baseErrMsg}`);
         return new Error(baseErrMsg);
     }
 };
