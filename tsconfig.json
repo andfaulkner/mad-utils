@@ -32,6 +32,7 @@
         "./src/node/*.ts",
         "./src/browser/*.ts",
         "./src/array-collection.ts",
-        "./src/types.ts"
+        "./src/types.ts",
+        "./node_modules/mad-logs/lib/node.d.ts"
     ]
 }
