@@ -13,28 +13,6 @@ export declare function isLeapYear(year: NumLike): boolean | never;
  * Given day must be a number between 1 and 7.
  */
 export declare function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate?: boolean): string | never;
-export declare type ParsedDate = {
-    dateObj: Date;
-    date: number;
-    year: number;
-    month: number;
-    hour: number;
-    minute: number;
-    second: number;
-    millisecond: number;
-    ms: number;
-    isLeapYear: boolean;
-    daysInYear: number;
-    dayOfWeekNum: NumRange1To7;
-    dayOfWeekName: string;
-    dayOfWeekShortName: string;
-    timezoneOffset: number;
-    unixTimestampMs: number;
-};
-/**
- * Split a date into a more convenient date info object
- */
-export declare const parseDate: (date: Date) => ParsedDate;
 /**
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *

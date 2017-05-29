@@ -43,58 +43,6 @@ export function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate = fa
     }
 }
 
-export type ParsedDate = {
-    dateObj            : Date,
-    date               : number,
-    year               : number,
-    month              : number,
-    hour               : number,
-    minute             : number,
-    second             : number,
-    millisecond        : number,
-    ms                 : number,
-    isLeapYear         : boolean,
-    daysInYear         : number,
-    dayOfWeekNum       : NumRange1To7,
-    dayOfWeekName      : string,
-    dayOfWeekShortName : string,
-    timezoneOffset     : number,
-    unixTimestampMs    : number,
-}
-
-/**
- * Split a date into a more convenient date info object
- */
-export const parseDate = (date: Date): ParsedDate => {
-    const year = date.getFullYear();
-    const ms = date.getMilliseconds();
-    const isLeap = isLeapYear(year);
-    const dayOfWeek = date.getDay() as NumRange1To7;
-
-    return {
-        dateObj            : date,
-
-        date               : date.getDate(),
-        year               : year,
-        month              : date.getMonth() + 1, // month is 1 less than you'd expect.
-
-        hour               : date.getHours(),
-        minute             : date.getMinutes(),
-        second             : date.getSeconds(),
-        millisecond        : ms,
-        ms                 : ms,
-
-        isLeapYear         : isLeap,
-        daysInYear         : (isLeap ? 366 : 365),
-        dayOfWeekNum       : dayOfWeek,
-        dayOfWeekName      : convertDayOfWeekNumToString(dayOfWeek),
-        dayOfWeekShortName : date.toString().split(' ')[0],
-
-        timezoneOffset     : date.getTimezoneOffset() / dateTime.minutesPerHour,
-        unixTimestampMs    : date.getTime(), // milliseconds since 01-01-1970
-    };
-};
-
 /**
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *
