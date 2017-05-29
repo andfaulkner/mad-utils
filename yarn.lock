@@ -2153,9 +2153,9 @@ mad-logs@^5.3.0:
     lodash.isstring "^4.0.1"
     string.prototype.padend "^3.0.0"
 
-mad-logs@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.3.0.tgz#2efc4d09a06bc93b1eb17c1fc3acfb792ea662f5"
+mad-logs@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-8.3.2.tgz#f44e725e9855347b1a24fcf642d552d696789e8b"
   dependencies:
     "@types/lodash" "^4.14.64"
     colors "^1.1.2"
