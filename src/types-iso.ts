@@ -110,9 +110,10 @@ export const isArray = (value: RealAny): boolean => {
  * @return {boolean} true if given value is a number.
  */
 export const isNumLike = (val: RealAny): boolean => {
+    if (typeof val === 'undefined' || typeof val == null) return false;
     if (isArray(val) && val.length !== 1) return false;
     if (isNaN(parseFloat(isNumLike as any))) {
-        log.verbose(`isNumberLike: ${log.inspect(val)} can't be converted to a number.`);
+        log.verboseError(`isNumberLike: ${log.inspect(val)} can't be converted to a number.`);
         return false;
     }
     return true;
@@ -126,10 +127,11 @@ export const isNumLike = (val: RealAny): boolean => {
  * @return {boolean} true if given value is integer.
  */
 export const isInt = (val: RealAny): boolean => {
+    if (typeof val === 'undefined' || typeof val == null) return false;
     if (isArray(val) && val.length !== 1) return false;
     const valAsInt = parseInt(val, 10);
     if (isNaN(valAsInt) || valAsInt !== parseFloat(val)) {
-        log.verbose(`isInt: ${log.inspect(val)} can't be converted to an integer.`);
+        log.verboseError(`isInt: ${log.inspect(val)} can't be converted to an integer.`);
         return false;
     }
     return true;

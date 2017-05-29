@@ -25,7 +25,7 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isInt(-100)).to.be.true;
                 expect(typesIso.isInt(0)).to.be.true;
             });
-            it(`returns true given a non-integer`, function() {
+            it(`returns false given a non-integer`, function() {
                 expect(typesIso.isInt(10.2)).to.be.false;
                 expect(typesIso.isInt('gr')).to.be.false;
                 expect(typesIso.isInt({})).to.be.false;

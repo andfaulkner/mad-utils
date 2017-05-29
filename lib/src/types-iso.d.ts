@@ -13,6 +13,10 @@ export declare type StrOrNum = string | number;
 export declare type NumOrStr = StrOrNum;
 export declare type StringOrNumber = StrOrNum;
 export declare type NumberOrString = StrOrNum;
+/**
+ * Any type that can potentially be cast to a number.
+ */
+export declare type NumLike = StrOrNum | StrOrNum[];
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
@@ -44,12 +48,18 @@ export declare const isDateLike: (arg: any) => boolean;
  */
 export declare const isArray: (value: any) => boolean;
 /**
+ * Returns true if given value can be converted to a number (integer, float, string that can be
+ * parsed to an int or float, or a 1-item array containing any of the aforementioned types)
+ *
+ * @param {any} value - value to check type of.
+ * @return {boolean} true if given value is a number.
+ */
+export declare const isNumLike: (val: any) => boolean;
+/**
  * Returns true if given value is an integer.
  *
  * @param {any} value - value to check type of.
  * @return {boolean} true if given value is integer.
- *
- * TODO TEST!
  */
 export declare const isInt: (val: any) => boolean;
 /**
@@ -70,4 +80,13 @@ export declare const isInt: (val: any) => boolean;
  *  // It will now only be possible to create one instance of class SomeSingleton.
  */
 export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+/**
+ * Convert item to a number (if given item is of a type that can be converted as such).
+ * If not, throw an error if this is specified.
+ * @param {NumLike} numLike - value to cast to a number
+ * @param {boolean} throwOnFail (OPTIONAL) - When true, throw if given type isn't a number.
+ *                              When false, return an Error if given type isn't a number.
+ * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
+ */
+export declare const castToNum: (numLike: NumLike, throwOnFail?: boolean) => number | Error;
 export { isMultilangTextObj } from './object';
