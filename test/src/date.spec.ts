@@ -153,6 +153,5 @@ describe(`date sub-module`, function() {
             expect(now(`YYYY/MM/DD`)).to.eql(jsFormattedDate);
         });
     });
-
 });
 
