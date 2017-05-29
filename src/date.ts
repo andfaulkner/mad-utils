@@ -1,16 +1,22 @@
 import moment from 'moment';
 import { dateTime } from 'common-constants';
+import { isDateLike, castToNum, NumLike, isInt } from './types-iso';
 
 export type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export const defaultTimestampFormat = `YYYY/MM/DD : hh:mm:ss`;
 
 /**
- * True if the given year is a leap year.
+ * True if the given year is a leap year. Throw if given value cannot be cast to an integer.
+ * @param {NumLike} year - Determine if the given number is a leap year.
+ * @return {boolean|number} True if a leap year; false if not; throw if invalid year given.
  */
-export function isLeapYear(year: number): boolean {
-    if (year % 4 === 0 && year % 100 !== 0) return true;
-    if (year % 400 === 0) return true;
+export function isLeapYear(year: NumLike): boolean | never {
+    const yearClean = castToNum(year);
+    if (!isInt(year) || yearClean instanceof Error) {
+         throw new Error(`isLeapYear can only accept integers & values parsable to integers.`);
+    }
+    if (yearClean % 4 === 0 && ((yearClean % 400 === 0) || (yearClean % 100 !== 0))) return true;
     return false;
 }
 
@@ -100,3 +106,5 @@ export const parseDate = (date: Date): ParsedDate => {
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
 export const now = (timeFormat: string = defaultTimestampFormat) => moment().format(timeFormat);
+
+export { isDateLike } from './types-iso';
