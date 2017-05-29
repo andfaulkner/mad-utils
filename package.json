@@ -1,6 +1,6 @@
 {
   "name": "mad-utils",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A set of misc utilties I find myself repeatedly re-writing between projects.",
   "main": "lib/shared.js",
   "typings": "lib/shared",
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andfaulkner/misc-ts-utils-isomorphic.git#v0.7.0"
+    "url": "git+https://github.com/andfaulkner/misc-ts-utils-isomorphic.git#v0.7.1"
   },
   "keywords": [
     "util",
@@ -96,7 +96,6 @@
     "lodash": "4.17.4",
     "mad-logs": "^8.3.2",
     "mocha": "^3.2.0",
-    "mock-local-storage": "^1.0.2",
     "nyc": "^10.3.2",
     "sinon": "^1.17.6",
     "snyk": "^1.24.6",
