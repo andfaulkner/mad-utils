@@ -129,18 +129,28 @@ describe(`date sub-module`, function() {
 
     describe(`now function`, function() {
         expectFunctionExists(now);
-        it(`should return current time in YYYY/MM/DD : HH:MM:SS format`, function() {
-            console.log(`date::now : now():`, now());
+        it(`should return current date & time in YYYY/MM/DD : HH:MM:SS format if given no args`,
+            function()
+        {
             const jsNow = new Date();
-            const jsFormattedDate =
+            const jsFormattedDateTime =
                 `${jsNow.getFullYear()}/` +
                 `${jsNow.getMonth() < 10 ? `0` : ``}${jsNow.getMonth() + 1}/` +
                 `${jsNow.getDate()} : ` +
                 `${jsNow.getHours() < 10 ? `0` : ``}${jsNow.getHours()}:` +
                 `${jsNow.getMinutes() < 10 ? `0` : ``}${jsNow.getMinutes()}:` +
                 `${jsNow.getSeconds() < 10 ? `0` : ``}${jsNow.getSeconds()}`;
-            console.log(`date::now test : jsFormattedDate:`, jsFormattedDate);
-            expect(now()).to.eql(jsFormattedDate)
+            expect(now()).to.eql(jsFormattedDateTime)
+        });
+        it(`should return current date & time in any valid MomentJS format (e.g. YYYY/MM/DD) ` +
+            `given as an arg`, function()
+        {
+            const jsNow = new Date();
+            const jsFormattedDate =
+                `${jsNow.getFullYear()}/` +
+                `${jsNow.getMonth() < 10 ? `0` : ``}${jsNow.getMonth() + 1}/` +
+                `${jsNow.getDate()}`;
+            expect(now(`YYYY/MM/DD`)).to.eql(jsFormattedDate);
         });
     });
 
