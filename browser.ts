@@ -34,6 +34,9 @@ export { event }
 import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export { localStore }
+export { localStore as localStorage }
+export { localStore as localStoreUtils }
+export { localStore as localStorageUtils }
 
 // Import browser-types (including merged-in types from types-iso)
 import * as browserTypes from './src/browser/types-browser';
@@ -64,6 +67,9 @@ export const mUtils = {
     json,
     locale,
     localStore,
+    localStoreUtils: localStore,
+    localStorage: localStore,
+    localStorageUtils: localStore,
     number,
     object,
     query,
