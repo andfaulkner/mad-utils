@@ -4,8 +4,10 @@
 //
 
 /**
- * Construct a mock localStorage object. Should be bound to a global, to act as a shim for
- * browser localStorage in a NodeJS environment
+ * Construct a mock Storage (localStorage / sessionStorage) object. Should be
+ * bound to a global, to act as a shim for browser localStorage or sessionStorage
+ * in a NodeJS environment.
+ *
  * @return {Storage} New 'Storage' object
  * @example window.localStorage = mockBrowserStorage();
  */
@@ -77,7 +79,12 @@ export const mockBrowserStorage = function mockBrowserStorage() {
     return store;
 };
 
+// NOTE: this is a bit evil - instantiating just to get typings. This is due to
+// a Typescript limitation, sadly.
+const baseMockBrowserStorage = mockBrowserStorage();
+export type BrowserStorage = typeof baseMockBrowserStorage;
 
+// Typings to make bindBrowserStorageGlobally happy.
 declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionStorage: Storage }};
 declare const window: Window;
 
@@ -106,4 +113,4 @@ export const bindBrowserStorageGlobally = () => {
         return true;
     }
     return false;
-}
+};

@@ -1,6 +1,5 @@
 --recursive
 --compilers ts:ts-node/register,tsx:ts-node/register
--r mock-local-storage
 --colors
 --watch-extensions ts
 --growl
