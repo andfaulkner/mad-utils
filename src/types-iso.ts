@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { DecoratorError } from './error';
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+import { buildFileTag, nodeLogFactory, colors } from 'mad-logs';
 const log = nodeLogFactory(buildFileTag('types-iso.ts', colors.green.bgWhite));
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
