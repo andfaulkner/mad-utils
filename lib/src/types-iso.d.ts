@@ -25,12 +25,28 @@ export declare type NumLike = StrOrNum | StrOrNum[];
  */
 export declare const isNonexistentOrString: (val: any) => boolean;
 /**
- * Returns true if the given argument is a number or a string that can be parsed into a number.
+ * Returns true if the given argument is a number, a string that can be parsed into a number, or
+ * a 1-item array containing either aforementioned type.
  * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
  * @param {RealAny} arg - item being tested for number-like nature.
  * @return {boolean} True if item is number-like, otherwise false.
  */
 export declare const isNumberLike: (arg: any) => boolean;
+/**
+ * @alias isNumberLike
+ */
+export declare const isNumLike: (arg: any) => boolean;
+/**
+ * Returns true if given value is an integer.
+ *
+ * @param {any} value - value to check type of.
+ * @return {boolean} true if given value is integer.
+ */
+export declare const isInteger: (val: any) => boolean;
+/**
+ * @alias for isInteger
+ */
+export declare const isInt: (val: any) => boolean;
 /**
  * Returns true if the given arguments is a moment instance, Date instance, or any string that
  * moment is able to parse. Excludes negative numbers and strings that parse to negative numbers,
@@ -47,21 +63,6 @@ export declare const isDateLike: (arg: any) => boolean;
  * @return {boolean} True if arg 'value' is an Array,
  */
 export declare const isArray: (value: any) => boolean;
-/**
- * Returns true if given value can be converted to a number (integer, float, string that can be
- * parsed to an int or float, or a 1-item array containing any of the aforementioned types)
- *
- * @param {any} value - value to check type of.
- * @return {boolean} true if given value is a number.
- */
-export declare const isNumLike: (val: any) => boolean;
-/**
- * Returns true if given value is an integer.
- *
- * @param {any} value - value to check type of.
- * @return {boolean} true if given value is integer.
- */
-export declare const isInt: (val: any) => boolean;
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
  *

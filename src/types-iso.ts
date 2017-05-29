@@ -42,7 +42,8 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
     (typeof val === 'undefined') || (val === null) || (typeof val === 'string');
 
 /**
- * Returns true if the given argument is a number or a string that can be parsed into a number.
+ * Returns true if the given argument is a number, a string that can be parsed into a number, or
+ * a 1-item array containing either aforementioned type.
  * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
  * @param {RealAny} arg - item being tested for number-like nature.
  * @return {boolean} True if item is number-like, otherwise false.
@@ -56,8 +57,32 @@ export const isNumberLike = (arg: RealAny): boolean => {
         cleanArg = arg.match(/^\-\.\d/) ? arg.replace(/^-./, '-0.') : cleanArg;
         return !isNaN(parseInt(cleanArg, 10));
     }
+    if (isArray(arg) && arg.length === 1) {
+        return isNumberLike(arg[0]);
+    }
     return false;
 };
+
+/**
+ * @alias isNumberLike
+ */
+export const isNumLike = isNumberLike;
+
+/**
+ * Returns true if given value is an integer.
+ *
+ * @param {any} value - value to check type of.
+ * @return {boolean} true if given value is integer.
+ */
+export const isInteger = (val: RealAny): boolean => {
+    if (isNumberLike(val) && parseInt(val, 10) === parseFloat(val)) return true;
+    return false;
+}
+
+/**
+ * @alias for isInteger
+ */
+export const isInt = isInteger;
 
 /**
  * Returns true if the given arguments is a moment instance, Date instance, or any string that
@@ -102,40 +127,6 @@ export const isArray = (value: RealAny): boolean => {
                || (value.constructor.__proto__ && value.constructor.__proto__.name === 'Array')));
 };
 
-/**
- * Returns true if given value can be converted to a number (integer, float, string that can be
- * parsed to an int or float, or a 1-item array containing any of the aforementioned types)
- *
- * @param {any} value - value to check type of.
- * @return {boolean} true if given value is a number.
- */
-export const isNumLike = (val: RealAny): boolean => {
-    if (typeof val === 'undefined' || typeof val == null) return false;
-    if (isArray(val) && val.length !== 1) return false;
-    if (isNaN(parseFloat(isNumLike as any))) {
-        log.verboseError(`isNumberLike: ${log.inspect(val)} can't be converted to a number.`);
-        return false;
-    }
-    return true;
-};
-
-
-/**
- * Returns true if given value is an integer.
- *
- * @param {any} value - value to check type of.
- * @return {boolean} true if given value is integer.
- */
-export const isInt = (val: RealAny): boolean => {
-    if (typeof val === 'undefined' || typeof val == null) return false;
-    if (isArray(val) && val.length !== 1) return false;
-    const valAsInt = parseInt(val, 10);
-    if (isNaN(valAsInt) || valAsInt !== parseFloat(val)) {
-        log.verboseError(`isInt: ${log.inspect(val)} can't be converted to an integer.`);
-        return false;
-    }
-    return true;
-}
 
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
@@ -190,7 +181,7 @@ export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs
  */
 export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error | never => {
     if (typeof numLike === 'number') return numLike;
-    if (isNumLike(numLike)) return parseFloat(numLike as string);
+    if (isNumberLike(numLike)) return parseFloat(numLike as string);
 
     const baseErrMsg = 'castToNum can only accept numbers, #s in string form e.g. "1", or 1-item' +
                        ` arrays containing either type. Invalid value: ${log.inspect(numLike)}`;
