@@ -117,13 +117,13 @@ describe(`date sub-module`, function() {
         });
 
         it(`throws if given a number/numberString outside the 0-6 range, or another type.`, function() {
-            expect(() => convertDayOfWeekNumToString('7' as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString(7 as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString(-1 as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString(-1 as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString('7'    as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(7      as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(-1     as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(-1     as any)).to.throw();
             expect(() => convertDayOfWeekNumToString('asdf' as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString([] as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString({} as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString([]     as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString({}     as any)).to.throw();
         });
     });
 });
