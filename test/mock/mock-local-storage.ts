@@ -1,89 +1,109 @@
-// Mock localStorage
-export const mockLocalStorage = function mockLocalStorage() {
-    let s = {} as Storage;
-    const noopCallback = (...args: any[]) => {};
-    let _itemInsertionCallback = noopCallback;
+//
+// Loosely based on https://github.com/letsrock-today/mock-local-storage
+// Thanks letsrock-today!
+//
 
-    s.setItem = (k: string, v: string) => {
+/**
+ * Construct a mock localStorage object. Should be bound to a global, to act as a shim for
+ * browser localStorage in a NodeJS environment
+ * @return {Storage} New 'Storage' object
+ * @example window.localStorage = mockBrowserStorage();
+ */
+export const mockBrowserStorage = function mockBrowserStorage() {
+    let store = {} as Storage;
+    const noopCallback = (...args: any[]) => {};
+    let _itemInsertionCallback: Function = noopCallback;
+
+    store.setItem = (k: string, val: string) => {
         k = k + '';
-        if (!s.hasOwnProperty(k)) {
-            _itemInsertionCallback(s.length);
+        if (!store.hasOwnProperty(k)) {
+            _itemInsertionCallback(store.length);
         }
-        s[k] = v + '';
+        store[k] = val + '';
     };
 
 
-    s.getItem = (k: string): string => {
+    store.getItem = (k: string): string => {
         k = k + '';
-        if (s.hasOwnProperty(k)) {
-            return s[k];
+        if (store.hasOwnProperty(k)) {
+            return store[k];
         } else {
             return null;
         }
     };
 
-    s.removeItem = (k): void => {
+    store.removeItem = (k: string): void => {
         k = k + '';
-        if (s.hasOwnProperty(k)) {
-            delete s[k];
+        if (store.hasOwnProperty(k)) {
+            delete store[k];
         }
     };
 
-    s.clear = (): void => {
-        for (let k in s) {
-            if (s.hasOwnProperty(k)) {
-                delete s[k];
+    store.clear = (): void => {
+        for (let k in store) {
+            if (store.hasOwnProperty(k)) {
+                delete store[k];
             }
         }
     };
 
-    Object.defineProperty(s, 'length', {
+    Object.defineProperty(store, 'length', {
         enumerable: true,
         value: () => {
-            return Object.keys(s).length;
+            return Object.keys(store).length;
         },
     });
 
-    Object.defineProperty(s, 'key', {
+    Object.defineProperty(store, 'key', {
         enumerable: true,
         value: (k: string) => {
-            let key = Object.keys(s)[k];
+            let key = Object.keys(store)[k];
             return (!key) ? null : key;
         },
     });
 
-    Object.defineProperty(s, 'itemInsertionCallback', {
+    Object.defineProperty(store, 'itemInsertionCallback', {
         get: () => {
             return _itemInsertionCallback;
         },
-        set: v => {
-            if (!v || typeof v != 'function') {
-                v = noopCallback;
+        set: (val: Function) => {
+            if (!val || typeof val != 'function') {
+                val = noopCallback;
             }
-            _itemInsertionCallback = v;
+            _itemInsertionCallback = val;
         }
     });
-    return s;
-}
 
-/***************************** ATTEMPT TO AUTOMATICALLY BIND GLOBALLY *****************************/
+    return store;
+};
+
+
 declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionStorage: Storage }};
 declare const window: Window;
 
-if (typeof global !== 'undefined') {
-    if (typeof global.window === 'undefined') {
-        global.window = {
-            localStorage: mockLocalStorage(),
-            sessionStorage: mockLocalStorage(),
-        };
-    } else {
-        global.window.localStorage = mockLocalStorage();
-        global.window.sessionStorage = mockLocalStorage();
-    }
+/**
+ * Attempt to automatically bind localStorage and sessionStorage globally.
+ * @return {boolean} true if it succeeds, false if it doesn't.
+ */
+export const bindBrowserStorageGlobally = () => {
+    if (typeof global !== 'undefined') {
+        if (typeof global.window === 'undefined') {
+            global.window = {
+                localStorage: mockBrowserStorage(),
+                sessionStorage: mockBrowserStorage(),
+            };
+        } else {
+            global.window.localStorage = mockBrowserStorage();
+            global.window.sessionStorage = mockBrowserStorage();
+        }
+        return true;
 
-} else if (typeof window !== 'undefined') {
-    Object.assign(window, {
-        localStorage: mockLocalStorage(),
-        sessionStorage: mockLocalStorage(),
-    });
+    } else if (typeof window !== 'undefined') {
+        Object.assign(window, {
+            localStorage: mockBrowserStorage(),
+            sessionStorage: mockBrowserStorage(),
+        });
+        return true;
+    }
+    return false;
 }

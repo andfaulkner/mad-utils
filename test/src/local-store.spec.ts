@@ -6,9 +6,8 @@ declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionS
 import { expect } from 'chai';
 
 /******************************************* DOM MOCKS ********************************************/
-// (global as any).window = {};
-
-import { mockLocalStorage } from '../mock/mock-local-storage';
+import { mockBrowserStorage, bindBrowserStorageGlobally } from '../mock/mock-local-storage';
+bindBrowserStorageGlobally();
 
 console.log(window.localStorage);
 console.log(window.localStorage.toString());
@@ -32,14 +31,14 @@ class MockClassStore {
         public key1           = 'key1_val_mockClassStore',
         public classStoreKey1 = 'classStoreKey1_val_mockClassStore'
     ) {
-        console.log(`Done instantiating MockClassStore`);
+        console.log(`local-store.spec:: MockClassStore constructor: Instantiated MockClassStore`);
     }
 }
 const mockClassStore = new MockClassStore();
 
-console.log('window.localStorage: ', window.localStorage);
 window.localStorage.setItem('key1', 'key1_val_localStorage');
 window.localStorage.setItem('lsKey1', 'lsKey1_val_localStorage');
+
 window.sessionStorage.setItem('key1', 'key1_val_sessionStorage');
 window.sessionStorage.setItem('ssKey1', 'ssKey1_val_sessionStorage');
 
@@ -102,6 +101,7 @@ describe(`local-store sub-module`, function() {
             expect(localStorageUtils.getFromStorage('non_existent_key', mockStore)).to.be.null;
         });
     });
+
     describe('function isAuthenticated', function() {
         expectFunctionExists(localStore.isAuthenticated)
         expectFunctionExists(isAuthenticated)
