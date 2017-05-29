@@ -1,9 +1,9 @@
 /******************************************** BROWSER *********************************************/
 /**
  * If given a "store" object, try to get item at given key from it. Next try to get it from browser
- * localStorage or sessionStorage. Finally, try key in 'this' binding. Return null if all fail.
+ * localStorage or sessionStorage. Finally, try key in 'this' binding. Return undefined if all fail.
  */
-export declare const getFromStorage: (key: string, store?: Object) => string;
+export declare function getFromStorage(key: string, store?: Object): string | void;
 /**
  * If the user is authenticated, there will be a key in localStorage.
  * Note that this should NEVER be used to determine permissions - this
