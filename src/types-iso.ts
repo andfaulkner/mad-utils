@@ -196,4 +196,29 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
     }
 };
 
+/**
+ * Convert string representation of a boolean value to a boolean value. Return error if this
+ * isn't possible. If something is already a boolean, it simply passes it through.
+ * @example converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc.
+ * @param {string|boolean} val - value to convert to string or boolean. Must be 'y', 'n', 't', 'f',
+ *                               'yes', no', 'true', or 'false' (case-insensitive); or a boolean.
+ * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
+ *                         Otherwise throw.
+ */
+export const boolStringToBool = (val: string | boolean): boolean | never => {
+    const lcVal = val.toString().toLowerCase();
+    if (lcVal === 'true' || lcVal === 't' || lcVal === 'y' || lcVal === 'yes') {
+        return true;
+    } else if (lcVal === 'false'|| lcVal === 'f' || lcVal === 'n' || lcVal === 'no') {
+        return false;
+    }
+    throw new TypeError('Must input true, false, t, f, y, n, yes, or no');
+};
+
+/**
+ * @alias for boolStringToBool
+ */
+export const toBoolFromBoolString = boolStringToBool;
+
+
 export { isMultilangTextObj } from './object';

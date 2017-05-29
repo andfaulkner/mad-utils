@@ -92,4 +92,18 @@ export declare const singleton: <T extends ClassConstructor>(constructor: T, ...
  * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
  */
 export declare const castToNum: (numLike: NumLike, throwOnFail?: boolean) => number | Error;
+/**
+ * Convert string representation of a boolean value to a boolean value. Return error if this
+ * isn't possible. If something is already a boolean, it simply passes it through.
+ * @example converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc.
+ * @param {string|boolean} val - value to convert to string or boolean. Must be 'y', 'n', 't', 'f',
+ *                               'yes', no', 'true', or 'false' (case-insensitive); or a boolean.
+ * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
+ *                         Otherwise throw.
+ */
+export declare const boolStringToBool: (val: string | boolean) => boolean;
+/**
+ * @alias for boolStringToBool
+ */
+export declare const toBoolFromBoolString: (val: string | boolean) => boolean;
 export { isMultilangTextObj } from './object';
