@@ -1,6 +1,10 @@
 import * as moment from 'moment';
 import { DecoratorError } from './error';
 
+/******************************************** LOGGING *********************************************/
+import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+const log = nodeLogFactory(buildFileTag('types-iso.ts', colors.green.bgWhite));
+
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
     new(...args: any[]): {};
@@ -22,6 +26,11 @@ export type StrOrNum = string | number;
 export type NumOrStr = StrOrNum;
 export type StringOrNumber = StrOrNum;
 export type NumberOrString = StrOrNum;
+
+/**
+ * Any type that can potentially be cast to a number.
+ */
+export type NumLike = StrOrNum | StrOrNum[];
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**
@@ -94,18 +103,37 @@ export const isArray = (value: RealAny): boolean => {
 };
 
 /**
+ * Returns true if given value can be converted to a number (integer, float, string that can be
+ * parsed to an int or float, or a 1-item array containing any of the aforementioned types)
+ *
+ * @param {any} value - value to check type of.
+ * @return {boolean} true if given value is a number.
+ */
+export const isNumLike = (val: RealAny): boolean => {
+    if (isArray(val) && val.length !== 1) return false;
+    if (isNaN(parseFloat(isNumLike as any))) {
+        log.verbose(`isNumberLike: ${log.inspect(val)} can't be converted to a number.`);
+        return false;
+    }
+    return true;
+};
+
+
+/**
  * Returns true if given value is an integer.
  *
  * @param {any} value - value to check type of.
  * @return {boolean} true if given value is integer.
- *
- * TODO TEST!
  */
 export const isInt = (val: RealAny): boolean => {
-    const valAsFloat = parseFloat(val);
-    return (isNaN(val)) ? false
-                        : (valAsFloat | 0) === valAsFloat;
-};
+    if (isArray(val) && val.length !== 1) return false;
+    const valAsInt = parseInt(val, 10);
+    if (isNaN(valAsInt) || valAsInt !== parseFloat(val)) {
+        log.verbose(`isInt: ${log.inspect(val)} can't be converted to an integer.`);
+        return false;
+    }
+    return true;
+}
 
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
@@ -148,6 +176,28 @@ export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs
 
     Object.defineProperty(SingletonClass, 'name', { value: constructor.name });
     return SingletonClass as (SingletonInterface<any> & typeof constructor);
+};
+
+/**
+ * Convert item to a number (if given item is of a type that can be converted as such).
+ * If not, throw an error if this is specified.
+ * @param {NumLike} numLike - value to cast to a number
+ * @param {boolean} throwOnFail (OPTIONAL) - When true, throw if given type isn't a number.
+ *                              When false, return an Error if given type isn't a number.
+ * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
+ */
+export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error | never => {
+    if (typeof numLike === 'number') return numLike;
+    if (isNumLike(numLike)) return parseFloat(numLike as string);
+
+    const baseErrMsg = 'castToNum can only accept numbers, #s in string form e.g. "1", or 1-item' +
+                       ` arrays containing either type. Invalid value: ${log.inspect(numLike)}`;
+    if (throwOnFail) {
+        throw new Error(baseErrMsg);
+    } else {
+        log.verboseError(`WARNING: ${baseErrMsg}`);
+        return new Error(baseErrMsg);
+    }
 };
 
 export { isMultilangTextObj } from './object';
