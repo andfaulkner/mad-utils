@@ -1,4 +1,4 @@
-import moment from 'moment';
+import * as moment from 'moment';
 import { dateTime } from 'common-constants';
 import { isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever } from './types-iso';
 

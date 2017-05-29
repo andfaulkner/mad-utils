@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 import { m_, date, isLeapYear, isDateLike } from '../../shared';
 
-import { expectFunctionExists, convertDayOfWeekNumToString } from '../../node';
+import { expectFunctionExists, convertDayOfWeekNumToString, now } from '../../node';
 
 const dateFns = m_.date;
 
@@ -126,5 +126,23 @@ describe(`date sub-module`, function() {
             expect(() => convertDayOfWeekNumToString({}     as any)).to.throw();
         });
     });
+
+    describe(`now function`, function() {
+        expectFunctionExists(now);
+        it(`should return current time in YYYY/MM/DD : HH:MM:SS format`, function() {
+            console.log(`date::now : now():`, now());
+            const jsNow = new Date();
+            const jsFormattedDate =
+                `${jsNow.getFullYear()}/` +
+                `${jsNow.getMonth() < 10 ? `0` : ``}${jsNow.getMonth() + 1}/` +
+                `${jsNow.getDate()} : ` +
+                `${jsNow.getHours() < 10 ? `0` : ``}${jsNow.getHours()}:` +
+                `${jsNow.getMinutes() < 10 ? `0` : ``}${jsNow.getMinutes()}:` +
+                `${jsNow.getSeconds() < 10 ? `0` : ``}${jsNow.getSeconds()}`;
+            console.log(`date::now test : jsFormattedDate:`, jsFormattedDate);
+            expect(now()).to.eql(jsFormattedDate)
+        });
+    });
+
 });
 
