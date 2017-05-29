@@ -1,5 +1,5 @@
 import { NumLike } from './types-iso';
-export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export declare type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 export declare const defaultTimestampFormat: string;
 /**
  * True if the given year is a leap year. Throw if given value cannot be cast to an integer.
@@ -9,10 +9,10 @@ export declare const defaultTimestampFormat: string;
 export declare function isLeapYear(year: NumLike): boolean | never;
 /**
  * Convert numeric day of the week to string day of the week.
- * Monday is the 1st day (1 becomes 'Monday', 2 becomes 'Tuesday', 7 becomes 'Sunday')
+ * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Tuesday', 6 becomes 'Sunday')
  * Given day must be a number between 1 and 7.
  */
-export declare function convertDayOfWeekNumToString(day: NumRange1To7): string | never;
+export declare function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate?: boolean): string | never;
 export declare type ParsedDate = {
     dateObj: Date;
     date: number;

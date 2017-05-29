@@ -1,8 +1,8 @@
 import moment from 'moment';
 import { dateTime } from 'common-constants';
-import { isDateLike, castToNum, NumLike, isInt } from './types-iso';
+import { isDateLike, castToNum, NumLike, isInt, isNumberLike } from './types-iso';
 
-export type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
 export const defaultTimestampFormat = `YYYY/MM/DD : hh:mm:ss`;
 
@@ -14,7 +14,7 @@ export const defaultTimestampFormat = `YYYY/MM/DD : hh:mm:ss`;
 export function isLeapYear(year: NumLike): boolean | never {
     const yearClean = castToNum(year);
     if (!isInt(year) || yearClean instanceof Error) {
-         throw new Error(`isLeapYear can only accept integers & values parsable to integers.`);
+         throw new Error('mad-utils::isLeapYear must receive integer or value parsable to integer');
     }
     if (yearClean % 4 === 0 && ((yearClean % 400 === 0) || (yearClean % 100 !== 0))) return true;
     return false;
@@ -22,10 +22,15 @@ export function isLeapYear(year: NumLike): boolean | never {
 
 /**
  * Convert numeric day of the week to string day of the week.
- * Monday is the 1st day (1 becomes 'Monday', 2 becomes 'Tuesday', 7 becomes 'Sunday')
+ * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Tuesday', 6 becomes 'Sunday')
  * Given day must be a number between 1 and 7.
  */
 export function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate = false): string | never {
+    const fnErrStr = `mad-utils :: convertDayOfWeekNumToString :: Invalid day of week given. Must` +
+                     `be number from 0 to 6 (or 0-6 in string form e.g. '0'). Received: ${day}`;
+    if (typeof day === 'undefined' || day == null) {
+        throw new Error(fnErrStr)
+    }
     switch(day.toString()) {
         case '0':  return doAbbreviate ? 'Sun'   : 'Sunday';
         case '1':  return doAbbreviate ? 'Mon'   : 'Monday';
@@ -34,9 +39,7 @@ export function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate = fa
         case '4':  return doAbbreviate ? 'Thurs' : 'Thursday';
         case '5':  return doAbbreviate ? 'Fri'   : 'Friday';
         case '6':  return doAbbreviate ? 'Sat'   : 'Saturday';
-        default: {
-            throw new Error(`INVALID DAY OF WEEK: MUST BE NUMBER FROM 0 TO 6. Input day: ${day}`);
-        }
+        default: throw new Error(fnErrStr);
     }
 }
 

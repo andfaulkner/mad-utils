@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 import { m_, date, isLeapYear, isDateLike } from '../../shared';
 
-import { expectFunctionExists } from '../../node';
+import { expectFunctionExists, convertDayOfWeekNumToString } from '../../node';
 
 const dateFns = m_.date;
 
@@ -18,6 +18,7 @@ describe(`date sub-module`, function() {
     });
     describe(`isLeapYear function`, function() {
         expectFunctionExists(isLeapYear);
+        expectFunctionExists(m_.date.isLeapYear);
         it(`Returns true if given number is a leap year`, function() {
             expect(isLeapYear(4)).to.be.true;
             expect(isLeapYear(120)).to.be.true;
@@ -39,7 +40,7 @@ describe(`date sub-module`, function() {
             expect(isLeapYear(['5'])).to.be.false;
             expect(isLeapYear(['1600'])).to.be.true;
         });
-        it(`throws error if given a value that cannot be converted to an int`, function() {
+        it(`throws error if given a value that cannot be converted to an integer`, function() {
             expect(() => isLeapYear({ 1: '5' } as any)).to.throw(Error);
             expect(() => isLeapYear([1, 2, 3])).to.throw(Error);
             expect(() => isLeapYear('asdf')).to.throw(Error);
@@ -50,6 +51,79 @@ describe(`date sub-module`, function() {
             expect(() => isLeapYear(Object as any)).to.throw(Error);
             expect(() => isLeapYear((() => 'gr') as any)).to.throw(Error);
             expect(() => isLeapYear('')).to.throw(Error);
+        });
+    });
+
+    describe(`convertDayOfWeekNumToString function`, function() {
+        expectFunctionExists(convertDayOfWeekNumToString);
+        expectFunctionExists(m_.date.convertDayOfWeekNumToString);
+        it(`converts 0 into 'Sunday'`, function() {
+            expect(convertDayOfWeekNumToString(0)).to.equal('Sunday');
+            expect(convertDayOfWeekNumToString('0')).to.equal('Sunday');
+        });
+        it(`converts 1 or '1' into 'Monday'`, function() {
+            expect(convertDayOfWeekNumToString(1)).to.equal('Monday');
+            expect(convertDayOfWeekNumToString('1')).to.equal('Monday');
+        });
+        it(`converts 2 or '2' into 'Tuesday'`, function() {
+            expect(convertDayOfWeekNumToString(2)).to.equal('Tuesday');
+            expect(convertDayOfWeekNumToString('2')).to.equal('Tuesday');
+        });
+        it(`converts 3 or '3' into 'Wednesday'`, function() {
+            expect(convertDayOfWeekNumToString(3)).to.equal('Wednesday');
+            expect(convertDayOfWeekNumToString('3')).to.equal('Wednesday');
+        });
+        it(`converts 4 or '4' into 'Thursday'`, function() {
+            expect(convertDayOfWeekNumToString(4)).to.equal('Thursday');
+            expect(convertDayOfWeekNumToString('4')).to.equal('Thursday');
+        });
+        it(`converts 5 or '5' into 'Friday'`, function() {
+            expect(convertDayOfWeekNumToString(5)).to.equal('Friday');
+            expect(convertDayOfWeekNumToString('5')).to.equal('Friday');
+        });
+        it(`converts 6 or '6' into 'Saturday'`, function() {
+            expect(convertDayOfWeekNumToString(6)).to.equal('Saturday');
+            expect(convertDayOfWeekNumToString('6')).to.equal('Saturday');
+        });
+
+        const doesAbbreviateMsg = '(i.e. it abbreviates if arg 2 is true)';
+        it(`converts args (0, true) or ('0', true) into 'Sun' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(0, true)).to.equal('Sun');
+            expect(convertDayOfWeekNumToString('0', true)).to.equal('Sun');
+        });
+        it(`converts args (1, true) or ('1', true) into 'Mon' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(1, true)).to.equal('Mon');
+            expect(convertDayOfWeekNumToString('1', true)).to.equal('Mon');
+        });
+        it(`converts args (2, true) or ('2', true) into 'Tue' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(2, true)).to.equal('Tues');
+            expect(convertDayOfWeekNumToString('2', true)).to.equal('Tues');
+        });
+        it(`converts args (3, true) or ('3', true) into 'Wed' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(3, true)).to.equal('Wed');
+            expect(convertDayOfWeekNumToString('3', true)).to.equal('Wed');
+        });
+        it(`converts args (4, true) or ('4', true) into 'Thu' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(4, true)).to.equal('Thurs');
+            expect(convertDayOfWeekNumToString('4', true)).to.equal('Thurs');
+        });
+        it(`converts args (5, true) or ('5', true) into 'Fri' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(5, true)).to.equal('Fri');
+            expect(convertDayOfWeekNumToString('5', true)).to.equal('Fri');
+        });
+        it(`converts args (6, true) or ('6', true) into 'Sat' ${doesAbbreviateMsg}`, function() {
+            expect(convertDayOfWeekNumToString(6, true)).to.equal('Sat');
+            expect(convertDayOfWeekNumToString('6', true)).to.equal('Sat');
+        });
+
+        it(`throws if given a number/numberString outside the 0-6 range, or another type.`, function() {
+            expect(() => convertDayOfWeekNumToString('7' as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(7 as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(-1 as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(-1 as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString('asdf' as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString([] as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString({} as any)).to.throw();
         });
     });
 });
