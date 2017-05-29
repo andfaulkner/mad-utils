@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { dateTime } from 'common-constants';
-import { isDateLike, castToNum, NumLike, isInt, isNumberLike } from './types-iso';
+import { isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever } from './types-iso';
 
 export type NumRange1To7 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -25,20 +25,20 @@ export function isLeapYear(year: NumLike): boolean | never {
  * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Tuesday', 6 becomes 'Sunday')
  * Given day must be a number between 1 and 7.
  */
-export function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate = false): string | never {
+export const convertDayOfWeekNumToString = (day: NumRange1To7, abbreviate = false): StrOrNever => {
     const fnErrStr = `mad-utils :: convertDayOfWeekNumToString :: Invalid day of week given. Must` +
                      `be number from 0 to 6 (or 0-6 in string form e.g. '0'). Received: ${day}`;
     if (typeof day === 'undefined' || day == null) {
         throw new Error(fnErrStr)
     }
     switch(day.toString()) {
-        case '0':  return doAbbreviate ? 'Sun'   : 'Sunday';
-        case '1':  return doAbbreviate ? 'Mon'   : 'Monday';
-        case '2':  return doAbbreviate ? 'Tues'  : 'Tuesday';
-        case '3':  return doAbbreviate ? 'Wed'   : 'Wednesday';
-        case '4':  return doAbbreviate ? 'Thurs' : 'Thursday';
-        case '5':  return doAbbreviate ? 'Fri'   : 'Friday';
-        case '6':  return doAbbreviate ? 'Sat'   : 'Saturday';
+        case '0':  return abbreviate ? 'Sun'   : 'Sunday';
+        case '1':  return abbreviate ? 'Mon'   : 'Monday';
+        case '2':  return abbreviate ? 'Tues'  : 'Tuesday';
+        case '3':  return abbreviate ? 'Wed'   : 'Wednesday';
+        case '4':  return abbreviate ? 'Thurs' : 'Thursday';
+        case '5':  return abbreviate ? 'Fri'   : 'Friday';
+        case '6':  return abbreviate ? 'Sat'   : 'Saturday';
         default: throw new Error(fnErrStr);
     }
 }

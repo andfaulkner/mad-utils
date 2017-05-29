@@ -26,6 +26,8 @@ export type StrOrNum = string | number;
 export type NumOrStr = StrOrNum;
 export type StringOrNumber = StrOrNum;
 export type NumberOrString = StrOrNum;
+export type StrOrNever = string | never;
+export type NeverOrStr = string | never;
 
 /**
  * Any type that can potentially be cast to a number.

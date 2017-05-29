@@ -13,6 +13,8 @@ export declare type StrOrNum = string | number;
 export declare type NumOrStr = StrOrNum;
 export declare type StringOrNumber = StrOrNum;
 export declare type NumberOrString = StrOrNum;
+export declare type StrOrNever = string | never;
+export declare type NeverOrStr = string | never;
 /**
  * Any type that can potentially be cast to a number.
  */

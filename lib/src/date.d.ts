@@ -12,7 +12,7 @@ export declare function isLeapYear(year: NumLike): boolean | never;
  * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Tuesday', 6 becomes 'Sunday')
  * Given day must be a number between 1 and 7.
  */
-export declare function convertDayOfWeekNumToString(day: NumRange1To7, doAbbreviate?: boolean): string | never;
+export declare const convertDayOfWeekNumToString: (day: NumRange1To7, abbreviate?: boolean) => string;
 /**
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *
