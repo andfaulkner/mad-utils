@@ -2,7 +2,7 @@
 
 import * as path from 'path';
 import { path as rootPath } from 'app-root-path';
-import { writeFileSync, readFileSync } from 'fs-extra-promise';
+import { writeFileSync, readFileSync, unlinkSync } from 'fs-extra-promise';
 
 /********************************* IMPORT FILE MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
@@ -11,6 +11,9 @@ import { m_, file } from '../../node';
 import { expectFunctionExists } from '../../node';
 
 const docObjModel = m_.file;
+
+/********************************************* CONFIG *********************************************/
+const exampleFilePath = './random-example-file';
 
 
 /********************************************* TESTS **********************************************/
@@ -33,12 +36,11 @@ describe(`file sub-module`, function() {
         expectFunctionExists(file.replaceInFile);
         it(`Replaces lin`, function() {
             // Build a mock file for this test
-            writeFileSync('./random-example-file', `line1\nline2\nline3\nlineZZZ\nline5`);
-            file.replaceInFile('./random-example-file', 'lineZZZ', 'line4');
-            const exampleFileContent = readFileSync('./random-example-file').toString();
+            writeFileSync(exampleFilePath, `line1\nline2\nline3\nlineZZZ\nline5`);
+            file.replaceInFile(exampleFilePath, 'lineZZZ', 'line4');
+            const exampleFileContent = readFileSync(exampleFilePath).toString();
             expect(exampleFileContent).to.match(/line4/);
             expect(exampleFileContent).to.not.match(/lineZZZ/);
-
         });
     });
 
@@ -102,5 +104,10 @@ describe(`file sub-module`, function() {
                 file.isFileInDir(path.join(rootPath, 'test/mock/mock-dir-of-files'), 'file12.ts')
             ).to.be.false;
         });
+    });
+
+    // Remove mock file on completion of all file tests.
+    after(function() {
+        unlinkSync(path.join(exampleFilePath));
     });
 });
