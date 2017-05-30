@@ -15,5 +15,9 @@ import 'reflect-metadata';
  * @return {Function} Actual decorator, for wrapping methods (this is a decorator factory).
  */
 export declare function notForWebUse(alternative?: string, envUsage?: string): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+/**
+ * @alias notForWebUse
+ */
+export declare const methodNotForWebUse: typeof notForWebUse;
 export { DecoratorError, DecoratorErrorProps } from './error';
 export { singleton } from './types-iso';

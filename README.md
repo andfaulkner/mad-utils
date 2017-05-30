@@ -3,48 +3,162 @@
 *   Utilities I keep repeatedly rewriting across projects.
 
 ----
+
+*   NOTE: the documentation is an extreme work-in-progress.
+*   Recent versions have considerably changed the design, API, and even structure.
+    *   Considerably more functions are available
+    *   Existing functions have been massively changed (mostly to be more robust & less surprising);
+    *   The library has been split into 3 parts:
+        *   node
+        *   browser
+        *   isomorphic/shared
+            *   consumed by default, and also used by both the node and browser sub-modules
+    *   A few exports have been deprecated (such as the parseDate function and ParsedDate type)
+        *   Mostly due to irrelevance (items were taken from my own projects)
+
+----
+Sub-modules
+===========
+*   Broken into 3 sub-modules: node, browser, and isomorphic.
+*   The node and browser sub-modules each include the entirety of the isomorphic sub-module
+
+Isomorphic
+----------
+### Importing isomorphic sub-module
+
+    // Import all namespaces, functions, types, etc. from isomorphic submodule
+    import { m_ } from 'mad-utils';
+
+    // Import isomorphic namespaces
+    import { array, json, enum, number, object, query, string, types, decorator } from 'mad-utils';
+
+    // Import isomorphic namespaces
+    // Import individual isomorphic functions, types, classes, etc.
+    import { first, isNumberLike, parseQueryParams, castToNum, stringToEnumVal } from 'mad-utils';
+
+*   All modules exported from mad-utils provide everything in the isomorphic module.
+
+### Isomorphic namespaces
+*   array
+*   date
+*   error
+*   func / functionUtils
+*   json
+*   locale
+*   number
+*   object
+*   query
+*   search
+*   string
+*   types
+
+All of the above namesapaces are also importable from the NodeJS and Browser modules
+
+NodeJS
+------
+*   exports that will only work in a Node environment, such as:
+    *   Anything using the NodeJS core API
+    *   Anything requiring file handling
+    *   Anything based on DOM-free unit testing
+    *   Anything intended for use with (or relying on) on a browser-unfriendly library
+        *   e.g. Express, Mocha, Chai
+
+*   Will generally crash your application if imported into the browser
+
+### Importing NodeJS sub-module
+    // Import all namespaces, functions, types, etc. from node & isomorphic submodules
+    import { m_ } from 'mad-utils/lib/node';
+
+    // Import node (and isomorphic) namespaces
+    import { file, test, middleware, webpackUtils, nodeError, date } from 'mad-utils/lib/node';
+
+    // Import individual node (and isomorphic) functions, types, classes, etc.
+    import { isDir, wasRunAsScript, replaceInFile, getJsFilesInDir,
+             globalActivateCleanStack, handlebarsPluginFactory, third,
+             useMiddlewareInProductionOnly, composeExpressMiddlewares,
+             isNonMinFile, eliminateWhitespace, thirdLast, splitLines } from 'mad-utils/lib/node';
+
+### Node-specific namespaces
+*   file
+*   middleware
+*   nodeError
+*   test
+*   webpackUtils
+*   types (expanded to include both isomorphic and Node-specific types)
+
+
+Browser
+-------
+*   Exports that will only work in a browser environment, or one with a mocked DOM (e.g. JSDom)
+*   Generally causes errors to throw if used in Node without a special environment set up
+    *   e.g. JSDom, or inclusion of various window mocks/polyfills
+
+### Importing Browser sub-module
+
+    // Import all namespaces, functions, types, etc. from browser submodule
+    import { m_ } from 'mad-utils/lib/browser';
+
+    // Import namespaces from browser (and isomorphic) submodules
+    import { dom, event, localStorageUtils, types } from 'mad-utils/lib/node';
+
+    // Import individual browser (and isomorphic) functions, types, classes, etc.
+    import { mouseEventFactory, removeClickEventFromId,
+             addClickEventToId, getFunctionSrcAsArray,
+             methodNotForWebUse, getFromStorage, commonLangsObj,
+             jsonStringifyWFuncs, canadaLangNames, assignFrozenClone } from 'mad-utils/lib/node';
+
+### Browser namespaces
+*   dom
+*   event
+*   localStorageUtils
+*   types (expanded to include both isomorphic and Browser-specific types)
+
+
 Functions, by namespace
 =======================
-To import namespaced functions:
-
-    import { mUtils } from 'mad-utils';
-
-Access functions in namespaces via:
+More import notes
+-----------------
+If using a high-level import (mUtils, m_, __), you can access functions either via their namespaces or directory. E.g.
 
     mUtils.search.replaceAll
-    mUtils.number.isInt
-    mUtils.date.isLeapYear
-    mUtils.enum.enumValToString
-    mUtils.collection.isArray
-    mUtils.string.cap1LowerRest
-    mUtils.array.secondLast
-    mUtils.collection.secondLast
+    mUtils.replaceAll
+    __.number.isInt
+    __.isInt
+    m_.date.isLeapYear
+    m_.isLeapYear
+    m_.array.secondLast
+    m_.secondLast
     ...etc...
 
-mUtils is one of the 'namespace collection' exports. You can also get it like this if you hate named imports:
+mUtils, __, and m_ are 'full collection' exports. You can also get it them like this if you hate named imports:
 
     import * as madUtils from 'mad-utils';
-    const h = madUtils._;
+    const h = madUtils.m_;
 
-Collection of namespaces available at multiple import locations. The following are all identical:
-
-    import { _, __ m_, mUtils, madUtils } from 'mad-utils';
-
-You can also just import functions one-by-one from a free-for-all top-level namespace. e.g.:
-
-    import {  }
-
-
+Namespace strategy
+------------------
 Inclusive, overlapping namespace strategy used.
-Namespaces treated more like keywords than parent types.
-Many functions are included in more than 1 namespace.
-*   The main purpose of this API is to make common functions maximally available.
-    *   Repeatedly checking each section hoping to remember where a function lives is annoying.
-        *   ...but having 100s of them together in a giant namespace with no other form of organization available is also annoying.
-    *   Compromise: Give everything to 
 
-Function guide
-==============
+Namespaces treated more like keywords than parent types.
+*   Many functions are included in more than 1 namespace.
+
+The main philosophy behind this API design is to make common functions maximally available.
+*   Repeatedly checking sifthing through namespaces trying to remember where a function lives is annoying.
+*   However, having 100s of functions together in a giant namespace with no other form of organization available is also annoying.
+*   I opted for a compromise, where everything was included in a giant namespace, while also including smaller "sub-namespaces".
+    *   This also has import advantages, since you can opt to pull in as much or as little as you need on each reference to mad-utils, without having to import whole namespaces and pluck individual functions off.
+
+Common types
+------------
+### NumLike
+*   Numbers, strings that can be parsed to numbers (floats), and arrays with a single item where said item is a number or string parseable to a number
+
+### StrOrNever
+*   Either a string or 'Never' (indicating a thrown error)
+
+
+Namespace contents
+==================
 Namespace : array
 -----------------
 ### last
@@ -150,17 +264,45 @@ Namespace : collection  (Alias: coll)
 
 Namespace : date
 ----------------
-### isLeapYear
-*   WIP
+### [TYPE] NumRange0To6
+*   Shorthand for any number between 0 and 6
 
-### convertDayOfWeekNumToString
-*   WIP
+### [CONST] defaultTimestampFormat
+*   string that creates a timestamp in a nice, human-readable format when passed to MomentJS.
+`YYYY/MM/DD : hh:mm:ss`
 
-### parseDate
-*   WIP
+### [FUNC] isLeapYear
+(year: NumLike) => boolean
+*   Returns true if given year is a leap year
+*   Accepts integers, strings that can be converted to integers, and arrays with a single item, where said item is an integer or string convertable to an integer.
+*   Any other input will throw.
 
-### now
-*   WIP
+### [FUNC] convertDayOfWeekNumToString
+(day: NumRange0To6, abbreviate: boolean) => StrOrNever
+
+*   Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
+*   Args:
+    *   day: number from 0 to 6 for conversion
+    *   abbreviate: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Defaults to false.
+
+```
+    convertDayOfWeekNumToString(5); // => 'Friday'
+    convertDayOfWeekNumToString(2, true); // => 'Tues'
+```
+
+### [FUNC] now
+(timeFormat?: string) => string
+*   Get the current date, formatted for display in the stream of Express logs to the CLI.
+*   Args:
+    *   timeFormat?: Optional momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
+        *   More info at https://momentjs.com/docs/#/parsing/string-format/
+
+```
+    now(); // => 2017/05/28 : 02:51:39
+    now(`YYYY/MM hh:mm`); // => 2017/02 02:51
+```
+
+### [FUNC] isDateLike (exported from types-iso - see below)
 
 
 Namespace : decorator
@@ -268,6 +410,18 @@ Namespace : test
 ----------------
 ### expectEmptyObject
 *   WIP
+
+
+Namespace : type (isomorphic)
+-----------------------------
+[FUNC] isDateLike
+(arg: RealAny) => boolean
+*   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
+    *   Excludes:
+        *   negative numbers
+        *   strings that parse to negative numbers
+        *   objects with date-irrelevant keys e.g. { year: 1123, bear: 'grizzly' }
+
 
 Namespace : type
 ----------------

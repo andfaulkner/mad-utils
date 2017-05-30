@@ -61,8 +61,10 @@ export declare const mUtils: {
     file: typeof file;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
@@ -94,8 +96,10 @@ export declare const __: {
     file: typeof file;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
@@ -127,8 +131,10 @@ export declare const m_: {
     file: typeof file;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
@@ -160,8 +166,10 @@ export declare const madUtils: {
     file: typeof file;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;

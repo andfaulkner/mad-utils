@@ -88,9 +88,9 @@ export const isInteger = (val: RealAny): boolean => {
 export const isInt = isInteger;
 
 /**
- * Returns true if the given arguments is a moment instance, Date instance, or any string that
- * moment is able to parse. Excludes negative numbers and strings that parse to negative numbers,
- * and objects with date-irrelevant keys.
+ * Returns true if the given argument is a moment instance, Date instance, or any string, number,
+ * or object that moment is able to parse. Excludes negative numbers and strings that parse to
+ * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
  *
  * @param {any} arg - Item to test for Date-like properties
  * @return {boolean} True if item is date-like.

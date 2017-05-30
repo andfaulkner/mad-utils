@@ -33,5 +33,10 @@ export function notForWebUse(alternative?: string, envUsage = 'native mobile cli
     }
 };
 
+/**
+ * @alias notForWebUse
+ */
+export const methodNotForWebUse = notForWebUse;
+
 export { DecoratorError, DecoratorErrorProps } from './error';
 export { singleton } from './types-iso';

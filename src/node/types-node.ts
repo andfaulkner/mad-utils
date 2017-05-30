@@ -11,6 +11,10 @@ import { Application, Router } from 'express';
  * Generic signature for Express (slash Connect) middlewares
  */
 export type MWare<T> = (T: T) => connect.HandleFunction;
+/**
+ * @alias for MWare<T>
+ */
+export type Middleware<T> = MWare<T>;
 
 export type ApplyMiddlewareFn = <T>(app: T) => T;
 export type ExpressApp = Application | Router;

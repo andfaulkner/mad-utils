@@ -4,3 +4,7 @@
  * @return {string[]} function source code in an array, where each 'line' is an item.
  */
 export declare function getFnAsArr(func: Function): string[];
+/**
+ * @alias getFnAsArr
+ */
+export declare const getFunctionSrcAsArray: typeof getFnAsArr;

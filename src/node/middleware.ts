@@ -33,6 +33,11 @@ export const useMiddlewareInProdOnly = <T>(opts?: T) => (middleware: MWare<T>): 
 };
 
 /**
+ * @alias for useMiddlewareInProdOnly
+ */
+export const useMiddlewareInProductionOnly = useMiddlewareInProdOnly;
+
+/**
  * Apply any number of middlewares to the given express application.
  */
 export const composeExpressMiddlewares =

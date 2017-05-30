@@ -25,6 +25,10 @@ import * as connect from 'connect';
  */
 export declare const useMiddlewareInProdOnly: <T>(opts?: T) => (middleware: MWare<T>) => connect.Server;
 /**
+ * @alias for useMiddlewareInProdOnly
+ */
+export declare const useMiddlewareInProductionOnly: <T>(opts?: T) => (middleware: MWare<T>) => connect.Server;
+/**
  * Apply any number of middlewares to the given express application.
  */
 export declare const composeExpressMiddlewares: <T extends ExpressApp>(app: T, ...midwareApplicators: ApplyMiddlewareFn[]) => T;

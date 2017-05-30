@@ -47,8 +47,10 @@ export declare const mUtils: {
     event: typeof event;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;
@@ -77,8 +79,10 @@ export declare const __: {
     event: typeof event;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;
@@ -107,8 +111,10 @@ export declare const m_: {
     event: typeof event;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;
@@ -137,8 +143,10 @@ export declare const madUtils: {
     event: typeof event;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;

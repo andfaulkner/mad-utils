@@ -55,8 +55,10 @@ export declare const mUtils: {
     error: typeof error;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     number: typeof number;
     object: typeof object;
@@ -79,8 +81,10 @@ export declare const __: {
     error: typeof error;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     number: typeof number;
     object: typeof object;
@@ -103,8 +107,10 @@ export declare const m_: {
     error: typeof error;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     number: typeof number;
     object: typeof object;
@@ -127,8 +133,10 @@ export declare const madUtils: {
     error: typeof error;
     func: typeof func;
     'function': typeof func;
+    functionUtils: typeof func;
     isNode: any;
     json: typeof json;
+    jsonUtils: typeof json;
     locale: typeof locale;
     number: typeof number;
     object: typeof object;

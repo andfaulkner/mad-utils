@@ -8,3 +8,8 @@ export function getFnAsArr(func: Function): string[] {
     return func.toString().split('\n');
 }
 
+/**
+ * @alias getFnAsArr
+ */
+export const getFunctionSrcAsArray = getFnAsArr;
+
