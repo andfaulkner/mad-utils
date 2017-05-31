@@ -1,8 +1,4 @@
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`general-utils.ts`, logMarkers.checkmate);
-
-
+import { isMocha,  } from 'env-var-helpers';
 /******************************************** BROWSER *********************************************/
 /**
  * If given a "store" object, try to get item at given key from it. Next try to get it from browser
@@ -25,7 +21,8 @@ export function getFromStorage(key: string, store?: Object): string | void {
             return window.sessionStorage.getItem(key) || window.localStorage.getItem(key);
         }
     } catch(e) {
-        log.error('getFromStorage: not in a browser environment, cannot use window object');
+        throw new Error('[ERROR] mad-utils::local-store::getFromStorage -- ' +
+                        'not in a browser environment, cannot use window object');
     }
 };
 

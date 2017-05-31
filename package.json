@@ -88,7 +88,7 @@
     "chai": "^3.5.0",
     "chokidar": "^1.6.1",
     "colors": "^1.1.2",
-    "env-var-helpers": "^2.1.0",
+    "env-var-helpers": "^2.3.0",
     "eslint": "^3.12.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",

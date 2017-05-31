@@ -9,6 +9,10 @@ import { expectFunctionExists, convertDayOfWeekNumToString, now } from '../../no
 
 const dateFns = m_.date;
 
+/******************************************** LOGGING *********************************************/
+import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+const TAG = buildFileTag('date.spec.ts', colors.bgBlue.white);
+
 
 /********************************************* TESTS **********************************************/
 describe(`date sub-module`, function() {
@@ -140,8 +144,8 @@ describe(`date sub-module`, function() {
                 `${jsNow.getHours() < 10 ? `0` : ``}${jsNow.getHours()}:` +
                 `${jsNow.getMinutes() < 10 ? `0` : ``}${jsNow.getMinutes()}:` +
                 `${jsNow.getSeconds() < 10 ? `0` : ``}${jsNow.getSeconds()}`;
-            console.log('date.spec.ts :: now :: jsNow:', jsNow);
-            console.log('date.spec.ts :: now :: jsFormattedDateTime:', jsFormattedDateTime);
+            log.verbose('date.spec.ts :: now :: jsNow:', jsNow);
+            log.verbose('date.spec.ts :: now :: jsFormattedDateTime:', jsFormattedDateTime);
             expect(now()).to.eql(jsFormattedDateTime)
         });
         it(`should return current date & time in any valid MomentJS format (e.g. YYYY/MM/DD) ` +

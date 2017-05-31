@@ -2,12 +2,11 @@ import { $ } from './dom';
 
 /******************************************** IMPORTS *********************************************/
 import * as isNode from 'detect-node';
+import { isMocha, isVerbose } from 'env-var-helpers';
 
-
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`event.ts`, logMarkers.brainwave);
-
+/**************************************** PROJECT IMPORTS *****************************************/
+const fnName = 'mad-utils::event';
+import { browserOnly } from '../isomorphic-enforcement';
 
 /**************************************** DEFAULTS, CONFIG ****************************************/
 // Default global
@@ -17,18 +16,8 @@ var global = (isNode)
         ? (window as Window)
         : global);
 
-
 //*************************************** TYPE DEFINITIONS ****************************************/
 export type EventFunction = (ev: MouseEvent) => void;
-
-
-/******************************************** HELPERS *********************************************/
-/**
- * Output warning if function can't run in Node.
- */
-const browserOnly = (fnName: string) => (...args): void => {
-    log.verbose(`{$fnName} not usable in node - browser only`);
-};
 
 
 /**************************************** EXPORT FUNCTIONS ****************************************/
