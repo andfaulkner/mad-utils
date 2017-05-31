@@ -17,8 +17,6 @@ export declare function isLeapYear(year: NumLike): boolean | never;
  */
 export declare const convertDayOfWeekNumToString: (day: NumRange0To6, abbreviate?: boolean) => string;
 /**
- * TODO -- AM/PM handling is broken such that dates past noon display improperly. HIGH-PRIORITY FIX.
- *
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *
  * @param {string} timeFormat - [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`

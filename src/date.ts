@@ -4,7 +4,7 @@ import { isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever } from 
 
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
-export const defaultTimestampFormat = `YYYY/MM/DD : hh:mm:ss`;
+export const defaultTimestampFormat = `YYYY/MM/DD : kk:mm:ss`;
 
 /**
  * True if the given year is a leap year. Throw if given value cannot be cast to an integer.
@@ -47,8 +47,6 @@ export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = fals
 }
 
 /**
- * TODO -- AM/PM handling is broken such that dates past noon display improperly. HIGH-PRIORITY FIX.
- *
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
  *
  * @param {string} timeFormat - [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
@@ -62,6 +60,7 @@ export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = fals
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
 export const now =
-    (timeFormat: string = defaultTimestampFormat): string => moment().format(timeFormat);
+    (timeFormat: string = defaultTimestampFormat): string =>
+        moment().format(timeFormat);
 
 export { isDateLike } from './types-iso';
