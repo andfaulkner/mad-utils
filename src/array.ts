@@ -92,7 +92,7 @@ export function first3<T>(arr: T[]): T[];
 export function first3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 3); }
 
 /**
- * Return first N items in an array. Returned the whole array if you request too many items.
+ * Return first N items in an array. Returns the whole array if you request too many items.
  */
 export function firstN(str: string, n: number): string;
 export function firstN<T>(arr: T[], n: number): T[];

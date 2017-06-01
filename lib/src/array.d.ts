@@ -46,6 +46,31 @@ export declare function first3<T>(arr: T[]): T[];
  */
 export declare function firstN(str: string, n: number): string;
 export declare function firstN<T>(arr: T[], n: number): T[];
+/************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
+/** Exclude given number of items from end of string or array */
+export declare function withoutLastN<T>(str: string, numToRm: number): string;
+export declare function withoutLastN<T>(arr: T[], numToRm: number): T[];
+/** Exclude given number of items from beginning of string or array */
+export declare function withoutFirstN<T>(str: string, numToRm: number): string;
+export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
+/** Exclude last item from string or array */
+export declare function withoutLast<T>(str: string): string;
+export declare function withoutLast<T>(arr: T[]): T[];
+/** Exclude last 2 items from string or array */
+export declare function withoutLast2<T>(str: string): string;
+export declare function withoutLast2<T>(arr: T[]): T[];
+/** Exclude last 3 items from string or array */
+export declare function withoutLast3<T>(str: string): string;
+export declare function withoutLast3<T>(arr: T[]): T[];
+/** Exclude first item from string or array */
+export declare function withoutFirst<T>(str: string): string;
+export declare function withoutFirst<T>(arr: T[]): T[];
+/** Exclude first 2 items from string or array */
+export declare function withoutFirst2<T>(str: string): string;
+export declare function withoutFirst2<T>(arr: T[]): T[];
+/** Exclude first 3 items from string or array */
+export declare function withoutFirst3<T>(str: string): string;
+export declare function withoutFirst3<T>(arr: T[]): T[];
 /**
  * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
  * If either arr1 or arr2 are undefined, it ignores it and just returns the other.

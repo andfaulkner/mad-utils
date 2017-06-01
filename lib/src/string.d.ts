@@ -117,4 +117,4 @@ export declare const isNonMinFile: (inode: string) => boolean;
 export declare const getBaseFilenameFromPath: (filePath: string) => string;
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
-export { splitLines } from './array';
+export { splitLines, first, first2, first3, firstN, last, last2, last3, lastN, without, withoutFirst, withoutFirst2, withoutFirst3, withoutLast, withoutLast2, withoutLast3, withoutFirstN, withoutLastN } from './array';
