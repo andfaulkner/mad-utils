@@ -12,6 +12,7 @@ const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
         eliminateWhitespace, getBaseFilenameFromPath } = str;
 
+// TODO test 'without' functions
 
 /********************************************* TESTS **********************************************/
 describe(`string sub-module`, function() {

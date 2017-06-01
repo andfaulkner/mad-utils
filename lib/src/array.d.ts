@@ -42,7 +42,7 @@ export declare function first2<T>(arr: T[]): T[];
 export declare function first3<T>(str: string): string;
 export declare function first3<T>(arr: T[]): T[];
 /**
- * Return first N items in an array. Returned the whole array if you request too many items.
+ * Return first N items in an array. Returns the whole array if you request too many items.
  */
 export declare function firstN(str: string, n: number): string;
 export declare function firstN<T>(arr: T[], n: number): T[];
