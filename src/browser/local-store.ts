@@ -1,4 +1,3 @@
-import { isMocha,  } from 'env-var-helpers';
 /******************************************** BROWSER *********************************************/
 /**
  * If given a "store" object, try to get item at given key from it. Next try to get it from browser

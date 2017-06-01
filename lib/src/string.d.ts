@@ -1,5 +1,3 @@
-/******************************************** LOGGING *********************************************/
-import { MadLog } from 'mad-logs';
 /*********************************** EXPORTED STRING FUNCTIONS ************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
@@ -98,7 +96,7 @@ export declare const eliminateWhitespace: (str: string) => string;
  *
  * @return {string} Properly indented string.
  */
-export declare function withLeftIndent(strings: any, leftPadSize: any, logger?: MadLog): string;
+export declare function withLeftIndent(strings: any, leftPadSize: any, xz?: any): string;
 /*************************************** FILE PATH STRINGS ****************************************/
 /**
  * If given string ends in .js, returns true.

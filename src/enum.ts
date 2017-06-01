@@ -1,10 +1,7 @@
 import { scrubStackTrace } from './error';
+import { isVerbose, isMocha, isWarn } from 'env-var-helpers';
 
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`mad-utils :: enum.ts`, logMarkers.grasslands);
-
-
+const fn = `mad-utils::enum --`;
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum
@@ -50,14 +47,14 @@ export const enumValToString = <E>(Enum, val, caps: 'lower' | 'upper' | null = n
  * Convert given enum value in string form to its numeric index.
  */
 export const stringToEnumVal = (val: string, Enum): number => {
-    log.verbose(`stringToEnumVal :: Enum:`, Enum, `;; val:`, val);
+    if (isMocha && isVerbose) console.log(`${fn} stringToEnumVal: Enum:`, Enum, `;; val:`, val);
     for (let item in Enum) {
         if (isDataEnumItem(item, Enum) && item.toLowerCase() === val.toLowerCase()) {
             return Enum[item];
         }
     }
 
-    log.warn(`stringToEnumVal ::
+    if (isMocha && isWarn) console.warn(`${fn} stringToEnumVal ::
         WARNING: stringToEnumVal: no matches of given value - ${val} - in given enum:
             ${JSON.stringify(Enum)}
         ...returning 99999.`);
@@ -68,7 +65,7 @@ export const stringToEnumVal = (val: string, Enum): number => {
 
     // Display clean stack trace up to point of 'Error' creation.
     const cleanStack = scrubStackTrace(stack, 'stringToEnumVal');
-    console.log(cleanStack, '\n');
+    if (isVerbose && isMocha) console.log(cleanStack, '\n');
 
     return 99999;
 }

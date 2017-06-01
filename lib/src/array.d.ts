@@ -1,26 +1,4 @@
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
-/** Return last item in an array. */
-export declare const last: <T>(arr: T[]) => T;
-/** Return second last item in an array. */
-export declare const secondLast: <T>(arr: T[]) => T;
-/** Return third last item in an array. */
-export declare const thirdLast: <T>(arr: T[]) => T;
-/** Return last 2 items in an array. */
-export declare const last2: <T>(arr: T[]) => T[];
-/** Return last 3 items in an array. */
-export declare const last3: <T>(arr: T[]) => T[];
-/** Return last N items in an array. */
-export declare const lastN: <T>(arr: T[], n: number) => T[];
-/** Return first item in an array. */
-export declare const first: <T>(arr: T[]) => T;
-/** Return second item in an array. */
-export declare const second: <T>(arr: T[]) => T;
-/** Return third item in an array. */
-export declare const third: <T>(arr: T[]) => T;
-/** Return first 2 items in an array. */
-export declare const first2: <T>(arr: T[]) => T[];
-/** Return first 3 items in an array. */
-export declare const first3: <T>(arr: T[]) => T[];
 /**
  * Create array containing requested number of repeats of a given fillValue, or containing
  * requested number of repeats of undefined if no fillValue is given.
@@ -30,21 +8,44 @@ export declare const first3: <T>(arr: T[]) => T[];
  *                                        (or undefined if fillValue is not given)
  */
 export declare const arrayN: <T>(len: number, fillValue?: T) => void[] | T[];
+/** Return last item in an array or string. */
+export declare function last(str: string): string;
+export declare function last<T>(arr: T[]): T;
+/** Return second last item in an array or string. */
+export declare function secondLast(str: string): string;
+export declare function secondLast<T>(arr: T[]): T;
+/** Return third last item in an array. */
+export declare function thirdLast(str: string): string;
+export declare function thirdLast<T>(arr: T[]): T;
+/** Return last 2 items in an array. */
+export declare function last2(str: string): string;
+export declare function last2<T>(arr: T[]): T[];
+/** Return last 3 items in an array. */
+export declare function last3(str: string): string;
+export declare function last3<T>(arr: T[]): T[];
+/** Return last N items in an array. */
+export declare function lastN(str: string, n: number): string;
+export declare function lastN<T>(arr: T[], n: number): T[];
+/** Return first item in an array. */
+export declare function first(str: string): string;
+export declare function first<T>(arr: T[]): T;
+/** Return second item in an array. */
+export declare function second<T>(str: string): string;
+export declare function second<T>(arr: T[]): T;
+/** Return third item in an array. */
+export declare function third<T>(str: string): string;
+export declare function third<T>(arr: T[]): T;
+/** Return first 2 items in an array. */
+export declare function first2<T>(str: string): string;
+export declare function first2<T>(arr: T[]): T[];
+/** Return first 3 items in an array. */
+export declare function first3<T>(str: string): string;
+export declare function first3<T>(arr: T[]): T[];
 /**
  * Return first N items in an array. Returned the whole array if you request too many items.
  */
+export declare function firstN(str: string, n: number): string;
 export declare function firstN<T>(arr: T[], n: number): T[];
-/**
- * Exclude the first few or the last few items.
- */
-export declare const withoutLast: <T>(arr: T[]) => T[];
-export declare const withoutLast2: <T>(arr: T[]) => T[];
-export declare const withoutLast3: <T>(arr: T[]) => T[];
-export declare const withoutLastN: <T>(arr: T[], numToRm: number) => T[];
-export declare const withoutFirst: <T>(arr: T[]) => T[];
-export declare const withoutFirst2: <T>(arr: T[]) => T[];
-export declare const withoutFirst3: <T>(arr: T[]) => T[];
-export declare const withoutFirstN: <T>(arr: T[], numToRm: number) => T[];
 /**
  * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
  * If either arr1 or arr2 are undefined, it ignores it and just returns the other.
@@ -79,13 +80,37 @@ export declare const splitLines: (str: string) => any[];
  * Namespace for certain "reversed" operations.
  */
 export declare const without: {
-    last: <T>(arr: T[]) => T[];
-    last2: <T>(arr: T[]) => T[];
-    last3: <T>(arr: T[]) => T[];
-    lastN: <T>(arr: T[], numToRm: number) => T[];
-    first: <T>(arr: T[]) => T[];
-    first2: <T>(arr: T[]) => T[];
-    first3: <T>(arr: T[]) => T[];
-    firstN: <T>(arr: T[], numToRm: number) => T[];
+    last: {
+        <T>(str: string): string;
+        <T>(arr: T[]): T[];
+    };
+    last2: {
+        <T>(str: string): string;
+        <T>(arr: T[]): T[];
+    };
+    last3: {
+        <T>(str: string): string;
+        <T>(arr: T[]): T[];
+    };
+    lastN: {
+        <T>(str: string, numToRm: number): string;
+        <T>(arr: T[], numToRm: number): T[];
+    };
+    first: {
+        <T>(str: string): string;
+        <T>(arr: T[]): T[];
+    };
+    first2: {
+        <T>(str: string): string;
+        <T>(arr: T[]): T[];
+    };
+    first3: {
+        <T>(str: string): string;
+        <T>(arr: T[]): T[];
+    };
+    firstN: {
+        <T>(str: string, numToRm: number): string;
+        <T>(arr: T[], numToRm: number): T[];
+    };
 };
 export { isArray } from './types-iso';

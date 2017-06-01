@@ -25,11 +25,11 @@ import { StrOrNum } from './types-iso';
  *             </div>
  *         </body>
  */
-const _detectShortestIndentInArray = (lines: string[] | string, logger = log): number => {
+const _detectShortestIndentInArray = (lines: string[] | string): number => {
     // Ensure input is an array.
     const lineArr = (Array.isArray(lines) ? lines : [lines]) as string[];
 
-    const shortestIndent = lineArr.reduce((acc: number, line: string) => {
+    return lineArr.reduce((acc: number, line: string) => {
         // If any line found with no indent, prevent comparisons for the remainder of the loop.
         if (acc === 0) return acc;
 
@@ -40,14 +40,8 @@ const _detectShortestIndentInArray = (lines: string[] | string, logger = log): n
         if (!match || !match.input) return 0;
 
         // If indent length is shorter than the prior shortest, return as new shortest length.
-        const currentShortestIndent = (match.input.length < acc) ? match.input.length : acc;
-        logger.silly(`_detectShortestIndentInArray: currentShortestIndent: ${currentShortestIndent}`);
-
-        return currentShortestIndent;
+        return (match.input.length < acc) ? match.input.length : acc;
     }, 120);
-
-    logger.verbose(`_detectShortestIndentInArray: shortestIndent:`, shortestIndent);
-    return shortestIndent;
 };
 
 /**
@@ -195,7 +189,7 @@ export const eliminateWhitespace = (str: string): string => str.replace(/ /g, ''
  *
  * @return {string} Properly indented string.
  */
-export function withLeftIndent(strings, leftPadSize, logger = log) {
+export function withLeftIndent(strings, leftPadSize, xz?) {
     _validateWithLeftIndent(leftPadSize);
 
     // |** 1 **| Convert single string with '\n' delimiting lines to an array split on \n.
@@ -205,7 +199,7 @@ export function withLeftIndent(strings, leftPadSize, logger = log) {
     if (lines[0].length === 0) lines.shift();
 
     // |** 3 **| Determine which line has the shortest indent.
-    const shortestIndent = _detectShortestIndentInArray(lines, logger);
+    const shortestIndent = _detectShortestIndentInArray(lines);
 
     // |** 4 **| Create the indentation string to add & whitespace string to split on
     const leftPadSpaces = ' '.repeat(leftPadSize);
@@ -217,10 +211,7 @@ export function withLeftIndent(strings, leftPadSize, logger = log) {
     );
 
     // |** 6 **| Convert array back to string & return.
-    const retStr = linesPrepped.join(`\n`);
-    logger.verbose(`withLeftIndent: retStr:\n${retStr}`);
-
-    return retStr;
+    return linesPrepped.join(`\n`);
 }
 
 
@@ -248,4 +239,6 @@ export const getBaseFilenameFromPath = (filePath: string) => filePath.split('/')
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
-export { splitLines } from './array';
+export { splitLines, first, first2, first3, firstN, last, last2, last3, lastN, without,
+         withoutFirst, withoutFirst2, withoutFirst3, withoutLast, withoutLast2, withoutLast3,
+         withoutFirstN, withoutLastN } from './array';
