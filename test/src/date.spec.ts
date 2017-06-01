@@ -136,7 +136,7 @@ describe(`date sub-module`, function() {
             const jsFormattedDateTime =
                 `${jsNow.getFullYear()}/` +
                 `${jsNow.getMonth() < 10 ? `0` : ``}${jsNow.getMonth() + 1}/` +
-                `${jsNow.getDate()} : ` +
+                `${jsNow.getDate() < 10 ? `0` : ``}${jsNow.getDate()} : ` +
                 `${jsNow.getHours() < 10 ? `0` : ``}${jsNow.getHours()}:` +
                 `${jsNow.getMinutes() < 10 ? `0` : ``}${jsNow.getMinutes()}:` +
                 `${jsNow.getSeconds() < 10 ? `0` : ``}${jsNow.getSeconds()}`;
