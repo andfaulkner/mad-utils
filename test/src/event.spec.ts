@@ -12,10 +12,11 @@ describe(`event sub-module`, function() {
     it(`exists`, function() {
         expect(event).to.exist;
     });
-    it('has function mouseEventFactory, which builds mouse events but does nothing in Node',
+    it('has function mouseEventFactory, which creates mouse events builder that emits MouseEvent objects if run in browser, but does nothing in Node',
         function() {
             const mouseEvent = m_.event.mouseEventFactory();
             expect(mouseEvent).to.be.null; // in node it shouldn't work
+            // TODO test new allowInNode param
         }
     );
     it('has function removeClickEventFromId, which removes click events in browser but does nothing in Node',

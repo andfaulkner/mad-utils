@@ -6,7 +6,7 @@ import { isMocha, isVerbose } from 'env-var-helpers';
 
 /**************************************** PROJECT IMPORTS *****************************************/
 const fnName = 'mad-utils::event';
-import { browserOnly } from '../isomorphic-enforcement';
+import { browserOnly } from '../internal/isomorphic-enforcement';
 
 /**************************************** DEFAULTS, CONFIG ****************************************/
 // Default global
@@ -21,25 +21,45 @@ export type EventFunction = (ev: MouseEvent) => void;
 
 
 /**************************************** EXPORT FUNCTIONS ****************************************/
-// Construct a new click event
-export const mouseEventFactory: ((globalTarget?: any) => MouseEvent) = (isNode)
-    ? (globalTarget = global): MouseEvent => {
-        browserOnly('mouseEventFactory');
-        return null;
-    }
-    : (globalTarget = global): MouseEvent =>
-          // Triggerable built-in event.
-          new MouseEvent('click', { 'view': globalTarget, 'bubbles': true, 'cancelable': true });
+/**
+ * Construct a new click event. Can optionally pass in a global object.
+ * Generic event remover. Only works in browser unless allowInNode set.
+ * @return {MouseEvent} Browser: newly constructed MouseEvent object. Node: null.
+ * @param {boolean} allowInNode - If set to true, let this run in Node anyway. Defaults to false.
+ */
+export const mouseEventFactory: ((globalTarget?: any) => MouseEvent) =
+    // Adjust behaviour based on whether this is running in Node or browser.
+    isNode
+        // Return null and show a warning if run in Node.
+        ? (globalTarget = global): MouseEvent => {
+            browserOnly('mouseEventFactory');
+            return null;
+        }
+        // Return triggerable built-in event if run in browser.
+        : (globalTarget = window): MouseEvent =>
+              new MouseEvent('click', {
+                  'view': globalTarget,
+                  'bubbles': true,
+                  'cancelable': true
+              })
 
-// Generic event remover
-export const removeClickEventFromId: ((id?: string, event?) => (ev?: MouseEvent) => void) = (isNode)
-    ? (id: string = '', event = null) => {
-        browserOnly('removeClickEventFromId')
-        return null;
-    }
-    : (id: string, event) => (ev: MouseEvent) => {
-        $(id).removeEventListener('click', event);
-    };
+/**
+ * Generic event remover.
+ * In Node: returns null and emits warning that this can only works in the browser.
+ * In browser: return function w signature:
+ *     (ev?: MouseEvent) => void
+ *     Running it removes matching MouseEvent from the element passed to the parent.
+ *     Reason: The outputted function can be assigned as a clicked handler (e.g., in React).
+ */
+export const removeClickEventFromId: ((id?: string, event?) => (ev?: MouseEvent) => void) =
+    isNode
+        ? (id: string = '', event = null) => {
+            browserOnly('removeClickEventFromId')
+            return null;
+        }
+        : (id: string, event) => (ev: MouseEvent) => {
+            $(id).removeEventListener('click', event);
+        };
 
 // Generic event adder: addEventToId('id-event-2', function(ev: MouseEvent) { alert('doThing') });
 export const addClickEventToId: ((id: string, cb: EventFunction) => void) = (isNode)
