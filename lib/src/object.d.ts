@@ -6,6 +6,13 @@
  */
 export declare const assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
 /**
+ * [MUTATIVE] Deep freeze the given object.
+ * @param {Object} obj - Object to deeply freeze.
+ * @return {Readme<Object>} The original object, frozen. Note that it freezes the object itself as
+ *                          well - it does not create a frozen copy (the return is for convenience)
+ */
+export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
+/**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
  * @param {string[]|string} propPath - String in 'key1.key2.etc' form, or array of strings where

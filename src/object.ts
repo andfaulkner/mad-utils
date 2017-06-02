@@ -1,6 +1,6 @@
 import { isNonexistentOrString } from './types-iso';
 import { matchesIgnoreCase } from './string';
-import deepFreeze = require('deep-freeze-strict');
+import deepFreezeStrict = require('deep-freeze-strict');
 
 /********************************************* OBJECT *********************************************/
 
@@ -10,9 +10,18 @@ import deepFreeze = require('deep-freeze-strict');
  * @return {Object} Frozen merged version of provided objects. Clones originals - no mutation.
  */
 export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> => {
-    return deepFreeze<T>(Object.assign({}, ...args));
+    return deepFreezeStrict<T>(Object.assign({}, ...args));
 };
 
+/**
+ * [MUTATIVE] Deep freeze the given object.
+ * @param {Object} obj - Object to deeply freeze.
+ * @return {Readme<Object>} The original object, frozen. Note that it freezes the object itself as
+ *                          well - it does not create a frozen copy (the return is for convenience)
+ */
+export const deepFreeze = <T>(obj: T): Readonly<T> => {
+    return deepFreezeStrict<T>(obj);
+}
 
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
