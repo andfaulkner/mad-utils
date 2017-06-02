@@ -23,6 +23,9 @@ export interface SingletonInterface<U> {
     new: <Y>(...args: any[]) => Y;
 }
 
+/**
+ * Union aliases
+ */
 export type StrOrNum = string | number;
 export type NumOrStr = StrOrNum;
 export type StringOrNumber = StrOrNum;
@@ -34,6 +37,21 @@ export type NeverOrStr = string | never;
  * Any type that can potentially be cast to a number.
  */
 export type NumLike = StrOrNum | StrOrNum[];
+
+/**
+ * Alias to indicate variable injected by a decorator.
+ */
+export type Injection<T> = T;
+export type InjectionType<T> = T;
+
+export type OptionalInjection<T> = T;
+export type OptionalInjectedType<T> = T;
+
+export type RequiredInjection<T> = T;
+export type RequiredInjectionType<T> = T;
+
+export type MandatoryInjection<T> = T;
+export type MandatoryInjectionType<T> = T;
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**

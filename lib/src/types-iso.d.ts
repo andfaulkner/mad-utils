@@ -9,6 +9,9 @@ export interface SingletonInterface<U> {
     new (...args: any[]): U;
     new: <Y>(...args: any[]) => Y;
 }
+/**
+ * Union aliases
+ */
 export declare type StrOrNum = string | number;
 export declare type NumOrStr = StrOrNum;
 export declare type StringOrNumber = StrOrNum;
@@ -19,6 +22,17 @@ export declare type NeverOrStr = string | never;
  * Any type that can potentially be cast to a number.
  */
 export declare type NumLike = StrOrNum | StrOrNum[];
+/**
+ * Alias to indicate variable injected by a decorator.
+ */
+export declare type Injection<T> = T;
+export declare type InjectionType<T> = T;
+export declare type OptionalInjection<T> = T;
+export declare type OptionalInjectedType<T> = T;
+export declare type RequiredInjection<T> = T;
+export declare type RequiredInjectionType<T> = T;
+export declare type MandatoryInjection<T> = T;
+export declare type MandatoryInjectionType<T> = T;
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
