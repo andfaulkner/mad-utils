@@ -23,14 +23,8 @@ export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
  */
 export declare const get: <T extends Object>(propPath: string | string[], obj: T) => any;
 /**
- * Return true if val is (probably) a multilanguage string object.
- *
- * Not foolproof - assumes one of the languages is English, and that it's either Canadian, British,
- * or American English - or 'generic' English (with no locale specified).
- *
- * If English is not one of the languages, this will not work.
- *
- * TODO test this - a lot more.
+ * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
+ * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
  *
  * @param {val} val - Value to type check.
  * @return {boolean} true if object's properties suggest it's a multilanguage string object.
@@ -45,6 +39,13 @@ export declare const isMultilangTextObj: (obj: any) => boolean;
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
 export declare const eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
+/**
+ * Get number of keys/pairs in an object. If given a non-object, return 0.
+ * @param {Object} obj - Object to get the number of keys of.
+ * @return {number} Number of keys in the object, or 0 if it's a non-object (or has no keys).
+ */
+export declare const numKeys: (obj: any) => number;
+export declare const numPairs: (obj: any) => number;
 /**
  * Determine if an object contains a given key.
  *

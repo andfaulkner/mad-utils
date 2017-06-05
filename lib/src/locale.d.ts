@@ -98,3 +98,5 @@ export declare const canadaLangAbbrevs: string[];
  * Array of the names of Canada's official languages.
  */
 export declare const canadaLangNames: any[];
+export { isMultilangTextObj } from './object';
+export { englishVariants, frenchVariants } from './internal/lang-variants';
