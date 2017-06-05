@@ -105,6 +105,59 @@ export declare function withLeftIndent(strings: any, leftPadSize: any, xz?: any)
  */
 export declare const endsInDotJs: (inode: string) => boolean;
 /**
+ * If given string ends in .jsx, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .jsx.
+ */
+export declare const endsInDotJsx: (inode: string) => boolean;
+/**
+ * If given string ends in .ts, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .ts.
+ */
+export declare const endsInDotTs: (inode: string) => boolean;
+/**
+ * If given string ends in .tsx, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .tsx.
+ */
+export declare const endsInDotTsx: (inode: string) => boolean;
+/**
+ * If given string ends in .json, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .json.
+ */
+export declare const endsInDotJson: (inode: string) => boolean;
+/**
+ * If given string ends in .hbs, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .hbs.
+ */
+export declare const endsInDotHbs: (inode: string) => boolean;
+/**
+ * If given string ends in .scss, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .scss.
+ */
+export declare const endsInDotScss: (inode: string) => boolean;
+/**
+ * If given string ends in .css, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .css.
+ */
+export declare const endsInDotCss: (inode: string) => boolean;
+/**
+ * If given string ends in given substring preceded by a '.', returns true.
+ * Note: only works for extensions with up to 4 parts. e.g. .b.c.d.e
+ *
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @param {string} ext - Any string, but it's meant to be a file extension (e.g. js).
+ * @return {boolean} true if file ends in given extension.
+ *
+ * @example endsWithExt('ok.tsx', 'tsx') // => true
+ */
+export declare const endsWithExt: (inode: string, ext: string) => boolean;
+/**
  * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)
  * @param {string} inode - Any string, but it's intended to be a file/directory path.
  * @return {boolean} true if file doesn't end in .min.[anyExt] (e.g. a.min.json, b.min.css)

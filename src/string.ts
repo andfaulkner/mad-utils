@@ -4,6 +4,8 @@ const log = logFactory()(`string.ts`, logMarkers.lakeLouise);
 
 import { StrOrNum } from './types-iso';
 
+import { withoutFirst } from './array';
+
 /***************************************** LOCAL HELPERS ******************************************/
 /**
  * Determine what item in a array of strings has the smallest indent.
@@ -222,6 +224,86 @@ export function withLeftIndent(strings, leftPadSize, xz?) {
  * @return {boolean} true if file ends in .js.
  */
 export const endsInDotJs = (inode: string) => inode.split(/\./g).reverse()[0] === 'js';
+/**
+ * If given string ends in .jsx, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .jsx.
+ */
+export const endsInDotJsx = (inode: string) => inode.split(/\./g).reverse()[0] === 'jsx';
+/**
+ * If given string ends in .ts, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .ts.
+ */
+export const endsInDotTs = (inode: string) => inode.split(/\./g).reverse()[0] === 'ts';
+/**
+ * If given string ends in .tsx, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .tsx.
+ */
+export const endsInDotTsx = (inode: string) => inode.split(/\./g).reverse()[0] === 'tsx';
+
+/**
+ * If given string ends in .json, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .json.
+ */
+export const endsInDotJson = (inode: string) => inode.split(/\./g).reverse()[0] === 'json';
+
+/**
+ * If given string ends in .hbs, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .hbs.
+ */
+export const endsInDotHbs = (inode: string) => inode.split(/\./g).reverse()[0] === 'hbs';
+
+/**
+ * If given string ends in .scss, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .scss.
+ */
+export const endsInDotScss = (inode: string) => inode.split(/\./g).reverse()[0] === 'scss';
+
+/**
+ * If given string ends in .css, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .css.
+ */
+export const endsInDotCss = (inode: string) => inode.split(/\./g).reverse()[0] === 'css';
+
+/**
+ * If given string ends in given substring preceded by a '.', returns true.
+ * Note: only works for extensions with up to 4 parts. e.g. .b.c.d.e
+ *
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @param {string} ext - Any string, but it's meant to be a file extension (e.g. js).
+ * @return {boolean} true if file ends in given extension.
+ *
+ * @example endsWithExt('ok.tsx', 'tsx') // => true
+ */
+export const endsWithExt = (inode: string, ext: string) => {
+    const cleanExt = (ext.match(/^\./)) ? withoutFirst(ext.split(/\./g)).join() : ext;
+    const extArr = cleanExt.split(/\./g);
+    const inodeArrRev = inode.split(/\./g).reverse();
+
+    if (extArr.length === 1) {
+        return inodeArrRev[0] === cleanExt;
+    }
+    if (extArr.length === 2) {
+        if (inodeArrRev.length < 2) return false;
+        return `${inodeArrRev[1]}.${inodeArrRev[0]}` === cleanExt;
+    }
+    if (extArr.length === 3) {
+        if (inodeArrRev.length < 3) return false;
+        return `${inodeArrRev[2]}.${inodeArrRev[1]}.${inodeArrRev[0]}` === cleanExt;
+    }
+    if (extArr.length === 4) {
+        if (inodeArrRev.length < 4) return false;
+        return `${inodeArrRev[3]}.${inodeArrRev[2]}.${inodeArrRev[1]}.${inodeArrRev[0]}` ===
+            cleanExt;
+    }
+    return false;
+}
 
 /**
  * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)

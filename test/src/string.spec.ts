@@ -1,18 +1,17 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
-/******************************** IMPORT STRING MODULE FOR TESTING ********************************/
+/************************************* IMPORT TESTING MODULES *************************************/
 import { expect } from 'chai';
-
-import { m_, string } from '../../shared';
-
 import { expectFunctionExists } from '../../node';
 
+/******************************** IMPORT STRING MODULE FOR TESTING ********************************/
+import { m_, string } from '../../shared';
 const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
-        eliminateWhitespace, getBaseFilenameFromPath } = str;
-
-// TODO test 'without' functions
+        eliminateWhitespace, getBaseFilenameFromPath,
+        endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
+        endsInDotScss, endsInDotTsx, endsWithExt } = str;
 
 /********************************************* TESTS **********************************************/
 describe(`string sub-module`, function() {
@@ -117,4 +116,73 @@ describe(`string sub-module`, function() {
             expect(getBaseFilenameFromPath('./src/somewhere/file.ts')).to.eql('file.ts');
         });
     });
+
+    testMatchFilenameWithExtensionFunction('endsInDotJs', endsInDotJs, 'js', 'ts');
+    testMatchFilenameWithExtensionFunction('endsInDotJsx', endsInDotJsx, 'jsx', 'ts');
+    testMatchFilenameWithExtensionFunction('endsInDotTs', endsInDotTs, 'ts', 'js');
+    testMatchFilenameWithExtensionFunction('endsInDotTsx', endsInDotTsx, 'tsx', 'ts');
+    testMatchFilenameWithExtensionFunction('endsInDotJson', endsInDotJson, 'json', 'ts');
+    testMatchFilenameWithExtensionFunction('endsInDotCss', endsInDotCss, 'css', 'ts');
+    testMatchFilenameWithExtensionFunction('endsInDotScss', endsInDotScss, 'scss', 'ts');
+    testMatchFilenameWithExtensionFunction('endsInDotHbs', endsInDotHbs, 'hbs', 'ts');
+
+    describe('endsWithExt', function() {
+        const ext1 = 'js';
+        const ext2 = 'md';
+
+        expectFunctionExists(endsWithExt);
+        it(`Returns true if a string (presumably a filename) ends in given 1-part extension`, function() {
+            expect(endsWithExt('someFile.js', 'js')).to.be.true;
+            expect(endsWithExt('path/to/someFile.asdf', 'asdf')).to.be.true;
+            expect(endsWithExt('./another/path/to/file.zzz', 'zzz')).to.be.true;
+        });
+
+        it(`Returns true if a string (presumably a filename) ends in given 2-part extension`, function() {
+            expect(endsWithExt('./type/def/file/file.d.ts', 'd.ts')).to.be.true;
+            expect(endsWithExt('./type/def/file/file.d.ts.cache', 'd.ts.cache')).to.be.true;
+        });
+
+        it(`Returns true if a string (presumably a filename) ends in given 3-part extension`, function() {
+            expect(endsWithExt('./type/def/file/file.d.ts.cache', 'd.ts.cache')).to.be.true;
+        });
+
+        it(`Returns true if a string (presumably a filename) ends in given 4-part extension`, function() {
+            expect(endsWithExt('./typedef/file.d.ts.cache.lock', 'd.ts.cache.lock')).to.be.true;
+        });
+
+        it(`Return false if string (presumably a filename) doesn't end w given ext`, function() {
+            expect(endsWithExt('asdf', 'js')).to.be.false;
+            expect(endsWithExt('', 'tsx')).to.be.false;
+            expect(endsWithExt('./path/to/file.sh', 'bash')).to.be.false;
+        });
+    });
 });
+
+/**
+ * Test an endsWith* function
+ */
+function testMatchFilenameWithExtensionFunction(
+    funcName: string, func: Function, ext: string, nonMatchingExt: string)
+{
+    describe(`${funcName}`, function() {
+        expectFunctionExists(func);
+        it(`Returns true if a string (presumably a filename) ends in .${ext}`, function() {
+            const matchingFilename1 = `someFile.${ext}`;
+            const matchingFilename2 = `somewhere/example/path/another-file.${ext}`;
+            expect(func(matchingFilename1)).to.be.true;
+            expect(func(matchingFilename2)).to.be.true;
+        });
+
+        it(`Returns false if a string (presumably a filename) does not end in .${ext}`, function() {
+            const nonMatchingFilename1 = 'does/not/match';
+            const nonMatchingFilename2 = 'not-a-${ext}-file';
+            const nonMatchingFilename3 =
+                `./name-w-${ext}-but-without-extension-${ext}.${nonMatchingExt}`;
+            const nonMatchingFilename4 = 'path/to/not-a-${ext}-file-either.${nonMatchingExt}';
+            expect(func(nonMatchingFilename1)).to.be.false;
+            expect(func(nonMatchingFilename2)).to.be.false;
+            expect(func(nonMatchingFilename3)).to.be.false;
+            expect(func(nonMatchingFilename4)).to.be.false;
+        });
+    });
+}

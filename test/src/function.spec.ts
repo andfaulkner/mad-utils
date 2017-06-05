@@ -2,8 +2,9 @@
 
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import { expect } from 'chai';
+import { expectFunctionExists } from '../../node';
 
-import { m_, func } from '../../shared';
+import { m_, func, getFnAsArr } from '../../shared';
 
 const dec = m_.function;
 
@@ -16,6 +17,7 @@ describe(`func sub-module`, function() {
     });
 
     describe(`getFnAsArr function`, function() {
+        expectFunctionExists(getFnAsArr);
         it(`Displays the source code of a function in an array, with 1 item per line`, function() {
             function exampleFunction() {
                 console.log('I am an example');
