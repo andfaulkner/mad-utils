@@ -60,4 +60,20 @@ describe(`object sub-module`, function() {
         });
     });
 
+    describe('eachPair', function() {
+        expectFunctionExists(eachPair);
+        expectFunctionExists(m_.object.eachPair);
+        it('runs given function taking args (val, key) on each key-value pair in an object', function() {
+            let count = 0;
+            const testObj = { a: 'eh', b: 'bee', c: 'cee', d: 'dee' };
+            eachPair<any>((val, key) => count++)(testObj);
+            expect(count).to.eql(4);
+
+            const testObj2 = { a: 1, b: 2, c: 3, d: 4 };
+            let total = 0;
+            eachPair<any>((val, key) => { total = total + val })(testObj2);
+            expect(total).to.eql(10);
+        });
+    });
+
 });
