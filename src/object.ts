@@ -1,7 +1,7 @@
 /******************************************** IMPORTS *********************************************/
 import { isNonexistentOrString, RealAny } from './types-iso';
 import { matchesIgnoreCase } from './string';
-import { englishVariants, frenchVariants } from './internal/lang-variants';
+import { englishVariants, frenchVariants } from './internal/lang-constants';
 import deepFreezeStrict = require('deep-freeze-strict');
 
 /********************************************* OBJECT *********************************************/

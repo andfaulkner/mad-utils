@@ -3,7 +3,8 @@
 /******************************** IMPORT QUERY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
-import { m_, query } from '../../shared';
+import { m_, query, parseQueryParams, getLangFromUrlPathname } from '../../shared';
+import { expectFunctionExists } from '../../node';
 
 const queryFns = m_.query;
 
@@ -14,9 +15,8 @@ describe(`query sub-module`, function() {
         expect(query).to.exist;
     });
     describe('.parseQueryParams]', function() {
-        it('-- exists', function() {
-            expect(m_.query.parseQueryParams).to.exist;
-        });
+        expectFunctionExists(m_.query.parseQueryParams);
+        expectFunctionExists(parseQueryParams);
         it('-- is a function', function() {
             expect(m_.query.parseQueryParams).to.be.a('function');
         });
@@ -28,5 +28,20 @@ describe(`query sub-module`, function() {
             expect(queryParamsAsObj['region']).to.eql('AB');
             expect(queryParamsAsObj['birthdate']).to.eql('2013/10/20');
         });
+    });
+    describe('.getLangFromUrlPathname]', function() {
+        expectFunctionExists(m_.query.getLangFromUrlPathname);
+        expectFunctionExists(getLangFromUrlPathname);
+        it('-- pulls current lang out of given pathname string', function() {
+            expect(getLangFromUrlPathname('/en/home')).to.eql('en');
+            expect(getLangFromUrlPathname('/fr/home')).to.eql('fr');
+        })
+        it('-- ignores lang values in other parts of given string (besides the paths)', function() {
+            expect(getLangFromUrlPathname('auth/fr/home?lang=en')).to.eql('fr');
+            expect(getLangFromUrlPathname('auth/en/home/freestuff')).to.eql('en');
+            expect(getLangFromUrlPathname('auth/freestuff/fr')).to.eql('fr');
+            expect(getLangFromUrlPathname('auth/freestuff/en')).to.eql('en');
+        });
+        // TODO Test with mocked window object (will have to be in separate file)
     });
 });

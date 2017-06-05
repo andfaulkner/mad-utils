@@ -99,4 +99,4 @@ export declare const canadaLangAbbrevs: string[];
  */
 export declare const canadaLangNames: any[];
 export { isMultilangTextObj } from './object';
-export { englishVariants, frenchVariants } from './internal/lang-variants';
+export { englishVariants, frenchVariants } from './internal/lang-constants';

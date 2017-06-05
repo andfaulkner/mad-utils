@@ -7,3 +7,11 @@
  *          // => { hello: 'everyone', gr: 'argh' }
  */
 export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
+/******************************************** LANGUAGE ********************************************/
+/**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {Array<string>} supportedLangs - Detectable languages. Default: ['en', 'fr']
+ * @param {string} defaultLang - Default language, if none detected. Default: 'en'
+ */
+export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
