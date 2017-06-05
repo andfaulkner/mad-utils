@@ -51,7 +51,10 @@ export type RequiredInjectionType<T> = T;
 export type MandatoryInjection<T> = T;
 export type MandatoryInjectionType<T> = T;
 
-export interface TranslationProps {
+/**
+ * Extend to (optionally) include Polyglot
+ */
+export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
 
