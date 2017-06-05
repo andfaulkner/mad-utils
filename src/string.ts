@@ -1,9 +1,5 @@
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers, MadLog } from 'mad-logs';
-const log = logFactory()(`string.ts`, logMarkers.lakeLouise);
-
+/******************************************** IMPORTS *********************************************/
 import { StrOrNum } from './types-iso';
-
 import { withoutFirst } from './array';
 
 /***************************************** LOCAL HELPERS ******************************************/

@@ -2,6 +2,7 @@ import { scrubStackTrace } from './error';
 import { isVerbose, isMocha, isWarn } from 'env-var-helpers';
 
 const fn = `mad-utils::enum --`;
+
 /********************************************** ENUM **********************************************/
 /**
  * @param {any} val - Value to match against enum

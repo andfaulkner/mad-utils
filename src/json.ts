@@ -1,10 +1,11 @@
+/******************************************** IMPORTS *********************************************/
 import { RealAny } from './types-iso';
 import { newlineStr } from './string';
+import { isVerbose } from 'env-var-helpers';
 
-/******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()(`json.ts`, logMarkers.swimmers);
+const fn = `mad-utils::enum --`;
 
+/******************************************** EXPORTS *********************************************/
 /**
  * Stringify, while keeping the functions in position by pre-converting them to strings.
  * @param {Object} obj - Object to convert to a JSON string.
@@ -35,12 +36,15 @@ export const jsonParseWFuncRehydrate_unsafe = (json: string): Object => {
                 }
 
                 const newFunc = new Function(...funcArgs, funcStr);
-                return log.verbose(newFunc) as Function;
+                if (isVerbose) console.log(
+                    `${fn} jsonParseWFuncRehydrate_unsafe :: newFunc:`, newFunc);
+                return newFunc;
             }
         }
         return val;
     });
-    log.verbose(`JSONParseWFuncRehydrate_unsafe :: objFromStrJSON:`, objFromStrJSON);
+    if (isVerbose) console.log(
+        `${fn} JSONParseWFuncRehydrate_unsafe :: objFromStrJSON:`, objFromStrJSON);
     return objFromStrJSON;
 };
 

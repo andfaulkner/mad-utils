@@ -1,3 +1,4 @@
+/******************************************** IMPORTS *********************************************/
 import { isNonexistentOrString } from './types-iso';
 import { matchesIgnoreCase } from './string';
 import deepFreezeStrict = require('deep-freeze-strict');

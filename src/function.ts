@@ -1,4 +1,3 @@
-
 /**
  * Return a function's source code in nicely spaced array format.
  * @param {Function} func - The function to examine
