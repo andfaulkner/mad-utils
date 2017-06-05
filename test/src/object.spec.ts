@@ -63,7 +63,9 @@ describe(`object sub-module`, function() {
     describe('eachPair', function() {
         expectFunctionExists(eachPair);
         expectFunctionExists(m_.object.eachPair);
-        it('runs given function taking args (val, key) on each key-value pair in an object', function() {
+        it(`runs given function taking args (val, key) on each key-value pair in an ` +
+            `object`, function()
+        {
             let count = 0;
             const testObj = { a: 'eh', b: 'bee', c: 'cee', d: 'dee' };
             eachPair<any>((val, key) => count++)(testObj);
@@ -79,13 +81,61 @@ describe(`object sub-module`, function() {
     describe('isMultilangTextObj', function() {
         expectFunctionExists(isMultilangTextObj);
         expectFunctionExists(m_.object.isMultilangTextObj);
-        it(`should return true if given an object with keys fr and en`, function() {
-            const testLangObj = { en: 'hello', fr: 'bonjour' };
-            expect(isMultilangTextObj(testLangObj)).to.be.true;
+        it(`should return true if given an object with key en or english (upper or lower case), ` +
+            `containing a string`, function()
+        {
+            expect(isMultilangTextObj({ en: 'hello' })).to.be.true;
+            expect(isMultilangTextObj({ En: 'hello' })).to.be.true;
+            expect(isMultilangTextObj({ English: 'hello' })).to.be.true;
+            expect(isMultilangTextObj({ EngliSh: 'hello' })).to.be.true;
+            expect(isMultilangTextObj({ EN: 'hello' })).to.be.true;
         });
-        it(`should return false if given an object with keys fr and en`, function() {
-            const testLangObj = { en: 'hello', fr: 'bonjour' };
-            expect(isMultilangTextObj(testLangObj)).to.be.true;
+        it(`should return true if given an object with key en or english (upper or lower case), ` +
+            `containing null`, function()
+        {
+            expect(isMultilangTextObj({ en: null })).to.be.true;
+            expect(isMultilangTextObj({ english: null })).to.be.true;
+            expect(isMultilangTextObj({ ENGLISH: null })).to.be.true;
+            expect(isMultilangTextObj({ EN: null })).to.be.true;
         });
+        it(`should return true if given an object with key fr or french, containing a ` +
+            `string`, function()
+        {
+            expect(isMultilangTextObj({ fr: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ french: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ FR: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ fReNCh: 'bonjour' })).to.be.true;
+        });
+        it(`should return true if given an object with key fr, containing null`, function() {
+            expect(isMultilangTextObj({ fr: null })).to.be.true;
+            expect(isMultilangTextObj({ french: null })).to.be.true;
+            expect(isMultilangTextObj({ fR: null })).to.be.true;
+            expect(isMultilangTextObj({ FRENCH: null })).to.be.true;
+        });
+        it(`should return true if given an object with keys en & fr (or english and french, or ` +
+           `any combination -- in any case), both containing either null or strings`, function()
+        {
+            expect(isMultilangTextObj({ en: 'hello', fr: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ en: 'hello', fr: null })).to.be.true;
+            expect(isMultilangTextObj({ En: null, french: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ engLiSh: 'hello', frENch: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ EN: 'hello', fr: null })).to.be.true;
+            expect(isMultilangTextObj({ EN: null, FR: 'bonjour' })).to.be.true;
+            expect(isMultilangTextObj({ ENGLISH: null, FRENCH: null })).to.be.true;
+        });
+        it(`should return true if given an object with numerous keys besides en or fr, but with ` +
+            `en included (any combo, in any case), with all containing strings`, function()
+        {
+            expect(isMultilangTextObj({ za: 'ok', en: 'hello', ge: 'ein' })).to.be.true;
+            expect(isMultilangTextObj({ za: 'ok', FRENCH: 'bonjour', ge: 'ein', '1': 'one' }))
+                .to.be.true;
+        });
+        it(`should return false if given object without either key fr or en, or both, or some ` +
+            `variant of either`, function()
+        {
+            expect(isMultilangTextObj({ asdf: 'zzzzz', noteng: 'fr' })).to.be.false;
+            expect(isMultilangTextObj({ asdfen: 'enenen', frfrfr: 'french' })).to.be.false;
+        });
+
     });
 });
