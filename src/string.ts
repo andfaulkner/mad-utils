@@ -219,59 +219,6 @@ export function withLeftIndent(strings, leftPadSize, xz?) {
 
 /*************************************** FILE PATH STRINGS ****************************************/
 /**
- * If given string ends in .js, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .js.
- */
-export const endsInDotJs = (inode: string) => inode.split(/\./g).reverse()[0] === 'js';
-/**
- * If given string ends in .jsx, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .jsx.
- */
-export const endsInDotJsx = (inode: string) => inode.split(/\./g).reverse()[0] === 'jsx';
-/**
- * If given string ends in .ts, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .ts.
- */
-export const endsInDotTs = (inode: string) => inode.split(/\./g).reverse()[0] === 'ts';
-/**
- * If given string ends in .tsx, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .tsx.
- */
-export const endsInDotTsx = (inode: string) => inode.split(/\./g).reverse()[0] === 'tsx';
-
-/**
- * If given string ends in .json, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .json.
- */
-export const endsInDotJson = (inode: string) => inode.split(/\./g).reverse()[0] === 'json';
-
-/**
- * If given string ends in .hbs, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .hbs.
- */
-export const endsInDotHbs = (inode: string) => inode.split(/\./g).reverse()[0] === 'hbs';
-
-/**
- * If given string ends in .scss, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .scss.
- */
-export const endsInDotScss = (inode: string) => inode.split(/\./g).reverse()[0] === 'scss';
-
-/**
- * If given string ends in .css, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .css.
- */
-export const endsInDotCss = (inode: string) => inode.split(/\./g).reverse()[0] === 'css';
-
-/**
  * If given string ends in given substring preceded by a '.', returns true.
  * Note: only works for extensions with up to 4 parts. e.g. .b.c.d.e
  *
@@ -303,7 +250,56 @@ export const endsWithExt = (inode: string, ext: string) => {
             cleanExt;
     }
     return false;
-}
+};
+
+/**
+ * If given string ends in .js, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .js.
+ */
+export const endsInDotJs = (inode: string) => endsWithExt(inode, 'js');
+/**
+ * If given string ends in .jsx, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .jsx.
+ */
+export const endsInDotJsx = (inode: string) => endsWithExt(inode, 'jsx');
+/**
+ * If given string ends in .ts, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .ts.
+ */
+export const endsInDotTs = (inode: string) => endsWithExt(inode, 'ts');
+/**
+ * If given string ends in .tsx, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .tsx.
+ */
+export const endsInDotTsx = (inode: string) => endsWithExt(inode, 'tsx');
+/**
+ * If given string ends in .json, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .json.
+ */
+export const endsInDotJson = (inode: string) => endsWithExt(inode, 'json');
+/**
+ * If given string ends in .hbs, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .hbs.
+ */
+export const endsInDotHbs = (inode: string) => endsWithExt(inode, 'hbs');
+/**
+ * If given string ends in .css, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .css.
+ */
+export const endsInDotCss = (inode: string) => endsWithExt(inode, 'css');
+/**
+ * If given string ends in .scss, returns true.
+ * @param {string} inode - Any string, but it's intended for a file/directory path.
+ * @return {boolean} true if file ends in .scss.
+ */
+export const endsInDotScss = (inode: string) => endsWithExt(inode, 'scss');
 
 /**
  * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)
