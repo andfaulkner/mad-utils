@@ -21,6 +21,7 @@ export const parseQueryParams = <T>(queryParamsString: string = queryParamsDef):
     // Ensure there are actually query parameters present. Return null otherwise.
     // Various types of query param strings that actually signify no query params.
     if (queryParamsString.match(/((\?)|(\?\=)|(\?\&)|(\?\=\&)|(\?\&\=))$/)) return null;
+    // If no query param symbols are present in a string, it cannot be a query param string.
     if ((queryParamsString.split('=').length === 1
             && (queryParamsString.split('?').length === 1)
             && queryParamsString.split('&').length === 1)) {
