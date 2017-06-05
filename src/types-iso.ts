@@ -1,6 +1,7 @@
 import * as moment from 'moment';
 import { DecoratorError } from './error';
 import { isVerbose } from 'env-var-helpers';
+import * as Polyglot from 'node-polyglot';
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, logFactory, logMarkers } from 'mad-logs';
@@ -52,6 +53,10 @@ export type RequiredInjectionType<T> = T;
 
 export type MandatoryInjection<T> = T;
 export type MandatoryInjectionType<T> = T;
+
+export interface TranslationProps {
+    polyglot?: Readonly<Polyglot>;
+}
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**

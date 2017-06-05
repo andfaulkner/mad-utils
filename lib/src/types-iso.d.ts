@@ -1,3 +1,5 @@
+/// <reference types="node-polyglot" />
+import * as Polyglot from 'node-polyglot';
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
     new (...args: any[]): {};
@@ -33,6 +35,9 @@ export declare type RequiredInjection<T> = T;
 export declare type RequiredInjectionType<T> = T;
 export declare type MandatoryInjection<T> = T;
 export declare type MandatoryInjectionType<T> = T;
+export interface TranslationProps {
+    polyglot?: Readonly<Polyglot>;
+}
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
