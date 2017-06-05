@@ -1,6 +1,6 @@
 /****************************************** QUERY PARAMS ******************************************/
 /**
- * Turn query params into JS object (based on splitting on ',' & '=').
+ * Turn query params into JS object (based on splitting on ',' & '='). Return null if no query params.
  * @param {string} queryParamsString: source to parse for query params. Default: query (?) in URL.
  * @return {Object} Query params as object.
  * @example parseQueryParams('http://example.com/home?hello=everyone&gr=argh')

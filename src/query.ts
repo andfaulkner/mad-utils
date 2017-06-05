@@ -11,16 +11,26 @@ const locationPath =
 
 /****************************************** QUERY PARAMS ******************************************/
 /**
- * Turn query params into JS object (based on splitting on ',' & '=').
+ * Turn query params into JS object (based on splitting on ',' & '='). Return null if no query params.
  * @param {string} queryParamsString: source to parse for query params. Default: query (?) in URL.
  * @return {Object} Query params as object.
  * @example parseQueryParams('http://example.com/home?hello=everyone&gr=argh')
  *          // => { hello: 'everyone', gr: 'argh' }
  */
-export const parseQueryParams = <T>(queryParamsString: string = queryParamsDef): T =>
-   queryParamsString.replace(/^\?/, '').split('&').reduce(
+export const parseQueryParams = <T>(queryParamsString: string = queryParamsDef): T => {
+    // Ensure there are actually query parameters present. Return null otherwise.
+    // Various types of query param strings that actually signify no query params.
+    if (queryParamsString.match(/((\?)|(\?\=)|(\?\&)|(\?\=\&)|(\?\&\=))$/)) return null;
+    if ((queryParamsString.split('=').length === 1
+            && (queryParamsString.split('?').length === 1)
+            && queryParamsString.split('&').length === 1)) {
+        return null;
+    }
+    // Parse the query params if they exist.
+    return queryParamsString.replace(/^\?/, '').split('&').reduce(
         (acc, pair) => Object.assign(acc, { [pair.split('=')[0]]: pair.split('=')[1] }),
     {}) as T;
+}
 
 /******************************************** LANGUAGE ********************************************/
 /**

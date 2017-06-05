@@ -28,6 +28,12 @@ describe(`query sub-module`, function() {
             expect(queryParamsAsObj['region']).to.eql('AB');
             expect(queryParamsAsObj['birthdate']).to.eql('2013/10/20');
         });
+        it('-- returns null if no query params present', function() {
+            expect(parseQueryParams('http://example.com/en/home')).to.be.null;
+            expect(parseQueryParams('http://example.com/en/home?')).to.be.null;
+            expect(parseQueryParams('http://example.com/en/home?=')).to.be.null;
+            expect(parseQueryParams('http://example.com/en/home?&')).to.be.null;
+        });
     });
     describe('.getLangFromUrlPathname]', function() {
         expectFunctionExists(m_.query.getLangFromUrlPathname);
