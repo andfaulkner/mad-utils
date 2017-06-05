@@ -49,3 +49,6 @@ export const canadaLangAbbrevs = Object.keys(commonLangsObj);
  * Array of the names of Canada's official languages.
  */
 export const canadaLangNames =   Object.keys(canadaLangsObj).map(abbr => canadaLangsObj[abbr]);
+
+export { isMultilangTextObj } from './object';
+export { englishVariants, frenchVariants } from './internal/lang-variants';
