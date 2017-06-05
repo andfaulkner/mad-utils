@@ -1,11 +1,8 @@
+/******************************************** IMPORTS *********************************************/
 import * as moment from 'moment';
 import { DecoratorError } from './error';
 import { isVerbose } from 'env-var-helpers';
 import * as Polyglot from 'node-polyglot';
-
-/******************************************** LOGGING *********************************************/
-import { buildFileTag, logFactory, logMarkers } from 'mad-logs';
-const log = logFactory()('mad-utils::function', logMarkers.arrow);
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
@@ -214,7 +211,7 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
     if (throwOnFail) {
         throw new Error(baseErrMsg);
     } else {
-        if (isVerbose) log.error(`WARNING: ${baseErrMsg}`);
+        if (isVerbose) console.error(`WARNING: ${baseErrMsg}`);
         return new Error(baseErrMsg);
     }
 };
