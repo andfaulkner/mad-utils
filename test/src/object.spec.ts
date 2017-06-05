@@ -76,4 +76,16 @@ describe(`object sub-module`, function() {
         });
     });
 
+    describe('isMultilangTextObj', function() {
+        expectFunctionExists(isMultilangTextObj);
+        expectFunctionExists(m_.object.isMultilangTextObj);
+        it(`should return true if given an object with keys fr and en`, function() {
+            const testLangObj = { en: 'hello', fr: 'bonjour' };
+            expect(isMultilangTextObj(testLangObj)).to.be.true;
+        });
+        it(`should return false if given an object with keys fr and en`, function() {
+            const testLangObj = { en: 'hello', fr: 'bonjour' };
+            expect(isMultilangTextObj(testLangObj)).to.be.true;
+        });
+    });
 });
