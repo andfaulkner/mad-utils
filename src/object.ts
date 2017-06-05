@@ -1,10 +1,10 @@
 /******************************************** IMPORTS *********************************************/
 import { isNonexistentOrString, RealAny } from './types-iso';
 import { matchesIgnoreCase } from './string';
+import { englishVariants, frenchVariants } from './internal/lang-variants';
 import deepFreezeStrict = require('deep-freeze-strict');
 
 /********************************************* OBJECT *********************************************/
-
 /**
  * Return a deep-frozen clone of a group of objects. Completely safe.
  * @param {...Object[]} args - Any # of objects to merge together into the merged clone object.
@@ -47,31 +47,30 @@ export const get = <T extends Object>(propPath: string[] | string, obj: T): Real
 };
 
 /**
- * Return true if val is (probably) a multilanguage string object.
- *
- * Not foolproof - assumes one of the languages is English, and that it's either Canadian, British,
- * or American English - or 'generic' English (with no locale specified).
- *
- * If English is not one of the languages, this will not work.
- *
- * TODO test this - a lot more.
+ * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
+ * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
  *
  * @param {val} val - Value to type check.
  * @return {boolean} true if object's properties suggest it's a multilanguage string object.
  */
 export const isMultilangTextObj = (obj: RealAny): boolean => {
-    const englishVariants = ['en', 'en_ca', 'en_gb', 'en_us'];
     let matchingKey;
-    return !!(typeof obj === 'object' && obj !== null &&
-              && Object.keys(obj).length > 1
-              && Object.keys(obj).find(key => {
-                  if (englishVariants.find(matchesIgnoreCase(key))) {
-                      matchingKey = key;
-                      return true;
-                  }
-              })
-              && typeof matchingKey === 'string'
-              && isNonexistentOrString(obj[matchingKey]));
+    return !!(
+        typeof obj === 'object' && obj !== null
+        && Object.keys(obj).length > 0
+            && Object.keys(obj).find(key => {
+                if (englishVariants.find(matchesIgnoreCase(key)) ||
+                    frenchVariants.find(matchesIgnoreCase(key)))
+                {
+                    matchingKey = key;
+                    return true;
+                }
+            })
+            && (typeof matchingKey === 'string'
+                || matchingKey == null
+                || matchingKey == undefined)
+            && isNonexistentOrString(obj[matchingKey])
+    );
 };
 
 /**
