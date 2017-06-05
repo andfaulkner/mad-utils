@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { isNonexistentOrString } from './types-iso';
+import { isNonexistentOrString, RealAny } from './types-iso';
 import { matchesIgnoreCase } from './string';
 import deepFreezeStrict = require('deep-freeze-strict');
 
@@ -22,7 +22,7 @@ export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> => {
  */
 export const deepFreeze = <T>(obj: T): Readonly<T> => {
     return deepFreezeStrict<T>(obj);
-}
+};
 
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
@@ -33,7 +33,7 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export const get = <T extends Object>(propPath: string[] | string, obj: T): any | void => {
+export const get = <T extends Object>(propPath: string[] | string, obj: T): RealAny | void => {
     const propPathClean: string[] = (typeof propPath === 'string') ? propPath.split('.')
                                                                    : propPath;
     return propPathClean
@@ -59,10 +59,10 @@ export const get = <T extends Object>(propPath: string[] | string, obj: T): any 
  * @param {val} val - Value to type check.
  * @return {boolean} true if object's properties suggest it's a multilanguage string object.
  */
-export const isMultilangTextObj = (obj: any): boolean => {
+export const isMultilangTextObj = (obj: RealAny): boolean => {
     const englishVariants = ['en', 'en_ca', 'en_gb', 'en_us'];
     let matchingKey;
-    return !!(typeof obj === 'object'
+    return !!(typeof obj === 'object' && obj !== null &&
               && Object.keys(obj).length > 1
               && Object.keys(obj).find(key => {
                   if (englishVariants.find(matchesIgnoreCase(key))) {
@@ -83,7 +83,7 @@ export const isMultilangTextObj = (obj: any): boolean => {
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
 export const eachPair =
-    <T extends Object>(func: ((val: T[keyof T], key?: keyof T) => void | any)) => (obj: T): T =>
+    <T extends Object>(func: ((val: T[keyof T], key?: keyof T) => void | RealAny)) => (obj: T): T =>
 {
     Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
     return obj;
@@ -94,7 +94,7 @@ export const eachPair =
  * @param {Object} obj - Object to get the number of keys of.
  * @return {number} Number of keys in the object, or 0 if it's a non-object (or has no keys).
  */
-export const numKeys = (obj: Object): number => {
+export const numKeys = (obj: RealAny): number => {
     if (typeof obj !== 'object' || obj == null || obj == undefined) return 0;
     return Object.keys(obj).length;
 }
