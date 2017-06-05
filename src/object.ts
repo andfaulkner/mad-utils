@@ -90,6 +90,17 @@ export const eachPair =
 };
 
 /**
+ * Get number of keys/pairs in an object. If given a non-object, return 0.
+ * @param {Object} obj - Object to get the number of keys of.
+ * @return {number} Number of keys in the object, or 0 if it's a non-object (or has no keys).
+ */
+export const numKeys = (obj: Object): number => {
+    if (typeof obj !== 'object' || obj == null || obj == undefined) return 0;
+    return Object.keys(obj).length;
+}
+export const numPairs = numKeys;
+
+/**
  * Determine if an object contains a given key.
  *
  * @param {Object} obj - Object to check for the given key
