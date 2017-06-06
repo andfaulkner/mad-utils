@@ -33,17 +33,16 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export const get = <T extends Object>(propPath: string[] | string, obj: T): RealAny | void => {
-    if (typeof obj === 'undefined' || obj == null) return null;
-    const propPathClean: string[] = (typeof propPath === 'string') ? propPath.split('.')
-                                                                   : propPath;
-    return propPathClean
+export const get = <T extends Object>(propPath: string[] | string, objIn: T): RealAny | void => {
+    if (typeof objIn === 'undefined' || objIn == null) return null;
+
+    return (typeof propPath === 'string' ? propPath.split('.') : propPath)
         .reduce((obj, objPathPt: string) => {
             const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
             if (!exists) return null;
             if (obj[objPathPt]) return obj[objPathPt];
             return null;
-        }, obj);
+        }, objIn);
 };
 
 /**

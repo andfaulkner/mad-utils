@@ -21,7 +21,7 @@ export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export declare const get: <T extends Object>(propPath: string | string[], obj: T) => any;
+export declare const get: <T extends Object>(propPath: string | string[], objIn: T) => any;
 /**
  * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
  * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
