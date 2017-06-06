@@ -4,7 +4,7 @@ import { isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever } from 
 
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
-export const defaultTimestampFormat = `YYYY/MM/DD : kk:mm:ss`;
+export const defaultTimestampFormat = `YYYY/MM/DD : HH:mm:ss`;
 
 /**
  * True if the given year is a leap year. Throw if given value cannot be cast to an integer.
