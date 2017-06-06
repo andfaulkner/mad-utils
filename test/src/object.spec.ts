@@ -3,7 +3,8 @@
 /******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
 import { expect } from 'chai';
 
-import { m_, object, assignFrozenClone, numKeys, eachPair, isMultilangTextObj } from '../../shared';
+import { m_, object,
+    assignFrozenClone, numKeys, hasKey, eachPair, isMultilangTextObj, get } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 const obj = m_.object;
@@ -136,6 +137,43 @@ describe(`object sub-module`, function() {
             expect(isMultilangTextObj({ asdf: 'zzzzz', noteng: 'fr' })).to.be.false;
             expect(isMultilangTextObj({ asdfen: 'enenen', frfrfr: 'french' })).to.be.false;
         });
+    });
 
+    describe(`hasKey`, function() {
+        expectFunctionExists(m_.object.hasKey);
+        expectFunctionExists(hasKey);
+        it(`returns true if key exists in object`, function() {
+            const obj = { a: 'one' };
+            expect(hasKey(obj, 'a')).to.equal(true);
+        });
+        it(`returns false if key doesn't exist in object`, function() {
+            const obj = { a: 'one' };
+            expect(hasKey(obj, 'b')).to.equal(false);
+        });
+        it(`returns false if object doesn't exist`, function() {
+            let obj: Object;
+            expect(hasKey(obj, 'a')).to.equal(false);
+        });
+    });
+
+    describe(`get`, function() {
+        expectFunctionExists(m_.object.get);
+        expectFunctionExists(get);
+        it(`returns matching key in object, when given string propPath`, function() {
+            const obj = { a: 'one' };
+            const obj2 = { a: { b: 'innerLvl2' } };
+            const obj3 = { a: { b: { c: 'innerLvl3' } } };
+            expect(get('a', obj)).to.eql('one');
+            expect(get('a.b', obj2)).to.eql('innerLvl2')
+            expect(get('a.b.c', obj3)).to.eql('innerLvl3')
+        });
+        it(`returns null if key doesn't exist in object`, function() {
+            const obj = { a: 'one' };
+            expect(get('b', obj)).to.be.null;
+        });
+        it(`returns null if object doesn't exist`, function() {
+            let obj: Object;
+            expect(get('a', obj)).to.be.null;
+        });
     });
 });

@@ -1,6 +1,6 @@
 /******************************************** IMPORTS *********************************************/
 import { isNonexistentOrString, RealAny } from './types-iso';
-import { matchesIgnoreCase } from './string';
+import { matchesIgnoreCase, replaceAll } from './string';
 import { englishVariants, frenchVariants } from './internal/lang-constants';
 import deepFreezeStrict = require('deep-freeze-strict');
 
@@ -34,15 +34,15 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
  * @return {any} Value found at the given path.
  */
 export const get = <T extends Object>(propPath: string[] | string, obj: T): RealAny | void => {
+    if (typeof obj === 'undefined' || obj == null) return null;
     const propPathClean: string[] = (typeof propPath === 'string') ? propPath.split('.')
                                                                    : propPath;
     return propPathClean
-        .map((prop) => typeof prop === 'number' ? parseInt(prop, 10) : prop)
-        .reduce((obj, propPathPart: string) => {
-            if (!(obj && obj[propPathPart])) return null;
-            if (obj[propPathPart].constructor.name === 'array') {
-                return (obj && obj[propPathPart]) ? obj[propPathPart] : null
-            }
+        .reduce((obj, objPathPt: string) => {
+            const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
+            if (!exists) return null;
+            if (obj[objPathPt]) return obj[objPathPt];
+            return null;
         }, obj);
 };
 
@@ -107,7 +107,7 @@ export const numPairs = numKeys;
  * @return {boolean} true if obj contains matchKey
  */
 export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
-    if (typeof obj === 'object') {
+    if (typeof obj === 'object' && obj != null) {
         return Object.keys(obj).some((k: keyof T) => k === matchKey);
     }
     return false;
