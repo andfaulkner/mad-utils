@@ -1,5 +1,5 @@
-import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
-export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string };
+import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes, validation } from './shared';
+export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, validation };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -14,6 +14,7 @@ export * from './src/object';
 export * from './src/query';
 export * from './src/search';
 export * from './src/string';
+export * from './src/validation';
 import { isNode } from 'detect-node';
 export { isNode };
 import * as middleware from './src/node/middleware';
@@ -80,6 +81,7 @@ export declare const mUtils: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };
@@ -115,6 +117,7 @@ export declare const __: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };
@@ -150,6 +153,7 @@ export declare const m_: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };
@@ -185,6 +189,7 @@ export declare const madUtils: {
     type: typeof isoTypes & typeof nodeTypes;
     types: typeof isoTypes & typeof nodeTypes;
     typing: typeof isoTypes & typeof nodeTypes;
+    validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };

@@ -41,6 +41,9 @@ export { string };
 import * as types from './src/types-iso';
 export * from './src/types-iso';
 export { types };
+import * as validation from './src/validation';
+export * from './src/validation';
+export { validation };
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -70,6 +73,7 @@ export declare const mUtils: {
     type: typeof types;
     types: typeof types;
     typing: typeof types;
+    validation: typeof validation;
 };
 export declare const __: {
     array: typeof array;
@@ -96,6 +100,7 @@ export declare const __: {
     type: typeof types;
     types: typeof types;
     typing: typeof types;
+    validation: typeof validation;
 };
 export declare const m_: {
     array: typeof array;
@@ -122,6 +127,7 @@ export declare const m_: {
     type: typeof types;
     types: typeof types;
     typing: typeof types;
+    validation: typeof validation;
 };
 export declare const madUtils: {
     array: typeof array;
@@ -148,4 +154,5 @@ export declare const madUtils: {
     type: typeof types;
     types: typeof types;
     typing: typeof types;
+    validation: typeof validation;
 };

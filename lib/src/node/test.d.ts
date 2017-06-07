@@ -10,4 +10,11 @@ export declare const expectEmptyObject: (testValue: any) => void;
  * @param {string} name? - Name of function {OPTIONAL}
  */
 export declare const expectFuncExists: (func: Function, name?: string, extraMsg?: string) => void;
+/**
+ * Object exists and is not empty if this runs without throwing.
+ *
+ * @param {Object} nonEmptyObj - Object to test.
+ * @param {string} name? - Name of function {OPTIONAL}
+ */
+export declare const expectNonEmptyObjectExists: (nonEmptyObj: any, name: string, extraMsg?: string) => void;
 export { expectFuncExists as expectFunctionExists };

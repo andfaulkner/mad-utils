@@ -1,5 +1,5 @@
-import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes } from './shared';
-export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string };
+import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes, validation } from './shared';
+export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, validation };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -13,6 +13,7 @@ export * from './src/object';
 export * from './src/query';
 export * from './src/search';
 export * from './src/string';
+export * from './src/validation';
 import { isNode } from 'detect-node';
 export { isNode };
 import * as dom from './src/browser/dom';
@@ -66,6 +67,7 @@ export declare const mUtils: {
     type: {} & typeof isoTypes & typeof browserTypes;
     types: {} & typeof isoTypes & typeof browserTypes;
     typing: {} & typeof isoTypes & typeof browserTypes;
+    validation: typeof validation;
 };
 export declare const __: {
     array: typeof array;
@@ -98,6 +100,7 @@ export declare const __: {
     type: {} & typeof isoTypes & typeof browserTypes;
     types: {} & typeof isoTypes & typeof browserTypes;
     typing: {} & typeof isoTypes & typeof browserTypes;
+    validation: typeof validation;
 };
 export declare const m_: {
     array: typeof array;
@@ -130,6 +133,7 @@ export declare const m_: {
     type: {} & typeof isoTypes & typeof browserTypes;
     types: {} & typeof isoTypes & typeof browserTypes;
     typing: {} & typeof isoTypes & typeof browserTypes;
+    validation: typeof validation;
 };
 export declare const madUtils: {
     array: typeof array;
@@ -162,4 +166,5 @@ export declare const madUtils: {
     type: {} & typeof isoTypes & typeof browserTypes;
     types: {} & typeof isoTypes & typeof browserTypes;
     typing: {} & typeof isoTypes & typeof browserTypes;
+    validation: typeof validation;
 };
