@@ -1,7 +1,8 @@
 // Import shared modules, and re-export them for top-level access.
 import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string,
-         types as isoTypes } from './shared';
-export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string }
+         types as isoTypes, validation } from './shared';
+export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string,
+         validation }
 
 export * from './src/array';
 export * from './src/date';
@@ -17,6 +18,7 @@ export * from './src/object';
 export * from './src/query';
 export * from './src/search';
 export * from './src/string';
+export * from './src/validation';
 
 import { isNode } from 'detect-node';
 export { isNode }
@@ -98,6 +100,7 @@ export const mUtils = {
     type: types,
     types,
     typing: types,
+    validation,
     webpack,
     webpackUtils: webpack,
 };

@@ -55,6 +55,10 @@ import * as types from './src/types-iso';
 export * from './src/types-iso';
 export { types };
 
+import * as validation from './src/validation';
+export * from './src/validation';
+export { validation };
+
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
 
@@ -87,6 +91,7 @@ export const mUtils = {
     type: types,
     types,
     typing: types,
+    validation,
 };
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
