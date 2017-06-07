@@ -25,4 +25,21 @@ export const expectFuncExists = (func: Function, name?: string, extraMsg?: strin
     })
 };
 
+/**
+ * Object exists and is not empty if this runs without throwing.
+ *
+ * @param {Object} nonEmptyObj - Object to test.
+ * @param {string} name? - Name of function {OPTIONAL}
+ */
+export const expectNonEmptyObjectExists = (nonEmptyObj: any, name: string, extraMsg?: string) => {
+    it(`${name} exists and is not empty${extraMsg ? '. ' + extraMsg : ''}`, function() {
+        expect(nonEmptyObj).to.exist;
+        expect(nonEmptyObj).to.be.an('object');
+        expect(nonEmptyObj).to.not.be.null;
+        expect(nonEmptyObj).to.not.be.undefined;
+        expect(nonEmptyObj).to.not.eql({});
+        expect(nonEmptyObj).to.not.eql([]);
+    })
+};
+
 export { expectFuncExists as expectFunctionExists }
