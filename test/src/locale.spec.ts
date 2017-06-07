@@ -1,18 +1,23 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/****************************** IMPORT MIDDLEWARE MODULE FOR TESTING ******************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists } from '../../src/node/test'
 
+/****************************** IMPORT MIDDLEWARE MODULE FOR TESTING ******************************/
 import { m_, locale } from '../../shared';
-
-const mw = m_.locale;
+import { locale as localeFromNode } from '../../node';
+import { locale as localeFromBrowser } from '../../browser';
+import * as localeModule from '../../src/locale';
 
 
 /********************************************* TESTS **********************************************/
 describe(`locale sub-module`, function() {
-    it(`exists`, function() {
-        expect(locale).to.exist;
-    });
+    expectNonEmptyObjectExists(locale, 'locale (from shared/base export)');
+    expectNonEmptyObjectExists(m_.locale, 'locale (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(localeModule, 'locale (import all from locale.ts file)');
+    expectNonEmptyObjectExists(localeFromNode, 'locale (from Node export)');
+    expectNonEmptyObjectExists(localeFromBrowser, 'locale (from Browser export)');
+
     it(`has object commonLangsObj, where all values are strings (full language names)`, function() {
         expect(locale.commonLangsObj).to.exist;
         expect(locale.commonLangsObj).to.be.an('object');

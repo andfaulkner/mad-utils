@@ -1,16 +1,18 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists } from '../../src/node/test'
 
+/****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import { m_, error, nodeError } from '../../node';
-
-const dec = m_.error;
+import { error as nodeErrorFromNode } from '../../node';
+import * as nodeErrorModule from '../../src/node/node-error';
 
 /********************************************* TESTS **********************************************/
 describe(`error sub-module`, function() {
-    it(`exists`, function() {
-        expect(error).to.exist;
-        expect(nodeError).to.exist;
-    });
+    expectNonEmptyObjectExists(nodeError, 'nodeError (from shared/base export)');
+    expectNonEmptyObjectExists(m_.nodeError, 'm_.nodeError (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(m_.nodeErr, 'm_.nodeErr (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(nodeErrorModule, 'nodeError (import all from nodeError.ts file)');
+    expectNonEmptyObjectExists(nodeErrorFromNode, 'nodeError (from Node export)');
 });

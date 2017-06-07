@@ -1,18 +1,26 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists } from '../../src/node/test';
 
+/******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
 import { m_, object,
     assignFrozenClone, numKeys, hasKey, eachPair, isMultilangTextObj, get } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
-const obj = m_.object;
+import { object as objectFromNode } from '../../node';
+import { object as objectFromBrowser } from '../../browser';
+import * as objectModule from '../../src/object';
 
+
+/********************************************* TESTS **********************************************/
 describe(`object sub-module`, function() {
-    it(`exists`, function() {
-        expect(object).to.exist;
-    });
+    expectNonEmptyObjectExists(object, 'object (from shared/base export)');
+    expectNonEmptyObjectExists(m_.object, 'object (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(objectModule, 'object (import all from object.ts file)');
+    expectNonEmptyObjectExists(objectFromNode, 'object (from Node export)');
+    expectNonEmptyObjectExists(objectFromBrowser, 'object (from Browser export)');
+
     describe(`.assignFrozenClone -- merge objs into new obj & deepfreeze the result`, function() {
         const obj1 = { a: 1, b: 2 };
         const obj2 = { c: 3, d: 4 };

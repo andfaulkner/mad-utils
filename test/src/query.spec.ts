@@ -2,18 +2,26 @@
 
 /******************************** IMPORT QUERY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists } from '../../src/node/test';
 
 import { m_, query, parseQueryParams, getLangFromUrlPathname } from '../../shared';
 import { expectFunctionExists } from '../../node';
+
+import { query as queryFromNode } from '../../node';
+import { query as queryFromBrowser } from '../../browser';
+import * as queryModule from '../../src/query';
 
 const queryFns = m_.query;
 
 
 /********************************************* TESTS **********************************************/
 describe(`query sub-module`, function() {
-    it(`exists`, function() {
-        expect(query).to.exist;
-    });
+    expectNonEmptyObjectExists(query, 'query (from shared/base export)');
+    expectNonEmptyObjectExists(m_.query, 'query (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(queryModule, 'query (import all from query.ts file)');
+    expectNonEmptyObjectExists(queryFromNode, 'query (from Node export)');
+    expectNonEmptyObjectExists(queryFromBrowser, 'query (from Browser export)');
+
     describe('.parseQueryParams]', function() {
         expectFunctionExists(m_.query.parseQueryParams);
         expectFunctionExists(parseQueryParams);

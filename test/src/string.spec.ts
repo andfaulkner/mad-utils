@@ -3,10 +3,15 @@
 
 /************************************* IMPORT TESTING MODULES *************************************/
 import { expect } from 'chai';
-import { expectFunctionExists } from '../../node';
+import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
 
 /******************************** IMPORT STRING MODULE FOR TESTING ********************************/
 import { m_, string } from '../../shared';
+
+import { string as stringFromNode } from '../../node';
+import { string as stringFromBrowser } from '../../browser';
+import * as stringModule from '../../src/string';
+
 const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
         eliminateWhitespace, getBaseFilenameFromPath,
@@ -15,9 +20,11 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
 
 /********************************************* TESTS **********************************************/
 describe(`string sub-module`, function() {
-    it(`exists`, function() {
-        expect(string).to.exist;
-    });
+    expectNonEmptyObjectExists(string, 'string (from shared/base export)');
+    expectNonEmptyObjectExists(m_.string, 'string (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(stringModule, 'string (import all from string.ts file)');
+    expectNonEmptyObjectExists(stringFromNode, 'string (from Node export)');
+    expectNonEmptyObjectExists(stringFromBrowser, 'string (from Browser export)');
 
     expectFunctionExists(capitalize);
     it('.capitalize -- capitalizes first char of given string', function() {

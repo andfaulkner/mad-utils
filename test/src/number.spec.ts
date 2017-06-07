@@ -6,21 +6,23 @@
 
 /*************************************** IMPORT TEST UTILS ****************************************/
 import { expect } from 'chai';
-import { expectFunctionExists } from '../../src/node/test';
+import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-
 import { m_, number } from '../../shared';
-
-const err = m_.number;
+import { number as numberFromNode } from '../../node';
+import { number as numberFromBrowser } from '../../browser';
+import * as numberModule from '../../src/number';
 
 
 /********************************************* TESTS **********************************************/
 describe(`number sub-module`, function() {
-    it(`exists`, function() {
-        expect(number).to.exist;
-    });
+    expectNonEmptyObjectExists(number, 'number (from shared/base export)');
+    expectNonEmptyObjectExists(m_.number, 'number (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(numberModule, 'number (import all from number.ts file)');
+    expectNonEmptyObjectExists(numberFromNode, 'number (from Node export)');
+    expectNonEmptyObjectExists(numberFromBrowser, 'number (from Browser export)');
 
     expectFunctionExists(number.isInt, 'number.isInt', '(from types-iso');
     expectFunctionExists(number.isNumberLike, 'number.isInt', '(from types-iso');

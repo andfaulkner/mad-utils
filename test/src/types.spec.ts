@@ -2,22 +2,22 @@
 
 /*************************************** IMPORT TEST UTILS ****************************************/
 import { expect } from 'chai';
-import { expectFunctionExists } from '../../src/node/test';
+import { expectFunctionExists, expectNonEmptyObjectExists  } from '../../src/node/test';
 import * as moment from 'moment';
 
-
 /******************************* IMPORT TYPES MODULES FOR TESTING *********************************/
-import { m_, types as typesIso } from '../../shared';
+import { m_, types as typesIso, types } from '../../shared';
 import { types as typesNode } from '../../node';
 import { types as typesBrowser } from '../../browser';
-
+import * as typesModule from '../../src/types-iso';
 
 /********************************************* TESTS **********************************************/
 describe(`types sub-modules`, function() {
     describe(`types-iso sub-module`, function() {
-        it(`exists`, function() {
-            expect(typesIso).to.exist;
-        });
+        expectNonEmptyObjectExists(typesIso, 'types (from shared/base export)');
+        expectNonEmptyObjectExists(m_.types, 'types (from m_ top-level namespace)');
+        expectNonEmptyObjectExists(typesModule, 'types (import all from types.ts file)');
+
         describe(`isInt function`, function() {
             expectFunctionExists(typesIso.isInt);
             it(`returns true given an integer`, function() {

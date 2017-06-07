@@ -3,12 +3,14 @@
 import * as path from 'path';
 import { path as rootPath } from 'app-root-path';
 import { writeFileSync, readFileSync, unlinkSync } from 'fs-extra-promise';
+import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
 
 /********************************* IMPORT FILE MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
 
 import { m_, file } from '../../node';
-import { expectFunctionExists } from '../../node';
+import { file as fileFromNode } from '../../node';
+import * as fileModule from '../../src/node/file';
 
 const docObjModel = m_.file;
 
@@ -18,9 +20,10 @@ const exampleFilePath = './random-example-file';
 
 /********************************************* TESTS **********************************************/
 describe(`file sub-module`, function() {
-    it(`exists`, function() {
-        expect(file).to.exist;
-    });
+    expectNonEmptyObjectExists(file, 'file (from shared/base export)');
+    expectNonEmptyObjectExists(m_.file, 'file (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(fileModule, 'file (import all from file.ts file)');
+    expectNonEmptyObjectExists(fileFromNode, 'file (from Node export)');
 
     describe(`function isDir`, function() {
         expectFunctionExists(file.isDir);

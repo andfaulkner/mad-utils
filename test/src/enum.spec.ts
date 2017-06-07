@@ -7,18 +7,26 @@ const log = nodeLogFactory(buildFileTag('enum.spec.ts', colors.blue.bgMagenta));
 
 /******************************** IMPORT ENUM MODULE FOR TESTING **********************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists } from '../../src/node/test'
 
 import { m_, Enum } from '../../shared';
+import { Enum as EnumFromNode } from '../../node';
+import { Enum as EnumFromBrowser } from '../../browser';
+import * as EnumModule from '../../src/enum';
 
 const en = m_.enum;
 
+
+/********************************************* TESTS **********************************************/
 describe(`enum sub-module`, function() {
     enum ColorTest { BLUE, ReD, black }
     enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
 
-    it(`-- exists`, function() {
-        expect(Enum).to.exist;
-    });
+    expectNonEmptyObjectExists(Enum, 'Enum (from shared/base export)');
+    expectNonEmptyObjectExists(m_.Enum, 'Enum (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(EnumModule, 'Enum (import all from Enum.ts file)');
+    expectNonEmptyObjectExists(EnumFromNode, 'Enum (from Node export)');
+    expectNonEmptyObjectExists(EnumFromBrowser, 'Enum (from Browser export)');
 
     it('.enumValToString -- Converts an enum item into a string', function() {
         expect(m_.enum.enumValToString(ColorTest, ColorTest.ReD)).to.eql('ReD');

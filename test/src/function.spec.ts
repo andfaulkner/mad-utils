@@ -1,16 +1,23 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import { expect } from 'chai';
-import { expectFunctionExists } from '../../node';
+import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
 
+/******************************* IMPORT FUNCTION MODULE FOR TESTING *******************************/
+import { func as functionFromNode } from '../../node';
+import { func as functionFromBrowser } from '../../browser';
+import * as functionModule from '../../src/function';
 import { m_, func, getFnAsArr } from '../../shared';
-
-const dec = m_.function;
 
 
 /********************************************* TESTS **********************************************/
 describe(`func sub-module`, function() {
+    expectNonEmptyObjectExists(func, 'function (from shared/base export)');
+    expectNonEmptyObjectExists(m_.function, 'function (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(functionModule, 'function (import all from function.ts file)');
+    expectNonEmptyObjectExists(functionFromNode, 'function (from Node export)');
+    expectNonEmptyObjectExists(functionFromBrowser, 'function (from Browser export)');
+
     it(`exists`, function() {
         expect(func).to.exist;
         expect(m_.function).to.exist;

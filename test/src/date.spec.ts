@@ -6,16 +6,23 @@ import { isVerbose } from 'env-var-helpers';
 
 import { m_, date, isLeapYear, isDateLike } from '../../shared';
 
+import { date as dateFromNode } from '../../node';
+import { date as dateFromBrowser } from '../../browser';
+import * as dateModule from '../../src/date';
+
+import { expectNonEmptyObjectExists } from '../../src/node/test'
 import { expectFunctionExists, convertDayOfWeekNumToString, now } from '../../node';
 
 const dateFns = m_.date;
 
 /********************************************* TESTS **********************************************/
 describe(`date sub-module`, function() {
-    it(`exists`, function() {
-        expect(date).to.exist;
-        expect(m_.date).to.exist;
-    });
+    expectNonEmptyObjectExists(date, 'date (from shared/base export)');
+    expectNonEmptyObjectExists(m_.date, 'date (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(dateModule, 'date (import all from date.ts file)');
+    expectNonEmptyObjectExists(dateFromNode, 'date (from Node export)');
+    expectNonEmptyObjectExists(dateFromBrowser, 'date (from Browser export)');
+
     describe(`isLeapYear function`, function() {
         expectFunctionExists(isLeapYear);
         expectFunctionExists(m_.date.isLeapYear);

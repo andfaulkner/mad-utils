@@ -1,17 +1,18 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 
-/************************************** THIRD-PARTY IMPORTS ***************************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists } from '../../src/node/test'
 
+/************************************** THIRD-PARTY IMPORTS ***************************************/
 import { json, m_, mUtils, } from '../../shared';
-
-const jsObjectNotation = m_.json;
-
+import { json as jsonFromNode } from '../../node';
+import { json as jsonFromBrowser } from '../../browser';
+import * as jsonModule from '../../src/json';
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
-const log = nodeLogFactory(buildFileTag('mad-utils.spec.ts', colors.green.bgWhite));
+const log = nodeLogFactory(buildFileTag('mad-utils::json.spec.ts', colors.green.bgWhite));
 
 
 /********************************************** MOCK **********************************************/
@@ -39,9 +40,11 @@ const testObjJsonStr = JSON.stringify(testObj);
 
 /********************************************* TESTS **********************************************/
 describe(`json sub-module`, function() {
-    it(`exists`, function() {
-        expect(json).to.exist;
-    });
+    expectNonEmptyObjectExists(json, 'json (from shared/base export)');
+    expectNonEmptyObjectExists(m_.json, 'json (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(jsonModule, 'json (import all from json.ts file)');
+    expectNonEmptyObjectExists(jsonFromNode, 'json (from Node export)');
+    expectNonEmptyObjectExists(jsonFromBrowser, 'json (from Browser export)');
 
     describe(`functions exported`, function() {
         let jsonStrWFuncs: string;

@@ -6,15 +6,23 @@ import { expect } from 'chai';
 
 import { m_, array, append, first, second, third, last, last2, last3, lastN, secondLast, thirdLast,
         first2, first3, firstN, arrayN, rmAllFalsy, splitLines } from '../../shared';
+
+import { array as arrayFromNode } from '../../node';
+import { array as arrayFromBrowser } from '../../browser';
+import * as arrayModule from '../../src/array';
+
+import { expectNonEmptyObjectExists } from '../../src/node/test'
 import { inspect } from 'util';
 
 const arr = m_.array;
 
 /********************************************* TESTS **********************************************/
 describe(`array sub-module`, function() {
-    it(`exists`, function() {
-        expect(array).to.exist;
-    });
+    expectNonEmptyObjectExists(array, 'array (from shared/base export)');
+    expectNonEmptyObjectExists(m_.array, 'array (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(arrayModule, 'array (import all from array.ts file)');
+    expectNonEmptyObjectExists(arrayFromNode, 'array (from node export)');
+    expectNonEmptyObjectExists(arrayFromBrowser, 'array (from browser export)');
 
     describe(`-- #append`, function() {
         it(`-- exists : #append`, function() {

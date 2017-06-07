@@ -4,6 +4,7 @@ declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionS
 
 /***************************** IMPORT LOCAL-STORE MODULE FOR TESTING ******************************/
 import { expect } from 'chai';
+import { expectNonEmptyObjectExists, expectFunctionExists } from '../../src/node/test'
 
 /******************************************* DOM MOCKS ********************************************/
 import { mockBrowserStorage, bindBrowserStorageGlobally } from '../mock/mock-local-storage';
@@ -15,10 +16,8 @@ console.log(window.localStorage.toString());
 /********************************** IMPORT FUNCTIONS FROM MODULE **********************************/
 import { m_, localStore, localStorage as lStorage, getFromStorage,
          localStorageUtils, localStoreUtils, isAuthenticated } from '../../browser';
-import { expectFunctionExists } from '../../node';
-
-const docObjModel = m_.localStore;
-
+import { localStore as  localStoreFromBrowser } from '../../browser';
+import * as localStoreModule from '../../src/browser/local-store';
 
 /********************************************* MOCKS **********************************************/
 const mockStore = {
@@ -42,16 +41,20 @@ window.localStorage.setItem('lsKey1', 'lsKey1_val_localStorage');
 window.sessionStorage.setItem('key1', 'key1_val_sessionStorage');
 window.sessionStorage.setItem('ssKey1', 'ssKey1_val_sessionStorage');
 
+// Log result of global mocking
+console.log(window.localStorage);
+console.log(Object.keys(window));
+
 /********************************************* TESTS **********************************************/
 describe(`local-store sub-module`, function() {
-    it(`exists`, function() {
-        expect(localStore).to.exist;
-        expect(lStorage).to.exist;
-        expect(localStorageUtils).to.exist;
-        expect(localStoreUtils).to.exist;
-        console.log(window.localStorage);
-        console.log(Object.keys(window));
-    });
+    expectNonEmptyObjectExists(localStore, 'localStore (from shared/base export)');
+    expectNonEmptyObjectExists(lStorage, 'localStore alias lStorage (from shared/base export)');
+    expectNonEmptyObjectExists(localStorageUtils, 'localStore alias localStorageUtils (from shared/base export)');
+    expectNonEmptyObjectExists(localStoreUtils, 'localStore alias localStoreUtils (from shared/base export)');
+    expectNonEmptyObjectExists(m_.localStore, 'localStore (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(localStoreModule, 'localStore (import all from localStore.ts file)');
+    expectNonEmptyObjectExists(localStoreFromBrowser, 'localStore (from Browser export)');
+
     describe('function getFromStorage', function() {
         expectFunctionExists(localStore.getFromStorage)
         expectFunctionExists(getFromStorage)
