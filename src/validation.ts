@@ -105,4 +105,4 @@ export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: I
  * @param {string} email - email address to check for validity.
  * @return {boolean} true if email is probably valid.
  */
-export const basicEmailValidation = (email: string): boolean => !!email.match(/^.+@.+\..+$/gi);
+export const isEmailPotentiallyValid = (email: string): boolean => !!email.match(/^.+@.+\..+$/gi);

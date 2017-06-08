@@ -47,4 +47,4 @@ export declare function isValidString({conditions, testStr, confirmStr, errDispl
  * @param {string} email - email address to check for validity.
  * @return {boolean} true if email is probably valid.
  */
-export declare const basicEmailValidation: (email: string) => boolean;
+export declare const isEmailPotentiallyValid: (email: string) => boolean;
