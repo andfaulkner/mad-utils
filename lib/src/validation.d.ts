@@ -33,3 +33,18 @@ export declare type IsVStrOpt = {
  * @return {boolean} true if all validation conditions are passed. False if not.
  */
 export declare function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean;
+/**
+ * Returns true if email address is probably (but not necessarily) correctly formatted.
+ *
+ * Remember that it's not actually possible to 100% validate an email address by examining or
+ * analyzing it. The only way to truly prove an address is valid is to send it an email and
+ * see if you get a response. This checker is thus kept deliberately simple, and intended only
+ * to block the most obvious errors. It's also been kept maximally permissive.
+ *
+ * Use-case: client-side validation to help prevent users from accidentally submitting invalid
+ * email addresses. Intended for improving UX, not for determining the data's actual validity.
+ *
+ * @param {string} email - email address to check for validity.
+ * @return {boolean} true if email is probably valid.
+ */
+export declare const basicEmailValidation: (email: string) => boolean;
