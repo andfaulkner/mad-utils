@@ -24,8 +24,9 @@
         "*.json"
     ],
     "include": [
-        "./shared.ts",
         "./node.ts",
+        "./shared.ts",
+        "./react.ts",
         "./browser.ts",
         "./typings/shared.d.ts",
         "./src/*.ts",
