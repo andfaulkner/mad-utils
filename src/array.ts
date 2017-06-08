@@ -109,7 +109,7 @@ export function firstN <T>(arrOrStr: T[] | string, n: number): T[] | string {
 export function withoutLastN<T>(str: string, numToRm: number): string;
 export function withoutLastN<T>(arr: T[], numToRm: number) : T[];
 export function withoutLastN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
-    return arrOrStr.slice(0, -1 * numToRm);
+    return arrOrStr.slice(0, (numToRm === 0) ? arrOrStr.length : (-1 * numToRm));
 }
 
 /** Exclude given number of items from beginning of string or array */
