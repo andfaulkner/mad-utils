@@ -97,6 +97,18 @@ export declare const eliminateWhitespace: (str: string) => string;
  * @return {string} Properly indented string.
  */
 export declare function withLeftIndent(strings: any, leftPadSize: any, xz?: any): string;
+/****************************************** REPEAT CHARS ******************************************/
+/**
+ * Create string consisting of 'len' number of  repeats of 'charToRepeat'.
+ * @param {number} len - number of repeats of charToRepeat in output string
+ * @param {string} charToRepeat - Character to repeat in the output string
+ * @return {string} string consisting of len repeats of charToRepeat.
+ */
+declare const repeatChars: (charToRepeat: string, len: number) => string;
+/**
+ * Alias for repeatChar
+ */
+export { repeatChars as repeatChar };
 /*************************************** FILE PATH STRINGS ****************************************/
 /**
  * If given string ends in given substring preceded by a '.', returns true.
@@ -168,6 +180,63 @@ export declare const isNonMinFile: (inode: string) => boolean;
  * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
  */
 export declare const getBaseFilenameFromPath: (filePath: string) => string;
+/**
+ * Pad string to given width by repeatedly adding the pad char (default: ' ') on the left.
+ * @param {string} strToPad - String to pad to the given width
+ * @param {number} width - Final length of the output string
+ * @param {string} padChar - Character
+ */
+/***************************************** STRING PADDING *****************************************/
+export declare type Sides = 'left' | 'right' | 'center';
+/**
+ * Pad string to the given length, with additional characters added to the given side - or split
+ * across both sides if side arg is 'center'. If initial string is longer than the width to pad
+ * to, return initial string unmodified.
+ *
+ * @param {string} strToPad - Initial string to pad to given length with given char.
+ * @param {number} outWidth - Width to increase the string to (by adding padding char repeatedly)
+ * @param {string} padChar - Character to repeatedly add to left side of strToPad.
+ * @param {Sides} side - Side to add padCharTo. Values: 'left', 'right', 'center'. For center,
+ *                       adds char on each side, with the odd number extra added to the right.
+ *
+ * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
+ */
+export declare const pad: (strToPad?: string, outWidth?: number, padChar?: string, side?: Sides) => string;
+/**
+ * Pad string to the given length, with additional characters added to both sides. If
+ * init string is longer than the width to pad to, return the initial string unmodified.
+ * If an odd number of chars must be added, add the extra char on the right side
+ *
+ * @param {string} strToPad - Initial string to pad to given length with given char.
+ * @param {number} outWidth - Width to extend string to (adds 1/2 of char reps on each side)
+ * @param {string} padChar - char to pad with.
+ *
+ * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
+ */
+export declare const centeredPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
+export { centeredPad as centerPad };
+/**
+ * Pad string to the given length, with additional characters added to left side. If
+ * initial string is longer than the width to pad to, return initial string unmodified.
+ *
+ * @param {string} strToPad - Initial string to pad to given length with given char.
+ * @param {number} outWidth - Width to increase the string to (by adding char to left side)
+ * @param {string} padChar - Character to repeatedly add to left side of strToPad.
+ *
+ * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
+ */
+export declare const leftPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
+/**
+ * Pad string to the given length, with additional characters added to right side. If
+ * initial string is longer than the width to pad to, return initial string unmodified.
+ *
+ * @param {string} strToPad - Initial string to pad to given length with given char.
+ * @param {number} outWidth - Width to increase the string to (by adding char to right side)
+ * @param {string} padChar - Character to repeatedly add to right side of strToPad.
+ *
+ * @return {string} strToPad padded to outWidth length via rightside repeats of padChar
+ */
+export declare const rightPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
 export { splitLines, first, first2, first3, firstN, last, last2, last3, lastN, without, withoutFirst, withoutFirst2, withoutFirst3, withoutLast, withoutLast2, withoutLast3, withoutFirstN, withoutLastN } from './array';
