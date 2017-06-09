@@ -425,6 +425,7 @@ export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar
 
 export { centeredPad as centerPad }
 
+/*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
  */
@@ -433,6 +434,7 @@ function _cleanCharToPadWith(padChar: string | number = ' ') {
     if (typeof padChar !== 'undefined' && padChar !== null) return padChar.toString();
     return ' ';
 }
+/*<<~@@TEST_EXPORT~>>*/ export { _cleanCharToPadWith }
 
 // Aliases
 export { leftPad as padLeft }

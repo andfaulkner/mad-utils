@@ -17,7 +17,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         eliminateWhitespace, getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
         endsInDotScss, endsInDotTsx, endsWithExt,
-        leftPad, rightPad, centeredPad, pad } = str;
+        leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
@@ -262,6 +262,15 @@ describe(`string sub-module`, function() {
         {
             const paddedStr1 = pad('asdf', 12, '|', 'right');
             expect(paddedStr1).to.eql('asdf||||||||');
+        });
+    });
+
+    describe(`_cleanCharToPadWith (private function)`, function() {
+        it(`returns '0' if given 0`, function() {
+            expect((_cleanCharToPadWith as any)(0)).to.eql('0');
+        });
+        it(`returns '0' if given 0`, function() {
+            expect((_cleanCharToPadWith as any)(0)).to.eql('0');
         });
     });
 });

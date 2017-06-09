@@ -238,6 +238,12 @@ export declare const rightPad: (strToPad?: string, outWidth?: number, padChar?: 
  */
 export declare const centeredPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
 export { centeredPad as centerPad };
+/*********************************** TEST EXPORTS ***********************************/
+/**
+ * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
+ */
+declare function _cleanCharToPadWith(padChar?: string | number): string;
+export { _cleanCharToPadWith };
 export { leftPad as padLeft };
 export { rightPad as padRight };
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
