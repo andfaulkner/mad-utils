@@ -16,7 +16,13 @@ const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
         eliminateWhitespace, getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
-        endsInDotScss, endsInDotTsx, endsWithExt } = str;
+        endsInDotScss, endsInDotTsx, endsWithExt,
+        leftPad, rightPad, centeredPad, pad } = str;
+
+/******************************************** LOGGING *********************************************/
+import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite));
+
 
 /********************************************* TESTS **********************************************/
 describe(`string sub-module`, function() {
@@ -161,6 +167,101 @@ describe(`string sub-module`, function() {
             expect(endsWithExt('asdf', 'js')).to.be.false;
             expect(endsWithExt('', 'tsx')).to.be.false;
             expect(endsWithExt('./path/to/file.sh', 'bash')).to.be.false;
+        });
+    });
+
+    describe(`leftPad`, function() {
+        it(`adds given char (whitespace) N # of times to left side of given string`, function() {
+            const paddedStr1 = leftPad('asdf', 7, ' ');
+            expect(paddedStr1).to.eql('   asdf');
+        });
+        it(`adds given char (nonwhitespace) N # of times on left side of arg string`, function() {
+            const paddedStr1 = leftPad('asdf', 7, 'z');
+            expect(paddedStr1).to.eql('zzzasdf');
+        });
+        it(`return string as-is if final expected length less than initial str length`, function() {
+            const paddedStr1 = leftPad('qwertyuiop', 5, ' ');
+            expect(paddedStr1).to.eql('qwertyuiop');
+        });
+        it(`if padChar not given, use ' ' by default`, function() {
+            const paddedStr1 = leftPad('qwertyuiop', 15);
+            expect(paddedStr1).to.eql('     qwertyuiop');
+        });
+        it(`if length not given, return the string as-is by default`, function() {
+            const paddedStr1 = leftPad('qwertyuiop');
+            expect(paddedStr1).to.eql('qwertyuiop');
+        });
+    });
+
+    describe(`rightPad`, function() {
+        it(`adds given char (whitespace) N # of times to right side of given string`, function() {
+            const paddedStr1 = rightPad('asdf', 7, ' ');
+            expect(paddedStr1).to.eql('asdf   ');
+        });
+        it(`adds given char (nonwhitespace) N # of times on right side of arg string`, function() {
+            const paddedStr1 = rightPad('asdfzzz', 7, 'z');
+            expect(paddedStr1).to.eql('asdfzzz');
+        });
+        it(`return string as-is if final expected length less than initial str length`, function() {
+            const paddedStr1 = rightPad('qwertyuiop', 5, ' ');
+            expect(paddedStr1).to.eql('qwertyuiop');
+        });
+        it(`if padChar not given, use ' ' by default`, function() {
+            const paddedStr1 = rightPad('qwertyuiop', 15);
+            expect(paddedStr1).to.eql('qwertyuiop     ');
+        });
+        it(`if length not given, return the string as-is by default`, function() {
+            const paddedStr1 = rightPad('qwertyuiop');
+            expect(paddedStr1).to.eql('qwertyuiop');
+        });
+    });
+
+    describe(`centeredPad`, function() {
+        it(`adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
+            `original string must be expanded by an even number of of chars`, function()
+        {
+            const paddedStr1 = centeredPad('asdf', 12, 'z');
+            expect(paddedStr1).to.eql('zzzzasdfzzzz');
+        });
+        it(`adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
+            `original string must be expanded by an even number of of chars. Rounds down for left` +
+            `side, & up for right side`, function() {
+            const paddedStr1 = centeredPad('asdf', 8, ' ');
+            expect(paddedStr1).to.eql('  asdf  ');
+        });
+        it(`returns string as-is if final expected length less than initial str width`, function() {
+            const paddedStr1 = centeredPad('qwertyuiop', 5, ' ');
+            log.info(`paddedStr1:`, paddedStr1);
+            expect(paddedStr1).to.eql('qwertyuiop');
+        });
+        it(`if padChar not given, use ' ' by default`, function() {
+            const paddedStr1 = centeredPad('qwertyuiop', 16);
+            expect(paddedStr1).to.eql('   qwertyuiop   ');
+        });
+        it(`if length not given, return the string as-is by default`, function() {
+            const paddedStr1 = centeredPad('qwertyuiop');
+            expect(paddedStr1).to.eql('qwertyuiop');
+        });
+    });
+
+    describe(`pad`, function() {
+        it(`if final arg is 'center', adds given char to both sides of outWidth. Puts 1/2 on each` +
+            ` side if original string must be expanded by an even number of of chars`, function()
+        {
+            const paddedStr1 = pad('asdf', 12, 'z', 'center');
+            expect(paddedStr1).to.eql('zzzzasdfzzzz');
+        });
+        it(`if final arg is 'left' & given char is whitespace, add N # of whitespace chars to ` +
+           `left side of given string to pad`, function()
+        {
+            const paddedStr1 = pad('asdf', 12, ' ', 'left');
+            expect(paddedStr1).to.eql('        asdf');
+        });
+        it(`if final arg is 'right' & given char is a non-whitespace char, add N # of repeats ` +
+           `of the char to right side of the given string (i.e. given to fn to pad it)`, function()
+        {
+            const paddedStr1 = pad('asdf', 12, '|', 'right');
+            expect(paddedStr1).to.eql('asdf||||||||');
         });
     });
 });

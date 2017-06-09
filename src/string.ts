@@ -219,7 +219,7 @@ export function withLeftIndent(strings, leftPadSize, xz?) {
  * @param {string} charToRepeat - Character to repeat in the output string
  * @return {string} string consisting of len repeats of charToRepeat.
  */
-const repeatChars = (charToRepeat: string, len: number): string => arrayN(len, charToRepeat).join();
+const repeatChars = (repChar: string, len: number): string => arrayN(len, repChar).join('');
 
 /**
  * Alias for repeatChar
@@ -239,21 +239,21 @@ export { repeatChars as repeatChar }
  */
 export const endsWithExt = (inode: string, ext: string) => {
     const cleanExt = (ext.match(/^\./)) ? withoutFirst(ext.split(/\./g)).join() : ext;
-    const extArr = cleanExt.split(/\./g);
+    const extArrLen = cleanExt.split(/\./g).length;
     const inodeArrRev = inode.split(/\./g).reverse();
 
-    if (extArr.length === 1) {
+    if (extArrLen === 1) {
         return inodeArrRev[0] === cleanExt;
     }
-    if (extArr.length === 2) {
+    if (extArrLen === 2) {
         if (inodeArrRev.length < 2) return false;
         return `${inodeArrRev[1]}.${inodeArrRev[0]}` === cleanExt;
     }
-    if (extArr.length === 3) {
+    if (extArrLen === 3) {
         if (inodeArrRev.length < 3) return false;
         return `${inodeArrRev[2]}.${inodeArrRev[1]}.${inodeArrRev[0]}` === cleanExt;
     }
-    if (extArr.length === 4) {
+    if (extArrLen === 4) {
         if (inodeArrRev.length < 4) return false;
         return `${inodeArrRev[3]}.${inodeArrRev[2]}.${inodeArrRev[1]}.${inodeArrRev[0]}` ===
             cleanExt;
@@ -357,28 +357,21 @@ export const pad =
     const cleanStr = strToPad.toString();
     if (typeof outWidth === 'undefined' || outWidth == null) return cleanStr;
 
+    const numCharsToAdd = outWidth - cleanStr.length;
+    if (numCharsToAdd <= 0) return cleanStr;
+
     switch(side) {
         case 'left':
-            return repeatChars(_cleanCharToPadWith(padChar), outWidth - cleanStr.length) + cleanStr;
+            return repeatChars(_cleanCharToPadWith(padChar), numCharsToAdd) + cleanStr;
         case 'right':
-            return cleanStr + repeatChars(_cleanCharToPadWith(padChar), outWidth - cleanStr.length);
+            return cleanStr + repeatChars(_cleanCharToPadWith(padChar), numCharsToAdd);
         case 'center': default:
-            return centeredPad(cleanStr, outWidth, padChar);
+            return _centerPad(cleanStr, outWidth, padChar);
     }
 };
 
-/**
- * Pad string to the given length, with additional characters added to both sides. If
- * init string is longer than the width to pad to, return the initial string unmodified.
- * If an odd number of chars must be added, add the extra char on the right side
- *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to extend string to (adds 1/2 of char reps on each side)
- * @param {string} padChar - char to pad with.
- *
- * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
- */
-export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') => {
+
+export const _centerPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') => {
     const cleanStr = strToPad.toString();
     const padCharClean = _cleanCharToPadWith(padChar);
     const widthToAddToEachSide = (outWidth - cleanStr.length) / 2;
@@ -389,8 +382,6 @@ export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar
         ? basePadding + cleanStr + basePadding
         : basePadding + cleanStr + basePadding + padCharClean;
 };
-
-export { centeredPad as centerPad }
 
 /**
  * Pad string to the given length, with additional characters added to left side. If
@@ -419,6 +410,22 @@ export const rightPad = (strToPad: string = '', outWidth: number = 0, padChar: s
     pad(strToPad, outWidth, padChar, 'right');
 
 /**
+ * Pad string to the given length, with additional characters added to both sides. If
+ * init string is longer than the width to pad to, return the initial string unmodified.
+ * If an odd number of chars must be added, add the extra char on the right side
+ *
+ * @param {string} strToPad - Initial string to pad to given length with given char.
+ * @param {number} outWidth - Width to extend string to (adds 1/2 of char reps on each side)
+ * @param {string} padChar - char to pad with.
+ *
+ * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
+ */
+export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') =>
+    pad(strToPad, outWidth, padChar, 'center');
+
+export { centeredPad as centerPad }
+
+/**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
  */
 function _cleanCharToPadWith(padChar: string | number = ' ') {
@@ -427,6 +434,9 @@ function _cleanCharToPadWith(padChar: string | number = ' ') {
     return ' ';
 }
 
+// Aliases
+export { leftPad as padLeft }
+export { rightPad as padRight }
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export { stringToEnumVal } from './enum';
