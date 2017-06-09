@@ -26,4 +26,16 @@ describe(`number sub-module`, function() {
 
     expectFunctionExists(number.isInt, 'number.isInt', '(from types-iso');
     expectFunctionExists(number.isNumberLike, 'number.isInt', '(from types-iso');
+    expectFunctionExists(number.uuid, 'number.uuid', '(from number)');
+
+    describe('uuid', function() {
+        it(`generates a valid UUID`, function() {
+            const testUuid1 = number.uuid();
+            console.log(`\n    number.uuid: testUuid1:`, testUuid1);
+            expect(testUuid1).to.exist;
+            expect(testUuid1).to.be.a('string');
+            expect(testUuid1)
+                .to.match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}$/);
+        });
+    });
 });
