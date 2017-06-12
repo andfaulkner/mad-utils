@@ -41,6 +41,17 @@ export declare type MandatoryInjectionType<T> = T;
 export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
+/*************************************** HTTP REQUEST TYPES ***************************************/
+/**
+ * Most commonly used HTTP Request types.
+ */
+export declare type MainHTTPReqType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export declare type MainHTTPRequestType = MainHTTPReqType;
+/**
+ * All (known) HTTP Request types.
+ */
+export declare type AnyHTTPReqType = MainHTTPReqType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
+export declare type AnyHTTPRequestType = AnyHTTPReqType;
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.

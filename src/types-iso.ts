@@ -58,6 +58,20 @@ export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
 
+
+/*************************************** HTTP REQUEST TYPES ***************************************/
+/**
+ * Most commonly used HTTP Request types.
+ */
+export type MainHTTPReqType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export type MainHTTPRequestType = MainHTTPReqType;
+
+/**
+ * All (known) HTTP Request types.
+ */
+export type AnyHTTPReqType = MainHTTPReqType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
+export type AnyHTTPRequestType = AnyHTTPReqType;
+
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
