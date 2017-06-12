@@ -63,14 +63,23 @@ export interface PolyglotProps {
 /**
  * Most commonly used HTTP Request types.
  */
-export type MainHTTPReqType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-export type MainHTTPRequestType = MainHTTPReqType;
+export type MainHTTPRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export type MainHTTPReqType = MainHTTPRequestType;
+export type MainHttpRequestType = MainHTTPRequestType;
+export type MainHttpReqType = MainHTTPRequestType;
 
 /**
  * All (known) HTTP Request types.
  */
 export type AnyHTTPReqType = MainHTTPReqType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
 export type AnyHTTPRequestType = AnyHTTPReqType;
+export type AnyHttpReqType = AnyHTTPReqType;
+export type AnyHttpRequestType = AnyHTTPReqType;
+
+export type HTTPRequestType = AnyHTTPReqType;
+export type HTTPReqType = AnyHTTPReqType;
+export type HttpRequestType = AnyHTTPReqType;
+export type HttpReqType = AnyHTTPReqType;
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**

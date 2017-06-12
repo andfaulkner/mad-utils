@@ -45,13 +45,21 @@ export interface PolyglotProps {
 /**
  * Most commonly used HTTP Request types.
  */
-export declare type MainHTTPReqType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-export declare type MainHTTPRequestType = MainHTTPReqType;
+export declare type MainHTTPRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export declare type MainHTTPReqType = MainHTTPRequestType;
+export declare type MainHttpRequestType = MainHTTPRequestType;
+export declare type MainHttpReqType = MainHTTPRequestType;
 /**
  * All (known) HTTP Request types.
  */
 export declare type AnyHTTPReqType = MainHTTPReqType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
 export declare type AnyHTTPRequestType = AnyHTTPReqType;
+export declare type AnyHttpReqType = AnyHTTPReqType;
+export declare type AnyHttpRequestType = AnyHTTPReqType;
+export declare type HTTPRequestType = AnyHTTPReqType;
+export declare type HTTPReqType = AnyHTTPReqType;
+export declare type HttpRequestType = AnyHTTPReqType;
+export declare type HttpReqType = AnyHTTPReqType;
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
