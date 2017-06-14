@@ -5,7 +5,7 @@ import { defaultSupportedLangs } from './internal/lang-constants';
  */
 const queryParamsDef = typeof window !== 'undefined' ? window.location.search : '';
 const locationPath =
-    (typeof window !== 'undefined' && typeof window.location !== 'undefined')
+    (typeof window !== 'undefined' && typeof window.location !== 'undefined' && window != null)
         ? window.location.pathname
         : '';
 
