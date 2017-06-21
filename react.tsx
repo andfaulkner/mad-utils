@@ -1,15 +1,18 @@
 /// <reference path="./node_modules/@types/react/index.d.ts" />
 
+/******************************************** IMPORTS *********************************************/
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { RealAny } from './src/types-iso';
 
+
+/****************************************** REACT TYPES *******************************************/
 export type InputChange = React.EventHandler<React.FormEvent<HTMLInputElement>>;
 export type FormSubmit = React.EventHandler<React.FormEvent<HTMLFormElement>>;
 
 export { InputChange as InputChangeType }
 export { FormSubmit as FormSubmitType }
 
-/****************************************** REACT TYPES *******************************************/
 /**
  * Named stateless functional components / JSX elements.
  * Normally Typescript does not allow you to assign them display names, resulting in:
@@ -18,6 +21,8 @@ export { FormSubmit as FormSubmitType }
  */
 export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
 
+
+/*********************************** REACT COMPONENT FACTORIES ************************************/
 /**
  * @TODO unit test this namedStatelessComponent
  * Build a named stateless functional component.
@@ -25,21 +30,27 @@ export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
  * @param {React.StatelessComponent} sfc - Stateless functional component to name.
  * @return {React.StatelessComponent} Named stateless functional component.
  */
-export const namedSfcFactory =
+export const buildNamedSfc =
     <T extends any>(displayName: string,
                     statelessComponent: React.StatelessComponent<T>): React.StatelessComponent<T> =>
 {
-    const namedSfcFactory: NamedSFC<T> = statelessComponent as NamedSFC<T>;
-    namedSfcFactory.displayName = displayName;
-    return namedSfcFactory;
+    const NamedSfc: NamedSFC<T> = statelessComponent as NamedSFC<T>;
+    NamedSfc.displayName = displayName;
+    return NamedSfc;
 };
 
-export const buildNamedSfc = namedSfcFactory;
-export const buildNamedStatelessComponent = namedSfcFactory;
-export const namedStatelessComponentFactory = namedSfcFactory;
-export const namedSFCFactory = namedSfcFactory;
-export const buildNamedSFC = namedSfcFactory;
-export const nameSfc = namedSfcFactory;
-export const nameSFC = namedSfcFactory;
-export const setSFCDisplayName = namedSfcFactory;
-export const setSfcDisplayName = namedSfcFactory;
+export const buildNamedStatelessComponent = buildNamedSfc;
+export const setSfcDisplayName = buildNamedSfc;
+
+
+/************************************ REACT UTILITY COMPONENTS ************************************/
+
+/**
+ * Render the child if 'test' is truthy.
+ * @param {any} test - If truthy, render children.
+ * @return {JSX.Element|null} If test is truthy, return JSX element child. Otherwise return null.
+ */
+export const IfTrue = (props: { test: RealAny, children: any }) => {
+    if (!!props.test) return React.Children.only(props.children);
+    return null;
+};
