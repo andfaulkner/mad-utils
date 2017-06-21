@@ -10,11 +10,12 @@ import { mount, shallow, ShallowWrapper } from 'enzyme';
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { IfTruthy, buildNamedSfc } from '../../react';
+import { IfTruthy, IfFalsy, buildNamedSfc } from '../../react';
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {
     expectFunctionExists(IfTruthy, 'IfTruthy', '(React utility component)');
+    expectFunctionExists(IfFalsy, 'IfFalsy', '(React utility component)');
     expectFunctionExists(buildNamedSfc, 'buildNamedSfc', '(React utility component)');
 
     describe(`IfTruthy`, function() {
