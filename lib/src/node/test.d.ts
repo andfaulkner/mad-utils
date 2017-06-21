@@ -5,7 +5,8 @@
  */
 export declare const expectEmptyObject: (testValue: any) => void;
 /**
- * Function exists if this runs without throwing.
+ * Function exists if this runs without throwing. Creates a mocha unit test to ensure this. Use
+ * given function name in test output. Display extraMsg after the rest of the test description.
  * @param {Function} func - Function to test
  * @param {string} name? - Name of function {OPTIONAL}
  */

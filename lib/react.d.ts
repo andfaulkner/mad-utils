@@ -32,3 +32,11 @@ export declare const nameSfc: <T extends any>(displayName: string, statelessComp
 export declare const nameSFC: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
 export declare const setSFCDisplayName: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
 export declare const setSfcDisplayName: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
+/**
+ * Render the child if 'test' is truthy.
+ * @param {any} test - If truthy, render children.
+ */
+export declare const IfTrue: (props: {
+    test: any;
+    children: any;
+}) => React.ReactElement<any>;
