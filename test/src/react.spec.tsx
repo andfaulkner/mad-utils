@@ -6,10 +6,10 @@ import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node
 
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { IfTrue, buildNamedSfc } from '../../react';
+import { IfTruthy, buildNamedSfc } from '../../react';
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {
-    expectFunctionExists(IfTrue, 'IfTrue', '(React utility component)');
+    expectFunctionExists(IfTruthy, 'IfTruthy', '(React utility component)');
     expectFunctionExists(buildNamedSfc, 'buildNamedSfc', '(React utility component)');
 });
