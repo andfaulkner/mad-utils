@@ -15,7 +15,7 @@
         "noImplicitAny": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "jsx": "preserve",
+        "jsx": "react",
         "pretty": true,
         "lib": ["ES2015", "DOM"]
     },

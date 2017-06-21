@@ -11,7 +11,6 @@ export { FormSubmit as FormSubmitType };
  * Named stateless functional components / JSX elements.
  * Normally Typescript does not allow you to assign them display names, resulting in:
  *     <Unknown></Unknown>
- *
  */
 export declare type NamedSFC<T> = ((args: T) => JSX.Element) & {
     displayName: string;
@@ -29,7 +28,8 @@ export declare const buildNamedStatelessComponent: <T extends any>(displayName: 
 export declare const setSfcDisplayName: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
 /************************************ REACT UTILITY COMPONENTS ************************************/
 /**
- * Render the child if 'test' is truthy.
+ * Render the child if 'test' is truthy. Can only accept React components.
+ * If given a string, wraps it in a span before returning it.
  * @param {any} test - If truthy, render children.
  * @return {JSX.Element|null} If test is truthy, return JSX element child. Otherwise return null.
  */

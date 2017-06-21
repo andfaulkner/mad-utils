@@ -17,7 +17,6 @@ export { FormSubmit as FormSubmitType }
  * Named stateless functional components / JSX elements.
  * Normally Typescript does not allow you to assign them display names, resulting in:
  *     <Unknown></Unknown>
- *
  */
 export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
 
@@ -31,8 +30,9 @@ export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
  * @return {React.StatelessComponent} Named stateless functional component.
  */
 export const buildNamedSfc =
-    <T extends any>(displayName: string,
-                    statelessComponent: React.StatelessComponent<T>): React.StatelessComponent<T> =>
+    <T extends any>(
+        displayName: string,
+        statelessComponent: React.StatelessComponent<T>): React.StatelessComponent<T> =>
 {
     const NamedSfc: NamedSFC<T> = statelessComponent as NamedSFC<T>;
     NamedSfc.displayName = displayName;
@@ -46,11 +46,15 @@ export const setSfcDisplayName = buildNamedSfc;
 /************************************ REACT UTILITY COMPONENTS ************************************/
 
 /**
- * Render the child if 'test' is truthy.
+ * Render the child if 'test' is truthy. Can only accept React components.
+ * If given a string, wraps it in a span before returning it.
  * @param {any} test - If truthy, render children.
  * @return {JSX.Element|null} If test is truthy, return JSX element child. Otherwise return null.
  */
-export const IfTruthy = (props: { test: RealAny, children?: any }): React.ReactElement<any> =>
-    (!!props.test)
-        ? React.Children.only(props.children)
-        : null
+export const IfTruthy = (props: { test: RealAny, children?: any }): React.ReactElement<any> => {
+    if (!!props.test) {
+        if (typeof props.children === 'string') return <span>props.children</span>;
+        return React.Children.only(props.children);
+    }
+    return null;
+};
