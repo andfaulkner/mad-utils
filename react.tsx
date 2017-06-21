@@ -50,7 +50,7 @@ export const setSfcDisplayName = buildNamedSfc;
  * @param {any} test - If truthy, render children.
  * @return {JSX.Element|null} If test is truthy, return JSX element child. Otherwise return null.
  */
-export const IfTruthy = (props: { test: RealAny, children?: any }) => {
-    if (!!props.test) return React.Children.only(props.children);
-    return null;
-};
+export const IfTruthy = (props: { test: RealAny, children?: any }): React.ReactElement<any> =>
+    (!!props.test)
+        ? React.Children.only(props.children)
+        : null

@@ -25,8 +25,8 @@ exports.setSfcDisplayName = exports.buildNamedSfc;
  * @return {JSX.Element|null} If test is truthy, return JSX element child. Otherwise return null.
  */
 exports.IfTruthy = function (props) {
-    if (!!props.test)
-        return React.Children.only(props.children);
-    return null;
+    return (!!props.test)
+        ? React.Children.only(props.children)
+        : null;
 };
 //# sourceMappingURL=react.jsx.map
