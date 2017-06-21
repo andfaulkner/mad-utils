@@ -26,7 +26,7 @@
     "include": [
         "./node.ts",
         "./shared.ts",
-        "./react.ts",
+        "./react.tsx",
         "./browser.ts",
         "./typings/shared.d.ts",
         "./src/*.ts",
