@@ -26,7 +26,7 @@ const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite
 
 
 /********************************************* TESTS **********************************************/
-describe.only(`string sub-module`, function() {
+describe(`string sub-module`, function() {
     expectNonEmptyObjectExists(string, 'string (from shared/base export)');
     expectNonEmptyObjectExists(m_.string, 'string (from m_ top-level namespace)');
     expectNonEmptyObjectExists(stringModule, 'string (import all from string.ts file)');
