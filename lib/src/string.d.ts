@@ -63,6 +63,10 @@ export declare const newlineStr: string;
  *          // => myteststring
  */
 export declare const eliminateWhitespace: (str: string) => string;
+/**
+ *
+ */
+export declare const toSnakeCase: (str: string) => string;
 /************************************** STRING INTERPOLATION **************************************/
 /**
  * @export withLeftIndent

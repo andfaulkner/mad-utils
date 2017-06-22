@@ -17,6 +17,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         eliminateWhitespace, getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
         endsInDotScss, endsInDotTsx, endsWithExt,
+        toSnakeCase,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -25,7 +26,7 @@ const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite
 
 
 /********************************************* TESTS **********************************************/
-describe(`string sub-module`, function() {
+describe.only(`string sub-module`, function() {
     expectNonEmptyObjectExists(string, 'string (from shared/base export)');
     expectNonEmptyObjectExists(m_.string, 'string (from m_ top-level namespace)');
     expectNonEmptyObjectExists(stringModule, 'string (import all from string.ts file)');
@@ -107,6 +108,51 @@ describe(`string sub-module`, function() {
             expect(eliminateWhitespace('And   Now For   Something     Completely Different     '))
                 .to.eql('AndNowForSomethingCompletelyDifferent');
             expect(eliminateWhitespace('         ')).to.eql('');
+        });
+    });
+
+    describe('toSnakeCase', function() {
+        expectFunctionExists(matchesIgnoreCase);
+        it(`returns snake_case form of camelCase string`, function() {
+            expect(toSnakeCase('someTestString')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of PascalCase string`, function() {
+            expect(toSnakeCase('SomeTestString')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of dash-case string`, function() {
+            expect(toSnakeCase('some-test-string')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of dash-case string with caps`, function() {
+            expect(toSnakeCase('Some-Test-String')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of "sentences"`, function() {
+            expect(toSnakeCase('Some test string')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of dot.separated.strings (with .s replaced by _s)`, function() {
+            expect(toSnakeCase('Some.test.string')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of string preceded by underscores`, function() {
+            expect(toSnakeCase('_____SomeTestString')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of string preceded by dashes`, function() {
+            expect(toSnakeCase('-----SomeTestString')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of string preceded by dashes & underscores`, function() {
+            expect(toSnakeCase('-___-SomeTestString')).to.eql('some_test_string');
+        });
+        it(`eliminates apostrophes, quotes, ?, !, |, and ,`, function() {
+            expect(toSnakeCase('Some,TestString?!?')).to.eql('some_test_string');
+            expect(toSnakeCase("SomeTest'String")).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTest"String')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTest`String')).to.eql('some_test_string');
+            expect(toSnakeCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('some_test_string');
+        });
+        it(`returns snake_case form of string preceded or followed by spaces`, function() {
+            expect(toSnakeCase(' SomeTestString')).to.eql('some_test_string');
+            expect(toSnakeCase('some-test-string ')).to.eql('some_test_string');
+            expect(toSnakeCase(' Some-Test-String ')).to.eql('some_test_string');
+            expect(toSnakeCase('   someTestString      ')).to.eql('some_test_string');
+            expect(toSnakeCase('        Some test string.')).to.eql('some_test_string');
         });
     });
 
