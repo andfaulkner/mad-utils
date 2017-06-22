@@ -1040,9 +1040,9 @@ env-var-helpers@^2.0.0, env-var-helpers@^2.2.2:
     mad-logs "^5.3.0"
     string.prototype.padend "^3.0.0"
 
-env-var-helpers@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.0.1.tgz#0a02446fd51fc2949781501f23d9b3e690248672"
+env-var-helpers@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.1.3.tgz#ceeac77142d835a117887c83d9a6ef8fa4371f70"
   dependencies:
     detect-node "^2.0.3"
     mad-logs "^5.3.0"
