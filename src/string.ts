@@ -153,6 +153,31 @@ export const newlineStr = `
  */
 export const eliminateWhitespace = (str: string): string => str.replace(/ /g, '');
 
+/**
+ * 
+ */
+export const toSnakeCase =(str: string): string => {
+    let retStr =
+        str.trim()
+           //Remove apostrophes, quotes, commas, |, ?, !, and ,
+           .replace(/('|"|\!|\?|\`|,|\|)/g, '')
+           // Replace periods with _s
+           .replace(/(\.)/g, '_')
+           // From sentence e.g. Let's go to the store
+           .replace(/ /g, '_')
+           // From PascalCase or camelCase
+           .replace(/([A-Z])/g, "_$1")
+           // From dash-case, including "Dash-Title-Case" (dash-case with caps)
+           .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
+           // Eliminate repeat, preceding, and trailing underscores, and stray dashes.
+           .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
+           .replace(/_{1,}/g, '_')
+           .replace(/^(_|\-){1,}/, '')
+           .replace(/(_|\-){1,}$/, '')
+           // Remove caps (snake_case is always lowercase)
+           .toLowerCase()
+    return retStr;
+}
 
 /************************************** STRING INTERPOLATION **************************************/
 /**
