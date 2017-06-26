@@ -95,20 +95,21 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
  * Returns true if the given argument is a number, a string that can be parsed into a number, or
  * a 1-item array containing either aforementioned type.
  * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
- * @param {RealAny} arg - item being tested for number-like nature.
+ * @param {RealAny} val - item being tested for number-like nature.
  * @return {boolean} True if item is number-like, otherwise false.
  */
-export const isNumberLike = (arg: RealAny): boolean => {
-    if (typeof arg === 'number' && !isNaN(arg)) return true;
-    if (typeof arg === 'string') {
-        if (arg.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
+export const isNumberLike = (val: RealAny): boolean => {
+    if (typeof val === 'undefined' || val == null) return false;
+    if (typeof val === 'number' && !isNaN(val)) return true;
+    if (typeof val === 'string') {
+        if (val.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
         // Let '.123' and '-.123' type strings through.
-        let cleanArg = arg.match(/^\.\d/) ? '0' + arg : arg;
-        cleanArg = arg.match(/^\-\.\d/) ? arg.replace(/^-./, '-0.') : cleanArg;
-        return !isNaN(parseInt(cleanArg, 10));
+        let cleanVal = val.match(/^\.\d/) ? '0' + val : val;
+        cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
+        return !isNaN(parseInt(cleanVal, 10));
     }
-    if (isArray(arg) && arg.length === 1) {
-        return isNumberLike(arg[0]);
+    if (isArray(val) && val.length === 1) {
+        return isNumberLike(val[0]);
     }
     return false;
 };
@@ -120,7 +121,7 @@ export const isNumLike = isNumberLike;
 
 /**
  * Returns true if given value is an integer (does not include num-like strings).
- * @param {any} value - value to check type of.
+ * @param {any} val - value to check type of.
  * @return {boolean} true if given value is integer.
  */
 export const isInteger = (val: RealAny): boolean => {
@@ -149,41 +150,39 @@ export const isInt = isInteger;
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
  * or object that moment is able to parse. Excludes negative numbers and strings that parse to
  * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
- * @param {any} arg - Item to test for Date-like properties
+ * @param {any} val - Item to test for Date-like properties
  * @return {boolean} True if item is date-like.
  */
-export const isDateLike = (arg: RealAny): boolean => {
-    if ((arg instanceof moment) || (arg instanceof Date)) return true;
-    if ((typeof arg === 'number' && arg < 0) || (typeof arg === 'string' && parseInt(arg) < 0)) {
+export const isDateLike = (val: RealAny): boolean => {
+    if ((val instanceof moment) || (val instanceof Date)) return true;
+    if ((typeof val === 'number' && val < 0) || (typeof val === 'string' && parseInt(val) < 0)) {
         return false;
     }
-    if (typeof arg === 'object' && Object.keys(arg).find(key =>
+    if (typeof val === 'object' && Object.keys(val).find(key =>
         !key.match(/((hours?)|(minutes?)|((milli)?seconds?)|(days?)|(dates?)|(months?)|(years?))/))
     ) {
         return false;
     }
-    return (moment(arg) as any)._isValid;
+    return (moment(val) as any)._isValid;
 };
 
 
 /**
  * True if the given object is an array. Robust and works across multiple JS environments.
- * @param {any} value - Check if this is an array.
+ * @param {any} val - Check if this is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */
-export const isArray = (value: RealAny): boolean => {
-    // Fully compliant ES5, ES6, ES7, ES8 ES[+] environments
-    if (Array.isArray) {
-        return Array.isArray(value);
-    }
-    // Browsers
-    return !!((value)
-           && value.constructor
-           && (value.constructor.name === 'Array'
+export const isArray = (val: RealAny): boolean => {
+    // Works in fully compliant ES5, ES6, ES7, ES8 ES[+] environments (Node, new browsers, etc.)
+    if (Array.isArray) return Array.isArray(val);
+    // Works in browsers without Array.isArray.
+    return !!((val)
+           && val.constructor
+           && (val.constructor.name === 'Array'
                // All ES5 and higher environments
-               || (Object.getPrototypeOf && Object.getPrototypeOf(value.constructor) === Array)
+               || (Object.getPrototypeOf && Object.getPrototypeOf(val.constructor) === Array)
                // Pre-ES5 web browsers
-               || (value.constructor.__proto__ && value.constructor.__proto__.name === 'Array')));
+               || (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array')));
 };
 
 

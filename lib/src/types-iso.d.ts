@@ -71,17 +71,17 @@ export declare const isNonexistentOrString: (val: any) => boolean;
  * Returns true if the given argument is a number, a string that can be parsed into a number, or
  * a 1-item array containing either aforementioned type.
  * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
- * @param {RealAny} arg - item being tested for number-like nature.
+ * @param {RealAny} val - item being tested for number-like nature.
  * @return {boolean} True if item is number-like, otherwise false.
  */
-export declare const isNumberLike: (arg: any) => boolean;
+export declare const isNumberLike: (val: any) => boolean;
 /**
  * @alias isNumberLike
  */
-export declare const isNumLike: (arg: any) => boolean;
+export declare const isNumLike: (val: any) => boolean;
 /**
  * Returns true if given value is an integer (does not include num-like strings).
- * @param {any} value - value to check type of.
+ * @param {any} val - value to check type of.
  * @return {boolean} true if given value is integer.
  */
 export declare const isInteger: (val: any) => boolean;
@@ -99,16 +99,16 @@ export declare const isInt: (val: any) => boolean;
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
  * or object that moment is able to parse. Excludes negative numbers and strings that parse to
  * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
- * @param {any} arg - Item to test for Date-like properties
+ * @param {any} val - Item to test for Date-like properties
  * @return {boolean} True if item is date-like.
  */
-export declare const isDateLike: (arg: any) => boolean;
+export declare const isDateLike: (val: any) => boolean;
 /**
  * True if the given object is an array. Robust and works across multiple JS environments.
- * @param {any} value - Check if this is an array.
+ * @param {any} val - Check if this is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */
-export declare const isArray: (value: any) => boolean;
+export declare const isArray: (val: any) => boolean;
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
  *
