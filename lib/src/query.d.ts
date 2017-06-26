@@ -1,6 +1,8 @@
 /****************************************** QUERY PARAMS ******************************************/
 /**
- * Turn query params into JS object (based on splitting on ',' & '='). Return null if no query params.
+ * Turn query params into JS obj (based on splitting on , and =). Return null if no query params. If
+ * no param is given, uses the window query params at time of initial page load are used. Careful:
+ * this can be unexpected. To play it safe, explicitly pass window.location.search in every time.
  * @param {string} queryParamsString: source to parse for query params. Default: query (?) in URL.
  * @return {Object} Query params as object.
  * @example parseQueryParams('http://example.com/home?hello=everyone&gr=argh')
