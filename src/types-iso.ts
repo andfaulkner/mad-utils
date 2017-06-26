@@ -185,6 +185,13 @@ export const isArray = (val: RealAny): boolean => {
                || (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array')));
 };
 
+/**
+ * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true).
+ * @param {any} val - Check if this is a variant of true.
+ * @return {boolean} true if given value is a variant of true, otherwise false.
+ */
+export const isTrue = (val: RealAny): boolean =>
+    !!(val === 'true' || val === 'True' || val === 'TRUE' || val === true);
 
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
