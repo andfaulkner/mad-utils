@@ -80,12 +80,17 @@ export declare const isNumberLike: (arg: any) => boolean;
  */
 export declare const isNumLike: (arg: any) => boolean;
 /**
- * Returns true if given value is an integer.
- *
+ * Returns true if given value is an integer (does not include num-like strings).
  * @param {any} value - value to check type of.
  * @return {boolean} true if given value is integer.
  */
 export declare const isInteger: (val: any) => boolean;
+/**
+ * True if val is an integer or a string that can be converted to an integer.
+ * @param {any} val - Item to test.
+ * @return {boolean} true if tested item is integer-like (or an integer).
+ */
+export declare const isIntegerLike: (val: any) => boolean;
 /**
  * @alias for isInteger
  */
@@ -94,14 +99,12 @@ export declare const isInt: (val: any) => boolean;
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
  * or object that moment is able to parse. Excludes negative numbers and strings that parse to
  * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
- *
  * @param {any} arg - Item to test for Date-like properties
  * @return {boolean} True if item is date-like.
  */
 export declare const isDateLike: (arg: any) => boolean;
 /**
  * True if the given object is an array. Robust and works across multiple JS environments.
- *
  * @param {any} value - Check if this is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */

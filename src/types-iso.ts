@@ -2,6 +2,7 @@
 import * as moment from 'moment';
 import { DecoratorError } from './error';
 import { isVerbose } from 'env-var-helpers';
+import { matches } from './string';
 import * as Polyglot from 'node-polyglot';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
@@ -118,15 +119,26 @@ export const isNumberLike = (arg: RealAny): boolean => {
 export const isNumLike = isNumberLike;
 
 /**
- * Returns true if given value is an integer.
- *
+ * Returns true if given value is an integer (does not include num-like strings).
  * @param {any} value - value to check type of.
  * @return {boolean} true if given value is integer.
  */
 export const isInteger = (val: RealAny): boolean => {
     if (isNumberLike(val) && parseInt(val, 10) === parseFloat(val)) return true;
     return false;
-}
+};
+
+/**
+ * True if val is an integer or a string that can be converted to an integer.
+ * @param {any} val - Item to test.
+ * @return {boolean} true if tested item is integer-like (or an integer).
+ */
+export const isIntegerLike = (val: RealAny): boolean => {
+    if (!isNumberLike(val)) return false;
+    const vStr = val.toString();
+    return !matches(/\./g)(val) || vStr.endsWith('.');
+};
+
 
 /**
  * @alias for isInteger
@@ -137,7 +149,6 @@ export const isInt = isInteger;
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
  * or object that moment is able to parse. Excludes negative numbers and strings that parse to
  * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
- *
  * @param {any} arg - Item to test for Date-like properties
  * @return {boolean} True if item is date-like.
  */
@@ -157,7 +168,6 @@ export const isDateLike = (arg: RealAny): boolean => {
 
 /**
  * True if the given object is an array. Robust and works across multiple JS environments.
- *
  * @param {any} value - Check if this is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */

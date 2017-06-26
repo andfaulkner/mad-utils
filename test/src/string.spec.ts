@@ -79,13 +79,53 @@ describe(`string sub-module`, function() {
             expect([1, '2', 3].some(matches(2))).to.be.false;
             expect([1, 2, 3].some(matches('2'))).to.be.false;
         });
-        it(`should return true if given a regex to search for, then the returned function is given a string (or number) that the regex matches`,
+        it(`should return true if given a regex to search for, then the returned function is given a string that the regex matches`,
         function() {
             expect(matches(/asdf/)('asdfasdf')).to.be.true;
             expect(matches(/2/)('123')).to.be.true;
-            expect(matches(/2/)(123)).to.be.true;
             expect(matches(/z/)('z')).to.be.true;
             expect(matches(/z/)('aefaezjtyjrty')).to.be.true;
+            expect(matches(/qwerty/)('12345qwertyuiop')).to.be.true;
+        });
+        it(`should return true if given a regex to search for, then the returned function is given a number that (when converted to string) the regex matches`,
+        function() {
+            expect(matches(/2/)(123)).to.be.true;
+            expect(matches(/\./)(143.234)).to.be.true;
+            expect(matches(/3\.2/)(143.234)).to.be.true;
+        });
+        it(`should return true if given a string predicate, then the returned function is given a string that the predicate matches`,
+        function() {
+            expect(matches('asdf')('asdfasdf')).to.be.true;
+            expect(matches('2')('123')).to.be.true;
+            expect(matches('0')('909')).to.be.true;
+            expect(matches('z')('z')).to.be.true;
+            expect(matches('z')('aefaezjtyjrty')).to.be.true;
+        });
+        it(`should return false if given a string predicate, then the returned function is given a string that the predicate doesn't match`,
+        function() {
+            expect(matches('2')('3')).to.be.false;
+            expect(matches('88')('18385')).to.be.false;
+            expect(matches('0')('1')).to.be.false;
+            expect(matches('3987')('1234')).to.be.false;
+            expect(matches('abc')('def')).to.be.false;
+            expect(matches('zzz')('aaa')).to.be.false;
+            expect(matches('xax')('ii')).to.be.false;
+        });
+        it(`should return true if given a number predicate, then the returned function is given a number that the predicate matches (when both are converted into strings)`,
+        function() {
+            expect(matches(2)(123)).to.be.true;
+            expect(matches(8)(1283)).to.be.true;
+            expect(matches(111)(311183)).to.be.true;
+            expect(matches(0)(0)).to.be.true;
+            expect(matches(1.0)(1.0)).to.be.true;
+            expect(matches(1.0)(1)).to.be.true;
+        });
+        it(`should return false if given a number predicate, then the returned function is given a number that the predicate doesn't match (when both are converted into strings)`,
+        function() {
+            expect(matches(2)(3)).to.be.false;
+            expect(matches(88)(18385)).to.be.false;
+            expect(matches(0)(1)).to.be.false;
+            expect(matches(3987)(1234)).to.be.false;
         });
     });
 
