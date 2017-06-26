@@ -166,7 +166,6 @@ export const isDateLike = (val: RealAny): boolean => {
     return (moment(val) as any)._isValid;
 };
 
-
 /**
  * True if the given object is an array. Robust and works across multiple JS environments.
  * @param {any} val - Check if this is an array.
