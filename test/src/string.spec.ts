@@ -79,6 +79,14 @@ describe(`string sub-module`, function() {
             expect([1, '2', 3].some(matches(2))).to.be.false;
             expect([1, 2, 3].some(matches('2'))).to.be.false;
         });
+        it(`should return true if given a regex to search for, then the returned function is given a string (or number) that the regex matches`,
+        function() {
+            expect(matches(/asdf/)('asdfasdf')).to.be.true;
+            expect(matches(/2/)('123')).to.be.true;
+            expect(matches(/2/)(123)).to.be.true;
+            expect(matches(/z/)('z')).to.be.true;
+            expect(matches(/z/)('aefaezjtyjrty')).to.be.true;
+        });
     });
 
     describe('escapeRegExp', function() {

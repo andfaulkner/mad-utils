@@ -99,15 +99,21 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
         : text.replace(find, replace);
 
 /**
- * Inversion of String.prototype.match, for usage as a predicate.
- * Note that the type of the item being search and the item being searched for must match.
- * @param {string|number} matchAgainst - string or number to match against.
+ * Inversion of String.prototype.match, for usage as a predicate, but also works for searching
+ * with a RegExp or number. The type of the item to find for & the item being searched must match,
+ * unless valToFind is a RegExp.
+ * @param {string|number|RegExp} valToFind - Value to search for in valToSearchIn.
+ * @param {string|number} valToSearchIn - string or number to match against.
  * @return {boolean} true if a match is found.
- *
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
-export const matches = (valToFind: StrOrNum) => (valToSearchIn: StrOrNum): boolean => {
-    if (typeof valToFind !== typeof valToSearchIn) return false;
+export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNum): boolean => {
+    if ((typeof valToFind !== typeof valToSearchIn) && !(valToFind instanceof RegExp)) {
+      return false;
+    }
+    if (valToFind instanceof RegExp) {
+      return valToFind.test(valToSearchIn.toString());
+    }
     return !!valToSearchIn.toString().match(valToFind.toString());
 }
 

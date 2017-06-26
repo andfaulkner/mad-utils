@@ -20,14 +20,15 @@ export declare const capitalize: (str: string) => string;
  */
 export declare const replaceAll: (text: string, find: string | RegExp, replace: string) => string;
 /**
- * Inversion of String.prototype.match, for usage as a predicate.
- * Note that the type of the item being search and the item being searched for must match.
- * @param {string|number} matchAgainst - string or number to match against.
+ * Inversion of String.prototype.match, for usage as a predicate, but also works for searching
+ * with a RegExp or number. The type of the item to find for & the item being searched must match,
+ * unless valToFind is a RegExp.
+ * @param {string|number|RegExp} valToFind - Value to search for in valToSearchIn.
+ * @param {string|number} valToSearchIn - string or number to match against.
  * @return {boolean} true if a match is found.
- *
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
-export declare const matches: (valToFind: string | number) => (valToSearchIn: string | number) => boolean;
+export declare const matches: (valToFind: string | number | RegExp) => (valToSearchIn: string | number) => boolean;
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * Converts string to form that lets it be used as a pure 'literal' string to match against
