@@ -32,9 +32,13 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isInteger({})).to.be.false;
                 expect(typesIso.isInteger(false)).to.be.false;
                 expect(typesIso.isInteger(true)).to.be.false;
-                expect(typesIso.isInteger(null)).to.be.false;
                 expect(typesIso.isInteger([])).to.be.false;
                 expect(typesIso.isInteger(() => 23)).to.be.false;
+            });
+            it(`returns false if given null, undefined, or no value at all`, function() {
+                expect(typesIso.isInteger(null)).to.be.false;
+                expect(typesIso.isInteger(undefined)).to.be.false;
+                expect((typesIso.isInteger as any)()).to.be.false;
             });
         });
 
@@ -65,7 +69,6 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isNumberLike(true)).to.be.false;
                 expect(typesIso.isNumberLike('')).to.be.false;
                 expect(typesIso.isNumberLike('gr argh')).to.be.false;
-                expect(typesIso.isNumberLike(null)).to.be.false;
                 expect(typesIso.isNumberLike(Object)).to.be.false;
                 expect(typesIso.isNumberLike(typesIso.isNumberLike)).to.be.false;
                 expect(typesIso.isNumberLike(NaN)).to.be.false;
@@ -75,6 +78,11 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isNumberLike('.')).to.be.false;
                 expect(typesIso.isNumberLike('-.')).to.be.false;
                 expect(typesIso.isNumberLike('-.123.2')).to.be.false;
+            });
+            it(`returns false if given null, undefined, or no value at all`, function() {
+                expect(typesIso.isNumberLike(null)).to.be.false;
+                expect(typesIso.isNumberLike(undefined)).to.be.false;
+                expect((typesIso.isNumberLike as any)()).to.be.false;
             });
         });
 
@@ -113,7 +121,6 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isIntegerLike(true)).to.be.false;
                 expect(typesIso.isIntegerLike('')).to.be.false;
                 expect(typesIso.isIntegerLike('gr argh')).to.be.false;
-                expect(typesIso.isIntegerLike(null)).to.be.false;
                 expect(typesIso.isIntegerLike(Object)).to.be.false;
                 expect(typesIso.isIntegerLike(typesIso.isIntegerLike)).to.be.false;
                 expect(typesIso.isIntegerLike(NaN)).to.be.false;
@@ -124,10 +131,15 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isIntegerLike('-.')).to.be.false;
                 expect(typesIso.isIntegerLike('-.123.2')).to.be.false;
             });
+            it(`returns false if given null, undefined, or no value at all`, function() {
+                expect(typesIso.isIntegerLike(null)).to.be.false;
+                expect(typesIso.isIntegerLike(undefined)).to.be.false;
+                expect((typesIso.isIntegerLike as any)()).to.be.false;
+            });
         });
+
         describe(`isNonexistentOrString function`, function() {
             expectFunctionExists(typesIso.isNonexistentOrString);
-
             it(`returns true for undefined or null`, function() {
                 expect(typesIso.isNonexistentOrString(null)).to.equal(true);
                 expect(typesIso.isNonexistentOrString(undefined)).to.equal(true);
