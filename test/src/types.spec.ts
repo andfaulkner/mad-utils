@@ -204,6 +204,34 @@ describe(`types sub-modules`, function() {
             });
         });
 
+        describe(`isTrue function`, function() {
+            expectFunctionExists(typesIso.isTrue);
+            it(`returns true if run against true, 'true', 'True', or 'TRUE'`, function() {
+                expect(typesIso.isTrue(true)).to.be.true;
+                expect(typesIso.isTrue('true')).to.be.true;
+                expect(typesIso.isTrue('TRUE')).to.be.true;
+                expect(typesIso.isTrue('True')).to.be.true;
+            });
+            it(`returns false for everything besides true, 'true', 'True', or 'TRUE'`, function() {
+                expect(typesIso.isTrue(null)).to.be.false;
+                expect(typesIso.isTrue(false)).to.be.false;
+                expect(typesIso.isTrue('TrUe')).to.be.false;
+                expect(typesIso.isTrue('asdfoigeiubaer')).to.be.false;
+                expect(typesIso.isTrue('')).to.be.false;
+                expect(typesIso.isTrue(undefined)).to.be.false;
+                expect((typesIso.isTrue as any)()).to.be.false;
+                expect(typesIso.isTrue({})).to.be.false;
+                expect(typesIso.isTrue([])).to.be.false;
+                expect(typesIso.isTrue([true, true])).to.be.false;
+                expect(typesIso.isTrue({ true: true })).to.be.false;
+                expect(typesIso.isTrue(1)).to.be.false;
+                expect(typesIso.isTrue(0)).to.be.false;
+                expect(typesIso.isTrue(123456)).to.be.false;
+                expect(typesIso.isTrue(NaN)).to.be.false;
+                expect(typesIso.isTrue(Array)).to.be.false;
+                expect(typesIso.isTrue(Object)).to.be.false;
+            });
+        });
         describe(`isDateLike function`, function() {
             expectFunctionExists(typesIso.isDateLike);
             it(`should return true for dates & moment objects`, function() {
