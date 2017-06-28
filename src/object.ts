@@ -111,3 +111,5 @@ export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
     }
     return false;
 };
+
+// TODO reducePair

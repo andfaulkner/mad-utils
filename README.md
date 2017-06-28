@@ -395,8 +395,141 @@ Add to or subtract from array
     rmAllFalsy([1, 2, 3, false, null, 4, 0, 'asdf', '', 'ok', undefined, 'fine']);
     // => [1, 2, 3, 4, 'asdf', 'ok']
 
-Namespace : object  (Alias: coll)
--------------------------------------
+
+Namespace : date
+================
+### [TYPE] NumRange0To6
+*   Shorthand for any number between 0 and 6
+
+### [CONST] defaultTimestampFormat
+*   string that creates a timestamp in a nice, human-readable format when passed to MomentJS.
+`YYYY/MM/DD : hh:mm:ss`
+
+### [FUNC] isLeapYear
+(year: NumLike) => boolean
+*   Returns true if given year is a leap year
+*   Accepts integers, strings that can be converted to integers, and arrays with a single item, where said item is an integer or string convertable to an integer.
+*   Any other input will throw.
+
+### [FUNC] convertDayOfWeekNumToString
+(day: NumRange0To6, abbreviate: boolean) => StrOrNever
+
+*   Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
+*   Args:
+    *   day: number from 0 to 6 for conversion
+    *   abbreviate: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Defaults to false.
+
+```
+    convertDayOfWeekNumToString(5); // => 'Friday'
+    convertDayOfWeekNumToString(2, true); // => 'Tues'
+```
+
+### [FUNC] now
+(timeFormat?: string) => string
+*   Get the current date, formatted for display in the stream of Express logs to the CLI.
+*   Args:
+    *   timeFormat?: Optional momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
+        *   More info at https://momentjs.com/docs/#/parsing/string-format/
+
+```
+    now(); // => 2017/05/28 : 02:51:39
+    now(`YYYY/MM hh:mm`); // => 2017/02 02:51
+```
+
+### [FUNC] isDateLike (exported from types-iso - see below)
+
+
+Namespace : decorator
+=====================
+### DecoratorError
+*   WIP documentation
+
+### notForWebUse
+*   WIP documentation
+
+### singleton
+*   WIP documentation
+
+
+Namespace : dom (browser)
+=========================
+WIP documentation
+
+Namespace : enum
+================
+### enumToStringArray
+*   WIP documentation
+
+### enumValToString
+*   WIP documentation
+
+### stringToEnumVal
+*   WIP documentation
+
+### isNumericEnumItem
+*   WIP documentation
+
+### isIndexEnumItem
+*   WIP documentation
+
+### isDataEnumItem
+*   WIP documentation
+
+
+Namespace : error (isomorphic)
+==============================
+### DecoratorError
+*   WIP documentation
+
+### scrubStackTrace
+*   WIP documentation
+
+Namespace : error (node)
+========================
+WIP documentation
+
+Namespace : event (browser)
+===========================
+WIP documentation
+
+Namespace : file (node)
+=======================
+WIP documentation
+
+Namespace : function
+====================
+WIP documentation
+
+Namespace : json
+================
+WIP documentation
+
+Namespace : localStore (browser)
+================================
+WIP documentation
+
+Namespace : localStore (browser)
+================================
+WIP documentation
+
+Namespace : locale
+==================
+WIP documentation
+
+Namespace : middleware
+======================
+WIP documentation
+
+Namespace : number
+==================
+### isInt
+*   WIP documentation
+
+### isNumberLike
+*   WIP documentation
+
+Namespace : object
+==================
 ### get
 *   Get the item at the given object path.
 
@@ -450,126 +583,55 @@ Namespace : object  (Alias: coll)
     isMultilangTextObj({ en_cb: null, asdf: 123 })
     // => true
 
-Namespace : date
-----------------
-### [TYPE] NumRange0To6
-*   Shorthand for any number between 0 and 6
+### eachPair
+(Function(val, key)) => (Object) => Object (of original value)
+*   Run given function on each pair in given object
+*   CURRIED, NON-MUTATIVE
 
-### [CONST] defaultTimestampFormat
-*   string that creates a timestamp in a nice, human-readable format when passed to MomentJS.
-`YYYY/MM/DD : hh:mm:ss`
+    const arr = [];
+    const putKeyValPairInArr = eachPair((v, k) => arr.push(k + v));
+    putKeyValPairInArr({ a: 1, b: 2 });
+    console.log(arr);
+    // => ['a1', 'b2']
 
-### [FUNC] isLeapYear
-(year: NumLike) => boolean
-*   Returns true if given year is a leap year
-*   Accepts integers, strings that can be converted to integers, and arrays with a single item, where said item is an integer or string convertable to an integer.
-*   Any other input will throw.
+### numKeys
+(Object) => number
+*   Return number of keys in given object.
 
-### [FUNC] convertDayOfWeekNumToString
-(day: NumRange0To6, abbreviate: boolean) => StrOrNever
+    numKeys({ a: 1, b: 2 });
+    // => 2
 
-*   Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
-*   Args:
-    *   day: number from 0 to 6 for conversion
-    *   abbreviate: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Defaults to false.
+### hasKey
+(Object, string) => boolean
+*   Return true if given object has given key.
 
-```
-    convertDayOfWeekNumToString(5); // => 'Friday'
-    convertDayOfWeekNumToString(2, true); // => 'Tues'
-```
+    hasKey({ a: 1, b: 2 }, 'a');
+    // => true
 
-### [FUNC] now
-(timeFormat?: string) => string
-*   Get the current date, formatted for display in the stream of Express logs to the CLI.
-*   Args:
-    *   timeFormat?: Optional momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
-        *   More info at https://momentjs.com/docs/#/parsing/string-format/
+    hasKey({ a: 1, b: 2 }, 'c');
+    // => false
 
-```
-    now(); // => 2017/05/28 : 02:51:39
-    now(`YYYY/MM hh:mm`); // => 2017/02 02:51
-```
-
-### [FUNC] isDateLike (exported from types-iso - see below)
-
-
-Namespace : decorator
----------------------
-### DecoratorError
-*   WIP
-
-### notForWebUse
-*   WIP
-
-### singleton
-*   WIP
-
-
-Namespace : enum
-----------------
-### enumToStringArray
-*   WIP
-
-### enumValToString
-*   WIP
-
-### stringToEnumVal
-*   WIP
-
-### isNumericEnumItem
-*   WIP
-
-### isIndexEnumItem
-*   WIP
-
-### isDataEnumItem
-*   WIP
-
-
-Namespace : error
------------------
-### DecoratorError
-*   WIP
-
-### scrubStackTrace
-*   WIP
-
-
-Namespace : number
-------------------
-### isInt
-*   WIP
-
-### isNumberLike
-*   WIP
-
-
-Namespace : object
-------------------
-### isMultilangTextObj
-*   WIP
-
-### get
-*   WIP
-
+Namespace : query
+=================
+WIP documentation
 
 Namespace : search
-------------------
+==================
 ### escapeRegExp
-*   WIP
+*   WIP documentation
 
 ### matches
-*   WIP
+*   WIP documentation
 
 ### matchesIgnoreCase
-*   WIP
+*   WIP documentation
 
 ### replaceAll
-*   WIP
+*   WIP documentation
 
 
 Namespace string (Alias: str)
------------------------------
+=============================
 ### cap1LowerRest
 *   Make the first letter uppercase, and the rest lowercase.
 
@@ -577,31 +639,48 @@ Namespace string (Alias: str)
 *   Make the first letter uppercase, and leave the rest as-is.
 
 ### escapeRegExp
-*   WIP
+*   WIP documentation
 
 ### isNonexistentOrString
-*   WIP
+*   WIP documentation
 
 ### matches
-*   WIP
+*   WIP documentation
 
 ### matchesIgnoreCase
-*   WIP
+*   WIP documentation
 
 ### replaceAll
-*   WIP
+*   WIP documentation
 
 ### stringToEnumVal
-*   WIP
+*   WIP documentation
 
 Namespace : test
-----------------
+================
+### expectNonEmptyObjectExists
+*   Create Mocha test that passes if given object exists and is not empty
+
+    expectEmptyObject({}); // << will not pass
+    expectEmptyObject({ a: 1 }); // << will pass
+
 ### expectEmptyObject
-*   WIP
+*   Create Mocha test that passes if given object is empty
+
+    expectEmptyObject({}); // << will pass
+    expectEmptyObject({ a: 1 }); // << will not pass
+
+### expectFunctionExists (ALIAS: expectFuncExists)
+*   Create Mocha test that passes if given function exists
+
+    const inc = (a: number) => a + 1;
+    expectFunctionExists({}); // << will not pass
+    expectFunctionExists(() => null); // << will pass
+    expectFunctionExists(inc); // << will pass
 
 
-Namespace : type (isomorphic)
------------------------------
+Namespace : types (isomorphic)
+==============================
 [FUNC] isDateLike
 (arg: RealAny) => boolean
 *   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
@@ -610,34 +689,52 @@ Namespace : type (isomorphic)
         *   strings that parse to negative numbers
         *   objects with date-irrelevant keys e.g. { year: 1123, bear: 'grizzly' }
 
-
-Namespace : type
-----------------
 ### isArray
-*   WIP
-
-### isDateLike
-*   WIP
+*   (see array section above)
 
 ### isNumberLike
-*   WIP
+*   True if given item is a number or a string that can be parsed into a number
+*   WIP documentation
 
 ### isMultilangTextObj
-*   WIP
+*   (see locale section above)
 
 ### matches
-*   WIP
+*   curried, matcher-first match function
+*   WIP documentation
 
 ### matchesIgnoreCase
-*   WIP
+*   True if 2 given strings' match, with casing ignored.
+*   WIP documentation
 
 ### isNonexistentOrString
-*   WIP
+*   True if given item doesn't exist, or is a string.
+*   WIP documentation
 
-### isInt
-*   WIP
+### isInteger
+*   True if given item is an integer
+*   WIP documentation
 
-----
+### isIntegerLike
+*   True if given item is an integer or string containing an item that can be converted to an integer.
+*   WIP documentation
+
+Namespace : type (node)
+=======================
+WIP documentation
+
+Namespace : type (browser)
+==========================
+WIP documentation
+
+Namespace : validation
+======================
+WIP documentation
+
+Namespace : webpack (node)
+==========================
+WIP documentation
 
 Documentation is a major WIP.
-TODO document these at least a bit (I don't have time right now)
+TODO More documentation in README.
+TODO Document special React module.
