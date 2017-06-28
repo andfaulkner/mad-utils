@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { RealAny } from './types-iso';
+import { RealAny, isArray } from './types-iso';
 
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 
@@ -120,18 +120,18 @@ export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
 
 
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
-/** Exclude given number of items from end of string or array */
-export function withoutLastN<T>(str: string, numToRm: number): string;
-export function withoutLastN<T>(arr: T[], numToRm: number) : T[];
-export function withoutLastN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
-    return arrOrStr.slice(0, (numToRm === 0) ? arrOrStr.length : (-1 * numToRm));
+/** Exclude first 2 items from string or array */
+export function withoutFirst2<T>(str: string): string;
+export function withoutFirst2<T>(arr: T[]): T[];
+export function withoutFirst2<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(2);
 }
 
-/** Exclude given number of items from beginning of string or array */
-export function withoutFirstN<T>(str: string, numToRm: number): string;
-export function withoutFirstN<T>(arr: T[], numToRm: number): T[];
-export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
-    return arrOrStr.slice(1 * numToRm);
+/** Exclude first 3 items from string or array */
+export function withoutFirst3<T>(str: string): string;
+export function withoutFirst3<T>(arr: T[]): T[];
+export function withoutFirst3<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(3);
 }
 
 /** Exclude last item from string or array */
@@ -156,25 +156,25 @@ export function withoutLast3<T>(arrOrStr: T[] | string): T[] | string {
     return arrOrStr.slice(0, -3);
 }
 
+/** Exclude given number of items from end of string or array */
+export function withoutLastN<T>(str: string, numToRm: number): string;
+export function withoutLastN<T>(arr: T[], numToRm: number) : T[];
+export function withoutLastN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
+    return arrOrStr.slice(0, (numToRm === 0) ? arrOrStr.length : (-1 * numToRm));
+}
+
+/** Exclude given number of items from beginning of string or array */
+export function withoutFirstN<T>(str: string, numToRm: number): string;
+export function withoutFirstN<T>(arr: T[], numToRm: number): T[];
+export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
+    return arrOrStr.slice(1 * numToRm);
+}
+
 /** Exclude first item from string or array */
 export function withoutFirst<T>(str: string): string;
 export function withoutFirst<T>(arr: T[]): T[];
 export function withoutFirst<T>(arrOrStr: T[] | string): T[] | string {
     return arrOrStr.slice(1);
-}
-
-/** Exclude first 2 items from string or array */
-export function withoutFirst2<T>(str: string): string;
-export function withoutFirst2<T>(arr: T[]): T[];
-export function withoutFirst2<T>(arrOrStr: T[] | string): T[] | string {
-    return arrOrStr.slice(2);
-}
-
-/** Exclude first 3 items from string or array */
-export function withoutFirst3<T>(str: string): string;
-export function withoutFirst3<T>(arr: T[]): T[];
-export function withoutFirst3<T>(arrOrStr: T[] | string): T[] | string {
-    return arrOrStr.slice(3);
 }
 
 /**
@@ -217,6 +217,25 @@ export const append =
         ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs)
         : first2Arrs;
 };
+
+/**
+ * Return new array with all items in arr2OrItem removed from array1; or if array2 is
+ * not an array, remove matching item from array1. NON-MUTATIVE. PERFORMANCE-INTENSIVE.
+ * @param {any[]} arr1 - Array to remove items from.
+ * @param {any[]|any} arr2OrItem - Remove all items in this array, or remove item if not an array.
+ * @return {any[]} arr1 with all items in arr2OrItem (or the item itself) removed.
+ * 
+ */
+export function removeMatches(arr1: RealAny[], arr2: any): RealAny[];
+export function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny[];
+export function removeMatches(arr1: RealAny[], arr2: RealAny[] | any): RealAny[] {
+    return arr1.filter(arr1Item => {
+        if (isArray(arr2)) {
+            return (arr2 as Array<any>).every(arr2Item => arr2Item !== arr1Item);
+        }
+        return arr1Item !== arr2;
+    });
+}
 
 /**
  * Eliminate all falsy values from the given array.

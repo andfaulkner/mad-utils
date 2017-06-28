@@ -15,7 +15,8 @@ import { m_, array, append,
         arrayN,
         rmAllFalsy, splitLines, without,
         withoutLast, withoutLast2, withoutLast3, withoutLastN,
-        withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN } from '../../shared';
+        withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
+        removeMatches } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
 import { array as arrayFromBrowser } from '../../browser';
@@ -492,6 +493,44 @@ describe(`array sub-module`, function() {
             expect(without.lastN('abcd fg', 3)).to.eql('abcd');
             expect(without.lastN('', 10)).to.eql('');
             expect(without.lastN('a', 0)).to.eql('a');
+        });
+    });
+
+    describe(`-- removeMatches`, function() {
+        expectFunctionExists(removeMatches);
+        expectFunctionExists(removeMatches);
+        expectFunctionExists(m_.array.removeMatches);
+        it(`Excludes item given as second parameter from array given as 1st param`, function() {
+            expect(removeMatches([1, 2, 3], 2)).to.eql([1, 3]);
+            expect(removeMatches([null, 'two', 'three', 4], 'two')).to.eql([null, 'three', 4]);
+        });
+        it(`Return array given as 1st arg as-is if item given as 2nd arg not found`, function() {
+            expect(removeMatches(['a'], 0)).to.eql(['a']);
+            expect(removeMatches(['a', 'b', 123], 5435)).to.eql(['a', 'b', 123]);
+        });
+        it(`Returns empty array if first param is empty array`, function() {
+            expect(removeMatches([], '')).to.eql([]);
+            expect(removeMatches([], 'asdfasdf')).to.eql([]);
+            expect(removeMatches([], null)).to.eql([]);
+            expect(removeMatches([], [])).to.eql([]);
+            expect(removeMatches([], ['a', '234', '435', 12])).to.eql([]);
+        });
+        it(`Excludes all items in second arg (array) from array given as 1st arg`, function() {
+            expect(removeMatches([1, 2, 3], [2])).to.eql([1, 3]);
+            expect(removeMatches([null, 'two', 'three', 4], ['two'])).to.eql([null, 'three', 4]);
+            expect(removeMatches([null, 'two', 'three', 4], ['two', 4])).to.eql([null, 'three']);
+            expect(removeMatches([null, 'two', 'three', 4], [null, 'two', 4])).to.eql(['three']);
+            expect(removeMatches([null, 'two', 'three', 4], [null, 'two', 'three', 4])).to.eql([]);
+            expect(removeMatches([null, 'two', 'three', 4], [null, 4, 'two', 'three'])).to.eql([]);
+        });
+        it(`Excludes items in 2nd arg from 1st arg even if duplicates found in 2nd arg`, function() {
+            expect(removeMatches([null, 'two', 'three', 4], [null, 'two', 'two', 4])).to.eql(['three']);
+            expect(removeMatches([null, 'two', 'three', 4], [null, 4, 'two', 'three', 4])).to
+                .eql([]);
+            expect(removeMatches([1, 2, 3, 4], [1, 4, 4, 4, 4, 4, 4, 4])).to.eql([2, 3]);
+            expect(removeMatches([1, 2, 3, 4], [1, 4, 4, 4, 4, 4, 4, 4, 2])).to.eql([3]);
+            expect(removeMatches([1, 2, 3, 4], [1, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2])).to
+                .eql([3]);
         });
     });
 });
