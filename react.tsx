@@ -20,6 +20,12 @@ export { FormSubmit as FormSubmitType }
  */
 export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
 
+/**
+ * Use with stateless functional components passing children through.
+ */
+export interface ChildrenPassthruProps {
+    children: any;
+}
 
 /*********************************** REACT COMPONENT FACTORIES ************************************/
 /**
