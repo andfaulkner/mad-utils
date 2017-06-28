@@ -326,6 +326,14 @@ describe(`array sub-module`, function() {
             expect(splitLines('\n\n')).to.eql([]);
             expect(splitLines('\n\n\n\n\n\n')).to.eql([]);
         });
+        it(`Keep empty lines in output if preserveEmptyLines option is set to true`, function() {
+            expect(splitLines('\n', { preserveEmptyLines: true })).to.eql(['', '']);
+            expect(splitLines('\na\n', { preserveEmptyLines: true })).to.eql(['', 'a', '']);
+            expect(splitLines('123a\n123\n', { preserveEmptyLines: true })).to
+                .eql(['123a', '123', '']);
+            // expect(splitLines('\n\n')).to.eql([]);
+            // expect(splitLines('\n\n\n\n\n\n')).to.eql([]);
+        });
     });
 
     describe(`-- without.last`, function() {

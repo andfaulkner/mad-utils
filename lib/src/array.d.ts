@@ -93,26 +93,27 @@ export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
  * @param {any[]} arr1 - Array to remove items from.
  * @param {any[]|any} arr2OrItem - Remove all items in this array, or remove item if not an array.
  * @return {any[]} arr1 with all items in arr2OrItem (or the item itself) removed.
- *
  */
 export declare function removeMatches(arr1: RealAny[], arr2: any): RealAny[];
 export declare function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny[];
 /**
- * Eliminate all falsy values from the given array.
- *
+ * Return new array with all falsy values in the given array eliminated.
  * @param {Array} arr - Array containing any values of any type.
  * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
  */
 export declare const rmAllFalsy: (arr: any[]) => any[];
 /**
  * Split large multiline string into array where each line is an item. Also removes blank lines.
- *
  * @param {String} str - Multiline string to split into array where each line is an array item.
  *                       Splits on '\n' char.
+ * @param {Object} opts::
+ *        @param {boolean} preserveEmptyLines - If true, remove all blank lines. Off by default.
  * @return {Array<string>} Array where each item is a line from the input string, with falsy
  *                         values removed.
  */
-export declare const splitLines: (str: string) => any[];
+export declare const splitLines: (str: string, opts?: {
+    preserveEmptyLines: boolean;
+}) => string[];
 /**
  * Namespace for certain "reversed" operations.
  */
