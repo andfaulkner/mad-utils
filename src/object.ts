@@ -57,18 +57,18 @@ export const isMultilangTextObj = (obj: RealAny): boolean => {
     return !!(
         typeof obj === 'object' && obj !== null
         && Object.keys(obj).length > 0
-            && Object.keys(obj).find(key => {
-                if (englishVariants.find(matchesIgnoreCase(key)) ||
-                    frenchVariants.find(matchesIgnoreCase(key)))
-                {
-                    matchingKey = key;
-                    return true;
-                }
-            })
-            && (typeof matchingKey === 'string'
-                || matchingKey == null
-                || matchingKey == undefined)
-            && isNonexistentOrString(obj[matchingKey])
+        && Object.keys(obj).find(key => {
+            if (englishVariants.find(matchesIgnoreCase(key)) ||
+                frenchVariants.find(matchesIgnoreCase(key)))
+            {
+                matchingKey = key;
+                return true;
+            }
+        })
+        && (typeof matchingKey === 'string'
+            || matchingKey == null
+            || matchingKey == undefined)
+        && isNonexistentOrString(obj[matchingKey])
     );
 };
 

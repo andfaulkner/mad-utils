@@ -49,30 +49,62 @@ export declare function lastN<T>(arr: T[], n: number): T[];
  */
 export declare const arrayN: <T>(len: number, fillValue?: T) => void[] | T[];
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
-/** Exclude first 2 items from string or array */
-export declare function withoutFirst2<T>(str: string): string;
-export declare function withoutFirst2<T>(arr: T[]): T[];
-/** Exclude first 3 items from string or array */
-export declare function withoutFirst3<T>(str: string): string;
-export declare function withoutFirst3<T>(arr: T[]): T[];
-/** Exclude last item from string or array */
-export declare function withoutLast<T>(str: string): string;
-export declare function withoutLast<T>(arr: T[]): T[];
-/** Exclude last 2 items from string or array */
-export declare function withoutLast2<T>(str: string): string;
-export declare function withoutLast2<T>(arr: T[]): T[];
-/** Exclude last 3 items from string or array */
-export declare function withoutLast3<T>(str: string): string;
-export declare function withoutLast3<T>(arr: T[]): T[];
-/** Exclude given number of items from end of string or array */
-export declare function withoutLastN<T>(str: string, numToRm: number): string;
-export declare function withoutLastN<T>(arr: T[], numToRm: number): T[];
-/** Exclude given number of items from beginning of string or array */
-export declare function withoutFirstN<T>(str: string, numToRm: number): string;
-export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
-/** Exclude first item from string or array */
+/**
+ * Exclude first item from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first item from.
+ * @return {Array<any>} Array with first item excluded.
+ */
 export declare function withoutFirst<T>(str: string): string;
 export declare function withoutFirst<T>(arr: T[]): T[];
+/**
+ * Exclude last item from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last item from.
+ * @return {Array<any>} Array with last item excluded.
+ */
+export declare function withoutLast<T>(str: string): string;
+export declare function withoutLast<T>(arr: T[]): T[];
+/**
+ * Exclude first 2 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first 2 items from.
+ * @return {Array<any>} Array with first 2 items excluded.
+ */
+export declare function withoutFirst2<T>(str: string): string;
+export declare function withoutFirst2<T>(arr: T[]): T[];
+/**
+ * Exclude first 3 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first 3 items from.
+ * @return {Array<any>} Array with first 3 items excluded.
+ */
+export declare function withoutFirst3<T>(str: string): string;
+export declare function withoutFirst3<T>(arr: T[]): T[];
+/**
+ * Exclude last 2 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last 2 items from.
+ * @return {Array<any>} Array with last 2 items excluded.
+ */
+export declare function withoutLast2<T>(str: string): string;
+export declare function withoutLast2<T>(arr: T[]): T[];
+/**
+ * Exclude last 3 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last 3 items from.
+ * @return {Array<any>} Array with last 3 items excluded.
+ */
+export declare function withoutLast3<T>(str: string): string;
+export declare function withoutLast3<T>(arr: T[]): T[];
+/**
+ * Exclude given number of items from end of string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last N items from.
+ * @return {Array<any>} Array with last N items excluded.
+ */
+export declare function withoutLastN<T>(str: string, numToRm: number): string;
+export declare function withoutLastN<T>(arr: T[], numToRm: number): T[];
+/**
+ * Exclude given number of items from beginning of string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first N items from.
+ * @return {Array<any>} Array with first N items excluded.
+ */
+export declare function withoutFirstN<T>(str: string, numToRm: number): string;
+export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
 /**
  * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
  * If either arr1 or arr2 are undefined, it ignores it and just returns the other.
