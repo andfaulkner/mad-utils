@@ -168,6 +168,41 @@ Namespace : array
     first(['a', 'b', 'c', 'd']);
     // => 'a'
 
+### second
+(arr: T[]) => T
+*   Return second item in given array
+
+    second(['a', 'b', 'c', 'd']);
+    // => 'b'
+
+### third
+(arr: T[]) => T
+*   Return third item in given array
+
+    third(['a', 'b', 'c', 'd']);
+    // => 'c'
+
+### last
+(arr: T[]) => T
+*   Return last item in given array
+
+    last(['a', 'b', 'c', 'd']);
+    // => 'd'
+
+### secondLast
+(arr: T[]) => T
+*   Return secondLast item in given array
+
+    secondLast(['a', 'b', 'c', 'd']);
+    // => 'c'
+
+### thirdLast
+(arr: T[]) => T
+*   Return thirdLast item in given array
+
+    thirdLast(['a', 'b', 'c', 'd']);
+    // => 'b'
+
 ### first2
 (arr: T[]) => T[]
 *   Return first 2 items in given array
@@ -181,13 +216,6 @@ Namespace : array
 
     first3(['a', 'b', 'c', 'd']);
     // => ['a', 'b', 'c']
-
-### last
-(arr: T[]) => T
-*   Return last item in given array
-
-    last(['a', 'b', 'c', 'd']);
-    // => 'd'
 
 ### last2
 (arr: T[]) => T[]
@@ -217,17 +245,12 @@ Namespace : array
     lastN(['a', 'b', 'c', 'd'], 2)
     // => ['c', 'd']
 
-### secondLast
-*   Return second-last item from given array. Return undefined if array has less than 2 items.
+### arrayN
+(len: number) => undefined[]
+*   Create empty array of given length.
 
-    secondLast(['a', 'b', 'c', 'd'])
-    // => 'c'
-
-### thirdLast
-*   Return second-last item from given array. Return undefined if array has less than 3 items.
-
-    thirdLast(['a', 'b', 'c', 'd'])
-    // => 'b'
+    arrayN(6)
+    // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
 
 ### isArray
 *   True if item is an array
@@ -239,13 +262,6 @@ Namespace : array
     isArray(new CustomArray());
     // => true
 
-
-### arrayN
-(len: number) => undefined[]
-*   Create empty array of given length.
-
-    arrayN(6)
-    // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
 
 ### append (arr1: any[] | any | void, ...arrN: (any[] | any | void)[]) => any[]
 *   Non-mutative: returns a new array.

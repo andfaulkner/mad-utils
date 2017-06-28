@@ -2,6 +2,98 @@
 import { RealAny } from './types-iso';
 
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
+
+//
+// SINGLE ITEM FROM START OR END
+//
+
+/** Return first item in an array. */
+export function first(str: string): string;
+export function first<T>(arr: T[]): T;
+export function first<T>(arrOrStr: T[] | string): T | string { return arrOrStr[0]; }
+
+/** Return second item in an array. */
+export function second<T>(str: string): string;
+export function second<T>(arr: T[]): T;
+export function second<T>(arrOrStr: T[] | string): T | string { return arrOrStr[1]; }
+
+/** Return third item in an array. */
+export function third<T>(str: string): string;
+export function third<T>(arr: T[]): T;
+export function third<T>(arrOrStr: T[] | string): T | string { return arrOrStr[2]; }
+
+/** Return last item in an array or string. */
+export function last(str: string): string;
+export function last<T>(arr: T[]): T;
+export function last<T>(arrOrStr: T[] | string): T | string { return arrOrStr.slice(-1)[0]; }
+
+/** Return second last item in an array or string. */
+export function secondLast(str: string): string;
+export function secondLast<T>(arr: T[]): T;
+export function secondLast<T>(arrOrStr: T[] | string): T | string {
+    return arrOrStr.slice(-2, -1)[0];
+}
+
+/** Return third last item in an array. */
+// tslint:disable-next-line:no-magic-numbers max-line-length
+export function thirdLast(str: string): string;
+export function thirdLast<T>(arr: T[]): T;
+export function thirdLast<T>(arrOrStr: T[] | string ): T | string {
+    // tslint:disable-next-line:no-magic-numbers
+    return arrOrStr.slice(-3, -2)[0];
+}
+
+//
+// MULTIPLE ITEMS FROM START OR END
+//
+
+/** Return first 2 items in an array. */
+export function first2<T>(str: string): string;
+export function first2<T>(arr: T[]): T[];
+export function first2<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 2); }
+
+/** Return first 3 items in an array. */
+export function first3<T>(str: string): string;
+export function first3<T>(arr: T[]): T[];
+// tslint:disable-next-line:no-magic-numbers
+export function first3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 3); }
+
+/** Return last 2 items in an array. */
+export function last2(str: string): string;
+export function last2<T>(arr: T[]): T[];
+export function last2<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(-2); }
+
+/** Return last 3 items in an array. */
+export function last3(str: string): string;
+export function last3<T>(arr: T[]): T[];
+// tslint:disable-next-line:no-magic-numbers
+export function last3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(-3); }
+
+//
+// VARIABLE NUMBER OF ITEMS FROM START OR END
+//
+
+/**
+ * Return first N items in an array. Returns the whole array if you request too many items.
+ */
+export function firstN(str: string, n: number): string;
+export function firstN<T>(arr: T[], n: number): T[];
+export function firstN <T>(arrOrStr: T[] | string, n: number): T[] | string {
+    if (typeof arrOrStr === 'string') return arrOrStr.slice(0, n);
+    return arrOrStr.length >= n ? arrayN<void>(n).map((__, idx) => arrOrStr[idx]) : arrOrStr;
+}
+
+/** Return last N items in an array. */
+export function lastN(str: string, n: number): string;
+export function lastN<T>(arr: T[], n: number): T[];
+export function lastN<T>(arrOrStr: T[] | string, n: number): string | T[] {
+    return arrOrStr.slice(-1 * n);
+}
+
+//
+// CREATE NEW ARRAY
+//
+
 /**
  * Create array containing requested number of repeats of a given fillValue, or containing
  * requested number of repeats of undefined if no fillValue is given.
@@ -25,83 +117,6 @@ export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
     if (fillValue) return Array.from(Array(cleanLen)).map(item => fillValue);
     return Array.from(Array(cleanLen));
 };
-
-/** Return last item in an array or string. */
-export function last(str: string): string;
-export function last<T>(arr: T[]): T;
-export function last<T>(arrOrStr: T[] | string): T | string { return arrOrStr.slice(-1)[0]; }
-
-/** Return second last item in an array or string. */
-export function secondLast(str: string): string;
-export function secondLast<T>(arr: T[]): T;
-export function secondLast<T>(arrOrStr: T[] | string): T | string {
-    return arrOrStr.slice(-2, -1)[0];
-}
-
-/** Return third last item in an array. */
-// tslint:disable-next-line:no-magic-numbers max-line-length
-export function thirdLast(str: string): string;
-export function thirdLast<T>(arr: T[]): T;
-export function thirdLast<T>(arrOrStr: T[] | string ): T | string {
-    // tslint:disable-next-line:no-magic-numbers
-    return arrOrStr.slice(-3, -2)[0];
-}
-
-/** Return last 2 items in an array. */
-export function last2(str: string): string;
-export function last2<T>(arr: T[]): T[];
-export function last2<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(-2); }
-
-/** Return last 3 items in an array. */
-export function last3(str: string): string;
-export function last3<T>(arr: T[]): T[];
-// tslint:disable-next-line:no-magic-numbers
-export function last3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(-3); }
-
-/** Return last N items in an array. */
-export function lastN(str: string, n: number): string;
-export function lastN<T>(arr: T[], n: number): T[];
-export function lastN<T>(arrOrStr: T[] | string, n: number): string | T[] {
-    return arrOrStr.slice(-1 * n);
-}
-
-/** Return first item in an array. */
-export function first(str: string): string;
-export function first<T>(arr: T[]): T;
-export function first<T>(arrOrStr: T[] | string): T | string { return arrOrStr[0]; }
-
-/** Return second item in an array. */
-export function second<T>(str: string): string;
-export function second<T>(arr: T[]): T;
-export function second<T>(arrOrStr: T[] | string): T | string { return arrOrStr[1]; }
-
-/** Return third item in an array. */
-export function third<T>(str: string): string;
-export function third<T>(arr: T[]): T;
-export function third<T>(arrOrStr: T[] | string): T | string { return arrOrStr[2]; }
-
-/** Return first 2 items in an array. */
-export function first2<T>(str: string): string;
-export function first2<T>(arr: T[]): T[];
-export function first2<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 2); }
-
-/** Return first 3 items in an array. */
-export function first3<T>(str: string): string;
-export function first3<T>(arr: T[]): T[];
-// tslint:disable-next-line:no-magic-numbers
-export function first3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 3); }
-
-/**
- * Return first N items in an array. Returns the whole array if you request too many items.
- */
-export function firstN(str: string, n: number): string;
-export function firstN<T>(arr: T[], n: number): T[];
-export function firstN <T>(arrOrStr: T[] | string, n: number): T[] | string {
-    if (typeof arrOrStr === 'string') {
-        return arrOrStr.slice(0, n);
-    }
-    return arrOrStr.length >= n ? arrayN<void>(n).map((__, idx) => arrOrStr[idx]) : arrOrStr;
-}
 
 
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
