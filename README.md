@@ -161,6 +161,27 @@ Namespace contents
 ==================
 Namespace : array
 -----------------
+### first
+(arr: T[]) => T
+*   Return first item in given array
+
+    first(['a', 'b', 'c', 'd']);
+    // => 'a'
+
+### first2
+(arr: T[]) => T[]
+*   Return first 2 items in given array
+
+    first2(['a', 'b', 'c', 'd']);
+    // => ['a', 'b']
+
+### first3
+(arr: T[]) => T[]
+*   Return first 3 items in given array
+
+    first3(['a', 'b', 'c', 'd']);
+    // => ['a', 'b', 'c']
+
 ### last
 (arr: T[]) => T
 *   Return last item in given array
