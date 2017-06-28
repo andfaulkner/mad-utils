@@ -342,7 +342,6 @@ Exclude items from array by position
     withoutLastN([1, 2, 3, 4, 5, 6, 7], 5)
     // => [1, 2]
 
-
 Array typechecking
 ------------------
 ### isArray
@@ -396,14 +395,13 @@ Add to or subtract from array
     rmAllFalsy([1, 2, 3, false, null, 4, 0, 'asdf', '', 'ok', undefined, 'fine']);
     // => [1, 2, 3, 4, 'asdf', 'ok']
 
-Namespace : collection  (Alias: coll)
+Namespace : object  (Alias: coll)
 -------------------------------------
-*   Also includes all items in the array category
-
 ### get
 *   Get the item at the given object path.
 
 ### assignFrozenClone
+(Object, ...Object[]): Readonly<Object>
 *   Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result
 
     const obj = assignFrozenClone({ a: 1, b: 2}, { c: 3, d: 4 });
@@ -412,6 +410,45 @@ Namespace : collection  (Alias: coll)
     obj.a // => 1
     //          /\\--- note that it didn't change
 
+### deepFreeze
+(Object): Readonly<Object>
+*   deep-freeze given object
+*   MUTATIVE! (But still returns original)
+
+    const obj = deepFreeze({ a: 1, b: 2, c: 3, d: 4 });
+    // obj = { a: 1, b: 2, c: 3, d: 4 }
+    obj.a = 6;
+    obj.a
+    // => 1
+    //   /\\--- note that it didn't change
+
+    const obj = { a: 1, b: 2, c: 3, d: 4 };
+    deepFreeze(obj);
+    obj.a = 6;
+    obj.a
+    // => 1
+
+### isMultilangTextObj
+(Object): boolean
+*   Returns true if given object is (probably) a multilanguage text object.
+*   Not foolproof: e.g. assumes one of the languages is english or french
+*   Multilanguage text object is considered any object containing one of the following keys, with any capitalization, and with an assigned value of type string or undefined or null:
+    *   en_in, en, en_ca, en_us, en_gb, en_au, en_bz, en_cb, english, en_ie, en_jm, en_nz, en_ph, en_za, en_tt, eng, french, fr, fr_fr, fr_ca, fr_lu, fr_ch
+
+    isMultilangTextObj({ en: 'ok' })
+    // => true
+
+    isMultilangTextObj({ asdf: 'gr' })
+    // => false
+
+    isMultilangTextObj({ en: 12345 })
+    // => false
+
+    isMultilangTextObj({ fr: 'gr', asdf: 123 })
+    // => true
+
+    isMultilangTextObj({ en_cb: null, asdf: 123 })
+    // => true
 
 Namespace : date
 ----------------
