@@ -43,6 +43,7 @@
     "typings",
     "typescript",
     "express",
+    "middleware",
     "middlewares",
     "omakase",
     "kitchen-sink",
