@@ -120,35 +120,66 @@ export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
 
 
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
-/** Exclude first 2 items from string or array */
-export function withoutFirst2<T>(str: string): string;
-export function withoutFirst2<T>(arr: T[]): T[];
-export function withoutFirst2<T>(arrOrStr: T[] | string): T[] | string {
-    return arrOrStr.slice(2);
+/**
+ * Exclude first item from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first item from.
+ * @return {Array<any>} Array with first item excluded.
+ */
+export function withoutFirst<T>(str: string): string;
+export function withoutFirst<T>(arr: T[]): T[];
+export function withoutFirst<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(1);
 }
 
-/** Exclude first 3 items from string or array */
-export function withoutFirst3<T>(str: string): string;
-export function withoutFirst3<T>(arr: T[]): T[];
-export function withoutFirst3<T>(arrOrStr: T[] | string): T[] | string {
-    return arrOrStr.slice(3);
-}
-
-/** Exclude last item from string or array */
+/**
+ * Exclude last item from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last item from.
+ * @return {Array<any>} Array with last item excluded.
+ */
 export function withoutLast<T>(str: string): string;
 export function withoutLast<T>(arr: T[]): T[];
 export function withoutLast<T>(arrOrStr: T[] | string): T[] | string {
     return arrOrStr.slice(0, -1);
 }
 
-/** Exclude last 2 items from string or array */
+/**
+ * Exclude first 2 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first 2 items from.
+ * @return {Array<any>} Array with first 2 items excluded.
+ */
+export function withoutFirst2<T>(str: string): string;
+export function withoutFirst2<T>(arr: T[]): T[];
+export function withoutFirst2<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(2);
+}
+
+/**
+ * Exclude first 3 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first 3 items from.
+ * @return {Array<any>} Array with first 3 items excluded.
+ */
+export function withoutFirst3<T>(str: string): string;
+export function withoutFirst3<T>(arr: T[]): T[];
+export function withoutFirst3<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(3);
+}
+
+/**
+ * Exclude last 2 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last 2 items from.
+ * @return {Array<any>} Array with last 2 items excluded.
+ */
 export function withoutLast2<T>(str: string): string;
 export function withoutLast2<T>(arr: T[]): T[];
 export function withoutLast2<T>(arrOrStr: T[] | string): T[] | string {
     return arrOrStr.slice(0, -2);
 }
 
-/** Exclude last 3 items from string or array */
+/**
+ * Exclude last 3 items from string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last 3 items from.
+ * @return {Array<any>} Array with last 3 items excluded.
+ */
 export function withoutLast3<T>(str: string): string;
 export function withoutLast3<T>(arr: T[]): T[];
 // tslint:disable-next-line: no-magic-numbers
@@ -156,25 +187,26 @@ export function withoutLast3<T>(arrOrStr: T[] | string): T[] | string {
     return arrOrStr.slice(0, -3);
 }
 
-/** Exclude given number of items from end of string or array */
+/**
+ * Exclude given number of items from end of string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude last N items from.
+ * @return {Array<any>} Array with last N items excluded.
+ */
 export function withoutLastN<T>(str: string, numToRm: number): string;
 export function withoutLastN<T>(arr: T[], numToRm: number) : T[];
 export function withoutLastN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
     return arrOrStr.slice(0, (numToRm === 0) ? arrOrStr.length : (-1 * numToRm));
 }
 
-/** Exclude given number of items from beginning of string or array */
+/**
+ * Exclude given number of items from beginning of string or array.
+ * @param {Array<any>|string} arrOrStr - Array or string to exclude first N items from.
+ * @return {Array<any>} Array with first N items excluded.
+ */
 export function withoutFirstN<T>(str: string, numToRm: number): string;
 export function withoutFirstN<T>(arr: T[], numToRm: number): T[];
 export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
     return arrOrStr.slice(1 * numToRm);
-}
-
-/** Exclude first item from string or array */
-export function withoutFirst<T>(str: string): string;
-export function withoutFirst<T>(arr: T[]): T[];
-export function withoutFirst<T>(arrOrStr: T[] | string): T[] | string {
-    return arrOrStr.slice(1);
 }
 
 /**
