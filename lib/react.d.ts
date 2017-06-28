@@ -19,7 +19,7 @@ export declare type NamedSFC<T> = ((args: T) => JSX.Element) & {
  * Use with stateless functional components passing children through.
  */
 export interface ChildrenPassthruProps {
-    children: any;
+    children?: any;
 }
 /*********************************** REACT COMPONENT FACTORIES ************************************/
 /**
