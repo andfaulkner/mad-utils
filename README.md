@@ -281,6 +281,68 @@ Create array
            '',
            'third line']
 
+Exclude items from array by position
+------------------------------------
+### withoutFirst
+(arr|str) => any[]|str
+*   Remove first character or array item.
+
+    withoutFirst([1, 2, 3, 4, 5])
+    // => [2, 3, 4, 5]
+
+    withoutFirst('hello')
+    // => 'ello'
+
+### withoutFirst2
+(arr|str) => any[]|str
+*   Remove first 2 characters or array items.
+
+    withoutFirst2([1, 2, 3, 4, 5])
+    // => [3, 4, 5]
+
+### withoutFirst3
+(arr|str) => any[]|str
+*   Remove first 3 characters or array items.
+
+    withoutFirst3([1, 2, 3, 4, 5])
+    // => [4, 5]
+
+### withoutLast
+(arr|str) => any[]|str
+*   Remove last character or array item.
+
+    withoutLast([1, 2, 3, 4, 5])
+    // => [1, 2, 3, 4]
+
+### withoutLast2
+(arr|str) => any[]|str
+*   Remove last 2 characters or array items.
+
+    withoutLast2([1, 2, 3, 4, 5])
+    // => [1, 2, 3]
+
+### withoutLast3
+(arr|str) => any[]|str
+*   Remove last 3 characters or array items.
+
+    withoutLast3([1, 2, 3, 4, 5])
+    // => [1, 2]
+
+### withoutFirstN
+(arr|str, number) => any[]|str
+*   Remove first N characters or array items.
+
+    withoutFirstN([1, 2, 3, 4, 5], 4)
+    // => [5]
+
+### withoutLastN
+(arr|str, number) => any[]|str
+*   Remove last N characters or array items.
+
+    withoutLastN([1, 2, 3, 4, 5, 6, 7], 5)
+    // => [1, 2]
+
+
 Array typechecking
 ------------------
 ### isArray
