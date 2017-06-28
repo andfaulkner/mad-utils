@@ -157,10 +157,15 @@ Common types
 *   Either a string or 'Never' (indicating a thrown error)
 
 
+----
 Namespace contents
 ==================
+----
+
 Namespace : array
------------------
+=================
+Get items from array by position
+--------------------------------
 ### first
 (arr: T[]) => T
 *   Return first item in given array
@@ -245,6 +250,8 @@ Namespace : array
     lastN(['a', 'b', 'c', 'd'], 2)
     // => ['c', 'd']
 
+Create array
+------------
 ### arrayN
 (len: number) => undefined[]
 *   Create empty array of given length.
@@ -252,7 +259,32 @@ Namespace : array
     arrayN(6)
     // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
 
+### splitLines
+(str: string, opts: { preserveEmptyLines: false }): string[] => 
+*   Split large multiline string into array where each line is an item
+*   Removes blank lines by default, unless preserveEmptyLines option is set to true.
+
+    splitLines(`
+        first line
+
+        third line`);
+    // => ['first line',
+           'third line']
+
+    splitLines(`
+        first line
+
+        third line`,
+        { preserveEmptyLines: true });
+    // => ['',
+           'first line',
+           '',
+           'third line']
+
+Array typechecking
+------------------
 ### isArray
+(arr1: any[] | any) => boolean
 *   True if item is an array
 
     isArray([]);
@@ -262,15 +294,16 @@ Namespace : array
     isArray(new CustomArray());
     // => true
 
-
-### append (arr1: any[] | any | void, ...arrN: (any[] | any | void)[]) => any[]
-*   Non-mutative: returns a new array.
+Add to or subtract from array
+-----------------------------
+### append
+(arr1: any[] | any | void, ...arrN: any[] | any | void) => any[]
 *   Append all items in each array in arrN to the end of arr1 (non-mutatively) and return it.
     *   i.e. 2nd array gets appended to the 1st, after which 3rd array gets appended, & so on.
-*   If any argument is undefined, it ignores it
+*   If any argument is undefined, it ignores it.
 *   If all arguments are undefined, it returns [].
-*   If a non-array value besides null is given, it wraps the item in an array
-    before performing the concatenation.
+*   If a non-array value besides null is given, it wraps the item in an array before performing the concatenation.
+*   Non-mutative: returns a new array.
 
     append([1, 2, 3], [4, 5, 6]);
     // => [1, 2, 3, 4, 5, 6]
@@ -281,6 +314,25 @@ Namespace : array
     append([1, 2, 3], 'a', null, [4, 5, 6]);
     // => [1, 2, 3, 'a', 4, 5, 6]
 
+### removeMatches
+(arr: any[], arr2: any[] | any) => any[]
+*   Return new array with all items in arr2OrItem removed from array1.
+*   If array2 is not an array, remove matching item from array1.
+*   NON-MUTATIVE. PERFORMANCE-INTENSIVE.
+
+    removeMatches([1, 2, 3], 2);
+    // => [1, 3]
+
+    removeMatches([1, 2, 3, 4, 5], [1, 4]);
+    // => [2, 3, 5]
+
+### rmAllFalsy
+(arr: any[]) => arr[]
+*   Return new array with all falsy values in the given array eliminated.
+*   NON-MUTATIVE
+
+    rmAllFalsy([1, 2, 3, false, null, 4, 0, 'asdf', '', 'ok', undefined, 'fine']);
+    // => [1, 2, 3, 4, 'asdf', 'ok']
 
 Namespace : collection  (Alias: coll)
 -------------------------------------
