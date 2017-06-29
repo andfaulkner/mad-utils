@@ -1,6 +1,26 @@
 /******************************************** IMPORTS *********************************************/
 import { RealAny, isArray } from './types-iso';
 
+/******************************************** MATCHING ********************************************/
+/**
+ * Returns true if array matchVals contains valToFind. Note that it uses simple JSON.stringify
+ * for array and object comparison. Curried. Sane behaviour for matching against null,
+ * undefined, NaN, etc. (e.g. NaN matched against an array with NaN returns true).
+ * @param {Array<any>} matchVals - Array to check for item matching valToFind.
+ * @param {any} valToFind - Value to search for in matchVals.
+ * @return {boolean} true if valToFind is found in matchVals.
+ */
+export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
+    const isValToFindObj = typeof valToFind === 'object' && valToFind != null;
+    const cleanValToFind = isValToFindObj ? JSON.stringify(valToFind) : valToFind;
+    const isValToFindNaN = typeof valToFind === 'number' && isNaN(valToFind);
+    return matchVals.some(val => {
+        if (isValToFindNaN && typeof val === 'number' && isNaN(val)) return true;
+        return isValToFindObj ? cleanValToFind === (val && JSON.stringify(val))
+                              : cleanValToFind === val;
+    });
+};
+
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 
 //
@@ -302,25 +322,6 @@ export const without = {
     first2: withoutFirst2,
     first3: withoutFirst3,
     firstN: withoutFirstN,
-};
-
-/**
- * Returns true if array matchVals contains valToFind. Note that it uses simple JSON.stringify
- * for array and object comparison. Curried. Sane behaviour for matching against null,
- * undefined, NaN, etc. (e.g. NaN matched against an array with NaN returns true).
- * @param {Array<any>} matchVals - Array to check for item matching valToFind.
- * @param {any} valToFind - Value to search for in matchVals.
- * @return {boolean} true if valToFind is found in matchVals.
- */
-export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
-    const isValToFindObj = typeof valToFind === 'object' && valToFind != null;
-    const cleanValToFind = isValToFindObj ? JSON.stringify(valToFind) : valToFind;
-    const isValToFindNaN = typeof valToFind === 'number' && isNaN(valToFind);
-    return matchVals.some(val => {
-        if (isValToFindNaN && typeof val === 'number' && isNaN(val)) return true;
-        return isValToFindObj ? cleanValToFind === (val && JSON.stringify(val))
-                              : cleanValToFind === val;
-    });
 };
 
 export { isArray } from './types-iso';

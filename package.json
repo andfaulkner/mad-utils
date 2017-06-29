@@ -109,7 +109,6 @@
     "translations",
     "locale",
     "i18n"
-
   ],
   "author": "Andrew Faulkner <andfaulkner@gmail.com>",
   "license": "MIT",
@@ -133,6 +132,7 @@
     "detect-node": "^2.0.3",
     "fs-extra-promise": "^1.0.1",
     "handlebars-webpack-plugin": "^1.2.0",
+    "history": "^4.6.3",
     "moment": "^2.18.1",
     "reflect-metadata": "^0.1.10"
   },

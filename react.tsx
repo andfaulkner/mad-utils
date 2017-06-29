@@ -4,6 +4,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { RealAny } from './src/types-iso';
+import { History, Location } from 'history';
 
 
 /****************************************** REACT TYPES *******************************************/
@@ -25,6 +26,15 @@ export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
  */
 export interface ChildrenPassthruProps {
     children?: any;
+}
+
+/**
+ * Use with components wrapped in React-Router's withRouter decorator.
+ */
+export interface RouterProps {
+    history: History;
+    location: Location;
+    match: { isExact: boolean, params: any, path: string, url: string }
 }
 
 /*********************************** REACT COMPONENT FACTORIES ************************************/

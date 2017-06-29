@@ -2,6 +2,7 @@
 /// <reference types="react" />
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
+import { History, Location } from 'history';
 /****************************************** REACT TYPES *******************************************/
 export declare type InputChange = React.EventHandler<React.FormEvent<HTMLInputElement>>;
 export declare type FormSubmit = React.EventHandler<React.FormEvent<HTMLFormElement>>;
@@ -20,6 +21,19 @@ export declare type NamedSFC<T> = ((args: T) => JSX.Element) & {
  */
 export interface ChildrenPassthruProps {
     children?: any;
+}
+/**
+ * Use with components wrapped in React-Router's withRouter decorator.
+ */
+export interface RouterProps {
+    history: History;
+    location: Location;
+    match: {
+        isExact: boolean;
+        params: any;
+        path: string;
+        url: string;
+    };
 }
 /*********************************** REACT COMPONENT FACTORIES ************************************/
 /**
