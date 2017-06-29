@@ -411,13 +411,13 @@ Array searching
 *   Sane behaviour for matching against null, undefined, NaN, etc.
     *   e.g. NaN matched against an array with NaN returns true
 
-    matchAny([1, 2, 3], 2);
+    matchAny([1, 2, 3])(2);
     // => true
 
-    matchAny(['a', 6, [1, 2, 3], 'gr'], [1, 2, 3]);
+    matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
     // => true
 
-    matchAny(['a', 6, null, 'last'], null);
+    matchAny(['a', 6, null, 'last'])(null);
     // => true
 
 
