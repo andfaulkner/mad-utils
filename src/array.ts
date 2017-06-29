@@ -305,34 +305,22 @@ export const without = {
 };
 
 /**
- * Returns true if array matchVals contains valToFind. Curried.
+ * Returns true if array matchVals contains valToFind. Note that it uses simple JSON.stringify
+ * for array and object comparison. Curried. Sane behaviour for matching against null,
+ * undefined, NaN, etc. (e.g. NaN matched against an array with NaN returns true).
  * @param {Array<any>} matchVals - Array to check for item matching valToFind.
  * @param {any} valToFind - Value to search for in matchVals.
  * @return {boolean} true if valToFind is found in matchVals.
  */
 export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
-    console.log(`\n\n\nmatchAny :: seeking:`, valToFind, ` --- within: `, matchVals);
-
     const isValToFindObj = typeof valToFind === 'object' && valToFind != null;
-    const comparisonVal = isValToFindObj ? JSON.stringify(valToFind) : valToFind;
-    const valToFileIsNaN = typeof valToFind === 'number' && isNaN(valToFind);
-
-    const didMatch = matchVals.some(val => {
-        console.log(`matchAny :: Iterating - current val:`, val);
-
-        if (valToFileIsNaN && typeof val === 'number' && isNaN(val)) {
-            console.log(`matchAny :: both values are NaN`);
-            return true;
-        }
-
-        const curMatch = isValToFindObj ? comparisonVal === (val && JSON.stringify(val))
-                                        : comparisonVal === val;
-        console.log(`matchAny :: Iterating - current val matching?:`, curMatch);
-        return curMatch;
+    const cleanValToFind = isValToFindObj ? JSON.stringify(valToFind) : valToFind;
+    const isValToFindNaN = typeof valToFind === 'number' && isNaN(valToFind);
+    return matchVals.some(val => {
+        if (isValToFindNaN && typeof val === 'number' && isNaN(val)) return true;
+        return isValToFindObj ? cleanValToFind === (val && JSON.stringify(val))
+                              : cleanValToFind === val;
     });
-    console.log(`matchAny :: match was found?`, didMatch, `\n\n\n`);
-    return didMatch;
-}
-
+};
 
 export { isArray } from './types-iso';
