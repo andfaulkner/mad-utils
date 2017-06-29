@@ -121,6 +121,7 @@
     "@types/connect": "^3.4.30",
     "@types/deep-freeze-strict": "^1.1.0",
     "@types/express": "^4.0.35",
+    "@types/history": "^4.6.0",
     "@types/node-polyglot": "^0.4.30",
     "@types/react": "^15.0.27",
     "@types/react-dom": "^15.5.0",
@@ -132,7 +133,6 @@
     "detect-node": "^2.0.3",
     "fs-extra-promise": "^1.0.1",
     "handlebars-webpack-plugin": "^1.2.0",
-    "history": "^4.6.3",
     "moment": "^2.18.1",
     "reflect-metadata": "^0.1.10"
   },

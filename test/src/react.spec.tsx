@@ -10,7 +10,9 @@ import { mount, shallow, ShallowWrapper } from 'enzyme';
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { IfTruthy, IfFalsy, buildNamedSfc } from '../../react';
+import { IfTruthy, IfFalsy, buildNamedSfc, RouterProps, InputChangeType,
+         FormSubmit, FormSubmitType, InputChange, setSfcDisplayName,
+         buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC } from '../../react';
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {

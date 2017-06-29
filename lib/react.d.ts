@@ -1,4 +1,5 @@
 /// <reference path="../node_modules/@types/react/index.d.ts" />
+/// <reference path="../node_modules/@types/history/index.d.ts" />
 /// <reference types="react" />
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
