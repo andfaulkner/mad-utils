@@ -1,5 +1,9 @@
 # mad-utils
 
+![mad-utils](https://i.giphy.com/media/rQOT9sBxBtkSk/giphy.webp)
+
+----
+
 *   Utilities I keep repeatedly rewriting across projects.
 
 ----
