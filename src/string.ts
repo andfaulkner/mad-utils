@@ -157,7 +157,14 @@ export const newlineStr = `
  * @example elminateWhitespace(' my test  string   ');
  *          // => myteststring
  */
-export const eliminateWhitespace = (str: string): string => str.replace(/ /g, '');
+export const removeWhitespace = (str: string): string => str.replace(/ /g, '');
+
+/** Alias for removeWhitespace */
+export const eliminateWhitespace = removeWhitespace;
+/** Alias for removeWhitespace */
+export const rmWhitespace = removeWhitespace;
+/** Alias for removeWhitespace */
+export const rmSpaces = removeWhitespace;
 
 /**
  * 
