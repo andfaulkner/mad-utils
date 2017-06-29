@@ -183,4 +183,11 @@ export declare const without: {
         <T>(arr: T[], numToRm: number): T[];
     };
 };
+/**
+ * Returns true if array matchVals contains valToFind. Curried.
+ * @param {Array<any>} matchVals - Array to check for item matching valToFind.
+ * @param {any} valToFind - Value to search for in matchVals.
+ * @return {boolean} true if valToFind is found in matchVals.
+ */
+export declare const matchAny: (matchVals: any[]) => (valToFind: any) => boolean;
 export { isArray } from './types-iso';

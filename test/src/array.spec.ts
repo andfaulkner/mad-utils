@@ -16,7 +16,8 @@ import { m_, array, append,
         rmAllFalsy, splitLines, without,
         withoutLast, withoutLast2, withoutLast3, withoutLastN,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
-        removeMatches } from '../../shared';
+        removeMatches,
+        matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
 import { array as arrayFromBrowser } from '../../browser';
@@ -540,5 +541,46 @@ describe(`array sub-module`, function() {
             expect(removeMatches([1, 2, 3, 4], [1, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2])).to
                 .eql([3]);
         });
+    });
+
+    describe(`-- matchAny`, function() {
+        it(`returns true if given array contains given item (for numbers & strings)`, function() {
+            expect(matchAny([1, 2, 3])(3)).to.be.true;
+            expect(matchAny([1, 'asdf', 3])('asdf')).to.be.true;
+        });
+        it(`returns true if given array contains null and item is null`, function() {
+            expect(matchAny([1, 'asdf', null, 3])(null)).to.be.true;
+        });
+        it(`returns true if given array contains empty object and item is empty object`, function() {
+            expect(matchAny([1, 'asdf', {}, 3])({})).to.be.true;
+        });
+        it(`returns true if given array contains simple data object with props matching item`,
+        function() {
+            expect(matchAny([1, 'asdf', { a: 1 }, 3])({ a: 1 })).to.be.true;
+        });
+        it(`returns true if given array contains undefined and item is undefined`,
+        function() {
+            expect(matchAny([1, 'asdf', undefined, 3])(undefined)).to.be.true;
+        });
+        it(`returns true if given array contains NaN and item is NaN`,
+        function() {
+            expect(matchAny([1, 'asdf', NaN, 3])(NaN)).to.be.true;
+        });
+        it(`returns true if given array contains empty array and item is empty array`,
+        function() {
+            expect(matchAny([1, 'asdf', [], 3])([])).to.be.true;
+        });
+        it(`returns true if given array contains a simple array that matches the item`,
+        function() {
+            expect(matchAny([1, 'asdf', [1, 2, 3], 3])([1, 2, 3])).to.be.true;
+        });
+
+        it(`returns false if no match is present`, function() {
+            expect(matchAny([1, 'asdf', [1, 2, 3], 3])('ok')).to.be.false;
+            expect(matchAny([1, 'asdf', [1, 2, 3], 3])(12)).to.be.false;
+            expect(matchAny([1, 'asdf', [1, 2, 3], 3])(null)).to.be.false;
+            expect(matchAny([])('')).to.be.false;
+        });
+
     });
 });

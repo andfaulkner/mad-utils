@@ -63,7 +63,13 @@ export declare const newlineStr: string;
  * @example elminateWhitespace(' my test  string   ');
  *          // => myteststring
  */
+export declare const removeWhitespace: (str: string) => string;
+/** Alias for removeWhitespace */
 export declare const eliminateWhitespace: (str: string) => string;
+/** Alias for removeWhitespace */
+export declare const rmWhitespace: (str: string) => string;
+/** Alias for removeWhitespace */
+export declare const rmSpaces: (str: string) => string;
 /**
  *
  */
