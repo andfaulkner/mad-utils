@@ -399,6 +399,27 @@ Add to or subtract from array
     rmAllFalsy([1, 2, 3, false, null, 4, 0, 'asdf', '', 'ok', undefined, 'fine']);
     // => [1, 2, 3, 4, 'asdf', 'ok']
 
+Array searching
+---------------
+### matchAny
+(matchVals: any[]) => (valToFind: any) => boolean
+*   Search an array for a value.
+*   Returns true if array matchVals contains valToFind.
+*   Note that it uses simple JSON.stringify for array and object comparison
+    *   use something else if deep comparisons are required.
+*   Curried
+*   Sane behaviour for matching against null, undefined, NaN, etc.
+    *   e.g. NaN matched against an array with NaN returns true
+
+    matchAny([1, 2, 3], 2);
+    // => true
+
+    matchAny(['a', 6, [1, 2, 3], 'gr'], [1, 2, 3]);
+    // => true
+
+    matchAny(['a', 6, null, 'last'], null);
+    // => true
+
 
 Namespace : date
 ================

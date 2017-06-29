@@ -184,7 +184,9 @@ export declare const without: {
     };
 };
 /**
- * Returns true if array matchVals contains valToFind. Curried.
+ * Returns true if array matchVals contains valToFind. Note that it uses simple JSON.stringify
+ * for array and object comparison. Curried. Sane behaviour for matching against null,
+ * undefined, NaN, etc. (e.g. NaN matched against an array with NaN returns true).
  * @param {Array<any>} matchVals - Array to check for item matching valToFind.
  * @param {any} valToFind - Value to search for in matchVals.
  * @return {boolean} true if valToFind is found in matchVals.
