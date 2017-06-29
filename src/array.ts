@@ -304,4 +304,14 @@ export const without = {
     firstN: withoutFirstN,
 };
 
+/**
+ * Returns true if array matchVals contains valToFind. Curried.
+ * @param {Array<any>} matchVals - Array to check for item matching valToFind.
+ * @param {any} valToFind - Value to search for in matchVals.
+ * @return {boolean} true if valToFind is found in matchVals.
+ */
+export const matchAny = (matchVals: any[]) => (valToFind: any): boolean =>
+    !!matchVals.find(val => val === valToFind);
+
+
 export { isArray } from './types-iso';
