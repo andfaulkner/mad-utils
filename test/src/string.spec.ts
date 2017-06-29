@@ -14,7 +14,8 @@ import * as stringModule from '../../src/string';
 
 const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
-        eliminateWhitespace, getBaseFilenameFromPath,
+        eliminateWhitespace, removeWhitespace, rmWhitespace, rmSpaces,
+        getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
         endsInDotScss, endsInDotTsx, endsWithExt,
         toSnakeCase,
@@ -146,16 +147,21 @@ describe(`string sub-module`, function() {
         });
     });
 
-    describe('eliminateWhitespace', function() {
+    describe('removeWhitespace', function() {
+        expectFunctionExists(removeWhitespace);
+        // Ensure aliases exist.
         expectFunctionExists(eliminateWhitespace);
+        expectFunctionExists(rmWhitespace);
+        expectFunctionExists(rmSpaces);
+
         it(`should remove all whitespace from a string (non-mutatively)`, function() {
-            expect(eliminateWhitespace('asdf')).to.eql('asdf');
-            expect(eliminateWhitespace(' asdf ')).to.eql('asdf');
-            expect(eliminateWhitespace(' hello universe! ')).to.eql('hellouniverse!');
-            expect(eliminateWhitespace('        w ')).to.eql('w');
-            expect(eliminateWhitespace('And   Now For   Something     Completely Different     '))
+            expect(removeWhitespace('asdf')).to.eql('asdf');
+            expect(removeWhitespace(' asdf ')).to.eql('asdf');
+            expect(removeWhitespace(' hello universe! ')).to.eql('hellouniverse!');
+            expect(removeWhitespace('        w ')).to.eql('w');
+            expect(removeWhitespace('And   Now For   Something     Completely Different     '))
                 .to.eql('AndNowForSomethingCompletelyDifferent');
-            expect(eliminateWhitespace('         ')).to.eql('');
+            expect(removeWhitespace('         ')).to.eql('');
         });
     });
 
