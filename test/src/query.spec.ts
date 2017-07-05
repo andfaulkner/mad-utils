@@ -4,7 +4,7 @@
 import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
-import { m_, query, parseQueryParams, getLangFromUrlPathname } from '../../shared';
+import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 import { query as queryFromNode } from '../../node';
@@ -57,5 +57,42 @@ describe(`query sub-module`, function() {
             expect(getLangFromUrlPathname('auth/freestuff/en')).to.eql('en');
         });
         // TODO Test with mocked window object (will have to be in separate file)
+    });
+
+    describe(`.lastUrlPath`, function() {
+        it(`returns final string after the last '/' from the given url`, function() {
+            expect(lastUrlPath('https://example.com/1')).to.eql('1');
+            expect(lastUrlPath('https://example.com/one')).to.eql('one');
+            expect(lastUrlPath('https://example.com/asdf/123')).to.eql('123');
+            expect(lastUrlPath('https://example.com/gr/argh/ok/hm/a')).to.eql('a');
+        });
+        it(`ignores query params`, function() {
+            expect(lastUrlPath('https://example.com/asdf?name=someone')).to.eql('asdf');
+            expect(lastUrlPath('https://example.com/asdf?name=someone/okok')).to.eql('asdf');
+        });
+        it(`returns '' if no '/' present after the domain`, function() {
+            expect(lastUrlPath('https://example.com')).to.eql('');
+            expect(lastUrlPath('https://example.com?name=someone')).to.eql('');
+            expect(lastUrlPath('example.com')).to.eql('');
+            expect(lastUrlPath('example.com?name=someone')).to.eql('');
+        });
+        it(`returns '' if url ends with '/' and strict is true`, function() {
+            expect(lastUrlPath('https://example.com')).to.eql('');
+            expect(lastUrlPath('https://example.com?name=someone')).to.eql('');
+            expect(lastUrlPath('example.com')).to.eql('');
+            expect(lastUrlPath('example.com?name=someone')).to.eql('');
+            expect(lastUrlPath('https://example.com', true)).to.eql('');
+        });
+        it(`returns '' if url ends with '/' and strict is true`, function() {
+            expect(lastUrlPath('https://example.com')).to.eql('');
+            expect(lastUrlPath('https://example.com?name=someone')).to.eql('');
+            expect(lastUrlPath('example.com')).to.eql('');
+            expect(lastUrlPath('example.com?name=someone')).to.eql('');
+            expect(lastUrlPath('https://example.com', true)).to.eql('');
+        });
+        it(`returns last url path before the final '/' if strict is false`, function() {
+            expect(lastUrlPath('https://example.com/asdf/', false)).to.eql('asdf');
+            expect(lastUrlPath('https://example.com/asdf/123/final/', false)).to.eql('final');
+        });
     });
 });
