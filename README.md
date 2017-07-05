@@ -213,7 +213,7 @@ Namespace contents
 ----
 
 
-Namespace : array (ISOMORPHIC)
+Namespace : array (isomorphic)
 ==============================
 Get items from array by position
 --------------------------------
@@ -522,7 +522,7 @@ Examples:
     // => true
 
 
-Namespace : date (ISOMORPHIC)
+Namespace : date (isomorphic)
 =============================
 ### [TYPE] NumRange0To6
 *   Shorthand for any number between 0 and 6
@@ -575,7 +575,7 @@ Examples:
 ### [FUNCTION] isDateLike (exported from types-iso - see below)
 
 
-Namespace : decorator (ISOMORPHIC)
+Namespace : decorator (isomorphic)
 ==================================
 ### DecoratorError
 *   WIP documentation
@@ -587,12 +587,12 @@ Namespace : decorator (ISOMORPHIC)
 *   WIP documentation
 
 
-Namespace : dom (BROWSER)
+Namespace : dom (browser)
 =========================
 WIP documentation
 
 
-Namespace : enum (ISOMORPHIC)
+Namespace : enum (isomorphic)
 =============================
 ### enumToStringArray
 *   WIP documentation
@@ -613,7 +613,7 @@ Namespace : enum (ISOMORPHIC)
 *   WIP documentation
 
 
-Namespace : error (ISOMORPHIC)
+Namespace : error (isomorphic)
 ==============================
 ### DecoratorError
 *   WIP documentation
@@ -622,27 +622,27 @@ Namespace : error (ISOMORPHIC)
 *   WIP documentation
 
 
-Namespace : error (NODE)
+Namespace : error (node)
 ========================
 WIP documentation
 
 
-Namespace : event (BROWSER)
+Namespace : event (browser)
 ===========================
 WIP documentation
 
 
-Namespace : file (NODE)
+Namespace : file (node)
 =======================
 WIP documentation
 
 
-Namespace : function (ISOMORPHIC)
+Namespace : function (isomorphic)
 =================================
 WIP documentation
 
 
-Namespace : json (ISOMORPHIC)
+Namespace : json (isomorphic)
 =============================
 ### [FUNCTION] jsonStringifyWFuncs
 (obj: Object) => string
@@ -656,22 +656,22 @@ Examples:
 WIP documentation
 
 
-Namespace : localStore (BROWSER)
+Namespace : localStore (browser)
 ================================
 WIP documentation
 
 
-Namespace : locale (ISOMORPHIC)
+Namespace : locale (isomorphic)
 ===============================
 WIP documentation
 
 
-Namespace : middleware (NODE)
+Namespace : middleware (node)
 =============================
 WIP documentation
 
 
-Namespace : number (ISOMORPHIC)
+Namespace : number (isomorphic)
 ===============================
 ### [FUNCTION] isInteger (Alias: isInt)
 (any) => boolean
@@ -723,7 +723,7 @@ Examples:
     // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
 
 
-Namespace : object (ISOMORPHIC)
+Namespace : object (isomorphic)
 ===============================
 ### get
 *   Get the item at the given object path.
@@ -819,7 +819,7 @@ Examples:
     // => false
 
 
-Namespace : query (ISOMORPHIC)
+Namespace : query (isomorphic)
 ==============================
 #### [FUNCTION] getLangFromUrlPathname:
 (string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
@@ -867,7 +867,7 @@ Examples:
     // => { hello: 'everyone', gr: 'argh' }
 
 
-Namespace : search (ISOMORPHIC)
+Namespace : search (isomorphic)
 ===============================
 ### escapeRegExp
 *   WIP documentation
@@ -882,7 +882,7 @@ Namespace : search (ISOMORPHIC)
 *   WIP documentation
 
 
-Namespace : string ((Alias: str)) (ISOMORPHIC)
+Namespace : string ((Alias: str)) (isomorphic)
 ==============================================
 ### [FUNCTION] cap1LowerRest
 (string) => string
@@ -928,7 +928,7 @@ Examples:
 *   WIP documentation
 
 
-Namespace : test (NODE)
+Namespace : test (node)
 =======================
 ### [FUNCTION] expectNonEmptyObjectExists
 *   Create Mocha test that passes if given object exists and is not empty
@@ -957,7 +957,7 @@ Examples:
     expectFunctionExists(inc); // << will pass
 
 
-Namespace : types (Alias: type) (ISOMORPHIC)
+Namespace : types (Alias: type) (isomorphic)
 ============================================
 ### [FUNCTION] isDateLike
 (arg: RealAny) => boolean
@@ -998,22 +998,22 @@ Namespace : types (Alias: type) (ISOMORPHIC)
 *   (see "number" section above)
 
 
-Namespace : type (NODE)
+Namespace : type (node)
 =======================
 WIP documentation
 
 
-Namespace : type (BROWSER)
+Namespace : type (browser)
 ==========================
 WIP documentation
 
 
-Namespace : validation (ISOMORPHIC)
+Namespace : validation (isomorphic)
 ===================================
 WIP documentation
 
 
-Namespace : webpack (NODE)
+Namespace : webpack (node)
 ==========================
 WIP documentation
 
