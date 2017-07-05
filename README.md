@@ -10,15 +10,8 @@
 
 #### cap1LowerRest:
 (string) => string
-Make the first letter uppercase, and the rest lowercase.
 
-Examples:
-
-    cap1LowerRest('asdf'); // => 'Asdf'
     cap1LowerRest('aSdF'); // => 'Asdf'
-    cap1LowerRest('This was already cap.'); // => 'This was already cap.'
-    cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
-    cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
 
 #### capitalize:
 (string) => string
@@ -230,12 +223,16 @@ Get items from array by position
 (arr: T[]) => T
 *   Return first item in given array
 
+Examples:
+
     first(['a', 'b', 'c', 'd']);
     // => 'a'
 
 ### second
 (arr: T[]) => T
 *   Return second item in given array
+
+Examples:
 
     second(['a', 'b', 'c', 'd']);
     // => 'b'
@@ -244,12 +241,16 @@ Get items from array by position
 (arr: T[]) => T
 *   Return third item in given array
 
+Examples:
+
     third(['a', 'b', 'c', 'd']);
     // => 'c'
 
 ### last
 (arr: T[]) => T
 *   Return last item in given array
+
+Examples:
 
     last(['a', 'b', 'c', 'd']);
     // => 'd'
@@ -258,12 +259,16 @@ Get items from array by position
 (arr: T[]) => T
 *   Return secondLast item in given array
 
+Examples:
+
     secondLast(['a', 'b', 'c', 'd']);
     // => 'c'
 
 ### thirdLast
 (arr: T[]) => T
 *   Return thirdLast item in given array
+
+Examples:
 
     thirdLast(['a', 'b', 'c', 'd']);
     // => 'b'
@@ -272,12 +277,16 @@ Get items from array by position
 (arr: T[]) => T[]
 *   Return first 2 items in given array
 
+Examples:
+
     first2(['a', 'b', 'c', 'd']);
     // => ['a', 'b']
 
 ### first3
 (arr: T[]) => T[]
 *   Return first 3 items in given array
+
+Examples:
 
     first3(['a', 'b', 'c', 'd']);
     // => ['a', 'b', 'c']
@@ -286,12 +295,16 @@ Get items from array by position
 (arr: T[]) => T[]
 *   Return last 2 items in given array
 
+Examples:
+
     last2(['a', 'b', 'c', 'd']);
     // => ['c', 'd']
 
 ### last3
 (arr: T[]) => T[]
 *   Return last 3 items in given array
+
+Examples:
 
     last3(['a', 'b', 'c', 'd']);
     // => ['b', 'c', 'd']
@@ -300,12 +313,16 @@ Get items from array by position
 (arr: T[], n: number) => T[]
 *   Return first 'n' number of items from given array
 
+Examples:
+
     firstN(['a', 'b', 'c', 'd'], 2);
     // => ['a', 'b']
 
 ### lastN
 (arr: T[], n: number) => T[]
 *   Return last 'n' items from given array. Return full array if too many items requested.
+
+Examples:
 
     lastN(['a', 'b', 'c', 'd'], 2)
     // => ['c', 'd']
@@ -316,6 +333,8 @@ Create array
 (len: number) => undefined[]
 *   Create empty array of given length.
 
+Examples:
+
     arrayN(6)
     // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
 
@@ -323,6 +342,8 @@ Create array
 (str: string, opts: { preserveEmptyLines: false }): string[] => 
 *   Split large multiline string into array where each line is an item
 *   Removes blank lines by default, unless preserveEmptyLines option is set to true.
+
+Examples:
 
     splitLines(`
         first line
@@ -347,6 +368,8 @@ Exclude items from array by position
 (arr|str) => any[]|str
 *   Remove first character or array item.
 
+Examples:
+
     withoutFirst([1, 2, 3, 4, 5])
     // => [2, 3, 4, 5]
 
@@ -357,12 +380,16 @@ Exclude items from array by position
 (arr|str) => any[]|str
 *   Remove first 2 characters or array items.
 
+Examples:
+
     withoutFirst2([1, 2, 3, 4, 5])
     // => [3, 4, 5]
 
 ### withoutFirst3
 (arr|str) => any[]|str
 *   Remove first 3 characters or array items.
+
+Examples:
 
     withoutFirst3([1, 2, 3, 4, 5])
     // => [4, 5]
@@ -371,12 +398,16 @@ Exclude items from array by position
 (arr|str) => any[]|str
 *   Remove last character or array item.
 
+Examples:
+
     withoutLast([1, 2, 3, 4, 5])
     // => [1, 2, 3, 4]
 
 ### withoutLast2
 (arr|str) => any[]|str
 *   Remove last 2 characters or array items.
+
+Examples:
 
     withoutLast2([1, 2, 3, 4, 5])
     // => [1, 2, 3]
@@ -385,6 +416,8 @@ Exclude items from array by position
 (arr|str) => any[]|str
 *   Remove last 3 characters or array items.
 
+Examples:
+
     withoutLast3([1, 2, 3, 4, 5])
     // => [1, 2]
 
@@ -392,12 +425,16 @@ Exclude items from array by position
 (arr|str, number) => any[]|str
 *   Remove first N characters or array items.
 
+Examples:
+
     withoutFirstN([1, 2, 3, 4, 5], 4)
     // => [5]
 
 ### withoutLastN
 (arr|str, number) => any[]|str
 *   Remove last N characters or array items.
+
+Examples:
 
     withoutLastN([1, 2, 3, 4, 5, 6, 7], 5)
     // => [1, 2]
@@ -466,6 +503,8 @@ Array searching
 *   Curried
 *   Sane behaviour for matching against null, undefined, NaN, etc.
     *   e.g. NaN matched against an array with NaN returns true
+
+Examples:
 
     matchAny([1, 2, 3])(2);
     // => true
@@ -608,11 +647,42 @@ WIP documentation
 
 Namespace : number
 ==================
-### isInt
-*   WIP documentation
+### isInteger (Alias: isInt)
+(any) => boolean
+*   Returns true if given value is an integer
+
+Examples:
+
+    isInteger(1); // => true
+    isInteger(232); // => true
+    isInteger(82.12); // => false
+    isInteger('asdf'); // => false
 
 ### isNumberLike
-*   WIP documentation
+(any) => boolean
+*   Returns true if given value is a number-like string or number
+
+Examples:
+
+    isNumberLike(1); // => true
+    isNumberLike(9267.84); // => true
+    isNumberLike('1'); // => true
+    isNumberLike('9267.84'); // => true
+    isNumberLike('1.2'); // => true
+    isNumberLike('.2'); // => true
+
+    isNumberLike('1.2.2'); // => false
+    isNumberLike('asdf'); // => false
+    isNumberLike(true); // => false
+
+### uuid
+() => string
+*   Generate a UUID, in format e.g. 3A0BF2C7-3077-45A0-97ED-EC5F13F127F1
+
+Examples:
+
+    uuid();
+    // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
 
 Namespace : object
 ==================
