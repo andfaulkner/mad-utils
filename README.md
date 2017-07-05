@@ -213,8 +213,8 @@ Namespace contents
 ----
 
 
-Namespace : array (isomorphic)
-==============================
+Namespace: array (isomorphic)
+=============================
 Get items from array by position
 --------------------------------
 ### [FUNCTION] first
@@ -522,8 +522,8 @@ Examples:
     // => true
 
 
-Namespace : date (isomorphic)
-=============================
+Namespace: date (isomorphic)
+============================
 ### [TYPE] NumRange0To6
 *   Shorthand for any number between 0 and 6
 
@@ -575,8 +575,8 @@ Examples:
 ### [FUNCTION] isDateLike (exported from types-iso - see below)
 
 
-Namespace : decorator (isomorphic)
-==================================
+Namespace: decorator (isomorphic)
+=================================
 ### DecoratorError
 *   WIP documentation
 
@@ -587,13 +587,13 @@ Namespace : decorator (isomorphic)
 *   WIP documentation
 
 
-Namespace : dom (browser)
-=========================
+Namespace: dom (browser)
+========================
 WIP documentation
 
 
-Namespace : enum (isomorphic)
-=============================
+Namespace: enum (isomorphic)
+============================
 ### enumToStringArray
 *   WIP documentation
 
@@ -613,8 +613,8 @@ Namespace : enum (isomorphic)
 *   WIP documentation
 
 
-Namespace : error (isomorphic)
-==============================
+Namespace: error (isomorphic)
+=============================
 ### DecoratorError
 *   WIP documentation
 
@@ -622,28 +622,28 @@ Namespace : error (isomorphic)
 *   WIP documentation
 
 
-Namespace : error (node)
-========================
-WIP documentation
-
-
-Namespace : event (browser)
-===========================
-WIP documentation
-
-
-Namespace : file (node)
+Namespace: error (node)
 =======================
 WIP documentation
 
 
-Namespace : function (isomorphic)
-=================================
+Namespace: event (browser)
+==========================
 WIP documentation
 
 
-Namespace : json (isomorphic)
-=============================
+Namespace: file (node)
+======================
+WIP documentation
+
+
+Namespace: function (isomorphic)
+================================
+WIP documentation
+
+
+Namespace: json (isomorphic)
+============================
 ### [FUNCTION] jsonStringifyWFuncs
 (obj: Object) => string
 *   Stringify, while keeping the functions in position by pre-converting them to strings.
@@ -656,23 +656,23 @@ Examples:
 WIP documentation
 
 
-Namespace : localStore (browser)
-================================
-WIP documentation
-
-
-Namespace : locale (isomorphic)
+Namespace: localStore (browser)
 ===============================
 WIP documentation
 
 
-Namespace : middleware (node)
-=============================
+Namespace: locale (isomorphic)
+==============================
 WIP documentation
 
 
-Namespace : number (isomorphic)
-===============================
+Namespace: middleware (node)
+============================
+WIP documentation
+
+
+Namespace: number (isomorphic)
+==============================
 ### [FUNCTION] isInteger (Alias: isInt)
 (any) => boolean
 *   Returns true if given value is an integer
@@ -723,8 +723,8 @@ Examples:
     // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
 
 
-Namespace : object (isomorphic)
-===============================
+Namespace: object (isomorphic)
+==============================
 ### get
 *   Get the item at the given object path.
 
@@ -819,8 +819,8 @@ Examples:
     // => false
 
 
-Namespace : query (isomorphic)
-==============================
+Namespace: query (isomorphic)
+=============================
 #### [FUNCTION] getLangFromUrlPathname:
 (string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
 *   Get the currently selected language out of the current URL
@@ -867,8 +867,8 @@ Examples:
     // => { hello: 'everyone', gr: 'argh' }
 
 
-Namespace : search (isomorphic)
-===============================
+Namespace: search (isomorphic)
+==============================
 ### escapeRegExp
 *   WIP documentation
 
@@ -882,8 +882,8 @@ Namespace : search (isomorphic)
 *   WIP documentation
 
 
-Namespace : string ((Alias: str)) (isomorphic)
-==============================================
+Namespace: string ((Alias: str)) (isomorphic)
+=============================================
 ### [FUNCTION] cap1LowerRest
 (string) => string
 *   Make the first letter uppercase, and the rest lowercase.
@@ -928,8 +928,8 @@ Examples:
 *   WIP documentation
 
 
-Namespace : test (node)
-=======================
+Namespace: test (node)
+======================
 ### [FUNCTION] expectNonEmptyObjectExists
 *   Create Mocha test that passes if given object exists and is not empty
 
@@ -957,8 +957,8 @@ Examples:
     expectFunctionExists(inc); // << will pass
 
 
-Namespace : types (Alias: type) (isomorphic)
-============================================
+Namespace: types (Alias: type) (isomorphic)
+===========================================
 ### [FUNCTION] isDateLike
 (arg: RealAny) => boolean
 *   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
@@ -998,23 +998,23 @@ Namespace : types (Alias: type) (isomorphic)
 *   (see "number" section above)
 
 
-Namespace : type (node)
-=======================
+Namespace: type (node)
+======================
 WIP documentation
 
 
-Namespace : type (browser)
-==========================
+Namespace: type (browser)
+=========================
 WIP documentation
 
 
-Namespace : validation (isomorphic)
-===================================
+Namespace: validation (isomorphic)
+==================================
 WIP documentation
 
 
-Namespace : webpack (node)
-==========================
+Namespace: webpack (node)
+=========================
 WIP documentation
 
 Documentation is a major WIP.
