@@ -14,6 +14,7 @@ import * as stringModule from '../../src/string';
 
 const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
+        removeMatchingText, chomp,
         eliminateWhitespace, removeWhitespace, rmWhitespace, rmSpaces,
         getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
@@ -58,14 +59,20 @@ describe(`string sub-module`, function() {
 
     describe('function replaceAll', function() {
         const testStr = 'The duck here is the best Jerry! The best!';
-
         expectFunctionExists(replaceAll);
         it(`should replace all matching instances of given string w given replacement`, function() {
             const replacedStr = replaceAll(testStr, 'best', 'bees-knees');
             expect(replacedStr).to.equal('The duck here is the bees-knees Jerry! The bees-knees!');
-
+        });
+        it(`should replace all matching instances of given RegExp w given replacement`, function() {
             const replacedWRegex = replaceAll(testStr, /[tT]he best/g, 'OK');
             expect(replacedWRegex).to.equal('The duck here is OK Jerry! OK!');
+        });
+        it(`should leave initial string as-is if no matches found`, function() {
+            const replacedWRegex = replaceAll(testStr, /[sS]rsly OK, yagotme\?/g, 'hmmmmm');
+            expect(replacedWRegex).to.equal(testStr);
+            const replacedWStr = replaceAll(testStr, `I'm not in the test string`, 'REPLACE');
+            expect(replacedWStr).to.equal(testStr);
         });
     });
 
@@ -371,6 +378,40 @@ describe(`string sub-module`, function() {
         });
         it(`returns '0' if given 0`, function() {
             expect((_cleanCharToPadWith as any)(0)).to.eql('0');
+        });
+    });
+
+    describe(`chomp`, function() {
+        it(`Removes \n\r from end of string by default (if no 2nd param given)`, function() {
+            expect(chomp('asdf\n\r\n\r')).to.eql('asdf');
+            expect(chomp('as\n\rdf\n\r\n\r')).to.eql('as\n\rdf');
+        });
+        it(`Removes all chars in 2nd param from end of string`, function() {
+            expect(chomp('asdf\n \r  \n\r', '\n\r ')).to.eql('asdf');
+            expect(chomp('  asdf\n \r  \n\r', '\n\r ')).to.eql('  asdf');
+            expect(chomp(' \n as\ndf\n \r  \n\r', '\n\r ')).to.eql(' \n as\ndf');
+        });
+    });
+
+    describe(`removeMatchingText`, function() {
+        let str;
+        let cleanedStr;
+        before(function() {
+            str = 'REMHello REMworldREM!';
+            cleanedStr = removeMatchingText(str, 'REM');
+        });
+        it(`Creates copy of string with all instances of matching substring removed`, function() {
+            expect(cleanedStr).to.eql('Hello world!');
+        });
+        it(`Creates copy of string with all instances of matching RegExp removed`, function() {
+            expect(removeMatchingText('Gr argh gr', /[gG]r/g)).to.eql(' argh ');
+        });
+        it(`Does not alter original variable's contents`, function() {
+            expect(str).to.eql('REMHello REMworldREM!');
+        });
+        it(`Returns initial string as-is if no matches found`, function() {
+            const initStr = 'Hello world';
+            expect(removeMatchingText(initStr, 'grargh')).to.eql(initStr);
         });
     });
 });
