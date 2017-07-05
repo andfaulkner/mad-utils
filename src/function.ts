@@ -18,7 +18,17 @@ export const getFunctionSrcAsArray = getFnAsArr;
 /** Run given function 2X, returning results as an array containing both return vals. */
 export const loop2 =
     <T>(func: ((...args) => T)): T[] => [func(), func()];
-    
+/** Run given function 3X, returning results as an array containing all 3 return vals. */
+export const loop3 =
+    <T>(func: ((...args) => T)): T[] => [func(), func(), func()];
+/** Run given function 4X, returning results as an array containing all 4 return vals. */
+export const loop4 =
+    <T>(func: ((...args) => T)): T[] => [func(), func(), func(), func()];
+/** Run given function 5X, returning results as an array containing all 5 return vals. */
+export const loop5 =
+    <T>(func: ((...args) => T)): T[] => [func(), func(), func(), func(), func()];
+
+
 /****************************************** CONDITIONALS ******************************************/
 /**
  * Function-based switch statement. Any odd number of arguments can be given. For each pair of args,

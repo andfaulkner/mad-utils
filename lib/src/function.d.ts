@@ -9,6 +9,15 @@ export declare function getFnAsArr(func: Function): string[];
  * @alias getFnAsArr
  */
 export declare const getFunctionSrcAsArray: typeof getFnAsArr;
+/***************************************** LOOP UTILITIES *****************************************/
+/** Run given function 2X, returning results as an array containing both return vals. */
+export declare const loop2: <T>(func: (...args: any[]) => T) => T[];
+/** Run given function 3X, returning results as an array containing all 3 return vals. */
+export declare const loop3: <T>(func: (...args: any[]) => T) => T[];
+/** Run given function 4X, returning results as an array containing all 4 return vals. */
+export declare const loop4: <T>(func: (...args: any[]) => T) => T[];
+/** Run given function 5X, returning results as an array containing all 5 return vals. */
+export declare const loop5: <T>(func: (...args: any[]) => T) => T[];
 /****************************************** CONDITIONALS ******************************************/
 /**
  * Function-based switch statement. Any odd number of arguments can be given. For each pair of args,
