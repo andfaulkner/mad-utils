@@ -6,35 +6,51 @@
 
 ![mad-utils](https://i.giphy.com/media/rQOT9sBxBtkSk/giphy.webp)
 
-## Most useful:
+## Most useful (see full docs in lower sections for more details):
 
 #### capitalize:
-    (string) => string
+(string) => string
+
+    capitalize('asdf'); // => 'Asdf'
     
 #### eliminateWhitespace:
-    (string) => string
+(string) => string
+
+    eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
 
 #### getLangFromUrlPathname:
-    (urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
+(urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
 
-    E.g. with path http://example.com/auth/fr/ok, calling getLangFromUrlPathName() returns 'fr'.
+    // With URL http://example.com/auth/fr/ok:
+    getLangFromUrlPathName(); // => 'fr'.
     
 #### parseQueryParams:
-    (queryParamsString?: string = window.location.search) => Object
+(queryParamsString?: string = window.location.search) => Object
 
-    E.g. with input http://example.com/home?hello=everyone&gr=argh, has output:
-        { hello: 'everyone', gr: 'argh' }
+    // With URL http://example.com/home?hello=everyone&gr=argh:
+    parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
 
 #### last:
-    (arr: Array<T|any>) => T|any;
+(arr: Array<T|any>) => T|any;
 
-    E.g. last([1,2,3]); => 3
+    last([1,2,3]); => 3
 
 #### first:
-    (arr: Array<T|any>) => T|any;
+(arr: Array<T|any>) => T|any;
 
-    E.g. first([1,2,3]); => 1
+    first([1,2,3]); => 1
 
+#### matchAny
+(matchVals: any[]) => (valToFind: any) => boolean
+*   Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
+
+Examples:
+
+    matchAny([1, 2, 3])(2);
+    // => true
+
+    matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
+    // => true
 
 ----
 
