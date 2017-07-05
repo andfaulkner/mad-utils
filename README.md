@@ -656,9 +656,21 @@ Examples:
     isInteger(1); // => true
     isInteger(232); // => true
     isInteger(82.12); // => false
+    isInteger('232'); // => false
     isInteger('asdf'); // => false
 
-### isNumberLike
+### isIntegerLike
+(any) => boolean
+*   Returns true if given value is an integer-like string or integer.
+
+Examples:
+
+    isIntegerLike(232); // => true
+    isIntegerLike('232'); // => true
+    isIntegerLike('asdf'); // => false
+    isInteger(82.12); // => false
+
+### isNumberLike (Alias: isNumLike)
 (any) => boolean
 *   Returns true if given value is a number-like string or number
 
