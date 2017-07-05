@@ -571,6 +571,15 @@ WIP documentation
 
 Namespace : json
 ================
+### jsonStringifyWFuncs
+(obj: Object) => string
+*   Stringify, while keeping the functions in position by pre-converting them to strings.
+
+Examples:
+
+    jsonStringifyWFuncs({ a: 123, b: 'asdf', c: () => 'asdf' })
+    // => '{"a":123,"b":"asdf","c":"function () { return \'asdf\'; }"}'
+
 WIP documentation
 
 Namespace : localStore (browser)
@@ -602,6 +611,8 @@ Namespace : object
 (Object, ...Object[]): Readonly<Object>
 *   Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result
 
+Examples:
+
     const obj = assignFrozenClone({ a: 1, b: 2}, { c: 3, d: 4 });
     // => { a: 1, b: 2, c: 3, d: 4 }
     obj.a = 6;
@@ -612,6 +623,8 @@ Namespace : object
 (Object): Readonly<Object>
 *   deep-freeze given object
 *   MUTATIVE! (But still returns original)
+
+Examples:
 
     const obj = deepFreeze({ a: 1, b: 2, c: 3, d: 4 });
     // obj = { a: 1, b: 2, c: 3, d: 4 }
@@ -633,6 +646,8 @@ Namespace : object
 *   Multilanguage text object is considered any object containing one of the following keys, with any capitalization, and with an assigned value of type string or undefined or null:
     *   en_in, en, en_ca, en_us, en_gb, en_au, en_bz, en_cb, english, en_ie, en_jm, en_nz, en_ph, en_za, en_tt, eng, french, fr, fr_fr, fr_ca, fr_lu, fr_ch
 
+Examples:
+
     isMultilangTextObj({ en: 'ok' })
     // => true
 
@@ -653,6 +668,8 @@ Namespace : object
 *   Run given function on each pair in given object
 *   CURRIED, NON-MUTATIVE
 
+Examples:
+
     const arr = [];
     const putKeyValPairInArr = eachPair((v, k) => arr.push(k + v));
     putKeyValPairInArr({ a: 1, b: 2 });
@@ -662,6 +679,8 @@ Namespace : object
 ### numKeys
 (Object) => number
 *   Return number of keys in given object.
+
+Examples:
 
     numKeys({ a: 1, b: 2 });
     // => 2
@@ -755,17 +774,23 @@ Namespace : test
 ### expectNonEmptyObjectExists
 *   Create Mocha test that passes if given object exists and is not empty
 
+Examples:
+
     expectEmptyObject({}); // << will not pass
     expectEmptyObject({ a: 1 }); // << will pass
 
 ### expectEmptyObject
 *   Create Mocha test that passes if given object is empty
 
+Examples:
+
     expectEmptyObject({}); // << will pass
     expectEmptyObject({ a: 1 }); // << will not pass
 
 ### expectFunctionExists (ALIAS: expectFuncExists)
 *   Create Mocha test that passes if given function exists
+
+Examples:
 
     const inc = (a: number) => a + 1;
     expectFunctionExists({}); // << will not pass
