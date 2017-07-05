@@ -213,8 +213,8 @@ Namespace contents
 ----
 
 
-Namespace : array
-=================
+Namespace : array (ISOMORPHIC)
+==============================
 Get items from array by position
 --------------------------------
 ### [FUNCTION] first
@@ -522,8 +522,8 @@ Examples:
     // => true
 
 
-Namespace : date
-================
+Namespace : date (ISOMORPHIC)
+=============================
 ### [TYPE] NumRange0To6
 *   Shorthand for any number between 0 and 6
 
@@ -575,8 +575,8 @@ Examples:
 ### [FUNCTION] isDateLike (exported from types-iso - see below)
 
 
-Namespace : decorator
-=====================
+Namespace : decorator (ISOMORPHIC)
+==================================
 ### DecoratorError
 *   WIP documentation
 
@@ -587,13 +587,13 @@ Namespace : decorator
 *   WIP documentation
 
 
-Namespace : dom (browser)
+Namespace : dom (BROWSER)
 =========================
 WIP documentation
 
 
-Namespace : enum
-================
+Namespace : enum (ISOMORPHIC)
+=============================
 ### enumToStringArray
 *   WIP documentation
 
@@ -613,7 +613,7 @@ Namespace : enum
 *   WIP documentation
 
 
-Namespace : error (isomorphic)
+Namespace : error (ISOMORPHIC)
 ==============================
 ### DecoratorError
 *   WIP documentation
@@ -622,23 +622,23 @@ Namespace : error (isomorphic)
 *   WIP documentation
 
 
-Namespace : error (node)
+Namespace : error (NODE)
 ========================
 WIP documentation
 
 
-Namespace : event (browser)
+Namespace : event (BROWSER)
 ===========================
 WIP documentation
 
 
-Namespace : file (node)
+Namespace : file (NODE)
 =======================
 WIP documentation
 
 
-Namespace : function
-====================
+Namespace : function (ISOMORPHIC)
+=================================
 WIP documentation
 
 
