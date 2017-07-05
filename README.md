@@ -219,7 +219,7 @@ Namespace : array
 =================
 Get items from array by position
 --------------------------------
-### first
+### [FUNCTION] first
 (arr: T[]) => T
 *   Return first item in given array
 
@@ -228,7 +228,7 @@ Examples:
     first(['a', 'b', 'c', 'd']);
     // => 'a'
 
-### second
+### [FUNCTION] second
 (arr: T[]) => T
 *   Return second item in given array
 
@@ -237,7 +237,7 @@ Examples:
     second(['a', 'b', 'c', 'd']);
     // => 'b'
 
-### third
+### [FUNCTION] third
 (arr: T[]) => T
 *   Return third item in given array
 
@@ -246,7 +246,7 @@ Examples:
     third(['a', 'b', 'c', 'd']);
     // => 'c'
 
-### last
+### [FUNCTION] last
 (arr: T[]) => T
 *   Return last item in given array
 
@@ -255,7 +255,7 @@ Examples:
     last(['a', 'b', 'c', 'd']);
     // => 'd'
 
-### secondLast
+### [FUNCTION] secondLast
 (arr: T[]) => T
 *   Return secondLast item in given array
 
@@ -264,7 +264,7 @@ Examples:
     secondLast(['a', 'b', 'c', 'd']);
     // => 'c'
 
-### thirdLast
+### [FUNCTION] thirdLast
 (arr: T[]) => T
 *   Return thirdLast item in given array
 
@@ -273,7 +273,7 @@ Examples:
     thirdLast(['a', 'b', 'c', 'd']);
     // => 'b'
 
-### first2
+### [FUNCTION] first2
 (arr: T[]) => T[]
 *   Return first 2 items in given array
 
@@ -282,7 +282,7 @@ Examples:
     first2(['a', 'b', 'c', 'd']);
     // => ['a', 'b']
 
-### first3
+### [FUNCTION] first3
 (arr: T[]) => T[]
 *   Return first 3 items in given array
 
@@ -291,7 +291,7 @@ Examples:
     first3(['a', 'b', 'c', 'd']);
     // => ['a', 'b', 'c']
 
-### last2
+### [FUNCTION] last2
 (arr: T[]) => T[]
 *   Return last 2 items in given array
 
@@ -300,7 +300,7 @@ Examples:
     last2(['a', 'b', 'c', 'd']);
     // => ['c', 'd']
 
-### last3
+### [FUNCTION] last3
 (arr: T[]) => T[]
 *   Return last 3 items in given array
 
@@ -309,7 +309,7 @@ Examples:
     last3(['a', 'b', 'c', 'd']);
     // => ['b', 'c', 'd']
 
-### firstN
+### [FUNCTION] firstN
 (arr: T[], n: number) => T[]
 *   Return first 'n' number of items from given array
 
@@ -318,7 +318,7 @@ Examples:
     firstN(['a', 'b', 'c', 'd'], 2);
     // => ['a', 'b']
 
-### lastN
+### [FUNCTION] lastN
 (arr: T[], n: number) => T[]
 *   Return last 'n' items from given array. Return full array if too many items requested.
 
@@ -329,7 +329,7 @@ Examples:
 
 Create array
 ------------
-### arrayN
+### [FUNCTION] arrayN
 (len: number) => undefined[]
 *   Create empty array of given length.
 
@@ -338,7 +338,7 @@ Examples:
     arrayN(6)
     // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
 
-### splitLines
+### [FUNCTION] splitLines
 (str: string, opts: { preserveEmptyLines: false }): string[] => 
 *   Split large multiline string into array where each line is an item
 *   Removes blank lines by default, unless preserveEmptyLines option is set to true.
@@ -364,7 +364,7 @@ Examples:
 
 Exclude items from array by position
 ------------------------------------
-### withoutFirst
+### [FUNCTION] withoutFirst
 (arr|str) => any[]|str
 *   Remove first character or array item.
 
@@ -376,7 +376,7 @@ Examples:
     withoutFirst('hello')
     // => 'ello'
 
-### withoutFirst2
+### [FUNCTION] withoutFirst2
 (arr|str) => any[]|str
 *   Remove first 2 characters or array items.
 
@@ -385,7 +385,7 @@ Examples:
     withoutFirst2([1, 2, 3, 4, 5])
     // => [3, 4, 5]
 
-### withoutFirst3
+### [FUNCTION] withoutFirst3
 (arr|str) => any[]|str
 *   Remove first 3 characters or array items.
 
@@ -394,7 +394,7 @@ Examples:
     withoutFirst3([1, 2, 3, 4, 5])
     // => [4, 5]
 
-### withoutLast
+### [FUNCTION] withoutLast
 (arr|str) => any[]|str
 *   Remove last character or array item.
 
@@ -403,7 +403,7 @@ Examples:
     withoutLast([1, 2, 3, 4, 5])
     // => [1, 2, 3, 4]
 
-### withoutLast2
+### [FUNCTION] withoutLast2
 (arr|str) => any[]|str
 *   Remove last 2 characters or array items.
 
@@ -412,7 +412,7 @@ Examples:
     withoutLast2([1, 2, 3, 4, 5])
     // => [1, 2, 3]
 
-### withoutLast3
+### [FUNCTION] withoutLast3
 (arr|str) => any[]|str
 *   Remove last 3 characters or array items.
 
@@ -421,7 +421,7 @@ Examples:
     withoutLast3([1, 2, 3, 4, 5])
     // => [1, 2]
 
-### withoutFirstN
+### [FUNCTION] withoutFirstN
 (arr|str, number) => any[]|str
 *   Remove first N characters or array items.
 
@@ -430,7 +430,7 @@ Examples:
     withoutFirstN([1, 2, 3, 4, 5], 4)
     // => [5]
 
-### withoutLastN
+### [FUNCTION] withoutLastN
 (arr|str, number) => any[]|str
 *   Remove last N characters or array items.
 
@@ -441,9 +441,11 @@ Examples:
 
 Array typechecking
 ------------------
-### isArray
+### [FUNCTION] isArray
 (arr1: any[] | any) => boolean
 *   True if item is an array
+
+Examples:
 
     isArray([]);
     // => true
@@ -454,7 +456,7 @@ Array typechecking
 
 Add to or subtract from array
 -----------------------------
-### append
+### [FUNCTION] append
 (arr1: any[] | any | void, ...arrN: any[] | any | void) => any[]
 *   Append all items in each array in arrN to the end of arr1 (non-mutatively) and return it.
     *   i.e. 2nd array gets appended to the 1st, after which 3rd array gets appended, & so on.
@@ -462,6 +464,8 @@ Add to or subtract from array
 *   If all arguments are undefined, it returns [].
 *   If a non-array value besides null is given, it wraps the item in an array before performing the concatenation.
 *   Non-mutative: returns a new array.
+
+Examples:
 
     append([1, 2, 3], [4, 5, 6]);
     // => [1, 2, 3, 4, 5, 6]
@@ -472,11 +476,13 @@ Add to or subtract from array
     append([1, 2, 3], 'a', null, [4, 5, 6]);
     // => [1, 2, 3, 'a', 4, 5, 6]
 
-### removeMatches
+### [FUNCTION] removeMatches
 (arr: any[], arr2: any[] | any) => any[]
 *   Return new array with all items in arr2OrItem removed from array1.
 *   If array2 is not an array, remove matching item from array1.
 *   NON-MUTATIVE. PERFORMANCE-INTENSIVE.
+
+Examples:
 
     removeMatches([1, 2, 3], 2);
     // => [1, 3]
@@ -484,17 +490,19 @@ Add to or subtract from array
     removeMatches([1, 2, 3, 4, 5], [1, 4]);
     // => [2, 3, 5]
 
-### rmAllFalsy
+### [FUNCTION] rmAllFalsy
 (arr: any[]) => arr[]
 *   Return new array with all falsy values in the given array eliminated.
 *   NON-MUTATIVE
+
+Examples:
 
     rmAllFalsy([1, 2, 3, false, null, 4, 0, 'asdf', '', 'ok', undefined, 'fine']);
     // => [1, 2, 3, 4, 'asdf', 'ok']
 
 Array searching
 ---------------
-### matchAny
+### [FUNCTION] matchAny
 (matchVals: any[]) => (valToFind: any) => boolean
 *   Search an array for a value.
 *   Returns true if array matchVals contains valToFind.
@@ -521,17 +529,28 @@ Namespace : date
 ### [TYPE] NumRange0To6
 *   Shorthand for any number between 0 and 6
 
-### [CONST] defaultTimestampFormat
+### [CONSTANT] defaultTimestampFormat
 *   string that creates a timestamp in a nice, human-readable format when passed to MomentJS.
 `YYYY/MM/DD : hh:mm:ss`
 
-### [FUNC] isLeapYear
+Examples:
+
+    console.log(defaultTimestampFormat);
+    // => `YYYY/MM/DD : HH:mm:ss`;
+
+
+### [FUNCTION] isLeapYear
 (year: NumLike) => boolean
 *   Returns true if given year is a leap year
 *   Accepts integers, strings that can be converted to integers, and arrays with a single item, where said item is an integer or string convertable to an integer.
 *   Any other input will throw.
 
-### [FUNC] convertDayOfWeekNumToString
+Examples:
+
+    isLeapYear(2004); // => true
+    isLeapYear(2003); // => false
+
+### [FUNCTION] convertDayOfWeekNumToString
 (day: NumRange0To6, abbreviate: boolean) => StrOrNever
 
 *   Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
@@ -539,24 +558,24 @@ Namespace : date
     *   day: number from 0 to 6 for conversion
     *   abbreviate: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Defaults to false.
 
-```
+Examples:
+
     convertDayOfWeekNumToString(5); // => 'Friday'
     convertDayOfWeekNumToString(2, true); // => 'Tues'
-```
 
-### [FUNC] now
+### [FUNCTION] now
 (timeFormat?: string) => string
 *   Get the current date, formatted for display in the stream of Express logs to the CLI.
 *   Args:
     *   timeFormat?: Optional momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
         *   More info at https://momentjs.com/docs/#/parsing/string-format/
 
-```
+Examples:
+
     now(); // => 2017/05/28 : 02:51:39
     now(`YYYY/MM hh:mm`); // => 2017/02 02:51
-```
 
-### [FUNC] isDateLike (exported from types-iso - see below)
+### [FUNCTION] isDateLike (exported from types-iso - see below)
 
 
 Namespace : decorator
@@ -622,7 +641,7 @@ WIP documentation
 
 Namespace : json
 ================
-### jsonStringifyWFuncs
+### [FUNCTION] jsonStringifyWFuncs
 (obj: Object) => string
 *   Stringify, while keeping the functions in position by pre-converting them to strings.
 
@@ -647,7 +666,7 @@ WIP documentation
 
 Namespace : number
 ==================
-### isInteger (Alias: isInt)
+### [FUNCTION] isInteger (Alias: isInt)
 (any) => boolean
 *   Returns true if given value is an integer
 
@@ -659,7 +678,7 @@ Examples:
     isInteger('232'); // => false
     isInteger('asdf'); // => false
 
-### isIntegerLike
+### [FUNCTION] isIntegerLike
 (any) => boolean
 *   Returns true if given value is an integer-like string or integer.
 
@@ -670,7 +689,7 @@ Examples:
     isIntegerLike('asdf'); // => false
     isInteger(82.12); // => false
 
-### isNumberLike (Alias: isNumLike)
+### [FUNCTION] isNumberLike (Alias: isNumLike)
 (any) => boolean
 *   Returns true if given value is a number-like string or number
 
@@ -687,7 +706,7 @@ Examples:
     isNumberLike('asdf'); // => false
     isNumberLike(true); // => false
 
-### uuid
+### [FUNCTION] uuid
 () => string
 *   Generate a UUID, in format e.g. 3A0BF2C7-3077-45A0-97ED-EC5F13F127F1
 
@@ -713,7 +732,7 @@ Examples:
     obj.a // => 1
     //          /\\--- note that it didn't change
 
-### deepFreeze
+### [FUNCTION] deepFreeze
 (Object): Readonly<Object>
 *   deep-freeze given object
 *   MUTATIVE! (But still returns original)
@@ -733,7 +752,7 @@ Examples:
     obj.a
     // => 1
 
-### isMultilangTextObj
+### [FUNCTION] isMultilangTextObj
 (Object): boolean
 *   Returns true if given object is (probably) a multilanguage text object.
 *   Not foolproof: e.g. assumes one of the languages is english or french
@@ -757,7 +776,7 @@ Examples:
     isMultilangTextObj({ en_cb: null, asdf: 123 })
     // => true
 
-### eachPair
+### [FUNCTION] eachPair
 (Function(val, key)) => (Object) => Object (of original value)
 *   Run given function on each pair in given object
 *   CURRIED, NON-MUTATIVE
@@ -770,7 +789,7 @@ Examples:
     console.log(arr);
     // => ['a1', 'b2']
 
-### numKeys
+### [FUNCTION] numKeys
 (Object) => number
 *   Return number of keys in given object.
 
@@ -779,7 +798,7 @@ Examples:
     numKeys({ a: 1, b: 2 });
     // => 2
 
-### hasKey
+### [FUNCTION] hasKey
 (Object, string) => boolean
 *   Return true if given object has given key.
 
@@ -793,7 +812,7 @@ Examples:
 
 Namespace : query
 =================
-#### getLangFromUrlPathname:
+#### [FUNCTION] getLangFromUrlPathname:
 (urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
 *   Get the currently selected language out of the current URL
 *   Note: this is a 'rough' method not intended to work in all circumstances.
@@ -805,7 +824,7 @@ Examples:
     getLangFromUrlPathName();
     // => 'fr'
     
-#### parseQueryParams:
+#### [FUNCTION] parseQueryParams:
 (queryParamsString?: string = window.location.search) => Object
 *   Convert the current query params into an object
 *   Note that running it without explicitly passing the queryParamsString works, but can give stale results.
@@ -839,7 +858,7 @@ Namespace : search
 
 Namespace string (Alias: str)
 =============================
-### cap1LowerRest
+### [FUNCTION] cap1LowerRest
 (string) => string
 *   Make the first letter uppercase, and the rest lowercase.
 
@@ -851,7 +870,7 @@ Examples:
     cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
     cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
 
-### capitalize
+### [FUNCTION] capitalize
 (string) => string
 *   Make the first letter uppercase, and leave the rest as-is.
 
@@ -884,7 +903,7 @@ Examples:
 
 Namespace : test
 ================
-### expectNonEmptyObjectExists
+### [FUNCTION] expectNonEmptyObjectExists
 *   Create Mocha test that passes if given object exists and is not empty
 
 Examples:
@@ -892,7 +911,7 @@ Examples:
     expectEmptyObject({}); // << will not pass
     expectEmptyObject({ a: 1 }); // << will pass
 
-### expectEmptyObject
+### [FUNCTION] expectEmptyObject
 *   Create Mocha test that passes if given object is empty
 
 Examples:
@@ -900,7 +919,7 @@ Examples:
     expectEmptyObject({}); // << will pass
     expectEmptyObject({ a: 1 }); // << will not pass
 
-### expectFunctionExists (ALIAS: expectFuncExists)
+### [FUNCTION] expectFunctionExists (ALIAS: expectFuncExists)
 *   Create Mocha test that passes if given function exists
 
 Examples:
@@ -913,7 +932,7 @@ Examples:
 
 Namespace : types (isomorphic)
 ==============================
-[FUNC] isDateLike
+### [FUNCTION] isDateLike
 (arg: RealAny) => boolean
 *   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
     *   Excludes:
@@ -921,35 +940,35 @@ Namespace : types (isomorphic)
         *   strings that parse to negative numbers
         *   objects with date-irrelevant keys e.g. { year: 1123, bear: 'grizzly' }
 
-### isArray
+### [FUNCTION] isArray
 *   (see array section above)
 
-### isNumberLike
+### [FUNCTION] isNumberLike
 *   True if given item is a number or a string that can be parsed into a number
 *   WIP documentation
 
-### isMultilangTextObj
+### [FUNCTION] isMultilangTextObj
 *   (see locale section above)
 
-### matches
+### [FUNCTION] matches
 *   curried, matcher-first match function
 *   WIP documentation
 
-### matchesIgnoreCase
+### [FUNCTION] matchesIgnoreCase
 *   True if 2 given strings' match, with casing ignored.
 *   WIP documentation
 
-### isNonexistentOrString
+### [FUNCTION] isNonexistentOrString
 *   True if given item doesn't exist, or is a string.
 *   WIP documentation
 
-### isInteger
+### [FUNCTION] isInteger
 *   True if given item is an integer
-*   WIP documentation
+*   (see "number" section above)
 
-### isIntegerLike
+### [FUNCTION] isIntegerLike
 *   True if given item is an integer or string containing an item that can be converted to an integer.
-*   WIP documentation
+*   (see "number" section above)
 
 Namespace : type (node)
 =======================
