@@ -746,7 +746,16 @@ Namespace : search
 Namespace string (Alias: str)
 =============================
 ### cap1LowerRest
+(string) => string
 *   Make the first letter uppercase, and the rest lowercase.
+
+Examples:
+
+    capitalize('asdf'); // => 'Asdf'
+    capitalize('aSdF'); // => 'Asdf'
+    capitalize('This was already cap.'); // => 'This was already cap.'
+    capitalize('This Was Already Cap.'); // => 'This was already cap.'
+    capitalize('not Already Cap.'); // => 'Not already cap.'
 
 ### capitalize
 (string) => string
@@ -756,8 +765,9 @@ Examples:
 
     capitalize('asdf'); // => 'Asdf'
     capitalize('aSdF'); // => 'ASdF'
-    capitalize('This is already cap.'); // => 'This is already cap.'
-    capitalize('This Is Already Cap.'); // => 'This Is Already Cap.'
+    capitalize('This was already cap.'); // => 'This was already cap.'
+    capitalize('This Was Already Cap.'); // => 'This Was Already Cap.'
+    capitalize('not Already Cap.'); // => 'Not Already Cap.'
 
 
 ### escapeRegExp
