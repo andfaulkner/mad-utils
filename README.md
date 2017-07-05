@@ -640,6 +640,8 @@ WIP documentation
 Namespace: function (isomorphic)
 ================================
 ### [FUNCTION] condSwitch
+((cond: any, valueToReturnIfCondTruthy: V)*, defaultValue?: W) => V | W | never;
+
 *   Function-based switch statement.
 *   For each pair of args:
     *   the 1st arg is a condition that passes if truthy
@@ -668,6 +670,7 @@ Examples:
     // => 16
 
 ### [FUNCTION] loopN
+
 ### [FUNCTION] loop2
 ### [FUNCTION] loop3
 ### [FUNCTION] loop4
