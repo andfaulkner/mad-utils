@@ -83,15 +83,12 @@ export const cap1LowerRest = (str: string): string => str.charAt(0).toUpperCase(
 export const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
 
 /**
- * Replace all matching strings in a text segment with a given replacement string.
- * Can also match against a regex.
- * The main benefit is the fact that *ALL* matching strings get replaced.
- *
+ * Replace all matching strings in a text segment with a given replacement string. Can also match
+ * against a regex. Main benefit: *ALL* matching strings get replaced.
  * @param {string} text - string to search and replace in.
  * @param {string|RegExp} find - string or RegExp to match against
  * @param {string} replace - replacement text
- *
- * @return {string} text, with replacements made.
+ * @return {string} original text with replacements made.
  */
 export const replaceAll = (text: string, find: string | RegExp, replace: string) =>
     (typeof find === 'string')
@@ -167,9 +164,23 @@ export const rmWhitespace = removeWhitespace;
 export const rmSpaces = removeWhitespace;
 
 /**
- * 
+ * Remove all chars in charsToChomp string from end of given string str.
+ * Defaults to eliminating carriage return and newline.
+ * @param {string} str - String to chomp (from end)
+ * @param {string} charsToChomp - String (acting as array of chars) containing all chars to chomp.
+ * @return {string} str with all chars in charsToChomp eliminated from end of string.
  */
-export const toSnakeCase =(str: string): string => {
+export const chomp = (str: string, charsToChomp: string = '\n\r'): string => {
+    const charsToChompRegexStr = charsToChomp.split('').join('|');
+    return str.replace(new RegExp(`(${charsToChompRegexStr})+$`, 'g'), '');
+};
+
+/**
+ * Convert camelCase, PascalCase, or dash-case to snake_case.
+ * @param {string} str - String to convert to snake_case.
+ * @return {string} given string converted to snake_case.
+ */
+export const toSnakeCase = (str: string): string => {
     let retStr =
         str.trim()
            //Remove apostrophes, quotes, commas, |, ?, !, and ,
@@ -191,6 +202,16 @@ export const toSnakeCase =(str: string): string => {
            .toLowerCase()
     return retStr;
 }
+
+/**
+ * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
+ * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
+ * @param {string} str - String to remove matches from.
+ * @param {string|RegExp} matcherToRm - String to remove from str.
+ * @return {string} str with all instances of matcherToRm removed.
+ */
+export const removeMatchingText = (str: string, matcherToRm: string | RegExp): string =>
+    replaceAll(str, matcherToRm, '');
 
 /************************************** STRING INTERPOLATION **************************************/
 /**
