@@ -14,7 +14,7 @@ export declare const getFunctionSrcAsArray: typeof getFnAsArr;
  * Run given function N times, returning results as an array containing all N return vals.
  * @param {number} n - Number of times to run given function.
  * @param {Function} func - Function to repeatedly run.
- * @return {Array<any>} Array containing each return value of each run through the function.
+ * @return {Array<any>} Array containing function return values.
  */
 export declare const loopN: <T>(n: number, func: (...args: any[]) => T) => T[];
 /** Run given function 2X, returning results as an array containing both return vals. */
