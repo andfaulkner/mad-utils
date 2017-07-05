@@ -8,15 +8,12 @@ export declare const cap1LowerRest: (str: string) => string;
  */
 export declare const capitalize: (str: string) => string;
 /**
- * Replace all matching strings in a text segment with a given replacement string.
- * Can also match against a regex.
- * The main benefit is the fact that *ALL* matching strings get replaced.
- *
+ * Replace all matching strings in a text segment with a given replacement string. Can also match
+ * against a regex. Main benefit: *ALL* matching strings get replaced.
  * @param {string} text - string to search and replace in.
  * @param {string|RegExp} find - string or RegExp to match against
  * @param {string} replace - replacement text
- *
- * @return {string} text, with replacements made.
+ * @return {string} original text with replacements made.
  */
 export declare const replaceAll: (text: string, find: string | RegExp, replace: string) => string;
 /**
@@ -71,9 +68,27 @@ export declare const rmWhitespace: (str: string) => string;
 /** Alias for removeWhitespace */
 export declare const rmSpaces: (str: string) => string;
 /**
- *
+ * Remove all chars in charsToChomp string from end of given string str.
+ * Defaults to eliminating carriage return and newline.
+ * @param {string} str - String to chomp (from end)
+ * @param {string} charsToChomp - String (acting as array of chars) containing all chars to chomp.
+ * @return {string} str with all chars in charsToChomp eliminated from end of string.
+ */
+export declare const chomp: (str: string, charsToChomp?: string) => string;
+/**
+ * Convert camelCase, PascalCase, or dash-case to snake_case.
+ * @param {string} str - String to convert to snake_case.
+ * @return {string} given string converted to snake_case.
  */
 export declare const toSnakeCase: (str: string) => string;
+/**
+ * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
+ * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
+ * @param {string} str - String to remove matches from.
+ * @param {string|RegExp} matcherToRm - String to remove from str.
+ * @return {string} str with all instances of matcherToRm removed.
+ */
+export declare const removeMatchingText: (str: string, matcherToRm: string | RegExp) => string;
 /************************************** STRING INTERPOLATION **************************************/
 /**
  * @export withLeftIndent
