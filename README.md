@@ -1037,6 +1037,19 @@ Examples:
     replaceAll('The duck here is the best Jerry! The best!', /[tT]he best/g, 'OK');
     // => 'The duck here is OK Jerry! OK!'
 
+### [FUNCTION] chomp
+(str: string, charsToChomp: string = '\n\r') => string
+*   Remove all chars in charsToChomp string from end of given string str.
+*   Defaults to eliminating carriage return and newline (\n\r)
+
+Examples:
+
+    chomp('asdf\n\r\n\r');                        // => 'asdf'
+    chomp('asdf\n \r  \n\r', '\n\r ');            // => 'asdf'
+    chomp('\n  \ras\ndf\n \r  \n\r   ', '\n\r '); // => '\n  \ras\ndf'
+    chomp('asdf\r \n', ' \n');                    // => 'asdf\r'
+
+
 ### escapeRegExp
 *   WIP documentation
 
