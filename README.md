@@ -8,6 +8,18 @@
 
 ## Most useful (see full docs in lower sections for more details):
 
+#### cap1LowerRest:
+(string) => string
+Make the first letter uppercase, and the rest lowercase.
+
+Examples:
+
+    cap1LowerRest('asdf'); // => 'Asdf'
+    cap1LowerRest('aSdF'); // => 'Asdf'
+    cap1LowerRest('This was already cap.'); // => 'This was already cap.'
+    cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
+    cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
+
 #### capitalize:
 (string) => string
 
@@ -31,18 +43,18 @@
     parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
 
 #### last:
-(arr: Array<T|any>) => T|any;
+(Array<T|any>) => T|any;
 
     last([1,2,3]); => 3
 
 #### first:
-(arr: Array<T|any>) => T|any;
+(Array<T|any>) => T|any;
 
     first([1,2,3]); => 1
 
 #### matchAny
-(matchVals: any[]) => (valToFind: any) => boolean
-*   Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
+(any[]) => (any) => boolean
+Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
 
     matchAny([1, 2, 3])(2);
     // => true
@@ -751,11 +763,11 @@ Namespace string (Alias: str)
 
 Examples:
 
-    capitalize('asdf'); // => 'Asdf'
-    capitalize('aSdF'); // => 'Asdf'
-    capitalize('This was already cap.'); // => 'This was already cap.'
-    capitalize('This Was Already Cap.'); // => 'This was already cap.'
-    capitalize('not Already Cap.'); // => 'Not already cap.'
+    cap1LowerRest('asdf'); // => 'Asdf'
+    cap1LowerRest('aSdF'); // => 'Asdf'
+    cap1LowerRest('This was already cap.'); // => 'This was already cap.'
+    cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
+    cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
 
 ### capitalize
 (string) => string
