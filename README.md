@@ -8,46 +8,38 @@
 
 ## Most useful (see full docs in lower sections for more details):
 
-#### cap1LowerRest:
-(string) => string
+#### cap1LowerRest :: (string) => string
 
     cap1LowerRest('aSdF'); // => 'Asdf'
 
-#### capitalize:
-(string) => string
+#### capitalize :: (string) => string
 
     capitalize('asdf'); // => 'Asdf'
     
-#### eliminateWhitespace:
-(string) => string
+#### eliminateWhitespace :: (string) => string
 
     eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
 
-#### getLangFromUrlPathname:
+#### getLangFromUrlPathname ::
 (urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
 
     // With URL http://example.com/auth/fr/ok:
     getLangFromUrlPathName(); // => 'fr'.
     
-#### parseQueryParams:
-(queryParamsString?: string = window.location.search) => Object
+#### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
 
     // With URL http://example.com/home?hello=everyone&gr=argh:
     parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
 
-#### last:
-(Array<T|any>) => T|any;
+#### last :: (Array<T|any>) => T|any;
 
     last([1,2,3]); => 3
 
-#### first:
-(Array<T|any>) => T|any;
+#### first :: (Array<T|any>) => T|any;
 
     first([1,2,3]); => 1
 
-#### matchAny
-(any[]) => (any) => boolean
-
+#### matchAny :: (any[]) => (any) => boolean
 Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
 
     matchAny([1, 2, 3])(2);
@@ -538,7 +530,6 @@ Examples:
 
     console.log(defaultTimestampFormat);
     // => `YYYY/MM/DD : HH:mm:ss`;
-
 
 ### [FUNCTION] isLeapYear
 (year: NumLike) => boolean
