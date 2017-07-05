@@ -639,6 +639,39 @@ WIP documentation
 
 Namespace: function (isomorphic)
 ================================
+### [FUNCTION] condSwitch
+*   Function-based switch statement.
+*   For each pair of args:
+    *   the 1st arg is a condition that passes if truthy
+    *   the 2nd arg is the value returned if the condition passes
+*   If no conditions pass, and there was:
+    *   ...an odd number of arguments given, then the final arg given to the function is returned.
+    *   ...an even number of arguments given, an error is thrown.
+
+Examples:
+
+    condSwitch(true, 'val1');                                // => 'val1'
+    condSwitch(true, 'val1', 'defaultVal');                  // => 'val1'
+    condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
+    condSwitch(false, 'v1', 'condition1', 'v2');             // => 'v2'
+    condSwitch(false, 'v1', null, 'v2', 'defaultReturnVal'); // => 'v2'
+    condSwitch(false, 'v1', null, 'v2');                     // => [throws error]
+    condSwitch(false, 'v1');                                 // => [throws error]
+
+    let size = 'large';
+    condSwitch(size === 'tiny',   8,
+               size === 'small',  10,
+               size === 'medium', 12,
+               size === 'large',  16,
+               size === 'huge',   20,
+                                  12);
+    // => 16
+
+### [FUNCTION] loopN
+### [FUNCTION] loop2
+### [FUNCTION] loop3
+### [FUNCTION] loop4
+### [FUNCTION] loop5
 WIP documentation
 
 
