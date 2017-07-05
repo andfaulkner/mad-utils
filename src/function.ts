@@ -28,6 +28,21 @@ export const loop4 =
 export const loop5 =
     <T>(func: ((...args) => T)): T[] => [func(), func(), func(), func(), func()];
 
+/**
+ * Run given function N times, returning results as an array containing all N return vals.
+ * @param {number} n - Number of times to run given function.
+ * @param {Function} func - Function to repeatedly run.
+ * @return {Array<any>} Array containing each return value of each run through the function.
+ */
+export const loopN =
+    <T>(n: number, func: ((...args) => T)): T[] => {
+        let retArr = [];
+        for (let i = 0; i < n; i++) {
+            retArr.push(func());
+        }
+        return retArr;
+    };
+
 
 /****************************************** CONDITIONALS ******************************************/
 /**

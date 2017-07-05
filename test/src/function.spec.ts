@@ -7,7 +7,7 @@ import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
 import { func as functionFromNode } from '../../node';
 import { func as functionFromBrowser } from '../../browser';
 import * as functionModule from '../../src/function';
-import { m_, func, getFnAsArr, condSwitch } from '../../shared';
+import { m_, func, getFnAsArr, condSwitch, loopN } from '../../shared';
 
 
 /********************************************* TESTS **********************************************/
@@ -86,6 +86,19 @@ describe(`func sub-module`, function() {
             expect(() => condSwitch(0, 'v1', false, 'v2')).to.throw(Error);
             expect(() => condSwitch(null, 'v1', false, 'v2', '', 'v3')).to.throw(Error);
             expect(() => condSwitch(false, 'v1', null, 'v2', '', 'v3', 0, 'v4')).to.throw(Error);
+        });
+    });
+
+    describe(`loopN`, function() {
+        it(`runs given function requested # of times, & returns array holding all return values.`, function() {
+            expect(loopN(2, () => 'return_value')).to.eql(['return_value', 'return_value']);
+            let i = 0;
+            expect(loopN(3, () => ++i)).to.eql([1, 2, 3]);
+            expect(i).to.eql(3);
+
+            let j = 0;
+            expect(loopN(15, () => j++)).to.eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+            expect(j).to.eql(15);
         });
     });
 });
