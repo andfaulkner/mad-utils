@@ -44,8 +44,6 @@
 (matchVals: any[]) => (valToFind: any) => boolean
 *   Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
 
-Examples:
-
     matchAny([1, 2, 3])(2);
     // => true
 
@@ -573,10 +571,6 @@ WIP documentation
 
 Namespace : json
 ================
-WIP documentation
-
-Namespace : localStore (browser)
-================================
 WIP documentation
 
 Namespace : localStore (browser)
