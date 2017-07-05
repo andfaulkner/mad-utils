@@ -87,6 +87,8 @@ Isomorphic
 ### Isomorphic namespaces
 *   array
 *   date
+*   decorator
+*   enum
 *   error
 *   func / functionUtils
 *   json
@@ -97,6 +99,7 @@ Isomorphic
 *   search
 *   string
 *   types
+*   validation
 
 All of the above namesapaces are also importable from the NodeJS and Browser modules
 
@@ -203,10 +206,12 @@ Common types
 *   Either a string or 'Never' (indicating a thrown error)
 
 
+
 ----
 Namespace contents
 ==================
 ----
+
 
 Namespace : array
 =================
@@ -586,6 +591,7 @@ Namespace : dom (browser)
 =========================
 WIP documentation
 
+
 Namespace : enum
 ================
 ### enumToStringArray
@@ -615,24 +621,29 @@ Namespace : error (isomorphic)
 ### scrubStackTrace
 *   WIP documentation
 
+
 Namespace : error (node)
 ========================
 WIP documentation
+
 
 Namespace : event (browser)
 ===========================
 WIP documentation
 
+
 Namespace : file (node)
 =======================
 WIP documentation
+
 
 Namespace : function
 ====================
 WIP documentation
 
-Namespace : json
-================
+
+Namespace : json (ISOMORPHIC)
+=============================
 ### [FUNCTION] jsonStringifyWFuncs
 (obj: Object) => string
 *   Stringify, while keeping the functions in position by pre-converting them to strings.
@@ -644,20 +655,24 @@ Examples:
 
 WIP documentation
 
-Namespace : localStore (browser)
+
+Namespace : localStore (BROWSER)
 ================================
 WIP documentation
 
-Namespace : locale
-==================
+
+Namespace : locale (ISOMORPHIC)
+===============================
 WIP documentation
 
-Namespace : middleware
-======================
+
+Namespace : middleware (NODE)
+=============================
 WIP documentation
 
-Namespace : number
-==================
+
+Namespace : number (ISOMORPHIC)
+===============================
 ### [FUNCTION] isInteger (Alias: isInt)
 (any) => boolean
 *   Returns true if given value is an integer
@@ -707,13 +722,14 @@ Examples:
     uuid();
     // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
 
-Namespace : object
-==================
+
+Namespace : object (ISOMORPHIC)
+===============================
 ### get
 *   Get the item at the given object path.
 
 ### assignFrozenClone
-(Object, ...Object[]): Readonly<Object>
+(Object, ...Object[]) => Readonly<Object>
 *   Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result
 
 Examples:
@@ -725,7 +741,7 @@ Examples:
     //          /\\--- note that it didn't change
 
 ### [FUNCTION] deepFreeze
-(Object): Readonly<Object>
+(Object) => Readonly<Object>
 *   deep-freeze given object
 *   MUTATIVE! (But still returns original)
 
@@ -745,7 +761,7 @@ Examples:
     // => 1
 
 ### [FUNCTION] isMultilangTextObj
-(Object): boolean
+(Object) => boolean
 *   Returns true if given object is (probably) a multilanguage text object.
 *   Not foolproof: e.g. assumes one of the languages is english or french
 *   Multilanguage text object is considered any object containing one of the following keys, with any capitalization, and with an assigned value of type string or undefined or null:
@@ -753,19 +769,19 @@ Examples:
 
 Examples:
 
-    isMultilangTextObj({ en: 'ok' })
+    isMultilangTextObj({ en: 'ok' });
     // => true
 
-    isMultilangTextObj({ asdf: 'gr' })
+    isMultilangTextObj({ asdf: 'gr' });
     // => false
 
-    isMultilangTextObj({ en: 12345 })
+    isMultilangTextObj({ en: 12345 });
     // => false
 
-    isMultilangTextObj({ fr: 'gr', asdf: 123 })
+    isMultilangTextObj({ fr: 'gr', asdf: 123 });
     // => true
 
-    isMultilangTextObj({ en_cb: null, asdf: 123 })
+    isMultilangTextObj({ en_cb: null, asdf: 123 });
     // => true
 
 ### [FUNCTION] eachPair
@@ -802,18 +818,36 @@ Examples:
     hasKey({ a: 1, b: 2 }, 'c');
     // => false
 
-Namespace : query
-=================
+
+Namespace : query (ISOMORPHIC)
+==============================
 #### [FUNCTION] getLangFromUrlPathname:
-(urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
+(string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
 *   Get the currently selected language out of the current URL
 *   Note: this is a 'rough' method not intended to work in all circumstances.
-    *   E.g. you need to be storing the language in the URL for this to work
+    *   You need to be storing the language in the URL for this to work
+*   In Node, default value window.location.pathname gets set to '' if it doesn't exist.
 
 Examples:
 
     // Assuming we're at URL 'http://example.com/auth/fr/ok':
     getLangFromUrlPathName();
+    // => 'fr'
+
+    // Assuming we're at URL 'http://example.com/auth/fr/ok':
+    getLangFromUrlPathName(window.location.pathname);
+    // => 'fr'
+
+    getLangFromUrlPathName('/asdf/123asdfawzu/en/eiuherg/awzp1');
+    // => 'en'
+
+    getLangFromUrlPathName('/asdf/123asdfawzu/sp/eiuherg/awzp1', ['en', 'sp']);
+    // => 'sp'
+
+    getLangFromUrlPathName('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp']);
+    // => 'en'
+
+    getLangFromUrlPathName('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp'], 'fr');
     // => 'fr'
     
 #### [FUNCTION] parseQueryParams:
@@ -833,8 +867,8 @@ Examples:
     // => { hello: 'everyone', gr: 'argh' }
 
 
-Namespace : search
-==================
+Namespace : search (ISOMORPHIC)
+===============================
 ### escapeRegExp
 *   WIP documentation
 
@@ -848,8 +882,8 @@ Namespace : search
 *   WIP documentation
 
 
-Namespace string (Alias: str)
-=============================
+Namespace : string ((Alias: str)) (ISOMORPHIC)
+==============================================
 ### [FUNCTION] cap1LowerRest
 (string) => string
 *   Make the first letter uppercase, and the rest lowercase.
@@ -893,8 +927,9 @@ Examples:
 ### stringToEnumVal
 *   WIP documentation
 
-Namespace : test
-================
+
+Namespace : test (NODE)
+=======================
 ### [FUNCTION] expectNonEmptyObjectExists
 *   Create Mocha test that passes if given object exists and is not empty
 
@@ -922,8 +957,8 @@ Examples:
     expectFunctionExists(inc); // << will pass
 
 
-Namespace : types (isomorphic)
-==============================
+Namespace : types (Alias: type) (ISOMORPHIC)
+============================================
 ### [FUNCTION] isDateLike
 (arg: RealAny) => boolean
 *   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
@@ -962,19 +997,23 @@ Namespace : types (isomorphic)
 *   True if given item is an integer or string containing an item that can be converted to an integer.
 *   (see "number" section above)
 
-Namespace : type (node)
+
+Namespace : type (NODE)
 =======================
 WIP documentation
 
-Namespace : type (browser)
+
+Namespace : type (BROWSER)
 ==========================
 WIP documentation
 
-Namespace : validation
-======================
+
+Namespace : validation (ISOMORPHIC)
+===================================
 WIP documentation
 
-Namespace : webpack (node)
+
+Namespace : webpack (NODE)
 ==========================
 WIP documentation
 
