@@ -1,10 +1,40 @@
 # mad-utils
 
-![mad-utils](https://i.giphy.com/media/rQOT9sBxBtkSk/giphy.webp)
+*   Utilities I keep repeatedly rewriting across projects.
 
 ----
 
-*   Utilities I keep repeatedly rewriting across projects.
+![mad-utils](https://i.giphy.com/media/rQOT9sBxBtkSk/giphy.webp)
+
+## Most useful:
+
+#### capitalize:
+    (string) => string
+    
+#### eliminateWhitespace:
+    (string) => string
+
+#### getLangFromUrlPathname:
+    (urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
+
+    E.g. with path http://example.com/auth/fr/ok, calling getLangFromUrlPathName() returns 'fr'.
+    
+#### parseQueryParams:
+    (queryParamsString?: string = window.location.search) => Object
+
+    E.g. with input http://example.com/home?hello=everyone&gr=argh, has output:
+        { hello: 'everyone', gr: 'argh' }
+
+#### last:
+    (arr: Array<T|any>) => T|any;
+
+    E.g. last([1,2,3]); => 3
+
+#### first:
+    (arr: Array<T|any>) => T|any;
+
+    E.g. first([1,2,3]); => 1
+
 
 ----
 
@@ -630,6 +660,8 @@ Namespace : object
 (Object, string) => boolean
 *   Return true if given object has given key.
 
+Examples:
+
     hasKey({ a: 1, b: 2 }, 'a');
     // => true
 
@@ -638,7 +670,34 @@ Namespace : object
 
 Namespace : query
 =================
-WIP documentation
+#### getLangFromUrlPathname:
+(urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
+*   Get the currently selected language out of the current URL
+*   Note: this is a 'rough' method not intended to work in all circumstances.
+    *   E.g. you need to be storing the language in the URL for this to work
+
+Examples:
+
+    // Assuming we're at URL 'http://example.com/auth/fr/ok':
+    getLangFromUrlPathName();
+    // => 'fr'
+    
+#### parseQueryParams:
+(queryParamsString?: string = window.location.search) => Object
+*   Convert the current query params into an object
+*   Note that running it without explicitly passing the queryParamsString works, but can give stale results.
+    *   It will still point to the query params present on initial page load if window.location.search not explicitly passed.
+    *   Not a problem unless something changes the query params after page load.
+
+Examples:
+
+    // Assuming we're at URL 'http://example.com/home?hello=everyone&gr=argh'
+    parseQueryParams(window.location.search);
+    // => { hello: 'everyone', gr: 'argh' }
+
+    parseQueryParams();
+    // => { hello: 'everyone', gr: 'argh' }
+
 
 Namespace : search
 ==================
@@ -670,7 +729,7 @@ Namespace string (Alias: str)
 *   WIP documentation
 
 ### matches
-*   WIP documentation
+*   See docs in search namespace.
 
 ### matchesIgnoreCase
 *   WIP documentation
