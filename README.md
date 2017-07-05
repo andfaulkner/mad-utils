@@ -749,7 +749,16 @@ Namespace string (Alias: str)
 *   Make the first letter uppercase, and the rest lowercase.
 
 ### capitalize
+(string) => string
 *   Make the first letter uppercase, and leave the rest as-is.
+
+Examples:
+
+    capitalize('asdf'); // => 'Asdf'
+    capitalize('aSdF'); // => 'ASdF'
+    capitalize('This is already cap.'); // => 'This is already cap.'
+    capitalize('This Is Already Cap.'); // => 'This Is Already Cap.'
+
 
 ### escapeRegExp
 *   WIP documentation
