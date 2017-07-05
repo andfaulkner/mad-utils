@@ -47,6 +47,7 @@
 
 #### matchAny
 (any[]) => (any) => boolean
+
 Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
 
     matchAny([1, 2, 3])(2);
@@ -224,7 +225,6 @@ Get items from array by position
 *   Return first item in given array
 
 Examples:
-
     first(['a', 'b', 'c', 'd']);
     // => 'a'
 
@@ -233,7 +233,6 @@ Examples:
 *   Return second item in given array
 
 Examples:
-
     second(['a', 'b', 'c', 'd']);
     // => 'b'
 
@@ -242,7 +241,6 @@ Examples:
 *   Return third item in given array
 
 Examples:
-
     third(['a', 'b', 'c', 'd']);
     // => 'c'
 
@@ -251,7 +249,6 @@ Examples:
 *   Return last item in given array
 
 Examples:
-
     last(['a', 'b', 'c', 'd']);
     // => 'd'
 
@@ -260,7 +257,6 @@ Examples:
 *   Return secondLast item in given array
 
 Examples:
-
     secondLast(['a', 'b', 'c', 'd']);
     // => 'c'
 
@@ -269,7 +265,6 @@ Examples:
 *   Return thirdLast item in given array
 
 Examples:
-
     thirdLast(['a', 'b', 'c', 'd']);
     // => 'b'
 
@@ -278,7 +273,6 @@ Examples:
 *   Return first 2 items in given array
 
 Examples:
-
     first2(['a', 'b', 'c', 'd']);
     // => ['a', 'b']
 
@@ -287,7 +281,6 @@ Examples:
 *   Return first 3 items in given array
 
 Examples:
-
     first3(['a', 'b', 'c', 'd']);
     // => ['a', 'b', 'c']
 
@@ -296,7 +289,6 @@ Examples:
 *   Return last 2 items in given array
 
 Examples:
-
     last2(['a', 'b', 'c', 'd']);
     // => ['c', 'd']
 
@@ -305,7 +297,6 @@ Examples:
 *   Return last 3 items in given array
 
 Examples:
-
     last3(['a', 'b', 'c', 'd']);
     // => ['b', 'c', 'd']
 
@@ -314,7 +305,6 @@ Examples:
 *   Return first 'n' number of items from given array
 
 Examples:
-
     firstN(['a', 'b', 'c', 'd'], 2);
     // => ['a', 'b']
 
@@ -323,7 +313,6 @@ Examples:
 *   Return last 'n' items from given array. Return full array if too many items requested.
 
 Examples:
-
     lastN(['a', 'b', 'c', 'd'], 2)
     // => ['c', 'd']
 
@@ -334,17 +323,15 @@ Create array
 *   Create empty array of given length.
 
 Examples:
-
     arrayN(6)
     // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
 
 ### [FUNCTION] splitLines
-(str: string, opts: { preserveEmptyLines: false }): string[] => 
+(str: string, opts: { preserveEmptyLines: false }) => string[]
 *   Split large multiline string into array where each line is an item
 *   Removes blank lines by default, unless preserveEmptyLines option is set to true.
 
 Examples:
-
     splitLines(`
         first line
 
@@ -369,7 +356,6 @@ Exclude items from array by position
 *   Remove first character or array item.
 
 Examples:
-
     withoutFirst([1, 2, 3, 4, 5])
     // => [2, 3, 4, 5]
 
@@ -381,7 +367,6 @@ Examples:
 *   Remove first 2 characters or array items.
 
 Examples:
-
     withoutFirst2([1, 2, 3, 4, 5])
     // => [3, 4, 5]
 
@@ -390,7 +375,6 @@ Examples:
 *   Remove first 3 characters or array items.
 
 Examples:
-
     withoutFirst3([1, 2, 3, 4, 5])
     // => [4, 5]
 
@@ -399,7 +383,6 @@ Examples:
 *   Remove last character or array item.
 
 Examples:
-
     withoutLast([1, 2, 3, 4, 5])
     // => [1, 2, 3, 4]
 
@@ -408,7 +391,6 @@ Examples:
 *   Remove last 2 characters or array items.
 
 Examples:
-
     withoutLast2([1, 2, 3, 4, 5])
     // => [1, 2, 3]
 
@@ -417,7 +399,6 @@ Examples:
 *   Remove last 3 characters or array items.
 
 Examples:
-
     withoutLast3([1, 2, 3, 4, 5])
     // => [1, 2]
 
@@ -426,7 +407,6 @@ Examples:
 *   Remove first N characters or array items.
 
 Examples:
-
     withoutFirstN([1, 2, 3, 4, 5], 4)
     // => [5]
 
@@ -435,7 +415,6 @@ Examples:
 *   Remove last N characters or array items.
 
 Examples:
-
     withoutLastN([1, 2, 3, 4, 5, 6, 7], 5)
     // => [1, 2]
 
@@ -446,7 +425,6 @@ Array typechecking
 *   True if item is an array
 
 Examples:
-
     isArray([]);
     // => true
 
@@ -466,7 +444,6 @@ Add to or subtract from array
 *   Non-mutative: returns a new array.
 
 Examples:
-
     append([1, 2, 3], [4, 5, 6]);
     // => [1, 2, 3, 4, 5, 6]
 
@@ -483,7 +460,6 @@ Examples:
 *   NON-MUTATIVE. PERFORMANCE-INTENSIVE.
 
 Examples:
-
     removeMatches([1, 2, 3], 2);
     // => [1, 3]
 
@@ -496,7 +472,6 @@ Examples:
 *   NON-MUTATIVE
 
 Examples:
-
     rmAllFalsy([1, 2, 3, false, null, 4, 0, 'asdf', '', 'ok', undefined, 'fine']);
     // => [1, 2, 3, 4, 'asdf', 'ok']
 
@@ -513,7 +488,6 @@ Array searching
     *   e.g. NaN matched against an array with NaN returns true
 
 Examples:
-
     matchAny([1, 2, 3])(2);
     // => true
 
@@ -534,7 +508,6 @@ Namespace : date
 `YYYY/MM/DD : hh:mm:ss`
 
 Examples:
-
     console.log(defaultTimestampFormat);
     // => `YYYY/MM/DD : HH:mm:ss`;
 
@@ -546,7 +519,6 @@ Examples:
 *   Any other input will throw.
 
 Examples:
-
     isLeapYear(2004); // => true
     isLeapYear(2003); // => false
 
@@ -559,7 +531,6 @@ Examples:
     *   abbreviate: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Defaults to false.
 
 Examples:
-
     convertDayOfWeekNumToString(5); // => 'Friday'
     convertDayOfWeekNumToString(2, true); // => 'Tues'
 
@@ -571,7 +542,6 @@ Examples:
         *   More info at https://momentjs.com/docs/#/parsing/string-format/
 
 Examples:
-
     now(); // => 2017/05/28 : 02:51:39
     now(`YYYY/MM hh:mm`); // => 2017/02 02:51
 
@@ -646,7 +616,6 @@ Namespace : json
 *   Stringify, while keeping the functions in position by pre-converting them to strings.
 
 Examples:
-
     jsonStringifyWFuncs({ a: 123, b: 'asdf', c: () => 'asdf' })
     // => '{"a":123,"b":"asdf","c":"function () { return \'asdf\'; }"}'
 
@@ -671,7 +640,6 @@ Namespace : number
 *   Returns true if given value is an integer
 
 Examples:
-
     isInteger(1); // => true
     isInteger(232); // => true
     isInteger(82.12); // => false
@@ -683,7 +651,6 @@ Examples:
 *   Returns true if given value is an integer-like string or integer.
 
 Examples:
-
     isIntegerLike(232); // => true
     isIntegerLike('232'); // => true
     isIntegerLike('asdf'); // => false
@@ -694,7 +661,6 @@ Examples:
 *   Returns true if given value is a number-like string or number
 
 Examples:
-
     isNumberLike(1); // => true
     isNumberLike(9267.84); // => true
     isNumberLike('1'); // => true
@@ -711,7 +677,6 @@ Examples:
 *   Generate a UUID, in format e.g. 3A0BF2C7-3077-45A0-97ED-EC5F13F127F1
 
 Examples:
-
     uuid();
     // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
 
@@ -725,7 +690,6 @@ Namespace : object
 *   Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result
 
 Examples:
-
     const obj = assignFrozenClone({ a: 1, b: 2}, { c: 3, d: 4 });
     // => { a: 1, b: 2, c: 3, d: 4 }
     obj.a = 6;
@@ -738,7 +702,6 @@ Examples:
 *   MUTATIVE! (But still returns original)
 
 Examples:
-
     const obj = deepFreeze({ a: 1, b: 2, c: 3, d: 4 });
     // obj = { a: 1, b: 2, c: 3, d: 4 }
     obj.a = 6;
@@ -760,7 +723,6 @@ Examples:
     *   en_in, en, en_ca, en_us, en_gb, en_au, en_bz, en_cb, english, en_ie, en_jm, en_nz, en_ph, en_za, en_tt, eng, french, fr, fr_fr, fr_ca, fr_lu, fr_ch
 
 Examples:
-
     isMultilangTextObj({ en: 'ok' })
     // => true
 
@@ -782,7 +744,6 @@ Examples:
 *   CURRIED, NON-MUTATIVE
 
 Examples:
-
     const arr = [];
     const putKeyValPairInArr = eachPair((v, k) => arr.push(k + v));
     putKeyValPairInArr({ a: 1, b: 2 });
@@ -794,7 +755,6 @@ Examples:
 *   Return number of keys in given object.
 
 Examples:
-
     numKeys({ a: 1, b: 2 });
     // => 2
 
@@ -803,7 +763,6 @@ Examples:
 *   Return true if given object has given key.
 
 Examples:
-
     hasKey({ a: 1, b: 2 }, 'a');
     // => true
 
@@ -819,7 +778,6 @@ Namespace : query
     *   E.g. you need to be storing the language in the URL for this to work
 
 Examples:
-
     // Assuming we're at URL 'http://example.com/auth/fr/ok':
     getLangFromUrlPathName();
     // => 'fr'
@@ -832,7 +790,6 @@ Examples:
     *   Not a problem unless something changes the query params after page load.
 
 Examples:
-
     // Assuming we're at URL 'http://example.com/home?hello=everyone&gr=argh'
     parseQueryParams(window.location.search);
     // => { hello: 'everyone', gr: 'argh' }
@@ -863,7 +820,6 @@ Namespace string (Alias: str)
 *   Make the first letter uppercase, and the rest lowercase.
 
 Examples:
-
     cap1LowerRest('asdf'); // => 'Asdf'
     cap1LowerRest('aSdF'); // => 'Asdf'
     cap1LowerRest('This was already cap.'); // => 'This was already cap.'
@@ -875,7 +831,6 @@ Examples:
 *   Make the first letter uppercase, and leave the rest as-is.
 
 Examples:
-
     capitalize('asdf'); // => 'Asdf'
     capitalize('aSdF'); // => 'ASdF'
     capitalize('This was already cap.'); // => 'This was already cap.'
@@ -907,7 +862,6 @@ Namespace : test
 *   Create Mocha test that passes if given object exists and is not empty
 
 Examples:
-
     expectEmptyObject({}); // << will not pass
     expectEmptyObject({ a: 1 }); // << will pass
 
@@ -915,7 +869,6 @@ Examples:
 *   Create Mocha test that passes if given object is empty
 
 Examples:
-
     expectEmptyObject({}); // << will pass
     expectEmptyObject({ a: 1 }); // << will not pass
 
@@ -923,7 +876,6 @@ Examples:
 *   Create Mocha test that passes if given function exists
 
 Examples:
-
     const inc = (a: number) => a + 1;
     expectFunctionExists({}); // << will not pass
     expectFunctionExists(() => null); // << will pass
