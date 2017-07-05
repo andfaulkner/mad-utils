@@ -948,6 +948,29 @@ Examples:
     parseQueryParams();
     // => { hello: 'everyone', gr: 'argh' }
 
+#### [FUNCTION] lastUrlPath:
+(url: string = hrefDef, strict: boolean = true) => string
+*   Get the last path in the given URL, with no / prepended, & query params excluded.
+*   Returns '' if no paths in url.
+*   Sets 'strict mode' to true by default, meaning trailing slashes aren't ignored
+    *   if one is present, return value becomes ''.
+*   If first param is null or undefined, uses the current page's URL as the url value.
+
+Examples:
+
+    // Assuming we're at URL 'http://example.com/home?hello=everyone&gr=argh'
+    lastUrlPath(); // => 'home'
+
+    // Assuming we're at URL 'http://example.com/asdf/?hello=everyone&gr=argh'
+    lastUrlPath(); // => ''
+    lastUrlPath(null, false); // => 'asdf'
+
+    lastUrlPath('http://example.com'); // => ''
+    lastUrlPath('http://example.com/'); // => ''
+    lastUrlPath('http://example.com/', false); // => ''
+    lastUrlPath('http://example.com/asdf'); // => 'asdf'
+    lastUrlPath('http://example.com/asdf/'); // => ''
+    lastUrlPath('http://example.com/asdf/', false); // => 'asdf'
 
 Namespace: search (isomorphic)
 ==============================
@@ -990,6 +1013,29 @@ Examples:
     capitalize('This Was Already Cap.'); // => 'This Was Already Cap.'
     capitalize('not Already Cap.'); // => 'Not Already Cap.'
 
+### [FUNCTION] removeMatchingText
+(initStr: string, matcherToRm: string|RegExp) => string
+*   Return copy of string (initStr) with all instances of substring or regexp (matcherToRm) removed.
+
+Examples:
+
+    removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
+    removeMatchingText('HeREMlloREM woREMrldREM!', 'REM'); // => 'Hello world!'
+    removeMatchingText('Hello world!', 'ASDFasdfewer'); // => 'Hello world!'
+    removeMatchingText('Hello world!', 'ASDFasdfewer'); // => 'Hello world!'
+
+### [FUNCTION] replaceAll
+(text: string, match: string|RegExp, replacement: string) => string
+*   Replace all matching strings or regexes in a text segment with given replacement string.
+*   Main benefit: *ALL* matching strings get replaced.
+
+Examples:
+
+    replaceAll('The duck here is the best Jerry! The best!', 'best', 'bees-knees');
+    // => 'The duck here is the bees-knees Jerry! The bees-knees!'
+
+    replaceAll('The duck here is the best Jerry! The best!', /[tT]he best/g, 'OK');
+    // => 'The duck here is OK Jerry! OK!'
 
 ### escapeRegExp
 *   WIP documentation
@@ -1001,9 +1047,6 @@ Examples:
 *   See docs in search namespace.
 
 ### matchesIgnoreCase
-*   WIP documentation
-
-### replaceAll
 *   WIP documentation
 
 ### stringToEnumVal
