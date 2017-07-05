@@ -15,24 +15,11 @@ export function getFnAsArr(func: Function): string[] {
 export const getFunctionSrcAsArray = getFnAsArr;
 
 /***************************************** LOOP UTILITIES *****************************************/
-/** Run given function 2X, returning results as an array containing both return vals. */
-export const loop2 =
-    <T>(func: ((...args) => T)): T[] => [func(), func()];
-/** Run given function 3X, returning results as an array containing all 3 return vals. */
-export const loop3 =
-    <T>(func: ((...args) => T)): T[] => [func(), func(), func()];
-/** Run given function 4X, returning results as an array containing all 4 return vals. */
-export const loop4 =
-    <T>(func: ((...args) => T)): T[] => [func(), func(), func(), func()];
-/** Run given function 5X, returning results as an array containing all 5 return vals. */
-export const loop5 =
-    <T>(func: ((...args) => T)): T[] => [func(), func(), func(), func(), func()];
-
 /**
  * Run given function N times, returning results as an array containing all N return vals.
  * @param {number} n - Number of times to run given function.
  * @param {Function} func - Function to repeatedly run.
- * @return {Array<any>} Array containing each return value of each run through the function.
+ * @return {Array<any>} Array containing function return values.
  */
 export const loopN =
     <T>(n: number, func: ((...args) => T)): T[] => {
@@ -42,6 +29,15 @@ export const loopN =
         }
         return retArr;
     };
+
+/** Run given function 2X, returning results as an array containing both return vals. */
+export const loop2 = <T>(func: ((...args) => T)): T[] => loopN(2, func);
+/** Run given function 3X, returning results as an array containing all 3 return vals. */
+export const loop3 = <T>(func: ((...args) => T)): T[] => loopN(3, func);
+/** Run given function 4X, returning results as an array containing all 4 return vals. */
+export const loop4 = <T>(func: ((...args) => T)): T[] => loopN(4, func);
+/** Run given function 5X, returning results as an array containing all 5 return vals. */
+export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
 
 
 /****************************************** CONDITIONALS ******************************************/

@@ -10,6 +10,13 @@ export declare function getFnAsArr(func: Function): string[];
  */
 export declare const getFunctionSrcAsArray: typeof getFnAsArr;
 /***************************************** LOOP UTILITIES *****************************************/
+/**
+ * Run given function N times, returning results as an array containing all N return vals.
+ * @param {number} n - Number of times to run given function.
+ * @param {Function} func - Function to repeatedly run.
+ * @return {Array<any>} Array containing each return value of each run through the function.
+ */
+export declare const loopN: <T>(n: number, func: (...args: any[]) => T) => T[];
 /** Run given function 2X, returning results as an array containing both return vals. */
 export declare const loop2: <T>(func: (...args: any[]) => T) => T[];
 /** Run given function 3X, returning results as an array containing all 3 return vals. */
@@ -18,13 +25,6 @@ export declare const loop3: <T>(func: (...args: any[]) => T) => T[];
 export declare const loop4: <T>(func: (...args: any[]) => T) => T[];
 /** Run given function 5X, returning results as an array containing all 5 return vals. */
 export declare const loop5: <T>(func: (...args: any[]) => T) => T[];
-/**
- * Run given function N times, returning results as an array containing all N return vals.
- * @param {number} n - Number of times to run given function.
- * @param {Function} func - Function to repeatedly run.
- * @return {Array<any>} Array containing each return value of each run through the function.
- */
-export declare const loopN: <T>(n: number, func: (...args: any[]) => T) => T[];
 /****************************************** CONDITIONALS ******************************************/
 /**
  * Function-based switch statement. Any odd number of arguments can be given. For each pair of args,

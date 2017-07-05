@@ -7,7 +7,7 @@ import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
 import { func as functionFromNode } from '../../node';
 import { func as functionFromBrowser } from '../../browser';
 import * as functionModule from '../../src/function';
-import { m_, func, getFnAsArr, condSwitch, loopN } from '../../shared';
+import { m_, func, getFnAsArr, condSwitch, loopN, loop2, loop3, loop4, loop5 } from '../../shared';
 
 
 /********************************************* TESTS **********************************************/
@@ -99,6 +99,42 @@ describe(`func sub-module`, function() {
             let j = 0;
             expect(loopN(15, () => j++)).to.eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
             expect(j).to.eql(15);
+        });
+    });
+
+    describe(`loop2`, function() {
+        it(`runs given function twice, & returns array holding both return values.`, function() {
+            expect(loop2(() => 'ret_val')).to.eql(['ret_val', 'ret_val']);
+            let j = 0;
+            expect(loop2(() => j++)).to.eql([0, 1]);
+            expect(j).to.eql(2);
+        });
+    });
+
+    describe(`loop3`, function() {
+        it(`runs given function 3X, & returns array holding all 3 return values.`, function() {
+            expect(loop3(() => 'ret_val')).to.eql(['ret_val', 'ret_val', 'ret_val']);
+            let j = 0;
+            expect(loop3(() => j++)).to.eql([0, 1, 2]);
+            expect(j).to.eql(3);
+        });
+    });
+
+    describe(`loop4`, function() {
+        it(`runs given function 4X, & returns array holding all 4 return values.`, function() {
+            expect(loop4(() => 'ret_val')).to.eql(['ret_val', 'ret_val', 'ret_val', 'ret_val']);
+            let j = 0;
+            expect(loop4(() => j++)).to.eql([0, 1, 2, 3]);
+            expect(j).to.eql(4);
+        });
+    });
+
+    describe(`loop5`, function() {
+        it(`runs given function 5X, & returns array holding all 5 return values.`, function() {
+            expect(loop5(() => 'r_val')).to.eql(['r_val', 'r_val', 'r_val', 'r_val', 'r_val']);
+            let j = 0;
+            expect(loop5(() => j++)).to.eql([0, 1, 2, 3, 4]);
+            expect(j).to.eql(5);
         });
     });
 });
