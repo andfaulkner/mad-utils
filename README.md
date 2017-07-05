@@ -670,12 +670,58 @@ Examples:
     // => 16
 
 ### [FUNCTION] loopN
+(number, (...args) => T) => T[]
+*   Run given function the given number of times
+*   Return results of all runs of the function as an array containing all N return vals.
+
+Examples:
+
+    loopN(2, () => 'return_value'); // => ['return_value', 'return_value']
+
+    let i = 0;
+    loopN(10, () => i++); // => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(i)        // => 10
 
 ### [FUNCTION] loop2
-### [FUNCTION] loop3
-### [FUNCTION] loop4
-### [FUNCTION] loop5
-WIP documentation
+((...args) => T) => T[]
+*   Run given function twice, and return results of both runs of the function as an array.
+
+Examples:
+
+    loop2(() => 'return_value'); // => ['return_value', 'return_value']
+
+### [FUNCTION]s loop3, loop4, loop5
+*   See loop2 above, but run the associated number of times
+    *   e.g. loop4 runs 4 the function 4X instead of twice
+
+Examples:
+
+    loop3(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val']
+    loop4(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val', 'ret_val']
+    loop5(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val', 'ret_val', 'ret_val']
+
+    let i = 0;
+    loop5(() => i++); // => [0, 1, 2, 3, 4]
+    console.log(i)        // => 5
+
+### [FUNCTION] getFnAsArr
+(Function): string[]
+*   Return a function's source code in nicely spaced array format
+
+Examples:
+
+    getFnAsArr(() => 'ok')
+    // => [ 'function () { return \'ok\'; }' ]
+
+    function testFn() {
+        console.log('log 1');
+        return 'output';
+    }
+    getFnAsArr(testFn);
+    // => [ 'function testFn() {',
+    //      '    console.log(\'log 1\');',
+    //      '    return \'output\';',
+    //      '}']
 
 
 Namespace: json (isomorphic)
