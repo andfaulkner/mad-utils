@@ -634,8 +634,32 @@ WIP documentation
 
 Namespace: file (node)
 ======================
+### isDir
 WIP documentation
 
+### pathFromRoot
+WIP documentation
+
+### wasRunAsScript
+WIP documentation
+
+### replaceInFile
+WIP documentation
+
+### getJsFilesInDir
+WIP documentation
+
+### isFileInDir
+WIP documentation
+
+### isNonMinFile
+WIP documentation
+
+### endsInDotJs
+WIP documentation
+
+### getBaseFilenameFromPath
+WIP documentation
 
 Namespace: function (isomorphic)
 ================================
