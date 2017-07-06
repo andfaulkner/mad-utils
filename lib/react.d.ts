@@ -49,6 +49,8 @@ export interface RouterProps {
 export declare function buildNamedSfc<T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T> | React.ComponentClass<T>): React.StatelessComponent<T>;
 export declare const buildNamedStatelessComponent: typeof buildNamedSfc;
 export declare const setSfcDisplayName: typeof buildNamedSfc;
+export declare const setCmpDisplayName: typeof buildNamedSfc;
+export declare const setDisplayName: typeof buildNamedSfc;
 /************************************ REACT UTILITY COMPONENTS ************************************/
 /**
  * Render the child if 'test' is truthy. Can only accept React components.
