@@ -773,6 +773,31 @@ WIP documentation
 
 Namespace: locale (isomorphic)
 ==============================
+### commonLangsObj
+WIP documentation
+
+### commonLangAbbrevs
+WIP documentation
+
+### commonLangNames
+WIP documentation
+
+### canadaLangsObj
+WIP documentation
+
+### canadaLangAbbrevs
+WIP documentation
+
+### canadaLangNames
+WIP documentation
+
+### isMultilangTextObj
+WIP documentation
+
+### englishVariants
+WIP documentation
+
+### frenchVariants
 WIP documentation
 
 
