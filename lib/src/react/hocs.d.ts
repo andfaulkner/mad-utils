@@ -23,4 +23,4 @@ export declare const setDisplayName: typeof buildNamedSfc;
  * @param {string} verbosity - verbosity level to log at. Defaults to 'verbose'.
  * @example @logOnRender(log) class MyClass { ... }
  */
-export declare function logOnRender(logger?: MadLog, verbosity?: 'silly' | 'verbose' | 'debug' | 'info' | 'warn' | 'error' | 'wtf'): (WrappedComponent: Newable<React.Component<any, any>>) => React.StatelessComponent<any>;
+export declare function logOnRender(logger?: MadLog, verbosity?: 'silly' | 'verbose' | 'debug' | 'info' | 'warn' | 'error' | 'wtf'): <T extends Newable<React.Component<any, any>>>(WrappedComponent: T) => T;
