@@ -9,8 +9,11 @@ import { History, Location } from 'history';
 
 
 /****************************************** REACT TYPES *******************************************/
-export type InputChange = React.EventHandler<React.FormEvent<HTMLInputElement>>;
-export type FormSubmit = React.EventHandler<React.FormEvent<HTMLFormElement>>;
+export type InputEvent = React.FormEvent<HTMLInputElement>;
+export type FormEvent = React.FormEvent<HTMLFormElement>;
+
+export type InputChange = React.EventHandler<InputEvent>;
+export type FormSubmit = React.EventHandler<FormEvent>;
 
 export { InputChange as InputChangeType }
 export { FormSubmit as FormSubmitType }
