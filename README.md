@@ -1195,6 +1195,19 @@ Namespace: types (Alias: type) (isomorphic)
 
 Namespace: type (node)
 ======================
+### MWare
+WIP documentation
+
+### Middleware
+WIP documentation
+
+### ApplyMiddlewareFn
+WIP documentation
+
+### ExpressApp
+WIP documentation
+
+### Color
 WIP documentation
 
 
