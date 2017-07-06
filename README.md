@@ -764,6 +764,10 @@ WIP documentation
 
 Namespace: localStore (browser)
 ===============================
+### getFromStorage
+WIP documentation
+
+### isAuthenticated
 WIP documentation
 
 
