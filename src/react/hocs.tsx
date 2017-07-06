@@ -32,20 +32,21 @@ export const setSfcDisplayName = buildNamedSfc;
 export const setCmpDisplayName = buildNamedSfc;
 export const setDisplayName = buildNamedSfc;
 
+type Verbosity = 'silly' | 'verbose' | 'debug' | 'info' | 'warn' | 'error' | 'wtf';
 
 /**
  * Log a React class component's name and props directly before rendering.
  * @param {MadLog} logger - MadLogs instance to use for logging the component data.
  * @example @logOnRender(log) class MyClass { ... }
  */
-function logOnRender(logger = log) {
+function logOnRender(logger = log, verbosity: Verbosity = 'verbose') {
     return function logOnRenderHOC(WrappedComponent: Newable<React.Component<any, any>>) {
         class Enhancer extends WrappedComponent {
             state = this.state || {}
             events = this.events || {}
             render(){
                 const parentName = Object.getPrototypeOf(this.constructor).name;
-                logger.verbose(`Rendering ${parentName} with this.props:`, this.props);
+                logger[verbosity](`Rendering ${parentName} with this.props:`, this.props);
                 return super.render();
             }
         }
