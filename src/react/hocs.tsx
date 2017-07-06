@@ -36,6 +36,7 @@ export const setDisplayName = buildNamedSfc;
 /**
  * Log a React class component's name and props directly before rendering.
  * @param {MadLog} logger - MadLogs instance to use for logging the component data.
+ * @example @logOnRender(log) class MyClass { ... }
  */
 function logOnRender(logger = log) {
     return function logOnRenderHOC(WrappedComponent: Newable<React.Component<any, any>>) {
