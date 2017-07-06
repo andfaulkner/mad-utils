@@ -46,9 +46,9 @@ export interface RouterProps {
  * @param {React.StatelessComponent} sfc - Stateless functional component to name.
  * @return {React.StatelessComponent} Named stateless functional component.
  */
-export declare const buildNamedSfc: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
-export declare const buildNamedStatelessComponent: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
-export declare const setSfcDisplayName: <T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T>) => React.StatelessComponent<T>;
+export declare function buildNamedSfc<T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T> | React.ComponentClass<T>): React.StatelessComponent<T>;
+export declare const buildNamedStatelessComponent: typeof buildNamedSfc;
+export declare const setSfcDisplayName: typeof buildNamedSfc;
 /************************************ REACT UTILITY COMPONENTS ************************************/
 /**
  * Render the child if 'test' is truthy. Can only accept React components.

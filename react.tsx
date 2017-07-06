@@ -49,11 +49,10 @@ export interface RouterProps {
  * @param {React.StatelessComponent} sfc - Stateless functional component to name.
  * @return {React.StatelessComponent} Named stateless functional component.
  */
-export const buildNamedSfc =
-    <T extends any>(
-        displayName: string,
-        statelessComponent: React.StatelessComponent<T>): React.StatelessComponent<T> =>
-{
+export function buildNamedSfc <T extends any>(
+    displayName: string,
+    statelessComponent: React.StatelessComponent<T> | React.ComponentClass<T>
+): React.StatelessComponent<T> {
     const NamedSfc: NamedSFC<T> = statelessComponent as NamedSFC<T>;
     NamedSfc.displayName = displayName;
     return NamedSfc;
@@ -61,6 +60,8 @@ export const buildNamedSfc =
 
 export const buildNamedStatelessComponent = buildNamedSfc;
 export const setSfcDisplayName = buildNamedSfc;
+export const setCmpDisplayName = buildNamedSfc;
+export const setDisplayName = buildNamedSfc;
 
 
 /************************************ REACT UTILITY COMPONENTS ************************************/
