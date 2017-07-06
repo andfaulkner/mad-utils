@@ -41,6 +41,30 @@ export interface RouterProps {
     match: { isExact: boolean, params: any, path: string, url: string }
 }
 
+/**
+ * Use on function params expecting an unconstructed React component class.
+ * Mainly for creation of higher-order components.
+ * @example function wrap(WrappedComponent: Newable<React.Component<any, any>>) { ... }
+ *
+ * @example Full example including context:
+ *     function logBeforeRender(WrappedComponent: Newable<React.Component<any, any>>) {
+ *         return class Enhancer extends WrappedComponent {
+ *             events = this.events || {}
+ *             render() {
+ *                 log.info(`Rendering ${WrappedComponent.name} with props: ${this.props}`);
+ *                 super.render();
+ *             }
+ *         }
+ *     }
+ *
+ *     // Then to use it ::
+ *     @logBeforeRender
+ *     class SomeComponent extends React.Component<any, any> { ...etc... }
+ */
+interface Newable<T> {
+    new (...args: any[]): T;
+}
+
 /*********************************** REACT COMPONENT FACTORIES ************************************/
 /**
  * @TODO unit test this namedStatelessComponent
