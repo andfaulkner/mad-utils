@@ -61,7 +61,7 @@ export interface RouterProps {
  *     @logBeforeRender
  *     class SomeComponent extends React.Component<any, any> { ...etc... }
  */
-interface Newable<T> {
+export interface Newable<T> {
     new (...args: any[]): T;
 }
 
