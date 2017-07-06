@@ -774,6 +774,10 @@ WIP documentation
 
 Namespace: middleware (node)
 ============================
+### useMiddlewareInProdOnly
+WIP documentation
+
+### composeExpressMiddlewares
 WIP documentation
 
 
