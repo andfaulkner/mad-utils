@@ -629,6 +629,13 @@ WIP documentation
 
 Namespace: event (browser)
 ==========================
+### mouseEventFactory
+WIP documentation
+
+### removeClickEventFromId
+WIP documentation
+
+### addClickEventToId
 WIP documentation
 
 
