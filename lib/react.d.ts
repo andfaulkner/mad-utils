@@ -5,12 +5,12 @@
 import * as React from 'react';
 import { History, Location } from 'history';
 /****************************************** REACT TYPES *******************************************/
-export declare type InputEvent = React.FormEvent<HTMLInputElement>;
-export declare type FormEvent = React.FormEvent<HTMLFormElement>;
-export declare type InputChange = React.EventHandler<InputEvent>;
-export declare type FormSubmit = React.EventHandler<FormEvent>;
-export { InputChange as InputChangeType };
-export { FormSubmit as FormSubmitType };
+export declare type InputChangeEvent = React.FormEvent<HTMLInputElement>;
+export declare type FormSubmitEvent = React.FormEvent<HTMLFormElement>;
+export declare type InputChangeHandler = React.EventHandler<InputChangeEvent>;
+export declare type FormSubmitHandler = React.EventHandler<FormSubmitEvent>;
+export { InputChangeHandler as InputChangeType };
+export { FormSubmitHandler as FormSubmitType };
 /**
  * Named stateless functional components / JSX elements.
  * Normally Typescript does not allow you to assign them display names, resulting in:

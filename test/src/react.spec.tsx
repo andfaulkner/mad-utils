@@ -11,7 +11,7 @@ import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
 import { IfTruthy, IfFalsy, buildNamedSfc, RouterProps, InputChangeType,
-         FormSubmit, FormSubmitType, InputChange, setSfcDisplayName,
+         FormSubmitHandler, FormSubmitType, InputChangeHandler, setSfcDisplayName,
          buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC } from '../../react';
 
 /********************************************* TESTS **********************************************/
