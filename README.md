@@ -624,7 +624,17 @@ Namespace: error (isomorphic)
 
 Namespace: error (node)
 =======================
-WIP documentation
+### globalActivateCleanStack
+() => void
+*   Remove pointless stacktrace items (node core)
+*   Modify the stacktrace length to be unlimited.
+*   Effects get applied globally immediately on running the function.
+    *   Affects error handling behaviour for the entire life of the Node process this was run in.
+
+Examples:
+
+    globalActivateCleanStack();
+    // /\-- This is literally the only way to use it.
 
 
 Namespace: event (browser)
