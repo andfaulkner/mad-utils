@@ -54,7 +54,7 @@ export function logOnRender(
                 return super.render();
             }
         }
-        buildNamedSfc(`${(WrappedComponent as any).name}_logger`, Enhancer);
+        setDisplayName(`${(WrappedComponent as any).name}_logger`, Enhancer);
         return Enhancer;
     }
 }
