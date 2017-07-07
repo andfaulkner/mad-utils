@@ -6,9 +6,11 @@ import * as ReactDOM from 'react-dom';
 /******************************************** EXPORTS *********************************************/
 export type InputChangeEvent = React.FormEvent<HTMLInputElement>;
 export type FormSubmitEvent = React.FormEvent<HTMLFormElement>;
+export type DivClickEvent = React.MouseEvent<HTMLDivElement>;
 
 export type InputChangeHandler = React.EventHandler<InputChangeEvent>;
 export type FormSubmitHandler = React.EventHandler<FormSubmitEvent>;
+export type DivClickHandler = React.EventHandler<DivClickEvent>;
 
 export { InputChangeHandler as InputChangeType }
 export { FormSubmitHandler as FormSubmitType }
@@ -25,15 +27,6 @@ export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
  */
 export interface ChildrenPassthruProps {
     children?: any;
-}
-
-/**
- * Use with components wrapped in React-Router's withRouter decorator.
- */
-export interface RouterProps {
-    history: History;
-    location: Location;
-    match: { isExact: boolean, params: any, path: string, url: string }
 }
 
 /**
@@ -58,4 +51,49 @@ export interface RouterProps {
  */
 export interface Newable<T> {
     new (...args: any[]): T;
+}
+
+/************************************* ROUTING-RELATED TYPES **************************************/
+/**
+ * As used in react-router-dom. Delivered to a component in props.location via withRouter.
+ */
+export interface RRLocation {
+    hash: string,
+    key: string | null,
+    pathname: string,
+    search: string,
+    state: string | null,
+}
+
+/**
+ * As used in react-router-dom. Delivered to a component in props.history via withRouter.
+ */
+export interface RRHistory {
+    action: "POP" | "PUSH" | "REPLACE"
+    block: () => any
+    createHref: (location: any) => any
+    go: (n: number) => void
+    goBack: () => void
+    goForward: () => void
+    length: number
+    listen: (listener: any) => any
+    location: RRLocation
+    push: (path: string) => any
+    replace: (path: string, state: string) => void
+}
+
+export interface RRMatch {
+    isExact: boolean
+    params: any
+    path: string
+    url: string
+}
+
+/**
+ * Use with components wrapped in React-Router's withRouter decorator.
+ */
+export interface RouterProps {
+    history: RRHistory
+    location: RRLocation
+    match: RRMatch
 }
