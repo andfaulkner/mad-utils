@@ -673,7 +673,12 @@ WIP documentation
 WIP documentation
 
 ### endsInDotJs
-WIP documentation
+(str: string) => boolean;
+
+*   True if the given string (generally a path) ends in .js
+
+    endsInDotJs('asdf.js');
+    // => true
 
 ### getBaseFilenameFromPath
 WIP documentation
