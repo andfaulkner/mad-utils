@@ -48,3 +48,14 @@ export declare function isValidString({conditions, testStr, confirmStr, errDispl
  * @return {boolean} true if email is probably valid.
  */
 export declare const isEmailPotentiallyValid: (email: string) => boolean;
+export declare const isEmailValidBasic: (email: string) => boolean;
+/******************************************** HELPERS *********************************************/
+export declare function noLowercase(str: string): boolean;
+export declare function noUppercase(str: string): boolean;
+export declare function noNumber(str: string): boolean;
+export declare function noSpecialChars(str: string): boolean;
+/**
+ * Matches all characters found in English amd French, & almost all in other
+ * European/Latin-derived languages.
+ */
+export declare const latinLangCharRegex: RegExp;

@@ -106,3 +106,19 @@ export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: I
  * @return {boolean} true if email is probably valid.
  */
 export const isEmailPotentiallyValid = (email: string): boolean => !!email.match(/^.+@.+\..+$/gi);
+export const isEmailValidBasic = isEmailPotentiallyValid;
+
+/******************************************** HELPERS *********************************************/
+export function noLowercase(str: string) { return !str.match(/[a-z]/); }
+export function noUppercase(str: string) { return !str.match(/[A-Z]/); }
+export function noNumber(str: string) { return !str.match(/[0-9]/); }
+export function noSpecialChars(str: string) {
+    return !str.match(/[!@#$%^&*()\[\];:'"~`_\-+=|'"\/\\<>]/);
+}
+
+/**
+ * Matches all characters found in English amd French, & almost all in other
+ * European/Latin-derived languages.
+ */
+export const latinLangCharRegex =
+    /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! ]+$/i;
