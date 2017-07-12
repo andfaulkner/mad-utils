@@ -42,8 +42,7 @@ Examples - most useful methods (see full docs in lower sections for more details
     // With URL http://example.com/en/auth/ok:
     getLangFromUrlPathName(); // => 'en'
 
-#### condSwitch ::
-((cond: any, valueToReturnIfCondTruthy: V)*, defaultValue?: W) => V | W | never;
+#### condSwitch :: ((cond: any, valueToReturnIfCondTruthy: V)*, defaultValue?: W) => V | W | never;
 *   Function-based switch statement. Takes 2 or more args.
 *   Args 1, 3, 5, 7, etc. are the conditions, and 2, 4, 6, etc. their corresponding return values.
     *   On hitting a truthy odd-numbered arg, condSwitch returns the next (even-numbered) arg, then exits.
@@ -55,7 +54,7 @@ Examples - most useful methods (see full docs in lower sections for more details
     condSwitch(false, 'v1',
                null, 'v2',
                'defaultReturnVal'); // => 'v2'
-    condSwitch(undefined, 'v1', '', 'v2'); // => ((Throws Error))
+    condSwitch(undefined, 'v1', '', 'v2'); // => Throws Error
 
 #### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
 
@@ -79,6 +78,10 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
     // => true
 
+#### uuid : (any[]) => string
+
+    uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
+    uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
 
 ----
