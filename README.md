@@ -8,19 +8,10 @@
 
 ----
 
-Installation
-============
-*   npm:
+Examples - most useful methods
+==============================
+(see full docs in lower sections for more details)
 
-    npm install --save mad-utils
-
-*   yarn:
-
-    yarn add mad-utils
-
-
-Examples - most useful methods (see full docs in lower sections for more details):
-==================================================================================
 #### cap1LowerRest :: (string) => string
 
     cap1LowerRest('aSdF'); // => 'Asdf'
@@ -84,10 +75,21 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
 
+Installation
+============
+*   npm:
+
+    npm install --save mad-utils
+
+*   yarn:
+
+    yarn add mad-utils
+
+
 ----
 
 *   NOTE: the documentation is an extreme work-in-progress.
-*   Recent versions have considerably changed the design, API, and even structure.
+*   Recent versions have considerably changed the design, API, and even structure from earlier ones.
     *   Considerably more functions are available
     *   Existing functions have been massively changed (mostly to be more robust & less surprising);
     *   The library has been split into 3 parts:
@@ -97,6 +99,7 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
             *   consumed by default, and also used by both the node and browser sub-modules
     *   A few exports have been deprecated (such as the parseDate function and ParsedDate type)
         *   Mostly due to irrelevance (items were taken from my own projects)
+    *   (The docs still remain mostly up to date)
 
 ----
 Sub-modules

@@ -178,11 +178,18 @@ export const chomp = (str: string, charsToChomp: string = '\n\r'): string => {
 /**
  * Convert camelCase, PascalCase, or dash-case to snake_case.
  * @param {string} str - String to convert to snake_case.
+ * @param {boolean} consecUppercaseToLowercase - if true, converts consecutive uppercase chars to
+ *                  lowercase, rather than putting _ between them (the default behaviour)
+ *                  e.g. newOSName -> new_os_name, instead of new_o_s_name.
  * @return {string} given string converted to snake_case.
  */
-export const toSnakeCase = (str: string): string => {
+export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): string => {
+    // Conditionally deal with consecutive capital letters.
+    const cleanStr = consecUppercaseToLowercase
+                         ? str.replace(/([a-z])([A-Z]+)([A-Z])([a-z])/g, '$1_$2_$3$4').toLowerCase()
+                         : str;
     let retStr =
-        str.trim()
+        cleanStr.trim()
            //Remove apostrophes, quotes, commas, |, ?, !, and ,
            .replace(/('|"|\!|\?|\`|,|\|)/g, '')
            // Replace periods with _s
@@ -202,6 +209,8 @@ export const toSnakeCase = (str: string): string => {
            .toLowerCase()
     return retStr;
 }
+
+export const toSnakecase = toSnakeCase;
 
 /**
  * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.

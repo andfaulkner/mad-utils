@@ -29,6 +29,7 @@ export declare const getUserAgentString: () => string;
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS"
  */
 export declare const osName: () => any;
+export declare const osNameSnakeCase: () => string;
 /**
 * @return {string} Name of the browser. E.g. "Chrome"
  */

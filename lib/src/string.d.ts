@@ -78,9 +78,13 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
 /**
  * Convert camelCase, PascalCase, or dash-case to snake_case.
  * @param {string} str - String to convert to snake_case.
+ * @param {boolean} consecUppercaseToLowercase - if true, converts consecutive uppercase chars to
+ *                  lowercase, rather than putting _ between them (the default behaviour)
+ *                  e.g. newOSName -> new_os_name, instead of new_o_s_name.
  * @return {string} given string converted to snake_case.
  */
-export declare const toSnakeCase: (str: string) => string;
+export declare const toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
+export declare const toSnakecase: (str: string, consecUppercaseToLowercase?: boolean) => string;
 /**
  * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
  * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'

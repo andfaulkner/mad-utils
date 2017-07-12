@@ -1,5 +1,7 @@
 /// <reference path="../../node_modules/@types/ua-parser-js/index.d.ts" />
 
+import { toSnakeCase } from '../string';
+
 const UserAgentParser = require('ua-parser-js');
 
 export type ParsedUserAgent = IUAParser.IResult & { raw: string };
@@ -37,7 +39,7 @@ export const getUserAgentString =   () => window.navigator.userAgent;
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS"
  */
 export const osName =               () => userAgent.os.name;
-
+export const osNameSnakeCase =      () => toSnakeCase(osName());
 /**
 * @return {string} Name of the browser. E.g. "Chrome"
  */
