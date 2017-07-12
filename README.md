@@ -6,8 +6,21 @@
 
 ![mad-utils](https://i.giphy.com/media/rQOT9sBxBtkSk/giphy.webp)
 
-## Most useful (see full docs in lower sections for more details):
+----
 
+Installation
+============
+*   npm:
+
+    npm install --save mad-utils
+
+*   yarn:
+
+    yarn add mad-utils
+
+
+Examples - most useful methods (see full docs in lower sections for more details):
+==================================================================================
 #### cap1LowerRest :: (string) => string
 
     cap1LowerRest('aSdF'); // => 'Asdf'
@@ -24,8 +37,26 @@
 (urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
 
     // With URL http://example.com/auth/fr/ok:
-    getLangFromUrlPathName(); // => 'fr'.
-    
+    getLangFromUrlPathName(); // => 'fr'
+
+    // With URL http://example.com/en/auth/ok:
+    getLangFromUrlPathName(); // => 'en'
+
+#### condSwitch ::
+((cond: any, valueToReturnIfCondTruthy: V)*, defaultValue?: W) => V | W | never;
+*   Function-based switch statement. Takes 2 or more args.
+*   Args 1, 3, 5, 7, etc. are the conditions, and 2, 4, 6, etc. their corresponding return values.
+    *   On hitting a truthy odd-numbered arg, condSwitch returns the next (even-numbered) arg, then exits.
+    *   If none are truthy, the default value is returned (the last argument - which must be an odd-numbered arg).
+        *   If no default value is present after all conditions returned false, throws an error.
+
+    condSwitch(true, 'val1');                                // => 'val1'
+    condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
+    condSwitch(false, 'v1',
+               null, 'v2',
+               'defaultReturnVal'); // => 'v2'
+    condSwitch(undefined, 'v1', '', 'v2'); // => ((Throws Error))
+
 #### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
 
     // With URL http://example.com/home?hello=everyone&gr=argh:
@@ -47,6 +78,8 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
 
     matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
     // => true
+
+
 
 ----
 
@@ -720,6 +753,16 @@ Examples:
                                   12);
     // => 16
 
+General syntax:
+
+    condSwitch(
+        COND1, val_returned_if_COND1_truthy,
+        COND2, val_returned_if_COND2_truthy,
+        ...,
+        defaultReturnVal
+    )
+
+
 ### [FUNCTION] loopN
 (number, (...args) => T) => T[]
 *   Run given function the given number of times
@@ -1188,6 +1231,12 @@ Namespace: types (Alias: type) (isomorphic)
         *   negative numbers
         *   strings that parse to negative numbers
         *   objects with date-irrelevant keys e.g. { year: 1123, bear: 'grizzly' }
+
+    isDateLike('1990-12-10'); // => true
+    isDateLike(moment());     // => true
+    isDateLike(new Date());   // => true
+    isDateLike('asdf');       // => false
+    isDateLike(false);        // => false
 
 ### [FUNCTION] isArray
 *   (see array section above)
