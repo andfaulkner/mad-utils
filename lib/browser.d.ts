@@ -22,6 +22,9 @@ export { dom };
 import * as event from './src/browser/event';
 export * from './src/browser/event';
 export { event };
+import * as location from './src/browser/location';
+export * from './src/browser/location';
+export { location };
 import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export { localStore };
@@ -57,6 +60,7 @@ export declare const mUtils: {
     localStoreUtils: typeof localStore;
     localStorage: typeof localStore;
     localStorageUtils: typeof localStore;
+    location: typeof location;
     number: typeof number;
     object: typeof object;
     query: typeof query;
@@ -90,6 +94,7 @@ export declare const __: {
     localStoreUtils: typeof localStore;
     localStorage: typeof localStore;
     localStorageUtils: typeof localStore;
+    location: typeof location;
     number: typeof number;
     object: typeof object;
     query: typeof query;
@@ -123,6 +128,7 @@ export declare const m_: {
     localStoreUtils: typeof localStore;
     localStorage: typeof localStore;
     localStorageUtils: typeof localStore;
+    location: typeof location;
     number: typeof number;
     object: typeof object;
     query: typeof query;
@@ -156,6 +162,7 @@ export declare const madUtils: {
     localStoreUtils: typeof localStore;
     localStorage: typeof localStore;
     localStorageUtils: typeof localStore;
+    location: typeof location;
     number: typeof number;
     object: typeof object;
     query: typeof query;
