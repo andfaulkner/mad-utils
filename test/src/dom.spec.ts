@@ -1,4 +1,7 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
+
+import '../mock/mock-window';
 
 /********************************* IMPORT DOM MODULE FOR TESTING **********************************/
 import { expect } from 'chai';
