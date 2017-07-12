@@ -11,8 +11,8 @@
 
 import { mockBrowserStorage } from './mock-local-storage';
 
-const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 " +
-                  "(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36";
+export const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 " +
+                         "(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36";
 
 const location = {
     href:            "http://localhost:8080/auth/en/signup/location",

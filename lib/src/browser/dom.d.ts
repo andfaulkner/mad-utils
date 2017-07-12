@@ -24,7 +24,7 @@ export declare function parseUserAgent(userAgent?: string): ParsedUserAgent;
  * "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36" +
  * "(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
  */
-export declare const getUserAgentString: () => any;
+export declare const getUserAgentString: () => string;
 /**
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS"
  */

@@ -31,32 +31,32 @@ export function parseUserAgent(userAgent = window.navigator.userAgent): ParsedUs
  * "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36" +
  * "(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
  */
-export const getUserAgentString = () => userAgent.raw;
+export const getUserAgentString =   () => window.navigator.userAgent;
 
 /**
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS"
  */
-export const osName = () => userAgent.os.name;
+export const osName =               () => userAgent.os.name;
 
 /**
 * @return {string} Name of the browser. E.g. "Chrome"
  */
-export const browserName = () => userAgent.browser.name;
+export const browserName =          () => userAgent.browser.name;
 
 /**
 * @return {string} Name of the browser's rendering engine. E.g. "Webkit"
  */
-export const browserEngineName = () => userAgent.engine.name;
+export const browserEngineName =    () => userAgent.engine.name;
 
 /**
 * @return {string} OS version. E.g. "10.11.6"
  */
-export const osVersion = () => userAgent.os.version;
+export const osVersion =            () => userAgent.os.version;
 
 /**
 * @return {string} Browser version. E.g. "59.0.3071.115"
  */
-export const browserVersion = () => userAgent.browser.version;
+export const browserVersion =       () => userAgent.browser.version;
 
 /**
 * @return {string} Version of the browser's rendering engine. E.g. "537.36"
