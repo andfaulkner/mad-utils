@@ -28,5 +28,3 @@ export const noDashes = (): string => uuidBase().split('-').join('');
  * child functions uuid.len6, uuid.len8, and uuid.noDashes
  */
 export const uuid = Object.assign(uuidBase, { len6, len8, noDashes }) as UUIDNamespace;
-
-// TODO unit test uuid.len6, uuid.len8, and uuid.noDashes.
