@@ -1300,6 +1300,25 @@ WIP documentation
 
 Namespace: validation (isomorphic)
 ==================================
+### isValidString
+WIP documentation
+
+### isEmailPotentiallyValid
+WIP documentation
+
+### noLowercase
+WIP documentation
+
+### noUppercase
+WIP documentation
+
+### noNumber
+WIP documentation
+
+### noSpecialChars
+WIP documentation
+
+### latinLangCharRegex
 WIP documentation
 
 
