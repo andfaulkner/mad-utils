@@ -12,7 +12,7 @@ import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
 import { m_, number } from '../../shared';
 import { number as numberFromNode } from '../../node';
-import { number as numberFromBrowser } from '../../browser';
+import { number as numberFromBrowser, uuid } from '../../browser';
 import * as numberModule from '../../src/number';
 
 
@@ -29,13 +29,34 @@ describe(`number sub-module`, function() {
     expectFunctionExists(number.uuid, 'number.uuid', '(from number)');
 
     describe('uuid', function() {
-        it(`generates a valid UUID`, function() {
+        it(`generates a valid UUID if run as a function`, function() {
             const testUuid1 = number.uuid();
             console.log(`\n    number.uuid: testUuid1:`, testUuid1);
             expect(testUuid1).to.exist;
             expect(testUuid1).to.be.a('string');
             expect(testUuid1)
                 .to.match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}$/);
+        });
+
+        expectFunctionExists(uuid.len6, 'uuid.len6');
+        expectFunctionExists(uuid.len8, 'uuid.len8');
+        expectFunctionExists(uuid.noDashes, 'uuid.noDashes');
+
+        it(`.len6 -- `, function() {
+            expect(uuid.len6()).to.be.a('string');
+            expect(uuid.len6()).to.have.length(6);
+            expect(uuid.len8).to.exist;
+        });
+
+        it(`.len8 -- `, function() {
+            expect(uuid.len8()).to.be.a('string');
+            expect(uuid.len8()).to.have.length(8);
+        });
+
+        it(`.noDashes -- `, function() {
+            expect(uuid.noDashes()).to.be.a('string');
+            expect(uuid.noDashes()).to.have.length(32);
+            expect(uuid.noDashes()).not.to.contain('-');
         });
     });
 });
