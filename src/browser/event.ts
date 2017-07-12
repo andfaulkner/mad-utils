@@ -9,6 +9,7 @@ const fnName = 'mad-utils::event';
 import { browserOnly } from '../internal/isomorphic-enforcement';
 
 /**************************************** DEFAULTS, CONFIG ****************************************/
+// TODO probably remove this
 // Default global
 var global = (isNode)
     ? global

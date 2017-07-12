@@ -59,8 +59,7 @@ export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = fals
  * @example Return current date + time as timestamp without day or second:
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
-export const now =
-    (timeFormat: string = defaultTimestampFormat): string =>
-        moment().format(timeFormat);
+export const now = (timeFormat: string = defaultTimestampFormat): string =>
+    moment().format(timeFormat);
 
 export { isDateLike } from './types-iso';

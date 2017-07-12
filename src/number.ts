@@ -3,3 +3,4 @@ export { isInt, isInteger, isIntegerLike, isNumberLike, isNumLike } from './type
 import * as uuid from 'uuid';
 
 export { uuid }
+
