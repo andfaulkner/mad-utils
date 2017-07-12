@@ -1,6 +1,7 @@
 import { isNonMinFile, endsInDotJs, getBaseFilenameFromPath } from '../string';
 /******************************************** EXPORTS *********************************************/
 /**
+ * Determine if inode (aka file, directory, socket, etc.) at absolute path is a directory.
  * @param {string} fileOrDirPath - file system object being checked.
  * @return {boolean} true if given file system object is a directory (if false it's a file)
  */
