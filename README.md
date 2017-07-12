@@ -652,7 +652,12 @@ WIP documentation
 Namespace: file (node)
 ======================
 ### isDir
-WIP documentation
+(fileOrDirPath: string) => boolean
+
+*   Returns true if inode (aka file, directory, socket, etc.) at absolute path is a directory.
+
+    isDir(path.join(rootPath, 'node_modules'));
+    // => isTrue
 
 ### pathFromRoot
 WIP documentation
