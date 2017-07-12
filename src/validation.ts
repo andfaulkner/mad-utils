@@ -109,9 +109,22 @@ export const isEmailPotentiallyValid = (email: string): boolean => !!email.match
 export const isEmailValidBasic = isEmailPotentiallyValid;
 
 /******************************************** HELPERS *********************************************/
+/**
+ * @return {boolean} False if string has any lowercase characters.
+ */
 export function noLowercase(str: string) { return !str.match(/[a-z]/); }
+/**
+ * @return {boolean} False if string has any uppercase characters.
+ */
 export function noUppercase(str: string) { return !str.match(/[A-Z]/); }
+/**
+ * @return {boolean} False if string has any numbers.
+ */
 export function noNumber(str: string) { return !str.match(/[0-9]/); }
+/**
+ * @return {boolean} False if string has any (basic) special chars. Non-exhaustive.
+ * WIP - add more special chars to this.
+ */
 export function noSpecialChars(str: string) {
     return !str.match(/[!@#$%^&*()\[\];:'"~`_\-+=|'"\/\\<>]/);
 }
