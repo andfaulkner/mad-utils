@@ -22,14 +22,12 @@ export declare type IsVStrOpt = {
  *     comparison: Value to run testStr against. e.g. for { type: 'min', comparison: 4, err: 'a' },
  *                 check that testStr is a number greater than or equal to 4.
  *     error: Content of 'error' displays if the conditon is not met.
- *
  * @param {Condition[]} conditions - Confirm that string meets all of these conditions.
  * @param {string} testStr - String to check the conditions against
  * @param {string} confirmStr? - [OPTIONAL] String to ensure testStr is equal to
  *                                          (if match_confirmation present)
  * @param {Function} errDisplayCb? - [OPTIONAL] Function for displaying error message.
  *                                     Defaults to alert.
- *
  * @return {boolean} true if all validation conditions are passed. False if not.
  */
 export declare function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean;
@@ -50,10 +48,30 @@ export declare function isValidString({conditions, testStr, confirmStr, errDispl
 export declare const isEmailPotentiallyValid: (email: string) => boolean;
 export declare const isEmailValidBasic: (email: string) => boolean;
 /******************************************** HELPERS *********************************************/
-export declare function noLowercase(str: string): boolean;
-export declare function noUppercase(str: string): boolean;
-export declare function noNumber(str: string): boolean;
-export declare function noSpecialChars(str: string): boolean;
+/**
+ * Return true if there are no lowercase letters in the give string.
+ * @param {string} str - String to check for lowercase characters.
+ * @return {boolean} False if string has any lowercase characters.
+ */
+export declare const noLowercase: (str: string) => boolean;
+/**
+ * Return true if there are no uppercase letters in the give string.
+ * @param {string} str - String to check for uppercase characters.
+ * @return {boolean} False if string has any uppercase characters.
+ */
+export declare const noUppercase: (str: string) => boolean;
+/**
+ * Return true if there are no numbers in the give string.
+ * @return {boolean} False if string has any numbers.
+ */
+export declare const noNumber: (str: string) => boolean;
+/**
+ * Return true if there are no special chars in the given string.
+ * Special chars: !@#$%^&*()\[\];:'"~`_\-+=|'"\/\\<>
+ * @param  {string}  str String to check for special characters
+ * @return {boolean}     True if no special chars are present in the given string
+ */
+export declare const noSpecialChars: (str: string) => boolean;
 /**
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages.

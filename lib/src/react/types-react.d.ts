@@ -10,6 +10,7 @@ export declare type FormSubmitHandler = React.EventHandler<FormSubmitEvent>;
 export declare type DivClickHandler = React.EventHandler<DivClickEvent>;
 export { InputChangeHandler as InputChangeType };
 export { FormSubmitHandler as FormSubmitType };
+export declare type AnyComponent<T> = React.StatelessComponent<T> | React.ComponentClass<T> | React.ClassicComponentClass<T>;
 /**
  * Named stateless functional components / JSX elements.
  * Normally Typescript does not allow you to assign them display names, resulting in:
