@@ -96,6 +96,12 @@ export declare const isIntegerLike: (val: any) => boolean;
  */
 export declare const isInt: (val: any) => boolean;
 /**
+ * Returns true if val is true or false.
+ * @param {any} val - Item to test.
+ * @return {boolean} true if val is a boolean.
+ */
+export declare const isBoolean: (val: any) => boolean;
+/**
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
  * or object that moment is able to parse. Excludes negative numbers and strings that parse to
  * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
