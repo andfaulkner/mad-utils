@@ -1238,11 +1238,29 @@ Namespace: types (Alias: type) (isomorphic)
         *   strings that parse to negative numbers
         *   objects with date-irrelevant keys e.g. { year: 1123, bear: 'grizzly' }
 
+Examples:
+
     isDateLike('1990-12-10'); // => true
     isDateLike(moment());     // => true
     isDateLike(new Date());   // => true
     isDateLike('asdf');       // => false
     isDateLike(false);        // => false
+
+### [FUNCTION] isBoolean
+(val: RealAny) => boolean
+*   Return true if arg is a boolean value (either true or false)
+
+Examples:
+
+    isBoolean(false);         // => true
+    isBoolean(true);          // => true
+    isBoolean(Boolean(true)); // => true
+    isBoolean('');            // => false
+    isBoolean(0);             // => false
+    isBoolean('true');        // => false
+    isBoolean(NaN);           // => false
+    isBoolean(10000);         // => false
+    isBoolean(() => true);    // => false
 
 ### [FUNCTION] isArray
 *   (see array section above)
