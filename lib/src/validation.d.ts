@@ -72,8 +72,19 @@ export declare const noNumber: (str: string) => boolean;
  * @return {boolean}     True if no special chars are present in the given string
  */
 export declare const noSpecialChars: (str: string) => boolean;
+/******************************************** REGEXES *********************************************/
 /**
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages.
  */
 export declare const latinLangCharRegex: RegExp;
+/**
+ * Matches all characters found in English amd French, & almost all in other
+ * European/Latin-derived languages, plus slashes
+ */
+export declare const latinLangCharWSlashesRegex: RegExp;
+/**
+ * Matches all characters found in English amd French, & almost all in other
+ * European/Latin-derived languages, plus slashes, regular braces, and quotes (' and ")
+ */
+export declare const latinLangCharWSlashesQuotesBracesRegex: RegExp;

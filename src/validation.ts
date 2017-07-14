@@ -150,9 +150,25 @@ const validPostalCode = (str: string, threeCharAllowed = true): boolean =>
         ? !!str.match(/^[A-Za-z][0-9][A-Za-z]\s?([0-9][A-Za-z][0-9])?$/g)
         : !!str.match(/^[A-Za-z][0-9][A-Za-z]$/g);
 
+
+/******************************************** REGEXES *********************************************/
 /**
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages.
  */
 export const latinLangCharRegex =
     /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! ]+$/i;
+
+/**
+ * Matches all characters found in English amd French, & almost all in other
+ * European/Latin-derived languages, plus slashes
+ */
+export const latinLangCharWSlashesRegex =
+    /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! \/\\]+$/i;
+
+/**
+ * Matches all characters found in English amd French, & almost all in other
+ * European/Latin-derived languages, plus slashes, regular braces, and quotes (' and ")
+ */
+export const latinLangCharWSlashesQuotesBracesRegex =
+    /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! \/\\'"\(\)]+$/i;
