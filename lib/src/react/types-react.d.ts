@@ -8,8 +8,13 @@ export declare type DivClickEvent = React.MouseEvent<HTMLDivElement>;
 export declare type InputChangeHandler = React.EventHandler<InputChangeEvent>;
 export declare type FormSubmitHandler = React.EventHandler<FormSubmitEvent>;
 export declare type DivClickHandler = React.EventHandler<DivClickEvent>;
+export declare type AnyEventHandler = React.EventHandler<any>;
 export { InputChangeHandler as InputChangeType };
 export { FormSubmitHandler as FormSubmitType };
+export { AnyEventHandler as AnyEventType };
+/**
+ * Should match any type of React component: Class, ClassicClass, or stateless functional component
+ */
 export declare type AnyComponent<T> = React.StatelessComponent<T> | React.ComponentClass<T> | React.ClassicComponentClass<T>;
 /**
  * Named stateless functional components / JSX elements.
