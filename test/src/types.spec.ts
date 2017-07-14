@@ -6,7 +6,7 @@ import { expectFunctionExists, expectNonEmptyObjectExists  } from '../../src/nod
 import * as moment from 'moment';
 
 /******************************* IMPORT TYPES MODULES FOR TESTING *********************************/
-import { m_, types as typesIso, types } from '../../shared';
+import { m_, types as typesIso, types, isBoolean } from '../../shared';
 import { types as typesNode } from '../../node';
 import { types as typesBrowser } from '../../browser';
 import * as typesModule from '../../src/types-iso';
@@ -39,6 +39,28 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isInteger(null)).to.be.false;
                 expect(typesIso.isInteger(undefined)).to.be.false;
                 expect((typesIso.isInteger as any)()).to.be.false;
+            });
+        });
+
+        describe(`isBoolean function`, function() {
+            it(`returns true if given a boolean`, function() {
+                expect(isBoolean(true)).to.be.true;
+                expect(isBoolean(false)).to.be.true;
+            });
+            it(`returns true if given a constructed Boolean object`, function() {
+                expect(isBoolean(Boolean(false))).to.be.true;
+                expect(isBoolean(Boolean(true))).to.be.true;
+            });
+            it(`returns false if given a non-boolean`, function() {
+                expect(isBoolean(null)).to.be.false;
+                expect(isBoolean(undefined)).to.be.false;
+                expect(isBoolean('')).to.be.false;
+                expect(isBoolean('asdf')).to.be.false;
+                expect(isBoolean(0)).to.be.false;
+                expect(isBoolean(1)).to.be.false;
+                expect(isBoolean(NaN)).to.be.false;
+                expect(isBoolean(() => false)).to.be.false;
+                expect(isBoolean(() => true)).to.be.false;
             });
         });
 
