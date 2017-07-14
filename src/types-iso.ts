@@ -151,7 +151,14 @@ export const isInt = isInteger;
  * @param {any} val - Item to test.
  * @return {boolean} true if val is a boolean.
  */
-export const isBoolean = (val: any | boolean): boolean => ((val === true) || (val === false));
+export const isBoolean = (val: any | boolean): boolean => {
+    if ((val === true) || (val === false)) return true;
+
+    const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
+    if (hasValueOfFn && ((val.valueOf() === true) || (val.valueOf() === false))) return true;
+
+    return false;
+}
 
 /**
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,

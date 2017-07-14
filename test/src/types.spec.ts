@@ -47,9 +47,13 @@ describe(`types sub-modules`, function() {
                 expect(isBoolean(true)).to.be.true;
                 expect(isBoolean(false)).to.be.true;
             });
-            it(`returns true if given a constructed Boolean object`, function() {
+            it(`returns true if given a factory-constructed Boolean object`, function() {
                 expect(isBoolean(Boolean(false))).to.be.true;
                 expect(isBoolean(Boolean(true))).to.be.true;
+            });
+            it(`returns true if given an instantiated Boolean object`, function() {
+                expect(isBoolean(new Boolean(false))).to.be.true;
+                expect(isBoolean(new Boolean(true))).to.be.true;
             });
             it(`returns false if given a non-boolean`, function() {
                 expect(isBoolean(null)).to.be.false;
