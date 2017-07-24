@@ -975,6 +975,29 @@ Examples:
     obj.a
     // => 1
 
+### [FUNCTION] merge
+(Array<Object|string|any[]|undefined|null>) => Object | Array | string | {}
+*   Merge all objects, strings, or arrays together.
+*   If given all nulls and/or undefineds (or a single null or undefined), returns {}.
+*   Does not mutate original object.
+
+Examples:
+
+    merge({ a: 'a' }, { b: 'b' });
+    // => { a: 'a', b: 'b' }
+
+    merge('The quick brown fox', ' ', 'jumped over the lazy dog');
+    // => 'The quick brown fox jumped over the lazy dog'
+
+    merge(['a', 'b'], ['c', 4, 5, 6], [], [7]);
+    // => ['a', 'b', 'c', 4, 5, 6, 7]
+
+    merge();
+    // => {}
+
+    merge(null, undefined, undefined, null, null);
+    // => {}
+
 ### [FUNCTION] isMultilangTextObj
 (Object) => boolean
 *   Returns true if given object is (probably) a multilanguage text object.
