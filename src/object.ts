@@ -30,8 +30,6 @@ type MergeParamTypes = Object | string | any[] | null | undefined;
 /**
  * [IMMUTABLE] merge all objects, strings, or arrays together.
  * If given all nulls and/or undefineds, returns {}.
- * NOTE: Cannot handle cases where first 2 values are undefined/null, & the 3rd
- * is another type.
  * @param {Array<Object|string|any[]|undefined|null>} objs - items to merge.
  *        Note that all must be the same type (array, string, or object), but
  *        it can also handle undefined or null values (it skips them).
@@ -39,7 +37,7 @@ type MergeParamTypes = Object | string | any[] | null | undefined;
  * @return {Object|string|Array<any>} Given items merged together, or {} if only
  *                                    received nulls and/or undefineds.
  */
-export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
+export const merge = (...objs: MergeParamTypes[]): Object | string | any[] | null | undefined => {
     // Handle no given params. Return {} in this case.
     if (objs.length === 0) return {};
     // Determine if first value is null or undefined.
@@ -57,8 +55,13 @@ export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     // Handle cases where all args given are nulls and/or undefineds. Return {} in these cases.
     if (objs.every(obj => typeof obj === 'undefined' || obj == null)) return {};
 
+    // Get type
+    let firstNonNull = objs.find(val => typeof val !== undefined && val != null);
+    let objType: string = typeof firstNonNull;
+    if (isArray(firstNonNull)) objType = 'array';
+
     // Handle arrays - merge all the arrays in this case. Skip over null or undefined
-    if (isArray(objs[0]) || (isFirstEmpty && isArray(objs[1]))) {
+    if (objType === 'array') {
         return objs.reduce<any[]>((acc: any[], curArr: any[]) => {
             if (typeof curArr === 'undefined' || curArr == null) return acc;
             return acc.concat(curArr);
@@ -66,7 +69,7 @@ export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     }
 
     // Handle strings - merge all strings into one giant string.
-    if (typeof objs[0] === 'string' || (isFirstEmpty && typeof objs[1] === 'string')) {
+    if (objType === 'string') {
         return objs.reduce<string>((acc: string, curArr: string) => {
             if (typeof curArr === 'undefined' || curArr == null) return acc;
             return acc + curArr;
@@ -74,14 +77,17 @@ export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     }
 
     // Handle objects - merge all the objects into one object in this case.
-    return objs.reduce((acc: Object, curObj: Object) => {
-        if (typeof curObj === 'undefined' || curObj == null) return acc;
-        if (typeof curObj === 'string') {
-            throw new Error(`If given an object as the 1st value, merge will only accept objects` +
-                ` for the rest of the values, However, merge was given a ${typeof curObj}.`);
-        }
-        return Object.assign(acc, curObj);
-    }, {});
+    if (objType === 'object') {
+        return objs.reduce((acc: Object, curObj: Object) => {
+            if (typeof curObj === 'undefined' || curObj == null) return acc;
+            if (typeof curObj === 'string' || isArray(curObj) || typeof curObj !== 'object') {
+                throw new Error(`If given object as the 1st value, merge will only accept ` +
+                    `objects for the rest of the values, However, merge was given a ` +
+                    `${isArray(curObj) ? 'array' : typeof curObj}.`);
+            }
+            return Object.assign(acc, curObj);
+        }, {});
+    }
 };
 
 /**
