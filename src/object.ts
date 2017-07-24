@@ -28,6 +28,12 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
 type MergeParamTypes = Object | string | any[] | null | undefined;
 
 /**
+ * [IMMUTABLE] merge all objects, strings, or arrays together.
+ * @param {Object[]|string[]|any[][]|undefined|null} objs - items to merge.
+ *        Note that all must be the same type (array, string, or object).
+ *        Also takes a single undefined or null, which causes it to return {}.
+ * @return {Object|string|Array<any>} Given items merged together.
+ * TODO eliminate 
  */
 export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     // Handle no given params. Return {} in this case.
@@ -43,6 +49,9 @@ export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
         if (isVerbose) console.trace(`WARNING: merge given ${nilTypeName}. Returning {}. Trace:`);
         return {};
     }
+
+    // Handle cases where all args given are nulls and/or undefineds. Return {} in these cases.
+    if (objs.every(obj => typeof obj === 'undefined' || obj == null)) return {};
 
     // Handle objects - merge all the objects into one object in this case.
     return objs.reduce((acc: Object, curObj: Object) => {
