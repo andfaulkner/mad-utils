@@ -28,7 +28,7 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
 type MergeParamTypes = Object | string | any[] | null | undefined;
 
 /**
- * [IMMUTABLE] merge all objects, strings, or arrays together.
+ * [NON-MUTATIVE] merge all objects, strings, or arrays together.
  * If given all nulls and/or undefineds, returns {}.
  * @param {Array<Object|string|any[]|undefined|null>} objs - items to merge.
  *        Note that all must be the same type (array, string, or object), but
