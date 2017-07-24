@@ -29,11 +29,15 @@ type MergeParamTypes = Object | string | any[] | null | undefined;
 
 /**
  * [IMMUTABLE] merge all objects, strings, or arrays together.
- * @param {Object[]|string[]|any[][]|undefined|null} objs - items to merge.
- *        Note that all must be the same type (array, string, or object).
- *        Also takes a single undefined or null, which causes it to return {}.
- * @return {Object|string|Array<any>} Given items merged together.
- * TODO eliminate 
+ * If given all nulls and/or undefineds, returns {}.
+ * NOTE: Cannot handle cases where first 2 values are undefined/null, & the 3rd
+ * is another type.
+ * @param {Array<Object|string|any[]|undefined|null>} objs - items to merge.
+ *        Note that all must be the same type (array, string, or object), but
+ *        it can also handle undefined or null values (it skips them).
+ *        Also handles pile of undefineds or nulls, which cause it to return {}.
+ * @return {Object|string|Array<any>} Given items merged together, or {} if only
+ *                                    received nulls and/or undefineds.
  */
 export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     // Handle no given params. Return {} in this case.
