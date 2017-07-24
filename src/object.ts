@@ -54,7 +54,7 @@ export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     if (objs.every(obj => typeof obj === 'undefined' || obj == null)) return {};
 
     // Handle arrays - merge all the arrays in this case. Skip over null or undefined
-    if (isArray(objs[0])) {
+    if (isArray(objs[0]) || (isFirstEmpty && isArray(objs[1]))) {
         return objs.reduce<any[]>((acc: any[], curArr: any[]) => {
             if (typeof curArr === 'undefined' || curArr == null) return acc;
             return acc.concat(curArr);
