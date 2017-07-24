@@ -32,6 +32,17 @@ type MergeParamTypes = Object | string | any[] | null | undefined;
 export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
     // Handle no given params. Return {} in this case.
     if (objs.length === 0) return {};
+    // Determine if first value is null or undefined.
+    const isFirstUndef = typeof objs[0] === 'undefined' ;
+    const isFirstNull = objs[0] == null;
+    const isFirstEmpty = isFirstUndef || isFirstNull;
+
+    // Handle single null or undefined. Return {} in this case.
+    if (isFirstEmpty && objs.length === 1) {
+        const nilTypeName = isFirstUndef ? 'undefined' : 'null';
+        if (isVerbose) console.trace(`WARNING: merge given ${nilTypeName}. Returning {}. Trace:`);
+        return {};
+    }
 
     // Handle objects - merge all the objects into one object in this case.
     return objs.reduce((acc: Object, curObj: Object) => {
