@@ -1,8 +1,9 @@
 /******************************************** IMPORTS *********************************************/
-import { isNonexistentOrString, RealAny } from './types-iso';
+import { isNonexistentOrString, RealAny, isArray } from './types-iso';
 import { matchesIgnoreCase, replaceAll } from './string';
 import { englishVariants, frenchVariants } from './internal/lang-constants';
 import deepFreezeStrict = require('deep-freeze-strict');
+import { isVerbose } from 'env-var-helpers';
 
 /********************************************* OBJECT *********************************************/
 /**
@@ -22,6 +23,22 @@ export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> => {
  */
 export const deepFreeze = <T>(obj: T): Readonly<T> => {
     return deepFreezeStrict<T>(obj);
+};
+
+type MergeParamTypes = Object | string | any[] | null | undefined;
+
+/**
+ */
+export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
+    // Handle objects - merge all the objects into one object in this case.
+    return objs.reduce((acc: Object, curObj: Object) => {
+        if (typeof curObj === 'undefined' || curObj == null) return acc;
+        if (typeof curObj === 'string') {
+            throw new Error(`If given an object as the 1st value, merge will only accept objects` +
+                ` for the rest of the values, However, merge was given a ${typeof curObj}.`);
+        }
+        return Object.assign(acc, curObj);
+    }, {});
 };
 
 /**
