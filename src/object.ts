@@ -30,6 +30,9 @@ type MergeParamTypes = Object | string | any[] | null | undefined;
 /**
  */
 export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
+    // Handle no given params. Return {} in this case.
+    if (objs.length === 0) return {};
+
     // Handle objects - merge all the objects into one object in this case.
     return objs.reduce((acc: Object, curObj: Object) => {
         if (typeof curObj === 'undefined' || curObj == null) return acc;
