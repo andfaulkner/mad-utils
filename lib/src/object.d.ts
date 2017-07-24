@@ -13,6 +13,19 @@ export declare const assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
  */
 export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
 /**
+ * [IMMUTABLE] merge all objects, strings, or arrays together.
+ * If given all nulls and/or undefineds, returns {}.
+ * NOTE: Cannot handle cases where first 2 values are undefined/null, & the 3rd
+ * is another type.
+ * @param {Array<Object|string|any[]|undefined|null>} objs - items to merge.
+ *        Note that all must be the same type (array, string, or object), but
+ *        it can also handle undefined or null values (it skips them).
+ *        Also handles pile of undefineds or nulls, which cause it to return {}.
+ * @return {Object|string|Array<any>} Given items merged together, or {} if only
+ *                                    received nulls and/or undefineds.
+ */
+export declare const merge: (...objs: (string | Object | any[])[]) => string | Object | any[];
+/**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
  * @param {string[]|string} propPath - String in 'key1.key2.etc' form, or array of strings where
