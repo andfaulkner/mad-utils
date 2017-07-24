@@ -61,6 +61,14 @@ export const merge = (...objs: MergeParamTypes[]): Object | string | any[] => {
         }, []);
     }
 
+    // Handle strings - merge all strings into one giant string.
+    if (typeof objs[0] === 'string' || (isFirstEmpty && typeof objs[1] === 'string')) {
+        return objs.reduce<string>((acc: string, curArr: string) => {
+            if (typeof curArr === 'undefined' || curArr == null) return acc;
+            return acc + curArr;
+        }, '');
+    }
+
     // Handle objects - merge all the objects into one object in this case.
     return objs.reduce((acc: Object, curObj: Object) => {
         if (typeof curObj === 'undefined' || curObj == null) return acc;
