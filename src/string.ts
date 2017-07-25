@@ -27,7 +27,13 @@ const _detectShortestIndentInArray = (lines: string[] | string): number => {
     // Ensure input is an array.
     const lineArr = (Array.isArray(lines) ? lines : [lines]) as string[];
 
-    return lineArr.reduce((acc: number, line: string) => {
+    // Set flag to exclude last line from comparison if it's an empty whitespace-only line.
+    const excludeLast = !!(lines[lines.length - 1].match(/^\s+$/));
+
+    return lineArr.reduce((acc: number, line: string, idx: number) => {
+        // Exclude last line from comparison if it's an empty whitespace-only line.
+        if (excludeLast && idx === lines.length - 1) return acc;
+
         // If any line found with no indent, prevent comparisons for the remainder of the loop.
         if (acc === 0) return acc;
 
@@ -35,20 +41,18 @@ const _detectShortestIndentInArray = (lines: string[] | string): number => {
         const match = line.match(/^\s+/m);
 
         // If there's no match, there's no indent. Set to 0.
-        if (!match || !match.input) return 0;
+        if (!match || !match.input || !match[0]) return 0;
 
         // If indent length is shorter than the prior shortest, return as new shortest length.
-        return (match.input.length < acc) ? match.input.length : acc;
+        return (match[0].length < acc) ? match[0].length : acc;
     }, 120);
 };
 
 /**
  * Ensure left-size indent makes sense. It must be an integer, or string that
  * can parse to an integer.
- *
  * @param {number|string} leftPadSize - Content of required interpolated item
  *                                      placed directly after the start quote.
- *
  * @return {never|void} Throw if leftPadSize is invalid.
  */
 const _validateWithLeftIndent = (leftPadSize: number | string): never | void => {
@@ -224,15 +228,19 @@ export const removeMatchingText = (str: string, matcherToRm: string | RegExp): s
 
 /************************************** STRING INTERPOLATION **************************************/
 /**
+ * TODO MAKE IT WORK WITH INTERPOLATIONS
  * @export withLeftIndent
+ *
+ * WARNING: DOES NOT ALLOW INTERPOLATIONS
  *
  * Template string type that allows for properly-indented multiline strings.
  *
  * Defines a template string type with the following behaviours:
  *     1. Eliminates all left-size indentation on each line;
- *     2. Requires a single interpolation variable to be placed directly after the start caret,
- *        which must contain an integer or string that can be parsed to one;
+ *     2. Can take a single interpolation variable to be placed directly after the start caret,
+ *        which must contain an integer or string that can be parsed to an integer;
  *     3. Sets the final left-size indentation to equal the value of said interpolation variable.
+ *        - If interpolation variable is not given, the value defaults to 0.
  *
  * Removes as much left-size whitespace as is present in the shortest indent, then adds the
  * requested number of spaces to the indent.
@@ -255,11 +263,14 @@ export const removeMatchingText = (str: string, matcherToRm: string | RegExp): s
  *
  * @return {string} Properly indented string.
  */
-export function withLeftIndent(strings, leftPadSize, xz?) {
+export function withLeftIndent(strings, leftPadSize = 0, xz?) {
     _validateWithLeftIndent(leftPadSize);
 
+    // |** 0 **| Detect position of first 'data' string in raw strings array.
+    const firstStringPos = (typeof strings[1] !== 'undefined' && strings[1] != null) ? 1 : 0;
+
     // |** 1 **| Convert single string with '\n' delimiting lines to an array split on \n.
-    const lines: string[] = strings[1].split('\n');
+    const lines: string[] = strings[firstStringPos].split('\n');
 
     // |** 2 **| Remove 1st element if it's ''. This is the 'pre-initial-variable' string.
     if (lines[0].length === 0) lines.shift();
@@ -272,12 +283,15 @@ export function withLeftIndent(strings, leftPadSize, xz?) {
     const initialIndent = ' '.repeat(shortestIndent);
 
     // |** 5 **| Cut out the required number of spaces
-    const linesPrepped = lines.map(
+    const linesPreppedArr = lines.map(
         (line: string) => line.replace(new RegExp(`^${initialIndent}`, 'm'), leftPadSpaces)
     );
 
-    // |** 6 **| Convert array back to string & return.
-    return linesPrepped.join(`\n`);
+    // |** 6 **| Convert array back to string.
+    const linesPrepped = linesPreppedArr.join(`\n`);
+
+    // |** 7 **| Remove trailing whitespace in empty lines, and return result.
+    return linesPrepped.replace(/^\s+$/gm, '');
 };
 
 /****************************************** REPEAT CHARS ******************************************/
