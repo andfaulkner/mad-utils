@@ -7,7 +7,7 @@ import { userAgent as mockUserAgent } from '../mock/mock-window';
 /********************************* IMPORT DOM MODULE FOR TESTING **********************************/
 import { expect } from 'chai';
 
-import { m_, dom, $, parseUserAgent, getUserAgentString, osName, osVersion, browserName,
+import { m_, dom, $, parseUserAgent, getUserAgentString, osName, osVersion, browserName, osNameSnakeCase,
          browserVersion, browserEngineName, browserEngineVersion, ParsedUserAgent } from '../../browser';
 
 import { dom as domFromBrowser } from '../../browser';
@@ -35,6 +35,7 @@ describe(`dom sub-module`, function() {
         const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36" +
                           " (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36";
         const mockOSName = "Mac OS";
+        const mockOSSnakeCase = 'mac_os';
         const mockOSVersion = "10.11.6";
         const mockBrowserName = "Chrome";
         const mockBrowserVersion = "59.0.3071.115";
@@ -68,6 +69,10 @@ describe(`dom sub-module`, function() {
 
         it(`-- #osName: returns name of OS running on current computer, ${commonSrc}`, function() {
             expect(osName()).to.equal(mockOSName);
+        });
+
+        it(`-- #osNameSnakeCase: returns name of OS in snake_case, ${commonSrc}`, function() {
+            expect(osNameSnakeCase()).to.equal(mockOSSnakeCase);
         });
 
         it(`-- #osVersion: returns OS version running on current computer, ${commonSrc}`, function() {
