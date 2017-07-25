@@ -42,8 +42,8 @@ Examples - most useful methods
 
 Examples:
 
-    condSwitch(true, 'val1');                                // => 'val1'
-    condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
+    condSwitch(true, 'val1'); // => 'val1'
+    condSwitch(false, 'val1', 'defaultVal'); // => 'defaultVal'
     condSwitch(false, 'v1',
                null, 'v2',
                'defaultReturnVal'); // => 'v2'
