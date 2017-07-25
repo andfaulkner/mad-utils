@@ -20,6 +20,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
         endsInDotScss, endsInDotTsx, endsWithExt,
         toSnakeCase,
+        withLeftIndent,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -414,6 +415,35 @@ describe(`string sub-module`, function() {
             expect(removeMatchingText(initStr, 'grargh')).to.eql(initStr);
         });
     });
+
+    describe(`withLeftIndent -- special string template type`, function() {
+        it(`indents single-line string the given number of spaces`, function() {
+            expect(withLeftIndent`${4}asdf`).to.equal('    asdf');
+            expect(withLeftIndent`${1}asdf`).to.equal(' asdf');
+        });
+        it(`can indent 0 spaces`, function() {
+            expect(withLeftIndent`${0}asdf`).to.equal('asdf');
+        });
+        testWithLeftIndentMultilineBasic();
+        it(`Removes preceding whitespace that exists on every line, replaces with given indent val`, function() {
+            expect(withLeftIndent`${4}
+                First line
+                Second line`
+            ).to.eql('    First line\n    Second line')
+        });
+        it(`Removes preceding whitespace that exists on every line, & adds no indent if indent val is 0`, function() {
+            expect(withLeftIndent`${0}
+                First line
+                Second line`
+            ).to.eql('First line\nSecond line')
+        });
+        it(`Defaults to indent 0`, function() {
+            expect(withLeftIndent`
+                First line
+                Second line`
+            ).to.eql('First line\nSecond line')
+        });
+    });
 });
 
 /**
@@ -443,4 +473,28 @@ function testMatchFilenameWithExtensionFunction(
             expect(func(nonMatchingFilename4)).to.be.false;
         });
     });
+}
+
+
+/*********************************** MESSY withLeftIndent TESTS ***********************************/
+function testWithLeftIndentMultilineBasic() {
+    it(`indents each line in multiline string the given number of spaces`, function() {
+        expect(defMultilineWithLeftIndentStr1()).to.equal('    asdf\n    asdf');
+    });
+    it(`does not indent empty lines`, function() {
+        expect(defMultilineWithLeftIndentStr2()).to.equal('        asdf\n\n        asdf');
+    });
+}
+
+function defMultilineWithLeftIndentStr1() {
+return withLeftIndent`${4}
+asdf
+asdf`
+}
+
+function defMultilineWithLeftIndentStr2() {
+return withLeftIndent`${8}
+asdf
+
+asdf`
 }
