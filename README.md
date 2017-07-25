@@ -648,7 +648,88 @@ Namespace: decorator (isomorphic)
 
 Namespace: dom (browser)
 ========================
-WIP documentation
+### [FUNCTION] parseUserAgent
+() => { raw: string, ua: string, os: NameAndVersion, browser: NameAndVersion, engine: NameAndVersion }
+    (NameAndVersion :: {name: string, version: string})
+
+*   Parse the browser's user agent and return an object containing the most useful user agent properties.
+
+### [FUNCTION] getUserAgentString
+() => string
+*   Return raw and unparsed browser user agent string (convenience function)
+
+Example:
+    
+    getUserAgentString();
+    // => "Mozilla/4.0 (Macintosh; Intel Mac OS X 7_12_6) AppleWebKit/501.16 (KHTML, like Gecko) Chrome/50.0.1010.99 Safari/210.22"
+
+### [FUNCTION] osName
+() => string
+
+*   Extract name of current user's OS (operating system) from browser user agent string.
+*   (Note: Memoizes result - i.e. 1st call to function stores result; all future calls reference stored result).
+
+Example:
+    
+    osName(); // => "Mac OS"
+
+### [FUNCTION] osNameSnakeCase
+() => string
+
+*   Extract name of OS from browser user agent string, & convert it to snake_case.
+*   (Note: memoizes result)
+
+Example:
+    
+    osNameSnakeCase(); // => "mac_os"
+
+### [FUNCTION] browserName
+() => string
+
+*   Extract name of current browser from browser user agent string.
+*   (Note: memoizes result)
+
+Example:
+    
+    browserName(); // => "Firefox"
+
+### [FUNCTION] browserEngineName
+() => string
+
+*   Extract name of current browser's rendering engine from browser user agent string.
+*   (Note: memoizes result)
+
+Example:
+
+    browserEngineName(); // => "Webkit"
+
+### [FUNCTION] osVersion
+*   Extract version of current OS from browser user agent string.
+*   (Note: memoizes result)
+
+Example:
+
+    osVersion(); // => "15.9.1"
+
+### [FUNCTION] browserVersion
+() => string
+
+*   Extract version of current browser from browser user agent string.
+*   (Note: memoizes result)
+
+Example:
+
+    browserVersion(); // => "64.1.5284.259"
+
+### [FUNCTION] browserEngineVersion
+() => string
+
+*   Extract version of current browser's rendering engine from browser's user agent string.
+*   (Note: memoizes result)
+
+Example:
+
+    browserEngineVersion(); // => "530.12"
 
 
 Namespace: enum (isomorphic)

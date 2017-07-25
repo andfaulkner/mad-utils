@@ -30,38 +30,41 @@ export function parseUserAgent(userAgent = window.navigator.userAgent): ParsedUs
 
 /**
  * Return raw (unparsed) browser user agent string. e.g.
- * "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36" +
- * "(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+ * "Mozilla/5.0 (Macintosh; Intel Mac OS X 17_14_2) AppleWebKit/530.12 " +
+ * "(KHTML, like Gecko) Chrome/51.0.3272.211 Safari/530.12"
  */
 export const getUserAgentString =   () => window.navigator.userAgent;
 
 /**
- * @return {string} Name of the current computer's operating system. E.g. "Mac OS"
+ * @return {string} Name of the current computer's operating system. E.g. "Mac OS" or "Windows NT"
  */
 export const osName =               () => userAgent.os.name;
 export const osNameSnakeCase =      () => toSnakeCase(osName());
 /**
-* @return {string} Name of the browser. E.g. "Chrome"
+* @return {string} Name of the browser. E.g. "Chrome" (using example above), or "Firefox"
  */
 export const browserName =          () => userAgent.browser.name;
 
 /**
-* @return {string} Name of the browser's rendering engine. E.g. "Webkit"
+* @return {string} Name of browser's rendering engine.
+* @example browserEngineName(); // => "Webkit" (Chrome output. See getUserAgentString example above)
+* @example browserEngineName(); // => "Gecko" (Firefox output);
+* 
  */
 export const browserEngineName =    () => userAgent.engine.name;
 
 /**
-* @return {string} OS version. E.g. "10.11.6"
+* @return {string} OS version. E.g. "17.14.2"
  */
 export const osVersion =            () => userAgent.os.version;
 
 /**
-* @return {string} Browser version. E.g. "59.0.3071.115"
+* @return {string} Browser version. E.g. "51.0.3272.211"
  */
 export const browserVersion =       () => userAgent.browser.version;
 
 /**
-* @return {string} Version of the browser's rendering engine. E.g. "537.36"
+* @return {string} Version of the browser's rendering engine. E.g. "530.12"
  */
 export const browserEngineVersion = () => userAgent.engine.version;
 
