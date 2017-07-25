@@ -8,21 +8,11 @@ export declare const assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
 /**
  * [MUTATIVE] Deep freeze the given object.
  * @param {Object} obj - Object to deeply freeze.
- * @return {Readme<Object>} The original object, frozen. Note that it freezes the object itself as
- *                          well - it does not create a frozen copy (the return is for convenience)
+ * @return {Readme<Object>} The original object, frozen. Note that it freezes
+ *                          the object itself as well - it does not create a
+ *                          frozen copy (the return is for convenience).
  */
 export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
-/**
- * [NON-MUTATIVE] merge all objects, strings, or arrays together.
- * If given all nulls and/or undefineds, returns {}.
- * @param {Array<Object|string|any[]|undefined|null>} objs - items to merge.
- *        Note that all must be the same type (array, string, or object), but
- *        it can also handle undefined or null values (it skips them).
- *        Also handles pile of undefineds or nulls, which cause it to return {}.
- * @return {Object|string|Array<any>} Given items merged together, or {} if only
- *                                    received nulls and/or undefineds.
- */
-export declare const merge: (...objs: (string | Object | any[])[]) => string | Object | any[];
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
@@ -65,3 +55,47 @@ export declare const numPairs: (obj: any) => number;
  * @return {boolean} true if obj contains matchKey
  */
 export declare const hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
+/********************************************* MERGE **********************************************/
+export declare type MergeParamTypes<T> = Object | string | T[] | any[] | null | undefined;
+export declare type MergeReturnTypes<T> = Object | string | T[] | any[] | {};
+/**
+ * [NON-MUTATIVE] merge all objects into a single object.
+ * @param {Object} obj1 First object to merge into new object
+ * @param {Object} obj2 Second object to merge into new object
+ * @param {Object[]} otherObjs Any number of further objects to merge in.
+ * @return {Object} conglomerate object. Contains all key-value pairs from all args given.
+ */
+export declare function merge<R, S>(obj1: S, obj2: R, ...otherObjs: S[]): R;
+/**
+ * [NON-MUTATIVE] merge all objects into a single object (deals with 'single argument' case).
+ * @param {Object} obj Object to "merge" (since there's only one, it just merges with {})
+ * @return {Object} Merged object (simply a duplicate of obj).
+ */
+export declare function merge<R>(obj: R): R;
+/**
+ * [NON-MUTATIVE] merge all strings into a single string.
+ * @param {string} strs Strings to merge.
+ * @return {string} Conglomerate string. E.g. given args 'ab' & 'cd', would return 'abcd'
+ */
+export declare function merge(...strs: string[]): string;
+/**
+ * [NON-MUTATIVE] concatenate all given arrays, of given type.
+ * @param {Array<T>[]} arrs Arrays to concatenate, all of type T.
+ * @return {T[]} Conglomerate array. e.g. given args [1, 2] & [3]], would return [1, 2, 3].
+ */
+export declare function merge<T>(...arrs: T[][]): T[];
+/**
+ * [NON-MUTATIVE] concatenate all given arrays, containing any types.
+ * @param {Array<T>[]} arrs Arrays to concatenate, containing items of any type.
+ * @return {T[]} Concatenated array (from params), containing only values of declared type (T).
+ * @example merge<number>([1, 3], [6]); // => [1, 3, 6]. Return type: number[].
+ */
+export declare function merge(...objs: any[][]): any[];
+/**
+ * [NON-MUTATIVE] return empty object ({})
+ */
+export declare function merge(): {};
+/**
+ * [NON-MUTATIVE] return empty object ({})
+ */
+export declare function merge(obj: null | undefined): {};
