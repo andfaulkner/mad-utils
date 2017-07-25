@@ -40,6 +40,8 @@ Examples - most useful methods
     *   If none are truthy, the default value is returned (the last argument - which must be an odd-numbered arg).
         *   If no default value is present after all conditions returned false, throws an error.
 
+Examples:
+
     condSwitch(true, 'val1');                                // => 'val1'
     condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
     condSwitch(false, 'v1',
@@ -81,6 +83,8 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
 *   If given a single object, string, or array, returns a shallow copy of it.
 *   If given all nulls and/or undefineds (or a single null or undefined), returns {}.
 *   When used to merge objects, Typescript automatically knows what keys the new object has.
+
+Examples:
 
     merge({ a: 'a' }, { b: 'b' });                 // => { a: 'a', b: 'b' }
     merge('Quick brown fox ', '...', ' lazy dog'); // => 'Quick brown fox ... lazy dog'
