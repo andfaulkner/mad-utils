@@ -127,7 +127,7 @@ export type MergeReturnTypes<T> = Object | string | T[] | any[] | {};
  * @param {Object[]} otherObjs Any number of further objects to merge in.
  * @return {Object} conglomerate object. Contains all key-value pairs from all args given.
  */
-export function merge<R, S>(obj1: S, obj2: R, ...otherObjs: S[]): R;
+export function merge<R, S>(obj1: S, obj2: R, ...otherObjs: (S | R | { [key: string]: any })[]): R & S & { [key: string]: any };
 
 /**
  * [NON-MUTATIVE] merge all objects into a single object (deals with 'single argument' case).
