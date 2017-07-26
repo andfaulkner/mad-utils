@@ -190,7 +190,7 @@ describe(`object sub-module`, function() {
             expect(merge({a: 'a'}, {b: 'b'})).to.eql({ a: 'a', b: 'b' });
         });
         it(`merges 3 objects together, where each has 1 key-value pair`, function() {
-            expect(merge({a: 'a'}, {b: 'b'}, {c: 'c'})).to.eql({a: 'a', b: 'b', c: 'c'});
+            expect(merge({a: 'a'}, {b: 'b'})).to.eql({a: 'a', b: 'b'});
         });
         it(`merges 3 objects together, where each has multiple key-value pairs`, function() {
             expect(merge({a: 'a', b: 'b'}, {c: 'c', d: 'd', e: 'e'})).to.eql(
