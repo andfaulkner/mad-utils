@@ -42,14 +42,52 @@ export const parseQueryParams = <T>(queryParamsString: string = queryParamsDef):
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
  * format is used.
- * @param {Array<string>} supportedLangs - Detectable languages. Default: ['en', 'fr']
- * @param {string} defaultLang - Default language, if none detected. Default: 'en'
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
  */
 export const getLangFromUrlPathname =
     (urlPath = locationPath, supportedLangs = defaultSupportedLangs, defaultLang: string = 'en') =>
         supportedLangs.find((lang: string) =>
             !!urlPath.match(new RegExp(`/(${lang}[^a-zA-Z0-9])|(/${lang}$)`, 'g')))
         || defaultLang;
+
+
+type StrOrErr = String | Error;
+
+/**
+ * Get all paths in the URL following the first appearance of /:curLang/
+ * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
+ * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ */
+export const urlPathsAfterLang = (props: {
+    url?:            string,
+    curLang?:        string,
+    supportedLangs?: string[]
+} | string | null): StrOrErr =>
+{
+    const url = (typeof props === 'string')
+        ? props
+        : (props && props.url) || locationPath;
+
+    const supportedLangs = (typeof props === 'object' && props.supportedLangs)
+        ? props.supportedLangs
+        : defaultSupportedLangs;
+
+    const curLang = (typeof props === 'object' && props.curLang)
+        ? props.curLang
+        : getLangFromUrlPathname(url, supportedLangs);
+
+    const urlSplitOnLangPath = url.split(`/${curLang}/`);
+    if (urlSplitOnLangPath.length < 1) {
+        return new Error('No language abbreviation found in the URL path');
+    }
+    return urlSplitOnLangPath[1];
+};
+
+export const postLangUrlPaths = urlPathsAfterLang;
 
 /**
  * Return copy of the given (or current) URL with the query parameters removed.
