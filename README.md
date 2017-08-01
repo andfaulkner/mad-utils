@@ -946,8 +946,12 @@ WIP documentation
 Namespace: localStore (browser)
 ===============================
 ### getFromStorage
-(string) => string
-*   Get value associated with given key in local store
+(string, store?: Object) => string
+*   Get value associated with given key in any of the storage locations, in the following priority:
+    1. Given store object
+    2. 'this' value the function getFromStorage function has access to (only relevant if call, apply, or bind are used to call it)
+    3. local or session store
+
 
 ### isAuthenticated
 WIP documentation
