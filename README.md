@@ -946,7 +946,8 @@ WIP documentation
 Namespace: localStore (browser)
 ===============================
 ### getFromStorage
-WIP documentation
+(string) => string
+*   Get value associated with given key in local store
 
 ### isAuthenticated
 WIP documentation
