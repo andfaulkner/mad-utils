@@ -13,10 +13,28 @@ export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
  * format is used.
- * @param {Array<string>} supportedLangs - Detectable languages. Default: ['en', 'fr']
- * @param {string} defaultLang - Default language, if none detected. Default: 'en'
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
  */
 export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+/**
+ * Get all paths in the URL following the first appearance of /:curLang/
+ * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
+ * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ */
+export declare const urlPathsAfterLang: (props: string | {
+    url?: string;
+    curLang?: string;
+    supportedLangs?: string[];
+}) => String | Error;
+export declare const postLangUrlPaths: (props: string | {
+    url?: string;
+    curLang?: string;
+    supportedLangs?: string[];
+}) => String | Error;
 /**
  * Return copy of the given (or current) URL with the query parameters removed.
  * @param {string} url - [OPTIONAL] url to copy & rm query params from. Defaults to current URL.

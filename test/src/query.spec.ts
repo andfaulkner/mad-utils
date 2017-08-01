@@ -4,7 +4,8 @@
 import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
-import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath } from '../../shared';
+import { m_, query, parseQueryParams, getLangFromUrlPathname,
+         lastUrlPath, urlPathsAfterLang } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 import { query as queryFromNode } from '../../node';
@@ -93,6 +94,24 @@ describe(`query sub-module`, function() {
         it(`returns last url path before the final '/' if strict is false`, function() {
             expect(lastUrlPath('https://example.com/asdf/', false)).to.eql('asdf');
             expect(lastUrlPath('https://example.com/asdf/123/final/', false)).to.eql('final');
+        });
+    });
+    describe(`.urlPathsAfterLang`, function() {
+        it(`returns substring following first '/en/' match in given string`, function() {
+            expect(urlPathsAfterLang('asdf/en/one/two')).to.eql('one/two');
+        });
+        it(`returns substring 'one/two' when given { url: '1/2/en/one/two'}`, function() {
+            expect(urlPathsAfterLang({ url: '1/2/en/one/two'})).to.eql('one/two');
+        });
+        it(`returns substring following first '/fr/' match in given string`, function() {
+            expect(urlPathsAfterLang('asdf/fr/one/two')).to.eql('one/two');
+        });
+        it(`returns 'three/4' when given { url: '1/2/ga/three/4', curLang: 'ga' }`, function() {
+            expect(urlPathsAfterLang({ url: '1/2/ga/three/4', curLang: 'ga' })).to.eql('three/4');
+        });
+        it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] }`, function() {
+            expect(urlPathsAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] })).to.eql('3/4');
+            expect(urlPathsAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ok'] })).to.eql('3/4');
         });
     });
 });
