@@ -19,18 +19,49 @@ export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
  */
 export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
 /**
+ * Get all paths in the URL before or after the first appearance of /:curLang/
+ * If getStrBeforeLang property is given and is true, get the string before the language match.
+ * Otherwise get the string after the language match.
+ * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
+ * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {boolean} getStrBeforeLang [OPTIONAL] If true, ret pre-match str; else ret post-match str.
+ */
+export declare const getUrlPathAroundLang: (props: string | ({
+    url?: string;
+    curLang?: string;
+    supportedLangs?: string[];
+} & {
+    getStrBeforeLang?: boolean;
+})) => String | Error;
+export declare const postLangUrlPaths: (props: string | ({
+    url?: string;
+    curLang?: string;
+    supportedLangs?: string[];
+} & {
+    getStrBeforeLang?: boolean;
+})) => String | Error;
+/**
  * Get all paths in the URL following the first appearance of /:curLang/
  * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
  * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
  * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
-export declare const urlPathsAfterLang: (props: string | {
+export declare const getUrlPathAfterLang: (props: string | {
     url?: string;
     curLang?: string;
     supportedLangs?: string[];
 }) => String | Error;
-export declare const postLangUrlPaths: (props: string | {
+/**
+ * Get all paths in the URL prior to the first appearance of /:curLang/
+ * @example urlPathsAfterLang('/asdf/en/one/two') // => '/asdf'
+ * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
+ * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ */
+export declare const getUrlPathBeforeLang: (props: string | {
     url?: string;
     curLang?: string;
     supportedLangs?: string[];

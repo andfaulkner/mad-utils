@@ -55,19 +55,27 @@ export const getLangFromUrlPathname =
 
 type StrOrErr = String | Error;
 
+type UrlPathsAfterLangProps = {
+    url?:            string,
+    curLang?:        string,
+    supportedLangs?: string[],
+}
+
 /**
- * Get all paths in the URL following the first appearance of /:curLang/
+ * Get all paths in the URL before or after the first appearance of /:curLang/
+ * If getStrBeforeLang property is given and is true, get the string before the language match.
+ * Otherwise get the string after the language match.
  * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
  * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
  * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {boolean} getStrBeforeLang [OPTIONAL] If true, ret pre-match str; else ret post-match str.
  */
-export const urlPathsAfterLang = (props: {
-    url?:            string,
-    curLang?:        string,
-    supportedLangs?: string[]
-} | string | null): StrOrErr =>
+export const getUrlPathAroundLang = (props: (UrlPathsAfterLangProps & {
+    getStrBeforeLang?: boolean
+}) | string | null): StrOrErr =>
 {
+    const getStrBeforeLang = (typeof props === 'object') ? props.getStrBeforeLang : false;
     const url = (typeof props === 'string')
         ? props
         : (props && props.url) || locationPath;
@@ -84,10 +92,41 @@ export const urlPathsAfterLang = (props: {
     if (urlSplitOnLangPath.length < 1) {
         return new Error('No language abbreviation found in the URL path');
     }
-    return urlSplitOnLangPath[1];
+    return getStrBeforeLang ? urlSplitOnLangPath[0]  // get values before
+                            : urlSplitOnLangPath[1]; // get values after
 };
 
-export const postLangUrlPaths = urlPathsAfterLang;
+export const postLangUrlPaths = getUrlPathAroundLang;
+
+/**
+ * Get all paths in the URL following the first appearance of /:curLang/
+ * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
+ * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ */
+export const getUrlPathAfterLang = (props: UrlPathsAfterLangProps | string | null): StrOrErr => {
+    const propsObj = typeof props === 'object' ? props : {}
+    if (typeof props === 'string') {
+        propsObj.url = props;
+    }
+    return getUrlPathAroundLang(Object.assign(propsObj, { getStrBeforeLang: false }));
+}
+
+/**
+ * Get all paths in the URL prior to the first appearance of /:curLang/
+ * @example urlPathsAfterLang('/asdf/en/one/two') // => '/asdf'
+ * @param {string} [OPTIONAL] url URL to search. If not provided, uses window.location.pathname
+ * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ */
+export const getUrlPathBeforeLang = (props: UrlPathsAfterLangProps | string | null): StrOrErr => {
+    const propsObj = typeof props === 'object' ? props : {}
+    if (typeof props === 'string') {
+        propsObj.url = props;
+    }
+    return getUrlPathAroundLang(Object.assign(propsObj, { getStrBeforeLang: true }));
+}
 
 /**
  * Return copy of the given (or current) URL with the query parameters removed.

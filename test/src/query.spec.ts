@@ -4,8 +4,8 @@
 import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
-import { m_, query, parseQueryParams, getLangFromUrlPathname,
-         lastUrlPath, urlPathsAfterLang } from '../../shared';
+import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
+         getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 import { query as queryFromNode } from '../../node';
@@ -44,6 +44,7 @@ describe(`query sub-module`, function() {
             expect(parseQueryParams('http://example.com/en/home?&')).to.be.null;
         });
     });
+
     describe('.getLangFromUrlPathname]', function() {
         expectFunctionExists(m_.query.getLangFromUrlPathname);
         expectFunctionExists(getLangFromUrlPathname);
@@ -96,22 +97,56 @@ describe(`query sub-module`, function() {
             expect(lastUrlPath('https://example.com/asdf/123/final/', false)).to.eql('final');
         });
     });
-    describe(`.urlPathsAfterLang`, function() {
+
+    describe(`.getUrlPathAfterLang`, function() {
         it(`returns substring following first '/en/' match in given string`, function() {
-            expect(urlPathsAfterLang('asdf/en/one/two')).to.eql('one/two');
+            expect(getUrlPathAfterLang('asdf/en/one/two')).to.eql('one/two');
         });
         it(`returns substring 'one/two' when given { url: '1/2/en/one/two'}`, function() {
-            expect(urlPathsAfterLang({ url: '1/2/en/one/two'})).to.eql('one/two');
+            expect(getUrlPathAfterLang({ url: '1/2/en/one/two'})).to.eql('one/two');
         });
         it(`returns substring following first '/fr/' match in given string`, function() {
-            expect(urlPathsAfterLang('asdf/fr/one/two')).to.eql('one/two');
+            expect(getUrlPathAfterLang('asdf/fr/one/two')).to.eql('one/two');
         });
         it(`returns 'three/4' when given { url: '1/2/ga/three/4', curLang: 'ga' }`, function() {
-            expect(urlPathsAfterLang({ url: '1/2/ga/three/4', curLang: 'ga' })).to.eql('three/4');
+            expect(getUrlPathAfterLang({ url: '1/2/ga/three/4', curLang: 'ga' })).to.eql('three/4');
         });
         it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] }`, function() {
-            expect(urlPathsAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] })).to.eql('3/4');
-            expect(urlPathsAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ok'] })).to.eql('3/4');
+            expect(getUrlPathAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] })).to.eql('3/4');
+            expect(getUrlPathAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ok'] })).to.eql('3/4');
+        });
+        // TODO test getUrlPathAfterLang's no-arg condition :: getUrlPathAfterLang();
+    });
+
+    describe(`.getUrlPathBeforeLang`, function() {
+        it(`returns substring following first '/en/' match in given string`, function() {
+            expect(getUrlPathBeforeLang('asdf/en/one/two')).to.eql('asdf');
+        });
+        it(`returns substring '1/2' when given { url: '1/2/en/one/two'}`, function() {
+            expect(getUrlPathBeforeLang({ url: '1/2/en/one/two'})).to.eql('1/2');
+        });
+        it(`returns substring following first '/fr/' match in given string`, function() {
+            expect(getUrlPathBeforeLang('asdf/fr/one/two')).to.eql('asdf');
+        });
+        it(`returns 'three/4' when given { url: '1/2/ga/three/4', curLang: 'ga' }`, function() {
+            expect(getUrlPathBeforeLang({ url: '1/2/ga/three/4', curLang: 'ga' })).to.eql('1/2');
+        });
+        it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] }`, function() {
+            expect(getUrlPathBeforeLang({ url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] })).to.eql('1/2');
+            expect(getUrlPathBeforeLang({ url: '1/2/ok/3/4', supportedLangs: ['ok'] })).to.eql('1/2');
+        });
+        // TODO test getUrlPathBeforeLang's no-arg condition :: getUrlPathBeforeLang();
+    });
+
+    describe(`.urlPathAroundLang`, function() {
+        it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'], getStrBeforeLang: true }`, function() {
+            expect(getUrlPathAroundLang({
+                url: '1/2/ok/3/4',
+                supportedLangs: ['ga', 'ok'],
+                getStrBeforeLang: true
+            })).to
+               .eql('1/2');
         });
     });
+    // TODO test getUrlPathAroundLang more extensively;
 });
