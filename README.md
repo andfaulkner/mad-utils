@@ -951,6 +951,18 @@ Namespace: localStore (browser)
     1. Given store object
     2. 'this' value the function getFromStorage function has access to (only relevant if call, apply, or bind are used to call it)
     3. local or session store
+*   Returns null if value not found
+
+    window.localStorage.setItem('key1', "value_of_key_1");
+    getFromStorage('key1'); // => 'value_of_key_1'
+
+    class Store {
+        public keyOne = 'value_of_key_one'
+    }
+    const store = new Store();
+    getFromStorage('keyOne', store);      // => value_of_key_one
+
+    getFromStorage.call(store, 'keyOne'); // => value_of_key_one
 
 
 ### isAuthenticated
