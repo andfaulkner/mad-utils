@@ -64,33 +64,33 @@ describe(`local-store sub-module`, function() {
         });
 
         it(`should retrieve value from sessionStorage if val not found in localStorage, & ` +
-            `getFromStorage is not given an object or bound to an object`, function()
+           `getFromStorage is not given an object or bound to an object`, function()
         {
             expect(localStorageUtils.getFromStorage('ssKey1')).to.eql('ssKey1_val_sessionStorage');
         });
 
         it(`should retrieve value from localStorage if given an object that doesn't contain ` +
-            `the requested key`, function()
+           `the requested key`, function()
         {
             expect(localStorageUtils.getFromStorage('lsKey1', mockStore)).to.eql('lsKey1_val_localStorage');
         });
 
-        it(`should retrieve value from object getFromStorage function is bound if no store ` +
-            `object is given`, function()
+        it(`should retrieve value from object getFromStorage function is bound to if no store ` +
+           `object is given`, function()
         {
             expect(getFromStorage.call(mockClassStore, 'classStoreKey1'))
                 .to.eql('classStoreKey1_val_mockClassStore');
         });
 
         it(`should give precedence to value in given object (store) if key also exists in ` +
-            `localStorage & sessionStorage, and object getFromStorage is bound to`, function()
+           `localStorage & sessionStorage, and object getFromStorage is bound to`, function()
         {
             expect(localStorageUtils.getFromStorage.call(mockClassStore, 'key1', mockStore))
                 .to.eql('key1_val_mockStore');
         });
 
         it(`should give precedence to value in object to which function is bound if key also ` +
-            `exists in localStorage & sessionStorage`, function()
+           `exists in localStorage & sessionStorage`, function()
         {
             expect(localStorageUtils.getFromStorage.call(mockClassStore, 'key1'))
                 .to.eql('key1_val_mockClassStore');
