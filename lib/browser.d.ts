@@ -34,7 +34,7 @@ export { localStore as localStorageUtils };
 import * as browserTypes from './src/browser/types-browser';
 export * from './src/browser/types-browser';
 export * from './src/types-iso';
-export declare const types: {} & typeof isoTypes & typeof browserTypes;
+export declare const types: typeof isoTypes & typeof browserTypes;
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module (namespace)
@@ -68,9 +68,9 @@ export declare const mUtils: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: {} & typeof isoTypes & typeof browserTypes;
-    types: {} & typeof isoTypes & typeof browserTypes;
-    typing: {} & typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes;
+    types: typeof isoTypes & typeof browserTypes;
+    typing: typeof isoTypes & typeof browserTypes;
     validation: typeof validation;
 };
 export declare const __: {
@@ -102,9 +102,9 @@ export declare const __: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: {} & typeof isoTypes & typeof browserTypes;
-    types: {} & typeof isoTypes & typeof browserTypes;
-    typing: {} & typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes;
+    types: typeof isoTypes & typeof browserTypes;
+    typing: typeof isoTypes & typeof browserTypes;
     validation: typeof validation;
 };
 export declare const m_: {
@@ -136,9 +136,9 @@ export declare const m_: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: {} & typeof isoTypes & typeof browserTypes;
-    types: {} & typeof isoTypes & typeof browserTypes;
-    typing: {} & typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes;
+    types: typeof isoTypes & typeof browserTypes;
+    typing: typeof isoTypes & typeof browserTypes;
     validation: typeof validation;
 };
 export declare const madUtils: {
@@ -170,8 +170,8 @@ export declare const madUtils: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: {} & typeof isoTypes & typeof browserTypes;
-    types: {} & typeof isoTypes & typeof browserTypes;
-    typing: {} & typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes;
+    types: typeof isoTypes & typeof browserTypes;
+    typing: typeof isoTypes & typeof browserTypes;
     validation: typeof validation;
 };
