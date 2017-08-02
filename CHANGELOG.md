@@ -1,3 +1,8 @@
+0.25.0
+======
+*   upgraded Typescript version to 2.3.0, from 2.2.1
+*   set all React packages to install from 15.x  
+
 0.24.0
 ======
 *   withLeftIndent has breaking changes
