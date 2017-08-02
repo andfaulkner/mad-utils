@@ -117,7 +117,7 @@ export declare const isDateLike: (val: any) => boolean;
 export declare const isArray: (val: any) => boolean;
 /**
  * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true).
- * @param {any} val - Check if this is a variant of true.
+ * @param {any} val Check if this is a variant of true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
 export declare const isTrue: (val: any) => boolean;

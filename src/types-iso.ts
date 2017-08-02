@@ -200,7 +200,7 @@ export const isArray = (val: RealAny): boolean => {
 
 /**
  * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true).
- * @param {any} val - Check if this is a variant of true.
+ * @param {any} val Check if this is a variant of true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
 export const isTrue = (val: RealAny): boolean =>
