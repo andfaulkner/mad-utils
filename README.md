@@ -804,8 +804,8 @@ Namespace: file (node)
     // => isTrue
 
 ### wasRunAsScript
-(string) => boolean
-*   Determine if the given filename was run as a script.
+()
+
     *   for example, if the current process was started via node some-file.js, and this function is called in some-file.js
 *   Must always be called like this: `wasRunAsScript(path.basename(__filename))`.
 *   WARNING: has some edge cases (Fixing them is a WIP TODO):
