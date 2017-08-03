@@ -803,10 +803,22 @@ Namespace: file (node)
     isDir(path.join(rootPath, 'node_modules'));
     // => isTrue
 
-### pathFromRoot
-WIP documentation
-
 ### wasRunAsScript
+(string) => boolean
+*   Determine if the given filename was run as a script.
+    *   for example, if the current process was started via node some-file.js, and this function is called in some-file.js
+*   Must always be called like this: `wasRunAsScript(path.basename(__filename))`.
+*   WARNING: has some edge cases (Fixing them is a WIP TODO):
+    *   Will (incorrectly) return true if the current file has the same name as the file that launched the process
+        *   e.g. if process was launched by [project root]/server/index.js, and wasRunAsScript is run in [project root]/server/api/index.js, it will return true.
+    *   Will not work for filenames with certain characters, such as (, ), [, ], and certain other special regex chars (. and - are OK).
+
+Example
+    // To determine if the current file was run as a script:
+    wasRunAsScript(path.basename(__filename));
+    // => true if e.g. current file is named some-file.js, the process was launched via `node some-file.js`
+
+### pathFromRoot
 WIP documentation
 
 ### replaceInFile
