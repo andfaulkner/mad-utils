@@ -52,6 +52,9 @@ export type RequiredInjectionType<T> = T;
 export type MandatoryInjection<T> = T;
 export type MandatoryInjectionType<T> = T;
 
+export type MandatoryInjectionViaDecorator<T> = T;
+export type MandatoryInjectionViaDecoratorType<T> = T;
+
 /**
  * Extend to (optionally) include Polyglot
  */

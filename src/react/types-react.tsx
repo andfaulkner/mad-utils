@@ -101,7 +101,7 @@ export interface RRMatch {
  * Use with components wrapped in React-Router's withRouter decorator.
  */
 export interface RouterProps {
-    history: RRHistory
-    location: RRLocation
-    match: RRMatch
+    history?: RRHistory
+    location?: RRLocation
+    match?: RRMatch
 }
