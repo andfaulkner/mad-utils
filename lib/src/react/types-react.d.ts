@@ -1,6 +1,7 @@
 /// <reference types="react" />
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
+import { MandatoryInjectionViaDecorator } from '../types-iso';
 /******************************************** EXPORTS *********************************************/
 export declare type InputChangeEvent = React.FormEvent<HTMLInputElement>;
 export declare type FormSubmitEvent = React.FormEvent<HTMLFormElement>;
@@ -90,7 +91,7 @@ export interface RRMatch {
  * Use with components wrapped in React-Router's withRouter decorator.
  */
 export interface RouterProps {
-    history: RRHistory;
-    location: RRLocation;
-    match: RRMatch;
+    history?: MandatoryInjectionViaDecorator<RRHistory>;
+    location?: MandatoryInjectionViaDecorator<RRLocation>;
+    match?: MandatoryInjectionViaDecorator<RRMatch>;
 }

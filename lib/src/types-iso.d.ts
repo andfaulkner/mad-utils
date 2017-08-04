@@ -35,6 +35,8 @@ export declare type RequiredInjection<T> = T;
 export declare type RequiredInjectionType<T> = T;
 export declare type MandatoryInjection<T> = T;
 export declare type MandatoryInjectionType<T> = T;
+export declare type MandatoryInjectionViaDecorator<T> = T;
+export declare type MandatoryInjectionViaDecoratorType<T> = T;
 /**
  * Extend to (optionally) include Polyglot
  */
