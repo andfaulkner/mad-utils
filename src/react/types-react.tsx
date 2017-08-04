@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { MandatoryInjectionViaDecorator } from '../types-iso';
 
 /******************************************** EXPORTS *********************************************/
 export type InputChangeEvent = React.FormEvent<HTMLInputElement>;
@@ -101,7 +102,7 @@ export interface RRMatch {
  * Use with components wrapped in React-Router's withRouter decorator.
  */
 export interface RouterProps {
-    history?: RRHistory
-    location?: RRLocation
-    match?: RRMatch
+    history?: MandatoryInjectionViaDecorator<RRHistory>
+    location?: MandatoryInjectionViaDecorator<RRLocation>
+    match?: MandatoryInjectionViaDecorator<RRMatch>
 }
