@@ -1,4 +1,3 @@
-@import '../../variables/variables.scss';
 @import './margin.scss';
 @import './padding.scss';
 @import './border.scss';
@@ -12,7 +11,7 @@
     .display-inline-block { display: inline-block }
     .display-inline-flex { display: inline-flex }
     .disp-inflex { display: inline-flex }
-    
+
     .flex { display: flex }
     .inline-flex { display: inline-flex }
 
@@ -53,7 +52,7 @@
     .flex-justifycontent-space-around { justify-content: space-around }
     .flex-justifycontent-sb { justify-content: space-between }
     .flex-justifycontent-space-between { justify-content: space-between }
-    
+
     .flex-justify-content-fs { justify-content: flex-start }
     .flex-justify-content-start { justify-content: flex-start }
     .flex-justify-content-fe { justify-content: flex-end }
