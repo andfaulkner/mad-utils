@@ -1,0 +1,8 @@
+:global {
+    //***************************************** OVERFLOW ******************************************/
+    .overflow-hidden,  .ov-hidden  { overflow: hidden  }
+    .overflow-visible, .ov-visible { overflow: visible }
+    .overflow-auto,    .ov-auto    { overflow: auto    }
+    .overflow-overlay, .ov-overlay { overflow: overlay }
+    .overflow-scroll,  .ov-scroll  { overflow: scroll  }
+}

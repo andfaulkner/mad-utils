@@ -1,19 +1,21 @@
+@import './colors/colors.scss';
 @import './colors/color-styles.scss';
 
 @import './layout/border.scss';
 @import './layout/layout.scss';
 @import './layout/margin.scss';
+@import './layout/overflow.scss';
 @import './layout/padding.scss';
 @import './layout/position.scss';
 @import './layout/size.scss';
 
-@import './opacity.scss';
-@import './text.scss';
-@import './z-index.scss';
-@import './opacity.scss';
-@import './cursor.scss';
+@import './layering/opacity.scss';
+@import './layering/visibility.scss';
+@import './layering/z-index.scss';
 
+@import './cursor.scss';
 @import './mixins.scss';
+@import './text.scss';
 
 
 /**
@@ -147,18 +149,6 @@
         color: gray;
         text-shadow: 0.1px 0.1px 0.1px $lightestGray;
     }
-
-    /***************************************** VISIBILITY *****************************************/
-    .hidden,   .vis-hidden   { visibility: hidden   }
-    .visible,  .vis-visible  { visibility: visible  }
-    .collapse, .vis-collapse { visibility: collapse }
-
-    //***************************************** OVERFLOW ******************************************/
-    .overflow-hidden,  .ov-hidden  { overflow: hidden  }
-    .overflow-visible, .ov-visible { overflow: visible }
-    .overflow-auto,    .ov-auto    { overflow: auto    }
-    .overflow-overlay, .ov-overlay { overflow: overlay }
-    .overflow-scroll,  .ov-scroll  { overflow: scroll  }
 
     //************************************* BACKGROUND-IMAGE **************************************/
     span.bg-img-none, div.bg-img-none, button.bg-img-none, .bg-img-none { background-image: none }

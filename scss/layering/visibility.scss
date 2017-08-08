@@ -1,0 +1,5 @@
+:global {
+    .hidden,   .vis-hidden   { visibility: hidden   }
+    .visible,  .vis-visible  { visibility: visible  }
+    .collapse, .vis-collapse { visibility: collapse }
+}
