@@ -5,7 +5,10 @@
   "main": "lib/shared.js",
   "typings": "lib/shared",
   "files": [
-    "lib/"
+    "lib/",
+    "scss/",
+    ".util-styles.scss",
+    "root.scss"
   ],
   "scripts": {
     "prepublish": "npm run compile-ts; ./script/copy-output-to-root",
@@ -108,7 +111,12 @@
     "isomorphic",
     "translations",
     "locale",
-    "i18n"
+    "i18n",
+    "scss",
+    "css",
+    "scss-mixins",
+    "scss-utils",
+    "css-utils"
   ],
   "author": "Andrew Faulkner <andfaulkner@gmail.com>",
   "license": "MIT",

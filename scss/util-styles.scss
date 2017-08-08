@@ -1,0 +1,165 @@
+@import './colors/color-styles.scss';
+
+@import './layout/border.scss';
+@import './layout/layout.scss';
+@import './layout/margin.scss';
+@import './layout/padding.scss';
+@import './layout/position.scss';
+@import './layout/size.scss';
+
+@import './opacity.scss';
+@import './text.scss';
+@import './z-index.scss';
+@import './opacity.scss';
+@import './cursor.scss';
+
+@import './mixins.scss';
+
+
+/**
+ * ************ REFERENCE ************
+ *
+ * NOTE: NEEDS UPDATE
+ *
+ * ****** GENERAL ******
+ * -   Any number preceded by n indicates negative. e.g.
+ *         .mt-n24 { margin-top: -24px }
+ *             vs.
+ *         .mt-24 { margin-top: 24px }
+ * -   Any style followed by -nl indicates that the last item in the set is excluded. e.g.
+ *         .bw-4-nl:not(:last-child) { border-width: 4px }
+ *         -   applies a 4px wide border to all items in a set but the last
+ *
+ * ********************************
+ * ************ LAYOUT ************
+ *
+ * ****** MARGIN ******
+ * m: margin - all
+ * mt: margin-top
+ * mb: margin-bottom
+ * mr: margin-right
+ * ml: margin-left
+ *
+ * ****** PADDING ******
+ * p:  padding - all
+ * pt: padding-top
+ * pb: padding-bottom
+ * pr: padding-right
+ * pl: padding-left
+ *
+ * ****** BORDER ******
+ * bw: border-width
+ * bbw: border-bottom-width
+ * btw: border-top-width
+ * blw: border-left-width
+ * brw: border-right-width
+ *
+ * bs: border-style
+ * bbs: border-bottom-style
+ * bts: border-top-style
+ * bls: border-left-style
+ * brs: border-right-style
+ *
+ * br: border-radius
+*
+ * ****** SIZE ******
+ * w: width
+ * h: height
+ * mw: max-width
+ * mh: max-height
+ * minw: min-width
+ * minh: min-height
+ *
+ * note: sizes that end in p (as in w-100p) use a percentage rather than pixels
+ *
+ * ****** POSITION ******
+ * pos: position  ||  Available: pos-relative, pos-absolute, pos-static, pos-fixed
+ *
+ * numeric relative positions (examples):
+ *     zero         positive       negative
+ *     ----         --------       --------
+ *     top-0        top-1          top-n1
+ *     bottom-0     bottom-1       bottom-n1
+ *     right-0      right-1        right-n1
+ *     left-0       left-1         left-n1
+ *
+ *
+ * ****** TEXT ******
+ * fs: font-size
+ * fw: font-weight
+ * ti: text-indent
+ * lh: line-height
+ * ta: text-align
+ * ff: font-family
+ *
+ * Misc text:
+ *     uppercase, lowercase, capitalize
+ *     bold, no-bold, fw-300, fw-400, fw-400
+ *     underline, no-underline
+ *
+ * ****** COLORS ******
+ * bg: background colour
+ * bgfill: background colour - clobber all other background definitions
+ *
+ * Colours available (incomplete):
+ *     white, light-gray, mid-gray, dark-gray, black
+ *     bg-white, bg-light-gray, bg-mid-gray, bg-dark-gray, bg-black
+ *
+ * ****** MISC ******
+ * opa: opacity
+ * float: float
+ * cur: cursor
+ * states: state collection - complimentary hover & active
+ * va: vertical-align
+ * vis: visibility
+ */
+
+:global {
+    /******************************************* FLOAT ********************************************/
+    .float-r, .float-right { float: right }
+    .float-l, .float-left  { float: left  }
+
+    /******************************************* HOVERS *******************************************/
+    .states-lightergray-bg:hover { background-color: $lighterGray }
+    .states-lightergray-bg:active { background-color: $lightGray }
+
+    .states-standard:hover {
+        cursor: pointer;
+        background-color: $lighterGray;
+        text-decoration: none;
+    }
+    .states-standard:active {
+        cursor: pointer;
+        background-color: $lightGray;
+        text-decoration: none;
+    }
+
+    .states-faintblue-bg:hover { background-color: $fainterBlue }
+    .states-faintblue-bg:active { background-color: $palestBlue }
+
+    .haf-no-underline:focus,
+    .haf-no-underline:active,
+    .haf-no-underline:hover {
+        text-decoration: none
+    }
+
+    .haf-gray-tiny:hover {
+        color: gray;
+        text-shadow: 0.1px 0.1px 0.1px $lightestGray;
+    }
+
+    /***************************************** VISIBILITY *****************************************/
+    .hidden,   .vis-hidden   { visibility: hidden   }
+    .visible,  .vis-visible  { visibility: visible  }
+    .collapse, .vis-collapse { visibility: collapse }
+
+    //***************************************** OVERFLOW ******************************************/
+    .overflow-hidden,  .ov-hidden  { overflow: hidden  }
+    .overflow-visible, .ov-visible { overflow: visible }
+    .overflow-auto,    .ov-auto    { overflow: auto    }
+    .overflow-overlay, .ov-overlay { overflow: overlay }
+    .overflow-scroll,  .ov-scroll  { overflow: scroll  }
+
+    //************************************* BACKGROUND-IMAGE **************************************/
+    span.bg-img-none, div.bg-img-none, button.bg-img-none, .bg-img-none { background-image: none }
+}

@@ -1,0 +1,14 @@
+:global {
+    .cur-default, .cur-default:hover, .cur-default:active { cursor: default }
+    .pointer, .pointer:hover, .pointer:active,
+    .cur-pointer, .cur-pointer:hover, .cur-pointer:active { cursor: pointer }
+    .cur-move, .cur-move:hover, .cur-move:active          { cursor: move }
+    .cur-text, .cur-text:hover, .cur-text:active          { cursor: text }
+    .cur-help, .cur-help:hover, .cur-help:active          { cursor: help }
+
+    /** note that cursor: none actually makes the cursor invisible **/
+    .cur-none, .cur-none:hover, .cur-none:active          { cursor: none }
+
+    .cur-col-resize, .cur-col-resize:hover, .cur-col-resize:active { cursor: col-resize }
+    .cur-row-resize, .cur-row-resize:hover, .cur-row-resize:active { cursor: row-resize }
+}
