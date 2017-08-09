@@ -18,6 +18,9 @@ export { InputChangeHandler as InputChangeType }
 export { FormSubmitHandler  as FormSubmitType  }
 export { AnyEventHandler    as AnyEventType    }
 
+export interface ReactChildString { children?: string };
+export interface ChildString extends ReactChildString {}
+
 /**
  * Should match any type of React component: Class, ClassicClass, or stateless functional component
  */
