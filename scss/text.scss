@@ -144,13 +144,20 @@
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
                      Helvetica, Arial, "Lucida Grande", sans-serif;
     }
-    .ff-helvetica-neue { font-family: "Helvetica Neue" }
-    .helvetica-neue { font-family: "Helvetica Neue" }
-    .ff-HelveticaNeue { font-family: HelveticaNeue }
-    .HelveticaNeue { font-family: HelveticaNeue }
-    .HelveticaNeue { font-family: HelveticaNeue }
-    .ff-helvetica-neue-light { font-family: "Helvetica Neue Light" }
-    .helvetica-neue-light { font-family: "Helvetica Neue Light" }
+    .ff-helvetica-neue             { font-family: "Helvetica Neue", sans-serif       }
+    .ff-helvetica-neue-serif       { font-family: "Helvetica Neue"                   }
+    .helvetica-neue                { font-family: "Helvetica Neue", sans-serif       }
+    .helvetica-neue-serif          { font-family: "Helvetica Neue"                   }
+
+    .ff-HelveticaNeue              { font-family: HelveticaNeue, sans-serif          }
+    .ff-HelveticaNeue-serif        { font-family: HelveticaNeue                      }
+    .HelveticaNeue                 { font-family: HelveticaNeue, sans-serif          }
+    .HelveticaNeue-serif           { font-family: HelveticaNeue                      }
+
+    .ff-helvetica-neue-light       { font-family: "Helvetica Neue Light", sans-serif }
+    .ff-helvetica-neue-light-serif { font-family: "Helvetica Neue Light"             }
+    .helvetica-neue-light          { font-family: "Helvetica Neue Light", sans-serif }
+    .helvetica-neue-light-serif    { font-family: "Helvetica Neue Light"             }
 
     /******************************************** SHADOW *********************************************/
     .ts-none { text-shadow: none }
