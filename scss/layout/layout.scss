@@ -2,8 +2,13 @@
 @import './padding.scss';
 @import './border.scss';
 
+@import '../../variables/variables.scss';
+@import './margin.scss';
+@import './padding.scss';
+@import './border.scss';
+
 :global {
-    /******************************************* DISPLAYS ********************************************/
+    /***************************************** DISPLAYS *******************************************/
     .display-inline       { display: inline       }
     .display-block        { display: block        }
     .display-none         { display: none         }
@@ -159,22 +164,22 @@
     .flex.col              { flex-direction: column }
     .flex.column           { flex-direction: column }
 
-    /**************************************** VERTICAL-ALIGN *****************************************/
+    /************************************** VERTICAL-ALIGN ****************************************/
     .va-middle { vertical-align: middle }
     .va-bottom { vertical-align: bottom }
     .va-top    { vertical-align: top    }
 
-    /***************************************** STYLE GROUPS ******************************************/
+    /*************************************** STYLE GROUPS *****************************************/
     /** Faint bottom border */
     .bb-theme-faint {
         border-bottom: #eee 1px solid;
     }
 
-    /****************************************** POSITIONING *******************************************/
+    /**************************************** POSITIONING ******************************************/
     .center-horizontal {
         position: relative;
-        left: 50%; // ^1
-        transform: translateX(-50%); // ^2,3
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .transform-translate-y-n50p {
