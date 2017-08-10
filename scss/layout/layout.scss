@@ -4,155 +4,165 @@
 
 :global {
     /******************************************* DISPLAYS ********************************************/
-    .display-inline { display: inline }
-    .display-block { display: block }
-    .display-none { display: none }
-    .display-flex { display: flex }
+    .display-inline       { display: inline       }
+    .display-block        { display: block        }
+    .display-none         { display: none         }
     .display-inline-block { display: inline-block }
-    .display-inline-flex { display: inline-flex }
-    .disp-inflex { display: inline-flex }
 
-    .flex { display: flex }
-    .inline-flex { display: inline-flex }
+    .display-flex         { display: flex         }
+    .flex                 { display: flex         }
+    .display-inline-flex  { display: inline-flex  }
+    .disp-inflex          { display: inline-flex  }
+    .inflex               { display: inline-flex  }
+    .inline-flex          { display: inline-flex  }
 
-    /** table */
-    .table { display: table }
-    .display-table { display: table }
-    .display-tr { display: table-row }
-    .display-td { display: table-column }
+    /************ table ************/
+    .table                { display: table        }
+    .display-table        { display: table        }
+    .display-tr           { display: table-row    }
+    .display-td           { display: table-column }
 
     .display-table-column { display: table-column }
-    .display-table-row { display: table-row }
-    .display-table-cell { display: table-cell }
+    .display-table-row    { display: table-row    }
+    .display-table-cell   { display: table-cell   }
 
-    .display-row { display: table-row }
-    .display-col { display: table-column }
-    .display-cell { display: table-cell }
+    .display-row          { display: table-row    }
+    .display-col          { display: table-column }
+    .display-cell         { display: table-cell   }
 
 /********************************************** FLEX **********************************************/
-    /* justify-content */
-    .flex-jc-fs { justify-content: flex-start }
-    .flex-jc-start { justify-content: flex-start }
-    .flex-jc-fe { justify-content: flex-end }
-    .flex-jc-end { justify-content: flex-end }
-    .flex-jc-center { justify-content: center }
-    .flex-jc-mid { justify-content: center }
-    .flex-jc-sa { justify-content: space-around }
-    .flex-jc-space-around { justify-content: space-around }
-    .flex-jc-sb { justify-content: space-between }
-    .flex-jc-space-between { justify-content: space-between }
-
-    .flex-justifycontent-fs { justify-content: flex-start }
-    .flex-justifycontent-start { justify-content: flex-start }
-    .flex-justifycontent-fe { justify-content: flex-end }
-    .flex-justifycontent-end { justify-content: flex-end }
-    .flex-justifycontent-center { justify-content: center }
-    .flex-justifycontent-mid { justify-content: center }
-    .flex-justifycontent-sa { justify-content: space-around }
-    .flex-justifycontent-space-around { justify-content: space-around }
-    .flex-justifycontent-sb { justify-content: space-between }
-    .flex-justifycontent-space-between { justify-content: space-between }
-
-    .flex-justify-content-fs { justify-content: flex-start }
-    .flex-justify-content-start { justify-content: flex-start }
-    .flex-justify-content-fe { justify-content: flex-end }
-    .flex-justify-content-end { justify-content: flex-end }
-    .flex-justify-content-center { justify-content: center }
-    .flex-justify-content-mid { justify-content: center }
-    .flex-justify-content-sa { justify-content: space-around }
-    .flex-justify-content-space-around { justify-content: space-around }
-    .flex-justify-content-sb { justify-content: space-between }
+    /************ justify-content ************/
+    .flex-justify-content-fs            { justify-content: flex-start    }
+    .flex-justify-content-start         { justify-content: flex-start    }
+    .flex-justify-content-fe            { justify-content: flex-end      }
+    .flex-justify-content-end           { justify-content: flex-end      }
+    .flex-justify-content-center        { justify-content: center        }
+    .flex-justify-content-mid           { justify-content: center        }
+    .flex-justify-content-sa            { justify-content: space-around  }
+    .flex-justify-content-space-around  { justify-content: space-around  }
+    .flex-justify-content-around        { justify-content: space-around  }
+    .flex-justify-content-sb            { justify-content: space-between }
     .flex-justify-content-space-between { justify-content: space-between }
+    .flex-justify-content-between       { justify-content: space-between }
 
-    .flex-start { justify-content: flex-start }
-    .flex-end { justify-content: flex-end }
-    .flex-center { justify-content: center }
-    .space-around { justify-content: space-around }
-    .space-between { justify-content: space-between }
+    .flex-jc-fs                         { justify-content: flex-start    }
+    .flex-jc-start                      { justify-content: flex-start    }
+    .flex-jc-fe                         { justify-content: flex-end      }
+    .flex-jc-end                        { justify-content: flex-end      }
+    .flex-jc-center                     { justify-content: center        }
+    .flex-jc-mid                        { justify-content: center        }
+    .flex-jc-sa                         { justify-content: space-around  }
+    .flex-jc-space-around               { justify-content: space-around  }
+    .flex-jc-around                     { justify-content: space-around  }
+    .flex-jc-sb                         { justify-content: space-between }
+    .flex-jc-space-between              { justify-content: space-between }
+    .flex-jc-between                    { justify-content: space-between }
 
-    .flex.start { justify-content: flex-start }
-    .flex.end { justify-content: flex-end }
-    .flex.center { justify-content: center }
+    .flex-justifycontent-fs             { justify-content: flex-start    }
+    .flex-justifycontent-start          { justify-content: flex-start    }
+    .flex-justifycontent-fe             { justify-content: flex-end      }
+    .flex-justifycontent-end            { justify-content: flex-end      }
+    .flex-justifycontent-center         { justify-content: center        }
+    .flex-justifycontent-mid            { justify-content: center        }
+    .flex-justifycontent-sa             { justify-content: space-around  }
+    .flex-justifycontent-space-around   { justify-content: space-around  }
+    .flex-justifycontent-around         { justify-content: space-around  }
+    .flex-justifycontent-sb             { justify-content: space-between }
+    .flex-justifycontent-space-between  { justify-content: space-between }
+    .flex-justifycontent-between        { justify-content: space-between }
 
-    /* flex :: align-items */
-    .flex-ai-center { align-items: center }
-    .flex-ai-fe { align-items: flex-end }
-    .flex-ai-flexend { align-items: flex-end }
-    .flex-ai-end { align-items: flex-end }
-    .flex-ai-fs { align-items: flex-start }
-    .flex-ai-flexstart { align-items: flex-start }
-    .flex-ai-start { align-items: flex-start }
+    .flex-start                         { justify-content: flex-start    }
+    .flex-end                           { justify-content: flex-end      }
+    .flex-center                        { justify-content: center        }
+    .flex-space-around                  { justify-content: space-around  }
+    .flex-space-between                 { justify-content: space-between }
 
-    .flex-alignitems-center { align-items: center }
-    .flex-alignitems-fe { align-items: flex-end }
-    .flex-alignitems-flexend { align-items: flex-end }
-    .flex-alignitems-end { align-items: flex-end }
-    .flex-alignitems-fs { align-items: flex-start }
-    .flex-alignitems-flexstart { align-items: flex-start }
-    .flex-alignitems-start { align-items: flex-start }
+    .flex.start                         { justify-content: flex-start    }
+    .flex.end                           { justify-content: flex-end      }
+    .flex.center                        { justify-content: center        }
+    .flex.space-around                  { justify-content: space-around  }
+    .flex.space-between                 { justify-content: space-between }
 
-    .flex-align-items-center { align-items: center }
-    .flex-align-items-fe { align-items: flex-end }
-    .flex-align-items-flexend { align-items: flex-end }
-    .flex-align-items-end { align-items: flex-end }
-    .flex-align-items-fs { align-items: flex-start }
+    /************ flex :: align-items ************/
+    .flex-ai-center             { align-items: center     }
+    .flex-ai-fe                 { align-items: flex-end   }
+    .flex-ai-flexend            { align-items: flex-end   }
+    .flex-ai-end                { align-items: flex-end   }
+    .flex-ai-fs                 { align-items: flex-start }
+    .flex-ai-flexstart          { align-items: flex-start }
+    .flex-ai-start              { align-items: flex-start }
+
+    .flex-alignitems-center     { align-items: center     }
+    .flex-alignitems-fe         { align-items: flex-end   }
+    .flex-alignitems-flexend    { align-items: flex-end   }
+    .flex-alignitems-end        { align-items: flex-end   }
+    .flex-alignitems-fs         { align-items: flex-start }
+    .flex-alignitems-flexstart  { align-items: flex-start }
+    .flex-alignitems-start      { align-items: flex-start }
+
+    .flex-align-items-center    { align-items: center     }
+    .flex-align-items-fe        { align-items: flex-end   }
+    .flex-align-items-flexend   { align-items: flex-end   }
+    .flex-align-items-end       { align-items: flex-end   }
+    .flex-align-items-fs        { align-items: flex-start }
     .flex-align-items-flexstart { align-items: flex-start }
-    .flex-align-items-start { align-items: flex-start }
+    .flex-align-items-start     { align-items: flex-start }
 
-    /* flex :: align-self */
-    .flex-as-center { align-self: center }
-    .flex-as-cen { align-self: center }
-    .flex-as-cnt { align-self: center }
-    .flex-as-fs { align-self: flex-start }
-    .flex-as-fstart { align-self: flex-start }
-    .flex-as-start { align-self: flex-start }
-    .flex-as-fe { align-self: flex-end }
-    .flex-as-fend { align-self: flex-end }
-    .flex-as-end { align-self: flex-end }
-    .flex-as-stretch { align-self: stretch }
+    /************ flex :: align-self ************/
+    .flex-as-center          { align-self: center     }
+    .flex-as-cen             { align-self: center     }
+    .flex-as-cnt             { align-self: center     }
+    .flex-as-fs              { align-self: flex-start }
+    .flex-as-fstart          { align-self: flex-start }
+    .flex-as-start           { align-self: flex-start }
+    .flex-as-fe              { align-self: flex-end   }
+    .flex-as-fend            { align-self: flex-end   }
+    .flex-as-end             { align-self: flex-end   }
+    .flex-as-stretch         { align-self: stretch    }
 
-    .flex-alignself-center { align-self: center }
-    .flex-alignself-cen { align-self: center }
-    .flex-alignself-cnt { align-self: center }
-    .flex-alignself-fs { align-self: flex-start }
-    .flex-alignself-fstart { align-self: flex-start }
-    .flex-alignself-start { align-self: flex-start }
-    .flex-alignself-fe { align-self: flex-end }
-    .flex-alignself-fend { align-self: flex-end }
-    .flex-alignself-end { align-self: flex-end }
-    .flex-alignself-stretch { align-self: stretch }
+    .flex-alignself-center   { align-self: center     }
+    .flex-alignself-cen      { align-self: center     }
+    .flex-alignself-cnt      { align-self: center     }
+    .flex-alignself-fs       { align-self: flex-start }
+    .flex-alignself-fstart   { align-self: flex-start }
+    .flex-alignself-start    { align-self: flex-start }
+    .flex-alignself-fe       { align-self: flex-end   }
+    .flex-alignself-fend     { align-self: flex-end   }
+    .flex-alignself-end      { align-self: flex-end   }
+    .flex-alignself-stretch  { align-self: stretch    }
 
-    .flex-align-self-center { align-self: center }
-    .flex-align-self-cen { align-self: center }
-    .flex-align-self-cnt { align-self: center }
-    .flex-align-self-fs { align-self: flex-start }
-    .flex-align-self-fstart { align-self: flex-start }
-    .flex-align-self-start { align-self: flex-start }
-    .flex-align-self-fe { align-self: flex-end }
-    .flex-align-self-fend { align-self: flex-end }
-    .flex-align-self-end { align-self: flex-end }
-    .flex-align-self-stretch { align-self: stretch }
+    .flex-align-self-center  { align-self: center     }
+    .flex-align-self-cen     { align-self: center     }
+    .flex-align-self-cnt     { align-self: center     }
+    .flex-align-self-fs      { align-self: flex-start }
+    .flex-align-self-fstart  { align-self: flex-start }
+    .flex-align-self-start   { align-self: flex-start }
+    .flex-align-self-fe      { align-self: flex-end   }
+    .flex-align-self-fend    { align-self: flex-end   }
+    .flex-align-self-end     { align-self: flex-end   }
+    .flex-align-self-stretch { align-self: stretch    }
 
-    /* flex :: flex-direction */
+    /************ flex :: flex-direction ************/
     .flex-direction-column { flex-direction: column }
-    .flex-direction-col { flex-direction: column }
-    .flex-direction-row { flex-direction: row }
+    .flex-direction-col    { flex-direction: column }
+    .flex-direction-row    { flex-direction: row    }
 
-    .flex-dir-column { flex-direction: column }
-    .flex-dir-col { flex-direction: column }
-    .flex-dir-row { flex-direction: row }
+    .flex-dir-column       { flex-direction: column }
+    .flex-dir-col          { flex-direction: column }
+    .flex-dir-row          { flex-direction: row    }
 
-    .flex-row { flex-direction: row }
-    .flex-col { flex-direction: column }
-    .flex-column { flex-direction: column }
+    .flex-row              { flex-direction: row    }
+    .flex-col              { flex-direction: column }
+    .flex-column           { flex-direction: column }
 
-    .flex.row { flex-direction: row }
-    .flex.col { flex-direction: column }
+    .flex.row              { flex-direction: row    }
+    .flex.col              { flex-direction: column }
+    .flex.column           { flex-direction: column }
 
     /**************************************** VERTICAL-ALIGN *****************************************/
     .va-middle { vertical-align: middle }
     .va-bottom { vertical-align: bottom }
-    .va-top { vertical-align: top }
+    .va-top    { vertical-align: top    }
 
     /***************************************** STYLE GROUPS ******************************************/
     /** Faint bottom border */
