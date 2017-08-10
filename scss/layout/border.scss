@@ -238,7 +238,7 @@
     .bts-outset-nl:no(:last-child) { border-top-style: outset }
 
     /*** Border bottom color: light gray ***/
-    .border-bottom-color { border-bottom-color: lightgray }
+    .border-bottom-color-lightgray { border-bottom-color: lightgray }
 
     /* Border Left */
     .bl-5 {
@@ -255,30 +255,64 @@
 
     /****************************************** BORDER COLOR ******************************************/
     .bc-black { border-color: black }
+    .bc-gray { border-color: $gray }
     .bc-faint-gray { border-color: $faintGray }
     .bc-light-gray { border-color: $lightGray }
     .bc-white { border-color: $white }
+    .bc-mid-purple { border-color: $midPurple }
+    .bc-cyan { border-color: $cyan }
+    .bc-mid-green { border-color: $midGreen }
+    .bc-blue { border-color: $blue }
+    .bc-yellow { border-color: $yellow }
     .bc-red { border-color: $red }
 
     .brc-black { border-right-color: black }
+    .brc-gray { border-right-color: $gray }
     .brc-faint-gray { border-right-color: $faintGray }
     .brc-light-gray { border-right-color: $lightGray }
     .brc-white { border-right-color: $white }
+    .brc-mid-purple { border-right-color: $midPurple }
+    .brc-cyan { border-right-color: $cyan }
+    .brc-mid-green { border-right-color: $midGreen }
+    .brc-blue { border-right-color: $blue }
+    .brc-yellow { border-right-color: $yellow }
+    .brc-red { border-right-color: $red }
 
     .blc-black { border-left-color: black }
+    .blc-gray { border-left-color: $gray }
     .blc-faint-gray { border-left-color: $faintGray }
     .blc-light-gray { border-left-color: $lightGray }
     .blc-white { border-left-color: $white }
+    .blc-mid-purple { border-left-color: $midPurple }
+    .blc-cyan { border-left-color: $cyan }
+    .blc-mid-green { border-left-color: $midGreen }
+    .blc-blue { border-left-color: $blue }
+    .blc-yellow { border-left-color: $yellow }
+    .blc-red { border-left-color: $red }
 
     .btc-black { border-top-color: black }
+    .btc-gray { border-top-color: $gray }
     .btc-faint-gray { border-top-color: $faintGray }
     .btc-light-gray { border-top-color: $lightGray }
     .btc-white { border-top-color: $white }
+    .btc-mid-purple { border-top-color: $midPurple }
+    .btc-cyan { border-top-color: $cyan }
+    .btc-mid-green { border-top-color: $midGreen }
+    .btc-blue { border-top-color: $blue }
+    .btc-yellow { border-top-color: $yellow }
+    .btc-red { border-top-color: $red }
 
     .bbc-black { border-bottom-color: black }
+    .bbc-gray { border-bottom-color: $gray }
     .bbc-faint-gray { border-bottom-color: $faintGray }
     .bbc-light-gray { border-bottom-color: $lightGray }
     .bbc-white { border-bottom-color: $white }
+    .bbc-mid-purple { border-bottom-color: $midPurple }
+    .bbc-cyan { border-bottom-color: $cyan }
+    .bbc-mid-green { border-bottom-color: $midGreen }
+    .bbc-blue { border-bottom-color: $blue }
+    .bbc-yellow { border-bottom-color: $yellow }
+    .bbc-red { border-bottom-color: $red }
 
     /***************************************** BOX SHADOW *****************************************/
     .box-shadow-none { box-shadow: none }
