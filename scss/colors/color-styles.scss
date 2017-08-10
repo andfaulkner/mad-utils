@@ -1,7 +1,7 @@
 @import './colors.scss';
 
 :global {
-    /****************************************** COLOR STYLES ******************************************/
+    /**************************************** COLOR STYLES ****************************************/
     /*********** TRANSPARENT **********/
     .transparent { color: $transparent }
     .bg-transparent { background-color: $transparent }
@@ -13,11 +13,13 @@
     .bg-white-hover:hover { background-color: $white }
     .bg-white-active:active { background-color: $white }
 
+    // #fbfbfb
     .faintest-gray { color: $faintestGray }
     .bg-faintest-gray { background-color: $faintestGray }
     .bg-faintest-gray-hover:hover { background-color: $faintestGray }
     .bg-faintest-gray-active:active { background-color: $faintestGray }
 
+    // #f2f2f2
     .fainter-gray { color: $fainterGray }
     .bg-fainter-gray { background-color: $fainterGray }
     .bg-fainter-gray-hover:hover { background-color: $fainterGray }
@@ -28,6 +30,7 @@
     .bg-faint-gray-hover:hover { background-color: $faintGray }
     .bg-faint-gray-active:active { background-color: $faintGray }
 
+    // #e7e7e7
     .lightest-gray { color: $lightestGray }
     .bg-lightest-gray { background-color: $lightestGray }
     .bg-lightest-gray-hover:hover { background-color: $lightestGray }
@@ -38,6 +41,7 @@
     .bg-lighter-gray-hover:hover { background-color: $lighterGray }
     .bg-lighter-gray-active:active { background-color: $lighterGray }
 
+    // #c7c7c7
     .lighterish-gray { color: $lighterishGray }
     .bg-lighterish-gray { background-color: $lighterishGray }
     .bg-lighterish-gray-hover:hover { background-color: $lighterishGray }
@@ -48,17 +52,20 @@
     .bg-light-gray-hover:hover { background-color: $lightGray }
     .bg-light-gray-active:active { background-color: $lightGray }
 
+    // #979797
     .nearer-light-gray { color: $nearerLightGray }
     .bg-nearer-light-gray { background-color: $nearerLightGray }
     .bg-nearer-light-gray-hover:hover { background-color: $nearerLightGray }
     .bg-nearer-light-gray-active:active { background-color: $nearerLightGray }
     .border-nearer-light-gray { border-color: $nearerLightGray }
 
+    // #919191
     .near-light-gray { color: $nearLightGray }
     .bg-near-light-gray { background-color: $nearLightGray }
     .bg-near-light-gray-hover:hover { background-color: $nearLightGray }
     .bg-near-light-gray-active:active { background-color: $nearLightGray }
 
+    // #777777
     .mid-light-gray { color: $midLightGray }
     .bg-mid-light-gray { background-color: $midLightGray }
     .bg-mid-light-gray-hover:hover { background-color: $midLightGray }
@@ -96,16 +103,19 @@
     .bg-mid-dark-gray-hover:hover { background-color: $midDarkGray }
     .bg-mid-dark-gray-active:active { background-color: $midDarkGray }
 
+    // #333
     .dark-gray { color: $darkGray }
     .bg-dark-gray { background-color: $darkGray }
     .bg-dark-gray-hover:hover { background-color: $darkGray }
     .bg-dark-gray-active:active { background-color: $darkGray }
 
+    // #262626
     .darker-gray { color: $darkerGray }
     .bg-darker-gray { background-color: $darkerGray }
     .bg-darker-gray-hover:hover { background-color: $darkerGray }
     .bg-darker-gray-active:active { background-color: $darkerGray }
 
+    // #111
     .ultra-dark-gray { color: $ultraDarkGray }
     .bg-ultra-dark-gray { background-color: $ultraDarkGray }
     .bg-ultra-dark-gray-hover:hover { background-color: $ultraDarkGray }
