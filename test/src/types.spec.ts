@@ -112,6 +112,26 @@ describe(`types sub-modules`, function() {
             });
         });
 
+        describe(`isStringOrNumber function`, function() {
+            it(`returns true if given a number`, function() {
+                expect(typesIso.isStringOrNumber(5)).to.eql(true);
+            });
+            it(`returns true if given a string`, function() {
+                expect(typesIso.isStringOrNumber('Some string')).to.eql(true);
+            });
+            it(`returns true if given anything that isn't either a string of a number`, function() {
+                expect(typesIso.isStringOrNumber({})).to.eql(false);
+                expect(typesIso.isStringOrNumber([])).to.eql(false);
+                expect(typesIso.isStringOrNumber(null)).to.eql(false);
+                expect(typesIso.isStringOrNumber(undefined)).to.eql(false);
+                expect(typesIso.isStringOrNumber(NaN)).to.eql(false);
+                expect(typesIso.isStringOrNumber(Array)).to.eql(false);
+                expect(typesIso.isStringOrNumber(String)).to.eql(false);
+                expect(typesIso.isStringOrNumber(['asdf', 'rbrt'])).to.eql(false);
+                expect(typesIso.isStringOrNumber(Object)).to.eql(false);
+            });
+        });
+
         describe(`isIntegerLike function`, function() {
             expectFunctionExists(typesIso.isNumberLike);
             it(`returns true given an integer`, function() {

@@ -143,6 +143,12 @@ export const isIntegerLike = (val: RealAny): boolean => {
     return !matches(/\./g)(val) || vStr.endsWith('.');
 };
 
+/**
+ * True if val is a string or a number.
+ * @param {any} val - Item to test.
+ * @return {boolean} true if tested item is a string or a number.
+ */
+export const isStringOrNumber = (val: RealAny): boolean => typeof val === 'string' || isNumberLike(val);
 
 /**
  * @alias for isInteger

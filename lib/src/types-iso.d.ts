@@ -94,6 +94,12 @@ export declare const isInteger: (val: any) => boolean;
  */
 export declare const isIntegerLike: (val: any) => boolean;
 /**
+ * True if val is a string or a number.
+ * @param {any} val - Item to test.
+ * @return {boolean} true if tested item is a string or a number.
+ */
+export declare const isStringOrNumber: (val: any) => boolean;
+/**
  * @alias for isInteger
  */
 export declare const isInt: (val: any) => boolean;
