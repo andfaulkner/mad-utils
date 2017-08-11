@@ -99,9 +99,10 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
  * a 1-item array containing either aforementioned type.
  * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
  * @param {RealAny} val - item being tested for number-like nature.
- * @return {boolean} True if item is number-like, otherwise false.
+ * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
+ * @return {boolean} True if item is 'number-like', otherwise false.
  */
-export const isNumberLike = (val: RealAny): boolean => {
+export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
     if (typeof val === 'undefined' || val == null) return false;
     if (typeof val === 'number' && !isNaN(val)) return true;
     if (typeof val === 'string') {
@@ -111,8 +112,11 @@ export const isNumberLike = (val: RealAny): boolean => {
         cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
         return !isNaN(parseInt(cleanVal, 10));
     }
+    // Avoid checking nested arrays for numbers to prevent e.g. [[[[[2]]]]] from returning true.
+    // Also allows explicitly blocking single-item arrays with just 1 number ([5]) being true.
+    if (!allowArrayWith1Num) return false;
     if (isArray(val) && val.length === 1) {
-        return isNumberLike(val[0]);
+        return isNumberLike(val[0], false);
     }
     return false;
 };
@@ -268,7 +272,7 @@ export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs
  */
 export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error | never => {
     if (typeof numLike === 'number') return numLike;
-    if (isNumberLike(numLike)) return parseFloat(numLike as string);
+    if (isNumberLike(numLike, true)) return parseFloat(numLike as string);
 
     const baseErrMsg = 'castToNum can only accept numbers, #s in string form e.g. "1", or 1-item' +
                        ` arrays containing either type. Invalid value: ${numLike}`;

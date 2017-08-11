@@ -74,13 +74,14 @@ export declare const isNonexistentOrString: (val: any) => boolean;
  * a 1-item array containing either aforementioned type.
  * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
  * @param {RealAny} val - item being tested for number-like nature.
- * @return {boolean} True if item is number-like, otherwise false.
+ * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
+ * @return {boolean} True if item is 'number-like', otherwise false.
  */
-export declare const isNumberLike: (val: any) => boolean;
+export declare const isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
 /**
  * @alias isNumberLike
  */
-export declare const isNumLike: (val: any) => boolean;
+export declare const isNumLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
 /**
  * Returns true if given value is an integer (does not include num-like strings).
  * @param {any} val - value to check type of.
