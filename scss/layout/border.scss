@@ -255,7 +255,17 @@
 
     /****************************************** BORDER COLOR ******************************************/
     .bc-black { border-color: black }
-    .bc-gray { border-color: $gray }
+    .bc-faintest-gray { border-color: $faintestGray }
+    .bc-fainter-gray { border-color: $fainterGray }
+    .bc-faint-gray { border-color: $faintGray }
+    .bc-lightest-gray { border-color: $lightestGray }
+    .bc-lighter-gray { border-color: $lighterGray }
+    .bc-lighterish-gray { border-color: $lighterishGray }
+    .bc-light-gray { border-color: $lightGray }
+    .bc-dim-gray { border-color: $dimGray }
+    .bc-upper-light-gray { border-color: $upperLightGray }
+    .bc-light-mid-gray { border-color: $lightMidGray }
+    .bc-gray { border-right-color: $gray }
     .bc-faint-gray { border-color: $faintGray }
     .bc-light-gray { border-color: $lightGray }
     .bc-white { border-color: $white }
@@ -267,6 +277,16 @@
     .bc-red { border-color: $red }
 
     .brc-black { border-right-color: black }
+    .brc-faintest-gray { border-right-color: $faintestGray }
+    .brc-fainter-gray { border-right-color: $fainterGray }
+    .brc-faint-gray { border-right-color: $faintGray }
+    .brc-lightest-gray { border-right-color: $lightestGray }
+    .brc-lighter-gray { border-right-color: $lighterGray }
+    .brc-lighterish-gray { border-right-color: $lighterishGray }
+    .brc-light-gray { border-right-color: $lightGray }
+    .brc-dim-gray { border-right-color: $dimGray }
+    .brc-upper-light-gray { border-right-color: $upperLightGray }
+    .brc-light-mid-gray { border-right-color: $lightMidGray }
     .brc-gray { border-right-color: $gray }
     .brc-faint-gray { border-right-color: $faintGray }
     .brc-light-gray { border-right-color: $lightGray }
@@ -279,6 +299,16 @@
     .brc-red { border-right-color: $red }
 
     .blc-black { border-left-color: black }
+    .blc-faintest-gray { border-left-color: $faintestGray }
+    .blc-fainter-gray { border-left-color: $fainterGray }
+    .blc-faint-gray { border-left-color: $faintGray }
+    .blc-lightest-gray { border-left-color: $lightestGray }
+    .blc-lighter-gray { border-left-color: $lighterGray }
+    .blc-lighterish-gray { border-left-color: $lighterishGray }
+    .blc-light-gray { border-left-color: $lightGray }
+    .blc-dim-gray { border-left-color: $dimGray }
+    .blc-upper-light-gray { border-left-color: $upperLightGray }
+    .blc-light-mid-gray { border-left-color: $lightMidGray }
     .blc-gray { border-left-color: $gray }
     .blc-faint-gray { border-left-color: $faintGray }
     .blc-light-gray { border-left-color: $lightGray }
@@ -291,6 +321,16 @@
     .blc-red { border-left-color: $red }
 
     .btc-black { border-top-color: black }
+    .btc-faintest-gray { border-top-color: $faintestGray }
+    .btc-fainter-gray { border-top-color: $fainterGray }
+    .btc-faint-gray { border-top-color: $faintGray }
+    .btc-lightest-gray { border-top-color: $lightestGray }
+    .btc-lighter-gray { border-top-color: $lighterGray }
+    .btc-lighterish-gray { border-top-color: $lighterishGray }
+    .btc-light-gray { border-top-color: $lightGray }
+    .btc-dim-gray { border-top-color: $dimGray }
+    .btc-upper-light-gray { border-top-color: $upperLightGray }
+    .btc-light-mid-gray { border-top-color: $lightMidGray }
     .btc-gray { border-top-color: $gray }
     .btc-faint-gray { border-top-color: $faintGray }
     .btc-light-gray { border-top-color: $lightGray }
@@ -303,6 +343,18 @@
     .btc-red { border-top-color: $red }
 
     .bbc-black { border-bottom-color: black }
+
+    .bbc-light-gray { border-bottom-color: $lightGray }
+    .bbc-faintest-gray { border-bottom-color: $faintestGray }
+    .bbc-fainter-gray { border-bottom-color: $fainterGray }
+    .bbc-faint-gray { border-bottom-color: $faintGray }
+    .bbc-lightest-gray { border-bottom-color: $lightestGray }
+    .bbc-lighter-gray { border-bottom-color: $lighterGray }
+    .bbc-lighterish-gray { border-bottom-color: $lighterishGray }
+    .bbc-light-gray { border-bottom-color: $lightGray }
+    .bbc-dim-gray { border-bottom-color: $dimGray }
+    .bbc-upper-light-gray { border-bottom-color: $upperLightGray }
+    .bbc-light-mid-gray { border-bottom-color: $lightMidGray }
     .bbc-gray { border-bottom-color: $gray }
     .bbc-faint-gray { border-bottom-color: $faintGray }
     .bbc-light-gray { border-bottom-color: $lightGray }
