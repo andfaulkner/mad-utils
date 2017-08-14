@@ -22,14 +22,26 @@ describe(`React module`, function() {
 
     describe(`IfTruthy`, function() {
         let wrappedTruthy: ShallowWrapper<any, any>;
-        let wrappedFalsy: ShallowWrapper<any, any>;
         before(function() {
             wrappedTruthy = shallow(<IfTruthy test={true}><div>Child</div></IfTruthy>);
-            wrappedFalsy = shallow(<IfTruthy test={false}><div>Child</div></IfTruthy>);
         });
         it(`Renders children if value given to prop 'test' is truthy`, function() {
-            console.log('----- wrappedTruthy:::::');
-            console.log(wrappedTruthy);
+            console.log('----- wrappedTruthy:::::', wrappedTruthy);
+            console.log('wrappedTruthy props:', wrappedTruthy.props);
+            // TODO this is not a working test - just an experiment to try out Enzyme with the
+            //      new React component utilities. Set this up to actually work.
+            expect(true).to.equal(true);
+        });
+    });
+
+    describe(`IfFalsy`, function() {
+        let wrappedFalsy: ShallowWrapper<any, any>;
+        before(function() {
+            wrappedFalsy = shallow(<IfFalsy test={false}><div>Child</div></IfFalsy>);
+        });
+        it(`Renders children if value given to prop 'test' is truthy`, function() {
+            console.log('----- wrappedFalsy:::::', wrappedFalsy);
+            console.log('wrappedFalsy props:', wrappedFalsy.props);
             // TODO this is not a working test - just an experiment to try out Enzyme with the
             //      new React component utilities. Set this up to actually work.
             expect(true).to.equal(true);
