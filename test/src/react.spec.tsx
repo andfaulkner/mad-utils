@@ -15,7 +15,7 @@ import { IfTruthy, IfFalsy, buildNamedSfc, RouterProps, InputChangeType,
          buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC } from '../../react';
 
 /********************************************* TESTS **********************************************/
-describe.only(`React module`, function() {
+describe(`React module`, function() {
     expectFunctionExists(IfTruthy, 'IfTruthy', '(React utility component)');
     expectFunctionExists(IfFalsy, 'IfFalsy', '(React utility component)');
     expectFunctionExists(buildNamedSfc, 'buildNamedSfc', '(React utility component)');
@@ -37,7 +37,7 @@ describe.only(`React module`, function() {
                 expect(wrappedTruthyTrue.children().length).to.equal(1);
                 expect(wrappedTruthyTrue.children().getNode()).to.equal('true child');
             });
-            it(`Does not render children if value given to prop test is not truthy`, function() {
+            it(`Does not render children if value given to prop 'test' is not truthy`, function() {
                 expect(wrappedTruthyFalse.children().length).to.eql(0);
                 expect(wrappedTruthyFalse.props().children).to.be.undefined;
             });
@@ -52,12 +52,10 @@ describe.only(`React module`, function() {
                 wrappedFalsyFalse = shallow(<IfFalsy test={false}>{trueElement}</IfFalsy>);
             });
             it(`Renders children if value given to prop 'test' is falsy`, function() {
-                // TODO this is not a working test - just an experiment to try out Enzyme with the
-                //      new React component utilities. Set this up to actually work.
                 expect(wrappedFalsyFalse.children().length).to.equal(1);
                 expect(wrappedFalsyFalse.children().getNode()).to.equal('true child');
             });
-            it(`Does not render children if value given to prop test is not falsy`, function() {
+            it(`Does not render children if value given to prop 'test' is not falsy`, function() {
                 expect(wrappedFalsyTrue.children().length).to.eql(0);
                 expect(wrappedFalsyTrue.props().children).to.be.undefined;
             });
