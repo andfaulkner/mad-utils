@@ -15,36 +15,52 @@ import { IfTruthy, IfFalsy, buildNamedSfc, RouterProps, InputChangeType,
          buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC } from '../../react';
 
 /********************************************* TESTS **********************************************/
-describe(`React module`, function() {
+describe.only(`React module`, function() {
     expectFunctionExists(IfTruthy, 'IfTruthy', '(React utility component)');
     expectFunctionExists(IfFalsy, 'IfFalsy', '(React utility component)');
     expectFunctionExists(buildNamedSfc, 'buildNamedSfc', '(React utility component)');
 
-    describe(`IfTruthy`, function() {
-        let wrappedTruthy: ShallowWrapper<any, any>;
-        before(function() {
-            wrappedTruthy = shallow(<IfTruthy test={true}><div>Child</div></IfTruthy>);
-        });
-        it(`Renders children if value given to prop 'test' is truthy`, function() {
-            console.log('----- wrappedTruthy:::::', wrappedTruthy);
-            console.log('wrappedTruthy props:', wrappedTruthy.props);
-            // TODO this is not a working test - just an experiment to try out Enzyme with the
-            //      new React component utilities. Set this up to actually work.
-            expect(true).to.equal(true);
-        });
-    });
+    describe(`IfTruthy, IfFalsy`, function() {
+        let trueElement: JSX.Element = <div>true child</div>;
+        let falseElement: JSX.Element = <div>false child</div>;
 
-    describe(`IfFalsy`, function() {
-        let wrappedFalsy: ShallowWrapper<any, any>;
-        before(function() {
-            wrappedFalsy = shallow(<IfFalsy test={false}><div>Child</div></IfFalsy>);
+        describe(`IfTruthy`, function() {
+            let wrappedTruthyTrue: ShallowWrapper<any, any>;
+            let wrappedTruthyFalse: ShallowWrapper<any, any>;
+
+            before(function() {
+                wrappedTruthyTrue = shallow(<IfTruthy test={true}>{trueElement}</IfTruthy>);
+                wrappedTruthyFalse = shallow(<IfTruthy test={false}>{falseElement}</IfTruthy>);
+            });
+
+            it(`Renders children if value given to prop 'test' is truthy`, function() {
+                expect(wrappedTruthyTrue.children().length).to.equal(1);
+                expect(wrappedTruthyTrue.children().getNode()).to.equal('true child');
+            });
+            it(`Does not render children if value given to prop test is not truthy`, function() {
+                expect(wrappedTruthyFalse.children().length).to.eql(0);
+                expect(wrappedTruthyFalse.props().children).to.be.undefined;
+            });
         });
-        it(`Renders children if value given to prop 'test' is truthy`, function() {
-            console.log('----- wrappedFalsy:::::', wrappedFalsy);
-            console.log('wrappedFalsy props:', wrappedFalsy.props);
-            // TODO this is not a working test - just an experiment to try out Enzyme with the
-            //      new React component utilities. Set this up to actually work.
-            expect(true).to.equal(true);
+
+        describe(`IfFalsy`, function() {
+            let wrappedFalsyTrue: ShallowWrapper<any, any>;
+            let wrappedFalsyFalse: ShallowWrapper<any, any>;
+
+            before(function() {
+                wrappedFalsyTrue = shallow(<IfFalsy test={true}>{falseElement}</IfFalsy>);
+                wrappedFalsyFalse = shallow(<IfFalsy test={false}>{trueElement}</IfFalsy>);
+            });
+            it(`Renders children if value given to prop 'test' is falsy`, function() {
+                // TODO this is not a working test - just an experiment to try out Enzyme with the
+                //      new React component utilities. Set this up to actually work.
+                expect(wrappedFalsyFalse.children().length).to.equal(1);
+                expect(wrappedFalsyFalse.children().getNode()).to.equal('true child');
+            });
+            it(`Does not render children if value given to prop test is not falsy`, function() {
+                expect(wrappedFalsyTrue.children().length).to.eql(0);
+                expect(wrappedFalsyTrue.props().children).to.be.undefined;
+            });
         });
     });
 });
