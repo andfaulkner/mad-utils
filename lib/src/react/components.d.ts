@@ -22,3 +22,17 @@ export declare const IfFalsy: (props: {
     test: any;
     children?: any;
 }) => React.ReactElement<any>;
+/**************************************** TYPE DEFINITIONS ****************************************/
+/********************************************* EXPORT *********************************************/
+export declare const Default: (props: {
+    children?: any;
+}) => JSX.Element;
+export declare const Case: (props: {
+    val: any;
+    children?: any;
+}) => JSX.Element;
+declare const Switch: React.StatelessComponent<{
+    children?: any;
+    test: any;
+}>;
+export { Switch };
