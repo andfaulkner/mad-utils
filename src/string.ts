@@ -83,8 +83,11 @@ export const cap1LowerRest = (str: string): string => str.charAt(0).toUpperCase(
 
 /**
  * Capitalize the first letter of a string.
+ * If given a null value, returns ''.
  */
-export const capitalize = (str: string): string => str.charAt(0).toUpperCase() + str.slice(1);
+export const capitalize = (str: string): string => {
+    return !str ? '' : str.charAt(0).toUpperCase() + str.slice(1);
+};
 
 /**
  * Replace all matching strings in a text segment with a given replacement string. Can also match
