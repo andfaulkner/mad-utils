@@ -47,6 +47,10 @@ describe(`string sub-module`, function() {
         expect(m_.str.capitalize('THE QUICK BROWN FOX')).to.eql('THE QUICK BROWN FOX');
     });
 
+    it('.capitalize -- returns \'\' if given \'\'', function() {
+        expect(capitalize('')).to.eql('');
+    });
+
     expectFunctionExists(cap1LowerRest);
     it('.cap1LowerRest -- capitalizes 1st char of given string, turns rest to lowercase', function() {
         expect(m_.string.cap1LowerRest('asdf')).to.eql('Asdf');

@@ -5,6 +5,7 @@
 export declare const cap1LowerRest: (str: string) => string;
 /**
  * Capitalize the first letter of a string.
+ * If given a null value, returns ''.
  */
 export declare const capitalize: (str: string) => string;
 /**
