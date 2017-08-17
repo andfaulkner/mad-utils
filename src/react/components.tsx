@@ -131,6 +131,4 @@ const SwitchRaw = ({ children, test }: { children?: any, test: any }): JSX.Eleme
             : returnData);
 };
 
-const Switch = setDisplayName('Switch_(Conditional)', SwitchRaw);
-
-export { Switch };
+export const Switch = setDisplayName('Switch_(Conditional)', SwitchRaw);
