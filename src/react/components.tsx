@@ -50,7 +50,13 @@ export const DefaultRaw = Object.assign(
 
 export const Default = setDisplayName('Default_(Conditional)', DefaultRaw);
 
-
+/**
+ * Render as a child of a <Switch test={someValue} /> component.
+ * If the content of the val prop matches the test prop of the parent <Switch>, render this
+ * component's children, and stop testing the <Switch> component's children for a match.
+ * @param {any} val Value to match against the content of the test prop of the parent <Switch>
+ * @return {null|JSX.Element} children if Switch.test & val props match...otherwise null.
+ */
 export const CaseRaw = Object.assign(
     (props: { children?: any, val: any }) => props.children,
     { __IS_CASE_CONDITION__: true }
