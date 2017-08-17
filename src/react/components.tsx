@@ -45,7 +45,7 @@ export const IfFalsy = (props: { test: RealAny, children?: any }): React.ReactEl
  * of the current parent (<Switch>), render this component's children.
  * @return {null|JSX.Element} children if no Switch.test & Case.val props match...otherwise null.
  */
-export const DefaultRaw = Object.assign(
+const DefaultRaw = Object.assign(
     (props: { children?: any }) => props.children,
     { __IS_DEFAULT_CONDITION__: true }
 ) as (props: ({ children?: any })) => JSX.Element | null;
@@ -59,7 +59,7 @@ export const Default = setDisplayName('Default_(Conditional)', DefaultRaw);
  * @param {any} val Value to match against the content of the test prop of the parent <Switch>
  * @return {null|JSX.Element} children if Switch.test & val props match...otherwise null.
  */
-export const CaseRaw = Object.assign(
+const CaseRaw = Object.assign(
     (props: { children?: any, val: any }) => props.children,
     { __IS_CASE_CONDITION__: true }
 ) as (props: ({ val: any, children?: any })) => JSX.Element | null;
