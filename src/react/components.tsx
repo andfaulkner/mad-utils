@@ -4,8 +4,12 @@ import * as ReactDOM from 'react-dom';
 
 import { RealAny } from '../types-iso';
 
+/************************************** THIRD-PARTY MODULES ***************************************/
+import { setDisplayName } from './hocs';
+import { InjectionType } from '../types-iso';
 
-/******************************************** EXPORTS *********************************************/
+
+/*************************************** BASIC CONDITIONALS ***************************************/
 /**
  * Render the child if 'test' is truthy. Can only accept React components.
  * If given a string, wraps it in a span before returning it.
@@ -34,15 +38,8 @@ export const IfFalsy = (props: { test: RealAny, children?: any }): React.ReactEl
     return null;
 };
 
-/************************************** THIRD-PARTY MODULES ***************************************/
-import { setDisplayName } from './hocs';
-import { InjectionType } from '../types-iso';
 
-/**************************************** TYPE DEFINITIONS ****************************************/
-
-// TODO make this work with regexes.
-
-/********************************************* EXPORT *********************************************/
+/***************************** COMPONENT-BASED SWITCH-CASE STRUCTURE ******************************/
 /**
  * If no val props of any of the (sibling) <Case> components match the test prop
  * of the current parent (<Switch>), render this component's children.
@@ -108,7 +105,6 @@ export const Case = setDisplayName('Case_(Conditional)', CaseRaw);
 const SwitchRaw = ({ children, test }: { children?: any, test: any }): JSX.Element | null => {
     const switchErrMsg = `<Switch> components only allow <Case> & <Default> components as ` +
                          `direct children`;
-
     let renderOutput;
     let defaultContent;
     React.Children.forEach(children, (child, idx) => {
