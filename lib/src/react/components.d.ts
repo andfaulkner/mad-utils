@@ -22,29 +22,9 @@ export declare const IfFalsy: (props: {
     test: any;
     children?: any;
 }) => React.ReactElement<any>;
-/***************************** COMPONENT-BASED SWITCH-CASE STRUCTURE ******************************/
-/**
- * If no val props of any of the (sibling) <Case> components match the test prop
- * of the current parent (<Switch>), render this component's children.
- * @return {null|JSX.Element} children if no Switch.test & Case.val props match...otherwise null.
- */
-export declare const DefaultRaw: (props: {
-    children?: any;
-}) => JSX.Element;
 export declare const Default: React.StatelessComponent<{
     children?: any;
 }>;
-/**
- * Render as a child of a <Switch test={someValue} /> component.
- * If the content of the val prop matches the test prop of the parent <Switch>, render this
- * component's children, and stop testing the <Switch> component's children for a match.
- * @param {any} val Value to match against the content of the test prop of the parent <Switch>
- * @return {null|JSX.Element} children if Switch.test & val props match...otherwise null.
- */
-export declare const CaseRaw: (props: {
-    val: any;
-    children?: any;
-}) => JSX.Element;
 export declare const Case: React.StatelessComponent<{
     val: any;
     children?: any;
