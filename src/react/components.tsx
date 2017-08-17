@@ -43,6 +43,11 @@ import { InjectionType } from '../types-iso';
 // TODO make this work with regexes.
 
 /********************************************* EXPORT *********************************************/
+/**
+ * If no val props of any of the (sibling) <Case> components match the test prop
+ * of the current parent (<Switch>), render this component's children.
+ * @return {null|JSX.Element} children if no Switch.test & Case.val props match...otherwise null.
+ */
 export const DefaultRaw = Object.assign(
     (props: { children?: any }) => props.children,
     { __IS_DEFAULT_CONDITION__: true }
@@ -63,7 +68,6 @@ export const CaseRaw = Object.assign(
 ) as (props: ({ val: any, children?: any })) => JSX.Element | null;
 
 export const Case = setDisplayName('Case_(Conditional)', CaseRaw);
-
 
 /**
  * Renders the children of the first matching '<Case test={checkThis}>Content here</Case>' where
