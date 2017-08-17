@@ -43,19 +43,21 @@ import { InjectionType } from '../types-iso';
 // TODO make this work with regexes.
 
 /********************************************* EXPORT *********************************************/
-export const Default = Object.assign(
+export const DefaultRaw = Object.assign(
     (props: { children?: any }) => props.children,
     { __IS_DEFAULT_CONDITION__: true }
 ) as (props: ({ children?: any })) => JSX.Element | null;
 
+export const Default = setDisplayName('Default_(Conditional)', DefaultRaw);
 
-export const Case = Object.assign(
+
+export const CaseRaw = Object.assign(
     (props: { children?: any, val: any }) => props.children,
     { __IS_CASE_CONDITION__: true }
 ) as (props: ({ val: any, children?: any })) => JSX.Element | null;
 
-const switchErrMsg = `<Switch> components only allow <Case> & <Default> components ` +
-                     `as direct children`;
+export const Case = setDisplayName('Case_(Conditional)', CaseRaw);
+
 
 /**
  * Renders the children of the first matching '<Case test={checkThis}>Content here</Case>' where
@@ -94,6 +96,9 @@ const switchErrMsg = `<Switch> components only allow <Case> & <Default> componen
  *   - why the <span>? React can't just render text without an element around it.
  */
 const SwitchRaw = ({ children, test }: { children?: any, test: any }): JSX.Element | null => {
+    const switchErrMsg = `<Switch> components only allow <Case> & <Default> components as ` +
+                         `direct children`;
+
     let renderOutput;
     let defaultContent;
     React.Children.forEach(children, (child, idx) => {
@@ -120,6 +125,6 @@ const SwitchRaw = ({ children, test }: { children?: any, test: any }): JSX.Eleme
             : returnData);
 };
 
-const Switch = setDisplayName('Switch', SwitchRaw);
+const Switch = setDisplayName('Switch_(Conditional)', SwitchRaw);
 
 export { Switch };
