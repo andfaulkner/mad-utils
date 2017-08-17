@@ -10,15 +10,13 @@ import { mount, shallow, ShallowWrapper } from 'enzyme';
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { IfTruthy, IfFalsy, buildNamedSfc, RouterProps, InputChangeType,
-         FormSubmitHandler, FormSubmitType, InputChangeHandler, setSfcDisplayName,
-         buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC } from '../../react';
+import { IfTruthy, IfFalsy, Switch, Case, Default } from '../../src/react/components';
+// RouterProps, InputChangeType, FormSubmitHandler, FormSubmitType, InputChangeHandler, setSfcDisplayName, buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {
     expectFunctionExists(IfTruthy, 'IfTruthy', '(React utility component)');
     expectFunctionExists(IfFalsy, 'IfFalsy', '(React utility component)');
-    expectFunctionExists(buildNamedSfc, 'buildNamedSfc', '(React utility component)');
 
     describe(`IfTruthy, IfFalsy`, function() {
         let trueElement: JSX.Element = <div>true child</div>;
