@@ -19,6 +19,30 @@ export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
  */
 export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
 /**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ */
+export declare const langFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+/**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ */
+export declare const getLangFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+/**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ */
+export declare const langFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+/**
  * Get all paths in the URL before or after the first appearance of /:curLang/
  * If getStrBeforeLang property is given and is true, get the string before the language match.
  * Otherwise get the string after the language match.
