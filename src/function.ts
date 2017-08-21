@@ -42,7 +42,7 @@ export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
 
 /****************************************** CONDITIONALS ******************************************/
 /**
- * Function-based switch statement. Any odd number of arguments can be given. For each pair of args,
+ * Function-based switch expression. Any odd number of arguments can be given. For each pair of args,
  * the 1st arg is a condition (which passes if truthy), and the 2nd is the value returned if the
  * condition passes. If no conditions pass, the final arg given to the function returned. If no
  * final arg is given, it instead throws an error.

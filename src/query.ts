@@ -52,6 +52,33 @@ export const getLangFromUrlPathname =
             !!urlPath.match(new RegExp(`/(${lang}[^a-zA-Z0-9])|(/${lang}$)`, 'g')))
         || defaultLang;
 
+/**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ */
+export const langFromUrlPathname = getLangFromUrlPathname;
+
+/**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ */
+export const getLangFromURLPathname = getLangFromUrlPathname;
+
+/**
+ * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
+ * format is used.
+ * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
+ * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
+ * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ */
+export const langFromURLPathname = getLangFromUrlPathname;
+
 
 type StrOrErr = String | Error;
 

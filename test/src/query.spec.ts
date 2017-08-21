@@ -5,7 +5,8 @@ import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
 import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
-         getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang } from '../../shared';
+         getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang,
+         getLangFromURLPathname, langFromUrlPathname, langFromURLPathname } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 import { query as queryFromNode } from '../../node';
@@ -47,7 +48,13 @@ describe(`query sub-module`, function() {
 
     describe('.getLangFromUrlPathname]', function() {
         expectFunctionExists(m_.query.getLangFromUrlPathname);
+        expectFunctionExists(m_.query.getLangFromURLPathname);
+        expectFunctionExists(m_.query.langFromUrlPathname);
+        expectFunctionExists(m_.query.langFromURLPathname);
         expectFunctionExists(getLangFromUrlPathname);
+        expectFunctionExists(getLangFromURLPathname);
+        expectFunctionExists(langFromUrlPathname);
+        expectFunctionExists(langFromURLPathname);
         it('-- pulls current lang out of given pathname string', function() {
             expect(getLangFromUrlPathname('/en/home')).to.eql('en');
             expect(getLangFromUrlPathname('/fr/home')).to.eql('fr');
