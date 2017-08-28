@@ -2,6 +2,7 @@
 @import './colors/color-styles.scss';
 
 @import './layout/border.scss';
+@import './layout/float.scss';
 @import './layout/layout.scss';
 @import './layout/margin.scss';
 @import './layout/overflow.scss';
@@ -21,7 +22,7 @@
 /**
  * ************ REFERENCE ************
  *
- * NOTE: NEEDS UPDATE
+ * TODO Update util-styles reference (mad-utils)
  *
  * ****** GENERAL ******
  * -   Any number preceded by n indicates negative. e.g.
@@ -100,7 +101,7 @@
  *     underline, no-underline
  *
  * ****** COLORS ******
- * bg: background colour
+ * bg:     background colour
  * bgfill: background colour - clobber all other background definitions
  *
  * Colours available (incomplete):
@@ -108,19 +109,15 @@
  *     bg-white, bg-light-gray, bg-mid-gray, bg-dark-gray, bg-black
  *
  * ****** MISC ******
- * opa: opacity
- * float: float
- * cur: cursor
+ * opa:    opacity
+ * float:  float
+ * cur:    cursor
  * states: state collection - complimentary hover & active
- * va: vertical-align
- * vis: visibility
+ * va:     vertical-align
+ * vis:    visibility
  */
 
 :global {
-    /******************************************* FLOAT ********************************************/
-    .float-r, .float-right { float: right }
-    .float-l, .float-left  { float: left  }
-
     /******************************************* HOVERS *******************************************/
     .states-lightergray-bg:hover { background-color: $lighterGray }
     .states-lightergray-bg:active { background-color: $lightGray }
