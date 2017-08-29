@@ -22,7 +22,7 @@ const locationPath =
  * @example parseQueryParams('http://example.com/home?hello=everyone&gr=argh')
  *          // => { hello: 'everyone', gr: 'argh' }
  */
-export const parseQueryParams = <T>(queryParamsString: string = queryParamsDef): T => {
+export function parseQueryParams<T>(queryParamsString: string = queryParamsDef): T {
     // Ensure there are actually query parameters present. Return null otherwise.
     // Various types of query param strings that actually signify no query params.
     if (queryParamsString.match(/((\?)|(\?\=)|(\?\&)|(\?\=\&)|(\?\&\=))$/)) return null;
@@ -46,11 +46,15 @@ export const parseQueryParams = <T>(queryParamsString: string = queryParamsDef):
  * @param {string?} defaultLang Default language, if none detected. Default: 'en' [OPTIONAL]
  * @return {string} current language, in 2-letter form. Often either 'en' or 'fr'.
  */
-export const getLangFromUrlPathname =
-    (urlPath = locationPath, supportedLangs = defaultSupportedLangs, defaultLang: string = 'en') =>
-        supportedLangs.find((lang: string) =>
-            !!urlPath.match(new RegExp(`/(${lang}[^a-zA-Z0-9])|(/${lang}$)`, 'g')))
-        || defaultLang;
+export function getLangFromUrlPathname(
+    urlPath = locationPath,
+    supportedLangs = defaultSupportedLangs,
+    defaultLang: string = 'en'
+): string {
+    const getLangMatch =
+        (lang: string) => !!urlPath.match(new RegExp(`/(${lang}[^a-zA-Z0-9])|(/${lang}$)`, 'g'));
+    return supportedLangs.find(getLangMatch) || defaultLang;
+}
 
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
@@ -80,9 +84,9 @@ export const getLangFromURLPathname = getLangFromUrlPathname;
 export const langFromURLPathname = getLangFromUrlPathname;
 
 
-type StrOrErr = String | Error;
+export type StrOrErr = String | Error;
 
-type UrlPathsAfterLangProps = {
+export type UrlPathsLangProps = {
     url?:            string,
     curLang?:        string,
     supportedLangs?: string[],
@@ -98,10 +102,9 @@ type UrlPathsAfterLangProps = {
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  * @param {boolean} getStrBeforeLang [OPTIONAL] If true, ret pre-match str; else ret post-match str.
  */
-export const getUrlPathAroundLang = (props: (UrlPathsAfterLangProps & {
-    getStrBeforeLang?: boolean
-}) | string | null): StrOrErr =>
-{
+export function getUrlPathAroundLang(
+    props: (UrlPathsLangProps & { getStrBeforeLang?: boolean }) | string | null
+): StrOrErr {
     const getStrBeforeLang = (typeof props === 'object') ? props.getStrBeforeLang : false;
     const url = (typeof props === 'string')
         ? props
@@ -132,7 +135,7 @@ export const postLangUrlPaths = getUrlPathAroundLang;
  * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
-export const getUrlPathAfterLang = (props: UrlPathsAfterLangProps | string | null): StrOrErr => {
+export function getUrlPathAfterLang(props: UrlPathsLangProps | string | null): StrOrErr {
     const propsObj = typeof props === 'object' ? props : {}
     if (typeof props === 'string') {
         propsObj.url = props;
@@ -147,7 +150,7 @@ export const getUrlPathAfterLang = (props: UrlPathsAfterLangProps | string | nul
  * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
-export const getUrlPathBeforeLang = (props: UrlPathsAfterLangProps | string | null): StrOrErr => {
+export function getUrlPathBeforeLang(props: UrlPathsLangProps | string | null): StrOrErr {
     const propsObj = typeof props === 'object' ? props : {}
     if (typeof props === 'string') {
         propsObj.url = props;
@@ -156,11 +159,23 @@ export const getUrlPathBeforeLang = (props: UrlPathsAfterLangProps | string | nu
 }
 
 /**
+ * Return new URL with language swapped. Swaps the matching
+ */
+export function getUrlWithLangSwapped(
+    newLang: string,
+    props: UrlPathsLangProps | string | null
+): string {
+    return `${getUrlPathBeforeLang(props)}${newLang}${getUrlPathAfterLang(props)}`;
+}
+
+/**
  * Return copy of the given (or current) URL with the query parameters removed.
  * @param {string} url - [OPTIONAL] url to copy & rm query params from. Defaults to current URL.
  * @return {string} Copy of given (or current) URL sans query params.
  */
-export const urlMinusQueryParams = (url: string = hrefDef): string => first(url.split('?'));
+export function urlMinusQueryParams(url: string = hrefDef): string {
+    return first(url.split('?'));
+}
 
 /**
  * Get the last path in the given URL, with query params excluded. No / is prepended to the return
@@ -170,7 +185,7 @@ export const urlMinusQueryParams = (url: string = hrefDef): string => first(url.
  * @param {boolean} strict - [OPTIONAL] If false, ignore trailing slashes. DEFAULT: true.
  * @return {string} last path. No query params. Not prepended by /. '' if trailing / & strict==true
  */
-export const lastUrlPath = (url: string = hrefDef, strict: boolean = true): string => {
+export function lastUrlPath(url: string = hrefDef, strict: boolean = true): string {
     const cleanHref = url || hrefDef;
     const hrefMinusProtocol = removeMatchingText(cleanHref, /^https?:\/\//g);
     if (!hrefMinusProtocol.includes('/')) return '';

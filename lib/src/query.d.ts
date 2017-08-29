@@ -8,7 +8,7 @@
  * @example parseQueryParams('http://example.com/home?hello=everyone&gr=argh')
  *          // => { hello: 'everyone', gr: 'argh' }
  */
-export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
+export declare function parseQueryParams<T>(queryParamsString?: string): T;
 /******************************************** LANGUAGE ********************************************/
 /**
  * Get current language from URL. Assumes lang stored in own path & that 2-letter (/en/) form used.
@@ -17,7 +17,7 @@ export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
  * @param {string?} defaultLang Default language, if none detected. Default: 'en' [OPTIONAL]
  * @return {string} current language, in 2-letter form. Often either 'en' or 'fr'.
  */
-export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+export declare function getLangFromUrlPathname(urlPath?: string, supportedLangs?: string[], defaultLang?: string): string;
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
  * format is used.
@@ -25,7 +25,7 @@ export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?:
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
  */
-export declare const langFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+export declare const langFromUrlPathname: typeof getLangFromUrlPathname;
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
  * format is used.
@@ -33,7 +33,7 @@ export declare const langFromUrlPathname: (urlPath?: string, supportedLangs?: st
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
  */
-export declare const getLangFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+export declare const getLangFromURLPathname: typeof getLangFromUrlPathname;
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
  * format is used.
@@ -41,7 +41,13 @@ export declare const getLangFromURLPathname: (urlPath?: string, supportedLangs?:
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
  */
-export declare const langFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+export declare const langFromURLPathname: typeof getLangFromUrlPathname;
+export declare type StrOrErr = String | Error;
+export declare type UrlPathsLangProps = {
+    url?: string;
+    curLang?: string;
+    supportedLangs?: string[];
+};
 /**
  * Get all paths in the URL before or after the first appearance of /:curLang/
  * If getStrBeforeLang property is given and is true, get the string before the language match.
@@ -52,20 +58,10 @@ export declare const langFromURLPathname: (urlPath?: string, supportedLangs?: st
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  * @param {boolean} getStrBeforeLang [OPTIONAL] If true, ret pre-match str; else ret post-match str.
  */
-export declare const getUrlPathAroundLang: (props: string | ({
-    url?: string;
-    curLang?: string;
-    supportedLangs?: string[];
-} & {
+export declare function getUrlPathAroundLang(props: (UrlPathsLangProps & {
     getStrBeforeLang?: boolean;
-})) => String | Error;
-export declare const postLangUrlPaths: (props: string | ({
-    url?: string;
-    curLang?: string;
-    supportedLangs?: string[];
-} & {
-    getStrBeforeLang?: boolean;
-})) => String | Error;
+}) | string | null): StrOrErr;
+export declare const postLangUrlPaths: typeof getUrlPathAroundLang;
 /**
  * Get all paths in the URL following the first appearance of /:curLang/
  * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
@@ -73,11 +69,7 @@ export declare const postLangUrlPaths: (props: string | ({
  * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
-export declare const getUrlPathAfterLang: (props: string | {
-    url?: string;
-    curLang?: string;
-    supportedLangs?: string[];
-}) => String | Error;
+export declare function getUrlPathAfterLang(props: UrlPathsLangProps | string | null): StrOrErr;
 /**
  * Get all paths in the URL prior to the first appearance of /:curLang/
  * @example urlPathsAfterLang('/asdf/en/one/two') // => '/asdf'
@@ -85,17 +77,17 @@ export declare const getUrlPathAfterLang: (props: string | {
  * @param {string} [OPTIONAL] curLang Default language, if none detected. Default: 'en'
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
-export declare const getUrlPathBeforeLang: (props: string | {
-    url?: string;
-    curLang?: string;
-    supportedLangs?: string[];
-}) => String | Error;
+export declare function getUrlPathBeforeLang(props: UrlPathsLangProps | string | null): StrOrErr;
+/**
+ * Return new URL with language swapped. Swaps the matching
+ */
+export declare function getUrlWithLangSwapped(newLang: string, props: UrlPathsLangProps | string | null): string;
 /**
  * Return copy of the given (or current) URL with the query parameters removed.
  * @param {string} url - [OPTIONAL] url to copy & rm query params from. Defaults to current URL.
  * @return {string} Copy of given (or current) URL sans query params.
  */
-export declare const urlMinusQueryParams: (url?: string) => string;
+export declare function urlMinusQueryParams(url?: string): string;
 /**
  * Get the last path in the given URL, with query params excluded. No / is prepended to the return
  * val. Returns '' if no paths in url. Sets 'strict mode' to true by default, meaning trailing
@@ -104,4 +96,4 @@ export declare const urlMinusQueryParams: (url?: string) => string;
  * @param {boolean} strict - [OPTIONAL] If false, ignore trailing slashes. DEFAULT: true.
  * @return {string} last path. No query params. Not prepended by /. '' if trailing / & strict==true
  */
-export declare const lastUrlPath: (url?: string, strict?: boolean) => string;
+export declare function lastUrlPath(url?: string, strict?: boolean): string;
