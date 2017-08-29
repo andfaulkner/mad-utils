@@ -587,7 +587,6 @@ describe(`array sub-module`, function() {
     describe(`-- variadicStringArrayKeys`, function() {
         const testObj = { a: '12', b: '34', c: '56' };
         const testObjKeysAsVarStrArr = variadicStringArrayKeys(testObj);
-
         it(`should return an array of an object's keys`, function() {
             expect(testObjKeysAsVarStrArr).to.eql(['a', 'b', 'c']);
         });
@@ -597,5 +596,9 @@ describe(`array sub-module`, function() {
             // Goal here is to avoid Typescript errors in the transpiler - this test won't
             // actually catch errors in runtime.
         });
+        // Note: this should cause transpiler complaints:
+        //     let arrWithMatchingType2: typeof testObjKeysAsVarStrArr = ['a', 'b', 'd'];
+        // ...but I currently have no way to assert that in a test.
+        // TODO Try using ts-runtime (https://github.com/fabiandev/ts-runtime) to test TS typings.
     });
 });
