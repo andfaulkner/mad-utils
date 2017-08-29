@@ -117,8 +117,8 @@
     .br-0 { border-radius: 0px }
     .br-1 { border-radius: 1px }
     .br-2 { border-radius: 2px }
-    .br-3 { border-radius: 3px; }
-    .br-4 { border-radius: 4px; }
+    .br-3 { border-radius: 3px }
+    .br-4 { border-radius: 4px }
     .br-5 { border-radius: 5px }
     .br-6 { border-radius: 6px }
     .br-7 { border-radius: 7px }
@@ -130,37 +130,70 @@
     .br-13 { border-radius: 13px }
     .br-14 { border-radius: 14px }
     .br-15 { border-radius: 15px }
+    .br-16 { border-radius: 16px }
+    .br-17 { border-radius: 17px }
+    .br-18 { border-radius: 18px }
+    .br-19 { border-radius: 19px }
     .br-20 { border-radius: 20px }
+    .br-22 { border-radius: 22px }
+    .br-23 { border-radius: 23px }
     .br-25 { border-radius: 25px }
     .br-27 { border-radius: 27px }
+    .br-28 { border-radius: 28px }
     .br-30 { border-radius: 30px }
+    .br-32 { border-radius: 32px }
+    .br-33 { border-radius: 33px }
     .br-35 { border-radius: 35px }
+    .br-37 { border-radius: 37px }
+    .br-38 { border-radius: 38px }
     .br-40 { border-radius: 40px }
     .br-45 { border-radius: 45px }
     .br-50 { border-radius: 50px }
+    .br-55 { border-radius: 55px }
     .br-60 { border-radius: 60px }
+    .br-65 { border-radius: 65px }
     .br-70 { border-radius: 70px }
     .br-75 { border-radius: 75px }
     .br-80 { border-radius: 80px }
+    .br-85 { border-radius: 85px }
     .br-90 { border-radius: 90px }
+    .br-95 { border-radius: 95px }
     .br-100 { border-radius: 100px }
     .br-125 { border-radius: 125px }
     .br-150 { border-radius: 150px }
     .br-175 { border-radius: 175px }
     .br-200 { border-radius: 200px }
+    .br-225 { border-radius: 225px }
+    .br-250 { border-radius: 250px }
+    .br-275 { border-radius: 275px }
+    .br-300 { border-radius: 300px }
+    .br-350 { border-radius: 350px }
+    .br-400 { border-radius: 400px }
+    .br-450 { border-radius: 450px }
+    .br-500 { border-radius: 500px }
+    .br-600 { border-radius: 600px }
+    .br-700 { border-radius: 700px }
+    .br-750 { border-radius: 750px }
+    .br-800 { border-radius: 800px }
+    .br-900 { border-radius: 900px }
+    .br-1000 { border-radius: 1000px }
+    .br-1250 { border-radius: 1250px }
+    .br-1500 { border-radius: 1500px }
+    .br-1750 { border-radius: 1750px }
+    .br-2000 { border-radius: 2000px }
 
     /****************************************** BORDER STYLE ******************************************/
-    /* BORDER STYLE - ALL */
-    .bs-none { border-style: none }
-    .bs-hidden { border-style: hidden }
-    .bs-dotted { border-style: dotted }
-    .bs-dashed { border-style: dashed }
-    .bs-solid { border-style: solid }
-    .bs-double { border-style: double }
-    .bs-groove { border-style: groove }
-    .bs-ridge { border-style: ridge }
-    .bs-inset { border-style: double }
-    .bs-outset { border-style: outset }
+    /*********** BORDER STYLE - ALL ***********/
+    .bs-none,   .border-none   { border-style: none }
+    .bs-hidden, .border-hidden { border-style: hidden }
+    .bs-dotted, .border-dotted { border-style: dotted }
+    .bs-dashed, .border-dashed { border-style: dashed }
+    .bs-solid,  .border-solid  { border-style: solid }
+    .bs-double, .border-double { border-style: double }
+    .bs-groove, .border-groove { border-style: groove }
+    .bs-ridge,  .border-ridge  { border-style: ridge }
+    .bs-inset,  .border-inset  { border-style: double }
+    .bs-outset, .border-outset { border-style: outset }
 
     /*** Border-style: all but last in list ***/
     .bs-none-nl:no(:last-child) { border-style: none }
@@ -174,32 +207,53 @@
     .bs-inset-nl:no(:last-child) { border-style: double }
     .bs-outset-nl:no(:last-child) { border-style: outset }
 
-    /* BORDER STYLE - LEFT */
-    .bls-none { border-left-style: none }
-    .bls-hidden { border-left-style: hidden }
-    .bls-dotted { border-left-style: dotted }
-    .bls-dashed { border-left-style: dashed }
-    .bls-solid { border-left-style: solid }
-    .bls-double { border-left-style: double }
-    .bls-groove { border-left-style: groove }
-    .bls-ridge { border-left-style: ridge }
-    .bls-inset { border-left-style: double }
-    .bls-outset { border-left-style: outset }
+    /*** Border-style: all but first in list ***/
+    .bs-none-nf:no(:first-child) { border-style: none }
+    .bs-hidden-nf:no(:first-child) { border-style: hidden }
+    .bs-dotted-nf:no(:first-child) { border-style: dotted }
+    .bs-dashed-nf:no(:first-child) { border-style: dashed }
+    .bs-solid-nf:no(:first-child) { border-style: solid }
+    .bs-double-nf:no(:first-child) { border-style: double }
+    .bs-groove-nf:no(:first-child) { border-style: groove }
+    .bs-ridge-nf:no(:first-child) { border-style: ridge }
+    .bs-inset-nf:no(:first-child) { border-style: double }
+    .bs-outset-nf:no(:first-child) { border-style: outset }
 
-    /* BORDER STYLE - BOTTOM */
-    .bbs-none { border-bottom-style: none }
-    .bbs-hidden { border-bottom-style: hidden }
-    .bbs-dotted { border-bottom-style: dotted }
-    .bbs-dashed { border-bottom-style: dashed }
-    .bbs-solid { border-bottom-style: solid }
-    .bbs-double { border-bottom-style: double }
-    .bbs-groove { border-bottom-style: groove }
-    .bbs-ridge { border-bottom-style: ridge }
-    .bbs-inset { border-bottom-style: double }
-    .bbs-outset { border-bottom-style: outset }
+    /*********** BORDER STYLE - LEFT ***********/
+    .bls-none, .border-left-none { border-left-style: none }
+    .bls-hidden, .border-left-hidden { border-left-style: hidden }
+    .bls-dotted, .border-left-dotted { border-left-style: dotted }
+    .bls-dashed, .border-left-dashed { border-left-style: dashed }
+    .bls-solid, .border-left-solid { border-left-style: solid }
+    .bls-double, .border-left-double { border-left-style: double }
+    .bls-groove, .border-left-groove { border-left-style: groove }
+    .bls-ridge, .border-left-ridge { border-left-style: ridge }
+    .bls-inset, .border-left-inset { border-left-style: double }
+    .bls-outset, .border-left-outset { border-left-style: outset }
 
-    /* Border style - right */
-    .brs-solid { border-right-style: solid }
+    /*********** BORDER STYLE - RIGHT ***********/
+    .brs-none, .border-right-none { border-right-style: none }
+    .brs-hidden, .border-right-hidden { border-right-style: hidden }
+    .brs-dotted, .border-right-dotted { border-right-style: dotted }
+    .brs-dashed, .border-right-dashed { border-right-style: dashed }
+    .brs-solid, .border-right-solid { border-right-style: solid }
+    .brs-double, .border-right-double { border-right-style: double }
+    .brs-groove, .border-right-groove { border-right-style: groove }
+    .brs-ridge, .border-right-ridge { border-right-style: ridge }
+    .brs-inset, .border-right-inset { border-right-style: double }
+    .brs-outset, .border-right-outset { border-right-style: outset }
+
+    /*********** BORDER STYLE - BOTTOM ***********/
+    .bbs-none, .border-bottom-none { border-bottom-style: none }
+    .bbs-hidden, .border-bottom-hidden { border-bottom-style: hidden }
+    .bbs-dotted, .border-bottom-dotted { border-bottom-style: dotted }
+    .bbs-dashed, .border-bottom-dashed { border-bottom-style: dashed }
+    .bbs-solid, .border-bottom-solid { border-bottom-style: solid }
+    .bbs-double, .border-bottom-double { border-bottom-style: double }
+    .bbs-groove, .border-bottom-groove { border-bottom-style: groove }
+    .bbs-ridge, .border-bottom-ridge { border-bottom-style: ridge }
+    .bbs-inset, .border-bottom-inset { border-bottom-style: double }
+    .bbs-outset, .border-bottom-outset { border-bottom-style: outset }
 
     /*** Border-style-bottom: all but last in list ***/
     .bbs-none-nl:no(:last-child) { border-bottom-style: none }
@@ -213,17 +267,17 @@
     .bbs-inset-nl:no(:last-child) { border-bottom-style: double }
     .bbs-outset-nl:no(:last-child) { border-bottom-style: outset }
 
-    /* BORDER STYLE - TOP */
-    .bts-none { border-top-style: none }
-    .bts-hidden { border-top-style: hidden }
-    .bts-dotted { border-top-style: dotted }
-    .bts-dashed { border-top-style: dashed }
-    .bts-solid { border-top-style: solid }
-    .bts-double { border-top-style: double }
-    .bts-groove { border-top-style: groove }
-    .bts-ridge { border-top-style: ridge }
-    .bts-inset { border-top-style: double }
-    .bts-outset { border-top-style: outset }
+    /*********** BORDER STYLE - TOP ***********/
+    .bts-none, .border-top-none { border-top-style: none }
+    .bts-hidden, .border-top-hidden { border-top-style: hidden }
+    .bts-dotted, .border-top-dotted { border-top-style: dotted }
+    .bts-dashed, .border-top-dashed { border-top-style: dashed }
+    .bts-solid, .border-top-solid { border-top-style: solid }
+    .bts-double, .border-top-double { border-top-style: double }
+    .bts-groove, .border-top-groove { border-top-style: groove }
+    .bts-ridge, .border-top-ridge { border-top-style: ridge }
+    .bts-inset, .border-top-inset { border-top-style: double }
+    .bts-outset, .border-top-outset { border-top-style: outset }
 
     /*** Border-style-top: all but last in list ***/
     .bts-none-nl:no(:last-child) { border-top-style: none }
@@ -237,10 +291,7 @@
     .bts-inset-nl:no(:last-child) { border-top-style: double }
     .bts-outset-nl:no(:last-child) { border-top-style: outset }
 
-    /*** Border bottom color: light gray ***/
-    .border-bottom-color-lightgray { border-bottom-color: lightgray }
-
-    /* Border Left */
+    /* Border left extras */
     .bl-5 {
         border-left-width: 5px;
         border-left-style: solid;
@@ -254,6 +305,7 @@
     }
 
     /****************************************** BORDER COLOR ******************************************/
+    /** BORDER COLOR -- ALL SIDES */
     .bc-black { border-color: black }
     .bc-faintest-gray { border-color: $faintestGray }
     .bc-fainter-gray { border-color: $fainterGray }
@@ -269,14 +321,20 @@
     .bc-faint-gray { border-color: $faintGray }
     .bc-light-gray { border-color: $lightGray }
     .bc-white { border-color: $white }
-    .bc-mid-purple { border-color: $midPurple }
-    .bc-cyan { border-color: $cyan }
-    .bc-mid-green { border-color: $midGreen }
-    .bc-mid-near-dark-blue { border-color: $midNearDarkBlue }
-    .bc-blue { border-color: $blue }
-    .bc-yellow { border-color: $yellow }
     .bc-red { border-color: $red }
+    .bc-mid-purple { border-color: $midPurple }
+    .bc-mid-green { border-color: $midGreen }
+    .bc-yellow { border-color: $yellow }
+    .bc-cyan { border-color: $cyan }
+    .bc-faintest-blue { border-color: $faintestBlue }
+    .bc-blue { border-color: $blue }
+    .bc-mid-near-dark-blue { border-color: $midNearDarkBlue }
+    .bc-dark-blue { border-color: $darkBlue }
+    .bc-dark-purple { border-color: $darkPurple }
+    .bc-mid-purple { border-color: $midPurple }
+    .bc-light-purple { border-color: $lightPurple }
 
+    /** BORDER COLOR -- RIGHT */
     .brc-black { border-right-color: black }
     .brc-faintest-gray { border-right-color: $faintestGray }
     .brc-fainter-gray { border-right-color: $fainterGray }
@@ -292,14 +350,20 @@
     .brc-faint-gray { border-right-color: $faintGray }
     .brc-light-gray { border-right-color: $lightGray }
     .brc-white { border-right-color: $white }
-    .brc-mid-purple { border-right-color: $midPurple }
-    .brc-cyan { border-right-color: $cyan }
-    .brc-mid-green { border-right-color: $midGreen }
-    .brc-mid-near-dark-blue { border-right-color: $midNearDarkBlue }
-    .brc-blue { border-right-color: $blue }
-    .brc-yellow { border-right-color: $yellow }
     .brc-red { border-right-color: $red }
+    .brc-mid-purple { border-right-color: $midPurple }
+    .brc-mid-green { border-right-color: $midGreen }
+    .brc-yellow { border-right-color: $yellow }
+    .brc-cyan { border-right-color: $cyan }
+    .brc-faintest-blue { border-right-color: $faintestBlue }
+    .brc-blue { border-right-color: $blue }
+    .brc-mid-near-dark-blue { border-right-color: $midNearDarkBlue }
+    .brc-dark-blue { border-right-color: $darkBlue }
+    .brc-dark-purple { border-right-color: $darkPurple }
+    .brc-mid-purple { border-right-color: $midPurple }
+    .brc-light-purple { border-right-color: $lightPurple }
 
+    /** BORDER COLOR -- LEFT */
     .blc-black { border-left-color: black }
     .blc-faintest-gray { border-left-color: $faintestGray }
     .blc-fainter-gray { border-left-color: $fainterGray }
@@ -315,14 +379,20 @@
     .blc-faint-gray { border-left-color: $faintGray }
     .blc-light-gray { border-left-color: $lightGray }
     .blc-white { border-left-color: $white }
-    .blc-mid-purple { border-left-color: $midPurple }
-    .blc-cyan { border-left-color: $cyan }
-    .blc-mid-green { border-left-color: $midGreen }
-    .blc-mid-near-dark-blue { border-left-color: $midNearDarkBlue }
-    .blc-blue { border-left-color: $blue }
-    .blc-yellow { border-left-color: $yellow }
     .blc-red { border-left-color: $red }
+    .blc-mid-purple { border-left-color: $midPurple }
+    .blc-mid-green { border-left-color: $midGreen }
+    .blc-yellow { border-left-color: $yellow }
+    .blc-cyan { border-left-color: $cyan }
+    .blc-faintest-blue { border-left-color: $faintestBlue }
+    .blc-blue { border-left-color: $blue }
+    .blc-mid-near-dark-blue { border-left-color: $midNearDarkBlue }
+    .blc-dark-blue { border-left-color: $darkBlue }
+    .blc-dark-purple { border-left-color: $darkPurple }
+    .blc-mid-purple { border-left-color: $midPurple }
+    .blc-light-purple { border-left-color: $lightPurple }
 
+    /** BORDER COLOR -- TOP */
     .btc-black { border-top-color: black }
     .btc-faintest-gray { border-top-color: $faintestGray }
     .btc-fainter-gray { border-top-color: $fainterGray }
@@ -338,16 +408,21 @@
     .btc-faint-gray { border-top-color: $faintGray }
     .btc-light-gray { border-top-color: $lightGray }
     .btc-white { border-top-color: $white }
-    .btc-mid-purple { border-top-color: $midPurple }
-    .btc-cyan { border-top-color: $cyan }
-    .btc-mid-green { border-top-color: $midGreen }
-    .btc-mid-near-dark-blue { border-top-color: $midNearDarkBlue }
-    .btc-blue { border-top-color: $blue }
-    .btc-yellow { border-top-color: $yellow }
     .btc-red { border-top-color: $red }
+    .btc-mid-purple { border-top-color: $midPurple }
+    .btc-mid-green { border-top-color: $midGreen }
+    .btc-yellow { border-top-color: $yellow }
+    .btc-cyan { border-top-color: $cyan }
+    .btc-faintest-blue { border-top-color: $faintestBlue }
+    .btc-blue { border-top-color: $blue }
+    .btc-mid-near-dark-blue { border-top-color: $midNearDarkBlue }
+    .btc-dark-blue { border-top-color: $darkBlue }
+    .btc-dark-purple { border-top-color: $darkPurple }
+    .btc-mid-purple { border-top-color: $midPurple }
+    .btc-light-purple { border-top-color: $lightPurple }
 
+    /** BORDER COLOR -- BOTTOM */
     .bbc-black { border-bottom-color: black }
-
     .bbc-light-gray { border-bottom-color: $lightGray }
     .bbc-faintest-gray { border-bottom-color: $faintestGray }
     .bbc-fainter-gray { border-bottom-color: $fainterGray }
@@ -363,13 +438,20 @@
     .bbc-faint-gray { border-bottom-color: $faintGray }
     .bbc-light-gray { border-bottom-color: $lightGray }
     .bbc-white { border-bottom-color: $white }
-    .bbc-mid-purple { border-bottom-color: $midPurple }
-    .bbc-cyan { border-bottom-color: $cyan }
-    .bbc-mid-green { border-bottom-color: $midGreen }
-    .bbc-mid-near-dark-blue { border-bottom-color: $midNearDarkBlue }
-    .bbc-blue { border-bottom-color: $blue }
-    .bbc-yellow { border-bottom-color: $yellow }
     .bbc-red { border-bottom-color: $red }
+    .bbc-mid-purple { border-bottom-color: $midPurple }
+    .bbc-mid-green { border-bottom-color: $midGreen }
+    .bbc-yellow { border-bottom-color: $yellow }
+    .bbc-cyan { border-bottom-color: $cyan }
+    .bbc-faintest-blue { border-bottom-color: $faintestBlue }
+    .bbc-blue { border-bottom-color: $blue }
+    .bbc-mid-near-dark-blue { border-bottom-color: $midNearDarkBlue }
+    .bbc-dark-blue { border-bottom-color: $darkBlue }
+    .bbc-dark-purple { border-bottom-color: $darkPurple }
+    .bbc-mid-purple { border-bottom-color: $midPurple }
+    .bbc-light-purple { border-bottom-color: $lightPurple }
+
+    .border-bottom-color-lightgray { border-bottom-color: lightgray }
 
     /***************************************** BOX SHADOW *****************************************/
     .box-shadow-none { box-shadow: none }
