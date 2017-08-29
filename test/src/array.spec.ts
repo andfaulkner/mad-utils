@@ -17,6 +17,7 @@ import { m_, array, append,
         withoutLast, withoutLast2, withoutLast3, withoutLastN,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
         removeMatches,
+        variadicStringArrayKeys,
         matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
@@ -580,6 +581,12 @@ describe(`array sub-module`, function() {
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])(12)).to.be.false;
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])(null)).to.be.false;
             expect(matchAny([])('')).to.be.false;
+        });
+    });
+
+    describe(`-- variadicStringArrayKeys`, function() {
+        it(`should return an array of an object's keys`, function() {
+            expect(variadicStringArrayKeys({ a: '12', b: '34', c: '56' })).to.eql(['a', 'b', 'c']);
         });
     });
 });
