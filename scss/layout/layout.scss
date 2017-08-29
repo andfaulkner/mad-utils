@@ -51,18 +51,18 @@
     .flex-jc-end                        { justify-content: flex-end      }
     .flex-jc-center                     { justify-content: center        }
     .flex-jc-mid                        { justify-content: center        }
-    .flex-jc-sa                         { justify-content: space-around  }
-    .flex-jc-space-around               { justify-content: space-around  }
+    .flex-jc-sa,
+    .flex-jc-space-around,
     .flex-jc-around                     { justify-content: space-around  }
-    .flex-jc-sb                         { justify-content: space-between }
-    .flex-jc-space-between              { justify-content: space-between }
+    .flex-jc-sb,
+    .flex-jc-space-between,
     .flex-jc-between                    { justify-content: space-between }
 
-    .flex-justifycontent-fs             { justify-content: flex-start    }
+    .flex-justifycontent-fs,
     .flex-justifycontent-start          { justify-content: flex-start    }
-    .flex-justifycontent-fe             { justify-content: flex-end      }
+    .flex-justifycontent-fe,
     .flex-justifycontent-end            { justify-content: flex-end      }
-    .flex-justifycontent-center         { justify-content: center        }
+    .flex-justifycontent-center,
     .flex-justifycontent-mid            { justify-content: center        }
     .flex-justifycontent-sa             { justify-content: space-around  }
     .flex-justifycontent-space-around   { justify-content: space-around  }
