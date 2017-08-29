@@ -31,6 +31,35 @@
     div div .maxh-fit-content, div span .maxh-fit-content span div .maxh-fit-content,
     span span .maxh-fit-content, span.maxh-fit-content, div.maxh-fit-content, .maxh-fit-content { max-height: fit-content }
 
+    /******************************* MAX CONTENT & MIN CONTENT SIZE *******************************/
+    /** WIDTH: MIN-CONTENT **/
+    div.w-min-content, div.w-mincontent, div.w-mincont, div.w-mincon, div.w-minc, div.w-min-c,
+    span.w-min-content, span.w-mincontent, span.w-mincont, span.w-mincon, span.w-minc, span.w-min-c,
+    .w-mincontent, .w-mincont, .w-mincon, .w-minc, .w-min-c {
+        width: min-content
+    }
+
+    /** WIDTH: MAX-CONTENT **/
+    div.w-max-content, div.w-maxcontent, div.w-maxcont, div.w-maxcon, div.w-maxc, div.w-max-c,
+    span.w-max-content, span.w-maxcontent, span.w-maxcont, span.w-maxcon, span.w-maxc, span.w-max-c,
+    .w-maxcontent, .w-maxcont, .w-maxcon, .w-maxc, .w-max-c {
+        width: max-content
+    }
+
+    /** HEIGHT: MIN-CONTENT **/
+    div.h-min-content, div.h-mincontent, div.h-mincont, div.h-mincon, div.h-minc, div.h-min-c,
+    span.h-min-content, span.h-mincontent, span.h-mincont, span.h-mincon, span.h-minc, span.h-min-c,
+    .h-mincontent, .h-mincont, .h-mincon, .h-minc, .h-min-c {
+        height: min-content
+    }
+
+    /** HEIGHT: MAX-CONTENT **/
+    div.h-max-content, div.h-maxcontent, div.h-maxcont, div.h-maxcon, div.h-maxc, div.h-max-c,
+    span.h-max-content, span.h-maxcontent, span.h-maxcont, span.h-maxcon, span.h-maxc, span.h-max-c,
+    .h-maxcontent, .h-maxcont, .h-maxcon, .h-maxc, .h-max-c {
+        height: max-content
+    }
+
     /******************************************* WIDTH ********************************************/
     div.w-a, .w-a { width: auto }
 
