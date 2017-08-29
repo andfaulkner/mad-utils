@@ -177,22 +177,16 @@
         left: 50%;
         transform: translateX(-50%);
     }
-
-    .transform-translate-y-n50p {
-        transform: translateY(-50%);
-    }
-
-    .transform-translate-0n50p { transform: translate(0, -50%) }
-
-    .center-vertical-parent {
-        position: relative;
-    }
-
+    .center-vertical-parent { position: relative }
     .center-vertical-child {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
     }
+
+    /********************** TRANSLATION **********************/
+    .transform-translate-y-n50p { transform: translateY(-50%) }
+    .transform-translate-0n50p { transform: translate(0, -50%) }
 
     /****************************************** OVERFLOW ******************************************/
     .overflow-x-hidden { overflow-x: hidden }
