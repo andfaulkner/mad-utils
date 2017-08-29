@@ -32,11 +32,11 @@
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
-    .flex-justify-content-fs            { justify-content: flex-start    }
+    .flex-justify-content-fs,
     .flex-justify-content-start         { justify-content: flex-start    }
-    .flex-justify-content-fe            { justify-content: flex-end      }
+    .flex-justify-content-fe,
     .flex-justify-content-end           { justify-content: flex-end      }
-    .flex-justify-content-center        { justify-content: center        }
+    .flex-justify-content-center,
     .flex-justify-content-mid           { justify-content: center        }
     .flex-justify-content-space-around,
     .flex-justify-content-around,
