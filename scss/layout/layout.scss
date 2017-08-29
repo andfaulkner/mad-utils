@@ -8,16 +8,13 @@
 
 :global {
     /***************************************** DISPLAYS *******************************************/
-    .display-inline       { display: inline       }
-    .display-block        { display: block        }
-    .display-none         { display: none         }
-    .display-inline-block { display: inline-block }
+    .display-inline,       .inline       { display: inline }
+    .display-block,        .block        { display: block }
+    .display-none,         .none         { display: none }
+    .display-inline-block, .inline-block { display: inline-block }
 
-    .display-flex         { display: flex         }
-    .flex                 { display: flex         }
-    .display-inline-flex  { display: inline-flex  }
-    .inflex               { display: inline-flex  }
-    .inline-flex          { display: inline-flex  }
+    .flex, .display-flex { display: flex }
+    .inflex, .inline-flex, .display-inline-flex { display: inline-flex  }
 
     /************ table ************/
     .table                { display: table        }
@@ -41,12 +38,12 @@
     .flex-justify-content-end           { justify-content: flex-end      }
     .flex-justify-content-center        { justify-content: center        }
     .flex-justify-content-mid           { justify-content: center        }
+    .flex-justify-content-space-around,
+    .flex-justify-content-around,
     .flex-justify-content-sa            { justify-content: space-around  }
-    .flex-justify-content-space-around  { justify-content: space-around  }
-    .flex-justify-content-around        { justify-content: space-around  }
+    .flex-justify-content-space-between,
+    .flex-justify-content-between,
     .flex-justify-content-sb            { justify-content: space-between }
-    .flex-justify-content-space-between { justify-content: space-between }
-    .flex-justify-content-between       { justify-content: space-between }
 
     .flex-jc-fs                         { justify-content: flex-start    }
     .flex-jc-start                      { justify-content: flex-start    }
