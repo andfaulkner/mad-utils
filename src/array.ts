@@ -311,6 +311,20 @@ export const splitLines =
         : rmAllFalsy(str.toString().split('\n'));
 
 /**
+ * Create a variadic string array from an object's keys.
+ * @param {Object} obj Object to convert
+ * @example const langCodes = VariadicStringArrayFromObjKeys({ en: 'english', fr: 'french '});
+ *          // langCodes now = ['en', 'fr']; with type ('en' | 'fr')[]
+ */
+export const variadicStringArrayKeys = <T>(obj: T): (keyof T)[] => {
+    return Object.keys(obj) as (keyof T)[];
+};
+/** Alias of variadicStringArrayKeys */
+export const keysAsVariadicStringArray = variadicStringArrayKeys;
+/** Alias of variadicStringArrayKeys */
+export const objKeysAsVariadicStringArray = variadicStringArrayKeys;
+
+/**
  * Namespace for certain "reversed" operations.
  */
 export const without = {

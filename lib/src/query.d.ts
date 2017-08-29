@@ -11,11 +11,11 @@
 export declare const parseQueryParams: <T>(queryParamsString?: string) => T;
 /******************************************** LANGUAGE ********************************************/
 /**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses window.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
+ * Get current language from URL. Assumes lang stored in own path & that 2-letter (/en/) form used.
+ * @param {string?} urlPath URL to search. Uses window.location.pathname if not provided [OPTIONAL]
+ * @param {Array<string>?} supportedLangs Detectable languages. Default: ['en', 'fr'] [OPTIONAL]
+ * @param {string?} defaultLang Default language, if none detected. Default: 'en' [OPTIONAL]
+ * @return {string} current language, in 2-letter form. Often either 'en' or 'fr'.
  */
 export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
 /**

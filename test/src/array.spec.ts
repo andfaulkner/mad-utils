@@ -581,6 +581,5 @@ describe(`array sub-module`, function() {
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])(null)).to.be.false;
             expect(matchAny([])('')).to.be.false;
         });
-
     });
 });
