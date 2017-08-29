@@ -585,8 +585,17 @@ describe(`array sub-module`, function() {
     });
 
     describe(`-- variadicStringArrayKeys`, function() {
+        const testObj = { a: '12', b: '34', c: '56' };
+        const testObjKeysAsVarStrArr = variadicStringArrayKeys(testObj);
+
         it(`should return an array of an object's keys`, function() {
-            expect(variadicStringArrayKeys({ a: '12', b: '34', c: '56' })).to.eql(['a', 'b', 'c']);
+            expect(testObjKeysAsVarStrArr).to.eql(['a', 'b', 'c']);
+        });
+        it(`should have return type with variadic string an array of an object's keys`, function() {
+            const arrWithMatchingType: typeof testObjKeysAsVarStrArr = ['a', 'b', 'c'];
+            expect(typeof arrWithMatchingType).to.eql(typeof testObjKeysAsVarStrArr);
+            // Goal here is to avoid Typescript errors in the transpiler - this test won't
+            // actually catch errors in runtime.
         });
     });
 });
