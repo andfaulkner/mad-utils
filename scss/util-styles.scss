@@ -20,7 +20,7 @@
 
 
 /**
- * ************ REFERENCE ************
+ * ****************************************** REFERENCE ******************************************
  *
  * TODO Update util-styles reference (mad-utils)
  *
@@ -33,9 +33,9 @@
  *         .bw-4-nl:not(:last-child) { border-width: 4px }
  *         -   applies a 4px wide border to all items in a set but the last
  *
- * ********************************
- * ************ LAYOUT ************
- *
+ * ****************************************************
+ * ********************** LAYOUT **********************
+ * 
  * ****** MARGIN ******
  * m: margin - all
  * mt: margin-top
@@ -86,8 +86,31 @@
  *     right-0      right-1        right-n1
  *     left-0       left-1         left-n1
  *
+ * *********** FLEX **********
+ * Flexbox container:
+ *     - flex       - display-flex
+ * Inline flexbox container:
+ *     - inflex     - inline-flex   - display-inline-flex
+ * Flexbox container, in row direction:
+ *     - flex row
+ * Flexbox container, in col direction:
+ *     - flex col
+ * Flexbox container, justified content:
+ *     - flex start               - flex center              - flex end
+ *     - flex space-around        - flex space-between
+ * Flexbox align-items:
+ *     - flex-ai-start            - flex-ai-center           - flex-ai-end
+ *     - flex-alignitems-start    - flex-align-items-start   - (etc...)
+ * Flexbox align-self:
+ *     - flex-as-start            - flex-as-center            - flex-as-end
+ *     - flex-as-stretch
+ *     - flex-align-self-start    - flex-alignself-start      - (etc...)
  *
- * ****** TEXT ******
+ * ********** VERTICAL ALIGN **********
+ * - va-middle      - va-bottom         - va-top
+ * 
+ * *****************************************************
+ * ********************* TEXT **************************
  * fs: font-size
  * fw: font-weight
  * ti: text-indent
@@ -100,7 +123,8 @@
  *     bold, no-bold, fw-300, fw-400, fw-400
  *     underline, no-underline
  *
- * ****** COLORS ******
+ * *****************************************************
+ * ********************** COLORS ***********************
  * bg:     background colour
  * bgfill: background colour - clobber all other background definitions
  *
@@ -112,13 +136,32 @@
  * Colour styles based on the colour vars are in ./scss/colors/color-styles.scss
  * All are exported in the util-styles.scss file.
  *
+ * ****** CURSOR ******
+ * All are set to show up in hover and active states.
+ *     cur-default
+ *     cur-pointer
+ *     cur-none
+ *     cur-move
+ *     cur-col-resize
+ *     cur-row-resize
+ *     cur-help
+ *
+ * ****** OPACITY ******
+ * opa: opacity
+ * Can have values from 0 (0.0) to 100 (1.0). e.g.
+ *     - opa-0        - opa-1        - opa-2        - opa-3        - opa-4
+ *     - opa-5        - opa-6        - opa-10       - opa-15       - opa-20
+ *     - opa-25       - opa-30       - opa-35       - opa-45       - opa-46
+ *     - opa-47       - opa-50       - opa-55       - opa-70       - opa-75
+ *     - opa-80       - opa-90       - opa-91       - opa-95       - opa-99
+ *     - opa-100
+ *
  * ****** MISC ******
- * opa:    opacity
- * float:  float
- * cur:    cursor
- * states: state collection - complimentary hover & active
- * va:     vertical-align
- * vis:    visibility
+ * float, f:  float. f-right, f-left, float-right, float-left.
+ * states:    state collection. Complimentary hover & active.
+ * va:        vertical-align. va-middle, va-bottom, va-top
+ * vis:       visibility. e.g. vis-hidden. Also .hidden, .visible, .collapse.
+ * z, zi:     z-index. e.g. z-n100, zi-1000, z-0, zi-1, z-5
  */
 
 :global {
