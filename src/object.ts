@@ -2,7 +2,6 @@
 import { isNonexistentOrString, RealAny, isArray } from './types-iso';
 import { matchesIgnoreCase, replaceAll } from './string';
 import { englishVariants, frenchVariants } from './internal/lang-constants';
-import { variadicStringArrayKeys } from './array';
 
 import deepFreezeStrict = require('deep-freeze-strict');
 import { isVerbose } from 'env-var-helpers';

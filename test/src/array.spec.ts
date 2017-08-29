@@ -17,7 +17,6 @@ import { m_, array, append,
         withoutLast, withoutLast2, withoutLast3, withoutLastN,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
         removeMatches,
-        variadicStringArrayKeys,
         matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
@@ -582,23 +581,5 @@ describe(`array sub-module`, function() {
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])(null)).to.be.false;
             expect(matchAny([])('')).to.be.false;
         });
-    });
-
-    describe(`-- variadicStringArrayKeys`, function() {
-        const testObj = { a: '12', b: '34', c: '56' };
-        const testObjKeysAsVarStrArr = variadicStringArrayKeys(testObj);
-        it(`should return an array of an object's keys`, function() {
-            expect(testObjKeysAsVarStrArr).to.eql(['a', 'b', 'c']);
-        });
-        it(`should have return type with variadic string an array of an object's keys`, function() {
-            const arrWithMatchingType: typeof testObjKeysAsVarStrArr = ['a', 'b', 'c'];
-            expect(typeof arrWithMatchingType).to.eql(typeof testObjKeysAsVarStrArr);
-            // Goal here is to avoid Typescript errors in the transpiler - this test won't
-            // actually catch errors in runtime.
-        });
-        // Note: this should cause transpiler complaints:
-        //     let arrWithMatchingType2: typeof testObjKeysAsVarStrArr = ['a', 'b', 'd'];
-        // ...but I currently have no way to assert that in a test.
-        // TODO Try using ts-runtime (https://github.com/fabiandev/ts-runtime) to test TS typings.
     });
 });

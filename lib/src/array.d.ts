@@ -157,17 +157,6 @@ export declare const splitLines: (str: string, opts?: {
     preserveEmptyLines: boolean;
 }) => string[];
 /**
- * Create a variadic string array from an object's keys.
- * @param {Object} obj Object to convert
- * @example const langCodes = VariadicStringArrayFromObjKeys({ en: 'english', fr: 'french '});
- *          // langCodes now = ['en', 'fr']; with type ('en' | 'fr')[]
- */
-export declare const variadicStringArrayKeys: <T>(obj: T) => keyof T[];
-/** Alias of variadicStringArrayKeys */
-export declare const keysAsVariadicStringArray: <T>(obj: T) => keyof T[];
-/** Alias of variadicStringArrayKeys */
-export declare const objKeysAsVariadicStringArray: <T>(obj: T) => keyof T[];
-/**
  * Namespace for certain "reversed" operations.
  */
 export declare const without: {
