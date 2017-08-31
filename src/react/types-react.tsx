@@ -32,7 +32,13 @@ export type AnyComponent<T> =
  * Normally Typescript does not allow you to assign them display names, resulting in:
  *     <Unknown></Unknown>
  */
-export type NamedSFC<T> = ((args: T) => JSX.Element) & { displayName: string };
+export type NamedSFC<P extends {}> = ((props: P) => JSX.Element) & { displayName: string };
+export { NamedSFC as NamedReactSFC }
+
+/**
+ * Basic React stateless functional component signature.
+ */
+export type ReactSFC<P extends {}> = (props: P) => JSX.Element;
 
 /**
  * Use with stateless functional components passing children through.

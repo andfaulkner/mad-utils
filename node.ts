@@ -59,10 +59,16 @@ export const types = Object.assign(isoTypes, nodeTypes);
 export * from './src/node/types-node';
 export * from './src/types-iso';
 
+// Import Webpack utilities/helpers/plugins module.
 import * as webpack from './src/node/webpack';
 export * from './src/node/webpack';
 export { webpack };
 export { webpack as webpackUtils };
+
+// Import ExpressJS routing helpers module.
+import * as expressRouting from './src/node/expressRouting';
+export * from './src/node/expressRouting';
+export { expressRouting };
 
 /********************************************* EXPORT *********************************************/
 /**
@@ -78,6 +84,7 @@ export const mUtils = {
     error: err,
     err,
     errorShared,
+    expressRouting,
     file,
     func,
     'function': func,
