@@ -66,8 +66,8 @@ export { webpack };
 export { webpack as webpackUtils };
 
 // Import ExpressJS routing helpers module.
-import * as expressRouting from './src/node/expressRouting';
-export * from './src/node/expressRouting';
+import * as expressRouting from './src/node/express-routing';
+export * from './src/node/express-routing';
 export { expressRouting };
 
 /********************************************* EXPORT *********************************************/

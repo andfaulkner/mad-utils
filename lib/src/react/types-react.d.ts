@@ -27,9 +27,14 @@ export declare type AnyComponent<T> = React.StatelessComponent<T> | React.Compon
  * Normally Typescript does not allow you to assign them display names, resulting in:
  *     <Unknown></Unknown>
  */
-export declare type NamedSFC<T> = ((args: T) => JSX.Element) & {
+export declare type NamedSFC<P extends {}> = ((props: P) => JSX.Element) & {
     displayName: string;
 };
+export { NamedSFC as NamedReactSFC };
+/**
+ * Basic React stateless functional component signature.
+ */
+export declare type ReactSFC<P extends {}> = (props: P) => JSX.Element;
 /**
  * Use with stateless functional components passing children through.
  */

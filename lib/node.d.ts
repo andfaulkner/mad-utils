@@ -44,6 +44,9 @@ import * as webpack from './src/node/webpack';
 export * from './src/node/webpack';
 export { webpack };
 export { webpack as webpackUtils };
+import * as expressRouting from './src/node/express-routing';
+export * from './src/node/express-routing';
+export { expressRouting };
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -58,6 +61,7 @@ export declare const mUtils: {
     error: typeof errorShared & typeof nodeError;
     err: typeof errorShared & typeof nodeError;
     errorShared: typeof errorShared;
+    expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
     'function': typeof func;
@@ -94,6 +98,7 @@ export declare const __: {
     error: typeof errorShared & typeof nodeError;
     err: typeof errorShared & typeof nodeError;
     errorShared: typeof errorShared;
+    expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
     'function': typeof func;
@@ -130,6 +135,7 @@ export declare const m_: {
     error: typeof errorShared & typeof nodeError;
     err: typeof errorShared & typeof nodeError;
     errorShared: typeof errorShared;
+    expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
     'function': typeof func;
@@ -166,6 +172,7 @@ export declare const madUtils: {
     error: typeof errorShared & typeof nodeError;
     err: typeof errorShared & typeof nodeError;
     errorShared: typeof errorShared;
+    expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
     'function': typeof func;
