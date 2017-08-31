@@ -94,6 +94,7 @@ export declare const canadaLangsObj: {
  * Array of the abbreviations of Canada's official languages
  */
 export declare const canadaLangAbbrevs: string[];
+export declare const canadaLangCodes: string[];
 /**
  * Array of the names of Canada's official languages.
  */
