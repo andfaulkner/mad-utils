@@ -3,10 +3,7 @@ export * from './src/react/types-react';
 export * from './src/react/hocs';
 export * from './src/react/components';
 
-export interface FuncW2OrMoreArgs {
-  (arg1: any, arg2?: any): any | void;
-  (arg1: any, ...args: any[]): any | void;
-}
+type FuncW2OrMoreArgs = (arg1: any, ...args: any[]) => (any | void);
 
 /**
  * Log the value of a React Synthetic event's target component/element.
