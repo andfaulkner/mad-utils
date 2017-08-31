@@ -44,6 +44,7 @@ export const canadaLangsObj = { en: 'English', fr: 'French' };
  * Array of the abbreviations of Canada's official languages
  */
 export const canadaLangAbbrevs = Object.keys(commonLangsObj);
+export const canadaLangCodes = canadaLangAbbrevs;
 
 /**
  * Array of the names of Canada's official languages.
