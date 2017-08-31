@@ -3,10 +3,9 @@ export * from './src/react/types-react';
 export * from './src/react/hocs';
 export * from './src/react/components';
 
-// type FuncW2OrMoreArgs = (arg1: string | any, arg2?: string | any) => any;
-
 export interface FuncW2OrMoreArgs {
-  (arg1: any, arg2?: any): any;
+  (arg1: any, arg2?: any): any | void;
+  (arg1: any, ...args: any[]): any | void;
 }
 
 /**
