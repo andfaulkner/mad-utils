@@ -68,6 +68,13 @@
     .lowercase  { text-transform: lowercase  }
     .capitalize { text-transform: capitalize }
 
+    // REVERSE TEXT
+    .reverse-text, .text-reverse, .text-flipx, .flipx-text {
+        direction: rtl;
+        unicode-bidi: bidi-override;
+        text-align: left;
+    }
+
     //****************************************** LINE HEGHT *******************************************/
     .lh-5   { line-height: 5px   }
     .lh-6   { line-height: 6px   }
