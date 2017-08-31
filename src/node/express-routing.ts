@@ -129,12 +129,6 @@ export const isCssAsset = (req: Request): boolean => req.originalUrl.endsWith(`.
 export { isCssAsset as isCSSAsset }
 
 /**
- * Use request object to determine URL to request JS or CSS asset from.
- * @param {Request} req - Express request object.
- */
-export const getCodeAssetUrl = (req: Request) => `/${last(req.baseUrl.split('/'))}`;
-
-/**
  * Returns true if give string is a supported language.
  * @param {string} str Check if this string is in the supported languages list.
  * @return {boolean} true if the given string is a supported language.
