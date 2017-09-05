@@ -33,6 +33,19 @@
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
+    .flex.justify-content-fs,
+    .flex.justify-content-start         { justify-content: flex-start    }
+    .flex.justify-content-fe,
+    .flex.justify-content-end           { justify-content: flex-end      }
+    .flex.justify-content-center,
+    .flex.justify-content-mid           { justify-content: center        }
+    .flex.justify-content-space-around,
+    .flex.justify-content-around,
+    .flex.justify-content-sa            { justify-content: space-around  }
+    .flex.justify-content-space-between,
+    .flex.justify-content-between,
+    .flex.justify-content-sb            { justify-content: space-between }
+
     .flex-justify-content-fs,
     .flex-justify-content-start         { justify-content: flex-start    }
     .flex-justify-content-fe,
@@ -58,6 +71,19 @@
     .flex-jc-sb,
     .flex-jc-space-between,
     .flex-jc-between                    { justify-content: space-between }
+
+    .flex.justifycontent-fs,
+    .flex.justifycontent-start          { justify-content: flex-start    }
+    .flex.justifycontent-fe,
+    .flex.justifycontent-end            { justify-content: flex-end      }
+    .flex.justifycontent-center,
+    .flex.justifycontent-mid            { justify-content: center        }
+    .flex.justifycontent-sa,
+    .flex.justifycontent-space-around,
+    .flex.justifycontent-around         { justify-content: space-around  }
+    .flex.justifycontent-sb,
+    .flex.justifycontent-space-between,
+    .flex.justifycontent-between        { justify-content: space-between }
 
     .flex-justifycontent-fs,
     .flex-justifycontent-start          { justify-content: flex-start    }
