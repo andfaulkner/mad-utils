@@ -9,3 +9,5 @@ export * from './src/react/components';
  * @param {SyntheticEvent|any} event Event to log.
  */
 export declare const logSyntheticEventValue: (callerName: string, logFn?: (arg1: any, ...args: any[]) => any) => (event: any) => void;
+/********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
+export * from './browser';
