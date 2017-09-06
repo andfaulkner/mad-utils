@@ -30,3 +30,7 @@ export const logSyntheticEventValue = (callerName: string, logFn: FuncW2OrMoreAr
         logFn(`${callerName} :: event.target['value']:`, event.target['value']);
     }
 };
+
+
+/********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
+export * from './browser';
