@@ -230,9 +230,17 @@
     .flex-align-self-stretch { align-self: stretch    }
 
     /************ flex :: flex-direction ************/
+    .flex.direction-column,
+    .flex.direction-col    { flex-direction: column }
+    .flex.direction-row    { flex-direction: row    }
+
     .flex-direction-column,
     .flex-direction-col    { flex-direction: column }
     .flex-direction-row    { flex-direction: row    }
+
+    .flex.dir-col,
+    .flex.dir-column       { flex-direction: column }
+    .flex.dir-row          { flex-direction: row    }
 
     .flex-dir-col,
     .flex-dir-column       { flex-direction: column }
