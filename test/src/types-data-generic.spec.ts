@@ -16,6 +16,7 @@ describe(`Generic data tests`, function() {
         it(`canadianProvinces is deep frozen`, function() {
             expect(canadianProvinces).to.be.frozen;
         });
+
         it(`canadianProvincesOrNone is deep frozen`, function() {
             expect(canadianProvincesOrNone).to.be.frozen;
         });
@@ -32,12 +33,15 @@ describe(`Generic data tests`, function() {
         it(`sexes is deep frozen`, function() {
             expect(sexes).to.be.frozen;
         });
+
         it(`sexesWithOther is deep frozen`, function() {
             expect(sexesWithOther).to.be.frozen;
         });
+
         it(`gender is deep frozen`, function() {
             expect(gender).to.be.frozen;
         });
+
         it(`genderFull is deep frozen`, function() {
             expect(genderFull).to.be.frozen;
         });
