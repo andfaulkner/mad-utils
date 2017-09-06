@@ -66,6 +66,7 @@ export { validation };
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
 
+
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -110,3 +111,59 @@ export const mUtils = {
 export const __ = mUtils;
 export const m_ = mUtils;
 export const madUtils = mUtils;
+
+/************************************ EXPORT COMMON FUNCTIONS *************************************/
+export const commonShared = {
+    first: array.first,
+    last: array.last,
+    first2: array.first2,
+    last2: array.last2,
+    without: array.without,
+    withoutFirst: array.withoutFirst,
+    withoutLast: array.withoutLast,
+    withoutFirst2: array.withoutFirst2,
+    withoutLast2 : array.withoutLast2 ,
+    removeMatches: array.removeMatches,
+    rmAllFalsy: array.rmAllFalsy,
+    isArray: array.isArray,
+
+    isLeapYear: date.isLeapYear,
+    now: date.now,
+
+    condSwitch: func.condSwitch,
+
+    uuid: number.uuid,
+
+    merge: object.merge,
+    hasKey: object.hasKey,
+    eachPair: object.eachPair,
+    assignFrozenClone: object.assignFrozenClone,
+    deepFreeze: object.deepFreeze,
+
+    parseQueryParams: query.parseQueryParams,
+    getLangFromUrlPathname: query.getLangFromUrlPathname,
+    urlMinusQueryParams: query.urlMinusQueryParams,
+
+    toSnakeCase: string.toSnakecase,
+    cap1LowerRest: string.cap1LowerRest,
+    capitalize: string.capitalize,
+    replaceAll: string.replaceAll,
+    removeWhitespace: string.removeWhitespace,
+    chomp: string.chomp,
+    matchesIgnoreCase: string.matchesIgnoreCase,
+    removeMatchingText: string.removeMatchingText,
+    repeatChars: string.repeatChars,
+    endsWithExt: string.endsWithExt,
+    leftPad: string.leftPad,
+    rightPad: string.rightPad,
+    centeredPad: string.centeredPad,
+
+    isNonexistentOrString: types.isNonexistentOrString,
+    isNumberLike: types.isNumberLike,
+    isBoolean: types.isBoolean,
+    isDateLike: types.isDateLike,
+    isTrue: types.isTrue,
+    castToNum: types.castToNum,
+};
+
+export { commonShared as commonIso }
