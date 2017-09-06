@@ -1,6 +1,6 @@
 // Import shared modules, and re-export them for top-level access.
 import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string,
-         types as isoTypes, validation } from './shared';
+         types as isoTypes, validation, dataTypes } from './shared';
 export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search,
          string, validation }
 
@@ -49,9 +49,11 @@ export { localStore as localStorageUtils }
 import * as browserTypes from './src/browser/types-browser';
 export * from './src/browser/types-browser';
 export * from './src/types-iso';
+export * from './src/types-data-generic';
+
 
 // Build final browser types object by merging isomorphic types with browser-specific types.
-export const types = Object.assign({}, isoTypes, browserTypes);
+export const types = Object.assign(isoTypes, browserTypes, dataTypes);
 
 
 /********************************************* EXPORT *********************************************/
@@ -60,17 +62,21 @@ export const types = Object.assign({}, isoTypes, browserTypes);
  */
 export const mUtils = {
     array,
+    commonDataTypes: dataTypes,
+    dataTypes,
     date,
     decorator,
     decorators: decorator,
     dom,
     enum: Enum,
     Enum,
+    err: error,
     error,
     event,
     func,
     'function': func,
     functionUtils: func,
+    genericDataTypes: dataTypes,
     isNode,
     json,
     jsonUtils: json,

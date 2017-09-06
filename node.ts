@@ -1,6 +1,6 @@
 // Import shared modules, and re-export them for top-level access.
 import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string,
-         types as isoTypes, validation } from './shared';
+         types as isoTypes, validation, dataTypes } from './shared';
 export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string,
          validation }
 
@@ -55,9 +55,10 @@ export { file };
 // Build final NodeJS types object by merging isomorphic types with Node-specific types.
 // Export all, including merged-in types from types-iso.
 import * as nodeTypes from './src/node/types-node';
-export const types = Object.assign(isoTypes, nodeTypes);
+export const types = Object.assign(isoTypes, nodeTypes, dataTypes);
 export * from './src/node/types-node';
 export * from './src/types-iso';
+export * from './src/types-data-generic';
 
 // Import Webpack utilities/helpers/plugins module.
 import * as webpack from './src/node/webpack';
@@ -76,6 +77,8 @@ export { expressRouting };
  */
 export const mUtils = {
     array,
+    commonDataTypes: dataTypes,
+    dataTypes,
     date,
     decorator,
     decorators: decorator,
@@ -89,6 +92,7 @@ export const mUtils = {
     func,
     'function': func,
     functionUtils: func,
+    genericDataTypes: dataTypes,
     isNode,
     json,
     jsonUtils: json,
