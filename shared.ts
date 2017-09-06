@@ -55,6 +55,10 @@ import * as types from './src/types-iso';
 export * from './src/types-iso';
 export { types };
 
+import * as dataTypes from './src/types-data-generic';
+export * from './src/types-data-generic';
+export { dataTypes };
+
 import * as validation from './src/validation';
 export * from './src/validation';
 export { validation };
@@ -69,6 +73,7 @@ import * as isNode from 'detect-node';
 export const mUtils = {
     array,
     date,
+    dataTypes,
     decorator,
     decorators: decorator,
     enum: Enum,
