@@ -9,7 +9,7 @@ import { common as browserCommon } from '../../browser';
 import { commonShared as sharedCommon } from '../../shared';
 
 /********************************************* TESTS **********************************************/
-describe(`error sub-module`, function() {
+describe(`common exports sub-module`, function() {
     expectNonEmptyObjectExists(nodeCommon,
         'Object with functions most commonly used in Node exported');
     expectNonEmptyObjectExists(browserCommon,
