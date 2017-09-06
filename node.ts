@@ -116,3 +116,24 @@ export const mUtils = {
 export const __ = mUtils;
 export const m_ = mUtils;
 export const madUtils = mUtils;
+
+/************************************ COMMON FUNCTION EXPORTS *************************************/
+import { commonShared } from './shared';
+import { useMiddlewareInProdOnly } from './src/node/middleware';
+import * as connect from 'connect';
+
+/**
+ * Most common functions from mad-utils used in Node.
+ */
+export const common = Object.assign({}, commonShared, {
+    isDir: file.isDir,
+    pathFromRoot: file.pathFromRoot,
+    replaceInFile: file.replaceInFile,
+    getJsFilesInDir: file.getJsFilesInDir,
+    isFileInDir: file.isFileInDir,
+    useMiddlewareInProdOnly,
+    composeExpressMiddlewares: middleware.composeExpressMiddlewares,
+    expectEmptyObject: test.expectEmptyObject,
+    expectFuncExists: test.expectFuncExists,
+    expectNonEmptyObjectExists: test.expectNonEmptyObjectExists,
+});
