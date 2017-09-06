@@ -304,7 +304,7 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
  * @param {string} charToRepeat - Character to repeat in the output string
  * @return {string} string consisting of len repeats of charToRepeat.
  */
-const repeatChars = (repChar: string, len: number): string => arrayN(len, repChar).join('');
+export const repeatChars = (repChar: string, len: number): string => arrayN(len, repChar).join('');
 
 /**
  * Alias for repeatChar
