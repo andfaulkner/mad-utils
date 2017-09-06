@@ -1,4 +1,4 @@
-import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes, validation } from './shared';
+import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes } from './shared';
 export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, validation };
 export * from './src/array';
 export * from './src/date';
@@ -34,24 +34,29 @@ export { localStore as localStorageUtils };
 import * as browserTypes from './src/browser/types-browser';
 export * from './src/browser/types-browser';
 export * from './src/types-iso';
-export declare const types: typeof isoTypes & typeof browserTypes;
+export * from './src/types-data-generic';
+export declare const types: typeof isoTypes & typeof browserTypes & typeof dataTypes;
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module (namespace)
  */
 export declare const mUtils: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
     dom: typeof dom;
     enum: typeof Enum;
     Enum: typeof Enum;
+    err: typeof error;
     error: typeof error;
     event: typeof event;
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -68,24 +73,28 @@ export declare const mUtils: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: typeof isoTypes & typeof browserTypes;
-    types: typeof isoTypes & typeof browserTypes;
-    typing: typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof browserTypes & typeof dataTypes;
     validation: typeof validation;
 };
 export declare const __: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
     dom: typeof dom;
     enum: typeof Enum;
     Enum: typeof Enum;
+    err: typeof error;
     error: typeof error;
     event: typeof event;
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -102,24 +111,28 @@ export declare const __: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: typeof isoTypes & typeof browserTypes;
-    types: typeof isoTypes & typeof browserTypes;
-    typing: typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof browserTypes & typeof dataTypes;
     validation: typeof validation;
 };
 export declare const m_: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
     dom: typeof dom;
     enum: typeof Enum;
     Enum: typeof Enum;
+    err: typeof error;
     error: typeof error;
     event: typeof event;
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -136,24 +149,28 @@ export declare const m_: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: typeof isoTypes & typeof browserTypes;
-    types: typeof isoTypes & typeof browserTypes;
-    typing: typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof browserTypes & typeof dataTypes;
     validation: typeof validation;
 };
 export declare const madUtils: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
     dom: typeof dom;
     enum: typeof Enum;
     Enum: typeof Enum;
+    err: typeof error;
     error: typeof error;
     event: typeof event;
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -170,9 +187,9 @@ export declare const madUtils: {
     stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    type: typeof isoTypes & typeof browserTypes;
-    types: typeof isoTypes & typeof browserTypes;
-    typing: typeof isoTypes & typeof browserTypes;
+    type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof browserTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof browserTypes & typeof dataTypes;
     validation: typeof validation;
 };
 /**

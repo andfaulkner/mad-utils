@@ -1,5 +1,5 @@
 /// <reference types="connect" />
-import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes, validation } from './shared';
+import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes } from './shared';
 export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, validation };
 export * from './src/array';
 export * from './src/date';
@@ -39,9 +39,10 @@ import * as file from './src/node/file';
 export * from './src/node/file';
 export { file };
 import * as nodeTypes from './src/node/types-node';
-export declare const types: typeof isoTypes;
+export declare const types: typeof isoTypes & typeof dataTypes;
 export * from './src/node/types-node';
 export * from './src/types-iso';
+export * from './src/types-data-generic';
 import * as webpack from './src/node/webpack';
 export * from './src/node/webpack';
 export { webpack };
@@ -55,6 +56,8 @@ export { expressRouting };
  */
 export declare const mUtils: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
@@ -68,6 +71,7 @@ export declare const mUtils: {
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -83,15 +87,17 @@ export declare const mUtils: {
     str: typeof string;
     string: typeof string;
     test: typeof test;
-    type: typeof isoTypes;
-    types: typeof isoTypes;
-    typing: typeof isoTypes;
+    type: typeof isoTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };
 export declare const __: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
@@ -105,6 +111,7 @@ export declare const __: {
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -120,15 +127,17 @@ export declare const __: {
     str: typeof string;
     string: typeof string;
     test: typeof test;
-    type: typeof isoTypes;
-    types: typeof isoTypes;
-    typing: typeof isoTypes;
+    type: typeof isoTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };
 export declare const m_: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
@@ -142,6 +151,7 @@ export declare const m_: {
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -157,15 +167,17 @@ export declare const m_: {
     str: typeof string;
     string: typeof string;
     test: typeof test;
-    type: typeof isoTypes;
-    types: typeof isoTypes;
-    typing: typeof isoTypes;
+    type: typeof isoTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
 };
 export declare const madUtils: {
     array: typeof array;
+    commonDataTypes: typeof dataTypes;
+    dataTypes: typeof dataTypes;
     date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
@@ -179,6 +191,7 @@ export declare const madUtils: {
     func: typeof func;
     'function': typeof func;
     functionUtils: typeof func;
+    genericDataTypes: typeof dataTypes;
     isNode: any;
     json: typeof json;
     jsonUtils: typeof json;
@@ -194,9 +207,9 @@ export declare const madUtils: {
     str: typeof string;
     string: typeof string;
     test: typeof test;
-    type: typeof isoTypes;
-    types: typeof isoTypes;
-    typing: typeof isoTypes;
+    type: typeof isoTypes & typeof dataTypes;
+    types: typeof isoTypes & typeof dataTypes;
+    typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
     webpack: typeof webpack;
     webpackUtils: typeof webpack;
