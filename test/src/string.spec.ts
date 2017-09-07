@@ -19,7 +19,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
         endsInDotScss, endsInDotTsx, endsWithExt,
-        toSnakeCase,
+        toSnakeCase, toCamelCase,
         withLeftIndent,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
@@ -179,6 +179,7 @@ describe(`string sub-module`, function() {
 
     describe('toSnakeCase', function() {
         expectFunctionExists(matchesIgnoreCase);
+        expectFunctionExists(toSnakeCase);
         it(`returns snake_case form of camelCase string`, function() {
             expect(toSnakeCase('someTestString')).to.eql('some_test_string');
         });
@@ -219,6 +220,101 @@ describe(`string sub-module`, function() {
             expect(toSnakeCase(' Some-Test-String ')).to.eql('some_test_string');
             expect(toSnakeCase('   someTestString      ')).to.eql('some_test_string');
             expect(toSnakeCase('        Some test string.')).to.eql('some_test_string');
+        });
+    });
+
+    describe('toCamelCase', function() {
+        expectFunctionExists(toCamelCase);
+        it(`returns camelCase form of camelCase string (i.e. it remains camelCase)`, function() {
+            expect(toCamelCase('someTestString')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of PascalCase string`, function() {
+            expect(toCamelCase('SomeTestString')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of dash-case string`, function() {
+            expect(toCamelCase('some-test-string')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of dash-case string with caps`, function() {
+            expect(toCamelCase('Some-Test-String')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of "sentences"`, function() {
+            expect(toCamelCase('Some test string')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of dot.separated.strings (with .s replaced by _s)`, function() {
+            expect(toCamelCase('Some.test.string')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of string preceded by underscores`, function() {
+            expect(toCamelCase('_____SomeTestString')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of string preceded by dashes`, function() {
+            expect(toCamelCase('-----SomeTestString')).to.eql('someTestString');
+        });
+        it(`returns camelCase form of string preceded by dashes & underscores`, function() {
+            expect(toCamelCase('-___-SomeTestString')).to.eql('someTestString');
+        });
+        it(`eliminates apostrophes, ?, !, |, ',', and '.'`, function() {
+            expect(toCamelCase('Some,TestString?!?')).to.eql('someTestString');
+            expect(toCamelCase("SomeTest'String")).to.eql('someTestString');
+            expect(toCamelCase('SomeTest!String')).to.eql('someTestString');
+            expect(toCamelCase('SomeTest|||String')).to.eql('someTestString');
+            expect(toCamelCase('Some.test,,,,,string"')).to.eql('someTestString');
+            expect(toCamelCase('Some.test....string...,"')).to.eql('someTestString');
+            expect(toCamelCase('Some.test....??|string...,!!"')).to.eql('someTestString');
+            expect(toCamelCase('\'\'\'Some`test`string???!|`"')).to.eql('someTestString');
+        });
+        it(`eliminates special chars: @#$%^&*_-+\\;:?/~`, function() {
+            expect(toCamelCase('Some@Test#String')).to.eql('someTestString');
+            expect(toCamelCase('Some$Test%String')).to.eql('someTestString');
+            expect(toCamelCase('Some&Test^String')).to.eql('someTestString');
+            expect(toCamelCase('\'\'\'Some`test`string???!|`"')).to.eql('someTestString');
+            expect(toCamelCase('Some,test,string')).to.eql('someTestString');
+            expect(toCamelCase('Some=test=string')).to.eql('someTestString');
+            expect(toCamelCase('Some+test+string')).to.eql('someTestString');
+            expect(toCamelCase('Some~test~string~~')).to.eql('someTestString');
+            expect(toCamelCase('Some\\testString\\')).to.eql('someTestString');
+            expect(toCamelCase('Some::::testString;;;;')).to.eql('someTestString');
+            expect(toCamelCase('****#**#Some*testString*')).to.eql('someTestString');
+            expect(toCamelCase('~SomeTestString')).to.eql('someTestString');
+            expect(toCamelCase('~Some~~~~Test~~~string~~~~~;')).to.eql('someTestString');
+            expect(toCamelCase('*=+Some~~^^Test~!!!string|||')).to.eql('someTestString');
+            expect(toCamelCase('++Some+++++++Test++++++string+++++')).to.eql('someTestString');
+        });
+
+        it(`eliminates quotes, capitalizing the first char directly after each quote`, function() {
+            expect(toCamelCase('Some"test"string')).to.eql('someTestString');
+            expect(toCamelCase('Some"Test"String')).to.eql('someTestString');
+            expect(toCamelCase('Some\'Test\'String')).to.eql('someTestString');
+            expect(toCamelCase('Some`Test`String')).to.eql('someTestString');
+            expect(toCamelCase('Some"Test\'String')).to.eql('someTestString');
+            expect(toCamelCase('Some`Test"String')).to.eql('someTestString');
+        });
+
+        it(`eliminates braces - {}[]{}<>, capitalizing 1st char directly after each`, function() {
+            expect(toCamelCase('Some(test)string')).to.eql('someTestString');
+            expect(toCamelCase('(someTestString)')).to.eql('someTestString');
+            expect(toCamelCase('[some]testString)')).to.eql('someTestString');
+            expect(toCamelCase('[someTest]String)')).to.eql('someTestString');
+            expect(toCamelCase('{someTest}string)')).to.eql('someTestString');
+            expect(toCamelCase('{someTest)string)')).to.eql('someTestString');
+            expect(toCamelCase('{someTest)string]]]])')).to.eql('someTestString');
+            expect(toCamelCase('{{{{{someTest)string]]]])')).to.eql('someTestString');
+            expect(toCamelCase('{{{{{some()))((Test)string]]]])')).to.eql('someTestString');
+            expect(toCamelCase('))))))someTest]]]]]]]string{{{{{{][[]')).to.eql('someTestString');
+            expect(toCamelCase('Some<test>string')).to.eql('someTestString');
+            expect(toCamelCase('Some>test<string')).to.eql('someTestString');
+            expect(toCamelCase('Some>test<string>>>>>><><>>')).to.eql('someTestString');
+            expect(toCamelCase('>>>Some>test<string>>>>>><><>>')).to.eql('someTestString');
+            expect(toCamelCase('((((SomeTestString>>>>')).to.eql('someTestString');
+            expect(toCamelCase('((((<<<<[]SomeTestString))))>>>>')).to.eql('someTestString');
+            expect(toCamelCase('{<][<]SomeTestString)<(>(([]<<<<')).to.eql('someTestString');
+        });
+
+        it(`returns camelCase form of string preceded or followed by spaces`, function() {
+            expect(toCamelCase(' SomeTestString')).to.eql('someTestString');
+            expect(toCamelCase('some-test-string ')).to.eql('someTestString');
+            expect(toCamelCase(' Some-Test-String ')).to.eql('someTestString');
+            expect(toCamelCase('   someTestString      ')).to.eql('someTestString');
+            expect(toCamelCase('        Some test string.')).to.eql('someTestString');
         });
     });
 

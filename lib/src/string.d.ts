@@ -87,6 +87,10 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
 export declare const toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
 export declare const toSnakecase: (str: string, consecUppercaseToLowercase?: boolean) => string;
 /**
+ * Converts from various types to camelCase.
+ */
+export declare const toCamelCase: (str: string) => string;
+/**
  * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
  * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
  * @param {string} str - String to remove matches from.

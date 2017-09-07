@@ -220,6 +220,22 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
 export const toSnakecase = toSnakeCase;
 
 /**
+ * Converts from various types to camelCase.
+ */
+export const toCamelCase = (str: string) => {
+    const midStr = str
+        .replace(
+            /(?:^\w|[A-Z]|\b\w|\s+)/g,
+            (match: string, idx: number) => {
+                if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+                return idx == 0 ? match.toLowerCase() : match.toUpperCase();
+            }
+        )
+        .replace(/[\-.!@#_%^&*()\[\]{};:'"~`,?\|\/+=\\<>$]+/g, '');
+    return midStr.charAt(0).toLowerCase() + midStr.slice(1);
+};
+
+/**
  * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
  * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
  * @param {string} str - String to remove matches from.
