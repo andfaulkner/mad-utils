@@ -17,8 +17,16 @@ export declare type Int1To60 = Int1To50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 
 export declare type Integer = number;
 /** @return {string} Randomly generated sequence 6 characters long e.g. AB790517 */
 export declare const len6: () => string;
+export { len6 as genLen6ID };
+export { len6 as gen6CharID };
+export { len6 as genLen6Str };
+export { len6 as gen6CharStr };
 /** @return {string} Randomly generated sequence 8 characters long e.g. 0E8526 */
 export declare const len8: () => string;
+export { len6 as genLen8ID };
+export { len8 as gen8CharID };
+export { len8 as genLen8Str };
+export { len8 as gen8CharStr };
 /** @return {string} Generate a UUID without any dashes (e.g. 505BB6B57D684C2488DD1522B34CF539) */
 export declare const noDashes: () => string;
 /**
