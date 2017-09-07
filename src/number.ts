@@ -26,9 +26,17 @@ const uuidBase = (): string => uuidImport();
 
 /** @return {string} Randomly generated sequence 6 characters long e.g. AB790517 */
 export const len6 = (): string => len8().slice(0, -2);
+export { len6 as genLen6ID }
+export { len6 as gen6CharID }
+export { len6 as genLen6Str }
+export { len6 as gen6CharStr }
 
 /** @return {string} Randomly generated sequence 8 characters long e.g. 0E8526 */
 export const len8 = (): string => uuidBase().split('-')[0];
+export { len6 as genLen8ID }
+export { len8 as gen8CharID }
+export { len8 as genLen8Str }
+export { len8 as gen8CharStr }
 
 /** @return {string} Generate a UUID without any dashes (e.g. 505BB6B57D684C2488DD1522B34CF539) */
 export const noDashes = (): string => uuidBase().split('-').join('');
