@@ -49,6 +49,9 @@ import * as decoratorUtils from './src/decorator';
 import * as stringUtils from './src/string';
 import * as isoTypesUtils from './src/types-iso';
 
+// Export numeric types
+export { Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer } from './src/number';
+
 export { browserUtils }
 
 // Export the most commonly used functions in the browser (all exports not working for some reason).
