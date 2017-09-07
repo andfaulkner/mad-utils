@@ -220,7 +220,11 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
 export const toSnakecase = toSnakeCase;
 
 /**
- * Converts from various types to camelCase.
+ * Converts any string to camelCase.
+ * This includes consistently making the first letter lowercase, capitalizing the 1st char after
+ * each non-alphanumeric char, and eliminating all non-alphanumeric characters and whitespace.
+ * @param {string} str String to convert to camelCase
+ * @return {string} String converted to camelCase format.
  */
 export const toCamelCase = (str: string) => {
     const midStr = str
