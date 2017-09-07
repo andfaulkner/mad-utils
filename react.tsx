@@ -49,8 +49,10 @@ import * as decoratorUtils from './src/decorator';
 import * as stringUtils from './src/string';
 import * as isoTypesUtils from './src/types-iso';
 
-// Export numeric types
+// Export types
 export { Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer } from './src/number';
+export { PolyglotProps, StrOrNever, StrOrNum, NumLike,
+         RealAny, Injection, MandatoryInjection, OptionalInjection } from './src/types-iso';
 
 export { browserUtils }
 
@@ -62,7 +64,9 @@ export const {
     centerPad, leftPad, rightPad, eliminateWhitespace, chomp,
     getLangFromUrlPathname, parseQueryParams, parseUserAgent,
     deepFreeze, assignFrozenClone, merge,
-    isArray, isBoolean, isTrue, isFalse,
+    isArray, isBoolean, isTrue, isFalse, isInteger, isIntegerLike, isNumberLike, isStringOrNumber,
+    isDateLike, isMultilangTextObj, isNonexistentOrString,
+    isDataEnumItem, isIndexEnumItem, isNumericEnumItem, castToNum,
     getFromStorage,
     uuid, eachPair,
     replaceAll,
