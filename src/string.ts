@@ -231,7 +231,7 @@ export const toCamelCase = (str: string) => {
         .replace(
             /(?:^\w|[A-Z]|\b\w|\s+)/g,
             (match: string, idx: number) => {
-                if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
+                if (+match === 0) return "";
                 return idx == 0 ? match.toLowerCase() : match.toUpperCase();
             }
         )
