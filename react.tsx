@@ -34,3 +34,9 @@ export const logSyntheticEventValue = (callerName: string, logFn: FuncW2OrMoreAr
 
 /********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
 export * from './browser';
+import * as browserUtils from './browser';
+export { browserUtils }
+
+// export { PolyglotProps, isTrue, isFalse } from './src/types-iso';
+// export const { without, first, last, first2, last2, getLangFromUrlPathname, replaceAll, centerPad,
+//     leftPad, rightPad, repeatChars, hasKey, append, assignFrozenClone, merge } = browserUtils;
