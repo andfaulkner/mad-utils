@@ -214,10 +214,22 @@ export const isArray = (val: RealAny): boolean => {
 /**
  * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true).
  * @param {any} val Check if this is a variant of true.
+ * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
-export const isTrue = (val: RealAny): boolean =>
-    !!(val === 'true' || val === 'True' || val === 'TRUE' || val === true);
+export const isTrue = (val: RealAny, include1CharVal: boolean = false): boolean =>
+    !!(val === 'true' || val === 'True' || val === 'TRUE' || val === true
+        || (include1CharVal && (val === 't' || val === 'T')));
+
+/**
+ * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false).
+ * @param {any} val Check if this is a variant of false.
+ * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true.
+ * @return {boolean} false if given value is a variant of false, otherwise false.
+ */
+export const isFalse = (val: RealAny, include1CharVal: boolean = false): boolean =>
+    !!(val === 'false' || val === 'False' || val === 'FALSE' || val === false
+        || (include1CharVal && (val === 'f' || val === 'F')));
 
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
