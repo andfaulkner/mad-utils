@@ -21,6 +21,7 @@ import * as numberUtils from './src/number';
 import * as functionUtils from './src/function';
 import * as dateUtils from './src/date';
 import * as isoTypesUtils from './src/types-iso';
+export { Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer } from './src/number';
 export { browserUtils };
 export declare const first: typeof arrayUtils.first, last: typeof arrayUtils.last, first2: typeof arrayUtils.first2, last2: typeof arrayUtils.last2, without: {
     last: {
