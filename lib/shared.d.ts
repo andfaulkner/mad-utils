@@ -302,7 +302,7 @@ export declare const commonShared: {
     isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
     isBoolean: (val: any) => boolean;
     isDateLike: (val: any) => boolean;
-    isTrue: (val: any) => boolean;
+    isTrue: (val: any, include1CharVal?: boolean) => boolean;
     castToNum: (numLike: types.NumLike, throwOnFail?: boolean) => number | Error;
 };
 export { commonShared as commonIso };

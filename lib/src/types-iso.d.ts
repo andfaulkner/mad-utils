@@ -127,9 +127,17 @@ export declare const isArray: (val: any) => boolean;
 /**
  * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true).
  * @param {any} val Check if this is a variant of true.
+ * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
-export declare const isTrue: (val: any) => boolean;
+export declare const isTrue: (val: any, include1CharVal?: boolean) => boolean;
+/**
+ * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false).
+ * @param {any} val Check if this is a variant of false.
+ * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true.
+ * @return {boolean} false if given value is a variant of false, otherwise false.
+ */
+export declare const isFalse: (val: any, include1CharVal?: boolean) => boolean;
 /**
  * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
  *

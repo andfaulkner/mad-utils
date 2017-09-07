@@ -328,7 +328,7 @@ export declare const common: {
     isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
     isBoolean: (val: any) => boolean;
     isDateLike: (val: any) => boolean;
-    isTrue: (val: any) => boolean;
+    isTrue: (val: any, include1CharVal?: boolean) => boolean;
     castToNum: (numLike: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
 } & {
     isDir: (fileOrDirPath: string) => boolean;
