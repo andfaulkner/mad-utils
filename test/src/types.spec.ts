@@ -267,13 +267,23 @@ describe(`types sub-modules`, function() {
 
         describe(`isTrue function`, function() {
             expectFunctionExists(typesIso.isTrue);
-            it(`returns true if run against true, 'true', 'True', or 'TRUE'`, function() {
+            it(`returns true if given true, 'true', 'True', or 'TRUE', regardless of arg 2's value`,
+            function() {
                 expect(typesIso.isTrue(true)).to.be.true;
                 expect(typesIso.isTrue('true')).to.be.true;
                 expect(typesIso.isTrue('TRUE')).to.be.true;
                 expect(typesIso.isTrue('True')).to.be.true;
+                expect(typesIso.isTrue(true, true)).to.be.true;
+                expect(typesIso.isTrue('true', true)).to.be.true;
+                expect(typesIso.isTrue('TRUE', true)).to.be.true;
+                expect(typesIso.isTrue('True', true)).to.be.true;
+                expect(typesIso.isTrue(true, false)).to.be.true;
+                expect(typesIso.isTrue('true', false)).to.be.true;
+                expect(typesIso.isTrue('TRUE', false)).to.be.true;
+                expect(typesIso.isTrue('True', false)).to.be.true;
             });
-            it(`returns false for everything besides true, 'true', 'True', or 'TRUE'`, function() {
+            it(`if arg 2 false, returns false for all vals except true, 'true', 'True', or 'TRUE'`,
+            function() {
                 expect(typesIso.isTrue(null)).to.be.false;
                 expect(typesIso.isTrue(false)).to.be.false;
                 expect(typesIso.isTrue('TrUe')).to.be.false;
@@ -292,7 +302,65 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isTrue(Array)).to.be.false;
                 expect(typesIso.isTrue(Object)).to.be.false;
             });
+            it(`if arg 2 true, returns true for 't' and 'T'`, function() {
+                expect(typesIso.isTrue('t', true)).to.be.true;
+                expect(typesIso.isTrue('T', true)).to.be.true;
+            });
+            it(`if arg 2 false or not defined, returns false for 't' and 'T'`, function() {
+                expect(typesIso.isTrue('t', false)).to.be.false;
+                expect(typesIso.isTrue('T', false)).to.be.false;
+                expect(typesIso.isTrue('t')).to.be.false;
+                expect(typesIso.isTrue('T')).to.be.false;
+            });
         });
+
+        describe(`isFalse function`, function() {
+            expectFunctionExists(typesIso.isFalse);
+            it(`returns true if given false, 'false', 'False', or 'FALSE', regardless of arg 2's value`, function() {
+                expect(typesIso.isFalse(false)).to.be.true;
+                expect(typesIso.isFalse('false')).to.be.true;
+                expect(typesIso.isFalse('FALSE')).to.be.true;
+                expect(typesIso.isFalse('False')).to.be.true;
+                expect(typesIso.isFalse(false, false)).to.be.true;
+                expect(typesIso.isFalse('false', false)).to.be.true;
+                expect(typesIso.isFalse('FALSE', false)).to.be.true;
+                expect(typesIso.isFalse('False', false)).to.be.true;
+                expect(typesIso.isFalse(false, true)).to.be.true;
+                expect(typesIso.isFalse('false', true)).to.be.true;
+                expect(typesIso.isFalse('FALSE', true)).to.be.true;
+                expect(typesIso.isFalse('False', true)).to.be.true;
+            });
+            it(`if arg 2 false, returns false for all vals except false, 'false', 'False', or 'FALSE'`, function() {
+                expect(typesIso.isFalse(null)).to.be.false;
+                expect(typesIso.isFalse(true)).to.be.false;
+                expect(typesIso.isFalse('FaLsE')).to.be.false;
+                expect(typesIso.isFalse('asdfoigeiubaer')).to.be.false;
+                expect(typesIso.isFalse('')).to.be.false;
+                expect(typesIso.isFalse(undefined)).to.be.false;
+                expect((typesIso.isFalse as any)()).to.be.false;
+                expect(typesIso.isFalse({})).to.be.false;
+                expect(typesIso.isFalse([])).to.be.false;
+                expect(typesIso.isFalse([false, false])).to.be.false;
+                expect(typesIso.isFalse({ false: false })).to.be.false;
+                expect(typesIso.isFalse(1)).to.be.false;
+                expect(typesIso.isFalse(0)).to.be.false;
+                expect(typesIso.isFalse(123456)).to.be.false;
+                expect(typesIso.isFalse(NaN)).to.be.false;
+                expect(typesIso.isFalse(Array)).to.be.false;
+                expect(typesIso.isFalse(Object)).to.be.false;
+            });
+            it(`if arg 2 true, returns true for 'f' and 'F'`, function() {
+                expect(typesIso.isFalse('f', true)).to.be.true;
+                expect(typesIso.isFalse('F', true)).to.be.true;
+            });
+            it(`if arg 2 false or not defined, returns false for 'f' and 'F'`, function() {
+                expect(typesIso.isFalse('f', false)).to.be.false;
+                expect(typesIso.isFalse('F', false)).to.be.false;
+                expect(typesIso.isFalse('f')).to.be.false;
+                expect(typesIso.isFalse('F')).to.be.false;
+            });
+        });
+
         describe(`isDateLike function`, function() {
             expectFunctionExists(typesIso.isDateLike);
             it(`should return true for dates & moment objects`, function() {
