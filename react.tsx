@@ -34,9 +34,39 @@ export const logSyntheticEventValue = (callerName: string, logFn: FuncW2OrMoreAr
 
 /********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
 export * from './browser';
+
+// Imported to appease exports below.
 import * as browserUtils from './browser';
+import * as arrayUtils from './src/array';
+import * as objUtils from './src/object';
+import * as queryUtils from './src/query';
+import * as domUtils from './src/browser/dom';
+import * as localStoreUtils from './src/browser/local-store';
+import * as numberUtils from './src/number';
+import * as functionUtils from './src/function';
+import * as dateUtils from './src/date';
+import * as decoratorUtils from './src/decorator';
+import * as stringUtils from './src/string';
+import * as isoTypesUtils from './src/types-iso';
+
 export { browserUtils }
 
-// export { PolyglotProps, isTrue, isFalse } from './src/types-iso';
-// export const { without, first, last, first2, last2, getLangFromUrlPathname, replaceAll, centerPad,
-//     leftPad, rightPad, repeatChars, hasKey, append, assignFrozenClone, merge } = browserUtils;
+// Export the most commonly used functions in the browser (all exports not working for some reason).
+export const {
+    first, last, first2, last2,
+    without, withoutFirst, withoutLast, withoutFirst2, withoutLast2,
+    rmAllFalsy,
+    centerPad, leftPad, rightPad, eliminateWhitespace, chomp,
+    getLangFromUrlPathname, parseQueryParams, parseUserAgent,
+    deepFreeze, assignFrozenClone, merge,
+    isArray, isBoolean, isTrue, isFalse,
+    getFromStorage,
+    uuid, eachPair,
+    replaceAll,
+    toSnakecase, capitalize, cap1LowerRest, repeatChars,
+    condSwitch,
+    singleton,
+    isLeapYear, now,
+    hasKey, append } = browserUtils;
+
+export { RequiredInjection } from './browser';
