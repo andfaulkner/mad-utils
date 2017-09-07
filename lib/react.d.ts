@@ -11,3 +11,5 @@ export * from './src/react/components';
 export declare const logSyntheticEventValue: (callerName: string, logFn?: (arg1: any, ...args: any[]) => any) => (event: any) => void;
 /********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
 export * from './browser';
+import * as browserUtils from './browser';
+export { browserUtils };
