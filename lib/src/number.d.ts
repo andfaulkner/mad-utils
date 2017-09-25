@@ -15,6 +15,7 @@ export declare type Int1To50 = Int1To40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 
 export declare type Int1To60 = Int1To50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59 | 60;
 /** Alias for number - not a true integer. Provided to help communicate intended use of a type */
 export declare type Integer = number;
+export declare type Int = number;
 /** @return {string} Randomly generated sequence 6 characters long e.g. AB790517 */
 export declare const len6: () => string;
 export { len6 as genLen6ID };
