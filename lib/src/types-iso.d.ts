@@ -180,4 +180,4 @@ export declare const boolStringToBool: (val: string | boolean) => boolean;
  */
 export declare const toBoolFromBoolString: (val: string | boolean) => boolean;
 export { isMultilangTextObj } from './object';
-export { Int, Integer } from './number';
+export { Int, Integer, Float, Double, Short, Long } from './number';
