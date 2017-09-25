@@ -322,4 +322,4 @@ export const toBoolFromBoolString = boolStringToBool;
 
 export { isMultilangTextObj } from './object';
 
-export { Int, Integer } from './number';
+export { Int, Integer, Float, Double, Short, Long } from './number';

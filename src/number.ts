@@ -18,9 +18,15 @@ export type Int1To40 = Int1To30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 4
 export type Int1To50 = Int1To40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50;
 export type Int1To60 = Int1To50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59 | 60;
 
-/** Alias for number - not a true integer. Provided to help communicate intended use of a type */
+/** Alias for numbers of different types - not true integer, float, etc..
+ *  Provided to help communicate intended use of a type.
+ */
 export type Integer = number;
-export type Int = number;
+export type Int     = number;
+export type Float   = number;
+export type Double  = number;
+export type Long    = number;
+export type Short   = number;
 
 /******************************************** EXPORTS *********************************************/
 const uuidBase = (): string => uuidImport();
