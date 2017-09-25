@@ -20,6 +20,7 @@ export type Int1To60 = Int1To50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59 | 6
 
 /** Alias for number - not a true integer. Provided to help communicate intended use of a type */
 export type Integer = number;
+export type Int = number;
 
 /******************************************** EXPORTS *********************************************/
 const uuidBase = (): string => uuidImport();

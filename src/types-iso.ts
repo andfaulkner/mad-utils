@@ -320,5 +320,6 @@ export const boolStringToBool = (val: string | boolean): boolean | never => {
  */
 export const toBoolFromBoolString = boolStringToBool;
 
-
 export { isMultilangTextObj } from './object';
+
+export { Int, Integer } from './number';
