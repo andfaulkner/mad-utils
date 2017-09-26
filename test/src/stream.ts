@@ -19,14 +19,33 @@ describe(`stream sub-module`, function() {
 
     describe('CharInputStream', function() {
         let inputStream: CharInputStream;
+        let firstCharFromPeek: string;
+        let firstCharFrom2ndCallToPeek: string;
+        let firstCharFromNext: string;
+        let secondCharFromPeek: string;
         
         before(function() {
             inputStream = new CharInputStream('Hello! I am test data from CharInputStream!');
+            firstCharFromPeek = inputStream.peek();
+            firstCharFrom2ndCallToPeek = inputStream.peek();
+            firstCharFromNext = inputStream.next();
+            secondCharFromPeek = inputStream.peek();
         });
 
         it(`can be instantiated`, function() {
             expect(inputStream).to.exist;
             expect(inputStream).to.be.a('object');
+        });
+
+        it(`returns the next character without discarding it when peek is called`, function() {
+            expect(firstCharFromPeek).to.equal(firstCharFrom2ndCallToPeek);
+            expect(firstCharFromPeek).to.equal('H');
+            expect(firstCharFrom2ndCallToPeek).to.equal('H');
+        });
+
+        it(`returns the next char & removes it from left side of stream when next is called`, function() {
+            expect(firstCharFromNext).to.eql('H');
+            expect(secondCharFromPeek).to.eql('e');
         });
     });
 });
