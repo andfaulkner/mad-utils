@@ -2,6 +2,12 @@
 import { StrOrNum } from './types-iso';
 import { withoutFirst, arrayN } from './array';
 
+export type char = string;
+export type chars = string;
+
+export type character = string;
+export type characters = string;
+
 /***************************************** LOCAL HELPERS ******************************************/
 /**
  * Determine what item in a array of strings has the smallest indent.
