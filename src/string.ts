@@ -544,6 +544,9 @@ export { centeredPad as centerPad }
 export const matchCharInChars = (charsToMatchAgainst: chars, matchChar: char): boolean =>
     charsToMatchAgainst.indexOf(matchChar) >= 0;
 
+export { matchCharInChars as isOneOfChars }
+export { matchCharInChars as matchOneOfChars }
+
 
 /*********************************** TEST EXPORTS ***********************************/
 /**
