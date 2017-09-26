@@ -547,6 +547,10 @@ export const matchCharInChars = (charsToMatchAgainst: chars, matchChar: char): b
 export { matchCharInChars as isOneOfChars }
 export { matchCharInChars as matchOneOfChars }
 
+/**
+ * @return {boolean} If given string is a whitespace character, return true.
+ */
+export const isWhitespaceChar = (matchChar: char): boolean => '\t\n\s '.indexOf(matchChar) >= 0;
 
 /*********************************** TEST EXPORTS ***********************************/
 /**
