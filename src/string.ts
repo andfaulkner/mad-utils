@@ -536,6 +536,15 @@ export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar
 
 export { centeredPad as centerPad }
 
+/**************************************** CHARACTER TESTS *****************************************/
+/**
+ * @example matchChars('\t\n\s ', 'hello everyone'); // => true
+ * @return {boolean} true if matchChar is one of the characters in charsToMatchAgainst
+ */
+export const matchCharInChars = (charsToMatchAgainst: chars, matchChar: char): boolean =>
+    charsToMatchAgainst.indexOf(matchChar) >= 0;
+
+
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
