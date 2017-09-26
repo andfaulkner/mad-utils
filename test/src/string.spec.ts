@@ -556,12 +556,18 @@ describe(`string sub-module`, function() {
         it(`Returns true given a tab character`, function() {
             expect(isWhitespaceChar('\t')).to.be.true;
         });
-        it(`Returns true given a non-whitespace character`, function() {
+        it(`Returns false given a non-whitespace character`, function() {
             expect(isWhitespaceChar('a')).to.be.false;
             expect(isWhitespaceChar('!')).to.be.false;
             expect(isWhitespaceChar('Z')).to.be.false;
             expect(isWhitespaceChar('1')).to.be.false;
             expect(isWhitespaceChar('0')).to.be.false;
+        });
+    });
+
+    describe(`isAlphnumericChar`, function() {
+        it(`returns true given an alphanumeric character`, function() {
+            expect(isAlphanumericChar('a')).to.equal(true);
         });
     });
 });
