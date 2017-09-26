@@ -559,7 +559,7 @@ export const isWhitespaceChar = (matchChar: char): boolean => '\t\n '.indexOf(ma
  * TODO Unit test isAlphanumericChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
-export const isAlphanumericChar = (matchChar: char): boolean => /[a-zA-Z0-9]/.test(matchChar);
+export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.test(matchChar);
 
 
 /*********************************** TEST EXPORTS ***********************************/
