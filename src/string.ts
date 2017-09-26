@@ -544,7 +544,7 @@ export { centeredPad as centerPad }
  * @return {boolean} true if matchChar is one of the characters in charsToMatchAgainst
  */
 export const matchCharInChars = (charsToMatchAgainst: chars, matchChar: char): boolean =>
-    charsToMatchAgainst.indexOf(matchChar) >= 0;
+    matchChar && matchChar.length === 1 && charsToMatchAgainst.indexOf(matchChar) >= 0;
 
 export { matchCharInChars as isOneOfChars }
 export { matchCharInChars as matchOneOfChars }
@@ -552,7 +552,8 @@ export { matchCharInChars as matchOneOfChars }
 /**
  * @return {boolean} If given string is a whitespace character, return true.
  */
-export const isWhitespaceChar = (matchChar: char): boolean => '\t\n '.indexOf(matchChar) >= 0;
+export const isWhitespaceChar = (matchChar: char): boolean =>
+    matchChar && matchChar.length === 1 && '\t\n '.indexOf(matchChar) >= 0;
 
 /**
  * @return {boolean} If given string is a whitespace character, return true.
@@ -562,7 +563,8 @@ export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.
 /**
  * @return {boolean} If given string is a operator character, return true.
  */
-export const isOperatorChar = (matchChar: char): boolean => /^[+-*=|&<>?:/!%^~]$/.test(matchChar);
+export const isOperatorChar = (matchChar: char): boolean =>
+    !!matchChar && matchChar.length === 1 && matchCharInChars('+-*=|&<>?:/!%^~]', matchChar);
 
 
 /*********************************** TEST EXPORTS ***********************************/

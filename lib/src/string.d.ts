@@ -295,15 +295,17 @@ export declare const matchCharInChars: (charsToMatchAgainst: string, matchChar: 
 export { matchCharInChars as isOneOfChars };
 export { matchCharInChars as matchOneOfChars };
 /**
- * TODO Unit test isWhitespaceChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
 export declare const isWhitespaceChar: (matchChar: string) => boolean;
 /**
- * TODO Unit test isAlphanumericChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
 export declare const isAlphanumericChar: (matchChar: string) => boolean;
+/**
+ * @return {boolean} If given string is a operator character, return true.
+ */
+export declare const isOperatorChar: (matchChar: string) => boolean;
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.

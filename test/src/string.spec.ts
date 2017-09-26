@@ -21,7 +21,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         endsInDotScss, endsInDotTsx, endsWithExt,
         toSnakeCase, toCamelCase,
         withLeftIndent,
-        isWhitespaceChar, isAlphanumericChar, matchCharInChars,
+        isWhitespaceChar, isAlphanumericChar, isOperatorChar, matchCharInChars,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -594,6 +594,53 @@ describe(`string sub-module`, function() {
             expect(isAlphanumericChar('asdf')).to.equal(false);
             expect(isAlphanumericChar('  asdf')).to.equal(false);
             expect(isAlphanumericChar('aerg!ev*#H ')).to.equal(false);
+        });
+    });
+
+    describe(`isOperatorChar`, function() {
+        it(`returns true given an operator character`, function() {
+            expect(isOperatorChar('+')).to.equal(true);
+            expect(isOperatorChar('-')).to.equal(true);
+            expect(isOperatorChar('*')).to.equal(true);
+            expect(isOperatorChar('/')).to.equal(true);
+            expect(isOperatorChar('%')).to.equal(true);
+            expect(isOperatorChar('=')).to.equal(true);
+            expect(isOperatorChar('<')).to.equal(true);
+            expect(isOperatorChar('>')).to.equal(true);
+            expect(isOperatorChar('&')).to.equal(true);
+            expect(isOperatorChar('|')).to.equal(true);
+            expect(isOperatorChar('!')).to.equal(true);
+            expect(isOperatorChar('^')).to.equal(true);
+            expect(isOperatorChar('~')).to.equal(true);
+            expect(isOperatorChar('?')).to.equal(true);
+            expect(isOperatorChar(':')).to.equal(true);
+        });
+        it(`returns false given a non-operator character`, function() {
+            expect(isOperatorChar('y')).to.equal(false);
+            expect(isOperatorChar('F')).to.equal(false);
+            expect(isOperatorChar('0')).to.equal(false);
+            expect(isOperatorChar('1')).to.equal(false);
+            expect(isOperatorChar('9')).to.equal(false);
+            expect(isOperatorChar('(')).to.equal(false);
+            expect(isOperatorChar('$')).to.equal(false);
+            expect(isOperatorChar('[')).to.equal(false);
+            expect(isOperatorChar('')).to.equal(false);
+            expect(isOperatorChar('{')).to.equal(false);
+            expect(isOperatorChar(')')).to.equal(false);
+            expect(isOperatorChar('#')).to.equal(false);
+            expect(isOperatorChar('@')).to.equal(false);
+            expect(isOperatorChar('\t')).to.equal(false);
+            expect(isOperatorChar(' ')).to.equal(false);
+            expect(isOperatorChar('\n')).to.equal(false);
+            expect(isOperatorChar('\\')).to.equal(false);
+        });
+        it(`returns false given multiple characters`, function() {
+            expect(isOperatorChar('asdf')).to.equal(false);
+            expect(isOperatorChar(' += ')).to.equal(false);
+            expect(isOperatorChar('++')).to.equal(false);
+            expect(isOperatorChar('*=')).to.equal(false);
+            expect(isOperatorChar('<<')).to.equal(false);
+            expect(isOperatorChar('>=')).to.equal(false);
         });
     });
 });
