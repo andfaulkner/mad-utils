@@ -21,6 +21,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         endsInDotScss, endsInDotTsx, endsWithExt,
         toSnakeCase, toCamelCase,
         withLeftIndent,
+        isWhitespaceChar,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -542,6 +543,25 @@ describe(`string sub-module`, function() {
                 First line
                 Second line`
             ).to.eql('First line\nSecond line')
+        });
+    });
+
+    describe(`isWhitespace`, function() {
+        it(`Returns true given a whitespace character`, function() {
+            expect(isWhitespace(' ')).to.be.true;
+        });
+        it(`Returns true given a newline character`, function() {
+            expect(isWhitespace('\n')).to.be.true;
+        });
+        it(`Returns true given a tab character`, function() {
+            expect(isWhitespace('\t')).to.be.true;
+        });
+        it(`Returns true given a non-whitespace character`, function() {
+            expect(isWhitespace('a')).to.be.false;
+            expect(isWhitespace('!')).to.be.false;
+            expect(isWhitespace('Z')).to.be.false;
+            expect(isWhitespace('1')).to.be.false;
+            expect(isWhitespace('0')).to.be.false;
         });
     });
 });
