@@ -44,3 +44,15 @@ export declare const loop5: <T>(func: (...args: any[]) => T) => T[];
  *                                  20);
  */
 export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...condValPairsAndOrDefVal: RealAny[]): RealAny | never;
+/**
+ * TODO test delegateAll
+ *
+ * Mixin creator.
+ *
+ * @param {Object|ClassConstructor} self Object delegating calls to input
+ * @param {Object|ClassInstance} input Object being delegated to by self
+ * @return {Object} Conglomerate object: self with all public methods & values of input mixed in.
+ *
+ * @example delegateAll(this, input)
+ */
+export declare function delegateAll<S, I>(self: S, input: I): S & I;

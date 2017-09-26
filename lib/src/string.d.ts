@@ -1,3 +1,7 @@
+export declare type char = string;
+export declare type chars = string;
+export declare type character = string;
+export declare type characters = string;
 /*********************************** EXPORTED STRING FUNCTIONS ************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
@@ -281,6 +285,25 @@ export declare const rightPad: (strToPad?: string, outWidth?: number, padChar?: 
  */
 export declare const centeredPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
 export { centeredPad as centerPad };
+/**************************************** CHARACTER TESTS *****************************************/
+/**
+ * TODO Unit test matchCharInChars
+ * @example matchChars('\t\n\s ', 'hello everyone'); // => true
+ * @return {boolean} true if matchChar is one of the characters in charsToMatchAgainst
+ */
+export declare const matchCharInChars: (charsToMatchAgainst: string, matchChar: string) => boolean;
+export { matchCharInChars as isOneOfChars };
+export { matchCharInChars as matchOneOfChars };
+/**
+ * TODO Unit test isWhitespaceChar
+ * @return {boolean} If given string is a whitespace character, return true.
+ */
+export declare const isWhitespaceChar: (matchChar: string) => boolean;
+/**
+ * TODO Unit test isAlphanumericChar
+ * @return {boolean} If given string is a whitespace character, return true.
+ */
+export declare const isAlphanumericChar: (matchChar: string) => boolean;
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.

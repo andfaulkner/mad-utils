@@ -1,6 +1,6 @@
 /// <reference types="connect" />
-import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes } from './shared';
-export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, validation };
+import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
+export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, validation, stream };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -14,6 +14,7 @@ export * from './src/node/node-error';
 export * from './src/object';
 export * from './src/query';
 export * from './src/search';
+export * from './src/stream';
 export * from './src/string';
 export * from './src/validation';
 import { isNode } from 'detect-node';
@@ -84,6 +85,7 @@ export declare const mUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -124,6 +126,7 @@ export declare const __: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -164,6 +167,7 @@ export declare const m_: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -204,6 +208,7 @@ export declare const madUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     test: typeof test;
@@ -330,6 +335,7 @@ export declare const common: {
     isDateLike: (val: any) => boolean;
     isTrue: (val: any, include1CharVal?: boolean) => boolean;
     castToNum: (numLike: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
+    CharInputStream: typeof stream.CharInputStream;
 } & {
     isDir: (fileOrDirPath: string) => boolean;
     pathFromRoot: (filePathFromRoot?: string) => string;

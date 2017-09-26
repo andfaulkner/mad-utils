@@ -1,5 +1,5 @@
-import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes } from './shared';
-export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, validation };
+import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
+export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, validation, stream };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -12,6 +12,7 @@ export * from './src/number';
 export * from './src/object';
 export * from './src/query';
 export * from './src/search';
+export * from './src/stream';
 export * from './src/string';
 export * from './src/validation';
 import { isNode } from 'detect-node';
@@ -71,6 +72,7 @@ export declare const mUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
@@ -109,6 +111,7 @@ export declare const __: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
@@ -147,6 +150,7 @@ export declare const m_: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
@@ -185,6 +189,7 @@ export declare const madUtils: {
     query: typeof query;
     search: typeof search;
     stacktrace: typeof error;
+    stream: typeof stream;
     str: typeof string;
     string: typeof string;
     type: typeof isoTypes & typeof browserTypes & typeof dataTypes;
@@ -307,6 +312,7 @@ export declare const common: {
     isDateLike: (val: any) => boolean;
     isTrue: (val: any, include1CharVal?: boolean) => boolean;
     castToNum: (numLike: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
+    CharInputStream: typeof stream.CharInputStream;
 } & {
     parseUserAgent: (userAgent?: string) => dom.ParsedUserAgent;
     getFromStorage: (key: string, store?: Object) => string | void;

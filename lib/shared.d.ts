@@ -47,6 +47,9 @@ export { dataTypes };
 import * as validation from './src/validation';
 export * from './src/validation';
 export { validation };
+import * as stream from './src/stream';
+export * from './src/stream';
+export { stream };
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -304,5 +307,6 @@ export declare const commonShared: {
     isDateLike: (val: any) => boolean;
     isTrue: (val: any, include1CharVal?: boolean) => boolean;
     castToNum: (numLike: types.NumLike, throwOnFail?: boolean) => number | Error;
+    CharInputStream: typeof stream.CharInputStream;
 };
 export { commonShared as commonIso };
