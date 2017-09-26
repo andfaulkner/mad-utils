@@ -10,27 +10,41 @@
  *                    throw: Throw input stream errors. }
  */
 export class CharInputStream {
-    chr: string;                           // Current character
-    pos = 0; col = 0; line = 0             // Position
-    constructor (public input: string) {}  // input = String to parse
+    chr: string                            // Current character
+    pos = 0;                               // Position
+    col = 0; line = 0                      // Coordinates (col & line)
 
-    /** @returns the next value without removing it from the stream. */
+    /**
+     * @param {string} Input string to iterate through.
+     */
+    constructor (public input: string) {}
+
+    /**
+     * @returns the next value without removing it from the stream.
+     */
     public peek = (): string => this.input.charAt(this.pos)
 
-    /** @returns the next value and discards it from the stream. */
+    /**
+     * @returns the next value and discards it from the stream
+     */
     public next = (): string => {
-        this.chr = this.input.charAt(this.pos++);       // Get chr, store in object, shift pos
+        this.chr = this.input.charAt(this.pos++);      // Get chr, store in object, shift pos
         if (this.isEOL()) this.eol(); else this.col++; // Shift row & col based on whether at eol
         return this.chr;
     }
 
-    /** @returns true if at end of file (no more vals in stream), otherwise false. */
+    /**
+     * @returns true if at end of file (no more vals in stream), otherwise false
+     */
     public isEOF = (): boolean => this.peek() === ''
 
-    // ERRORS
+    /**
+     * Throw an error with the given message, also displaying the current stream position.
+     */
     public throw = (msg: string): never => {
         throw new Error(`${msg} (Position ${this.pos}: line ${this.line}, col ${this.col})`);
     }
+
 
     //
     // PRIVATE HELPERS
@@ -42,5 +56,6 @@ export class CharInputStream {
     // @return true if at end of line (i.e. if given character is '\n')
     private isEOL = (ch?: string): boolean => (ch || this.chr) === '\n'
 
-    private is_whitespace = (ch?: string): boolean => '\t\n'.indexOf(ch || this.chr) >= 0;
+    // @return true if current or given char is a whitespace character
+    private is_whitespace = (ch?: string): boolean => '\t\n\s '.indexOf(ch || this.chr) >= 0;
 }
