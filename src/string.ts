@@ -550,16 +550,19 @@ export { matchCharInChars as isOneOfChars }
 export { matchCharInChars as matchOneOfChars }
 
 /**
- * TODO Unit test isWhitespaceChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
 export const isWhitespaceChar = (matchChar: char): boolean => '\t\n '.indexOf(matchChar) >= 0;
 
 /**
- * TODO Unit test isAlphanumericChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
 export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.test(matchChar);
+
+/**
+ * @return {boolean} If given string is a operator character, return true.
+ */
+export const isOperatorChar = (matchChar: char): boolean => /^[+-*=|&<>?:/!%^~]$/.test(matchChar);
 
 
 /*********************************** TEST EXPORTS ***********************************/
