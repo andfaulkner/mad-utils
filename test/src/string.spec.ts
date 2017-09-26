@@ -563,11 +563,37 @@ describe(`string sub-module`, function() {
             expect(isWhitespaceChar('1')).to.be.false;
             expect(isWhitespaceChar('0')).to.be.false;
         });
+        it(`Returns false given multiple characters (even multiple whitespace characters)`, function() {
+            expect(isWhitespaceChar('0123123')).to.be.false;
+            expect(isWhitespaceChar('  ')).to.be.false;
+            expect(isWhitespaceChar(' A ')).to.be.false;
+        });
     });
 
     describe(`isAlphnumericChar`, function() {
         it(`returns true given an alphanumeric character`, function() {
             expect(isAlphanumericChar('a')).to.equal(true);
+            expect(isAlphanumericChar('A')).to.equal(true);
+            expect(isAlphanumericChar('r')).to.equal(true);
+            expect(isAlphanumericChar('R')).to.equal(true);
+            expect(isAlphanumericChar('9')).to.equal(true);
+            expect(isAlphanumericChar('1')).to.equal(true);
+            expect(isAlphanumericChar('0')).to.equal(true);
+        });
+        it(`returns false given a non-alphanumeric character`, function() {
+            expect(isAlphanumericChar('@')).to.equal(true);
+            expect(isAlphanumericChar('!')).to.equal(true);
+            expect(isAlphanumericChar('_')).to.equal(true);
+            expect(isAlphanumericChar('$')).to.equal(true);
+            expect(isAlphanumericChar(' ')).to.equal(true);
+            expect(isAlphanumericChar('\n')).to.equal(true);
+            expect(isAlphanumericChar('\\')).to.equal(true);
+            expect(isAlphanumericChar('[')).to.equal(true);
+        });
+        it(`returns false given multiple characters`, function() {
+            expect(isAlphanumericChar('asdf')).to.equal(false);
+            expect(isAlphanumericChar('  asdf')).to.equal(false);
+            expect(isAlphanumericChar('aerg!ev*#H ')).to.equal(false);
         });
     });
 });
