@@ -552,6 +552,12 @@ export { matchCharInChars as matchOneOfChars }
  */
 export const isWhitespaceChar = (matchChar: char): boolean => '\t\n\s '.indexOf(matchChar) >= 0;
 
+/**
+ * @return {boolean} If given string is a whitespace character, return true.
+ */
+export const isAlphanumericChar = (matchChar: char): boolean => /[a-zA-Z0-9]/.test(matchChar);
+
+
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
