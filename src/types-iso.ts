@@ -326,4 +326,4 @@ export { isMultilangTextObj } from './object';
 
 export { Int, Integer, Float, Double, Short, Long } from './number';
 
-export { char, chars } from './string';
+export { char, chars, character, characters } from './string';
