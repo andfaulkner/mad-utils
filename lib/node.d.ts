@@ -336,6 +336,7 @@ export declare const common: {
     isTrue: (val: any, include1CharVal?: boolean) => boolean;
     castToNum: (numLike: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
     CharInputStream: typeof stream.CharInputStream;
+    isNode: any;
 } & {
     isDir: (fileOrDirPath: string) => boolean;
     pathFromRoot: (filePathFromRoot?: string) => string;

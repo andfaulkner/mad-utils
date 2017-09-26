@@ -69,6 +69,7 @@ export { stream };
 
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
+export { isNode }
 
 
 /********************************************* EXPORT *********************************************/
@@ -170,6 +171,7 @@ export const commonShared = {
     castToNum: types.castToNum,
 
     CharInputStream: stream.CharInputStream,
+    isNode,
 };
 
 export { commonShared as commonIso }
