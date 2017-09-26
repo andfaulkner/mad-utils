@@ -1,8 +1,8 @@
 // Import shared modules, and re-export them for top-level access.
 import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string,
-         types as isoTypes, validation, dataTypes } from './shared';
+         types as isoTypes, validation, dataTypes, stream } from './shared';
 export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string,
-         validation }
+         validation, stream }
 
 export * from './src/array';
 export * from './src/date';
@@ -17,6 +17,7 @@ export * from './src/node/node-error';
 export * from './src/object';
 export * from './src/query';
 export * from './src/search';
+export * from './src/stream';
 export * from './src/string';
 export * from './src/validation';
 
@@ -105,6 +106,7 @@ export const mUtils = {
     query,
     search,
     stacktrace: err,
+    stream,
     str: string,
     string,
     test,

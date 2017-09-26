@@ -63,6 +63,10 @@ import * as validation from './src/validation';
 export * from './src/validation';
 export { validation };
 
+import * as stream from './src/stream';
+export * from './src/stream';
+export { stream };
+
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
 
@@ -164,6 +168,8 @@ export const commonShared = {
     isDateLike: types.isDateLike,
     isTrue: types.isTrue,
     castToNum: types.castToNum,
+
+    CharInputStream: stream.CharInputStream,
 };
 
 export { commonShared as commonIso }
