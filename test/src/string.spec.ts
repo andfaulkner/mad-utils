@@ -581,14 +581,14 @@ describe(`string sub-module`, function() {
             expect(isAlphanumericChar('0')).to.equal(true);
         });
         it(`returns false given a non-alphanumeric character`, function() {
-            expect(isAlphanumericChar('@')).to.equal(true);
-            expect(isAlphanumericChar('!')).to.equal(true);
-            expect(isAlphanumericChar('_')).to.equal(true);
-            expect(isAlphanumericChar('$')).to.equal(true);
-            expect(isAlphanumericChar(' ')).to.equal(true);
-            expect(isAlphanumericChar('\n')).to.equal(true);
-            expect(isAlphanumericChar('\\')).to.equal(true);
-            expect(isAlphanumericChar('[')).to.equal(true);
+            expect(isAlphanumericChar('@')).to.equal(false);
+            expect(isAlphanumericChar('!')).to.equal(false);
+            expect(isAlphanumericChar('_')).to.equal(false);
+            expect(isAlphanumericChar('$')).to.equal(false);
+            expect(isAlphanumericChar(' ')).to.equal(false);
+            expect(isAlphanumericChar('\n')).to.equal(false);
+            expect(isAlphanumericChar('\\')).to.equal(false);
+            expect(isAlphanumericChar('[')).to.equal(false);
         });
         it(`returns false given multiple characters`, function() {
             expect(isAlphanumericChar('asdf')).to.equal(false);
