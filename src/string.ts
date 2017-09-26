@@ -538,6 +538,7 @@ export { centeredPad as centerPad }
 
 /**************************************** CHARACTER TESTS *****************************************/
 /**
+ * TODO Unit test matchCharInChars
  * @example matchChars('\t\n\s ', 'hello everyone'); // => true
  * @return {boolean} true if matchChar is one of the characters in charsToMatchAgainst
  */
@@ -548,11 +549,13 @@ export { matchCharInChars as isOneOfChars }
 export { matchCharInChars as matchOneOfChars }
 
 /**
+ * TODO Unit test isWhitespaceChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
 export const isWhitespaceChar = (matchChar: char): boolean => '\t\n\s '.indexOf(matchChar) >= 0;
 
 /**
+ * TODO Unit test isAlphanumericChar
  * @return {boolean} If given string is a whitespace character, return true.
  */
 export const isAlphanumericChar = (matchChar: char): boolean => /[a-zA-Z0-9]/.test(matchChar);
