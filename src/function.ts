@@ -80,3 +80,10 @@ export function condSwitch(
 
     return condValPairsAndOrDefVal[0];
 }
+
+function delegateAll<S, I>(self: S, input: I): S & I {
+    Object.keys(input).forEach(k =>
+        Object.defineProperty(self, k, Object.getOwnPropertyDescriptor(input, k))
+    );
+    return self as S & I;
+}
