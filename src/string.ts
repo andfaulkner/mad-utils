@@ -536,6 +536,7 @@ export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar
 
 export { centeredPad as centerPad }
 
+
 /**************************************** CHARACTER TESTS *****************************************/
 /**
  * TODO Unit test matchCharInChars
