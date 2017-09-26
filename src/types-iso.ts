@@ -320,6 +320,8 @@ export const boolStringToBool = (val: string | boolean): boolean | never => {
  */
 export const toBoolFromBoolString = boolStringToBool;
 
+
+/********************* BARREL EXPORTS (TYPES FROM OTHER mad-utils SUBMODULES) *********************/
 export { isMultilangTextObj } from './object';
 
 export { Int, Integer, Float, Double, Short, Long } from './number';
