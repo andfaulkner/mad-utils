@@ -92,7 +92,7 @@ export function condSwitch(
  *
  * @example delegateAll(this, input)
  */
-function delegateAll<S, I>(self: S, input: I): S & I {
+export function delegateAll<S, I>(self: S, input: I): S & I {
     Object.keys(input).forEach(k =>
         Object.defineProperty(self, k, Object.getOwnPropertyDescriptor(input, k))
     );
