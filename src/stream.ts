@@ -57,5 +57,5 @@ export class CharInputStream {
     private isEOL = (ch?: string): boolean => (ch || this.chr) === '\n'
 
     // @return true if current or given char is a whitespace character
-    private is_whitespace = (ch?: string): boolean => '\t\n\s '.indexOf(ch || this.chr) >= 0;
+    public isWhitespace = (ch?: string): boolean => '\t\n\s '.indexOf(ch || this.chr) >= 0;
 }
