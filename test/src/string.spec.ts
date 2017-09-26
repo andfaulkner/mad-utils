@@ -21,7 +21,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         endsInDotScss, endsInDotTsx, endsWithExt,
         toSnakeCase, toCamelCase,
         withLeftIndent,
-        isWhitespaceChar,
+        isWhitespaceChar, isAlphanumericChar, matchCharInChars,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -546,22 +546,22 @@ describe(`string sub-module`, function() {
         });
     });
 
-    describe(`isWhitespace`, function() {
+    describe(`isWhitespaceChar`, function() {
         it(`Returns true given a whitespace character`, function() {
-            expect(isWhitespace(' ')).to.be.true;
+            expect(isWhitespaceChar(' ')).to.be.true;
         });
         it(`Returns true given a newline character`, function() {
-            expect(isWhitespace('\n')).to.be.true;
+            expect(isWhitespaceChar('\n')).to.be.true;
         });
         it(`Returns true given a tab character`, function() {
-            expect(isWhitespace('\t')).to.be.true;
+            expect(isWhitespaceChar('\t')).to.be.true;
         });
         it(`Returns true given a non-whitespace character`, function() {
-            expect(isWhitespace('a')).to.be.false;
-            expect(isWhitespace('!')).to.be.false;
-            expect(isWhitespace('Z')).to.be.false;
-            expect(isWhitespace('1')).to.be.false;
-            expect(isWhitespace('0')).to.be.false;
+            expect(isWhitespaceChar('a')).to.be.false;
+            expect(isWhitespaceChar('!')).to.be.false;
+            expect(isWhitespaceChar('Z')).to.be.false;
+            expect(isWhitespaceChar('1')).to.be.false;
+            expect(isWhitespaceChar('0')).to.be.false;
         });
     });
 });
