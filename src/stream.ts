@@ -1,4 +1,4 @@
-
+// TODO Unit test CharInputStream
 
 /**
  * Character input stream.
@@ -19,6 +19,11 @@ export class CharInputStream {
      */
     constructor (public input: string) {}
 
+
+    //
+    // ITERATION METHODS
+    //
+
     /**
      * @returns the next value without removing it from the stream.
      */
@@ -33,10 +38,10 @@ export class CharInputStream {
         return this.chr;
     }
 
-    /**
-     * @returns true if at end of file (no more vals in stream), otherwise false
-     */
-    public isEOF = (): boolean => this.peek() === ''
+
+    //
+    // ERROR HANDLING
+    //
 
     /**
      * Throw an error with the given message, also displaying the current stream position.
@@ -47,15 +52,29 @@ export class CharInputStream {
 
 
     //
+    // CHARACTER INFO
+    //
+
+    /**
+     * @returns true if at end of file (no more vals in stream), otherwise false
+     */
+    public isEOF = (): boolean => this.peek() === ''
+
+    /**
+     * @return true if at end of line (i.e. if given character is '\n')
+     */
+    public isEOL = (ch?: string): boolean => (ch || this.chr) === '\n'
+
+    /**
+     * @return true if current or given char is a whitespace character (including newline)
+     */
+    public isWhitespace = (ch?: string): boolean => '\t\n\s '.indexOf(ch || this.chr) >= 0;
+
+
+    //
     // PRIVATE HELPERS
     //
 
     // Handle end of line (shift column & line)
     private eol = (): void => { this.col = 0; this.line++; }
-
-    // @return true if at end of line (i.e. if given character is '\n')
-    private isEOL = (ch?: string): boolean => (ch || this.chr) === '\n'
-
-    // @return true if current or given char is a whitespace character
-    public isWhitespace = (ch?: string): boolean => '\t\n\s '.indexOf(ch || this.chr) >= 0;
 }
