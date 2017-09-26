@@ -81,6 +81,17 @@ export function condSwitch(
     return condValPairsAndOrDefVal[0];
 }
 
+/**
+ * TODO test delegateAll
+ *
+ * Mixin creator.
+ *
+ * @param {Object|ClassConstructor} self Object delegating calls to input
+ * @param {Object|ClassInstance} input Object being delegated to by self
+ * @return {Object} Conglomerate object: self with all public methods & values of input mixed in.
+ *
+ * @example delegateAll(this, input)
+ */
 function delegateAll<S, I>(self: S, input: I): S & I {
     Object.keys(input).forEach(k =>
         Object.defineProperty(self, k, Object.getOwnPropertyDescriptor(input, k))
