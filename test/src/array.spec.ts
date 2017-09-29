@@ -608,5 +608,8 @@ describe(`array sub-module`, function() {
             map.set('b', 1);
             expect(countOccurrences([9, 9, 9, 'a', 'b'])).to.eql(map);
         });
+        it(`returns number of occurrences of given value in the array`, function() {
+            expect(countOccurrences([7, 9, 7, 'asdf', 7, 1, 7, null, 7], 7)).to.eql(5);
+        });
     });
 });

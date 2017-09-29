@@ -165,6 +165,19 @@ export declare const splitLines: (str: string, opts?: {
     preserveEmptyLines: boolean;
 }) => string[];
 /**
+ * Count number of occurrences of matching value in the array.
+ * @param {any[]} arr - Array to search for the item.
+ * @param {any} value - Item to search for in the array.
+ * @return {number} Number of occurrences of the item in the array.
+ */
+export declare function countOccurrences(arr: any[], value: any): number;
+/**
+ * Count number of occurrences of each value in the array. Return map containing all values.
+ * @param {any[]} arr - Array to search for the item.
+ * @return {Map<any, number>} Map of each item in the array vs. its number of occurences.
+ */
+export declare function countOccurrences(arr: any[]): Map<any, number>;
+/**
  * Namespace for certain "reversed" operations.
  */
 export declare const without: {
