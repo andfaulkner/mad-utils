@@ -323,6 +323,28 @@ export const splitLines =
         ? str.toString().split('\n')
         : rmAllFalsy(str.toString().split('\n'));
 
+// TODO test countOccurrences.
+
+/**
+ * Count number of occurrences of matching value in the array.
+ * @param {any[]} arr - Array to search for the item.
+ * @param {any} value - Item to search for in the array.
+ * @return {number} Number of occurrences of the item in the array.
+ */
+export function countOccurrences(arr: any[], value: any): number;
+
+/**
+ * Count number of occurrences of each value in the array. Return map containing all values.
+ * @param {any[]} arr - Array to search for the item.
+ * @return {Map<any, number>} Map of each item in the array vs. its number of occurences.
+ */
+export function countOccurrences(arr: any[]): Map<any, number>;
+export function countOccurrences(arr: any[], value?: any): Map<any, number> | number {
+    const map = new Map<any, number>();
+    for (let item of arr) map.set(item, (map.get(item) || 0) + 1);
+    return (typeof value === 'undefined') ? map : map.get(value);
+}
+
 /**
  * Namespace for certain "reversed" operations.
  */
