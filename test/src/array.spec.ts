@@ -1,5 +1,7 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
+/// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
+
 
 /************************************* IMPORT TEST UTILITIES **************************************/
 import { expect } from 'chai';
@@ -18,6 +20,7 @@ import { m_, array, append,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
         removeMatches,
         contains,
+        countOccurrences,
         matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
@@ -594,6 +597,16 @@ describe(`array sub-module`, function() {
             expect(contains(['a', 'b', 'c'], 'd')).to.be.false;
             expect(contains([1, 2, 3], 4)).to.be.false
             expect(contains([], '')).to.be.false
+        });
+    });
+
+    describe(`countOccurrences`, function() {
+        it(`returns map of number of occurrences of each value in the array`, function() {
+            const map = new Map();
+            map.set(9, 3);
+            map.set('a', 1);
+            map.set('b', 1);
+            expect(countOccurrences([9, 9, 9, 'a', 'b'])).to.eql(map);
         });
     });
 });
