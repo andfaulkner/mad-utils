@@ -56,3 +56,9 @@ export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...con
  * @example delegateAll(this, input)
  */
 export declare function delegateAll<S, I>(self: S, input: I): S & I;
+/**
+ * Rough method to list a function's arguments/parameters (untyped).
+ * @param {Function} func Function to get the arguments/params of.
+ * @return {string} String containing a comma-separated list of arguments. e.g.: 'id, name, age'
+ */
+export declare const getArgsFromFuncAsString: (func: Function) => string;

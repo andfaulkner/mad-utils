@@ -98,3 +98,15 @@ export function delegateAll<S, I>(self: S, input: I): S & I {
     );
     return self as S & I;
 }
+
+// TODO test getArgsFromFuncAsString
+/**
+ * Rough method to list a function's arguments/parameters (untyped).
+ * @param {Function} func Function to get the arguments/params of.
+ * @return {string} String containing a comma-separated list of arguments. e.g.: 'id, name, age'
+ */
+export const getArgsFromFuncAsString = (func: Function): string =>
+    func.toString().split('\n').join('')
+                   .split(/[\(\)]/g)[1]
+                   .split(/ *, */g)
+                   .join(', ');
