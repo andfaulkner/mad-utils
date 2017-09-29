@@ -62,6 +62,10 @@ export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
 
+export type StringHash = Record<string, string>
+export type StringNumHash = Record<string, number>
+export type StringNumberHash = Record<string, number>
+
 
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
