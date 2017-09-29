@@ -17,6 +17,7 @@ import { m_, array, append,
         withoutLast, withoutLast2, withoutLast3, withoutLastN,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
         removeMatches,
+        contains,
         matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
@@ -580,6 +581,19 @@ describe(`array sub-module`, function() {
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])(12)).to.be.false;
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])(null)).to.be.false;
             expect(matchAny([])('')).to.be.false;
+        });
+    });
+
+    describe(`contains`, function() {
+        it(`Returns true if array contains given value`, function() {
+            expect(contains(['a', 'b', 'c'], 'b')).to.be.true;
+            expect(contains([1, 2, 3], 3)).to.be.true;
+            expect(contains([null], null)).to.be.true;
+        });
+        it(`Returns false if array doesn't contain given value`, function() {
+            expect(contains(['a', 'b', 'c'], 'd')).to.be.false;
+            expect(contains([1, 2, 3], 4)).to.be.false
+            expect(contains([], '')).to.be.false
         });
     });
 });
