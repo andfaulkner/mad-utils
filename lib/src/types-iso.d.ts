@@ -43,6 +43,9 @@ export declare type MandatoryInjectionViaDecoratorType<T> = T;
 export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
+export declare type StringHash = Record<string, string>;
+export declare type StringNumHash = Record<string, number>;
+export declare type StringNumberHash = Record<string, number>;
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
  * Most commonly used HTTP Request types.
