@@ -21,6 +21,19 @@ export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
     });
 };
 
+/**
+ * Determine if an array contains a given value.
+ * @param {Array} arr Array to check for the given value
+ * @param {string} val - value to search for in the array.
+ * @return {boolean} true if arr contains val
+ */
+export const contains = (arr: any[], val: any): boolean =>
+    arr.some(item => (item === val || (typeof item === 'number' && typeof val === 'number'
+                                       && isNaN(item) && isNaN(val))));
+
+export { contains as includes };
+
+
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 
 //

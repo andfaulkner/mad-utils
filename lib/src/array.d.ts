@@ -10,6 +10,14 @@ import { RealAny } from './types-iso';
  * @return {boolean} true if valToFind is found in matchVals.
  */
 export declare const matchAny: (matchVals: any[]) => (valToFind: any) => boolean;
+/**
+ * Determine if an array contains a given value.
+ * @param {Array} arr Array to check for the given value
+ * @param {string} val - value to search for in the array.
+ * @return {boolean} true if arr contains val
+ */
+export declare const contains: (arr: any[], val: any) => boolean;
+export { contains as includes };
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 /** Return first item in an array. */
 export declare function first(str: string): string;
