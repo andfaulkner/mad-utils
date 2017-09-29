@@ -115,6 +115,16 @@ export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
     }
     return false;
 };
+export { hasKey as containsKey };
+export { hasKey as includesKey };
+
+
+// /**
+//  * @returns true if object contains given key
+//  */
+// export const containsKey = (obj: object, key: string): boolean =>
+//     Object.keys(obj).some(objKet => objKet === key);
+
 
 
 /********************************************* MERGE **********************************************/
@@ -230,4 +240,37 @@ export function merge<T>(...objs: MergeParamTypes<T>[]): MergeReturnTypes<T> {
     }
 };
 
-// TODO reducePair
+
+/*********************************** ADD NEW OBJECT PROPERTIES ************************************/
+// TODO test immutablePropConfig
+/**
+ * Create settings object for an immutable property.
+ */
+export const immutablePropConfig = <T = any>(value: T) => ({
+    enumerable: true,
+    configurable: false,
+    writable: false,
+    value
+});
+
+// Select correct defineProperty (for use with defineImmutableProp)
+const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
+
+// TODO test defineImmutableProp
+/**
+ * Define an immutable public property on an object.
+ * @param <O> - Type of object being merged into
+ * @param <NProps> - Interface containing new prop and its type
+ */
+export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
+    obj: O,
+    methodName: string,
+    method: any
+): O & NProps => {
+    defineProperty(obj, methodName, immutablePropConfig(method));
+    return obj as O & NProps;
+};
+
+export { defineImmutableProp  as defineImmutableMethod }
+export { defineImmutableProp  as addImmutableProp }
+export { defineImmutableProp  as addImmutableMethod }

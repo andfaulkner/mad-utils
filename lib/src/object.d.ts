@@ -55,6 +55,8 @@ export declare const numPairs: (obj: any) => number;
  * @return {boolean} true if obj contains matchKey
  */
 export declare const hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
+export { hasKey as containsKey };
+export { hasKey as includesKey };
 /********************************************* MERGE **********************************************/
 export declare type MergeParamTypes<T> = Object | string | T[] | any[] | null | undefined;
 export declare type MergeReturnTypes<T> = Object | string | T[] | any[] | {};
@@ -98,3 +100,22 @@ export declare function merge(): {};
  * [NON-MUTATIVE] return empty object ({})
  */
 export declare function merge(obj: null | undefined): {};
+/*********************************** ADD NEW OBJECT PROPERTIES ************************************/
+/**
+ * Create settings object for an immutable property.
+ */
+export declare const immutablePropConfig: <T = any>(value: T) => {
+    enumerable: boolean;
+    configurable: boolean;
+    writable: boolean;
+    value: T;
+};
+/**
+ * Define an immutable public property on an object.
+ * @param <O> - Type of object being merged into
+ * @param <NProps> - Interface containing new prop and its type
+ */
+export declare const defineImmutableProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, methodName: string, method: any) => O & NProps;
+export { defineImmutableProp as defineImmutableMethod };
+export { defineImmutableProp as addImmutableProp };
+export { defineImmutableProp as addImmutableMethod };
