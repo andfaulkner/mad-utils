@@ -269,7 +269,7 @@ const defineProperty = (Reflect && Reflect.defineProperty) || Object.definePrope
  * @param <O> - Type of object being merged into
  * @param <NProps> - Interface containing new prop and its type
  */
-export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
+export const defineProp = <NProps extends Object = {}, O extends Object = Object>(
     obj: O,
     methodName: string,
     method: any,
@@ -281,22 +281,44 @@ export const defineImmutableProp = <NProps extends Object = {}, O extends Object
     return obj as O & NProps;
 };
 
-export { defineImmutableProp  as defineImmutableMethod }
-export { defineImmutableProp  as addImmutableProp }
-export { defineImmutableProp  as addImmutableMethod }
+/**
+ * Define an immutable public property on an object.
+ * @generic <NProps> - Interface containing new prop and its type
+ * @generic <O> - Type of object being merged into
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ * @return {Object} Initial object with given property added
+ */
+const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
+    obj: O, propName: string, propVal: any
+): O & NProps => {
+    defineProp(obj, propName, propVal, false);
+    return obj as O & NProps;
+};
+
+export { defineImmutableProp as defineImmutableMethod }
+export { defineImmutableProp as addImmutableProp }
+export { defineImmutableProp as addImmutableMethod }
 
 /**
  * Define a mutable (even deletable) public property on an object.
- * @param <O> - Type of object being merged into
- * @param <NProps> - Interface containing new prop and its type
+ * @generic <O> - Type of object being merged into
+ * @generic <NProps> - Interface containing new prop and its type
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ *
+ * @return {Object} Initial object with given property added
  */
-export const defineMutableProp = <NProps extends Object = {}, O extends Object = Object>(
-    obj: O,
-    methodName: string,
-    method: any
-): O & NProps =>
-    defineImmutableProp<NProps, O>(obj, methodName, method, true);
+const defineMutableProp = <NProps extends Object = {}, O extends Object = Object>(
+    obj: O, propName: string, propVal: any
+): O & NProps => {
+    defineProp(obj, propName, propVal, true);
+    return obj as O & NProps;
+};
 
-export { defineMutableProp  as defineMutableMethod }
-export { defineMutableProp  as addMutableProp }
-export { defineMutableProp  as addMutableMethod }
+export { defineMutableProp as defineMutableMethod }
+export { defineMutableProp as addMutableProp }
+export { defineMutableProp as addMutableMethod }
