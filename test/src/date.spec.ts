@@ -142,7 +142,7 @@ describe(`date sub-module`, function() {
             const jsNow = new Date();
             const jsFormattedDateTime =
                 `${jsNow.getFullYear()}/` +
-                `${jsNow.getMonth() < 10 ? `0` : ``}${jsNow.getMonth() + 1}/` +
+                `${jsNow.getMonth() < 9 ? `0` : ``}${jsNow.getMonth() + 1}/` +
                 `${jsNow.getDate() < 10 ? `0` : ``}${jsNow.getDate()} : ` +
                 `${jsNow.getHours() < 10 ? `0` : ``}${jsNow.getHours()}:` +
                 `${jsNow.getMinutes() < 10 ? `0` : ``}${jsNow.getMinutes()}:` +
@@ -157,7 +157,7 @@ describe(`date sub-module`, function() {
             const jsNow = new Date();
             const jsFormattedDate =
                 `${jsNow.getFullYear()}/` +
-                `${jsNow.getMonth() < 10 ? `0` : ``}${jsNow.getMonth() + 1}/` +
+                `${jsNow.getMonth() < 9 ? `0` : ``}${jsNow.getMonth() + 1}/` +
                 `${jsNow.getDate() < 10 ? `0` : ``}${jsNow.getDate()}`;
             expect(now(`YYYY/MM/DD`)).to.eql(jsFormattedDate);
         });
