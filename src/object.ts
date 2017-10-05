@@ -275,9 +275,7 @@ export const defineProp = <NProps extends Object = {}, O extends Object = Object
     method: any,
     mutable = false
 ): O & NProps => {
-    defineProperty(obj,
-                   methodName,
-                   mutable ? mutablePropConfig(method) : immutablePropConfig(method));
+    defineProperty(obj, methodName, mutable ? mutablePropConfig(method) : immutablePropConfig(method));
     return obj as O & NProps;
 };
 
@@ -290,7 +288,7 @@ export const defineProp = <NProps extends Object = {}, O extends Object = Object
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
-const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
+export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
     obj: O, propName: string, propVal: any
 ): O & NProps => {
     defineProp(obj, propName, propVal, false);
@@ -312,7 +310,7 @@ export { defineImmutableProp as addImmutableMethod }
  *
  * @return {Object} Initial object with given property added
  */
-const defineMutableProp = <NProps extends Object = {}, O extends Object = Object>(
+export const defineMutableProp = <NProps extends Object = {}, O extends Object = Object>(
     obj: O, propName: string, propVal: any
 ): O & NProps => {
     defineProp(obj, propName, propVal, true);
