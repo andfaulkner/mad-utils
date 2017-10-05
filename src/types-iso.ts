@@ -19,7 +19,7 @@ export { StringOrNonexistent as StrOrNonexistent };
 
 export interface SingletonInterface<U> {
     new(...args: any[]): U;
-    new: <Y>(...args: any[]) => Y;
+    new<Y>(...args: any[]): Y;
 }
 
 /**
@@ -251,21 +251,16 @@ export const isFalse = (val: RealAny, include1CharVal: boolean = false): boolean
  *       }
  *
  *  // It will now only be possible to create one instance of class SomeSingleton.
+ *  @param {T} constructor Class to make into a singleton
  */
-export const singleton = <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => {
-    if (varargs.length > 0) {
-        throw new DecoratorError('Can only apply @singleton to classes', 'singleton', constructor);
-    }
+export const singleton = <T extends ClassConstructor>(constructor: T) => {
     const SingletonClass = class SingletonClass extends constructor {
         private static _instance: SingletonClass = null;
 
         public static new = (...args: any[]) => {
-            if (!SingletonClass._instance) {
-                SingletonClass._instance = new SingletonClass(...args);
-            }
+            if (!SingletonClass._instance) SingletonClass._instance = new SingletonClass(...args);
             return SingletonClass._instance;
         }
-
         constructor(...args: any[]) {
             if (SingletonClass._instance) return SingletonClass._instance;
             super(...args);
