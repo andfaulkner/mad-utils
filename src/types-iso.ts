@@ -209,10 +209,13 @@ export const isArray = (val: RealAny): boolean => {
     return !!((val)
            && val.constructor
            && (val.constructor.name === 'Array'
+               || val instanceof Array
                // All ES5 and higher environments
                || (Object.getPrototypeOf && Object.getPrototypeOf(val.constructor) === Array)
                // Pre-ES5 web browsers
-               || (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array')));
+               || (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array')
+               // Ultra-robust (but noticeably slow) last-resort that works everywhere.
+               || Object.prototype.toString.call(val) === '[object Array]'))
 };
 
 /**
