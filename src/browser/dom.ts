@@ -33,7 +33,7 @@ export function parseUserAgent(userAgent = window.navigator.userAgent): ParsedUs
  * "Mozilla/5.0 (Macintosh; Intel Mac OS X 17_14_2) AppleWebKit/530.12 " +
  * "(KHTML, like Gecko) Chrome/51.0.3272.211 Safari/530.12"
  */
-export const getUserAgentString = () => window.navigator.userAgent;
+export const getUserAgentString = (mWindow?: Window) => (mWindow || window).navigator.userAgent;
 
 /**
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS" or "Windows NT"
@@ -76,11 +76,11 @@ export const browserEngineVersion = () => userAgent.engine.version;
 /**
  * Get element by ID. TODO: allow getting by class, tag, etc.
  */
-export const $ = (sel: string): HTMLElement/* | HTMLElement[]*/ => {
-    // get by id
-    if (sel.split('#').length > 1) {
-        return document.getElementById.call(document, sel.split('#')[1]) as HTMLElement;
-    }
+// export const $ = (sel: string): HTMLElement/* | HTMLElement[]*/ => {
+//     // get by id
+//     if (sel.split('#').length > 1) {
+//         return document.getElementById.call(document, sel.split('#')[1]) as HTMLElement;
+//     }
     // no # possible past here.
     // else if (sel[0] !== '.') {
     //     // if no classes defined
@@ -89,4 +89,4 @@ export const $ = (sel: string): HTMLElement/* | HTMLElement[]*/ => {
     //     }
     //     return document.getElementsByClassName.call(document, sel) as HTMLElement[];
     // }
-};
+// };

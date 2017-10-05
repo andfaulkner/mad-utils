@@ -1,3 +1,6 @@
+// Ensure window object exists & is accessible
+// var window = window || {}; // tslint:disable-line:no-var-keyword
+
 /******************************************** BROWSER *********************************************/
 /**
  * If given a "store" object, try to get item at given key from it. Next try to get it from browser
@@ -5,14 +8,10 @@
  */
 export function getFromStorage(key: string, store?: Object): string | void {
     // Use value from store param, if it was provided.
-    if (store && store[key]) {
-        return store[key];
-    }
+    if (store && store[key]) return store[key];
 
     // Try to grab the value from 'this' binding.
-    if (this && this[key]) {
-        return this[key];
-    }
+    if (this && this[key]) return this[key];
 
     // Try to grab value off the window storage objects
     try {

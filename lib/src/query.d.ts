@@ -17,7 +17,7 @@ export declare function parseQueryParams<T>(queryParamsString?: string): T;
  * @param {string?} defaultLang Default language, if none detected. Default: 'en' [OPTIONAL]
  * @return {string} current language, in 2-letter form. Often either 'en' or 'fr'.
  */
-export declare function getLangFromUrlPathname(urlPath?: string, supportedLangs?: string[], defaultLang?: string): string;
+export declare function getLangFromUrlPathname(urlPath?: any, supportedLangs?: string[], defaultLang?: string): string;
 /**
  * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
  * format is used.

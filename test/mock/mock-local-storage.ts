@@ -82,7 +82,7 @@ export const mockBrowserStorage = function mockBrowserStorage() {
 // NOTE: this is a bit evil - instantiating just to get typings. This is due to
 // a Typescript limitation, sadly.
 const baseMockBrowserStorage = mockBrowserStorage();
-export type BrowserStorage = typeof baseMockBrowserStorage;
+type BrowserStorage = typeof baseMockBrowserStorage;
 
 // Typings to make bindBrowserStorageGlobally happy.
 declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionStorage: Storage }};

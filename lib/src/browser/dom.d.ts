@@ -24,7 +24,7 @@ export declare function parseUserAgent(userAgent?: string): ParsedUserAgent;
  * "Mozilla/5.0 (Macintosh; Intel Mac OS X 17_14_2) AppleWebKit/530.12 " +
  * "(KHTML, like Gecko) Chrome/51.0.3272.211 Safari/530.12"
  */
-export declare const getUserAgentString: () => string;
+export declare const getUserAgentString: (mWindow?: Window) => string;
 /**
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS" or "Windows NT"
  */
@@ -56,8 +56,3 @@ export declare const browserVersion: () => any;
 * @return {string} Version of the browser's rendering engine. E.g. "530.12"
  */
 export declare const browserEngineVersion: () => any;
-/******************************************** HELPERS *********************************************/
-/**
- * Get element by ID. TODO: allow getting by class, tag, etc.
- */
-export declare const $: (sel: string) => HTMLElement;

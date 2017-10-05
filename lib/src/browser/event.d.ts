@@ -1,3 +1,4 @@
+/// <reference path="../../../node_modules/typescript/lib/lib.dom.d.ts" />
 export declare type EventFunction = (ev: MouseEvent) => void;
 /**************************************** EXPORT FUNCTIONS ****************************************/
 /**

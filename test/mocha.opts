@@ -1,3 +1,4 @@
+-r jsdom-global/register
 --recursive
 --compilers ts:ts-node/register,tsx:ts-node/register
 --colors

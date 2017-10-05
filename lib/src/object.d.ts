@@ -110,12 +110,43 @@ export declare const immutablePropConfig: <T = any>(value: T) => {
     writable: boolean;
     value: T;
 };
+export declare const mutablePropConfig: <T = any>(value: T) => {
+    enumerable: boolean;
+    configurable: boolean;
+    writable: boolean;
+    value: T;
+};
 /**
  * Define an immutable public property on an object.
  * @param <O> - Type of object being merged into
  * @param <NProps> - Interface containing new prop and its type
  */
-export declare const defineImmutableProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, methodName: string, method: any) => O & NProps;
+export declare const defineProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, methodName: string, method: any, mutable?: boolean) => O & NProps;
+/**
+ * Define an immutable public property on an object.
+ * @generic <NProps> - Interface containing new prop and its type
+ * @generic <O> - Type of object being merged into
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ * @return {Object} Initial object with given property added
+ */
+export declare const defineImmutableProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: any) => O & NProps;
 export { defineImmutableProp as defineImmutableMethod };
 export { defineImmutableProp as addImmutableProp };
 export { defineImmutableProp as addImmutableMethod };
+/**
+ * Define a mutable (even deletable) public property on an object.
+ * @generic <O> - Type of object being merged into
+ * @generic <NProps> - Interface containing new prop and its type
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ *
+ * @return {Object} Initial object with given property added
+ */
+export declare const defineMutableProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: any) => O & NProps;
+export { defineMutableProp as defineMutableMethod };
+export { defineMutableProp as addMutableProp };
+export { defineMutableProp as addMutableMethod };

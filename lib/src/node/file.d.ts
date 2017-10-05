@@ -7,6 +7,12 @@ import { isNonMinFile, endsInDotJs, getBaseFilenameFromPath } from '../string';
  */
 export declare const isDir: (fileOrDirPath: string) => boolean;
 /**
+ * Is the given path an absolute path?
+ * @param {string} newPath Path to determine if absolute
+ * @return {boolean} True if path is absolute.
+ */
+export declare const isAbsPath: (newPath: string) => boolean;
+/**
  * Return path relative to root of project mad-utils is installed in - or if mad-utils is
  * standalone (for development), return path relative to root of mad-utils.
  * @param {string} filePathFromRoot - file path to return relative to the root

@@ -1,39 +1,43 @@
 {
-    "version": "2.3.0",
+    "version": "2.5.2",
     "compilerOptions": {
         "module": "commonjs",
+        "noImplicitAny": false,
         "removeComments": false,
         "preserveConstEnums": true,
         "sourceMap": true,
         "strictNullChecks": false,
         "outDir": "lib/",
         "declaration": true,
+
         "target": "ES5",
-        "skipLibCheck": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-        "noImplicitAny": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "removeComments": false,
         "jsx": "react",
         "pretty": true,
-        "lib": ["ES2015", "DOM"]
+        "lib": ["es2015", "DOM"],
+        "rootDir": "./",
+        "skipLibCheck": true
     },
     "exclude": [
         "*.js",
-        "*.json"
+        "*.json",
+        "build"
     ],
     "include": [
-        "./node.ts",
-        "./shared.ts",
-        "./react.tsx",
-        "./browser.ts",
-        "./typings/shared.d.ts",
+        "./*.ts",
+        "./*.tsx",
+        "./typings/*.d.ts",
+        "./node_modules/@types/**/*.d.ts",
+        "./node_modules/moment/moment.d.ts",
+
         "./src/*.ts",
-        "./src/node/*.ts",
-        "./src/browser/*.ts",
-        "./src/array-collection.ts",
-        "./src/types.ts",
-        "./node_modules/mad-logs/lib/node.d.ts"
+        "./src/**/*.ts",
+
+        "./test/*.ts",
+        "./test/**/*.ts"
     ]
 }

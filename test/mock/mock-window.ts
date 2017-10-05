@@ -33,7 +33,7 @@ const location = {
  * @export
  * Pieces of window required to run tests.
  */
-export const window = {
+const window = {
     navigator: { userAgent },
     location,
     sessionStorage: mockBrowserStorage(),
@@ -43,3 +43,5 @@ export const window = {
 
 /*************************** AUTOMATICALLY BIND WINDOW TO GLOBAL OBJECT ***************************/
 (global as any).window = window;
+
+export { window }

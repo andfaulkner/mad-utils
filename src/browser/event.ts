@@ -1,4 +1,7 @@
-import { $ } from './dom';
+/// <reference path="../../node_modules/typescript/lib/lib.dom.d.ts" />
+
+// Ensure window object exists & is accessible
+var window = window || {}; // tslint:disable-line:no-var-keyword
 
 /******************************************** IMPORTS *********************************************/
 import * as isNode from 'detect-node';
@@ -59,15 +62,18 @@ export const removeClickEventFromId: ((id?: string, event?) => (ev?: MouseEvent)
             return null;
         }
         : (id: string, event) => (ev: MouseEvent) => {
-            $(id).removeEventListener('click', event);
+            document.getElementById
+            && document.getElementById(id).removeEventListener('click', event);
         };
 
 // Generic event adder: addEventToId('id-event-2', function(ev: MouseEvent) { alert('doThing') });
-export const addClickEventToId: ((id: string, cb: EventFunction) => void) = (isNode)
-    ? (id: string = '', event = null) => {
-        browserOnly('addClickEventToId')
-        return null;
-    }
-    : (id: string, cb: EventFunction) => {
-          $(id).addEventListener('click', cb, false);
-    }
+export const addClickEventToId: ((id: string, cb: EventFunction) => void) =
+    isNode
+        ? (id: string = '', event = null) => {
+            browserOnly('addClickEventToId')
+            return null;
+        }
+        : (id: string, cb: EventFunction) => {
+            document.getElementById
+            && document.getElementById(id).addEventListener('click', cb, false);
+        };

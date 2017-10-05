@@ -86,7 +86,7 @@ export function replaceInFile(filePath: string, find: string | RegExp, replace: 
     // Hack required to make typings happy
     const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
                                                      : fileData.replace(find, replace);
-    writeFileSync(filePath, cleanfileData, 'utf8');
+    writeFileSync(filePath, cleanfileData, { encoding: 'utf8'});
     log.silly(`replaceInFile: new ${filePath} contents:`, cleanfileData);
     return cleanfileData;
 }

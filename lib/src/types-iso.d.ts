@@ -9,7 +9,7 @@ export declare type StringOrNonexistent = string | null | undefined;
 export { StringOrNonexistent as StrOrNonexistent };
 export interface SingletonInterface<U> {
     new (...args: any[]): U;
-    new: <Y>(...args: any[]) => Y;
+    new <Y>(...args: any[]): Y;
 }
 /**
  * Union aliases
@@ -157,8 +157,9 @@ export declare const isFalse: (val: any, include1CharVal?: boolean) => boolean;
  *       }
  *
  *  // It will now only be possible to create one instance of class SomeSingleton.
+ *  @param {T} constructor Class to make into a singleton
  */
-export declare const singleton: <T extends ClassConstructor>(constructor: T, ...varargs: any[]) => SingletonInterface<any> & T;
+export declare const singleton: <T extends ClassConstructor>(constructor: T) => SingletonInterface<any> & T;
 /**
  * Convert item to a number (if given item is of a type that can be converted as such).
  * If not, throw an error if this is specified.

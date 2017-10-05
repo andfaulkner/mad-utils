@@ -55,7 +55,7 @@ export declare const matchesIgnoreCase: (matchOn: string) => (val: string) => bo
 /**
  * String that creates a blank line without using \n.
  */
-export declare const newlineStr: string;
+export declare const newlineStr = "\n";
 /**
  * Remove all spaces in the given string.
  *

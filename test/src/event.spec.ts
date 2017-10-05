@@ -1,4 +1,5 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+import 'jsdom-global/register'
 
 import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test'

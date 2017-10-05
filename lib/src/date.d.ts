@@ -1,6 +1,6 @@
 import { NumLike } from './types-iso';
 export declare type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
-export declare const defaultTimestampFormat: string;
+export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
 /**
  * True if the given year is a leap year. Throw if given value cannot be cast to an integer.
  * @param {NumLike} year - Determine if the given number is a leap year.

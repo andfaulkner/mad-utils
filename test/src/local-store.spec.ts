@@ -1,4 +1,5 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+import 'jsdom-global/register'
 
 declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionStorage: Storage }};
 
