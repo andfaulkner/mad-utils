@@ -109,6 +109,22 @@ describe(`file sub-module`, function() {
         });
     });
 
+    describe('function isAbsPath', function() {
+        expectFunctionExists(file.isAbsPath);
+        it(`returns false if given string is an relative path`, function() {
+            expect(file.isAbsPath('src/some/file.tsx')).to.be.false;
+            expect(file.isAbsPath('.gitignore')).to.be.false;
+            expect(file.isAbsPath('node_modules')).to.be.false;
+            expect(file.isAbsPath('index.ts')).to.be.false;
+        });
+        it(`returns true if given string is an absolute path`, function() {
+            expect(file.isAbsPath(path.join(rootPath, 'test/mock/mock-dir-of-files'))).to.be.true;
+            expect(file.isAbsPath('/')).to.be.true;
+            expect(file.isAbsPath('/some/made/up/route.html')).to.be.true;
+            expect(file.isAbsPath('/should_also_work.scss')).to.be.true;
+        });
+    });
+
     // Remove mock file on completion of all file tests.
     after(function() {
         unlinkSync(path.join(exampleFilePath));
