@@ -2,15 +2,15 @@ import { defaultSupportedLangs } from './internal/lang-constants';
 import { last, first, matchAny, without } from './array';
 import { removeMatchingText, chomp } from './string';
 
+var window = window || {}; // tslint:disable-line:no-var-keyword
+window.location = window.location || {};
+
 /**
  * Query parameters default values.
  */
-const queryParamsDef = typeof window !== 'undefined' ? window.location.search : '';
-const hrefDef = typeof window !== 'undefined' ? window.location.href : '';
-const locationPath =
-    (typeof window !== 'undefined' && typeof window.location !== 'undefined' && window != null)
-        ? window.location.pathname
-        : '';
+const queryParamsDef = window.location.search   || '';
+const hrefDef        = window.location.href     || '';
+const locationPath   = window.location.pathName || '';
 
 /****************************************** QUERY PARAMS ******************************************/
 /**
