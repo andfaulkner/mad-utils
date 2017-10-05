@@ -253,6 +253,13 @@ export const immutablePropConfig = <T = any>(value: T) => ({
     value
 });
 
+export const mutablePropConfig = <T = any>(value: T) => ({
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value
+});
+
 // Select correct defineProperty (for use with defineImmutableProp)
 const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
 
@@ -265,12 +272,31 @@ const defineProperty = (Reflect && Reflect.defineProperty) || Object.definePrope
 export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
     obj: O,
     methodName: string,
-    method: any
+    method: any,
+    mutable = false
 ): O & NProps => {
-    defineProperty(obj, methodName, immutablePropConfig(method));
+    defineProperty(obj,
+                   methodName,
+                   mutable ? mutablePropConfig(method) : immutablePropConfig(method));
     return obj as O & NProps;
 };
 
 export { defineImmutableProp  as defineImmutableMethod }
 export { defineImmutableProp  as addImmutableProp }
 export { defineImmutableProp  as addImmutableMethod }
+
+/**
+ * Define a mutable (even deletable) public property on an object.
+ * @param <O> - Type of object being merged into
+ * @param <NProps> - Interface containing new prop and its type
+ */
+export const defineMutableProp = <NProps extends Object = {}, O extends Object = Object>(
+    obj: O,
+    methodName: string,
+    method: any
+): O & NProps =>
+    defineImmutableProp<NProps, O>(obj, methodName, method, true);
+
+export { defineMutableProp  as defineMutableMethod }
+export { defineMutableProp  as addMutableProp }
+export { defineMutableProp  as addMutableMethod }
