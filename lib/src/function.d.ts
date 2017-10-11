@@ -62,3 +62,7 @@ export declare function delegateAll<S, I>(self: S, input: I): S & I;
  * @return {string} String containing a comma-separated list of arguments. e.g.: 'id, name, age'
  */
 export declare const getArgsFromFuncAsString: (func: Function) => string;
+export { getArgsFromFuncAsString as getParamNames };
+export { getArgsFromFuncAsString as getParameterNames };
+export { getArgsFromFuncAsString as getArgNames };
+export { getArgsFromFuncAsString as getArgumentNames };

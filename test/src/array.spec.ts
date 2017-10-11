@@ -15,7 +15,7 @@ import { m_, array, append,
         first2, first3, firstN,
         last2, last3, lastN,
         arrayN,
-        rmAllFalsy, splitLines, without,
+        rmAllFalsy, pushIfUniq, splitLines, without,
         withoutLast, withoutLast2, withoutLast3, withoutLastN,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
         removeMatches,
@@ -306,6 +306,19 @@ describe(`array sub-module`, function() {
             expect(rmAllFalsy([NaN, NaN, NaN])).to.eql([]);
             expect(rmAllFalsy([1, NaN, 3, NaN, 5])).to.eql([1, 3, 5]);
             expect(rmAllFalsy([NaN, NaN, {}, [], NaN, 22, 'ok'])).to.eql([{}, [], 22, 'ok']);
+        });
+    });
+
+
+    describe(`-- #pushIfUniq`, function() {
+        it(`adds item to array if array doesn't contain given item`, function() {
+            expect(pushIfUniq([1, 2, 3], 4)).to.eql([1, 2, 3, 4]);
+            expect(pushIfUniq(['a', 'b', 'c'], 'd')).to.eql(['a', 'b', 'c', 'd']);
+        });
+
+        it(`does not add item to array if array already contains given item`, function() {
+            expect(pushIfUniq([1, 2, 3], 2)).to.eql([1, 2, 3]);
+            expect(pushIfUniq(['a', 'b', 'c'], 'c')).to.eql(['a', 'b', 'c']);
         });
     });
 

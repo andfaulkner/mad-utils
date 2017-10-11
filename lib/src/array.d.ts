@@ -153,6 +153,15 @@ export declare function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny
  */
 export declare const rmAllFalsy: (arr: any[]) => any[];
 /**
+ * Add item to array if item not already present in array.
+ * @param {Array} arr Array to potentially add item to
+ * @param {any} newItem Item to potentially add to array (if array doesn't already contain it)
+ * @return {Array} Initially given array, with item potentially added.
+ */
+export declare function pushIfUniq<T = any>(arr: T[], newItem: T): T[];
+export { pushIfUniq as pushIfNew };
+export { pushIfUniq as pushUniq };
+/**
  * Split large multiline string into array where each line is an item. Also removes blank lines.
  * @param {String} str - Multiline string to split into array where each line is an array item.
  *                       Splits on '\n' char.
