@@ -631,12 +631,20 @@ describe(`array sub-module`, function() {
         it(`given a string, gets a random character`, function() {
             expect(sample('qwerty')).to.match(/^[qwerty]$/);
         });
+        it(`given an empty string, returns undefined`, function() {
+            expect(sample('')).to.be.undefined;
+        });
         it(`given an array, gets a random value`, function() {
             expect(sample([1, 2, 3, 4, 5])).to.be.oneOf([1, 2, 3, 4, 5]);
+        });
+        it(`given an empty array, returns undefined`, function() {
+            expect(sample([])).to.be.undefined;
         });
         it(`given an object, gets a random key-value pair (as [key, value])`, function() {
             expect([['a', 1], ['b', 2], ['c', 3]]).to.deep.include(sample({ a: 1, b: 2, c: 3 }));
         });
-
+        it(`given an empty object (with no keys), returns undefined`, function() {
+            expect(sample({})).to.be.undefined;
+        });
     });
 });
