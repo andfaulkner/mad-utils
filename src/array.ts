@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { RealAny, isArray } from './types-iso';
+import { Any, RealAny, isArray } from './types-iso';
 
 /******************************************** MATCHING ********************************************/
 /**
@@ -240,7 +240,7 @@ export function withoutFirstN<T>(str: string, numToRm: number): string;
 export function withoutFirstN<T>(arr: T[], numToRm: number): T[];
 export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
     return arrOrStr.slice(1 * numToRm);
-}
+};
 
 /**
  * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
@@ -255,9 +255,7 @@ export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] |
  * @param {Array<RealAny>|RealAny} arr2 - Array or value to concatenate to the end of arr1
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
-export const append =
-    (arr1: RealAny[] | RealAny, arr2: RealAny[] | RealAny, ...arrs: RealAny[]): RealAny[] =>
-{
+export function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: Any[]): Any[] {
     const isArr1Undefined = typeof arr1 === 'undefined' || arr1 === null;
     const isArr2Undefined = typeof arr2 === 'undefined' || arr2 === null;
 
@@ -272,11 +270,7 @@ export const append =
         return arr1;
     }
 
-    const cleanArr = (arr: RealAny[]) =>
-        (arr.constructor.name !== 'Array' && arr.constructor.constructor.name !== 'Array')
-            ? [arr] : arr;
-
-    const first2Arrs = cleanArr(arr1).concat(cleanArr(arr2));
+    const first2Arrs = _cleanArrForAppend(arr1).concat(_cleanArrForAppend(arr2));
 
     return (arrs.length > 0)
         ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs)
@@ -373,4 +367,55 @@ export const without = {
     firstN: withoutFirstN,
 };
 
+
+/******************************************* COLLECTION *******************************************/
+
+/**
+ * Get a random value from an array, or return undefined if array is empty.
+ * @param {Array} coll Array to get random value from.
+ * @return {any|undefined} Item randomly selected from given array
+ */
+export function sample<T = any>(coll: T[]): T | undefined;
+
+/**
+ * Return random entry ([key, value]) from given object/collection, or undefined if it has no keys.
+ * @param {Object} coll Object to get random value from.
+ * @return {[string, any]|undefined} Randomly selected [key, value] array from object
+ */
+export function sample<T = any>(coll: Record<string, T>): [string, T] | undefined;
+
+/**
+ * Return random character from given string, or undefined if it's an empty string.
+ * @param {string} coll String to get random character from.
+ * @return {string|undefined} Randomly selected character from string.
+ */
+export function sample<T = any>(coll: string): string | undefined;
+
+// TODO make sample work for Map instances.
+
+export function sample<T = any>(coll: T[] | string | Record<string, T>): T | string | [string, T] | undefined {
+    if (isArray(coll)) {
+        return coll[Math.floor(Math.random() * (coll as T[]).length)];
+    }
+    if (typeof coll === 'string' || coll instanceof String) {
+        return coll.split('')[Math.floor(Math.random() * (coll.split('').length))];
+    }
+    if (typeof coll === 'object') {
+        const objKeys = Object.keys(coll);
+        const selectedKey = objKeys[Math.floor(Math.random() * objKeys.length)];
+        return [selectedKey, coll[selectedKey]];
+    }
+}
+
+
+/***************************************** BARREL EXPORT ******************************************/
 export { isArray } from './types-iso';
+
+
+/**************************************** INTERNAL HELPERS ****************************************/
+/**
+ * Ensures an array is an array
+ */
+function _cleanArrForAppend (a: RealAny[]) {
+    return (a.constructor.name !== 'Array' && a.constructor.constructor.name !== 'Array') ? [a] : a;
+}
