@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { RealAny } from './types-iso';
+import { Any, RealAny } from './types-iso';
 /******************************************** MATCHING ********************************************/
 /**
  * Returns true if array matchVals contains valToFind. Note that it uses simple JSON.stringify
@@ -136,7 +136,7 @@ export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
  * @param {Array<RealAny>|RealAny} arr2 - Array or value to concatenate to the end of arr1
  * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
  */
-export declare const append: (arr1: any, arr2: any, ...arrs: any[]) => any[];
+export declare function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: Any[]): Any[];
 /**
  * Return new array with all items in arr2OrItem removed from array1; or if array2 is
  * not an array, remove matching item from array1. NON-MUTATIVE. PERFORMANCE-INTENSIVE.
@@ -223,4 +223,24 @@ export declare const without: {
         <T>(arr: T[], numToRm: number): T[];
     };
 };
+/******************************************* COLLECTION *******************************************/
+/**
+ * Get a random value from an array, or return undefined if array is empty.
+ * @param {Array} coll Array to get random value from.
+ * @return {any|undefined} Item randomly selected from given array
+ */
+export declare function sample<T = any>(coll: T[]): T | undefined;
+/**
+ * Return random entry ([key, value]) from given object/collection, or undefined if it has no keys.
+ * @param {Object} coll Object to get random value from.
+ * @return {[string, any]|undefined} Randomly selected [key, value] array from object
+ */
+export declare function sample<T = any>(coll: Record<string, T>): [string, T] | undefined;
+/**
+ * Return random character from given string, or undefined if it's an empty string.
+ * @param {string} coll String to get random character from.
+ * @return {string|undefined} Randomly selected character from string.
+ */
+export declare function sample<T = any>(coll: string): string | undefined;
+/***************************************** BARREL EXPORT ******************************************/
 export { isArray } from './types-iso';

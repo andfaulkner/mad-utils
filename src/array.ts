@@ -402,6 +402,7 @@ export function sample<T = any>(coll: T[] | string | Record<string, T>): T | str
     }
     if (typeof coll === 'object') {
         const objKeys = Object.keys(coll);
+        if (objKeys.length === 0) return;
         const selectedKey = objKeys[Math.floor(Math.random() * objKeys.length)];
         return [selectedKey, coll[selectedKey]];
     }
