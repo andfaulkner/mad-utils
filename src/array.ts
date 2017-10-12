@@ -369,7 +369,6 @@ export const without = {
 
 
 /******************************************* COLLECTION *******************************************/
-
 /**
  * Get a random value from an array, or return undefined if array is empty.
  * @param {Array} coll Array to get random value from.
