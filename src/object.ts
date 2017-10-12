@@ -156,6 +156,10 @@ export const inspectKeyTree = (obj, showHidden = true, showProtoChainPosition = 
     return allKeysInPrototypeChain;
 };
 
+export { inspectKeyTree as inspectKeys }
+export { inspectKeyTree as keyInspector }
+export { inspectKeyTree as keyTreeInspector }
+
 /**
  * Determine if an object contains a given key.
  *

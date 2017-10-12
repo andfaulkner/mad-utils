@@ -57,6 +57,9 @@ export declare const numPairs: (obj: any) => number;
  * @return {string[]} List of keys in obj & its prototype chain (w/ hidden keys if showHidden=true)
  */
 export declare const inspectKeyTree: (obj: any, showHidden?: boolean, showProtoChainPosition?: boolean) => string[];
+export { inspectKeyTree as inspectKeys };
+export { inspectKeyTree as keyInspector };
+export { inspectKeyTree as keyTreeInspector };
 /**
  * Determine if an object contains a given key.
  *
