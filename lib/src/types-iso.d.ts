@@ -5,6 +5,7 @@ export interface ClassConstructor {
     new (...args: any[]): {};
 }
 export declare type RealAny = any;
+export { RealAny as Any };
 export declare type StringOrNonexistent = string | null | undefined;
 export { StringOrNonexistent as StrOrNonexistent };
 export interface SingletonInterface<U> {
