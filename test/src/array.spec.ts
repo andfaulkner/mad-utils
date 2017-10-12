@@ -21,6 +21,7 @@ import { m_, array, append,
         removeMatches,
         contains,
         countOccurrences,
+        sample,
         matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
@@ -624,5 +625,18 @@ describe(`array sub-module`, function() {
         it(`returns number of occurrences of given value in the array`, function() {
             expect(countOccurrences([7, 9, 7, 'asdf', 7, 1, 7, null, 7], 7)).to.eql(5);
         });
+    });
+
+    describe(`sample`, function() {
+        it(`given a string, gets a random character`, function() {
+            expect(sample('qwerty')).to.match(/^[qwerty]$/);
+        });
+        it(`given an array, gets a random value`, function() {
+            expect(sample([1, 2, 3, 4, 5])).to.be.oneOf([1, 2, 3, 4, 5]);
+        });
+        it(`given an object, gets a random key-value pair (as [key, value])`, function() {
+            expect([['a', 1], ['b', 2], ['c', 3]]).to.deep.include(sample({ a: 1, b: 2, c: 3 }));
+        });
+
     });
 });
