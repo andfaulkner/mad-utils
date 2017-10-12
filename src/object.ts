@@ -5,7 +5,9 @@ import { englishVariants, frenchVariants } from './internal/lang-constants';
 
 import deepFreezeStrict = require('deep-freeze-strict');
 import { isVerbose } from 'env-var-helpers';
+import * as isNode from 'detect-node';
 
+const { assign } = Object;
 
 /********************************************* OBJECT *********************************************/
 /**
@@ -14,7 +16,7 @@ import { isVerbose } from 'env-var-helpers';
  * @return {Object} Frozen merged version of provided objects. Clones originals - no mutation.
  */
 export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> => {
-    return deepFreezeStrict<T>(Object.assign({}, ...args));
+    return deepFreezeStrict<T>(assign({}, ...args));
 };
 
 /**
@@ -101,6 +103,58 @@ export const numKeys = (obj: RealAny): number => {
     return Object.keys(obj).length;
 }
 export const numPairs = numKeys;
+
+// TODO Test inspectKeyTree
+/**
+ * Powerful key inspection tool. Shows keys of object and all objects in its prototype chain.
+ * Displays object name at each layer in the chain
+ * @param {Object} obj - Object to get the keys of
+ * @param {Object} showHidden - If true, also display hidden keys.
+ * @param {boolean} showProtoChainPosition If true, log objects showing each key's prototype
+ *                                         chain position & the associated objects' names.
+ * @return {string[]} List of keys in obj & its prototype chain (w/ hidden keys if showHidden=true)
+ */
+export const inspectKeyTree = (obj, showHidden = true, showProtoChainPosition = false): string[] =>
+{
+    const getKeys = showHidden ? Object.getOwnPropertyNames : Object.keys;
+    const getName = (obj) => obj && obj.constructor && obj.constructor.name;
+
+    const proto =  obj    && obj.__proto__;
+    const proto2 = proto  && proto.__proto__;
+    const proto3 = proto2 && proto2.__proto__;
+    const proto4 = proto3 && proto3.__proto__;
+    const proto5 = proto4 && proto4.__proto__;
+    const proto6 = proto5 && proto5.__proto__;
+    const proto7 = proto6 && proto6.__proto__;
+    const proto8 = proto7 && proto7.__proto__;
+
+    const objData = { name: getName(obj), keys: getKeys(obj), };
+    if (proto)  assign(objData, { __proto__:  {name: getName(proto),  keys: getKeys(proto)} });
+    if (proto2) assign(objData, { __proto__2: {name: getName(proto2), keys: getKeys(proto2)} });
+    if (proto3) assign(objData, { __proto__3: {name: getName(proto3), keys: getKeys(proto3)} });
+    if (proto4) assign(objData, { __proto__4: {name: getName(proto4), keys: getKeys(proto4)} });
+    if (proto5) assign(objData, { __proto__5: {name: getName(proto5), keys: getKeys(proto5)} });
+    if (proto6) assign(objData, { __proto__6: {name: getName(proto6), keys: getKeys(proto6)} });
+    if (proto7) assign(objData, { __proto__7: {name: getName(proto7), keys: getKeys(proto7)} });
+    if (proto8) assign(objData, { __proto__8: {name: getName(proto8), keys: getKeys(proto8)} });
+
+    if (showProtoChainPosition) {
+        console.log(assign({}, objData, {
+            prototypeKeys:   obj.prototype   ? getKeys(obj.prototype)   : [],
+            constructorKeys: obj.constructor ? getKeys(obj.constructor) : [],
+        }));
+    }
+
+    const allKeysInPrototypeChain =
+        getKeys(objData)
+            .reduce((acc, collKey) => (collKey === 'name' || collKey === 'keys')
+                                          ? acc
+                                          : acc.concat(objData[collKey].keys), [])
+            .concat(objData.keys || []);
+    console.log(allKeysInPrototypeChain);
+
+    return allKeysInPrototypeChain;
+};
 
 /**
  * Determine if an object contains a given key.
@@ -235,7 +289,7 @@ export function merge<T>(...objs: MergeParamTypes<T>[]): MergeReturnTypes<T> {
                     `objects for the rest of the values, However, merge was given a ` +
                     `${isArray(curObj) ? 'array' : typeof curObj}.`);
             }
-            return Object.assign(acc, curObj);
+            return assign(acc, curObj);
         }, {});
     }
 };

@@ -48,6 +48,16 @@ export declare const eachPair: <T extends Object>(func: (val: T[keyof T], key?: 
 export declare const numKeys: (obj: any) => number;
 export declare const numPairs: (obj: any) => number;
 /**
+ * Powerful key inspection tool. Shows keys of object and all objects in its prototype chain.
+ * Displays object name at each layer in the chain
+ * @param {Object} obj - Object to get the keys of
+ * @param {Object} showHidden - If true, also display hidden keys.
+ * @param {boolean} showProtoChainPosition If true, log objects showing each key's prototype
+ *                                         chain position & the associated objects' names.
+ * @return {string[]} List of keys in obj & its prototype chain (w/ hidden keys if showHidden=true)
+ */
+export declare const inspectKeyTree: (obj: any, showHidden?: boolean, showProtoChainPosition?: boolean) => string[];
+/**
  * Determine if an object contains a given key.
  *
  * @param {Object} obj - Object to check for the given key
