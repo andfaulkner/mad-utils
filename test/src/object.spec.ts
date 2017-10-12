@@ -1,11 +1,14 @@
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
 import { m_, object, assignFrozenClone, merge, addImmutableProp, addMutableProp,
-        numKeys, hasKey, eachPair, isMultilangTextObj, get } from '../../shared';
+        numKeys, hasKey, inspectKeyTree,
+        eachPair, isMultilangTextObj, get } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 import { object as objectFromNode } from '../../node';
@@ -66,6 +69,13 @@ describe(`object sub-module`, function() {
             expect(numKeys([])).to.eql(0);
             expect(numKeys(false)).to.eql(0);
             expect(numKeys(true)).to.eql(0);
+        });
+    });
+
+    describe(`inspectKeyTree`, function() {
+        it(`returns array (and can run without crashing)`, function() {
+            expect(inspectKeyTree({})).to.exist;
+            expect(inspectKeyTree({})).to.be.an('array');
         });
     });
 

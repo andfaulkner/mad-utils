@@ -119,14 +119,14 @@ export const inspectKeyTree = (obj, showHidden = true, showProtoChainPosition = 
     const getKeys = showHidden ? Object.getOwnPropertyNames : Object.keys;
     const getName = (obj) => obj && obj.constructor && obj.constructor.name;
 
-    const proto =  obj    && obj.__proto__;
-    const proto2 = proto  && proto.__proto__;
-    const proto3 = proto2 && proto2.__proto__;
-    const proto4 = proto3 && proto3.__proto__;
-    const proto5 = proto4 && proto4.__proto__;
-    const proto6 = proto5 && proto5.__proto__;
-    const proto7 = proto6 && proto6.__proto__;
-    const proto8 = proto7 && proto7.__proto__;
+    const proto =  obj    && (obj as any).__proto__;
+    const proto2 = proto  && (proto as any).__proto__;
+    const proto3 = proto2 && (proto2 as any).__proto__;
+    const proto4 = proto3 && (proto3 as any).__proto__;
+    const proto5 = proto4 && (proto4 as any).__proto__;
+    const proto6 = proto5 && (proto5 as any).__proto__;
+    const proto7 = proto6 && (proto6 as any).__proto__;
+    const proto8 = proto7 && (proto7 as any).__proto__;
 
     const objData = { name: getName(obj), keys: getKeys(obj), };
     if (proto)  assign(objData, { __proto__:  {name: getName(proto),  keys: getKeys(proto)} });
