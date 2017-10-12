@@ -1,13 +1,61 @@
+0.36.0
+======
+Added new 'sample' function - gets a random value from a collection (string, array, or object)
+
+Removed confusing UUID functions from number module and top-level namespace - replaced with props in UUID namespace:
+*   noDashes <-- now found at uuid.noDashes
+*   genLen6ID, gen6CharID, genLen6Str, gen6CharStr <-- now found at uuid.len6
+*   genLen8ID, gen8CharID, genLen8Str, gen8CharStr <-- now found at uuid.len8
+
+More robust isArray check
+
+Added functions:
+*   insectKeyTree: Gives detailed information on keys in object's full prototype chain
+*   pushIfUniq: Pushes item into array only if array doesn't already have a matching item.
+    *   alias: pushIfNew
+    *   alias: pushUniq
+
+Added types:
+*   Any: Another alias for any
+
+----------------------------------------------------------------------------------------------------
 0.35.0
 ======
 Upgraded Typescript to 2.5.2
+
 Upgraded Node to 8.6.0
 
+New functions:
+*   defineImmutableProp
+*   defineMutableProp
+*   countOccurences
+*   immutablePropConfig
+*   isAlphanumericChar
+*   isWhitespaceChar
+*   isNumericChar
+*   isOperatorChar
+*   getArgsFromFuncAsString, with aliases:
+    *   getParamNames
+    *   getParameterNames
+    *   getArgNames
+    *   getArgumentNames
+
+New types:
+*   StringHash
+*   StringNumHash
+*   StringNumberHash
+
+Fixed date tests
+
+
+----------------------------------------------------------------------------------------------------
 0.25.0
 ======
 Upgraded Typescript version to 2.3.0, from 2.2.1
 Set all React packages to install from 15.x  
 
+
+----------------------------------------------------------------------------------------------------
 0.24.0
 ======
 withLeftIndent has breaking changes
