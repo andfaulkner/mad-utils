@@ -68,7 +68,7 @@ export const {
     isDateLike, isMultilangTextObj, isNonexistentOrString,
     isDataEnumItem, isIndexEnumItem, isNumericEnumItem, castToNum,
     getFromStorage,
-    uuid, genLen6ID, genLen8ID,
+    uuid,
     eachPair,
     replaceAll,
     toSnakecase, toCamelCase, capitalize, cap1LowerRest, repeatChars,
@@ -76,5 +76,8 @@ export const {
     singleton,
     isLeapYear, now,
     hasKey, append } = browserUtils;
+
+export const genLen6UUID = uuid.len6;
+export const genLen8UUID = uuid.len8;
 
 export { RequiredInjection } from './browser';

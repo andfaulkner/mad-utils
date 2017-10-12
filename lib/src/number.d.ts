@@ -22,20 +22,6 @@ export declare type Float = number;
 export declare type Double = number;
 export declare type Long = number;
 export declare type Short = number;
-/** @return {string} Randomly generated sequence 6 characters long e.g. AB790517 */
-export declare const len6: () => string;
-export { len6 as genLen6ID };
-export { len6 as gen6CharID };
-export { len6 as genLen6Str };
-export { len6 as gen6CharStr };
-/** @return {string} Randomly generated sequence 8 characters long e.g. 0E8526 */
-export declare const len8: () => string;
-export { len6 as genLen8ID };
-export { len8 as gen8CharID };
-export { len8 as genLen8Str };
-export { len8 as gen8CharStr };
-/** @return {string} Generate a UUID without any dashes (e.g. 505BB6B57D684C2488DD1522B34CF539) */
-export declare const noDashes: () => string;
 /**
  * Export UUID. If uuid itself is run as a function, it generates a UUID. uuid object contains
  * child functions uuid.len6, uuid.len8, and uuid.noDashes
