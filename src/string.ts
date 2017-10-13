@@ -559,11 +559,6 @@ export const isOperatorChar = (matchChar: char): boolean =>
 /**************************************** STRING -> REGEX *****************************************/
 const RegExpFlags = 'yumig';
 
-// TODO test removeSurroundingQuotes
-// TODO test isRegexString
-// TODO test getFlagsFromRegexString
-// TODO test removeSurroundingRegexSlashes
-
 /**
  * If matching quotes found at left- & right-most positions of given string, remove them.
  * If none found, returns string as-is.
