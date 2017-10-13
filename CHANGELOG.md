@@ -1,3 +1,18 @@
+0.36.2
+======
+Added functions:
+*   removeSurroundingQuotes. Aliases:
+    *   withoutSurroundingQuotes
+*   isRegexString. Aliases:
+    *   isRegexStr
+*   getFlagsFromRegexString. Aliases:
+    *   getFlagsFromRegexStr
+*   removeSurroundingRegexSlashes. Aliases:
+    *   withoutSurroundingRegexSlashes
+    *   withoutRegexSlashesAndFlags
+    *   removeRegexSlashesAndFlags
+    *   removeRegexLiteralChars
+
 0.36.1
 ======
 Added function:
