@@ -606,14 +606,16 @@ export const getFlagsFromRegexString = (str: string): string | null => {
 
         // If the current char is not a flag, throw an error
         if (!matchesFlag) {
-            throw new TypeError(`Invalid RegExp string : ${str}. '${char}' is not a ` +
-                                `flag - only y, u, m, i, and g are valid flags.`);
+            console.warn(`Invalid RegExp string : ${str}. '${char}' is not a ` +
+                         `flag - only y, u, m, i, and g are valid flags.`);
+            return null;
         }
 
         // If current char is a flag that's already set, throw an error (no duplicate flags)
         if (acc && acc.split('').find(flag => flag === matchesFlag[0])) {
-            throw new TypeError(`Invalid RegExp string : ${str}. RegExp strings can ` +
-                                `only contain one of each flag (y, u, m, i, and g).`);
+            console.warn(`Invalid RegExp string : ${str}. RegExp strings can ` +
+                         `only contain one of each flag (y, u, m, i, and g).`);
+            return null;
         }
 
         // Otherwise set the flag property to true in the flags object.
