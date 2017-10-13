@@ -227,12 +227,6 @@ export declare const isNonMinFile: (inode: string) => boolean;
  * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
  */
 export declare const getBaseFilenameFromPath: (filePath: string) => string;
-/**
- * Pad string to given width by repeatedly adding the pad char (default: ' ') on the left.
- * @param {string} strToPad - String to pad to the given width
- * @param {number} width - Final length of the output string
- * @param {string} padChar - Character
- */
 /***************************************** STRING PADDING *****************************************/
 export declare type Sides = 'left' | 'right' | 'center';
 /**

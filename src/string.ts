@@ -434,17 +434,6 @@ export const isNonMinFile = (inode: string) => inode.split(/\./g).reverse()[1] !
  */
 export const getBaseFilenameFromPath = (filePath: string) => filePath.split('/').slice(-1)[0];
 
-/**
- * Pad string to given width by repeatedly adding the pad char (default: ' ') on the left.
- * @param {string} strToPad - String to pad to the given width
- * @param {number} width - Final length of the output string
- * @param {string} padChar - Character
- */
-// export const padLeft = (strToPad: string, width: number, padChar: string = ' '): string => {
-//     // if (padChar.length !== 1) throw new TypeError('mad-utils::padLeft must receive a character, not a string')
-
-//     return strToPad.length >= width ? strToPad : padLeft(padChar + strToPad, width, padChar);
-// }
 
 /***************************************** STRING PADDING *****************************************/
 export type Sides = 'left' | 'right' | 'center';
