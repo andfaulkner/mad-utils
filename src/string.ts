@@ -567,6 +567,76 @@ export const isOperatorChar = (matchChar: char): boolean =>
     !!matchChar && matchChar.length === 1 && matchCharInChars('+-*=|&<>?:/!%^~]', matchChar);
 
 
+/**************************************** STRING -> REGEX *****************************************/
+const RegExpFlags = 'yumig';
+
+/**
+ * If matching quotes found at left- & right-most positions of given string, remove them.
+ * If none found, returns string as-is.
+ * @param  {string} str String to check & remove from
+ * @return {string} Input string with bookending quotes removed.
+ * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
+ */
+const removeSurroundingQuotes = (str: string): string => {
+    if (str.length > 1 && (str[0] === '`' && str[str.length - 1] === '`')
+                       || (str[0] === "'" && str[str.length - 1] === "'")
+                       || (str[0] === '"' && str[str.length - 1] === '"')) {
+        return str.replace(/(^['"`])|(['"`]$)/g, '');
+    }
+    return str;
+};
+
+/**
+ * Returns true if string is a RegExp or string that can compile to RegExp.
+ * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
+ * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
+ */
+const isRegexString = (str: string | RegExp): boolean =>
+    (str instanceof RegExp) || !!str.match(/^\/.+\/[yumig]{0,5}$/);
+
+/**
+ * Get flags from string in regex string format - i.e. "/regex_query/flags".
+ * @param {string} str String to get flags from. Grabs from chars after the final /.
+ * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form.
+ */
+const getFlagsFromRegexString = (str: string): string | null => {
+    if (!isRegexString(str)) return null;
+
+    // Get the actual flag 'section'
+    const flagSect = str.split('/').reverse()[0];
+
+    // Iterate through the section of the string past the last slash, 1 char at a time.
+    return flagSect.split('').reduce((acc, char) => {
+        // See if any flag matches the current character
+        const matchesFlag = RegExpFlags.match(char);
+
+        // If the current char is not a flag, throw an error
+        if (!matchesFlag) {
+            throw new TypeError(`Invalid RegExp string : ${str}. '${char}' is not a ` +
+                                `flag - only y, u, m, i, and g are valid flags.`);
+        }
+
+        // If current char is a flag that's already set, throw an error (no duplicate flags)
+        if (acc && acc.split('').find(flag => flag === matchesFlag[0])) {
+            throw new TypeError(`Invalid RegExp string : ${str}. RegExp strings can ` +
+                                `only contain one of each flag (y, u, m, i, and g).`);
+        }
+
+        // Otherwise set the flag property to true in the flags object.
+        acc += matchesFlag[0];
+        return acc;
+    }, '');
+};
+
+/**
+ * Remove left & right side '/', and all right-side flags from given regex string.
+ * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
+ * @return {string} Regex string with the flags and bookending '/' chars removed.
+ */
+const removeSurroundingRegexSlashes = (str: string): string =>
+    str.replace(/^\//, '').replace(/\/[yumig]{0,5}$/, '');
+
+
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
