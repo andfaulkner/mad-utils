@@ -661,6 +661,23 @@ describe(`string sub-module`, function() {
             expect(removeSurroundingQuotes("`as`df`")).to.eql("as`df");
         });
     });
+
+    describe(`removeSurroundingRegexSlashes`, function() {
+        expectFunctionExists(removeSurroundingRegexSlashes);
+        it(`Removes regex slashes surrounding a string when no flags are present`, function() {
+            expect(removeSurroundingRegexSlashes('/asdf/')).to.eql('asdf');
+        });
+        it(`Removes regex slashes surrounding a string and any included flags`, function() {
+            expect(removeSurroundingRegexSlashes('/asdf/g')).to.eql('asdf');
+            expect(removeSurroundingRegexSlashes('/asdf/mg')).to.eql('asdf');
+            expect(removeSurroundingRegexSlashes('/asdf/yumig')).to.eql('asdf');
+        });
+        it(`Leaves slashes inside a string intact`, function() {
+            expect(removeSurroundingRegexSlashes('/asdf/g')).to.eql('asdf');
+            expect(removeSurroundingRegexSlashes('/asdf/mg')).to.eql('asdf');
+            expect(removeSurroundingRegexSlashes('/asdf/yumig')).to.eql('asdf');
+        });
+    });
 });
 
 /**
