@@ -22,6 +22,8 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         toSnakeCase, toCamelCase,
         withLeftIndent,
         isWhitespaceChar, isAlphanumericChar, isOperatorChar, matchCharInChars,
+        removeSurroundingQuotes, removeSurroundingRegexSlashes,
+        isRegexString, getFlagsFromRegexString,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -641,6 +643,22 @@ describe(`string sub-module`, function() {
             expect(isOperatorChar('*=')).to.equal(false);
             expect(isOperatorChar('<<')).to.equal(false);
             expect(isOperatorChar('>=')).to.equal(false);
+        });
+    });
+
+    describe(`removeSurroundingQuotes`, function() {
+        expectFunctionExists(removeSurroundingQuotes);
+        it(`Removes single quotes surrounding a string, ignoring inner single quotes`, function() {
+            expect(removeSurroundingQuotes(`'asdf'`)).to.eql('asdf');
+            expect(removeSurroundingQuotes(`'as'df'`)).to.eql(`as'df`);
+        });
+        it(`Removes double quotes surrounding a string, ignoring inner double quotes`, function() {
+            expect(removeSurroundingQuotes(`"asdf"`)).to.eql(`asdf`);
+            expect(removeSurroundingQuotes(`"as"df"`)).to.eql(`as"df`);
+        });
+        it(`Removes backticks surrounding a string, ignoring inner backticks`, function() {
+            expect(removeSurroundingQuotes("`asdf`")).to.eql("asdf");
+            expect(removeSurroundingQuotes("`as`df`")).to.eql("as`df");
         });
     });
 });
