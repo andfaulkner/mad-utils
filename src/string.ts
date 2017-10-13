@@ -586,7 +586,7 @@ export const removeSurroundingQuotes = (str: string): string => {
  * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
  */
 export const isRegexString = (str: string | RegExp): boolean =>
-    (str instanceof RegExp) || !!str.match(/^\/.+\/[yumig]{0,5}$/);
+    (str instanceof RegExp) || !!str.match(/^\/[\s\S]+\/[yumig]{0,5}$/);
 
 /**
  * Get flags from string in regex string format - i.e. "/regex_query/flags".
