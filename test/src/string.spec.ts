@@ -679,7 +679,6 @@ describe(`string sub-module`, function() {
         });
     });
 
-    // TODO test isRegexString for RegExps
     describe(`isRegexString`, function() {
         expectFunctionExists(isRegexString);
         it(`returns true if string is in regex format with no flags`, function() {
@@ -699,6 +698,10 @@ describe(`string sub-module`, function() {
         });
         it(`returns true if string is in regex format with flags and has \\n vals`, function() {
             expect(isRegexString('/\n_[0-9a-zA-Z]+_\$/yumig')).to.be.true;
+        });
+        it(`returns true if given a RegExp object`, function() {
+            expect(isRegexString(/asdf/mig)).to.be.true;
+            expect(isRegexString(new RegExp('asdf', 'gm'))).to.be.true;
         });
     });
 
