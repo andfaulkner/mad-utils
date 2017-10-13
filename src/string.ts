@@ -566,7 +566,7 @@ const RegExpFlags = 'yumig';
  * @return {string} Input string with bookending quotes removed.
  * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
  */
-const removeSurroundingQuotes = (str: string): string => {
+export const removeSurroundingQuotes = (str: string): string => {
     if (str.length > 1 && (str[0] === '`' && str[str.length - 1] === '`')
                        || (str[0] === "'" && str[str.length - 1] === "'")
                        || (str[0] === '"' && str[str.length - 1] === '"')) {
@@ -580,7 +580,7 @@ const removeSurroundingQuotes = (str: string): string => {
  * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
  * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
  */
-const isRegexString = (str: string | RegExp): boolean =>
+export const isRegexString = (str: string | RegExp): boolean =>
     (str instanceof RegExp) || !!str.match(/^\/.+\/[yumig]{0,5}$/);
 
 /**
@@ -588,7 +588,7 @@ const isRegexString = (str: string | RegExp): boolean =>
  * @param {string} str String to get flags from. Grabs from chars after the final /.
  * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form.
  */
-const getFlagsFromRegexString = (str: string): string | null => {
+export const getFlagsFromRegexString = (str: string): string | null => {
     if (!isRegexString(str)) return null;
 
     // Get the actual flag 'section'
@@ -622,7 +622,7 @@ const getFlagsFromRegexString = (str: string): string | null => {
  * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
  * @return {string} Regex string with the flags and bookending '/' chars removed.
  */
-const removeSurroundingRegexSlashes = (str: string): string =>
+export const removeSurroundingRegexSlashes = (str: string): string =>
     str.replace(/^\//, '').replace(/\/[yumig]{0,5}$/, '');
 
 

@@ -300,6 +300,32 @@ export declare const isAlphanumericChar: (matchChar: string) => boolean;
  * @return {boolean} If given string is a operator character, return true.
  */
 export declare const isOperatorChar: (matchChar: string) => boolean;
+/**
+ * If matching quotes found at left- & right-most positions of given string, remove them.
+ * If none found, returns string as-is.
+ * @param  {string} str String to check & remove from
+ * @return {string} Input string with bookending quotes removed.
+ * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
+ */
+export declare const removeSurroundingQuotes: (str: string) => string;
+/**
+ * Returns true if string is a RegExp or string that can compile to RegExp.
+ * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
+ * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
+ */
+export declare const isRegexString: (str: string | RegExp) => boolean;
+/**
+ * Get flags from string in regex string format - i.e. "/regex_query/flags".
+ * @param {string} str String to get flags from. Grabs from chars after the final /.
+ * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form.
+ */
+export declare const getFlagsFromRegexString: (str: string) => string;
+/**
+ * Remove left & right side '/', and all right-side flags from given regex string.
+ * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
+ * @return {string} Regex string with the flags and bookending '/' chars removed.
+ */
+export declare const removeSurroundingRegexSlashes: (str: string) => string;
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
