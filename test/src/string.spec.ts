@@ -679,12 +679,56 @@ describe(`string sub-module`, function() {
         });
     });
 
+    // TODO test isRegexString for RegExps
     describe(`isRegexString`, function() {
         expectFunctionExists(isRegexString);
+        it(`returns true if string is in regex format with no flags`, function() {
+            expect(isRegexString('/asdf/')).to.be.true;
+            expect(isRegexString('/asdf_morechars/')).to.be.true;
+            expect(isRegexString('/asdf_morechars234/')).to.be.true;
+            expect(isRegexString('/asdf_morechars[0-9]]/')).to.be.true;
+        });
+        it(`returns true if string is in regex format with no flags`, function() {
+            expect(isRegexString('/asdf/g')).to.be.true;
+            expect(isRegexString('/asdf_morechars/yg')).to.be.true;
+            expect(isRegexString('/asdf_morechars234/yum')).to.be.true;
+            expect(isRegexString('/asdf_morechars[0-9]/yumig')).to.be.true;
+        });
+        it(`returns true if string is in regex format with no flags and has \\n vals`, function() {
+            expect(isRegexString('/\n_[0-9a-zA-Z]+_\$/')).to.be.true;
+        });
+        it(`returns true if string is in regex format with flags and has \\n vals`, function() {
+            expect(isRegexString('/\n_[0-9a-zA-Z]+_\$/yumig')).to.be.true;
+        });
     });
 
     describe(`getFlagsFromRegexString`, function() {
         expectFunctionExists(getFlagsFromRegexString);
+        it(`Returns a string of flag chars from a regex string with flags`, function() {
+            expect(getFlagsFromRegexString('/asdfasdf/gm')).to.eql('gm');
+            expect(getFlagsFromRegexString('/asdfasdf/yumig')).to.eql('yumig');
+        });
+        it(`Returns an empty string from a regex string with no flags`, function() {
+            expect(getFlagsFromRegexString('/\n_[0-9a-zA-Z]+_\$/')).to.eql('');
+            expect(getFlagsFromRegexString('/^[0-9]\*&__[a-z]\+~~/')).to.eql('');
+        });
+        it(`Returns null given an invalid regex string`, function() {
+            expect(getFlagsFromRegexString('\n_[0-9a-zA-Z]+_\$/')).to.be.null;
+            expect(getFlagsFromRegexString('_#\!_[0-9A-Z]+_ppQ\$/yumig')).to.be.null;
+            expect(getFlagsFromRegexString('asdf')).to.be.null;
+            expect(getFlagsFromRegexString('asdf/')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/yumiga')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/mG')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/g1')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/h')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/!')).to.be.null;
+        });
+        it(`Returns null if given a regex string with duplicate flags`, function() {
+            expect(getFlagsFromRegexString('/asdf/gg')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/yumiy')).to.be.null;
+            expect(getFlagsFromRegexString('/asdf/mgim')).to.be.null;
+        });
     });
 });
 
