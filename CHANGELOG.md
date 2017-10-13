@@ -1,3 +1,16 @@
+0.36.1
+======
+Added function:
+*   removeDuplicates. Aliases:
+    *   uniq, uniqVals, uniqueVals, removeDuplicateVals, removeDuplicateItems
+    *   uniqChars, uniqueChars, removeDuplicateChars
+
+Made countOccurrences also work for strings (rather than just arrays)
+
+Added numerous aliases for countOccurrences:
+    *   count, countAll, countItems, countArrayItems
+    *   countChars, countCharOccurrences, charOccurrences, charCount
+
 0.36.0
 ======
 Added new 'sample' function - gets a random value from a collection (string, array, or object)
