@@ -678,6 +678,14 @@ describe(`string sub-module`, function() {
             expect(removeSurroundingRegexSlashes('/asdf/yumig')).to.eql('asdf');
         });
     });
+
+    describe(`isRegexString`, function() {
+        expectFunctionExists(isRegexString);
+    });
+
+    describe(`getFlagsFromRegexString`, function() {
+        expectFunctionExists(getFlagsFromRegexString);
+    });
 });
 
 /**
