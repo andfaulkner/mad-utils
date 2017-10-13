@@ -308,24 +308,31 @@ export declare const isOperatorChar: (matchChar: string) => boolean;
  * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
  */
 export declare const removeSurroundingQuotes: (str: string) => string;
+export { removeSurroundingQuotes as withoutSurroundingQuotes };
 /**
  * Returns true if string is a RegExp or string that can compile to RegExp.
  * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
  * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
  */
 export declare const isRegexString: (str: string | RegExp) => boolean;
+export { isRegexString as isRegexStr };
 /**
  * Get flags from string in regex string format - i.e. "/regex_query/flags".
  * @param {string} str String to get flags from. Grabs from chars after the final /.
  * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form.
  */
 export declare const getFlagsFromRegexString: (str: string) => string;
+export { getFlagsFromRegexString as getFlagsFromRegexStr };
 /**
  * Remove left & right side '/', and all right-side flags from given regex string.
  * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
  * @return {string} Regex string with the flags and bookending '/' chars removed.
  */
 export declare const removeSurroundingRegexSlashes: (str: string) => string;
+export { removeSurroundingRegexSlashes as withoutSurroundingRegexSlashes };
+export { removeSurroundingRegexSlashes as withoutRegexSlashesAndFlags };
+export { removeSurroundingRegexSlashes as removeRegexSlashesAndFlags };
+export { removeSurroundingRegexSlashes as removeRegexLiteralChars };
 /*********************************** TEST EXPORTS ***********************************/
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.

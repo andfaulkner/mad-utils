@@ -575,6 +575,8 @@ export const removeSurroundingQuotes = (str: string): string => {
     return str;
 };
 
+export { removeSurroundingQuotes as withoutSurroundingQuotes }
+
 /**
  * Returns true if string is a RegExp or string that can compile to RegExp.
  * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
@@ -582,6 +584,8 @@ export const removeSurroundingQuotes = (str: string): string => {
  */
 export const isRegexString = (str: string | RegExp): boolean =>
     (str instanceof RegExp) || !!str.match(/^\/[\s\S]+\/[yumig]{0,5}$/);
+
+export { isRegexString as isRegexStr }
 
 /**
  * Get flags from string in regex string format - i.e. "/regex_query/flags".
@@ -619,6 +623,8 @@ export const getFlagsFromRegexString = (str: string): string | null => {
     }, '');
 };
 
+export { getFlagsFromRegexString as getFlagsFromRegexStr }
+
 /**
  * Remove left & right side '/', and all right-side flags from given regex string.
  * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
@@ -627,6 +633,10 @@ export const getFlagsFromRegexString = (str: string): string | null => {
 export const removeSurroundingRegexSlashes = (str: string): string =>
     str.replace(/^\//, '').replace(/\/[yumig]{0,5}$/, '');
 
+export { removeSurroundingRegexSlashes as withoutSurroundingRegexSlashes }
+export { removeSurroundingRegexSlashes as withoutRegexSlashesAndFlags }
+export { removeSurroundingRegexSlashes as removeRegexSlashesAndFlags }
+export { removeSurroundingRegexSlashes as removeRegexLiteralChars }
 
 /*********************************** TEST EXPORTS ***********************************/
 /**
