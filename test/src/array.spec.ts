@@ -20,7 +20,7 @@ import { m_, array, append,
         withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
         removeMatches,
         contains,
-        countOccurrences,
+        countOccurrences, removeDuplicates,
         sample,
         matchAny } from '../../shared';
 
@@ -624,6 +624,19 @@ describe(`array sub-module`, function() {
         });
         it(`returns number of occurrences of given value in the array`, function() {
             expect(countOccurrences([7, 9, 7, 'asdf', 7, 1, 7, null, 7], 7)).to.eql(5);
+        });
+    });
+
+    describe('removeDuplicates', function() {
+        it(`Returns a new version of an array with all duplicates removed`, function() {
+            const testOutArr = removeDuplicates([1, 1, 2, 3, 1, 1, 2, 1, 3]);
+            expect(testOutArr).to.have.members([1, 2, 3])
+            expect(testOutArr).to.be.an('array').with.lengthOf(3);
+        });
+        it(`Returns a new version of a string with all duplicate chars removed`, function() {
+            const testOutStr = removeDuplicates('aaaasssssddddfffff');
+            expect(testOutStr).to.eql('asdf');
+            expect(testOutStr).to.be.a('string').with.lengthOf(4);
         });
     });
 

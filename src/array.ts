@@ -339,19 +339,55 @@ export const splitLines =
  * @param {any} value - Item to search for in the array.
  * @return {number} Number of occurrences of the item in the array.
  */
-export function countOccurrences(arr: any[], value: any): number;
+export function countOccurrences<T = any>(arr: T[] | string, value: T): number;
 
 /**
- * Count number of occurrences of each value in the array. Return map containing all values.
+ * Return map with the number of occurrences of each value (or char) in the given array (or string)
+ * { Map :: [ItemType] -> number }
  * @param {any[]} arr - Array to search for the item.
  * @return {Map<any, number>} Map of each item in the array vs. its number of occurences.
  */
-export function countOccurrences(arr: any[]): Map<any, number>;
-export function countOccurrences(arr: any[], value?: any): Map<any, number> | number {
+export function countOccurrences<T = any>(arr: T[] | string): Map<T, number>;
+export function countOccurrences(arr: any[] | string, value?: any): Map<any, number> | number {
     const map = new Map<any, number>();
     for (let item of arr) map.set(item, (map.get(item) || 0) + 1);
     return (typeof value === 'undefined') ? map : map.get(value);
 }
+
+export { countOccurrences as count }
+export { countOccurrences as countAll }
+export { countOccurrences as countItems }
+export { countOccurrences as countArrayItems }
+
+/**
+ * Remove duplicate characters from the string
+ * @param {string|Array} coll String to remove duplicates from.
+ * @return {string} String with no duplicate characters (unique characters only).
+ */
+export function removeDuplicates(str: string): string;
+
+/**
+ * Remove duplicate values from the array
+ * @param {Array} coll Array to remove duplicates from.
+ * @return {Array} Array with no duplicates (unique values only).
+ */
+export function removeDuplicates<T = any>(coll: T[]): T[];
+
+export function removeDuplicates(coll: string | any[]): any[] | string {
+    const occurrences = countOccurrences(coll).keys();
+    let out = [];
+    let cur;
+    while(cur = occurrences.next().value) out.push(cur);
+    return (typeof coll === 'string' ? out.join('') : out);
+}
+
+export { removeDuplicates as uniq }
+export { removeDuplicates as uniqVals }
+export { removeDuplicates as unique }
+export { removeDuplicates as uniqueVals }
+export { removeDuplicates as removeDuplicateVals }
+export { removeDuplicates as removeDuplicateItems }
+
 
 /**
  * Namespace for certain "reversed" operations.
@@ -406,6 +442,8 @@ export function sample<T = any>(coll: T[] | string | Record<string, T>): T | str
         return [selectedKey, coll[selectedKey]];
     }
 }
+
+// TODO make removeDuplicates
 
 
 /***************************************** BARREL EXPORT ******************************************/

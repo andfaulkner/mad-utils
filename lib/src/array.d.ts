@@ -179,13 +179,36 @@ export declare const splitLines: (str: string, opts?: {
  * @param {any} value - Item to search for in the array.
  * @return {number} Number of occurrences of the item in the array.
  */
-export declare function countOccurrences(arr: any[], value: any): number;
+export declare function countOccurrences<T = any>(arr: T[] | string, value: T): number;
 /**
- * Count number of occurrences of each value in the array. Return map containing all values.
+ * Return map with the number of occurrences of each value (or char) in the given array (or string)
+ * { Map :: [ItemType] -> number }
  * @param {any[]} arr - Array to search for the item.
  * @return {Map<any, number>} Map of each item in the array vs. its number of occurences.
  */
-export declare function countOccurrences(arr: any[]): Map<any, number>;
+export declare function countOccurrences<T = any>(arr: T[] | string): Map<T, number>;
+export { countOccurrences as count };
+export { countOccurrences as countAll };
+export { countOccurrences as countItems };
+export { countOccurrences as countArrayItems };
+/**
+ * Remove duplicate characters from the string
+ * @param {string|Array} coll String to remove duplicates from.
+ * @return {string} String with no duplicate characters (unique characters only).
+ */
+export declare function removeDuplicates(str: string): string;
+/**
+ * Remove duplicate values from the array
+ * @param {Array} coll Array to remove duplicates from.
+ * @return {Array} Array with no duplicates (unique values only).
+ */
+export declare function removeDuplicates<T = any>(coll: T[]): T[];
+export { removeDuplicates as uniq };
+export { removeDuplicates as uniqVals };
+export { removeDuplicates as unique };
+export { removeDuplicates as uniqueVals };
+export { removeDuplicates as removeDuplicateVals };
+export { removeDuplicates as removeDuplicateItems };
 /**
  * Namespace for certain "reversed" operations.
  */
