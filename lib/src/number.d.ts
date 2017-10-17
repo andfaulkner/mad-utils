@@ -35,3 +35,4 @@ export { UUID as Uid };
  * child functions uuid.len6, uuid.len8, and uuid.noDashes
  */
 export declare const uuid: UUIDNamespace;
+export declare const uuidRegex: RegExp;

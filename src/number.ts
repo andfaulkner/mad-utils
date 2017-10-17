@@ -55,5 +55,8 @@ const noDashes = (): string => uuidBase().split('-').join('');
  */
 export const uuid = Object.assign(uuidBase, { len6, len8, noDashes }) as UUIDNamespace;
 
+export const uuidRegex = /[a-zA-Z0-9]{8}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{12}/g;
+
 /********************************************* RANGE **********************************************/
 // TODO create range function
+
