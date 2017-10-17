@@ -66,3 +66,4 @@ export { getArgsFromFuncAsString as getParamNames };
 export { getArgsFromFuncAsString as getParameterNames };
 export { getArgsFromFuncAsString as getArgNames };
 export { getArgsFromFuncAsString as getArgumentNames };
+export { getArgsFromFuncAsString as getArgs };

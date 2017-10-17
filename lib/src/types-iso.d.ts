@@ -4,23 +4,22 @@ import * as Polyglot from 'node-polyglot';
 export interface ClassConstructor {
     new (...args: any[]): {};
 }
-export declare type RealAny = any;
-export { RealAny as Any };
-export declare type StringOrNonexistent = string | null | undefined;
-export { StringOrNonexistent as StrOrNonexistent };
 export interface SingletonInterface<U> {
     new (...args: any[]): U;
     new <Y>(...args: any[]): Y;
 }
+export declare type RealAny = any;
+export { RealAny as Any };
 /**
  * Union aliases
  */
 export declare type StrOrNum = string | number;
-export declare type NumOrStr = StrOrNum;
-export declare type StringOrNumber = StrOrNum;
-export declare type NumberOrString = StrOrNum;
+export { StrOrNum as NumOrStr };
+export { StrOrNum as NumberOrString };
 export declare type StrOrNever = string | never;
-export declare type NeverOrStr = string | never;
+export { StrOrNever as NeverOrStr };
+export declare type StringOrNonexistent = string | null | undefined;
+export { StringOrNonexistent as StrOrNonexistent };
 /**
  * Any type that can potentially be cast to a number.
  */
