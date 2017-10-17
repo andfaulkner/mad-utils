@@ -10,28 +10,28 @@ export interface ClassConstructor {
     new(...args: any[]): {};
 }
 
-// For cases where something truly can be any value (contrast with the most common
-// case where 'any' is used in lieu of determining a highly complex type)
-export type RealAny = any;
-export { RealAny as Any }
-
-export type StringOrNonexistent = string | null | undefined;
-export { StringOrNonexistent as StrOrNonexistent };
-
 export interface SingletonInterface<U> {
     new(...args: any[]): U;
     new<Y>(...args: any[]): Y;
 }
 
+// For cases where something truly can be any value (contrast with the most common
+// case where 'any' is used in lieu of determining a highly complex type)
+export type RealAny = any;
+export { RealAny as Any }
+
 /**
  * Union aliases
  */
 export type StrOrNum = string | number;
-export type NumOrStr = StrOrNum;
-export type StringOrNumber = StrOrNum;
-export type NumberOrString = StrOrNum;
+export { StrOrNum as NumOrStr }
+export { StrOrNum as NumberOrString }
+
 export type StrOrNever = string | never;
-export type NeverOrStr = string | never;
+export { StrOrNever as NeverOrStr }
+
+export type StringOrNonexistent = string | null | undefined;
+export { StringOrNonexistent as StrOrNonexistent };
 
 /**
  * Any type that can potentially be cast to a number.
