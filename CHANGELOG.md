@@ -1,3 +1,12 @@
+0.36.6
+======
+*   defineGetterProp method. Aliases:
+    *   addGetterProp 
+    *   addGetter
+    *   defineGetter
+    *   addGetProp
+    *   defineGetProp
+
 0.36.2
 ======
 Added functions:
