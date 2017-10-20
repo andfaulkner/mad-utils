@@ -163,3 +163,20 @@ export declare const defineMutableProp: <NProps extends Object = {}, O extends O
 export { defineMutableProp as defineMutableMethod };
 export { defineMutableProp as addMutableProp };
 export { defineMutableProp as addMutableMethod };
+/**
+ * Define a public mutable (even deletable) getter property on an object.
+ * @generic <O> - Type of object being merged into.
+ * @generic <NProps> - Interface containing new getter prop and its type.
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} propName - Name of new getter prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new getter property.
+ *
+ * @return {Object} Initial object with given property added
+ */
+export declare const defineGetterProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: any) => O & NProps;
+export { defineGetterProp as addGetterProp };
+export { defineGetterProp as addGetter };
+export { defineGetterProp as defineGetter };
+export { defineGetterProp as addGetProp };
+export { defineGetterProp as defineGetProp };
