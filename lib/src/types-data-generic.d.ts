@@ -6,6 +6,16 @@ export declare const biologicalSexes: Readonly<{
 export { biologicalSexes as commonBiologicalSexes };
 export { biologicalSexes as sexes };
 export { biologicalSexes as commonSexes };
+export declare const biologicalSexesWithBoth: Readonly<Readonly<{
+    male: "male";
+    female: "female";
+}> & {
+    both: "both";
+}>;
+export { biologicalSexesWithBoth as commonBiologicalSexesWithBoth };
+export { biologicalSexesWithBoth as sexesWithBoth };
+export { biologicalSexesWithBoth as commonSexesWithBoth };
+export { biologicalSexesWithBoth as sexWithBoth };
 export declare const biologicalSexesWithOther: Readonly<Readonly<{
     male: "male";
     female: "female";
@@ -22,10 +32,19 @@ export { BiologicalSex as BinarySex };
 export declare type BiologicalSexWithOther = keyof typeof biologicalSexesWithOther;
 export { BiologicalSexWithOther as SexWithOther };
 export { BiologicalSexWithOther as CommonSexWithOther };
+export declare type BiologicalSexWithBoth = keyof typeof biologicalSexesWithBoth;
+export { BiologicalSexWithBoth as SexWithBoth };
+export { BiologicalSexWithBoth as CommonSexWithBoth };
+export { BiologicalSexWithBoth as VaccineSex };
+export { BiologicalSexWithBoth as VaccineSexes };
 export { BiologicalSexWithOther as Gender };
 export { BiologicalSexWithOther as GenderCommon };
+export { BiologicalSexWithBoth as GenderWithBoth };
+export { BiologicalSexWithBoth as GenderCommonWithBoth };
 export { biologicalSexesWithOther as gender };
 export { biologicalSexesWithOther as genderCommon };
+export { biologicalSexesWithBoth as genderWithBoth };
+export { biologicalSexesWithBoth as genderCommonWithBoth };
 /**
  * Extended gender list.
  */
