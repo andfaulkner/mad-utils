@@ -13,6 +13,15 @@ export { biologicalSexes as commonBiologicalSexes };
 export { biologicalSexes as sexes };
 export { biologicalSexes as commonSexes };
 
+
+export const biologicalSexesWithBoth = deepFreeze(Object.assign({}, biologicalSexes, {
+    both: 'both' as 'both'
+}));
+export { biologicalSexesWithBoth as commonBiologicalSexesWithBoth };
+export { biologicalSexesWithBoth as sexesWithBoth };
+export { biologicalSexesWithBoth as commonSexesWithBoth };
+export { biologicalSexesWithBoth as sexWithBoth };
+
 export const biologicalSexesWithOther = deepFreeze(Object.assign({}, biologicalSexes, {
     other: 'other' as 'other'
 }));
@@ -30,6 +39,12 @@ export type BiologicalSexWithOther = keyof typeof biologicalSexesWithOther;
 export { BiologicalSexWithOther as SexWithOther }
 export { BiologicalSexWithOther as CommonSexWithOther }
 
+export type BiologicalSexWithBoth = keyof typeof biologicalSexesWithBoth;
+export { BiologicalSexWithBoth as SexWithBoth }
+export { BiologicalSexWithBoth as CommonSexWithBoth }
+export { BiologicalSexWithBoth as VaccineSex } // < How sexes are defined in vaccine schedules.
+export { BiologicalSexWithBoth as VaccineSexes }
+
 
 //
 // GENDER
@@ -39,9 +54,17 @@ export { BiologicalSexWithOther as CommonSexWithOther }
 export { BiologicalSexWithOther as Gender       }
 export { BiologicalSexWithOther as GenderCommon }
 
+export { BiologicalSexWithBoth as GenderWithBoth       }
+export { BiologicalSexWithBoth as GenderCommonWithBoth }
+
 // Objects, carried over form sex.
 export { biologicalSexesWithOther as gender       }
 export { biologicalSexesWithOther as genderCommon }
+
+export { biologicalSexesWithBoth as genderWithBoth       }
+export { biologicalSexesWithBoth as genderCommonWithBoth }
+
+// Types, carried over from sex.
 
 /**
  * Extended gender list.
