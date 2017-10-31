@@ -1,3 +1,11 @@
+0.37.1
+======
+*   More integer ranges added:
+    *   Now goes all the way to Int1To100, increasing by usual 10 digit increments
+    *   Int0To[##] series (e.g. Int0To10, Int0To20, Int0To30, ..., Int0To100)
+    *   Int0To5, Int1To5, Int0To25, Int1To25
+    *   Int0To1, Int0To2, Int0To3, Int0To7, Int1To2, Int1To3, Int1To7
+
 0.37.0
 ======
 *   Renamed near-faint-blue -> pale-sky-blue
