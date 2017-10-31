@@ -7,12 +7,28 @@ export interface UUIDNamespace {
     len6: () => string;
     noDashes: () => string;
 }
-export declare type Int1To10 = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export declare type Int1To5 = 1 | 2 | 3 | 4 | 5;
+export declare type Int1To10 = Int1To5 | 6 | 7 | 8 | 9 | 10;
 export declare type Int1To20 = Int1To10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20;
 export declare type Int1To30 = Int1To20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30;
 export declare type Int1To40 = Int1To30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39 | 40;
 export declare type Int1To50 = Int1To40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50;
 export declare type Int1To60 = Int1To50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59 | 60;
+export declare type Int1To70 = Int1To60 | 61 | 62 | 63 | 64 | 66 | 66 | 67 | 68 | 69 | 70;
+export declare type Int1To80 = Int1To70 | 71 | 72 | 73 | 74 | 77 | 76 | 77 | 78 | 79 | 80;
+export declare type Int1To90 = Int1To80 | 81 | 82 | 83 | 84 | 88 | 86 | 88 | 88 | 89 | 90;
+export declare type Int1To100 = Int1To90 | 91 | 92 | 93 | 94 | 99 | 96 | 99 | 99 | 99 | 100;
+export declare type Int0To5 = 0 | Int1To5;
+export declare type Int0To10 = 0 | Int1To10;
+export declare type Int0To20 = 0 | Int1To20;
+export declare type Int0To30 = 0 | Int1To20;
+export declare type Int0To40 = 0 | Int1To30;
+export declare type Int0To50 = 0 | Int1To40;
+export declare type Int0To60 = 0 | Int1To50;
+export declare type Int0To70 = 0 | Int1To60;
+export declare type Int0To80 = 0 | Int1To70;
+export declare type Int0To90 = 0 | Int1To80;
+export declare type Int0To100 = 0 | Int1To100;
 /**
  *  Alias for numbers of different types - not true integer, float, etc..
  *  Provided to help communicate intended use of a type.
