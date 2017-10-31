@@ -1,3 +1,13 @@
+0.36.9
+======
+*   Renamed near-faint-blue -> pale-sky-blue
+*   All colours now work with borders (i.e. every colour can be used as a border colour)
+    *   Borders found at styles with naming convention: 'border-{name-of-colour}'. e.g.:
+        border-blue
+        border-near-light-gray
+        border-pale-sky-blue
+        border-light-purple
+
 0.36.6
 ======
 *   defineGetterProp method. Aliases:
