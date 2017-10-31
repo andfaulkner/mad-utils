@@ -1,3 +1,11 @@
+0.37.2
+======
+*   Added createRangeArray
+    *   function to create numeric range arrays with a given start value, end value & value to increment by
+*   Added random value generator functions:
+    *   diceRoll6Sided: randomly outputs 1, 2, 3, 4, 5, or 6
+    *   coinFlip: randomly outputs 'HEADS' or 'TAILS' 
+
 0.37.1
 ======
 *   More integer ranges added:
