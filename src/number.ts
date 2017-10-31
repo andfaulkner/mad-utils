@@ -108,4 +108,15 @@ export const uuidRegex = /[a-zA-Z0-9]{8}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{4}-EE7
 
 /********************************************* RANGE **********************************************/
 // TODO create range function
-
+/**
+ * Create range between given numbers, with the provided interval.
+ * @param {number} start Number to start at.
+ * @param {number} end   Number to end at.
+ * @param {number} increment Amount to increase by with each subsequent number. {DEF: 1} {OPT}
+ * @return {Array<number>} Array containing all numbers in the interval.
+ */
+const createRangeArray = (start: number = 0, end: number, increment: number = 1): Array<number> => {
+    let arr = [] as Array<number>;
+    for (let i = start; i <= end; i += increment) arr.push(i);
+    return arr;
+};
