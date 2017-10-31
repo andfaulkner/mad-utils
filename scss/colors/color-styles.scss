@@ -5,6 +5,7 @@
     /*********** TRANSPARENT **********/
     .transparent { color: $transparent }
     .bg-transparent { background-color: $transparent }
+    .border-transparent { border-color: $transparent }
 
     /************** HUES **************/
     /** WHITE<->GRAY<->BLACK **/
@@ -12,45 +13,53 @@
     .bg-white { background-color: $white }
     .bg-white-hover:hover { background-color: $white }
     .bg-white-active:active { background-color: $white }
+    .border-white { border-color: $white }
 
     // #fbfbfb
     .faintest-gray { color: $faintestGray }
     .bg-faintest-gray { background-color: $faintestGray }
     .bg-faintest-gray-hover:hover { background-color: $faintestGray }
     .bg-faintest-gray-active:active { background-color: $faintestGray }
+    .border-faintest-gray { border-color: $faintestGray }
 
     // #f2f2f2
     .fainter-gray { color: $fainterGray }
     .bg-fainter-gray { background-color: $fainterGray }
     .bg-fainter-gray-hover:hover { background-color: $fainterGray }
     .bg-fainter-gray-active:active { background-color: $fainterGray }
+    .border-fainter-gray { border-color: $fainterGray }
 
     .faint-gray { color: $faintGray }
     .bg-faint-gray { background-color: $faintGray }
     .bg-faint-gray-hover:hover { background-color: $faintGray }
     .bg-faint-gray-active:active { background-color: $faintGray }
+    .border-faint-gray { border-color: $faintGray }
 
     // #e7e7e7
     .lightest-gray { color: $lightestGray }
     .bg-lightest-gray { background-color: $lightestGray }
     .bg-lightest-gray-hover:hover { background-color: $lightestGray }
     .bg-lightest-gray-active:active { background-color: $lightestGray }
+    .border-lightest-gray { border-color: $lightestGray }
 
     .lighter-gray { color: $lighterGray }
     .bg-lighter-gray { background-color: $lighterGray }
     .bg-lighter-gray-hover:hover { background-color: $lighterGray }
     .bg-lighter-gray-active:active { background-color: $lighterGray }
+    .border-lighter-gray { border-color: $lighterGray }
 
     // #c7c7c7
     .lighterish-gray { color: $lighterishGray }
     .bg-lighterish-gray { background-color: $lighterishGray }
     .bg-lighterish-gray-hover:hover { background-color: $lighterishGray }
     .bg-lighterish-gray-active:active { background-color: $lighterishGray }
+    .border-lighterish-gray { border-color: $lighterishGray }
 
     .light-gray { color: $lightGray }
     .bg-light-gray { background-color: $lightGray }
     .bg-light-gray-hover:hover { background-color: $lightGray }
     .bg-light-gray-active:active { background-color: $lightGray }
+    .border-light-gray { border-color: $lightGray }
 
     // #979797
     .nearer-light-gray { color: $nearerLightGray }
@@ -64,12 +73,14 @@
     .bg-near-light-gray { background-color: $nearLightGray }
     .bg-near-light-gray-hover:hover { background-color: $nearLightGray }
     .bg-near-light-gray-active:active { background-color: $nearLightGray }
+    .border-near-light-gray { border-color: $nearLightGray }
 
     // #777777
     .mid-light-gray { color: $midLightGray }
     .bg-mid-light-gray { background-color: $midLightGray }
     .bg-mid-light-gray-hover:hover { background-color: $midLightGray }
     .bg-mid-light-gray-active:active { background-color: $midLightGray }
+    .border-mid-light-gray { border-color: $midLightGray }
 
     // #696969
     .dim-gray { color: $dimGray }
@@ -90,116 +101,137 @@
     .bg-light-mid-gray { background-color: $lightMidGray }
     .bg-light-mid-gray-hover:hover { background-color: $lightMidGray }
     .bg-light-mid-gray-active:active { background-color: $lightMidGray }
+    .border-light-mid-gray { border-color: $lightMidGray }
 
     // #555;
     .gray { color: $gray }
     .bg-gray { background-color: $gray }
     .bg-gray-hover:hover { background-color: $gray }
     .bg-gray-active:active { background-color: $gray }
+    .border-gray { border-color: $gray }
 
     // #444;
     .mid-dark-gray { color: $midDarkGray }
     .bg-mid-dark-gray { background-color: $midDarkGray }
     .bg-mid-dark-gray-hover:hover { background-color: $midDarkGray }
     .bg-mid-dark-gray-active:active { background-color: $midDarkGray }
+    .border-mid-dark-gray { border-color: $midDarkGray }
 
     // #333
     .dark-gray { color: $darkGray }
     .bg-dark-gray { background-color: $darkGray }
     .bg-dark-gray-hover:hover { background-color: $darkGray }
     .bg-dark-gray-active:active { background-color: $darkGray }
+    .border-dark-gray { border-color: $darkGray }
 
     // #262626
     .darker-gray { color: $darkerGray }
     .bg-darker-gray { background-color: $darkerGray }
     .bg-darker-gray-hover:hover { background-color: $darkerGray }
     .bg-darker-gray-active:active { background-color: $darkerGray }
+    .border-darker-gray { border-color: $darkerGray }
 
     // #111
     .ultra-dark-gray { color: $ultraDarkGray }
     .bg-ultra-dark-gray { background-color: $ultraDarkGray }
     .bg-ultra-dark-gray-hover:hover { background-color: $ultraDarkGray }
     .bg-ultra-dark-gray-active:active { background-color: $ultraDarkGray }
+    .border-ultra-dark-gray { border-color: $ultraDarkGray }
 
     .black { color: $black }
     .bg-black { background-color: $black }
     .bg-black-hover:hover { background-color: $black }
     .bg-black-active:active { background-color: $black }
+    .border-black { border-color: $black }
 
     /************** REDS **************/
     .dark-red { color: $darkRed }
     .bg-dark-red { background-color: $darkRed }
     .bg-dark-red-hover:hover { background-color: $darkRed }
     .bg-dark-red-active:active { background-color: $darkRed }
+    .border-dark-red { border-color: $darkRed }
 
     .mid-dark-red { color: $midDarkRed }
     .bg-mid-dark-red { background-color: $midDarkRed }
     .bg-mid-dark-red-hover:hover { background-color: $midDarkRed }
     .bg-mid-dark-red-active:active { background-color: $midDarkRed }
+    .border-mid-dark-red { border-color: $midDarkRed }
 
     .mid-red { color: $midRed }
     .bg-mid-red { background-color: $midRed }
     .bg-mid-red-hover:hover { background-color: $midRed }
     .bg-mid-red-active:active { background-color: $midRed }
+    .border-mid-red { border-color: $midRed }
 
     .dark-pink, .dark-pink { color: $darkPink }
     .bg-dark-pink, .bg-dark-pink { background-color: $darkPink }
     .bg-dark-pink-hover:hover, .bg-dark-pink-hover:hover { background-color: $darkPink }
     .bg-dark-pink-active:active, .bg-dark-pink-active:active { background-color: $darkPink }
+    .border-dark-pink-active:active, .bg-dark-pink { border-color: $darkPink }
 
     /************** YELLOWS **************/
     .yellow { color: $yellow }
     .bg-yellow { background-color: $yellow }
     .bg-yellow-hover:hover { background-color: $yellow }
     .bg-yellow-active:active { background-color: $yellow }
+    .border-yellow { border-color: $yellow }
 
     /************** ORANGES **************/
     .orange { color: $orange }
     .bg-orange { background-color: $orange }
     .bg-orange-hover:hover { background-color: $orange }
     .bg-orange-active:active { background-color: $orange }
+    .border-orange { border-color: $orange }
 
     /************** GREENS **************/
     .forest-green { color: $forestGreen }
     .bg-forest-green { background-color: $forestGreen }
     .bg-forest-green-hover:hover { background-color: $forestGreen }
     .bg-forest-green-active:active { background-color: $forestGreen }
+    .border-forest-green { border-color: $forestGreen }
 
     .pale-green { color: $paleGreen }
     .bg-pale-green { background-color: $paleGreen }
     .bg-pale-green-hover:hover { background-color: $paleGreen }
     .bg-pale-green-active:active { background-color: $paleGreen }
+    .border-pale-green { border-color: $paleGreen }
 
     .bright-green { color: $brightGreen }
     .bg-bright-green { background-color: $brightGreen }
     .bg-bright-green-hover:hover { background-color: $brightGreen }
     .bg-bright-green-active:active { background-color: $brightGreen }
+    .border-bright-green { border-color: $brightGreen }
 
     .mid-green { color: $midGreen }
     .bg-mid-green { background-color: $midGreen }
     .bg-mid-green-hover:hover { background-color: $midGreen }
     .bg-mid-green-active:active { background-color: $midGreen }
+    .border-mid-green { border-color: $midGreen }
 
     .mid-dark-green { color: $midDarkGreen }
     .bg-mid-dark-green { background-color: $midDarkGreen }
     .bg-mid-dark-green-hover:hover { background-color: $midDarkGreen }
     .bg-mid-dark-green-active:active { background-color: $midDarkGreen }
+    .border-mid-dark-green { border-color: $midDarkGreen }
 
     .dark-green { color: $darkGreen }
     .bg-dark-green { background-color: $darkGreen }
     .bg-dark-green-hover:hover { background-color: $darkGreen }
     .bg-dark-green-active:active { background-color: $darkGreen }
+    .border-dark-green { border-color: $darkGreen }
 
     /************** CYANS **************/
     .dark-cyan { color: $darkCyan }
     .bg-dark-cyan { background-color: $darkCyan }
     .bg-dark-cyan-hover:hover { background-color: $darkCyan }
     .bg-dark-cyan-active:active { background-color: $darkCyan }
+    .border-dark-cyan { border-color: $darkCyan }
 
     .cyan { color: $cyan }
     .bg-cyan { background-color: $cyan }
     .bg-cyan-hover:hover { background-color: $cyan }
     .bg-cyan-active:active { background-color: $cyan }
+    .border-cyan { border-color: $cyan }
 
 
     /************** BLUES **************/
@@ -207,95 +239,114 @@
     .bg-faintest-blue { background-color: $faintestBlue }
     .bg-faintest-blue-hover:hover { background-color: $faintestBlue }
     .bg-faintest-blue-active:active { background-color: $faintestBlue }
+    .border-faintest-blue { border-color: $faintestBlue }
 
     .fainter-blue { color: $fainterBlue }
     .bg-fainter-blue { background-color: $fainterBlue }
     .bg-fainter-blue-hover:hover { background-color: $fainterBlue }
     .bg-fainter-blue-active:active { background-color: $fainterBlue }
+    .border-fainter-blue { border-color: $fainterBlue }
 
     .faint-blue { color: $faintBlue }
     .bg-faint-blue { background-color: $faintBlue }
     .bg-faint-blue-hover:hover { background-color: $faintBlue }
     .bg-faint-blue-active:active { background-color: $faintBlue }
+    .border-faint-blue { border-color: $faintBlue }
 
     .near-faint-blue { color: $nearFaintBlue }
     .bg-near-faint-blue { background-color: $nearFaintBlue }
     .bg-near-faint-blue-hover:hover { background-color: $nearFaintBlue }
     .bg-near-faint-blue-active:active { background-color: $nearFaintBlue }
+    .border-near-faint-blue { border-color: $nearFaintBlue }
 
     .palest-blue { color: $palestBlue }
     .bg-palest-blue { background-color: $palestBlue }
     .bg-palest-blue-hover:hover { background-color: $palestBlue }
     .bg-palest-blue-active:active { background-color: $palestBlue }
+    .border-palest-blue { border-color: $palestBlue }
 
     .paler-blue { color: $palerBlue }
     .bg-paler-blue { background-color: $palerBlue }
     .bg-paler-blue-hover:hover { background-color: $palerBlue }
     .bg-paler-blue-active:active { background-color: $palerBlue }
+    .border-paler-blue { border-color: $palerBlue }
 
     .pale-blue { color: $paleBlue }
     .bg-pale-blue { background-color: $paleBlue }
     .bg-pale-blue-hover:hover { background-color: $paleBlue }
     .bg-pale-blue-active:active { background-color: $paleBlue }
+    .border-pale-blue { border-color: $paleBlue }
 
     .mid-light-blue { color: $midLightBlue }
     .bg-mid-light-blue { background-color: $midLightBlue }
     .bg-mid-light-blue-hover:hover { background-color: $midLightBlue }
     .bg-mid-light-blue-active:active { background-color: $midLightBlue }
+    .border-mid-light-blue { border-color: $midLightBlue }
 
     .light-sky-blue { color: $lightSkyBlue }
     .bg-light-sky-blue { background-color: $lightSkyBlue }
     .bg-light-sky-blue-hover:hover { background-color: $lightSkyBlue }
     .bg-light-sky-blue-active:active { background-color: $lightSkyBlue }
+    .border-light-sky-blue { border-color: $lightSkyBlue }
 
     .sky-blue { color: $skyBlue }
     .bg-sky-blue { background-color: $skyBlue }
     .bg-sky-blue-hover:hover { background-color: $skyBlue }
     .bg-sky-blue-active:active { background-color: $skyBlue }
+    .border-sky-blue { border-color: $skyBlue }
 
     .blue { color: $blue }
     .bg-blue { background-color: $blue }
     .bg-blue-hover:hover { background-color: $blue }
     .bg-blue-active:active { background-color: $blue }
+    .border-blue { border-color: $blue }
 
     .slight-dark-blue { color: $slightDarkBlue }
     .bg-slight-dark-blue { background-color: $slightDarkBlue }
     .bg-slight-dark-blue-active:active { background-color: $slightDarkBlue; }
     .bg-slight-dark-blue-hover:hover { background-color: $slightDarkBlue; }
+    .border-slight-dark-blue { border-color: $slightDarkBlue; }
 
     .mid-near-dark-blue { color: $midNearDarkBlue }
     .bg-mid-near-dark-blue { background-color: $midNearDarkBlue }
     .bg-mid-near-dark-blue-hover:hover { background-color: $midNearDarkBlue; }
     .bg-mid-near-dark-blue-active:active { background-color: $midNearDarkBlue }
+    .border-mid-near-dark-blue { border-color: $midNearDarkBlue }
 
     .mid-dark-blue { color: $midDarkBlue }
     .bg-mid-dark-blue { background-color: $midDarkBlue }
     .bg-mid-dark-blue-hover:hover { background-color: $midDarkBlue; }
     .bg-mid-dark-blue-active:active { background-color: $midDarkBlue }
+    .border-mid-dark-blue { border-color: $midDarkBlue }
 
     .dark-blue { color: $darkBlue }
     .bg-dark-blue { background-color: $darkBlue }
     .bg-dark-blue-hover:hover { background-color: $darkBlue }
     .bg-dark-blue-active:active { background-color: $darkBlue }
+    .border-dark-blue { border-color: $darkBlue }
 
     .slightly-dark-blue { color: $slightlyDarkBlue }
     .bg-slightly-dark-blue { background-color: $slightlyDarkBlue }
     .bg-slightly-dark-blue-hover:hover { background-color: $slightlyDarkBlue }
     .bg-slightly-dark-blue-active:hover { background-color: $slightlyDarkBlue }
+    .border-slightly-dark-blue { border-color: $slightlyDarkBlue }
 
     /************** PURPLES **************/
     .light-purple { color: $lightPurple }
     .bg-light-purple { background-color: $lightPurple }
     .bg-light-purple-hover:hover { background-color: $lightPurple }
     .bg-light-purple-active:active { background-color: $lightPurple }
+    .border-light-purple { border-color: $lightPurple }
 
     .mid-purple { color: $midPurple }
     .bg-mid-purple { background-color: $midPurple }
     .bg-mid-purple-hover:hover { background-color: $midPurple }
     .bg-mid-purple-active:active { background-color: $midPurple }
+    .border-mid-purple { border-color: $midPurple }
 
     .dark-purple { color: $darkPurple }
     .bg-dark-purple { background-color: $darkPurple }
     .bg-dark-purple-hover:hover { background-color: $darkPurple }
     .bg-dark-purple-active:active { background-color: $darkPurple }
+    .border-dark-purple { border-color: $darkPurple }
 }
