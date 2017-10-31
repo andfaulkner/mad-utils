@@ -70,13 +70,13 @@ export { UUID as Uid }
  * Randomly get HEADS or TAILS. 50-50 chance of either.
  * @return {'HEADS'|'TAILS'} 'HEADS' or 'TAILS' - at random.
  */
-const coinFlip = () => (Math.random() < 0.5) ? 'HEADS' : 'TAILS';
+export const coinFlip = () => (Math.random() < 0.5) ? 'HEADS' : 'TAILS';
 
 /**
  * Randomly get a number from 1 to 6.
  * @return {number} 1, 2, 3, 4, 5, or 6 - at random.
  */
-const diceRoll6Sided = () => {
+export const diceRoll6Sided = () => {
     const num = Math.random();
     if (num <= (0.16666666666666666)) return 1;
     if (num <= (0.33333333333333333)) return 2;
@@ -115,7 +115,7 @@ export const uuidRegex = /[a-zA-Z0-9]{8}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{4}-EE7
  * @param {number} increment Amount to increase by with each subsequent number. {DEF: 1} {OPT}
  * @return {Array<number>} Array containing all numbers in the interval.
  */
-const createRangeArray = (start: number = 0, end: number, increment: number = 1): Array<number> => {
+export const createRangeArray = (start: number = 0, end: number, increment: number = 1): Array<number> => {
     let arr = [] as Array<number>;
     for (let i = start; i <= end; i += increment) arr.push(i);
     return arr;

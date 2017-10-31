@@ -16,6 +16,7 @@ import { m_, number } from '../../shared';
 import { number as numberFromNode } from '../../node';
 import { number as numberFromBrowser, uuid } from '../../browser';
 import * as numberModule from '../../src/number';
+import { createRangeArray, coinFlip, diceRoll6Sided } from '../../src/number';
 
 
 /********************************************* TESTS **********************************************/
@@ -58,6 +59,40 @@ describe(`number sub-module`, function() {
             expect(uuid.noDashes()).to.be.a('string');
             expect(uuid.noDashes()).to.have.length(32);
             expect(uuid.noDashes()).not.to.contain('-');
+        });
+    });
+    describe('createRangeArray', function() {
+        it(`should create an array of numbers incrementing by 1, by default`, function() {
+            expect(createRangeArray(0, 10)).to.eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        });
+        it(`should create an array of numbers incrementing by value of 3rd arg`, function() {
+            expect(createRangeArray(0, 10, 2)).to.eql([0, 2, 4, 6, 8, 10]);
+        });
+        it(`should create an array of numbers starting & ending at given values`, function() {
+            expect(createRangeArray(-10, 20, 5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
+        });
+    });
+
+    describe('coinFlip', function() {
+        it(`should produce either HEADS or TAILS every time, & at least 1 of each within 500 runs`, function() {
+            let didGetHeads = false;
+            let didGetTails = false;
+            for (let i = 0; i < 500; i++) {
+                if (coinFlip() === 'HEADS') didGetHeads = true;
+                if (coinFlip() === 'TAILS') didGetTails = true;
+                if (didGetHeads && didGetTails) break;
+            }
+            expect(didGetHeads).to.be.true;
+            expect(didGetTails).to.be.true;
+        });
+    });
+
+    describe('diceRoll6Sided', function() {
+        it(`should output 1, 2, 3, 4, 5, or 6`, function() {
+            expect(diceRoll6Sided()).to.be.a('number');
+            expect(diceRoll6Sided()).to.be.lessThan(7).and.greaterThan(0);
+            const roll = diceRoll6Sided();
+            expect(Math.round(roll)).to.eql(roll);
         });
     });
 });

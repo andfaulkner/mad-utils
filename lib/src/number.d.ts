@@ -55,9 +55,29 @@ export declare type UUID = string;
 export { UUID as UID };
 export { UUID as Uuid };
 export { UUID as Uid };
+/********************************************* RANDOM *********************************************/
+/**
+ * Randomly get HEADS or TAILS. 50-50 chance of either.
+ * @return {'HEADS'|'TAILS'} 'HEADS' or 'TAILS' - at random.
+ */
+export declare const coinFlip: () => "HEADS" | "TAILS";
+/**
+ * Randomly get a number from 1 to 6.
+ * @return {number} 1, 2, 3, 4, 5, or 6 - at random.
+ */
+export declare const diceRoll6Sided: () => 1 | 2 | 3 | 4 | 5 | 6;
 /**
  * Export UUID. If uuid itself is run as a function, it generates a UUID. uuid object contains
  * child functions uuid.len6, uuid.len8, and uuid.noDashes
  */
 export declare const uuid: UUIDNamespace;
 export declare const uuidRegex: RegExp;
+/********************************************* RANGE **********************************************/
+/**
+ * Create range between given numbers, with the provided interval.
+ * @param {number} start Number to start at.
+ * @param {number} end   Number to end at.
+ * @param {number} increment Amount to increase by with each subsequent number. {DEF: 1} {OPT}
+ * @return {Array<number>} Array containing all numbers in the interval.
+ */
+export declare const createRangeArray: (start: number, end: number, increment?: number) => number[];
