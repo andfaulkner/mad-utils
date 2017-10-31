@@ -65,6 +65,27 @@ export { UUID as UID }
 export { UUID as Uuid }
 export { UUID as Uid }
 
+/********************************************* RANDOM *********************************************/
+/**
+ * Randomly get HEADS or TAILS. 50-50 chance of either.
+ * @return {'HEADS'|'TAILS'} 'HEADS' or 'TAILS' - at random.
+ */
+const coinFlip = () => (Math.random() < 0.5) ? 'HEADS' : 'TAILS';
+
+/**
+ * Randomly get a number from 1 to 6.
+ * @return {number} 1, 2, 3, 4, 5, or 6 - at random.
+ */
+const diceRoll6Sided = () => {
+    const num = Math.random();
+    if (num <= (0.16666666666666666)) return 1;
+    if (num <= (0.33333333333333333)) return 2;
+    if (num <= (0.5)) return 3;
+    if (num <= (0.66666666666666666)) return 4;
+    if (num <= (0.83333333333333333)) return 5;
+    return 6;
+}
+
 /********************************************** UUID **********************************************/
 const uuidBase = (): string => uuidImport();
 
