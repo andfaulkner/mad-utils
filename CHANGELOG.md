@@ -1,4 +1,4 @@
-0.36.9
+0.37.0
 ======
 *   Renamed near-faint-blue -> pale-sky-blue
 *   All colours now work with borders (i.e. every colour can be used as a border colour)
