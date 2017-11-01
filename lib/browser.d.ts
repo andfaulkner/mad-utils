@@ -291,7 +291,7 @@ export declare const common: {
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     deepFreeze: <T>(obj: T) => Readonly<T>;
     parseQueryParams: <T>(queryParamsString?: string) => T;
-    getLangFromUrlPathname: (urlPath?: any, supportedLangs?: string[], defaultLang?: string) => string;
+    getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
     urlMinusQueryParams: (url?: string) => string;
     toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
     cap1LowerRest: (str: string) => string;
