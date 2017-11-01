@@ -1,4 +1,6 @@
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /******************************** IMPORT QUERY MODULE FOR TESTING *********************************/
 import { expect } from 'chai';
@@ -6,7 +8,9 @@ import { expectNonEmptyObjectExists } from '../../src/node/test';
 
 import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
          getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang,
-         getLangFromURLPathname, langFromUrlPathname, langFromURLPathname } from '../../shared';
+         getLangFromURLPathname, langFromUrlPathname, langFromURLPathname,
+         urlMinusLastPath
+} from '../../shared';
 import { expectFunctionExists } from '../../node';
 
 import { query as queryFromNode } from '../../node';
@@ -145,6 +149,8 @@ describe(`query sub-module`, function() {
         // TODO test getUrlPathBeforeLang's no-arg condition :: getUrlPathBeforeLang();
     });
 
+    // TODO test getUrlPathAroundLang more extensively;
+
     describe(`.urlPathAroundLang`, function() {
         it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'], getStrBeforeLang: true }`, function() {
             expect(getUrlPathAroundLang({
@@ -155,5 +161,19 @@ describe(`query sub-module`, function() {
                .eql('1/2');
         });
     });
-    // TODO test getUrlPathAroundLang more extensively;
+
+    describe(`.urlMinusLastPath`, function() {
+        it(`returns the URL string minus the last path`, function() {
+            const testURL = `http://www.example.com/one/two/three`;
+            expect(urlMinusLastPath(testURL)).to.eql('http://www.example.com/one/two');
+        });
+        it(`returns the base URL if URL has only 1 path`, function() {
+            const testURL = `http://www.example.com/one`;
+            expect(urlMinusLastPath(testURL)).to.eql('http://www.example.com');
+        });
+        it(`returns the base URL if URL has no paths`, function() {
+            const testURL = `http://www.example.com`;
+            expect(urlMinusLastPath(testURL)).to.eql('http://www.example.com');
+        });
+    });
 });
