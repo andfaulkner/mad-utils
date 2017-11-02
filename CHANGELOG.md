@@ -8,16 +8,45 @@ Fixed typings of various url (query) module function
 Cleaned up url functions to avoid using 'cached' window.location object
 *   It now re-retrieves the window.location object on every use, ensuring the value stays fresh.
 
-Added url functions:
-*   getQueryParamString
-*   swapLastURLPath
-*   urlWithoutProtocol
-*   urlProtocolString
-*   swapMatchingURLPath
-*   urlMinusLastPath
-
 Added string module function:
 *   firstMatch
+
+Added url functions:
+*   urlGetQuery, with aliases:
+    *   getQueryParamString
+    *   getQueryParamString
+    *   urlGetQueryString
+    *   urlGetQueryParamString
+
+*   urlWithoutProtocol, with aliases:
+    *   urlMinusProtocol
+
+*   urlProtocolString, with aliases:
+    *   urlGetProtocolString
+    *   getUrlProtocolString
+    *   getURLProtocolString
+    *   getProtocolStringFromUrl
+    *   getProtocolStringFromURL
+
+*   urlMinusLastPath, with aliases:
+    *   getURLMinusLastPath
+    *   getUrlMinusLastPath
+
+*   swapLastURLPath, with aliases:
+    *   swapLastUrlPath
+
+*   swapMatchingURLPaths, with aliases:
+    *   swapMatchingUrlPaths
+    *   swapUrlPaths
+    *   swapURLPaths
+    *   urlSwapPathMatches
+    *   urlSwapMatchingPaths
+    *   replaceMatchingURLPaths
+    *   replaceMatchingUrlPaths
+    *   replaceUrlPaths
+    *   replaceURLPaths
+    *   urlReplacePathMatches
+    *   urlReplaceMatchingPaths
 
 0.37.2
 ======
