@@ -148,10 +148,10 @@ export { urlMinusLastPath as getUrlMinusLastPath };
 export declare function swapLastURLPath(newPathVal: string, url?: string): string;
 /**
  * Swap URL path matching given string. Avoids swapping base 'host' value (e.g. www.exmpl.com).
+ * @param {string|RegExp} pathMatcher - Value to test for in each of the URL's paths
  * @param {string} newPathVal - Value to swap into the URL
- * @param {string|RegExp} pathToMatch - Value to test for in each of the URL's paths
  * @param {string} url - URL to swap path in {DEF: window.location.href} {OPT}
  * @return {string} URL with the matching path swapped for the given path
  */
-export declare function swapMatchingURLPath(newPathVal: string, pathToMatch: string | RegExp, url?: string): string;
+export declare function swapMatchingURLPath(pathMatcher: string | RegExp, newPathVal: string, url?: string): string;
 export { swapLastURLPath as swapLastUrlPath };

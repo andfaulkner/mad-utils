@@ -291,14 +291,14 @@ export function swapLastURLPath(newPathVal: string, url?: string): string {
 
 /**
  * Swap URL path matching given string. Avoids swapping base 'host' value (e.g. www.exmpl.com).
+ * @param {string|RegExp} pathMatcher - Value to test for in each of the URL's paths
  * @param {string} newPathVal - Value to swap into the URL
- * @param {string|RegExp} pathToMatch - Value to test for in each of the URL's paths
  * @param {string} url - URL to swap path in {DEF: window.location.href} {OPT}
  * @return {string} URL with the matching path swapped for the given path
  */
 export function swapMatchingURLPath(
+    pathMatcher: string | RegExp,
     newPathVal: string,
-    pathToMatch: string | RegExp,
     url?: string
 ): string {
     const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
@@ -308,7 +308,10 @@ export function swapMatchingURLPath(
     const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
 
     const urlPartsSwapped = urlParts.map(
-        (urlPt, idx) => ((urlPt.match(pathToMatch)) && idx !== 0) ? newPathVal : urlPt
+        (urlPt: string, idx: number) =>
+            ((idx !== 0) && matchFirst(urlPt, pathMatcher) === urlPt)
+                ? newPathVal
+                : urlPt
     );
 
     return `${httpStr}${urlPartsSwapped.join('/')}?${queryStr}`;

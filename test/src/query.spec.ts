@@ -14,6 +14,7 @@ import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
          swapLastURLPath,
          urlWithoutProtocol,
          urlProtocolString,
+         swapMatchingURLPath
 } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
@@ -223,6 +224,44 @@ describe(`query sub-module`, function() {
             const testUrl2 = `https://www.example.com`;
             expect(urlProtocolString(testUrl)).to.eql('http://');
             expect(urlProtocolString(testUrl2)).to.eql('https://');
+        });
+    });
+
+    describe(`swapMatchingURLPath`, function() {
+        const testHost = `http://www.exmpl.com`;
+        const testQuery = `keyfirst=valfirst&keySecond=valSecond`;
+        const testUrl = `${testHost}/first/second/third?${testQuery}`;
+
+        it(`swaps new path val into URL paths matching entire given string. Ignores query string`, function() {
+            expect(swapMatchingURLPath('first', 'ONE', testUrl))
+                .to.eql(`${testHost}/ONE/second/third?${testQuery}`);
+            expect(swapMatchingURLPath('second', 'TWO', testUrl))
+                .to.eql(`${testHost}/first/TWO/third?${testQuery}`);
+            expect(swapMatchingURLPath('third', 'THREE', testUrl))
+                .to.eql(`${testHost}/first/second/THREE?${testQuery}`);
+        });
+
+        it(`swaps new path val into URL paths fully matching given RegExp. Ignores query string`, function() {
+            expect(swapMatchingURLPath(/[a-z]irs[a-z]/, 'ONE', testUrl))
+                .to.eql(`${testHost}/ONE/second/third?${testQuery}`);
+            expect(swapMatchingURLPath(/[a-z]eco[a-z]{2}/, 'TWO', testUrl))
+                .to.eql(`${testHost}/first/TWO/third?${testQuery}`);
+            expect(swapMatchingURLPath(/.+rd/, 'THREE', testUrl))
+                .to.eql(`${testHost}/first/second/THREE?${testQuery}`);
+            expect(swapMatchingURLPath(/fir[a-z]+$/, 'FIRST', testUrl))
+                .to.eql(`${testHost}/FIRST/second/third?${testQuery}`);
+        });
+
+        it(`does not swap new path val into partially matching URL paths.`, function() {
+            expect(swapMatchingURLPath('firs', 'ONE', testUrl)).to.eql(testUrl);
+            expect(swapMatchingURLPath('secon', 'TWO', testUrl)).to.eql(testUrl);
+            expect(swapMatchingURLPath(/fir[a-z]/, 'ONE', testUrl)).to.eql(testUrl);
+            expect(swapMatchingURLPath(/[a-z]econ/, 'TWO', testUrl)).to.eql(testUrl);
+        });
+
+        it(`swaps all when there are multiple matching paths (ignoring query string)`, function() {
+            expect(swapMatchingURLPath(/.+/, 'MATCH', testUrl))
+                .to.eql(`${testHost}/MATCH/MATCH/MATCH?${testQuery}`);
         });
     });
 });
