@@ -6,7 +6,7 @@
 import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
-import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
+import { m_, url, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
          getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang,
          getLangFromURLPathname, langFromUrlPathname, langFromURLPathname,
          getQueryParamString,
@@ -18,30 +18,30 @@ import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
 } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
-import { query as queryFromNode } from '../../node';
-import { query as queryFromBrowser } from '../../browser';
-import * as queryModule from '../../src/query';
+import { url as urlFromNode } from '../../node';
+import { url as urlFromBrowser } from '../../browser';
+import * as urlModule from '../../src/url';
 
-const queryFns = m_.query;
+const urlFns = m_.url;
 
 
 /********************************************* TESTS **********************************************/
-describe(`query sub-module`, function() {
-    expectNonEmptyObjectExists(query, 'query (from shared/base export)');
-    expectNonEmptyObjectExists(m_.query, 'query (from m_ top-level namespace)');
-    expectNonEmptyObjectExists(queryModule, 'query (import all from query.ts file)');
-    expectNonEmptyObjectExists(queryFromNode, 'query (from Node export)');
-    expectNonEmptyObjectExists(queryFromBrowser, 'query (from Browser export)');
+describe(`url sub-module`, function() {
+    expectNonEmptyObjectExists(url, 'url (from shared/base export)');
+    expectNonEmptyObjectExists(m_.url, 'url (from m_ top-level namespace)');
+    expectNonEmptyObjectExists(urlModule, 'url (import all from url.ts file)');
+    expectNonEmptyObjectExists(urlFromNode, 'url (from Node export)');
+    expectNonEmptyObjectExists(urlFromBrowser, 'url (from Browser export)');
 
     describe('.parseQueryParams]', function() {
-        expectFunctionExists(m_.query.parseQueryParams);
+        expectFunctionExists(m_.url.parseQueryParams);
         expectFunctionExists(parseQueryParams);
         it('-- is a function', function() {
-            expect(m_.query.parseQueryParams).to.be.a('function');
+            expect(m_.url.parseQueryParams).to.be.a('function');
         });
         it('-- parses query param strings into objects', function() {
             const queryParams = '?gender=female&birthdate=2013/10/20&region=AB';
-            const queryParamsAsObj = m_.query.parseQueryParams(queryParams);
+            const queryParamsAsObj = m_.url.parseQueryParams(queryParams);
             expect(queryParamsAsObj).to.have.keys('gender', 'birthdate', 'region');
             expect(queryParamsAsObj['gender']).to.eql('female');
             expect(queryParamsAsObj['region']).to.eql('AB');
@@ -56,10 +56,10 @@ describe(`query sub-module`, function() {
     });
 
     describe('.getLangFromUrlPathname]', function() {
-        expectFunctionExists(m_.query.getLangFromUrlPathname);
-        expectFunctionExists(m_.query.getLangFromURLPathname);
-        expectFunctionExists(m_.query.langFromUrlPathname);
-        expectFunctionExists(m_.query.langFromURLPathname);
+        expectFunctionExists(m_.url.getLangFromUrlPathname);
+        expectFunctionExists(m_.url.getLangFromURLPathname);
+        expectFunctionExists(m_.url.langFromUrlPathname);
+        expectFunctionExists(m_.url.langFromURLPathname);
         expectFunctionExists(getLangFromUrlPathname);
         expectFunctionExists(getLangFromURLPathname);
         expectFunctionExists(langFromUrlPathname);

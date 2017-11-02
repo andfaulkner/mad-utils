@@ -1,6 +1,6 @@
 /// <reference types="connect" />
-import { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, func, json, locale, number, object, query, search, string, validation, stream };
+import { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
+export { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, validation, stream };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -12,7 +12,7 @@ export * from './src/locale';
 export * from './src/number';
 export * from './src/node/node-error';
 export * from './src/object';
-export * from './src/query';
+export * from './src/url';
 export * from './src/search';
 export * from './src/stream';
 export * from './src/string';
@@ -82,7 +82,7 @@ export declare const mUtils: {
     nodeError: typeof nodeError;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
     stream: typeof stream;
@@ -123,7 +123,7 @@ export declare const __: {
     nodeError: typeof nodeError;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
     stream: typeof stream;
@@ -164,7 +164,7 @@ export declare const m_: {
     nodeError: typeof nodeError;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
     stream: typeof stream;
@@ -205,7 +205,7 @@ export declare const madUtils: {
     nodeError: typeof nodeError;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof errorShared & typeof nodeError;
     stream: typeof stream;

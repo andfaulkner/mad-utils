@@ -1,5 +1,5 @@
-import { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, error, func, json, locale, number, object, query, search, string, validation, stream };
+import { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
+export { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, validation, stream };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -10,7 +10,7 @@ export * from './src/json';
 export * from './src/locale';
 export * from './src/number';
 export * from './src/object';
-export * from './src/query';
+export * from './src/url';
 export * from './src/search';
 export * from './src/stream';
 export * from './src/string';
@@ -69,7 +69,7 @@ export declare const mUtils: {
     location: typeof location;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof error;
     stream: typeof stream;
@@ -108,7 +108,7 @@ export declare const __: {
     location: typeof location;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof error;
     stream: typeof stream;
@@ -147,7 +147,7 @@ export declare const m_: {
     location: typeof location;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof error;
     stream: typeof stream;
@@ -186,7 +186,7 @@ export declare const madUtils: {
     location: typeof location;
     number: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     stacktrace: typeof error;
     stream: typeof stream;

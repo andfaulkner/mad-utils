@@ -39,7 +39,7 @@ export * from './browser';
 import * as browserUtils from './browser';
 import * as arrayUtils from './src/array';
 import * as objUtils from './src/object';
-import * as queryUtils from './src/query';
+import * as urlUtils from './src/url';
 import * as domUtils from './src/browser/dom';
 import * as localStoreUtils from './src/browser/local-store';
 import * as numberUtils from './src/number';

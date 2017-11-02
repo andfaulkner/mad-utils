@@ -19,7 +19,7 @@ import * as Polyglot from 'node-polyglot';
 import { canadaLangCodes } from '../locale';
 import { withoutLast, last, first } from '../array';
 import { cap1LowerRest } from '../string';
-import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../query';
+import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../url';
 
 
 /************************** BARREL EXPORTS FROM OTHER mad-utils MODULES ***************************/

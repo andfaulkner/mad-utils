@@ -29,9 +29,9 @@ export { number };
 import * as object from './src/object';
 export * from './src/object';
 export { object };
-import * as query from './src/query';
-export * from './src/query';
-export { query };
+import * as url from './src/url';
+export * from './src/url';
+export { url };
 import * as search from './src/search';
 export * from './src/search';
 export { search };
@@ -80,7 +80,7 @@ export declare const mUtils: {
     number: typeof number;
     numeric: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     srch: typeof search;
     stacktrace: typeof error;
@@ -115,7 +115,7 @@ export declare const __: {
     number: typeof number;
     numeric: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     srch: typeof search;
     stacktrace: typeof error;
@@ -150,7 +150,7 @@ export declare const m_: {
     number: typeof number;
     numeric: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     srch: typeof search;
     stacktrace: typeof error;
@@ -185,7 +185,7 @@ export declare const madUtils: {
     number: typeof number;
     numeric: typeof number;
     object: typeof object;
-    query: typeof query;
+    url: typeof url;
     search: typeof search;
     srch: typeof search;
     stacktrace: typeof error;

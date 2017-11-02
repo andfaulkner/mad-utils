@@ -1,6 +1,6 @@
 /// <reference types="express" />
 import { Request } from 'express';
-import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../query';
+import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../url';
 /************************** BARREL EXPORTS FROM OTHER mad-utils MODULES ***************************/
 export { getUrlPathBeforeLang, getUrlPathAfterLang };
 /**************************************** FUNCTION EXPORTS ****************************************/

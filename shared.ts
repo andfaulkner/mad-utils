@@ -39,9 +39,9 @@ import * as object from './src/object';
 export * from './src/object';
 export { object };
 
-import * as query from './src/query';
-export * from './src/query';
-export { query };
+import * as url from './src/url';
+export * from './src/url';
+export { url };
 
 import * as search from './src/search';
 export * from './src/search';
@@ -100,7 +100,7 @@ export const mUtils = {
     number,
     numeric: number,
     object,
-    query,
+    url,
     search,
     srch: search,
     stacktrace: error,
@@ -145,9 +145,9 @@ export const commonShared = {
     assignFrozenClone: object.assignFrozenClone,
     deepFreeze: object.deepFreeze,
 
-    parseQueryParams: query.parseQueryParams,
-    getLangFromUrlPathname: query.getLangFromUrlPathname,
-    urlMinusQueryParams: query.urlMinusQueryParams,
+    parseQueryParams: url.parseQueryParams,
+    getLangFromUrlPathname: url.getLangFromUrlPathname,
+    urlMinusQueryParams: url.urlMinusQueryParams,
 
     toSnakeCase: string.toSnakecase,
     cap1LowerRest: string.cap1LowerRest,
