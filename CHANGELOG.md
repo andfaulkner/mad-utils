@@ -1,3 +1,7 @@
+0.38.1
+======
+firstMatch renamed to matchFirst (in string module :: string.ts)
+
 0.38.0
 ======
 Renamed query module -> url module
