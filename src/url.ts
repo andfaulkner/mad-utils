@@ -236,6 +236,8 @@ export function urlWithoutProtocol(url?: string): string {
     return removeMatchingText(cleanUrl, /^https?:\/\//);
 }
 
+export { urlWithoutProtocol as urlMinusProtocol }
+
 /**
  * Get protocol string from the given URL - either http://, https://, or '' if none given.
  * @param {string} url - to get protocol string from
@@ -284,8 +286,6 @@ export { urlMinusLastPath as getUrlMinusLastPath }
 export function swapLastURLPath(newPathVal: string, url?: string): string {
     const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
     const queryStr = urlGetQuery(cleanUrl);
-    const urlSansLastPath = urlMinusLastPath(cleanUrl);
-    
     return `${ urlMinusLastPath(cleanUrl) }/${ newPathVal }${ queryStr ? ('?' + queryStr) : '' }`
 }
 
@@ -296,7 +296,7 @@ export function swapLastURLPath(newPathVal: string, url?: string): string {
  * @param {string} url - URL to swap path in {DEF: window.location.href} {OPT}
  * @return {string} URL with the matching path swapped for the given path
  */
-export function swapMatchingURLPath(
+export function swapMatchingURLPaths(
     pathMatcher: string | RegExp,
     newPathVal: string,
     url?: string
@@ -317,4 +317,15 @@ export function swapMatchingURLPath(
     return `${httpStr}${urlPartsSwapped.join('/')}?${queryStr}`;
 }
 
-export { swapLastURLPath as swapLastUrlPath }
+export { swapMatchingURLPaths as swapMatchingUrlPaths }
+export { swapMatchingURLPaths as swapUrlPaths }
+export { swapMatchingURLPaths as swapURLPaths }
+export { swapMatchingURLPaths as urlSwapPathMatches }
+export { swapMatchingURLPaths as urlSwapMatchingPaths }
+
+export { swapMatchingURLPaths as replaceMatchingURLPaths }
+export { swapMatchingURLPaths as replaceMatchingUrlPaths }
+export { swapMatchingURLPaths as replaceUrlPaths }
+export { swapMatchingURLPaths as replaceURLPaths }
+export { swapMatchingURLPaths as urlReplacePathMatches }
+export { swapMatchingURLPaths as urlReplaceMatchingPaths }
