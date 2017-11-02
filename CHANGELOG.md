@@ -1,4 +1,4 @@
-0.38.1
+0.38.2
 ======
 firstMatch renamed to matchFirst (in string module :: string.ts)
 
