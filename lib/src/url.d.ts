@@ -121,6 +121,7 @@ export { urlGetQuery as urlGetQueryParamString };
  * @example urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1') // => www.exmpl.ca/1/2?k1=v1
  */
 export declare function urlWithoutProtocol(url?: string): string;
+export { urlWithoutProtocol as urlMinusProtocol };
 /**
  * Get protocol string from the given URL - either http://, https://, or '' if none given.
  * @param {string} url - to get protocol string from
@@ -153,5 +154,15 @@ export declare function swapLastURLPath(newPathVal: string, url?: string): strin
  * @param {string} url - URL to swap path in {DEF: window.location.href} {OPT}
  * @return {string} URL with the matching path swapped for the given path
  */
-export declare function swapMatchingURLPath(pathMatcher: string | RegExp, newPathVal: string, url?: string): string;
-export { swapLastURLPath as swapLastUrlPath };
+export declare function swapMatchingURLPaths(pathMatcher: string | RegExp, newPathVal: string, url?: string): string;
+export { swapMatchingURLPaths as swapMatchingUrlPaths };
+export { swapMatchingURLPaths as swapUrlPaths };
+export { swapMatchingURLPaths as swapURLPaths };
+export { swapMatchingURLPaths as urlSwapPathMatches };
+export { swapMatchingURLPaths as urlSwapMatchingPaths };
+export { swapMatchingURLPaths as replaceMatchingURLPaths };
+export { swapMatchingURLPaths as replaceMatchingUrlPaths };
+export { swapMatchingURLPaths as replaceUrlPaths };
+export { swapMatchingURLPaths as replaceURLPaths };
+export { swapMatchingURLPaths as urlReplacePathMatches };
+export { swapMatchingURLPaths as urlReplaceMatchingPaths };
