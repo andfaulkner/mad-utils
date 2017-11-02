@@ -1,6 +1,6 @@
 import { defaultSupportedLangs } from './internal/lang-constants';
 import { last, first, matchAny, without } from './array';
-import { removeMatchingText, chomp } from './string';
+import { removeMatchingText, chomp, matchFirst } from './string';
 
 var window = window || {}; // tslint:disable-line:no-var-keyword
 window.location = window.location || {};
@@ -51,7 +51,7 @@ export function getLangFromUrlPathname(
     supportedLangs = defaultSupportedLangs,
     defaultLang: string = 'en'
 ): string {
-    const cleanUrlPath = typeof urlPath === 'string' ? urlPath : window.location.pathName;
+    const cleanUrlPath: string = typeof urlPath === 'string' ? urlPath : window.location.pathName;
     const getLangMatch = (lang: string) =>
         !!cleanUrlPath.match(new RegExp(`/(${lang}[^a-zA-Z0-9])|(/${lang}$)`, 'g'));
     return supportedLangs.find(getLangMatch) || defaultLang;
@@ -108,7 +108,7 @@ export function getUrlPathAroundLang(
 ): StrOrErr {
     const getStrBeforeLang = (typeof props === 'object') ? props.getStrBeforeLang : false;
 
-    const url = (typeof props === 'string')
+    const url: string = (typeof props === 'string')
         ? props
         : (props && props.url) || window.location.pathName;
 
@@ -190,8 +190,8 @@ export function getUrlWithLangSwapped(
  * @return {string} Copy of given (or current) URL sans query params.
  */
 export function urlMinusQueryParams(url?: string): string {
-    const cleanHref = typeof url === 'string' ? url : window.location.href;
-    return first(url.split('?'));
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    return first(cleanUrl.split('?'));
 }
 
 /**
@@ -203,8 +203,8 @@ export function urlMinusQueryParams(url?: string): string {
  * @return {string} last path. No query params. Not prepended by /. '' if trailing / & strict==true
  */
 export function lastUrlPath(url?: string, strict: boolean = true): string {
-    const cleanHref = typeof url === 'string' ? url : window.location.href;
-    const hrefMinusProtocol = removeMatchingText(cleanHref, /^https?:\/\//g);
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    const hrefMinusProtocol = removeMatchingText(cleanUrl, /^https?:\/\//g);
     if (!hrefMinusProtocol.includes('/')) return '';
 
     const hrefMinusQueryParams = urlMinusQueryParams(hrefMinusProtocol);
@@ -213,10 +213,105 @@ export function lastUrlPath(url?: string, strict: boolean = true): string {
 };
 
 /**
- * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
- * @param {string} href - [OPTIONAL] URL to extract from. Defaults to window.location.href.
+ * Get query string from the given URL (or the window URL). Excludes "?".
  */
-export function urlMinusLastPath(url?: string) {
-    const cleanHref = typeof url === 'string' ? url : window.location.href;
-    return chomp(cleanHref, `/${lastUrlPath(cleanHref)}`);
+export function urlGetQuery(url?: string): string {
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    return without.first(cleanUrl.split('?')).join('');
 }
+
+export { urlGetQuery as getQueryString }
+export { urlGetQuery as getQueryParamString }
+export { urlGetQuery as urlGetQueryString }
+export { urlGetQuery as urlGetQueryParamString }
+
+/**
+ * Return the URL with the protocol string ('http://', 'https://') removed.
+ * @param {string} url - to remove protocol string from
+ * @return {string} url with protocol string removed
+ * @example urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1') // => www.exmpl.ca/1/2?k1=v1
+ */
+export function urlWithoutProtocol(url?: string): string {
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    return removeMatchingText(cleanUrl, /^https?:\/\//);
+}
+
+/**
+ * Get protocol string from the given URL - either http://, https://, or '' if none given.
+ * @param {string} url - to get protocol string from
+ * @return {string} protocol string - either: 'http://', 'https://', or (if none present) ''
+ */
+export function urlProtocolString(url?: string): string {
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    return matchFirst(cleanUrl, /^https?:\/\//g);
+}
+
+export { urlProtocolString as urlGetProtocolString }
+export { urlProtocolString as getUrlProtocolString }
+export { urlProtocolString as getURLProtocolString }
+export { urlProtocolString as getProtocolStringFromUrl }
+export { urlProtocolString as getProtocolStringFromURL }
+
+/**
+ * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
+ * @param {string} url URL to extract from. {DEF: window.location.href} {OPT}
+ * @return {string} Given URL minus the last path. If URL had no paths, return base URL.
+ */
+export function urlMinusLastPath(url?: string, excludeQuery = true): string {
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    const httpStr = urlProtocolString(cleanUrl);
+    const queryStr = urlGetQuery(cleanUrl);
+
+    // If there are no paths, set to the URL base; otherwise lop off the last item after a '/'
+    const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
+    const urlNoQueryLastPathHttp = (urlParts.length === 1) ? urlParts[0]
+                                                           : without.last(urlParts).join('/');
+
+    // Re-include protocol string; and if excludeQuery == false, also re-include query string.
+    return httpStr + (excludeQuery ? urlNoQueryLastPathHttp
+                                   : `${urlNoQueryLastPathHttp}?${queryStr}`);
+}
+
+export { urlMinusLastPath as getURLMinusLastPath }
+export { urlMinusLastPath as getUrlMinusLastPath }
+
+
+/**
+ * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
+ * @param {string} url URL to extract from. {DEF: window.location.href} {OPT}
+ * @return {string} Given URL minus the last path. If URL had no paths, return base URL.
+ */
+export function swapLastURLPath(newPathVal: string, url?: string): string {
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    const queryStr = urlGetQuery(cleanUrl);
+    const urlSansLastPath = urlMinusLastPath(cleanUrl);
+    
+    return `${ urlMinusLastPath(cleanUrl) }/${ newPathVal }${ queryStr ? ('?' + queryStr) : '' }`
+}
+
+/**
+ * Swap URL path matching given string. Avoids swapping base 'host' value (e.g. www.exmpl.com).
+ * @param {string} newPathVal - Value to swap into the URL
+ * @param {string|RegExp} pathToMatch - Value to test for in each of the URL's paths
+ * @param {string} url - URL to swap path in {DEF: window.location.href} {OPT}
+ * @return {string} URL with the matching path swapped for the given path
+ */
+export function swapMatchingURLPath(
+    newPathVal: string,
+    pathToMatch: string | RegExp,
+    url?: string
+): string {
+    const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
+    
+    const httpStr = urlProtocolString(cleanUrl);
+    const queryStr = urlGetQuery(cleanUrl);
+    const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
+
+    const urlPartsSwapped = urlParts.map(
+        (urlPt, idx) => ((urlPt.match(pathToMatch)) && idx !== 0) ? newPathVal : urlPt
+    );
+
+    return `${httpStr}${urlPartsSwapped.join('/')}?${queryStr}`;
+}
+
+export { swapLastURLPath as swapLastUrlPath }

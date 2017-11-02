@@ -107,7 +107,51 @@ export declare function urlMinusQueryParams(url?: string): string;
  */
 export declare function lastUrlPath(url?: string, strict?: boolean): string;
 /**
- * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
- * @param {string} href - [OPTIONAL] URL to extract from. Defaults to window.location.href.
+ * Get query string from the given URL (or the window URL). Excludes "?".
  */
-export declare function urlMinusLastPath(url?: string): string;
+export declare function urlGetQuery(url?: string): string;
+export { urlGetQuery as getQueryString };
+export { urlGetQuery as getQueryParamString };
+export { urlGetQuery as urlGetQueryString };
+export { urlGetQuery as urlGetQueryParamString };
+/**
+ * Return the URL with the protocol string ('http://', 'https://') removed.
+ * @param {string} url - to remove protocol string from
+ * @return {string} url with protocol string removed
+ * @example urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1') // => www.exmpl.ca/1/2?k1=v1
+ */
+export declare function urlWithoutProtocol(url?: string): string;
+/**
+ * Get protocol string from the given URL - either http://, https://, or '' if none given.
+ * @param {string} url - to get protocol string from
+ * @return {string} protocol string - either: 'http://', 'https://', or (if none present) ''
+ */
+export declare function urlProtocolString(url?: string): string;
+export { urlProtocolString as urlGetProtocolString };
+export { urlProtocolString as getUrlProtocolString };
+export { urlProtocolString as getURLProtocolString };
+export { urlProtocolString as getProtocolStringFromUrl };
+export { urlProtocolString as getProtocolStringFromURL };
+/**
+ * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
+ * @param {string} url URL to extract from. {DEF: window.location.href} {OPT}
+ * @return {string} Given URL minus the last path. If URL had no paths, return base URL.
+ */
+export declare function urlMinusLastPath(url?: string, excludeQuery?: boolean): string;
+export { urlMinusLastPath as getURLMinusLastPath };
+export { urlMinusLastPath as getUrlMinusLastPath };
+/**
+ * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
+ * @param {string} url URL to extract from. {DEF: window.location.href} {OPT}
+ * @return {string} Given URL minus the last path. If URL had no paths, return base URL.
+ */
+export declare function swapLastURLPath(newPathVal: string, url?: string): string;
+/**
+ * Swap URL path matching given string. Avoids swapping base 'host' value (e.g. www.exmpl.com).
+ * @param {string} newPathVal - Value to swap into the URL
+ * @param {string|RegExp} pathToMatch - Value to test for in each of the URL's paths
+ * @param {string} url - URL to swap path in {DEF: window.location.href} {OPT}
+ * @return {string} URL with the matching path swapped for the given path
+ */
+export declare function swapMatchingURLPath(newPathVal: string, pathToMatch: string | RegExp, url?: string): string;
+export { swapLastURLPath as swapLastUrlPath };

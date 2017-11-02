@@ -9,7 +9,11 @@ import { expectNonEmptyObjectExists } from '../../src/node/test';
 import { m_, query, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
          getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang,
          getLangFromURLPathname, langFromUrlPathname, langFromURLPathname,
-         urlMinusLastPath
+         getQueryParamString,
+         urlMinusLastPath,
+         swapLastURLPath,
+         urlWithoutProtocol,
+         urlProtocolString,
 } from '../../shared';
 import { expectFunctionExists } from '../../node';
 
@@ -174,6 +178,51 @@ describe(`query sub-module`, function() {
         it(`returns the base URL if URL has no paths`, function() {
             const testURL = `http://www.example.com`;
             expect(urlMinusLastPath(testURL)).to.eql('http://www.example.com');
+        });
+        it(`preserves query params if excludeQueryParams is false`, function() {
+            const testURL = `http://www.example.com`;
+            expect(urlMinusLastPath(testURL)).to.eql('http://www.example.com');
+        });
+    });
+
+    describe(`getQueryParamString`, function() {
+        it(`gets a URL's query parameters`, function() {
+            const testURL = `https://www.example.com/one/two?k1=v1&k2=v2`;
+            expect(getQueryParamString(testURL)).to.eql('k1=v1&k2=v2');
+        });
+        it(`returns an empty string if a URL has no query params`, function() {
+            const testURL = `https://www.example.com/one/two`;
+            expect(getQueryParamString(testURL)).to.eql('');
+        });
+    });
+
+    describe(`.swapLastURLPath`, function() {
+        it(`swaps the last URL path and leaves the query params intact`, function() {
+            const testQueryStr = `key1=val1&key2=val2&key3=val3`;
+            const baseTestURL = `http://www.example.com`;
+
+            const testURL = `${baseTestURL}/1/2/3?${testQueryStr}`;
+
+            expect(swapLastURLPath('FINAL', testURL))
+                .to.eql(`${baseTestURL}/1/2/FINAL?${testQueryStr}`);
+        });
+    });
+
+    describe(`urlWithoutProtocol`, function() {
+        it(`returns given URL w/ protocol string ('http://' or 'https://') removed`, function() {
+            const testUrl = `http://www.example.com`;
+            const testUrl2 = `https://www.example.com/one/two?key=val`;
+            expect(urlWithoutProtocol(testUrl)).to.eql('www.example.com');
+            expect(urlWithoutProtocol(testUrl2)).to.eql('www.example.com/one/two?key=val');
+        });
+    });
+
+    describe(`urlProtocolString`, function() {
+        it(`returns protocol string prepending the given URL ('https://' or 'http://')`, function() {
+            const testUrl = `http://www.example.com`;
+            const testUrl2 = `https://www.example.com`;
+            expect(urlProtocolString(testUrl)).to.eql('http://');
+            expect(urlProtocolString(testUrl2)).to.eql('https://');
         });
     });
 });
