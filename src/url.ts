@@ -1,6 +1,6 @@
 import { defaultSupportedLangs } from './internal/lang-constants';
 import { last, first, matchAny, without } from './array';
-import { removeMatchingText, chomp, matchFirst } from './string';
+import { removeMatchingText, chomp } from './string';
 
 var window = window || {}; // tslint:disable-line:no-var-keyword
 window.location = window.location || {};
@@ -245,7 +245,8 @@ export { urlWithoutProtocol as urlMinusProtocol }
  */
 export function urlProtocolString(url?: string): string {
     const cleanUrl: string = typeof url === 'string' ? url : window.location.href;
-    return matchFirst(cleanUrl, /^https?:\/\//g);
+    const matches = cleanUrl.match(/^https?:\/\//g);
+    return (matches && matches[0]) || '';
 }
 
 export { urlProtocolString as urlGetProtocolString }
@@ -308,10 +309,12 @@ export function swapMatchingURLPaths(
     const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
 
     const urlPartsSwapped = urlParts.map(
-        (urlPt: string, idx: number) =>
-            ((idx !== 0) && matchFirst(urlPt, pathMatcher) === urlPt)
+        (urlPt: string, idx: number) => {
+            const urlPtStrMatches = urlPt.match(pathMatcher);
+            return ((idx !== 0) && (((urlPtStrMatches && urlPtStrMatches[0]) || '') === urlPt))
                 ? newPathVal
                 : urlPt
+        }
     );
 
     return `${httpStr}${urlPartsSwapped.join('/')}?${queryStr}`;
