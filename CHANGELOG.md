@@ -1,3 +1,24 @@
+0.38.0
+======
+Renamed query module -> url module
+*   It's now found in src/url.ts, rather than src/query.ts
+
+Fixed typings of various url (query) module function
+
+Cleaned up url functions to avoid using 'cached' window.location object
+*   It now re-retrieves the window.location object on every use, ensuring the value stays fresh.
+
+Added url functions:
+*   getQueryParamString
+*   swapLastURLPath
+*   urlWithoutProtocol
+*   urlProtocolString
+*   swapMatchingURLPath
+*   urlMinusLastPath
+
+Added string module function:
+*   firstMatch
+
 0.37.2
 ======
 *   Added createRangeArray
