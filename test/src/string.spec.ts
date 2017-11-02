@@ -24,6 +24,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         isWhitespaceChar, isAlphanumericChar, isOperatorChar, matchCharInChars,
         removeSurroundingQuotes, removeSurroundingRegexSlashes,
         isRegexString, getFlagsFromRegexString,
+        matchFirst,
         leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -731,6 +732,23 @@ describe(`string sub-module`, function() {
             expect(getFlagsFromRegexString('/asdf/gg')).to.be.null;
             expect(getFlagsFromRegexString('/asdf/yumiy')).to.be.null;
             expect(getFlagsFromRegexString('/asdf/mgim')).to.be.null;
+        });
+    });
+
+    describe(`matchFirst`, function() {
+        const testStr = 'TEST :: String to search in';
+        
+        it(`if given a string to find, returns 1st matching substring (it'll always be the ` +
+           `string being searched for)`, function() {
+            expect(matchFirst(testStr, 'TEST')).to.eql('TEST');
+        });
+        it(`returns empty string if no match`, function() {
+            expect(matchFirst(testStr, 'okokok')).to.eql('');
+            expect(matchFirst(testStr, /^should_not_match_anything/)).to.eql('');
+        });
+        it(`returns first substring matching given RegExp`, function() {
+            expect(matchFirst(testStr, /^.+::/g)).to.eql('TEST ::');
+            expect(matchFirst(testStr, /search [a-zA-Z]+$/g)).to.eql('search in');
         });
     });
 });

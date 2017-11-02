@@ -32,6 +32,15 @@ export declare const replaceAll: (text: string, find: string | RegExp, replace: 
  */
 export declare const matches: (valToFind: string | number | RegExp) => (valToSearchIn: string | number) => boolean;
 /**
+ * Get first substring to match the given string or RegExp.
+ * @param {string} strToSearchIn String to search for the string or RegExp
+ * @param {string|RegExp} matcher String or RegExp to find in strToSearchIn.
+ * @return {string} first substring to match the given string or RegExp; '' if no matches found.
+ */
+export declare const firstMatch: (strToSearchIn: string, matcher: string | RegExp) => string;
+export { firstMatch as getFirstMatch };
+export { firstMatch as matchFirst };
+/**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * Converts string to form that lets it be used as a pure 'literal' string to match against
  * directly if passed to new RegExp (no special chars taken into account).
