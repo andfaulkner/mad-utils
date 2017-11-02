@@ -91,9 +91,8 @@ export const cap1LowerRest = (str: string): string => str.charAt(0).toUpperCase(
  * Capitalize the first letter of a string.
  * If given a null value, returns ''.
  */
-export const capitalize = (str: string): string => {
-    return !str ? '' : str.charAt(0).toUpperCase() + str.slice(1);
-};
+export const capitalize = (str: string): string =>
+    !str ? '' : str.charAt(0).toUpperCase() + str.slice(1);
 
 /**
  * Replace all matching strings in a text segment with a given replacement string. Can also match
@@ -119,10 +118,10 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
  */
 export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNum): boolean => {
     if ((typeof valToFind !== typeof valToSearchIn) && !(valToFind instanceof RegExp)) {
-      return false;
+        return false;
     }
     if (valToFind instanceof RegExp) {
-      return valToFind.test(valToSearchIn.toString());
+        return valToFind.test(valToSearchIn.toString());
     }
     return !!valToSearchIn.toString().match(valToFind.toString());
 }
@@ -133,13 +132,13 @@ export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNu
  * @param {string|RegExp} matcher String or RegExp to find in strToSearchIn.
  * @return {string} first substring to match the given string or RegExp; '' if no matches found.
  */
-export const firstMatch = (strToSearchIn: string, matcher: string | RegExp): string => {
+export const matchFirst = (strToSearchIn: string, matcher: string | RegExp): string => {
     const matches = strToSearchIn.match(matcher);
     return ((matches && matches[0]) || '');
 };
 
-export { firstMatch as getFirstMatch }
-export { firstMatch as matchFirst }
+export { matchFirst as getFirstMatch }
+export { matchFirst as firstMatch }
 
 
 /**
