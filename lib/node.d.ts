@@ -313,7 +313,7 @@ export declare const common: {
     eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     deepFreeze: <T>(obj: T) => Readonly<T>;
-    parseQueryParams: <T>(queryParamsString?: string) => T;
+    parseQueryParams: <T>(queryParamsStr?: string) => T;
     getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
     urlMinusQueryParams: (url?: string) => string;
     toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
