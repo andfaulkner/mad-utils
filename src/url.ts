@@ -1,11 +1,14 @@
 import { defaultSupportedLangs } from './internal/lang-constants';
 import { last, first, matchAny, without } from './array';
 import { removeMatchingText, chomp } from './string';
+const isNode = require('detect-node')
 
 var document = document || {}; // tslint:disable-line:no-var-keyword
-document.location = document.location || {};
-document.location.href = document.location.href || '';
-document.location.pathName = document.location.pathName || ''
+if (isNode) {
+    document.location = document.location || {};
+    document.location.href = document.location.href || '';
+    document.location.pathName = document.location.pathName || ''
+}
 
 /**
  * Query parameters default values.
