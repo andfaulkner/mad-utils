@@ -1,3 +1,14 @@
+0.38.9
+======
+Added more getLangFromUrlPathname aliases:
+*   langFromUrl
+*   langFromURL
+*   getLangFromUrl
+*   getLangFromURL
+
+New convenience union type export: StrOrErr, with alias:
+*   StrOrError
+
 0.38.2
 ======
 firstMatch renamed to matchFirst (in string module :: string.ts)
