@@ -33,6 +33,9 @@ export { StrOrNever as NeverOrStr }
 export type StringOrNonexistent = string | null | undefined;
 export { StringOrNonexistent as StrOrNonexistent };
 
+export type StrOrErr = String | Error;
+export {StrOrErr as StrOrError}
+
 /**
  * Any type that can potentially be cast to a number.
  */
