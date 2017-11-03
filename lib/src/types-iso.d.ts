@@ -20,6 +20,8 @@ export declare type StrOrNever = string | never;
 export { StrOrNever as NeverOrStr };
 export declare type StringOrNonexistent = string | null | undefined;
 export { StringOrNonexistent as StrOrNonexistent };
+export declare type StrOrErr = String | Error;
+export { StrOrErr as StrOrError };
 /**
  * Any type that can potentially be cast to a number.
  */

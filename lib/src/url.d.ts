@@ -14,6 +14,7 @@ declare global  {
     interface WorkerGlobalScope extends NodeJS.Global {
     }
 }
+import { StrOrErr } from './types-iso';
 /****************************************** QUERY PARAMS ******************************************/
 /**
  * Turn query params into JS obj (based on splitting on , and =). Return null if no query params. If
@@ -34,31 +35,13 @@ export declare const parseQueryParams: <T>(queryParamsStr?: string) => T;
  * @return {string} current language, in 2-letter form. Often either 'en' or 'fr'.
  */
 export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
-/**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses global.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
- */
-export declare const langFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
-/**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses global.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
- */
-export declare const getLangFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
-/**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses global.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
- */
-export declare const langFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
-export declare type StrOrErr = String | Error;
+export { getLangFromUrlPathname as langFromUrlPathname };
+export { getLangFromUrlPathname as getLangFromURLPathname };
+export { getLangFromUrlPathname as langFromURLPathname };
+export { getLangFromUrlPathname as getLangFromUrl };
+export { getLangFromUrlPathname as getLangFromURL };
+export { getLangFromUrlPathname as langFromUrl };
+export { getLangFromUrlPathname as langFromURL };
 export declare type UrlPathsLangProps = {
     url?: string;
     curLang?: string;
@@ -182,4 +165,3 @@ export { swapMatchingURLPaths as replaceUrlPaths };
 export { swapMatchingURLPaths as replaceURLPaths };
 export { swapMatchingURLPaths as urlReplacePathMatches };
 export { swapMatchingURLPaths as urlReplaceMatchingPaths };
-export {};
