@@ -17,6 +17,7 @@ if (isNode) global.location = global.location || { href: '', pathname: '', searc
 import { defaultSupportedLangs } from './internal/lang-constants';
 import { last, first, matchAny, without } from './array';
 import { removeMatchingText, chomp } from './string';
+import { StrOrErr } from './types-iso';
 
 /****************************************** QUERY PARAMS ******************************************/
 /**
@@ -62,34 +63,13 @@ export const getLangFromUrlPathname =
     return supportedLangs.find(getLangMatch) || defaultLang;
 };
 
-/**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses global.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
- */
-export const langFromUrlPathname = getLangFromUrlPathname;
-
-/**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses global.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
- */
-export const getLangFromURLPathname = getLangFromUrlPathname;
-
-/**
- * Get current language from the url. Assumes language is stored in a path, and that a 2-letter
- * format is used.
- * @param {string} [OPTIONAL] urlPath URL to search. If not provided, uses global.location.pathname
- * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
- * @param {string} [OPTIONAL] defaultLang Default language, if none detected. Default: 'en'
- */
-export const langFromURLPathname = getLangFromUrlPathname;
-
-export type StrOrErr = String | Error;
+export { getLangFromUrlPathname as langFromUrlPathname }
+export { getLangFromUrlPathname as getLangFromURLPathname }
+export { getLangFromUrlPathname as langFromURLPathname }
+export { getLangFromUrlPathname as getLangFromUrl }
+export { getLangFromUrlPathname as getLangFromURL }
+export { getLangFromUrlPathname as langFromUrl }
+export { getLangFromUrlPathname as langFromURL }
 
 export type UrlPathsLangProps = {
     url?:            string,
