@@ -55,6 +55,14 @@
     .bg-lighterish-gray-active:active { background-color: $lighterishGray }
     .border-lighterish-gray { border-color: $lighterishGray }
 
+    // #b9b9b9
+    .lightened-gray { color: $lightenedGray }
+    .bg-lightened-gray { background-color: $lightenedGray }
+    .bg-lightened-gray-hover:hover { background-color: $lightenedGray }
+    .bg-lightened-gray-active:active { background-color: $lightenedGray }
+    .border-lightened-gray { border-color: $lightenedGray }
+
+    // #acacac
     .light-gray { color: $lightGray }
     .bg-light-gray { background-color: $lightGray }
     .bg-light-gray-hover:hover { background-color: $lightGray }
