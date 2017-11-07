@@ -112,7 +112,7 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
  */
 export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
     if (typeof val === 'undefined' || val == null) return false;
-    if (typeof val === 'number' && !isNaN(val)) return true;
+    if ((typeof val === 'number' || val instanceof Number) && !isNaN(val as number)) return true;
     if (typeof val === 'string') {
         if (val.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
         // Let '.123' and '-.123' type strings through.
@@ -129,10 +129,7 @@ export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean 
     return false;
 };
 
-/**
- * @alias isNumberLike
- */
-export const isNumLike = isNumberLike;
+export { isNumberLike as isNumLike }
 
 /**
  * Returns true if given value is an integer (does not include num-like strings).
@@ -143,6 +140,8 @@ export const isInteger = (val: RealAny): boolean => {
     if (isNumberLike(val) && parseInt(val, 10) === parseFloat(val)) return true;
     return false;
 };
+
+export { isInteger as isInt }
 
 /**
  * True if val is an integer or a string that can be converted to an integer.
@@ -155,6 +154,8 @@ export const isIntegerLike = (val: RealAny): boolean => {
     return !matches(/\./g)(val) || vStr.endsWith('.');
 };
 
+export { isIntegerLike as isIntLike }
+
 /**
  * True if val is a string or a number.
  * @param {any} val - Item to test.
@@ -163,23 +164,18 @@ export const isIntegerLike = (val: RealAny): boolean => {
 export const isStringOrNumber = (val: RealAny): boolean => typeof val === 'string' || isNumberLike(val);
 
 /**
- * @alias for isInteger
- */
-export const isInt = isInteger;
-
-/**
  * Returns true if val is true or false.
  * @param {any} val - Item to test.
  * @return {boolean} true if val is a boolean.
  */
 export const isBoolean = (val: any | boolean): boolean => {
     if ((val === true) || (val === false)) return true;
-
     const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
     if (hasValueOfFn && ((val.valueOf() === true) || (val.valueOf() === false))) return true;
-
     return false;
 }
+
+export { isBoolean as isBool }
 
 /**
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
@@ -190,7 +186,8 @@ export const isBoolean = (val: any | boolean): boolean => {
  */
 export const isDateLike = (val: RealAny): boolean => {
     if ((val instanceof moment) || (val instanceof Date)) return true;
-    if ((typeof val === 'number' && val < 0) || (typeof val === 'string' && parseInt(val) < 0)) {
+    if (((typeof val === 'number' || val instanceof Number) && val < 0)
+        || (typeof val === 'string' && parseInt(val, 10) < 0)) {
         return false;
     }
     if (typeof val === 'object' && Object.keys(val).find(key =>
