@@ -1,3 +1,7 @@
+0.39.1
+======
+Added lightened-gray colour to SCSS utils
+
 0.39.0
 ======
 Removed .bot-* SCSS utils (they took up needless space)
