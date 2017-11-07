@@ -83,22 +83,21 @@ export declare const isNonexistentOrString: (val: any) => boolean;
  * @return {boolean} True if item is 'number-like', otherwise false.
  */
 export declare const isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
-/**
- * @alias isNumberLike
- */
-export declare const isNumLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
+export { isNumberLike as isNumLike };
 /**
  * Returns true if given value is an integer (does not include num-like strings).
  * @param {any} val - value to check type of.
  * @return {boolean} true if given value is integer.
  */
 export declare const isInteger: (val: any) => boolean;
+export { isInteger as isInt };
 /**
  * True if val is an integer or a string that can be converted to an integer.
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is integer-like (or an integer).
  */
 export declare const isIntegerLike: (val: any) => boolean;
+export { isIntegerLike as isIntLike };
 /**
  * True if val is a string or a number.
  * @param {any} val - Item to test.
@@ -106,15 +105,12 @@ export declare const isIntegerLike: (val: any) => boolean;
  */
 export declare const isStringOrNumber: (val: any) => boolean;
 /**
- * @alias for isInteger
- */
-export declare const isInt: (val: any) => boolean;
-/**
  * Returns true if val is true or false.
  * @param {any} val - Item to test.
  * @return {boolean} true if val is a boolean.
  */
 export declare const isBoolean: (val: any) => boolean;
+export { isBoolean as isBool };
 /**
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
  * or object that moment is able to parse. Excludes negative numbers and strings that parse to
