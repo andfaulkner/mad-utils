@@ -1,3 +1,7 @@
+0.39.0
+======
+Removed .bot-* SCSS utils (they took up needless space)
+
 0.38.10
 =======
 Considerably more position SCSS/CSS utilities
