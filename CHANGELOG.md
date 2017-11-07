@@ -1,3 +1,10 @@
+0.39.2
+======
+Added isInt, isIntLike, isBool aliases
+Fixed alias export method (partially) in types-iso
+Set types-iso number detectors to handle Number object instances
+Updated tests to include new aliases
+
 0.39.1
 ======
 Added lightened-gray colour to SCSS utils
