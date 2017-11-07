@@ -1,4 +1,6 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
+/// <reference path="../../node_modules/@types/node/index.d.ts" />
+/// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /*************************************** IMPORT TEST UTILS ****************************************/
 import { expect } from 'chai';
@@ -43,6 +45,8 @@ describe(`types sub-modules`, function() {
         });
 
         describe(`isBoolean function`, function() {
+            expectFunctionExists(typesIso.isBoolean);
+            expectFunctionExists(typesIso.isBool);
             it(`returns true if given a boolean`, function() {
                 expect(isBoolean(true)).to.be.true;
                 expect(isBoolean(false)).to.be.true;
@@ -70,6 +74,7 @@ describe(`types sub-modules`, function() {
 
         describe(`isNumberLike function`, function() {
             expectFunctionExists(typesIso.isNumberLike);
+            expectFunctionExists(typesIso.isNumLike);
             it(`returns true given a number`, function() {
                 expect(typesIso.isNumberLike(0)).to.be.true;
                 expect(typesIso.isNumberLike(1)).to.be.true;
@@ -149,6 +154,7 @@ describe(`types sub-modules`, function() {
 
         describe(`isIntegerLike function`, function() {
             expectFunctionExists(typesIso.isIntegerLike);
+            expectFunctionExists(typesIso.isIntLike);
             it(`returns true given an integer`, function() {
                 expect(typesIso.isIntegerLike(0)).to.be.true;
                 expect(typesIso.isIntegerLike(1)).to.be.true;
