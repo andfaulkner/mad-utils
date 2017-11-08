@@ -1,3 +1,7 @@
+0.39.3
+======
+More flexbox SCSS util aliases
+
 0.39.2
 ======
 Added isInt, isIntLike, isBool aliases
