@@ -59,69 +59,88 @@
     .flex-justify-content-between,
     .flex-justify-content-sb            { justify-content: space-between }
 
+    .flex.jc-fs,
     .flex-jc-fs,
+    .flex.jc-start,
     .flex-jc-start                      { justify-content: flex-start    }
-    .flex-jc-fe,
-    .flex-jc-end                        { justify-content: flex-end      }
+    .flex.jc-fe, .flex-jc-fe,
+    .flex.jc-end, .flex-jc-end          { justify-content: flex-end      }
+    .flex.jc-center,
     .flex-jc-center,
+    .flex.jc-middle,
+    .flex-jc-middle,
+    .flex.jc-mid,
     .flex-jc-mid                        { justify-content: center        }
-    .flex-jc-sa,
+    .flex.jc-sa, .flex-jc-sa,
+    .flex.jc-space-around,
     .flex-jc-space-around,
+    .flex.jc-around,
     .flex-jc-around                     { justify-content: space-around  }
-    .flex-jc-sb,
+    .flex.jc-sb, .flex-jc-sb,
+    .flex.jc-space-between,
     .flex-jc-space-between,
+    .flex.jc-between,
     .flex-jc-between                    { justify-content: space-between }
 
     .flex.justifycontent-fs,
-    .flex.justifycontent-start          { justify-content: flex-start    }
-    .flex.justifycontent-fe,
-    .flex.justifycontent-end            { justify-content: flex-end      }
-    .flex.justifycontent-center,
-    .flex.justifycontent-mid            { justify-content: center        }
-    .flex.justifycontent-sa,
-    .flex.justifycontent-space-around,
-    .flex.justifycontent-around         { justify-content: space-around  }
-    .flex.justifycontent-sb,
-    .flex.justifycontent-space-between,
-    .flex.justifycontent-between        { justify-content: space-between }
-
     .flex-justifycontent-fs,
+    .flex.justifycontent-start,
     .flex-justifycontent-start          { justify-content: flex-start    }
+    .flex.justifycontent-fe,
     .flex-justifycontent-fe,
+    .flex.justifycontent-end,
     .flex-justifycontent-end            { justify-content: flex-end      }
+    .flex.justifycontent-center,
     .flex-justifycontent-center,
+    .flex.justifycontent-middle,
+    .flex-justifycontent-middle,
+    .flex.justifycontent-mid,
     .flex-justifycontent-mid            { justify-content: center        }
+    .flex.justifycontent-sa,
     .flex-justifycontent-sa,
+    .flex.justifycontent-space-around,
     .flex-justifycontent-space-around,
+    .flex.justifycontent-around,
     .flex-justifycontent-around         { justify-content: space-around  }
+    .flex.justifycontent-sb,
     .flex-justifycontent-sb,
+    .flex.justifycontent-space-between,
     .flex-justifycontent-space-between,
+    .flex.justifycontent-between,
     .flex-justifycontent-between        { justify-content: space-between }
 
-    .flex-start                         { justify-content: flex-start    }
-    .flex-end                           { justify-content: flex-end      }
-    .flex-center                        { justify-content: center        }
-    .flex-space-around                  { justify-content: space-around  }
-    .flex-space-between                 { justify-content: space-between }
+    .flex.start          { justify-content: flex-start    }
+    .flex-start          { justify-content: flex-start    }
+    .flex.end            { justify-content: flex-end      }
+    .flex-end            { justify-content: flex-end      }
+    .flex.center,
+    .flex-center,
+    .flex.middle,
+    .flex-middle,
+    .flex.mid,
+    .flex-mid            { justify-content: center        }
+    .flex.sa,
+    .flex.spacearound,
+    .flex.space-around,
+    .flex-space-around   { justify-content: space-around  }
+    .flex.sb,
+    .flex.space-between,
+    .flex.spacebetween,
+    .flex-space-between  { justify-content: space-between }
 
-    .flex.start                         { justify-content: flex-start    }
-    .flex.end                           { justify-content: flex-end      }
-    .flex.center                        { justify-content: center        }
-    .flex.space-around                  { justify-content: space-around  }
-    .flex.space-between                 { justify-content: space-between }
 
     /************ flex :: flex-grow **************/
-    .flex-grow-0                { flex-grow: 0            }
-    .flex-grow-1                { flex-grow: 1            }
-    .flex-grow-2                { flex-grow: 2            }
-    .flex-grow-3                { flex-grow: 3            }
-    .flex-grow-4                { flex-grow: 4            }
-    .flex-grow-5                { flex-grow: 5            }
-    .flex-grow-6                { flex-grow: 6            }
-    .flex-grow-7                { flex-grow: 7            }
-    .flex-grow-8                { flex-grow: 8            }
-    .flex-grow-9                { flex-grow: 9            }
-    .flex-grow-10               { flex-grow: 10           }
+    .flex-grow-0  { flex-grow: 0  }
+    .flex-grow-1  { flex-grow: 1  }
+    .flex-grow-2  { flex-grow: 2  }
+    .flex-grow-3  { flex-grow: 3  }
+    .flex-grow-4  { flex-grow: 4  }
+    .flex-grow-5  { flex-grow: 5  }
+    .flex-grow-6  { flex-grow: 6  }
+    .flex-grow-7  { flex-grow: 7  }
+    .flex-grow-8  { flex-grow: 8  }
+    .flex-grow-9  { flex-grow: 9  }
+    .flex-grow-10 { flex-grow: 10 }
 
     /************ flex :: flex-shrink ************/
     .flex-shrink-0              { flex-shrink: 0          }
@@ -176,6 +195,8 @@
     .flex-align-items-start     { align-items: flex-start }
 
     /************ flex :: align-self ************/
+    .flex-as-middle,
+    .flex-as-mid,
     .flex-as-center,
     .flex-as-cen,
     .flex-as-cnt             { align-self: center     }
@@ -187,8 +208,12 @@
     .flex-as-end             { align-self: flex-end   }
     .flex-as-stretch         { align-self: stretch    }
 
-    
+    .flex.alignself-middle,
+    .flex-alignself-middle,
+    .flex.alignself-mid,
+    .flex-alignself-mid,
     .flex.alignself-center,
+    .flex-alignself-center,
     .flex.alignself-cen,
     .flex-alignself-cen,
     .flex.alignself-cnt,
@@ -208,6 +233,10 @@
     .flex.alignself-stretch,
     .flex-alignself-stretch  { align-self: stretch    }
 
+    .flex.align-self-middle,
+    .flex-align-self-middle,
+    .flex.align-self-mid,
+    .flex-align-self-mid,
     .flex.align-self-center,
     .flex-align-self-center,
     .flex.align-self-cen,
