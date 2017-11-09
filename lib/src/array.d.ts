@@ -77,7 +77,7 @@ export declare function lastN<T>(arr: T[], n: number): T[];
  * @param {RealAny} fillValue Item to repeat 'len' number of times {OPT}
  * @return {Array<void|typeof fillValue>} Array w 'len' # of fillValue arg (or undefined) repeats.
  */
-export declare const arrayN: <T>(len: number, fillValue?: T) => void[] | T[];
+export declare const arrayN: <T>(len: number, fillValue?: T) => T[];
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
 /**
  * Exclude first item from string or array.
