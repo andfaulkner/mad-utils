@@ -40,13 +40,29 @@ export { contains as includes };
 // SINGLE ITEM FROM START OR END
 //
 
-/** Return first item in an array. */
+/**
+ * Return first character of a string.
+ * @param {T[]} str String to return first character from
+ */
 export function first(str: string): string;
+
+/**
+ * Return first item of an array.
+ * @param {T[]} arr Array to return first item from
+ */
 export function first<T>(arr: T[]): T;
 export function first<T>(arrOrStr: T[] | string): T | string { return arrOrStr[0]; }
 
-/** Return second item in an array. */
+/** 
+ * Return 2nd character of a string.
+ * @param {T[]} str String to return 2nd character from
+ */
 export function second<T>(str: string): string;
+
+/**
+ * Return 2nd item of an array.
+ * @param {T[]} arr Array to return 2nd item from
+ */
 export function second<T>(arr: T[]): T;
 export function second<T>(arrOrStr: T[] | string): T | string { return arrOrStr[1]; }
 
@@ -128,12 +144,10 @@ export function lastN<T>(arrOrStr: T[] | string, n: number): string | T[] {
 //
 
 /**
- * Create array containing requested number of repeats of a given fillValue, or containing
- * requested number of repeats of undefined if no fillValue is given.
- * @param {number} len - Length of array to create.
- * @param {RealAny} fillValue [OPTIONAL]: Item to repeat 'len' number of times.
- * @return {Array<void|typeof fillValue>} Array containing 'len' # of repeats of 'fillValue'
- *                                        (or undefined if fillValue is not given)
+ * Create array of requested # of repeats of given fillValue, or undefined if no fillValue given.
+ * @param {number} len Length of array to create.
+ * @param {RealAny} fillValue Item to repeat 'len' number of times {OPT}
+ * @return {Array<void|typeof fillValue>} Array w 'len' # of fillValue arg (or undefined) repeats.
  */
 export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
     const nonIntegerFirstArgErr = 'mad-utils :: first arg to arrayN must be an integer';
@@ -155,7 +169,7 @@ export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
 /**
  * Exclude first item from string or array.
- * @param {Array<any>|string} arrOrStr - Array or string to exclude first item from.
+ * @param {Array<any>|string} arrOrStr Array or string to exclude first item from.
  * @return {Array<any>} Array with first item excluded.
  */
 export function withoutFirst<T>(str: string): string;
