@@ -149,7 +149,7 @@ export function lastN<T>(arrOrStr: T[] | string, n: number): string | T[] {
  * @param {RealAny} fillValue Item to repeat 'len' number of times {OPT}
  * @return {Array<void|typeof fillValue>} Array w 'len' # of fillValue arg (or undefined) repeats.
  */
-export const arrayN = <T>(len: number, fillValue?: T): void[] | T[] | never => {
+export const arrayN = <T>(len: number, fillValue?: T): T[] | never => {
     const nonIntegerFirstArgErr = 'mad-utils :: first arg to arrayN must be an integer';
     if (typeof len !== 'number' || isNaN(parseInt(len.toString(), 10))) {
         throw new TypeError(nonIntegerFirstArgErr);
