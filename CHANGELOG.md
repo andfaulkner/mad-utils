@@ -1,3 +1,7 @@
+0.39.4
+======
+Fixed typings & in-code docs in array module
+
 0.39.3
 ======
 More flexbox SCSS util aliases
