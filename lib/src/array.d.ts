@@ -19,11 +19,25 @@ export declare const matchAny: (matchVals: any[]) => (valToFind: any) => boolean
 export declare const contains: (arr: any[], val: any) => boolean;
 export { contains as includes };
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
-/** Return first item in an array. */
+/**
+ * Return first character of a string.
+ * @param {T[]} str String to return first character from
+ */
 export declare function first(str: string): string;
+/**
+ * Return first item of an array.
+ * @param {T[]} arr Array to return first item from
+ */
 export declare function first<T>(arr: T[]): T;
-/** Return second item in an array. */
+/**
+ * Return 2nd character of a string.
+ * @param {T[]} str String to return 2nd character from
+ */
 export declare function second<T>(str: string): string;
+/**
+ * Return 2nd item of an array.
+ * @param {T[]} arr Array to return 2nd item from
+ */
 export declare function second<T>(arr: T[]): T;
 /** Return third item in an array. */
 export declare function third<T>(str: string): string;
@@ -58,18 +72,16 @@ export declare function firstN<T>(arr: T[], n: number): T[];
 export declare function lastN(str: string, n: number): string;
 export declare function lastN<T>(arr: T[], n: number): T[];
 /**
- * Create array containing requested number of repeats of a given fillValue, or containing
- * requested number of repeats of undefined if no fillValue is given.
- * @param {number} len - Length of array to create.
- * @param {RealAny} fillValue [OPTIONAL]: Item to repeat 'len' number of times.
- * @return {Array<void|typeof fillValue>} Array containing 'len' # of repeats of 'fillValue'
- *                                        (or undefined if fillValue is not given)
+ * Create array of requested # of repeats of given fillValue, or undefined if no fillValue given.
+ * @param {number} len Length of array to create.
+ * @param {RealAny} fillValue Item to repeat 'len' number of times {OPT}
+ * @return {Array<void|typeof fillValue>} Array w 'len' # of fillValue arg (or undefined) repeats.
  */
 export declare const arrayN: <T>(len: number, fillValue?: T) => void[] | T[];
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
 /**
  * Exclude first item from string or array.
- * @param {Array<any>|string} arrOrStr - Array or string to exclude first item from.
+ * @param {Array<any>|string} arrOrStr Array or string to exclude first item from.
  * @return {Array<any>} Array with first item excluded.
  */
 export declare function withoutFirst<T>(str: string): string;
