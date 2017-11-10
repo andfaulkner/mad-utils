@@ -1,3 +1,15 @@
+0.39.5
+======
+Number type detection functions can now handle any custom numeric objects with Number as prototype. Applies to:
+* isNumberLike
+* isNumLike
+* isInteger
+* isInt
+* isIntegerLike
+* isIntLike
+* isStringOrNumber
+This also allows passing of custom numeric objects to castToNum function
+
 0.39.4
 ======
 Fixed typings & in-code docs in array module
