@@ -112,7 +112,8 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
  */
 export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
     if (typeof val === 'undefined' || val == null) return false;
-    if ((typeof val === 'number' || val instanceof Number) && !isNaN(val as number)) return true;
+    if ((typeof val === 'number' || val instanceof Number || Object.getPrototypeOf(val) === Number)
+        && !isNaN(val as number)) return true;
     if (typeof val === 'string') {
         if (val.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
         // Let '.123' and '-.123' type strings through.
