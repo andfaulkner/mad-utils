@@ -160,7 +160,8 @@ export declare function withLeftIndent(strings: any, leftPadSize?: number, xz?: 
  * @param {string} charToRepeat - Character to repeat in the output string
  * @return {string} string consisting of len repeats of charToRepeat.
  */
-export declare const repeatChars: (repChar: string, len: number) => string;
+export declare const repeatChars: (repStr: string, len: number) => string;
+export { repeatChars as repeatString };
 /**
  * Alias for repeatChar
  */

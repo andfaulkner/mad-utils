@@ -85,6 +85,13 @@ export declare const isNonexistentOrString: (val: any) => boolean;
 export declare const isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
 export { isNumberLike as isNumLike };
 /**
+ * Detect whether given value is a number. (Note: NaN returns false here).
+ * @param {any} val Test if val is a number
+ * @return {boolean} If given value is a number, return true; otherwise return false.
+ */
+export declare const isNumber: (val: any) => boolean;
+export { isNumber as isNum };
+/**
  * Returns true if given value is an integer (does not include num-like strings).
  * @param {any} val - value to check type of.
  * @return {boolean} true if given value is integer.
@@ -140,8 +147,6 @@ export declare const isTrue: (val: any, include1CharVal?: boolean) => boolean;
  */
 export declare const isFalse: (val: any, include1CharVal?: boolean) => boolean;
 /**
- * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
- *
  * Any class wrapped in this decorator becomes a singleton immediately.
  * Throws if attempt is made to wrap a non-class.
  *
@@ -180,7 +185,7 @@ export declare const boolStringToBool: (val: string | boolean) => boolean;
 /**
  * @alias for boolStringToBool
  */
-export declare const toBoolFromBoolString: (val: string | boolean) => boolean;
+export { boolStringToBool as toBoolFromBoolString };
 /********************* BARREL EXPORTS (TYPES FROM OTHER mad-utils SUBMODULES) *********************/
 export { isMultilangTextObj } from './object';
 export { Int, Integer, Float, Double, Short, Long } from './number';

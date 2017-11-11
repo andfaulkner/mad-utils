@@ -462,6 +462,56 @@ describe(`types sub-modules`, function() {
                 expect(nonSingletonInstance2.someString).to.eql('string two');
             });
         });
+
+    });
+
+    describe(`isNumber`, function() {
+        class NewNumber extends Number {}
+
+        before(function() {
+            Reflect.defineProperty(NewNumber.prototype, 'subtract', {
+                value: function subtract(numToSubtract: number | Number): Number {
+                    return new Number(Number(this) - (numToSubtract as any));
+                }
+            });
+        });
+
+        it(`return true given a number`, function() {
+            expect(typesIso.isNumber(0)).to.equal(true);
+            expect(typesIso.isNumber(1)).to.equal(true);
+            expect(typesIso.isNumber(-100)).to.equal(true);
+            expect(typesIso.isNumber(100)).to.equal(true);
+            expect(typesIso.isNumber(27.283)).to.equal(true);
+            expect(typesIso.isNumber(-27.283)).to.equal(true);
+        });
+        it(`returns true given Infinity`, function() {
+            expect(typesIso.isNumber(Infinity)).to.equal(true);
+            expect(typesIso.isNumber(-Infinity)).to.equal(true);
+        });
+        it(`returns false given NaN`, function() {
+            expect(typesIso.isNumber(NaN)).to.equal(false);
+        });
+        it(`returns false given undefined or null`, function() {
+            expect(typesIso.isNumber(null)).to.equal(false);
+            expect(typesIso.isNumber(undefined)).to.equal(false);
+        });
+        it(`returns false given non-numbers`, function() {
+            expect(typesIso.isNumber('')).to.equal(false);
+            expect(typesIso.isNumber('asdf')).to.equal(false);
+            expect(typesIso.isNumber('123')).to.equal(false);
+            expect(typesIso.isNumber({})).to.equal(false);
+            expect(typesIso.isNumber({ a: 'eh' })).to.equal(false);
+            expect(typesIso.isNumber([])).to.equal(false);
+            expect(typesIso.isNumber([1, 2, 3])).to.equal(false);
+            expect(typesIso.isNumber(false)).to.equal(false);
+            expect(typesIso.isNumber(true)).to.equal(false);
+        });
+        it(`returns true given Number instances`, function() {
+            expect(typesIso.isNumber(Number(12))).to.equal(true);
+        });
+        it(`returns true given instances of Number-extending objects`, function() {
+            expect(typesIso.isNumber(new NewNumber(32))).to.equal(true);
+        });
     });
 
     describe(`types-browser sub-module`, function() {

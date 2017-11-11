@@ -133,6 +133,23 @@ export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean 
 export { isNumberLike as isNumLike }
 
 /**
+ * Detect whether given value is a number. (Note: NaN returns false here).
+ * @param {any} val Test if val is a number
+ * @return {boolean} If given value is a number, return true; otherwise return false.
+ */
+export const isNumber = (val: RealAny) => {
+    if (typeof val === 'undefined' || val == null) return false;
+
+    if (typeof val === 'number' && !isNaN(val))               return true;
+    if (Object.getPrototypeOf(val) === Number && !isNaN(val)) return true;
+    if (val instanceof Number)                                return true;
+
+    return false;
+};
+
+export { isNumber as isNum }
+
+/**
  * Returns true if given value is an integer (does not include num-like strings).
  * @param {any} val - value to check type of.
  * @return {boolean} true if given value is integer.
@@ -240,9 +257,9 @@ export const isFalse = (val: RealAny, include1CharVal: boolean = false): boolean
     !!(val === 'false' || val === 'False' || val === 'FALSE' || val === false
         || (include1CharVal && (val === 'f' || val === 'F')));
 
+
+// TODO improve singleton design-time behaviour - i.e. proper type hints + Intellisense.
 /**
- * TODO make the design-time behaviour more reasonable - i.e. proper type hints + Intellisense.
- *
  * Any class wrapped in this decorator becomes a singleton immediately.
  * Throws if attempt is made to wrap a non-class.
  *
@@ -290,8 +307,9 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
     if (typeof numLike === 'number') return numLike;
     if (isNumberLike(numLike, true)) return parseFloat(numLike as string);
 
-    const baseErrMsg = 'castToNum can only accept numbers, #s in string form e.g. "1", or 1-item' +
-                       ` arrays containing either type. Invalid value: ${numLike}`;
+    const baseErrMsg = `castToNum can only accept numbers, #s in string form e.g. "1", or ` +
+                       `1-item arrays containing either type. Invalid value: ${numLike}`;
+
     if (throwOnFail) {
         throw new Error(baseErrMsg);
     } else {
@@ -322,7 +340,7 @@ export const boolStringToBool = (val: string | boolean): boolean | never => {
 /**
  * @alias for boolStringToBool
  */
-export const toBoolFromBoolString = boolStringToBool;
+export { boolStringToBool as toBoolFromBoolString };
 
 
 /********************* BARREL EXPORTS (TYPES FROM OTHER mad-utils SUBMODULES) *********************/

@@ -324,7 +324,7 @@ export declare const common: {
     chomp: (str: string, charsToChomp?: string) => string;
     matchesIgnoreCase: (matchOn: string) => (val: string) => boolean;
     removeMatchingText: (str: string, matcherToRm: string | RegExp) => string;
-    repeatChars: (repChar: string, len: number) => string;
+    repeatChars: (repStr: string, len: number) => string;
     endsWithExt: (inode: string, ext: string) => boolean;
     leftPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     rightPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;

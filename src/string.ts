@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { StrOrNum } from './types-iso';
+import { StrOrNum, Int } from './types-iso';
 import { withoutFirst, arrayN } from './array';
 
 export type char = string;
@@ -344,7 +344,9 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
  * @param {string} charToRepeat - Character to repeat in the output string
  * @return {string} string consisting of len repeats of charToRepeat.
  */
-export const repeatChars = (repChar: string, len: number): string => arrayN(len, repChar).join('');
+export const repeatChars = (repStr: string, len: Int): string => arrayN(len, repStr).join('');
+
+export { repeatChars as repeatString }
 
 /**
  * Alias for repeatChar
