@@ -96,41 +96,11 @@ export type HttpReqType = AnyHTTPReqType;
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
- *  @param {StringOrNonexistent|RealAny} val - Value to type check.
+ *  @param {StringOrNonexistent|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
 export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boolean =>
     (typeof val === 'undefined') || (val === null) || (typeof val === 'string');
-
-/**
- * Returns true if the given argument is a number, a string that can be parsed into a number, or
- * a 1-item array containing either aforementioned type.
- * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
- * @param {RealAny} val - item being tested for number-like nature.
- * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
- * @return {boolean} True if item is 'number-like', otherwise false.
- */
-export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
-    if (typeof val === 'undefined' || val == null) return false;
-    if ((typeof val === 'number' || val instanceof Number || Object.getPrototypeOf(val) === Number)
-        && !isNaN(val as number)) return true;
-    if (typeof val === 'string') {
-        if (val.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
-        // Let '.123' and '-.123' type strings through.
-        let cleanVal = val.match(/^\.\d/) ? '0' + val : val;
-        cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
-        return !isNaN(parseInt(cleanVal, 10));
-    }
-    // Avoid checking nested arrays for numbers to prevent e.g. [[[[[2]]]]] from returning true.
-    // Also allows explicitly blocking single-item arrays with just 1 number ([5]) being true.
-    if (!allowArrayWith1Num) return false;
-    if (isArray(val) && val.length === 1) {
-        return isNumberLike(val[0], false);
-    }
-    return false;
-};
-
-export { isNumberLike as isNumLike }
 
 /**
  * Detect whether given value is a number. (Note: NaN returns false here).
@@ -150,8 +120,39 @@ export const isNumber = (val: RealAny) => {
 export { isNumber as isNum }
 
 /**
+ * Returns true if the given argument is a number, a string that can be parsed into a number, or
+ * a 1-item array containing either aforementioned type.
+ * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
+ * @param {RealAny} val Item being tested for number-like nature.
+ * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
+ * @return {boolean} True if item is 'number-like', otherwise false.
+ */
+export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
+    if (typeof val === 'undefined' || val == null) return false;
+
+    if (isNumber(val)) return true;
+
+    if (typeof val === 'string') {
+        if (val.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
+        // Let '.123' and '-.123' type strings through.
+        let cleanVal = val.match(/^\.\d/) ? '0' + val : val;
+        cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
+        return !isNaN(parseInt(cleanVal, 10));
+    }
+
+    // Avoid checking nested arrays for numbers to prevent e.g. [[[[[2]]]]] from returning true.
+    // Also allows explicitly blocking single-item arrays with just 1 number ([5]) being true.
+    if (!allowArrayWith1Num) return false;
+    if (isArray(val) && val.length === 1) return isNumberLike(val[0], false);
+
+    return false;
+};
+
+export { isNumberLike as isNumLike }
+
+/**
  * Returns true if given value is an integer (does not include num-like strings).
- * @param {any} val - value to check type of.
+ * @param {any} val Value to check type of.
  * @return {boolean} true if given value is integer.
  */
 export const isInteger = (val: RealAny): boolean => {
@@ -218,7 +219,7 @@ export const isDateLike = (val: RealAny): boolean => {
 
 /**
  * True if the given object is an array. Robust and works across multiple JS environments.
- * @param {any} val - Check if this is an array.
+ * @param {any} val Check if val is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */
 export const isArray = (val: RealAny): boolean => {
@@ -298,9 +299,9 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
 /**
  * Convert item to a number (if given item is of a type that can be converted as such).
  * If not, throw an error if this is specified.
- * @param {NumLike} numLike - value to cast to a number
- * @param {boolean} throwOnFail (OPTIONAL) - When true, throw if given type isn't a number.
- *                              When false, return an Error if given type isn't a number.
+ * @param {NumLike} numLike Value to cast to a number
+ * @param {boolean} throwOnFail (OPT) When true, throw if given type isn't a number.
+ *                                    When false, return an Error if given type isn't a number.
  * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
  */
 export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error | never => {
@@ -322,8 +323,8 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
  * Convert string representation of a boolean value to a boolean value. Return error if this
  * isn't possible. If something is already a boolean, it simply passes it through.
  * @example converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc.
- * @param {string|boolean} val - value to convert to string or boolean. Must be 'y', 'n', 't', 'f',
- *                               'yes', no', 'true', or 'false' (case-insensitive); or a boolean.
+ * @param {string|boolean} val Value to convert to string or boolean. Must be 'y', 'n', 't', 'f',
+ *                             'yes', no', 'true', or 'false' (case-insensitive); or a boolean.
  * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
  *                         Otherwise throw.
  */
