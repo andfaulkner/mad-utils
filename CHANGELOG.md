@@ -1,3 +1,7 @@
+0.39.10
+=======
+Added whitespace SCSS utility styles (e.g. whitespace-no-wrap, ws-no-wrap, whitespace-normal, ws-n, etc.)
+
 0.39.9
 ======
 Added more align-items, align-self flexbox layout CSS class aliases in SCSS utils
