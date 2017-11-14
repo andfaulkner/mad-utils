@@ -1,3 +1,11 @@
+0.39.8
+======
+New margin sizes available: 17px, 18px, 17%, 18%, -17px, -18px, -17%, -18% 
+Fixed isNumberLike to handle objects that extend Number
+Code comment (and autocomplete) fixes/edits in types-iso module
+New isNumber function - detects if value is any kind of number. Alias:
+*   isNum
+
 0.39.5
 ======
 Number type detection functions can now handle any custom numeric objects with Number as prototype. Applies to:
