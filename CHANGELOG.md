@@ -1,3 +1,7 @@
+0.39.9
+======
+Added more align-items, align-self flexbox layout CSS class aliases in SCSS utils
+
 0.39.8
 ======
 New margin sizes available: 17px, 18px, 17%, 18%, -17px, -18px, -17%, -18% 
