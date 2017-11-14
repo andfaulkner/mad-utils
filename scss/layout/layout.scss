@@ -143,17 +143,17 @@
     .flex-grow-10 { flex-grow: 10 }
 
     /************ flex :: flex-shrink ************/
-    .flex-shrink-0              { flex-shrink: 0          }
-    .flex-shrink-1              { flex-shrink: 1          }
-    .flex-shrink-2              { flex-shrink: 2          }
-    .flex-shrink-3              { flex-shrink: 3          }
-    .flex-shrink-4              { flex-shrink: 4          }
-    .flex-shrink-5              { flex-shrink: 5          }
-    .flex-shrink-6              { flex-shrink: 6          }
-    .flex-shrink-7              { flex-shrink: 7          }
-    .flex-shrink-8              { flex-shrink: 8          }
-    .flex-shrink-9              { flex-shrink: 9          }
-    .flex-shrink-10             { flex-shrink: 10         }
+    .flex-shrink-0  { flex-shrink: 0  }
+    .flex-shrink-1  { flex-shrink: 1  }
+    .flex-shrink-2  { flex-shrink: 2  }
+    .flex-shrink-3  { flex-shrink: 3  }
+    .flex-shrink-4  { flex-shrink: 4  }
+    .flex-shrink-5  { flex-shrink: 5  }
+    .flex-shrink-6  { flex-shrink: 6  }
+    .flex-shrink-7  { flex-shrink: 7  }
+    .flex-shrink-8  { flex-shrink: 8  }
+    .flex-shrink-9  { flex-shrink: 9  }
+    .flex-shrink-10 { flex-shrink: 10 }
 
     /************ flex :: align-items ************/
     .flex-ai-center             { align-items: center     }
@@ -165,34 +165,48 @@
     .flex-ai-start              { align-items: flex-start }
 
     .flex.alignitems-center,
-    .flex-alignitems-center     { align-items: center     }
+    .flex-alignitems-center,
+         .alignitems-center     { align-items: center }
     .flex.alignitems-fe,
     .flex-alignitems-fe,
+         .alignitems-fe,
     .flex.alignitems-flexend,
     .flex-alignitems-flexend,
+         .alignitems-flexend,
     .flex.alignitems-end,
-    .flex-alignitems-end        { align-items: flex-end   }
+    .flex-alignitems-end,
+         .alignitems-end        { align-items: flex-end }
     .flex.alignitems-fs,
     .flex-alignitems-fs,
+         .alignitems-fs,
     .flex.alignitems-flexstart,
     .flex-alignitems-flexstart,
+         .alignitems-flexstart,
     .flex.alignitems-start,
-    .flex-alignitems-start      { align-items: flex-start }
+    .flex-alignitems-start,
+         .alignitems-start      { align-items: flex-start }
 
     .flex.align-items-center,
-    .flex-align-items-center    { align-items: center     }
+    .flex-align-items-center,
+         .align-items-center    { align-items: center     }
     .flex.align-items-fe,
     .flex-align-items-fe,
+         .align-items-fe,
     .flex.align-items-flexend,
     .flex-align-items-flexend,
+         .align-items-flexend,
     .flex.align-items-end,
-    .flex-align-items-end       { align-items: flex-end   }
+    .flex-align-items-end,
+         .align-items-end       { align-items: flex-end   }
     .flex.align-items-fs,
+         .align-items-fs,
     .flex-align-items-fs,
     .flex.align-items-flexstart,
     .flex-align-items-flexstart,
+         .align-items-flexstart,
     .flex.align-items-start,
-    .flex-align-items-start     { align-items: flex-start }
+    .flex-align-items-start,
+         .align-items-start,    { align-items: flex-start }
 
     /************ flex :: align-self ************/
     .flex-as-middle,
@@ -210,53 +224,77 @@
 
     .flex.alignself-middle,
     .flex-alignself-middle,
+         .alignself-middle,
     .flex.alignself-mid,
     .flex-alignself-mid,
+         .alignself-mid,
     .flex.alignself-center,
     .flex-alignself-center,
+         .alignself-center,
     .flex.alignself-cen,
     .flex-alignself-cen,
+         .alignself-cen,
     .flex.alignself-cnt,
-    .flex-alignself-cnt      { align-self: center     }
+    .flex-alignself-cnt,
+         .alignself-cnt      { align-self: center     }
     .flex.alignself-fs,
-    .flex.flex-alignself-fs,
+    .flex-alignself-fs,
+         .alignself-fs,
     .flex.alignself-fstart,
     .flex-alignself-fstart,
+         .alignself-fstart,
     .flex.alignself-start,
-    .flex-alignself-start    { align-self: flex-start }
+    .flex-alignself-start,
+         .alignself-start    { align-self: flex-start }
     .flex.alignself-fe,
     .flex-alignself-fe,
+         .alignself-fe,
     .flex.alignself-fend,
     .flex-alignself-fend,
+         .alignself-fend,
     .flex.alignself-end,
-    .flex-alignself-end      { align-self: flex-end   }
+    .flex-alignself-end,
+         .alignself-end      { align-self: flex-end   }
     .flex.alignself-stretch,
-    .flex-alignself-stretch  { align-self: stretch    }
+    .flex-alignself-stretch,
+         .alignself-stretch  { align-self: stretch    }
 
     .flex.align-self-middle,
     .flex-align-self-middle,
+         .align-self-middle,
     .flex.align-self-mid,
     .flex-align-self-mid,
+         .align-self-mid,
     .flex.align-self-center,
     .flex-align-self-center,
+         .align-self-center,
     .flex.align-self-cen,
     .flex-align-self-cen,
+         .align-self-cen,
     .flex.align-self-cnt,
-    .flex-align-self-cnt     { align-self: center     }
+    .flex-align-self-cnt,
+         .align-self-cnt     { align-self: center     }
     .flex.align-self-fs,
     .flex-align-self-fs,
+         .align-self-fs,
     .flex.align-self-fstart,
     .flex-align-self-fstart,
+         .align-self-fstart,
     .flex.align-self-start,
-    .flex-align-self-start   { align-self: flex-start }
+    .flex-align-self-start,
+         .align-self-start   { align-self: flex-start }
     .flex.align-self-fe,
     .flex-align-self-fe,
+         .align-self-fe,
     .flex.align-self-fend,
     .flex-align-self-fend,
+         .align-self-fend,
     .flex.align-self-end,
-    .flex-align-self-end     { align-self: flex-end   }
+    .flex-align-self-end,
+         .align-self-end     { align-self: flex-end   }
     .flex.align-self-stretch,
-    .flex-align-self-stretch { align-self: stretch    }
+    .flex-align-self-stretch,
+    .align-self-stretch      { align-self: stretch    }
 
     /************ flex :: flex-direction ************/
     .flex.direction-column,
