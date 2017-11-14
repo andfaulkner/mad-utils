@@ -187,4 +187,13 @@
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
     }
+
+    /***************************************** WORD WRAPPING ******************************************/
+    .whitespace-no-wrap, .whitespace-nowrap, .whitespace-nw, .ws-no-wrap, .ws-nowrap, .ws-nw { white-space: nowrap }
+    .whitespace-normal, .whitespace-norm, .whitespace-nw, .ws-normal, .ws-norm, .ws-n { white-space: normal }
+    .whitespace-pre, .ws-pre { white-space: pre }
+    .whitespace-pre-line, .whitespace-preline, .whitespace-pl .ws-pre-line, .ws-preline, .ws-pl { white-space: pre-line }
+    .whitespace-pre-wrap, .whitespace-prewrap, .whitespace-pw .ws-pre-wrap, .ws-prewrap, .ws-pw { white-space: pre-wrap }
+    .whitespace-unset, .whitespace-us, .ws-unset, .ws-us { white-space: unset }
+
 }
