@@ -1,3 +1,7 @@
+0.39.11
+=======
+Exported second, secondLast, third, thirdLast from string module (taken from array module)
+
 0.39.10
 =======
 Added whitespace SCSS utility styles (e.g. whitespace-no-wrap, ws-no-wrap, whitespace-normal, ws-n, etc.)
