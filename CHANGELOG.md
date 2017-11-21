@@ -1,4 +1,8 @@
-0.39.10
+0.40.0
+======
+Removed all re-exports from array included in string module
+
+0.39.12
 =======
 Added more whitespace utils
 
