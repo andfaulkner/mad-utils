@@ -1,3 +1,7 @@
+0.39.10
+=======
+Added more whitespace utils
+
 0.39.9
 ======
 Added more align-items, align-self flexbox layout CSS class aliases in SCSS utils
