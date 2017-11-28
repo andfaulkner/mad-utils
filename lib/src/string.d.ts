@@ -352,7 +352,6 @@ export { _cleanCharToPadWith };
 export { leftPad as padLeft };
 export { rightPad as padRight };
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
-export { stringToEnumVal } from './enum';
 export { countOccurrences as countChars } from './array';
 export { countOccurrences as countCharOccurrences } from './array';
 export { countOccurrences as charOccurrences } from './array';

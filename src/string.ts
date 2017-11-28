@@ -671,7 +671,6 @@ export { leftPad as padLeft }
 export { rightPad as padRight }
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
-export { stringToEnumVal } from './enum';
 // export { splitLines, first, first2, first3, firstN, last, last2, last3, lastN, without,
 //          withoutFirst, withoutFirst2, withoutFirst3, withoutLast, withoutLast2, withoutLast3,
 //          withoutFirstN, withoutLastN } from './array';
