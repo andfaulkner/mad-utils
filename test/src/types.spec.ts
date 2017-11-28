@@ -13,6 +13,8 @@ import { types as typesNode } from '../../node';
 import { types as typesBrowser } from '../../browser';
 import * as typesModule from '../../src/types-iso';
 
+const { boolStringToBool } = typesModule;
+
 /********************************************* TESTS **********************************************/
 describe(`types sub-modules`, function() {
     describe(`types-iso sub-module`, function() {
@@ -514,6 +516,87 @@ describe(`types sub-modules`, function() {
         });
     });
 
+    describe(`boolStringToBool`, function() {
+        it(`returns true if given string T, true, t, TRUE, True, or any other variant of string True`, function() {
+            expect(boolStringToBool('T')).to.equal(true);
+            expect(boolStringToBool('t')).to.equal(true);
+
+            expect(boolStringToBool('TRUE')).to.equal(true);
+            expect(boolStringToBool('True')).to.equal(true);
+            expect(boolStringToBool('true')).to.equal(true);
+
+            expect(boolStringToBool('TrUe')).to.equal(true);
+            expect(boolStringToBool('tRUE')).to.equal(true);
+            expect(boolStringToBool('truE')).to.equal(true);
+        });
+
+        it(`returns false if given string F, false, f, FALSE, False, or any other variant of string False `, function() {
+            expect(boolStringToBool('F')).to.equal(false);
+            expect(boolStringToBool('f')).to.equal(false);
+
+            expect(boolStringToBool('FALSE')).to.equal(false);
+            expect(boolStringToBool('False')).to.equal(false);
+            expect(boolStringToBool('false')).to.equal(false);
+
+            expect(boolStringToBool('FaLse')).to.equal(false);
+            expect(boolStringToBool('fAlSe')).to.equal(false);
+            expect(boolStringToBool('fALSE')).to.equal(false);
+            expect(boolStringToBool('falsE')).to.equal(false);
+        });
+
+        it(`returns true if given boolean true`, function() {
+            expect(boolStringToBool(true)).to.equal(true);
+        });
+
+        it(`returns false if given boolean false`, function() {
+            expect(boolStringToBool(false)).to.equal(false);
+        });
+
+        it(`throws if given a non-boolean non-string in strict mode`, function() {
+            expect(() => (boolStringToBool as any)({})).to.throw();
+            expect(() => (boolStringToBool as any)(() => 'value')).to.throw();
+            expect(() => (boolStringToBool as any)('BAD_STRING')).to.throw();
+            expect(() => (boolStringToBool as any)('')).to.throw();
+            expect(() => (boolStringToBool as any)(({ false: false }))).to.throw();
+            expect(() => (boolStringToBool as any)([])).to.throw();
+            expect(() => (boolStringToBool as any)([{ false: false }])).to.throw();
+            expect(() => (boolStringToBool as any)(null)).to.throw();
+            expect(() => (boolStringToBool as any)(undefined)).to.throw();
+            expect(() => (boolStringToBool as any)(123)).to.throw();
+            expect(() => (boolStringToBool as any)(0)).to.throw();
+            expect(() => (boolStringToBool as any)(1)).to.throw();
+        });
+
+        it(`does not throw if given a non-boolean non-string in strict mode`, function() {
+            expect(() => (boolStringToBool as any)({}, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(() => 'value', false)).to.not.throw();
+            expect(() => (boolStringToBool as any)('BAD_STRING', false)).to.not.throw();
+            expect(() => (boolStringToBool as any)('', false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(({ false: false }), false)).to.not.throw();
+            expect(() => (boolStringToBool as any)([], false)).to.not.throw();
+            expect(() => (boolStringToBool as any)([{ false: false }], false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(null, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(undefined, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(123, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(0, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(1, false)).to.not.throw();
+        });
+
+        it(`returns null if given a non-boolean non-string in strict mode`, function() {
+            expect(() => (boolStringToBool as any)({}, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(() => 'value', false)).to.not.throw();
+            expect(() => (boolStringToBool as any)('BAD_STRING', false)).to.not.throw();
+            expect(() => (boolStringToBool as any)('', false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(({ false: false }), false)).to.not.throw();
+            expect(() => (boolStringToBool as any)([], false)).to.not.throw();
+            expect(() => (boolStringToBool as any)([{ false: false }], false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(null, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(undefined, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(123, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(0, false)).to.not.throw();
+            expect(() => (boolStringToBool as any)(1, false)).to.not.throw();
+        });
+    });
     describe(`types-browser sub-module`, function() {
         it(`exists`, function() {
             expect(typesBrowser).to.exist;
