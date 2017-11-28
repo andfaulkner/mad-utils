@@ -1,0 +1,24 @@
+# .prettierrc
+parser: 'typescript'
+
+# Spacing
+printWidth: 100
+tabWidth: 4
+useTabs: false
+proseWrap: true # <- md only
+
+# Braces
+bracketSpacing: false
+jsxBracketSameLine: false
+
+# Punctuation
+semi: true
+trailingComma: 'all'
+singleQuote: true
+
+# JSON config
+overrides:
+- files: '*.json'
+  options:
+    trailingComma: 'none'
+    parser: 'json'
