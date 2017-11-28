@@ -328,14 +328,15 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
  * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
  *                         Otherwise throw.
  */
-export const boolStringToBool = (val: string | boolean): boolean | never => {
+export const boolStringToBool = (val: string | boolean, strict: boolean = true): boolean | null | never => {
     const lcVal = val.toString().toLowerCase();
     if (lcVal === 'true' || lcVal === 't' || lcVal === 'y' || lcVal === 'yes') {
         return true;
     } else if (lcVal === 'false'|| lcVal === 'f' || lcVal === 'n' || lcVal === 'no') {
         return false;
     }
-    throw new TypeError('Must input true, false, t, f, y, n, yes, or no');
+    if (strict) throw new TypeError('Must input true, false, t, f, y, n, yes, or no');
+    return null;
 };
 
 /**
