@@ -665,7 +665,9 @@ function _cleanCharToPadWith(padChar: string | number = ' ') {
     if (typeof padChar !== 'undefined' && padChar !== null) return padChar.toString();
     return ' ';
 }
-/*<<~@@TEST_EXPORT~>>*/ export {_cleanCharToPadWith};
+
+// test export
+export {_cleanCharToPadWith};
 
 // Aliases
 export {leftPad as padLeft};
