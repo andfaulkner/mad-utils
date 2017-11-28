@@ -181,7 +181,7 @@ export declare const castToNum: (numLike: NumLike, throwOnFail?: boolean) => num
  * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
  *                         Otherwise throw.
  */
-export declare const boolStringToBool: (val: string | boolean) => boolean;
+export declare const boolStringToBool: (val: string | boolean, strict?: boolean) => boolean;
 /**
  * @alias for boolStringToBool
  */

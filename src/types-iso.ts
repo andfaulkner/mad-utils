@@ -319,6 +319,8 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
     }
 };
 
+const bstbErrMsg = 'Must input true, false, t, f, y, n, yes, or no';
+
 /**
  * Convert string representation of a boolean value to a boolean value. Return error if this
  * isn't possible. If something is already a boolean, it simply passes it through.
@@ -329,13 +331,21 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
  *                         Otherwise throw.
  */
 export const boolStringToBool = (val: string | boolean, strict: boolean = true): boolean | null | never => {
+    // Ensure not void, undefined, or NaN, and that toString doesn't return null.
+    if (typeof val === 'undefined' || val === null || isNaN(null)
+        || typeof val.toString() === 'undefined' || typeof val.toString() !== 'string')
+    {
+        if (strict) throw new TypeError(bstbErrMsg);
+        return null;
+    }
+
     const lcVal = val.toString().toLowerCase();
     if (lcVal === 'true' || lcVal === 't' || lcVal === 'y' || lcVal === 'yes') {
         return true;
     } else if (lcVal === 'false'|| lcVal === 'f' || lcVal === 'n' || lcVal === 'no') {
         return false;
     }
-    if (strict) throw new TypeError('Must input true, false, t, f, y, n, yes, or no');
+    if (strict) throw new TypeError(bstbErrMsg);
     return null;
 };
 
