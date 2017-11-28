@@ -1,7 +1,7 @@
 /******************************************** IMPORTS *********************************************/
-import { StrOrNum } from './types-iso';
-import { Int } from './number';
-import { withoutFirst, arrayN } from './array';
+import {StrOrNum} from './types-iso';
+import {Int} from './number';
+import {withoutFirst, arrayN} from './array';
 
 export type char = string;
 export type chars = string;
@@ -35,7 +35,7 @@ const _detectShortestIndentInArray = (lines: string[] | string): number => {
     const lineArr = (Array.isArray(lines) ? lines : [lines]) as string[];
 
     // Set flag to exclude last line from comparison if it's an empty whitespace-only line.
-    const excludeLast = !!(lines[lines.length - 1].match(/^\s+$/));
+    const excludeLast = !!lines[lines.length - 1].match(/^\s+$/);
 
     return lineArr.reduce((acc: number, line: string, idx: number) => {
         // Exclude last line from comparison if it's an empty whitespace-only line.
@@ -51,7 +51,7 @@ const _detectShortestIndentInArray = (lines: string[] | string): number => {
         if (!match || !match.input || !match[0]) return 0;
 
         // If indent length is shorter than the prior shortest, return as new shortest length.
-        return (match[0].length < acc) ? match[0].length : acc;
+        return match[0].length < acc ? match[0].length : acc;
     }, 120);
 };
 
@@ -63,9 +63,9 @@ const _detectShortestIndentInArray = (lines: string[] | string): number => {
  * @return {never|void} Throw if leftPadSize is invalid.
  */
 const _validateWithLeftIndent = (leftPadSize: number | string): never | void => {
-    const nullLeftPadSize          = !leftPadSize && leftPadSize !== 0;
+    const nullLeftPadSize = !leftPadSize && leftPadSize !== 0;
     const leftPadSizeNotNumberType = typeof parseInt(leftPadSize.toString(), 10) !== 'number';
-    const leftPadSizeIsNaN         = isNaN(parseInt(leftPadSize.toString(), 10));
+    const leftPadSizeIsNaN = isNaN(parseInt(leftPadSize.toString(), 10));
 
     if (nullLeftPadSize || leftPadSizeNotNumberType || leftPadSizeIsNaN) {
         throw new Error(`
@@ -75,18 +75,16 @@ const _validateWithLeftIndent = (leftPadSize: number | string): never | void => 
                           Some text goes here.
                           And also here.\n
                       \`
-            `
-        );
+            `);
     }
 };
-
 
 /*********************************** EXPORTED STRING FUNCTIONS ************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
  */
-export const cap1LowerRest = (str: string): string => str.charAt(0).toUpperCase() +
-                                                      str.slice(1).toLowerCase();
+export const cap1LowerRest = (str: string): string =>
+    str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 /**
  * Capitalize the first letter of a string.
@@ -104,7 +102,7 @@ export const capitalize = (str: string): string =>
  * @return {string} original text with replacements made.
  */
 export const replaceAll = (text: string, find: string | RegExp, replace: string) =>
-    (typeof find === 'string')
+    typeof find === 'string'
         ? text.replace(new RegExp(escapeRegExp(find), 'g'), replace)
         : text.replace(find, replace);
 
@@ -118,14 +116,14 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
 export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNum): boolean => {
-    if ((typeof valToFind !== typeof valToSearchIn) && !(valToFind instanceof RegExp)) {
+    if (typeof valToFind !== typeof valToSearchIn && !(valToFind instanceof RegExp)) {
         return false;
     }
     if (valToFind instanceof RegExp) {
         return valToFind.test(valToSearchIn.toString());
     }
     return !!valToSearchIn.toString().match(valToFind.toString());
-}
+};
 
 /**
  * Get first substring to match the given string or RegExp.
@@ -135,12 +133,11 @@ export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNu
  */
 export const matchFirst = (strToSearchIn: string, matcher: string | RegExp): string => {
     const matches = strToSearchIn.match(matcher);
-    return ((matches && matches[0]) || '');
+    return (matches && matches[0]) || '';
 };
 
-export { matchFirst as getFirstMatch }
-export { matchFirst as firstMatch }
-
+export {matchFirst as getFirstMatch};
+export {matchFirst as firstMatch};
 
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
@@ -154,8 +151,8 @@ export { matchFirst as firstMatch }
  * @param {string} regexStr - String to escape for use in literal form in a regex builder.
  * @return {string} escaped string.
  */
-export const escapeRegExp =
-    (regexStr: string): string => regexStr.replace(/([\/\\()\[\]{}.*+^$?|=:!])/g, '\\$1');
+export const escapeRegExp = (regexStr: string): string =>
+    regexStr.replace(/([\/\\()\[\]{}.*+^$?|=:!])/g, '\\$1');
 
 /**
  * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
@@ -164,8 +161,8 @@ export const escapeRegExp =
  *
  * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
  */
-export const matchesIgnoreCase =
-    (matchOn: string) => (val: string): boolean => !!val.toLowerCase().match(matchOn.toLowerCase());
+export const matchesIgnoreCase = (matchOn: string) => (val: string): boolean =>
+    !!val.toLowerCase().match(matchOn.toLowerCase());
 
 /**
  * String that creates a blank line without using \n.
@@ -214,29 +211,29 @@ export const chomp = (str: string, charsToChomp: string = '\n\r'): string => {
 export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): string => {
     // Conditionally deal with consecutive capital letters.
     const cleanStr = consecUppercaseToLowercase
-                         ? str.replace(/([a-z])([A-Z]+)([A-Z])([a-z])/g, '$1_$2_$3$4').toLowerCase()
-                         : str;
-    let retStr =
-        cleanStr.trim()
-           //Remove apostrophes, quotes, commas, |, ?, !, and ,
-           .replace(/('|"|\!|\?|\`|,|\|)/g, '')
-           // Replace periods with _s
-           .replace(/(\.)/g, '_')
-           // From sentence e.g. Let's go to the store
-           .replace(/ /g, '_')
-           // From PascalCase or camelCase
-           .replace(/([A-Z])/g, "_$1")
-           // From dash-case, including "Dash-Title-Case" (dash-case with caps)
-           .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
-           // Eliminate repeat, preceding, and trailing underscores, and stray dashes.
-           .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
-           .replace(/_{1,}/g, '_')
-           .replace(/^(_|\-){1,}/, '')
-           .replace(/(_|\-){1,}$/, '')
-           // Remove caps (snake_case is always lowercase)
-           .toLowerCase()
+        ? str.replace(/([a-z])([A-Z]+)([A-Z])([a-z])/g, '$1_$2_$3$4').toLowerCase()
+        : str;
+    let retStr = cleanStr
+        .trim()
+        //Remove apostrophes, quotes, commas, |, ?, !, and ,
+        .replace(/('|"|\!|\?|\`|,|\|)/g, '')
+        // Replace periods with _s
+        .replace(/(\.)/g, '_')
+        // From sentence e.g. Let's go to the store
+        .replace(/ /g, '_')
+        // From PascalCase or camelCase
+        .replace(/([A-Z])/g, '_$1')
+        // From dash-case, including "Dash-Title-Case" (dash-case with caps)
+        .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
+        // Eliminate repeat, preceding, and trailing underscores, and stray dashes.
+        .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
+        .replace(/_{1,}/g, '_')
+        .replace(/^(_|\-){1,}/, '')
+        .replace(/(_|\-){1,}$/, '')
+        // Remove caps (snake_case is always lowercase)
+        .toLowerCase();
     return retStr;
-}
+};
 
 export const toSnakecase = toSnakeCase;
 
@@ -249,13 +246,10 @@ export const toSnakecase = toSnakeCase;
  */
 export const toCamelCase = (str: string) => {
     const midStr = str
-        .replace(
-            /(?:^\w|[A-Z]|\b\w|\s+)/g,
-            (match: string, idx: number) => {
-                if (+match === 0) return "";
-                return idx == 0 ? match.toLowerCase() : match.toUpperCase();
-            }
-        )
+        .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match: string, idx: number) => {
+            if (+match === 0) return '';
+            return idx == 0 ? match.toLowerCase() : match.toUpperCase();
+        })
         .replace(/[\-.!@#_%^&*()\[\]{};:'"~`,?\|\/+=\\<>$]+/g, '');
     return midStr.charAt(0).toLowerCase() + midStr.slice(1);
 };
@@ -311,7 +305,7 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
     _validateWithLeftIndent(leftPadSize);
 
     // |** 0 **| Detect position of first 'data' string in raw strings array.
-    const firstStringPos = (typeof strings[1] !== 'undefined' && strings[1] != null) ? 1 : 0;
+    const firstStringPos = typeof strings[1] !== 'undefined' && strings[1] != null ? 1 : 0;
 
     // |** 1 **| Convert single string with '\n' delimiting lines to an array split on \n.
     const lines: string[] = strings[firstStringPos].split('\n');
@@ -327,8 +321,8 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
     const initialIndent = ' '.repeat(shortestIndent);
 
     // |** 5 **| Cut out the required number of spaces
-    const linesPreppedArr = lines.map(
-        (line: string) => line.replace(new RegExp(`^${initialIndent}`, 'm'), leftPadSpaces)
+    const linesPreppedArr = lines.map((line: string) =>
+        line.replace(new RegExp(`^${initialIndent}`, 'm'), leftPadSpaces),
     );
 
     // |** 6 **| Convert array back to string.
@@ -336,7 +330,7 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
 
     // |** 7 **| Remove trailing whitespace in empty lines, and return result.
     return linesPrepped.replace(/^\s+$/gm, '');
-};
+}
 
 /****************************************** REPEAT CHARS ******************************************/
 /**
@@ -347,12 +341,12 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
  */
 export const repeatChars = (repStr: string, len: Int): string => arrayN(len, repStr).join('');
 
-export { repeatChars as repeatString }
+export {repeatChars as repeatString};
 
 /**
  * Alias for repeatChar
  */
-export { repeatChars as repeatChar }
+export {repeatChars as repeatChar};
 
 /*************************************** FILE PATH STRINGS ****************************************/
 /**
@@ -366,7 +360,7 @@ export { repeatChars as repeatChar }
  * @example endsWithExt('ok.tsx', 'tsx') // => true
  */
 export const endsWithExt = (inode: string, ext: string) => {
-    const cleanExt = (ext.match(/^\./)) ? withoutFirst(ext.split(/\./g)).join() : ext;
+    const cleanExt = ext.match(/^\./) ? withoutFirst(ext.split(/\./g)).join() : ext;
     const extArrLen = cleanExt.split(/\./g).length;
     const inodeArrRev = inode.split(/\./g).reverse();
 
@@ -383,8 +377,9 @@ export const endsWithExt = (inode: string, ext: string) => {
     }
     if (extArrLen === 4) {
         if (inodeArrRev.length < 4) return false;
-        return `${inodeArrRev[3]}.${inodeArrRev[2]}.${inodeArrRev[1]}.${inodeArrRev[0]}` ===
-            cleanExt;
+        return (
+            `${inodeArrRev[3]}.${inodeArrRev[2]}.${inodeArrRev[1]}.${inodeArrRev[0]}` === cleanExt
+        );
     }
     return false;
 };
@@ -451,7 +446,6 @@ export const isNonMinFile = (inode: string) => inode.split(/\./g).reverse()[1] !
  */
 export const getBaseFilenameFromPath = (filePath: string) => filePath.split('/').slice(-1)[0];
 
-
 /***************************************** STRING PADDING *****************************************/
 export type Sides = 'left' | 'right' | 'center';
 
@@ -468,25 +462,28 @@ export type Sides = 'left' | 'right' | 'center';
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
-export const pad =
-    (strToPad: string = '', outWidth: number = 0, padChar: string = ' ', side: Sides = 'center') =>
-{
+export const pad = (
+    strToPad: string = '',
+    outWidth: number = 0,
+    padChar: string = ' ',
+    side: Sides = 'center',
+) => {
     const cleanStr = strToPad.toString();
     if (typeof outWidth === 'undefined' || outWidth == null) return cleanStr;
 
     const numCharsToAdd = outWidth - cleanStr.length;
     if (numCharsToAdd <= 0) return cleanStr;
 
-    switch(side) {
+    switch (side) {
         case 'left':
             return repeatChars(_cleanCharToPadWith(padChar), numCharsToAdd) + cleanStr;
         case 'right':
             return cleanStr + repeatChars(_cleanCharToPadWith(padChar), numCharsToAdd);
-        case 'center': default:
+        case 'center':
+        default:
             return _centerPad(cleanStr, outWidth, padChar);
     }
 };
-
 
 export const _centerPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') => {
     const cleanStr = strToPad.toString();
@@ -495,7 +492,7 @@ export const _centerPad = (strToPad: string = '', outWidth: number = 0, padChar:
     const basePaddingWidth = Math.floor(widthToAddToEachSide);
     const basePadding = repeatChars(padCharClean, basePaddingWidth);
 
-    return (basePaddingWidth === widthToAddToEachSide)
+    return basePaddingWidth === widthToAddToEachSide
         ? basePadding + cleanStr + basePadding
         : basePadding + cleanStr + basePadding + padCharClean;
 };
@@ -540,8 +537,7 @@ export const rightPad = (strToPad: string = '', outWidth: number = 0, padChar: s
 export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') =>
     pad(strToPad, outWidth, padChar, 'center');
 
-export { centeredPad as centerPad }
-
+export {centeredPad as centerPad};
 
 /**************************************** CHARACTER TESTS *****************************************/
 /**
@@ -552,8 +548,8 @@ export { centeredPad as centerPad }
 export const matchCharInChars = (charsToMatchAgainst: chars, matchChar: char): boolean =>
     matchChar && matchChar.length === 1 && charsToMatchAgainst.indexOf(matchChar) >= 0;
 
-export { matchCharInChars as isOneOfChars }
-export { matchCharInChars as matchOneOfChars }
+export {matchCharInChars as isOneOfChars};
+export {matchCharInChars as matchOneOfChars};
 
 /**
  * @return {boolean} If given string is a whitespace character, return true.
@@ -572,7 +568,6 @@ export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.
 export const isOperatorChar = (matchChar: char): boolean =>
     !!matchChar && matchChar.length === 1 && matchCharInChars('+-*=|&<>?:/!%^~]', matchChar);
 
-
 /**************************************** STRING -> REGEX *****************************************/
 const RegExpFlags = 'yumig';
 
@@ -584,15 +579,17 @@ const RegExpFlags = 'yumig';
  * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
  */
 export const removeSurroundingQuotes = (str: string): string => {
-    if (str.length > 1 && (str[0] === '`' && str[str.length - 1] === '`')
-                       || (str[0] === "'" && str[str.length - 1] === "'")
-                       || (str[0] === '"' && str[str.length - 1] === '"')) {
+    if (
+        (str.length > 1 && (str[0] === '`' && str[str.length - 1] === '`')) ||
+        (str[0] === "'" && str[str.length - 1] === "'") ||
+        (str[0] === '"' && str[str.length - 1] === '"')
+    ) {
         return str.replace(/(^['"`])|(['"`]$)/g, '');
     }
     return str;
 };
 
-export { removeSurroundingQuotes as withoutSurroundingQuotes }
+export {removeSurroundingQuotes as withoutSurroundingQuotes};
 
 /**
  * Returns true if string is a RegExp or string that can compile to RegExp.
@@ -600,9 +597,9 @@ export { removeSurroundingQuotes as withoutSurroundingQuotes }
  * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
  */
 export const isRegexString = (str: string | RegExp): boolean =>
-    (str instanceof RegExp) || !!str.match(/^\/[\s\S]+\/[yumig]{0,5}$/);
+    str instanceof RegExp || !!str.match(/^\/[\s\S]+\/[yumig]{0,5}$/);
 
-export { isRegexString as isRegexStr }
+export {isRegexString as isRegexStr};
 
 /**
  * Get flags from string in regex string format - i.e. "/regex_query/flags".
@@ -622,15 +619,19 @@ export const getFlagsFromRegexString = (str: string): string | null => {
 
         // If the current char is not a flag, throw an error
         if (!matchesFlag) {
-            console.warn(`Invalid RegExp string : ${str}. '${char}' is not a ` +
-                         `flag - only y, u, m, i, and g are valid flags.`);
+            console.warn(
+                `Invalid RegExp string : ${str}. '${char}' is not a ` +
+                    `flag - only y, u, m, i, and g are valid flags.`,
+            );
             return null;
         }
 
         // If current char is a flag that's already set, throw an error (no duplicate flags)
         if (acc && acc.split('').find(flag => flag === matchesFlag[0])) {
-            console.warn(`Invalid RegExp string : ${str}. RegExp strings can ` +
-                         `only contain one of each flag (y, u, m, i, and g).`);
+            console.warn(
+                `Invalid RegExp string : ${str}. RegExp strings can ` +
+                    `only contain one of each flag (y, u, m, i, and g).`,
+            );
             return null;
         }
 
@@ -640,7 +641,7 @@ export const getFlagsFromRegexString = (str: string): string | null => {
     }, '');
 };
 
-export { getFlagsFromRegexString as getFlagsFromRegexStr }
+export {getFlagsFromRegexString as getFlagsFromRegexStr};
 
 /**
  * Remove left & right side '/', and all right-side flags from given regex string.
@@ -650,10 +651,10 @@ export { getFlagsFromRegexString as getFlagsFromRegexStr }
 export const removeSurroundingRegexSlashes = (str: string): string =>
     str.replace(/^\//, '').replace(/\/[yumig]{0,5}$/, '');
 
-export { removeSurroundingRegexSlashes as withoutSurroundingRegexSlashes }
-export { removeSurroundingRegexSlashes as withoutRegexSlashesAndFlags }
-export { removeSurroundingRegexSlashes as removeRegexSlashesAndFlags }
-export { removeSurroundingRegexSlashes as removeRegexLiteralChars }
+export {removeSurroundingRegexSlashes as withoutSurroundingRegexSlashes};
+export {removeSurroundingRegexSlashes as withoutRegexSlashesAndFlags};
+export {removeSurroundingRegexSlashes as removeRegexSlashesAndFlags};
+export {removeSurroundingRegexSlashes as removeRegexLiteralChars};
 
 /*********************************** TEST EXPORTS ***********************************/
 /**
@@ -664,21 +665,21 @@ function _cleanCharToPadWith(padChar: string | number = ' ') {
     if (typeof padChar !== 'undefined' && padChar !== null) return padChar.toString();
     return ' ';
 }
-/*<<~@@TEST_EXPORT~>>*/ export { _cleanCharToPadWith }
+/*<<~@@TEST_EXPORT~>>*/ export {_cleanCharToPadWith};
 
 // Aliases
-export { leftPad as padLeft }
-export { rightPad as padRight }
+export {leftPad as padLeft};
+export {rightPad as padRight};
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 // export { splitLines, first, first2, first3, firstN, last, last2, last3, lastN, without,
 //          withoutFirst, withoutFirst2, withoutFirst3, withoutLast, withoutLast2, withoutLast3,
 //          withoutFirstN, withoutLastN } from './array';
 
-export { countOccurrences as countChars           } from './array'
-export { countOccurrences as countCharOccurrences } from './array'
-export { countOccurrences as charOccurrences      } from './array'
-export { countOccurrences as charCount            } from './array'
-export { removeDuplicates as uniqChars            } from './array'
-export { removeDuplicates as uniqueChars          } from './array'
-export { removeDuplicates as removeDuplicateChars } from './array'
+export {countOccurrences as countChars} from './array';
+export {countOccurrences as countCharOccurrences} from './array';
+export {countOccurrences as charOccurrences} from './array';
+export {countOccurrences as charCount} from './array';
+export {removeDuplicates as uniqChars} from './array';
+export {removeDuplicates as uniqueChars} from './array';
+export {removeDuplicates as removeDuplicateChars} from './array';
