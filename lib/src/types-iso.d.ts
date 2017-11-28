@@ -186,7 +186,3 @@ export declare const boolStringToBool: (val: string | boolean, strict?: boolean)
  * @alias for boolStringToBool
  */
 export { boolStringToBool as toBoolFromBoolString };
-/********************* BARREL EXPORTS (TYPES FROM OTHER mad-utils SUBMODULES) *********************/
-export { isMultilangTextObj } from './object';
-export { Int, Integer, Float, Double, Short, Long } from './number';
-export { char, chars, character, characters } from './string';

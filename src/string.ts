@@ -1,5 +1,6 @@
 /******************************************** IMPORTS *********************************************/
-import { StrOrNum, Int } from './types-iso';
+import { StrOrNum } from './types-iso';
+import { Int } from './number';
 import { withoutFirst, arrayN } from './array';
 
 export type char = string;

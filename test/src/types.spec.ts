@@ -417,10 +417,6 @@ describe(`types sub-modules`, function() {
             );
         });
 
-        describe(`isMultilangTextObj`, function() {
-            expectFunctionExists(typesIso.isMultilangTextObj);
-        });
-
         describe(`@singleton decorator`, function() {
             // Mock singleton class
             @typesIso.singleton
