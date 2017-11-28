@@ -30,4 +30,3 @@ export declare const convertDayOfWeekNumToString: (day: NumRange0To6, abbreviate
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
  */
 export declare const now: (timeFormat?: string) => string;
-export { isDateLike } from './types-iso';

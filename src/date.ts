@@ -1,6 +1,6 @@
 import * as moment from 'moment';
-import { dateTime } from 'common-constants';
-import { isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever } from './types-iso';
+import {dateTime} from 'common-constants';
+import {isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever} from './types-iso';
 
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -14,9 +14,9 @@ export const defaultTimestampFormat = `YYYY/MM/DD : HH:mm:ss`;
 export function isLeapYear(year: NumLike): boolean | never {
     const yearClean = castToNum(year);
     if (yearClean instanceof Error || !isInt(yearClean)) {
-         throw new Error('mad-utils::isLeapYear must receive integer or value parsable to integer');
+        throw new Error('mad-utils::isLeapYear must receive integer or value parsable to integer');
     }
-    if (yearClean % 4 === 0 && ((yearClean % 400 === 0) || (yearClean % 100 !== 0))) return true;
+    if (yearClean % 4 === 0 && (yearClean % 400 === 0 || yearClean % 100 !== 0)) return true;
     return false;
 }
 
@@ -29,22 +29,31 @@ export function isLeapYear(year: NumLike): boolean | never {
  * @return {string} given day of the week in string form. Throws if invalid input given.
  */
 export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = false): StrOrNever => {
-    const fnErrStr = `mad-utils :: convertDayOfWeekNumToString :: Invalid day of week given. Must` +
-                     `be number from 0 to 6 (or 0-6 in string form e.g. '0'). Received: ${day}`;
+    const fnErrStr =
+        `mad-utils :: convertDayOfWeekNumToString :: Invalid day of week given. Must` +
+        `be number from 0 to 6 (or 0-6 in string form e.g. '0'). Received: ${day}`;
     if (typeof day === 'undefined' || day == null) {
-        throw new Error(fnErrStr)
+        throw new Error(fnErrStr);
     }
-    switch(day.toString()) {
-        case '0':  return abbreviate ? 'Sun'   : 'Sunday';
-        case '1':  return abbreviate ? 'Mon'   : 'Monday';
-        case '2':  return abbreviate ? 'Tues'  : 'Tuesday';
-        case '3':  return abbreviate ? 'Wed'   : 'Wednesday';
-        case '4':  return abbreviate ? 'Thurs' : 'Thursday';
-        case '5':  return abbreviate ? 'Fri'   : 'Friday';
-        case '6':  return abbreviate ? 'Sat'   : 'Saturday';
-        default: throw new Error(fnErrStr);
+    switch (day.toString()) {
+        case '0':
+            return abbreviate ? 'Sun' : 'Sunday';
+        case '1':
+            return abbreviate ? 'Mon' : 'Monday';
+        case '2':
+            return abbreviate ? 'Tues' : 'Tuesday';
+        case '3':
+            return abbreviate ? 'Wed' : 'Wednesday';
+        case '4':
+            return abbreviate ? 'Thurs' : 'Thursday';
+        case '5':
+            return abbreviate ? 'Fri' : 'Friday';
+        case '6':
+            return abbreviate ? 'Sat' : 'Saturday';
+        default:
+            throw new Error(fnErrStr);
     }
-}
+};
 
 /**
  * Get the current date, formatted for display in the stream of Express logs to the CLI.
@@ -61,5 +70,3 @@ export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = fals
  */
 export const now = (timeFormat: string = defaultTimestampFormat): string =>
     moment().format(timeFormat);
-
-export { isDateLike } from './types-iso';
