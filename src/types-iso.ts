@@ -98,7 +98,9 @@ export type HttpReqType = AnyHTTPReqType;
  *  @param {StringOrNonexistent|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boolean =>
+export const isNonexistentOrString = (
+    val: StringOrNonexistent | RealAny,
+): val is string | undefined =>
     typeof val === 'undefined' || val === null || typeof val === 'string';
 
 /**
@@ -106,7 +108,7 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false.
  */
-export const isNumber = (val: RealAny) => {
+export const isNumber = (val: RealAny): val is number | Number => {
     if (typeof val === 'undefined' || val == null) return false;
 
     if (typeof val === 'number' && !isNaN(val)) return true;
@@ -160,7 +162,7 @@ export {isNumberLike as isNumLike};
  * @param {any} val Value to check type of.
  * @return {boolean} true if given value is integer.
  */
-export const isInteger = (val: RealAny): boolean => {
+export const isInteger = (val: RealAny): val is number | Number | string | String => {
     if (isNumberLike(val) && parseInt(val, 10) === parseFloat(val)) return true;
     return false;
 };
@@ -172,7 +174,7 @@ export {isInteger as isInt};
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is integer-like (or an integer).
  */
-export const isIntegerLike = (val: RealAny): boolean => {
+export const isIntegerLike = (val: RealAny): val is number | Number | string | String => {
     if (!isNumberLike(val)) return false;
     const vStr = val.toString();
     return !matches(/\./g)(val) || vStr.endsWith('.');
@@ -185,7 +187,7 @@ export {isIntegerLike as isIntLike};
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is a string or a number.
  */
-export const isStringOrNumber = (val: RealAny): boolean =>
+export const isStringOrNumber = (val: RealAny): val is number | Number | string | String =>
     typeof val === 'string' || isNumberLike(val);
 
 /**
@@ -193,7 +195,7 @@ export const isStringOrNumber = (val: RealAny): boolean =>
  * @param {any} val - Item to test.
  * @return {boolean} true if val is a boolean.
  */
-export const isBoolean = (val: any | boolean): boolean => {
+export const isBoolean = (val: any | boolean): val is boolean => {
     if (val === true || val === false) return true;
     const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
     if (hasValueOfFn && (val.valueOf() === true || val.valueOf() === false)) return true;
@@ -236,7 +238,7 @@ export const isDateLike = (val: RealAny): boolean => {
  * @param {any} val Check if val is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */
-export const isArray = (val: RealAny): boolean => {
+export const isArray = (val: RealAny): val is any[] => {
     // Works in fully compliant ES5, ES6, ES7, ES8 ES[+] environments (Node, new browsers, etc.)
     if (Array.isArray) return Array.isArray(val);
     // Works in browsers without Array.isArray.
@@ -260,7 +262,7 @@ export const isArray = (val: RealAny): boolean => {
  * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
-export const isTrue = (val: RealAny, include1CharVal: boolean = false): boolean =>
+export const isTrue = (val: RealAny, include1CharVal: boolean = false): val is true =>
     !!(
         val === 'true' ||
         val === 'True' ||
@@ -275,7 +277,7 @@ export const isTrue = (val: RealAny, include1CharVal: boolean = false): boolean 
  * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true.
  * @return {boolean} false if given value is a variant of false, otherwise false.
  */
-export const isFalse = (val: RealAny, include1CharVal: boolean = false): boolean =>
+export const isFalse = (val: RealAny, include1CharVal: boolean = false): val is false =>
     !!(
         val === 'false' ||
         val === 'False' ||

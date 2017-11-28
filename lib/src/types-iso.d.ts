@@ -73,13 +73,13 @@ export declare type HttpReqType = AnyHTTPReqType;
  *  @param {StringOrNonexistent|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export declare const isNonexistentOrString: (val: any) => boolean;
+export declare const isNonexistentOrString: (val: any) => val is string;
 /**
  * Detect whether given value is a number. (Note: NaN returns false here).
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false.
  */
-export declare const isNumber: (val: any) => boolean;
+export declare const isNumber: (val: any) => val is number | Number;
 export { isNumber as isNum };
 /**
  * Returns true if the given argument is a number, a string that can be parsed into a number, or
@@ -96,27 +96,27 @@ export { isNumberLike as isNumLike };
  * @param {any} val Value to check type of.
  * @return {boolean} true if given value is integer.
  */
-export declare const isInteger: (val: any) => boolean;
+export declare const isInteger: (val: any) => val is string | number | String | Number;
 export { isInteger as isInt };
 /**
  * True if val is an integer or a string that can be converted to an integer.
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is integer-like (or an integer).
  */
-export declare const isIntegerLike: (val: any) => boolean;
+export declare const isIntegerLike: (val: any) => val is string | number | String | Number;
 export { isIntegerLike as isIntLike };
 /**
  * True if val is a string or a number.
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is a string or a number.
  */
-export declare const isStringOrNumber: (val: any) => boolean;
+export declare const isStringOrNumber: (val: any) => val is string | number | String | Number;
 /**
  * Returns true if val is true or false.
  * @param {any} val - Item to test.
  * @return {boolean} true if val is a boolean.
  */
-export declare const isBoolean: (val: any) => boolean;
+export declare const isBoolean: (val: any) => val is boolean;
 export { isBoolean as isBool };
 /**
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
@@ -131,21 +131,21 @@ export declare const isDateLike: (val: any) => boolean;
  * @param {any} val Check if val is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */
-export declare const isArray: (val: any) => boolean;
+export declare const isArray: (val: any) => val is any[];
 /**
  * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true).
  * @param {any} val Check if this is a variant of true.
  * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
-export declare const isTrue: (val: any, include1CharVal?: boolean) => boolean;
+export declare const isTrue: (val: any, include1CharVal?: boolean) => val is true;
 /**
  * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false).
  * @param {any} val Check if this is a variant of false.
  * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true.
  * @return {boolean} false if given value is a variant of false, otherwise false.
  */
-export declare const isFalse: (val: any, include1CharVal?: boolean) => boolean;
+export declare const isFalse: (val: any, include1CharVal?: boolean) => val is false;
 /**
  * Any class wrapped in this decorator becomes a singleton immediately.
  * Throws if attempt is made to wrap a non-class.
