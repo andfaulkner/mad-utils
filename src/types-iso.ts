@@ -1,40 +1,40 @@
 /******************************************** IMPORTS *********************************************/
 import * as moment from 'moment';
-import { DecoratorError } from './error';
-import { isVerbose } from 'env-var-helpers';
-import { matches } from './string';
+import {DecoratorError} from './error';
+import {isVerbose} from 'env-var-helpers';
+import {matches} from './string';
 import * as Polyglot from 'node-polyglot';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
-    new(...args: any[]): {};
+    new (...args: any[]): {};
 }
 
 export interface SingletonInterface<U> {
-    new(...args: any[]): U;
-    new<Y>(...args: any[]): Y;
+    new (...args: any[]): U;
+    new <Y>(...args: any[]): Y;
 }
 
 // For cases where something truly can be any value (contrast with the most common
 // case where 'any' is used in lieu of determining a highly complex type)
 export type RealAny = any;
-export { RealAny as Any }
+export {RealAny as Any};
 
 /**
  * Union aliases
  */
 export type StrOrNum = string | number;
-export { StrOrNum as NumOrStr }
-export { StrOrNum as NumberOrString }
+export {StrOrNum as NumOrStr};
+export {StrOrNum as NumberOrString};
 
 export type StrOrNever = string | never;
-export { StrOrNever as NeverOrStr }
+export {StrOrNever as NeverOrStr};
 
 export type StringOrNonexistent = string | null | undefined;
-export { StringOrNonexistent as StrOrNonexistent };
+export {StringOrNonexistent as StrOrNonexistent};
 
 export type StrOrErr = String | Error;
-export {StrOrErr as StrOrError}
+export {StrOrErr as StrOrError};
 
 /**
  * Any type that can potentially be cast to a number.
@@ -66,10 +66,9 @@ export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
 
-export type StringHash = Record<string, string>
-export type StringNumHash = Record<string, number>
-export type StringNumberHash = Record<string, number>
-
+export type StringHash = Record<string, string>;
+export type StringNumHash = Record<string, number>;
+export type StringNumberHash = Record<string, number>;
 
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
@@ -100,7 +99,7 @@ export type HttpReqType = AnyHTTPReqType;
  *  @return {boolean} true if val is null, undefined, or a string.
  */
 export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boolean =>
-    (typeof val === 'undefined') || (val === null) || (typeof val === 'string');
+    typeof val === 'undefined' || val === null || typeof val === 'string';
 
 /**
  * Detect whether given value is a number. (Note: NaN returns false here).
@@ -110,14 +109,14 @@ export const isNonexistentOrString = (val: StringOrNonexistent | RealAny): boole
 export const isNumber = (val: RealAny) => {
     if (typeof val === 'undefined' || val == null) return false;
 
-    if (typeof val === 'number' && !isNaN(val))               return true;
+    if (typeof val === 'number' && !isNaN(val)) return true;
     if (Object.getPrototypeOf(val) === Number && !isNaN(val)) return true;
-    if (val instanceof Number)                                return true;
+    if (val instanceof Number) return true;
 
     return false;
 };
 
-export { isNumber as isNum }
+export {isNumber as isNum};
 
 /**
  * Returns true if the given argument is a number, a string that can be parsed into a number, or
@@ -133,7 +132,13 @@ export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean 
     if (isNumber(val)) return true;
 
     if (typeof val === 'string') {
-        if (val.replace('.', '').replace(/^\-/, '').match(/\D/)) return false;
+        if (
+            val
+                .replace('.', '')
+                .replace(/^\-/, '')
+                .match(/\D/)
+        )
+            return false;
         // Let '.123' and '-.123' type strings through.
         let cleanVal = val.match(/^\.\d/) ? '0' + val : val;
         cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
@@ -148,7 +153,7 @@ export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean 
     return false;
 };
 
-export { isNumberLike as isNumLike }
+export {isNumberLike as isNumLike};
 
 /**
  * Returns true if given value is an integer (does not include num-like strings).
@@ -160,7 +165,7 @@ export const isInteger = (val: RealAny): boolean => {
     return false;
 };
 
-export { isInteger as isInt }
+export {isInteger as isInt};
 
 /**
  * True if val is an integer or a string that can be converted to an integer.
@@ -173,14 +178,15 @@ export const isIntegerLike = (val: RealAny): boolean => {
     return !matches(/\./g)(val) || vStr.endsWith('.');
 };
 
-export { isIntegerLike as isIntLike }
+export {isIntegerLike as isIntLike};
 
 /**
  * True if val is a string or a number.
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is a string or a number.
  */
-export const isStringOrNumber = (val: RealAny): boolean => typeof val === 'string' || isNumberLike(val);
+export const isStringOrNumber = (val: RealAny): boolean =>
+    typeof val === 'string' || isNumberLike(val);
 
 /**
  * Returns true if val is true or false.
@@ -188,13 +194,13 @@ export const isStringOrNumber = (val: RealAny): boolean => typeof val === 'strin
  * @return {boolean} true if val is a boolean.
  */
 export const isBoolean = (val: any | boolean): boolean => {
-    if ((val === true) || (val === false)) return true;
+    if (val === true || val === false) return true;
     const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
-    if (hasValueOfFn && ((val.valueOf() === true) || (val.valueOf() === false))) return true;
+    if (hasValueOfFn && (val.valueOf() === true || val.valueOf() === false)) return true;
     return false;
-}
+};
 
-export { isBoolean as isBool }
+export {isBoolean as isBool};
 
 /**
  * Returns true if the given argument is a moment instance, Date instance, or any string, number,
@@ -204,13 +210,21 @@ export { isBoolean as isBool }
  * @return {boolean} True if item is date-like.
  */
 export const isDateLike = (val: RealAny): boolean => {
-    if ((val instanceof moment) || (val instanceof Date)) return true;
-    if (((typeof val === 'number' || val instanceof Number) && val < 0)
-        || (typeof val === 'string' && parseInt(val, 10) < 0)) {
+    if (val instanceof moment || val instanceof Date) return true;
+    if (
+        ((typeof val === 'number' || val instanceof Number) && val < 0) ||
+        (typeof val === 'string' && parseInt(val, 10) < 0)
+    ) {
         return false;
     }
-    if (typeof val === 'object' && Object.keys(val).find(key =>
-        !key.match(/((hours?)|(minutes?)|((milli)?seconds?)|(days?)|(dates?)|(months?)|(years?))/))
+    if (
+        typeof val === 'object' &&
+        Object.keys(val).find(
+            key =>
+                !key.match(
+                    /((hours?)|(minutes?)|((milli)?seconds?)|(days?)|(dates?)|(months?)|(years?))/,
+                ),
+        )
     ) {
         return false;
     }
@@ -226,16 +240,18 @@ export const isArray = (val: RealAny): boolean => {
     // Works in fully compliant ES5, ES6, ES7, ES8 ES[+] environments (Node, new browsers, etc.)
     if (Array.isArray) return Array.isArray(val);
     // Works in browsers without Array.isArray.
-    return !!((val)
-           && val.constructor
-           && (val.constructor.name === 'Array'
-               || val instanceof Array
-               // All ES5 and higher environments
-               || (Object.getPrototypeOf && Object.getPrototypeOf(val.constructor) === Array)
-               // Pre-ES5 web browsers
-               || (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array')
-               // Ultra-robust (but noticeably slow) last-resort that works everywhere.
-               || Object.prototype.toString.call(val) === '[object Array]'))
+    return !!(
+        val &&
+        val.constructor &&
+        (val.constructor.name === 'Array' ||
+            val instanceof Array ||
+            // All ES5 and higher environments
+            (Object.getPrototypeOf && Object.getPrototypeOf(val.constructor) === Array) ||
+            // Pre-ES5 web browsers
+            (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array') ||
+            // Ultra-robust (but noticeably slow) last-resort that works everywhere.
+            Object.prototype.toString.call(val) === '[object Array]')
+    );
 };
 
 /**
@@ -245,8 +261,13 @@ export const isArray = (val: RealAny): boolean => {
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
 export const isTrue = (val: RealAny, include1CharVal: boolean = false): boolean =>
-    !!(val === 'true' || val === 'True' || val === 'TRUE' || val === true
-        || (include1CharVal && (val === 't' || val === 'T')));
+    !!(
+        val === 'true' ||
+        val === 'True' ||
+        val === 'TRUE' ||
+        val === true ||
+        (include1CharVal && (val === 't' || val === 'T'))
+    );
 
 /**
  * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false).
@@ -255,9 +276,13 @@ export const isTrue = (val: RealAny, include1CharVal: boolean = false): boolean 
  * @return {boolean} false if given value is a variant of false, otherwise false.
  */
 export const isFalse = (val: RealAny, include1CharVal: boolean = false): boolean =>
-    !!(val === 'false' || val === 'False' || val === 'FALSE' || val === false
-        || (include1CharVal && (val === 'f' || val === 'F')));
-
+    !!(
+        val === 'false' ||
+        val === 'False' ||
+        val === 'FALSE' ||
+        val === false ||
+        (include1CharVal && (val === 'f' || val === 'F'))
+    );
 
 // TODO improve singleton design-time behaviour - i.e. proper type hints + Intellisense.
 /**
@@ -283,17 +308,17 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
         public static new = (...args: any[]) => {
             if (!SingletonClass._instance) SingletonClass._instance = new SingletonClass(...args);
             return SingletonClass._instance;
-        }
+        };
         constructor(...args: any[]) {
             if (SingletonClass._instance) return SingletonClass._instance;
             super(...args);
             SingletonClass._instance = this;
             return SingletonClass._instance;
         }
-    }
+    };
 
-    Object.defineProperty(SingletonClass, 'name', { value: constructor.name });
-    return SingletonClass as (SingletonInterface<any> & typeof constructor);
+    Object.defineProperty(SingletonClass, 'name', {value: constructor.name});
+    return SingletonClass as SingletonInterface<any> & typeof constructor;
 };
 
 /**
@@ -308,8 +333,9 @@ export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error 
     if (typeof numLike === 'number') return numLike;
     if (isNumberLike(numLike, true)) return parseFloat(numLike as string);
 
-    const baseErrMsg = `castToNum can only accept numbers, #s in string form e.g. "1", or ` +
-                       `1-item arrays containing either type. Invalid value: ${numLike}`;
+    const baseErrMsg =
+        `castToNum can only accept numbers, #s in string form e.g. "1", or ` +
+        `1-item arrays containing either type. Invalid value: ${numLike}`;
 
     if (throwOnFail) {
         throw new Error(baseErrMsg);
@@ -330,11 +356,18 @@ const bstbErrMsg = 'Must input true, false, t, f, y, n, yes, or no';
  * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
  *                         Otherwise throw.
  */
-export const boolStringToBool = (val: string | boolean, strict: boolean = true): boolean | null | never => {
+export const boolStringToBool = (
+    val: string | boolean,
+    strict: boolean = true,
+): boolean | null | never => {
     // Ensure not void, undefined, or NaN, and that toString doesn't return null.
-    if (typeof val === 'undefined' || val === null || isNaN(null)
-        || typeof val.toString() === 'undefined' || typeof val.toString() !== 'string')
-    {
+    if (
+        typeof val === 'undefined' ||
+        val === null ||
+        isNaN(null) ||
+        typeof val.toString() === 'undefined' ||
+        typeof val.toString() !== 'string'
+    ) {
         if (strict) throw new TypeError(bstbErrMsg);
         return null;
     }
@@ -342,7 +375,7 @@ export const boolStringToBool = (val: string | boolean, strict: boolean = true):
     const lcVal = val.toString().toLowerCase();
     if (lcVal === 'true' || lcVal === 't' || lcVal === 'y' || lcVal === 'yes') {
         return true;
-    } else if (lcVal === 'false'|| lcVal === 'f' || lcVal === 'n' || lcVal === 'no') {
+    } else if (lcVal === 'false' || lcVal === 'f' || lcVal === 'n' || lcVal === 'no') {
         return false;
     }
     if (strict) throw new TypeError(bstbErrMsg);
@@ -352,12 +385,11 @@ export const boolStringToBool = (val: string | boolean, strict: boolean = true):
 /**
  * @alias for boolStringToBool
  */
-export { boolStringToBool as toBoolFromBoolString };
-
+export {boolStringToBool as toBoolFromBoolString};
 
 /********************* BARREL EXPORTS (TYPES FROM OTHER mad-utils SUBMODULES) *********************/
-export { isMultilangTextObj } from './object';
+export {isMultilangTextObj} from './object';
 
-export { Int, Integer, Float, Double, Short, Long } from './number';
+export {Int, Integer, Float, Double, Short, Long} from './number';
 
-export { char, chars, character, characters } from './string';
+export {char, chars, character, characters} from './string';
