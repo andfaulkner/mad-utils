@@ -1,3 +1,9 @@
+0.41.0
+======
+boolStringToBool: saner behaviour
+*   added 2nd param that (if set to false) returns null instead of throwing if invalid input given
+*   unit tested boolStringToBool
+
 0.40.0
 ======
 Removed all re-exports from array included in string module
