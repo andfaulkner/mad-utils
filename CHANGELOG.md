@@ -1,3 +1,13 @@
+0.42.0
+======
+'prettier' code styling added:
+*   module installed
+*   configured with .prettierrc config file added
+*   styled string.ts, types-iso.ts, types-iso.spec.ts, function.ts, date.ts, array.ts 
+Removed external-location barrel exports from string, array, date, & types-iso
+Various cleanups in array, string, types-iso, date
+Types known following type detection methods in types-iso
+
 0.41.0
 ======
 boolStringToBool: saner behaviour
