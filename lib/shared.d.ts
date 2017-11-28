@@ -269,7 +269,7 @@ export declare const commonShared: {
         (arr1: any[], arr2: any[]): any[];
     };
     rmAllFalsy: (arr: any[]) => any[];
-    isArray: (val: any) => boolean;
+    isArray: (val: any) => val is any[];
     isLeapYear: (year: types.NumLike) => boolean;
     now: (timeFormat?: string) => string;
     condSwitch: (cond: any, val: any, ...condValPairsAndOrDefVal: any[]) => any;
@@ -303,11 +303,11 @@ export declare const commonShared: {
     leftPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     rightPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     centeredPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
-    isNonexistentOrString: (val: any) => boolean;
+    isNonexistentOrString: (val: any) => val is string;
     isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
-    isBoolean: (val: any) => boolean;
+    isBoolean: (val: any) => val is boolean;
     isDateLike: (val: any) => boolean;
-    isTrue: (val: any, include1CharVal?: boolean) => boolean;
+    isTrue: (val: any, include1CharVal?: boolean) => val is true;
     castToNum: (numLike: types.NumLike, throwOnFail?: boolean) => number | Error;
     CharInputStream: typeof stream.CharInputStream;
     isNode: any;
