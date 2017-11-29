@@ -153,31 +153,43 @@
     .border-black { border-color: $black }
 
     /************** REDS **************/
-    .dark-red { color: $darkRed }
-    .bg-dark-red { background-color: $darkRed }
-    .bg-dark-red-hover:hover { background-color: $darkRed }
-    .bg-dark-red-active:active { background-color: $darkRed }
-    .border-dark-red { border-color: $darkRed }
-
-    .mid-dark-red { color: $midDarkRed }
-    .bg-mid-dark-red { background-color: $midDarkRed }
-    .bg-mid-dark-red-hover:hover { background-color: $midDarkRed }
-    .bg-mid-dark-red-active:active { background-color: $midDarkRed }
-    .border-mid-dark-red { border-color: $midDarkRed }
-
-    .mid-red { color: $midRed }
-    .bg-mid-red { background-color: $midRed }
-    .bg-mid-red-hover:hover { background-color: $midRed }
-    .bg-mid-red-active:active { background-color: $midRed }
-    .border-mid-red { border-color: $midRed }
-
+    // #ec4b5f
     .dark-pink, .dark-pink { color: $darkPink }
     .bg-dark-pink, .bg-dark-pink { background-color: $darkPink }
     .bg-dark-pink-hover:hover, .bg-dark-pink-hover:hover { background-color: $darkPink }
     .bg-dark-pink-active:active, .bg-dark-pink-active:active { background-color: $darkPink }
     .border-dark-pink-active:active, .bg-dark-pink { border-color: $darkPink }
 
+    // #ff0000
+    .red { color: $red }
+    .bg-red { background-color: $red }
+    .bg-red-hover:hover { background-color: $red }
+    .bg-red-active:active { background-color: $red }
+    .border-red { border-color: $red }
+
+    // #e93f2e
+    .mid-red { color: $midRed }
+    .bg-mid-red { background-color: $midRed }
+    .bg-mid-red-hover:hover { background-color: $midRed }
+    .bg-mid-red-active:active { background-color: $midRed }
+    .border-mid-red { border-color: $midRed }
+
+    // #df1c31
+    .mid-dark-red { color: $midDarkRed }
+    .bg-mid-dark-red { background-color: $midDarkRed }
+    .bg-mid-dark-red-hover:hover { background-color: $midDarkRed }
+    .bg-mid-dark-red-active:active { background-color: $midDarkRed }
+    .border-mid-dark-red { border-color: $midDarkRed }
+
+    // #b81621
+    .dark-red { color: $darkRed }
+    .bg-dark-red { background-color: $darkRed }
+    .bg-dark-red-hover:hover { background-color: $darkRed }
+    .bg-dark-red-active:active { background-color: $darkRed }
+    .border-dark-red { border-color: $darkRed }
+
     /************** YELLOWS **************/
+    // #ffff00
     .yellow { color: $yellow }
     .bg-yellow { background-color: $yellow }
     .bg-yellow-hover:hover { background-color: $yellow }
@@ -185,13 +197,22 @@
     .border-yellow { border-color: $yellow }
 
     /************** ORANGES **************/
+    // #ffa500
     .orange { color: $orange }
     .bg-orange { background-color: $orange }
     .bg-orange-hover:hover { background-color: $orange }
     .bg-orange-active:active { background-color: $orange }
     .border-orange { border-color: $orange }
 
+    // #f6a623
+    .slight-dark-orange { color: $slightDarkOrange }
+    .bg-slight-dark-orange { background-color: $slightDarkOrange }
+    .bg-slight-dark-orange-hover:hover { background-color: $slightDarkOrange }
+    .bg-slight-dark-orange-active:active { background-color: $slightDarkOrange }
+    .border-slight-dark-orange { border-color: $slightDarkOrange }
+
     /************** GREENS **************/
+    // #00731e
     .forest-green { color: $forestGreen }
     .bg-forest-green { background-color: $forestGreen }
     .bg-forest-green-hover:hover { background-color: $forestGreen }
