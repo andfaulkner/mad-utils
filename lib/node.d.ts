@@ -340,10 +340,7 @@ export declare const common: {
 } & {
     isDir: (fileOrDirPath: string) => boolean;
     pathFromRoot: (filePathFromRoot?: string) => string;
-    replaceInFile: {
-        (filePath: string, findString: string, replace: string): string;
-        (filePath: string, findRegex: RegExp, replace: string): string;
-    };
+    replaceInFile: (filePath: string, findStrOrRE: string | RegExp, replace: string) => string;
     getJsFilesInDir: (dir: string, excludeMin?: boolean) => string[];
     isFileInDir: (dir: string, filename: string) => boolean;
     useMiddlewareInProdOnly: <T>(opts?: T) => (middleware: nodeTypes.MWare<T>) => connect.Server;
