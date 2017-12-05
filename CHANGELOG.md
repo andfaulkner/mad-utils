@@ -1,3 +1,8 @@
+0.42.3
+======
+Using shared mad-logs in node file module
+Upgraded env-var-helpers & lodash
+
 0.42.0
 ======
 'prettier' code styling added:
