@@ -1,3 +1,8 @@
+0.42.4
+======
+Fixed replaceInFile type signature
+Cleaned file module (shrank size etc)
+
 0.42.3
 ======
 Using shared mad-logs in node file module
