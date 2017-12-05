@@ -1,24 +1,18 @@
 //**************************************************************************************************
-//
 // NodeJS-only helpers / utils - for file & filesystem handling
-//
-//
 
 /******************************************** IMPORTS *********************************************/
 import * as path from 'path';
-import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync,
-         writeFileSync } from 'fs-extra-promise';
-import { path as rootPath } from 'app-root-path';
-import { isVerbose } from 'env-var-helpers';
+import {path as rootPath} from 'app-root-path';
+import {isVerbose} from 'env-var-helpers';
 
-import { isNonMinFile, endsInDotJs, getBaseFilenameFromPath } from '../string';
+import {readdirSync, lstatSync, readFileSync, writeFileSync} from 'fs-extra-promise';
+
+import {isNonMinFile, endsInDotJs, getBaseFilenameFromPath} from '../string';
 
 /******************************************** LOGGING *********************************************/
-import { logFactory, Styles } from 'mad-logs/lib/shared';
+import {logFactory, Styles} from 'mad-logs/lib/shared';
 const log = logFactory(`mad-utils::node -- file`, Styles.cult);
-// import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/shared';
-// const log = nodeLogFactory(buildFileTag('misc-utils::node -- file', colors.white.bgMagenta));
-
 
 /******************************************** EXPORTS *********************************************/
 /**
@@ -30,10 +24,10 @@ export const isDir = (fileOrDirPath: string): boolean => {
     try {
         const isINodeADir = lstatSync(fileOrDirPath).isDirectory();
         return !!isINodeADir;
-    } catch(e) {
+    } catch (e) {
         return false;
     }
-}
+};
 
 /**
  * Is the given path an absolute path?
@@ -52,7 +46,7 @@ export const isAbsPath = (newPath: string): boolean => !!newPath.match(/^\//);
 export const pathFromRoot = (filePathFromRoot: string = '') => {
     // Returning path relative to project root.
     return path.join(rootPath, filePathFromRoot);
-}
+};
 
 /**
  * Returns true if the given filename was run as a script.
@@ -61,13 +55,15 @@ export const pathFromRoot = (filePathFromRoot: string = '') => {
  * @return {boolean} true if file with given name was run as a script.
  */
 export const wasRunAsScript = (filePathOrName: string, argv = process.argv, TAG = ''): boolean => {
-    const findFilename = new RegExp(getBaseFilenameFromPath(filePathOrName).replace('.', '\.'));
+    const findFilename = new RegExp(getBaseFilenameFromPath(filePathOrName).replace('.', '.'));
     const wasScript = !!findFilename.exec(argv[1]);
     if (wasScript && isVerbose) {
-        console.log(`${TAG ? (TAG + ' ') : ''}Running ${__filename} as a standalone script...`);
+        console.log(`${TAG ? TAG + ' ' : ''}Running ${__filename} as a standalone script...`);
     }
     return wasScript;
 };
+
+export type StrOrRegexp = string | RegExp;
 
 /**
  * Replace matching location in given file.
@@ -75,20 +71,20 @@ export const wasRunAsScript = (filePathOrName: string, argv = process.argv, TAG 
  * provided replacement text.
  *
  * @param {string} filePath - File to perform replacement in.
- * @param {string|RegExp} find - Match to perform against the content of the file at filePath.
+ * @param {string|RegExp} findStrOrRE - Match to perform against content of the file at filePath.
  * @param {string} replace - Text to replace the matching text with.
  * @param {NodeMadLogsInstance} logger - If LOG_LEVEL=silly, show new file content. Use given logger
  *                                       (if any) to display the content (otherwise use a default).
- *@return {string} File content after the replacement.
+ * @return {string} File content after the replacement.
  */
-export function replaceInFile(filePath: string, findString: string, replace: string): string;
-export function replaceInFile(filePath: string, findRegex: RegExp, replace: string): string;
-export function replaceInFile(filePath: string, find: string | RegExp, replace: string): string {
-    const fileData   = readFileSync(filePath).toString();
+export function replaceInFile(filePath: string, findStrOrRE: StrOrRegexp, replace: string): string {
+    const fileData = readFileSync(filePath).toString();
     // Hack required to make typings happy
-    const cleanfileData = (typeof find === 'string') ? fileData.replace(find, replace)
-                                                     : fileData.replace(find, replace);
-    writeFileSync(filePath, cleanfileData, { encoding: 'utf8'});
+    const cleanfileData =
+        typeof findStrOrRE === 'string'
+            ? fileData.replace(findStrOrRE, replace)
+            : fileData.replace(findStrOrRE, replace);
+    writeFileSync(filePath, cleanfileData, {encoding: 'utf8'});
     log.silly(`replaceInFile: new ${filePath} contents:`, cleanfileData);
     return cleanfileData;
 }
@@ -101,8 +97,9 @@ export function replaceInFile(filePath: string, find: string | RegExp, replace: 
  * @return {string[]} List of all non-minified .js inodes in given directory.
  */
 export const getJsFilesInDir = (dir: string, excludeMin = true): string[] =>
-    readdirSync(dir).filter(endsInDotJs)
-                    .filter(excludeMin ? isNonMinFile : (() => true));
+    readdirSync(dir)
+        .filter(endsInDotJs)
+        .filter(excludeMin ? isNonMinFile : () => true);
 
 /**
  * Search a given directory for an inode (file or folder) with the given name.
@@ -114,6 +111,5 @@ export const getJsFilesInDir = (dir: string, excludeMin = true): string[] =>
 export const isFileInDir = (dir: string, filename: string): boolean =>
     !!readdirSync(dir).find(file => file === filename);
 
-
 /***************** RE-EXPORT FILE-RELEVANT FUNCTIONS IMPORTED FROM OTHER MODULES ******************/
-export { isNonMinFile, endsInDotJs, getBaseFilenameFromPath }
+export {isNonMinFile, endsInDotJs, getBaseFilenameFromPath};
