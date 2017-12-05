@@ -80,7 +80,6 @@
         "no-var-keyword": true,
         "no-var-self": true,
         "no-with-statement": true,
-        "object-curly-spacing": [true, "always"],
         "object-literal-shorthand": true,
         "object-literal-sort-keys": false,
         "one-line": [
