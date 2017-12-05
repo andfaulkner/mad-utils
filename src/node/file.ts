@@ -9,12 +9,15 @@ import * as path from 'path';
 import { ensureDirSync, copySync, readdirSync, readSync, lstatSync, readFileSync,
          writeFileSync } from 'fs-extra-promise';
 import { path as rootPath } from 'app-root-path';
+import { isVerbose } from 'env-var-helpers';
 
 import { isNonMinFile, endsInDotJs, getBaseFilenameFromPath } from '../string';
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/node';
-const log = nodeLogFactory(buildFileTag('misc-utils::node -- file', colors.white.bgMagenta));
+import { logFactory, Styles } from 'mad-logs/lib/shared';
+const log = logFactory(`mad-utils::node -- file`, Styles.cult);
+// import { buildFileTag, nodeLogFactory, colors, NodeMadLogsInstance } from 'mad-logs/lib/shared';
+// const log = nodeLogFactory(buildFileTag('misc-utils::node -- file', colors.white.bgMagenta));
 
 
 /******************************************** EXPORTS *********************************************/
@@ -60,9 +63,8 @@ export const pathFromRoot = (filePathFromRoot: string = '') => {
 export const wasRunAsScript = (filePathOrName: string, argv = process.argv, TAG = ''): boolean => {
     const findFilename = new RegExp(getBaseFilenameFromPath(filePathOrName).replace('.', '\.'));
     const wasScript = !!findFilename.exec(argv[1]);
-    if (wasScript) {
-        log.verbose.noTag(
-            `${TAG ? (TAG + ' ') : ''}Running ${__filename} as a standalone script...`);
+    if (wasScript && isVerbose) {
+        console.log(`${TAG ? (TAG + ' ') : ''}Running ${__filename} as a standalone script...`);
     }
     return wasScript;
 };
