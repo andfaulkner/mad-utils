@@ -1,3 +1,8 @@
+0.43.0
+======
+Upgraded typings for React & React-Dom to v16
+Fixed peerDependencies to provide a range
+
 0.42.4
 ======
 Fixed replaceInFile type signature
