@@ -22,7 +22,7 @@ const log = logFactory()(`hocs`, logMarkers.angryBird);
 export function buildNamedSfc <T extends any>(
     displayName: string,
     statelessComponent: React.StatelessComponent<T> | React.ComponentClass<T>
-): React.StatelessComponent<T> {
+) {
     const NamedSfc: NamedSFC<T> = statelessComponent as NamedSFC<T>;
     NamedSfc.displayName = displayName;
     return NamedSfc;
