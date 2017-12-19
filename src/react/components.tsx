@@ -5,9 +5,7 @@ import * as ReactDOM from 'react-dom';
 import { RealAny } from '../types-iso';
 
 /************************************** THIRD-PARTY MODULES ***************************************/
-import { setDisplayName } from './hocs';
 import { InjectionType } from '../types-iso';
-
 
 /*************************************** BASIC CONDITIONALS ***************************************/
 /**
@@ -133,6 +131,5 @@ export const Switch = ({ children, test }: { children?: any, test: any }): JSX.E
             ? <span>{returnData}</span>
             : returnData);
 };
-
 
 (Switch as any).displayName = `Switch_(Conditional)`;

@@ -267,10 +267,11 @@ export const isTrue = (val: RealAny, include1CharVal: boolean = false): val is t
         val === 'true' ||
         val === 'True' ||
         val === 'TRUE' ||
-        val === true   ||
+        val === true ||
         (include1CharVal && val && (val === 't' || val === 'T')) ||
-        (val && val.toLowerCase && ((val.toLowerCase() === 'true') ||
-            (include1CharVal && val.toLowerCase() === 't')))
+        (val &&
+            val.toLowerCase &&
+            (val.toLowerCase() === 'true' || (include1CharVal && val.toLowerCase() === 't')))
     );
 
 /**
@@ -286,9 +287,10 @@ export const isFalse = (val: RealAny, include1CharVal: boolean = false): val is 
         val === 'FALSE' ||
         val === false ||
         (include1CharVal && (val === 'f' || val === 'F')) ||
-        ((typeof val !== 'undefined') && (val !== null) && val.toLowerCase &&
-            ((val.toLowerCase() === 'false') || (include1CharVal && val.toLowerCase() === 'f')))
-
+        (typeof val !== 'undefined' &&
+            val !== null &&
+            val.toLowerCase &&
+            (val.toLowerCase() === 'false' || (include1CharVal && val.toLowerCase() === 'f')))
     );
 
 // TODO improve singleton design-time behaviour - i.e. proper type hints + Intellisense.

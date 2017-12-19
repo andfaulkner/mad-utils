@@ -11,9 +11,9 @@ import { mount, shallow, ShallowWrapper } from 'enzyme';
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { buildNamedSfc } from '../../src/react/hocs';
+import { logOnRender } from '../../src/react/hocs';
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {
-    expectFunctionExists(buildNamedSfc, 'buildNamedSfc', '(React utility component)');
+    expectFunctionExists(logOnRender, 'logOnRender', '(React utility component)');
 });
