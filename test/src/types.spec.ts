@@ -279,7 +279,7 @@ describe(`types sub-modules`, function() {
 
         describe(`isTrue function`, function() {
             expectFunctionExists(typesIso.isTrue);
-            it(`returns true if given true, 'true', 'True', or 'TRUE', regardless of arg 2's value`, function() {
+            it(`returns true if given true, 'true', 'TrUe', 'True', 'TRUE', etc., regardless of arg 2's value`, function() {
                 expect(typesIso.isTrue(true)).to.be.true;
                 expect(typesIso.isTrue('true')).to.be.true;
                 expect(typesIso.isTrue('TRUE')).to.be.true;
@@ -291,12 +291,12 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isTrue(true, false)).to.be.true;
                 expect(typesIso.isTrue('true', false)).to.be.true;
                 expect(typesIso.isTrue('TRUE', false)).to.be.true;
+                expect(typesIso.isTrue('TrUe')).to.be.true;
                 expect(typesIso.isTrue('True', false)).to.be.true;
             });
-            it(`if arg 2 false, returns false for all vals except true, 'true', 'True', or 'TRUE'`, function() {
+            it(`if arg 2 false, returns false for all vals except variants of true e.g. 'true', 'True', 'TRUE'`, function() {
                 expect(typesIso.isTrue(null)).to.be.false;
                 expect(typesIso.isTrue(false)).to.be.false;
-                expect(typesIso.isTrue('TrUe')).to.be.false;
                 expect(typesIso.isTrue('asdfoigeiubaer')).to.be.false;
                 expect(typesIso.isTrue('')).to.be.false;
                 expect(typesIso.isTrue(undefined)).to.be.false;
@@ -326,7 +326,7 @@ describe(`types sub-modules`, function() {
 
         describe(`isFalse function`, function() {
             expectFunctionExists(typesIso.isFalse);
-            it(`returns true if given false, 'false', 'False', or 'FALSE', regardless of arg 2's value`, function() {
+            it(`returns true if given false (with any casing), regardless of arg 2's value`, function() {
                 expect(typesIso.isFalse(false)).to.be.true;
                 expect(typesIso.isFalse('false')).to.be.true;
                 expect(typesIso.isFalse('FALSE')).to.be.true;
@@ -339,11 +339,11 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isFalse('false', true)).to.be.true;
                 expect(typesIso.isFalse('FALSE', true)).to.be.true;
                 expect(typesIso.isFalse('False', true)).to.be.true;
+                expect(typesIso.isFalse('FaLsE')).to.be.true;
             });
-            it(`if arg 2 false, returns false for all vals except false, 'false', 'False', or 'FALSE'`, function() {
+            it(`if arg 2 false, returns false for all vals except 'false' (w/ any case e.g. 'FaLSe' OK)`, function() {
                 expect(typesIso.isFalse(null)).to.be.false;
                 expect(typesIso.isFalse(true)).to.be.false;
-                expect(typesIso.isFalse('FaLsE')).to.be.false;
                 expect(typesIso.isFalse('asdfoigeiubaer')).to.be.false;
                 expect(typesIso.isFalse('')).to.be.false;
                 expect(typesIso.isFalse(undefined)).to.be.false;
