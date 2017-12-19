@@ -1,3 +1,9 @@
+0.45.0
+======
+MAJOR BREAKING CHANGE ::
+bug fixed in w-###p size utilities. -all suffix was forgotten, so all w-###p utils acted like w-all-###p utils.
+This means all w-###p utils contained width, max-width, and mid-width properties, while w-all-###p did not work at all.
+
 0.44.0
 ======
 Upgraded modules:
