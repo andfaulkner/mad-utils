@@ -43,7 +43,7 @@ const numChildren = (cmp: ShallowWrapper<any, any>) => cmp.children().length;
  * Gets the child of the rendered component.
  * @example getChildNode(shallow(<div>Hello</div>)); // => 'Hello'
  */
-const getChildNode = (cmp: ShallowWrapper<any, any>) => cmp.children().getNode();
+const getChildNode = (cmp: ShallowWrapper<any, any>) => cmp.children().first().text();
 
 class TestClass extends React.Component<{}, {}> {
     render() {
@@ -54,7 +54,7 @@ class TestClass extends React.Component<{}, {}> {
 }
 
 /********************************************* TESTS **********************************************/
-describe(`React module`, function() {
+describe.only(`React module`, function() {
     expectFunctionExists(Switch, 'Switch', '(React utility component)');
     expectFunctionExists(Case, 'Case', '(React utility component)');
     expectFunctionExists(Default, 'Default', '(React utility component)');
@@ -71,9 +71,9 @@ describe(`React module`, function() {
             let wrappedTruthyFalse: ShallowWrapper<any, any>;
 
             before(function() {
-                let wrappedTruthyTrue = shallow(
-                    <IfTruthy test={false}>
-                        {falseElement}
+                wrappedTruthyTrue = shallow(
+                    <IfTruthy test={true}>
+                        {trueElement}
                     </IfTruthy>
                 );
                 wrappedTruthyFalse = shallow(
