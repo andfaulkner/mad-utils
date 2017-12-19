@@ -1,11 +1,20 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
+// setup file
+import * as Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+(Enzyme as any).configure({ adapter: new Adapter() });
+
+
 /*************************************** IMPORT TEST UTILS ****************************************/
 import { expect } from 'chai';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
 import { mount, shallow, ShallowWrapper, ReactWrapper} from 'enzyme';
+import { toClass } from 'recompose';
 
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
@@ -35,6 +44,13 @@ const numChildren = (cmp: ShallowWrapper<any, any>) => cmp.children().length;
  */
 const getChildNode = (cmp: ShallowWrapper<any, any>) => cmp.children().getNode();
 
+class TestClass extends React.Component<{}, {}> {
+    render() {
+        return (
+            <div>ok</div>
+        );
+    }
+}
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {
@@ -54,8 +70,16 @@ describe(`React module`, function() {
             let wrappedTruthyFalse: ShallowWrapper<any, any>;
 
             before(function() {
-                wrappedTruthyTrue = shallow(<IfTruthy test={true}>{trueElement}</IfTruthy>);
-                wrappedTruthyFalse = shallow(<IfTruthy test={false}>{falseElement}</IfTruthy>);
+                let wrappedTruthyTrue = shallow(
+                    <IfTruthy test={false}>
+                        {falseElement}
+                    </IfTruthy>
+                );
+                wrappedTruthyFalse = shallow(
+                    <IfTruthy test={false}>
+                        {falseElement}
+                    </IfTruthy>
+                );
             });
 
             it(`Renders children if value given to prop 'test' is truthy`, function() {
@@ -73,8 +97,16 @@ describe(`React module`, function() {
             let wrappedFalsyFalse: ShallowWrapper<any, any>;
 
             before(function() {
-                wrappedFalsyTrue = shallow(<IfFalsy test={true}>{falseElement}</IfFalsy>);
-                wrappedFalsyFalse = shallow(<IfFalsy test={false}>{trueElement}</IfFalsy>);
+                wrappedFalsyTrue = shallow(
+                    <IfFalsy test={true}>
+                        {falseElement}
+                    </IfFalsy>
+                );
+                wrappedFalsyFalse = shallow(
+                    <IfFalsy test={false}>
+                        {trueElement}
+                    </IfFalsy>
+                );
             });
             it(`Renders children if value given to prop 'test' is falsy`, function() {
                 expect(numChildren(wrappedFalsyFalse)).to.eql(1);
