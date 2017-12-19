@@ -16,10 +16,10 @@ import { InjectionType } from '../types-iso';
  * @param {any} test - If truthy, render children.
  * @return {JSX.Element|null} If test is truthy, return JSX element child. Otherwise return null.
  */
-export const IfTruthy = (props: { test: RealAny, children?: any }): React.ReactElement<any> => {
+export const IfTruthy = (props: { test: RealAny, children?: any }) => {
     if (!!props.test) {
         if (typeof props.children === 'string') return <span>props.children</span>;
-        return React.Children.only(props.children);
+        return React.Children.only(props.children) as any;
     }
     return null;
 };
@@ -30,7 +30,7 @@ export const IfTruthy = (props: { test: RealAny, children?: any }): React.ReactE
  * @param {any} test - If falsy, render children.
  * @return {JSX.Element|null} If test is falsy, return JSX element child. Otherwise return null.
  */
-export const IfFalsy = (props: { test: RealAny, children?: any }): React.ReactElement<any> => {
+export const IfFalsy = (props: { test: RealAny, children?: any }) => {
     if (!props.test) {
         if (typeof props.children === 'string') return <span>props.children</span>;
         return React.Children.only(props.children);
@@ -45,12 +45,12 @@ export const IfFalsy = (props: { test: RealAny, children?: any }): React.ReactEl
  * of the current parent (<Switch>), render this component's children.
  * @return {null|JSX.Element} children if no Switch.test & Case.val props match...otherwise null.
  */
-const DefaultRaw = Object.assign(
+export const Default = Object.assign(
     (props: { children?: any }) => props.children,
     { __IS_DEFAULT_CONDITION__: true }
 ) as (props: ({ children?: any })) => JSX.Element | null;
 
-export const Default = setDisplayName('Default_(Conditional)', DefaultRaw);
+(Default as any).displayName = `Default_(Conditional)`;
 
 /**
  * Render as a child of a <Switch test={someValue} /> component.
@@ -59,12 +59,12 @@ export const Default = setDisplayName('Default_(Conditional)', DefaultRaw);
  * @param {any} val Value to match against the content of the test prop of the parent <Switch>
  * @return {null|JSX.Element} children if Switch.test & val props match...otherwise null.
  */
-const CaseRaw = Object.assign(
+export const Case = Object.assign(
     (props: { children?: any, val: any }) => props.children,
     { __IS_CASE_CONDITION__: true }
 ) as (props: ({ val: any, children?: any })) => JSX.Element | null;
 
-export const Case = setDisplayName('Case_(Conditional)', CaseRaw);
+(Case as any).displayName = `Case_(Conditional)`;
 
 /**
  * Renders the children of the first matching '<Case test={checkThis}>Content here</Case>' where
@@ -102,7 +102,7 @@ export const Case = setDisplayName('Case_(Conditional)', CaseRaw);
  *      // Renders '<span>3rd child case! Contains text</span>'
  *   - why the <span>? React can't just render text without an element around it.
  */
-const SwitchRaw = ({ children, test }: { children?: any, test: any }): JSX.Element | null => {
+export const Switch = ({ children, test }: { children?: any, test: any }): JSX.Element | null => {
     const switchErrMsg = `<Switch> components only allow <Case> & <Default> components as ` +
                          `direct children`;
     let renderOutput;
@@ -131,4 +131,5 @@ const SwitchRaw = ({ children, test }: { children?: any, test: any }): JSX.Eleme
             : returnData);
 };
 
-export const Switch = setDisplayName('Switch_(Conditional)', SwitchRaw);
+
+(Switch as any).displayName = `Switch_(Conditional)`;
