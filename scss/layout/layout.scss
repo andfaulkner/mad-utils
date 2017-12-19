@@ -360,6 +360,16 @@
     .transform-translate-y-n50p { transform: translateY(-50%) }
     .transform-translate-0n50p { transform: translate(0, -50%) }
 
+    /********************** ROTATION **********************/
+    .rotate-0deg { transform: rotate(0deg) }
+    .rotate-45deg { transform: rotate(45deg) }
+    .rotate-90deg { transform: rotate(90deg) }
+    .rotate-135deg { transform: rotate(135deg) }
+    .rotate-180deg { transform: rotate(180deg) }
+    .rotate-225deg { transform: rotate(225deg) }
+    .rotate-270deg { transform: rotate(270deg) }
+    .rotate-315deg { transform: rotate(315deg) }
+
     /****************************************** OVERFLOW ******************************************/
     .overflow-x-hidden { overflow-x: hidden }
     .overflow-y-hidden { overflow-y: hidden }
