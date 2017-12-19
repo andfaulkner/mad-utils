@@ -186,7 +186,7 @@
     "tslint": "^4.4.2",
     "tslint-eslint-rules": "^3.3.0",
     "tslint-microsoft-contrib": "^4.0.0",
-    "typescript": "2.5.2",
+    "typescript": "2.6.2",
     "vrsource-tslint-rules": "^5.1.0"
   },
   "peerDependencies": {
