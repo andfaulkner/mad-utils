@@ -54,7 +54,7 @@ class TestClass extends React.Component<{}, {}> {
 }
 
 /********************************************* TESTS **********************************************/
-describe.only(`React module`, function() {
+describe(`React module`, function() {
     expectFunctionExists(Switch, 'Switch', '(React utility component)');
     expectFunctionExists(Case, 'Case', '(React utility component)');
     expectFunctionExists(Default, 'Default', '(React utility component)');

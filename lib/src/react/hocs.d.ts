@@ -1,7 +1,7 @@
 /// <reference types="react" />
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
-import { Newable } from './types-react';
+import { Newable, NamedSFC } from './types-react';
 /******************************************** LOGGING *********************************************/
 import { MadLog } from 'mad-logs';
 /********************************************* EXPORT *********************************************/
@@ -12,7 +12,7 @@ import { MadLog } from 'mad-logs';
  * @param {React.StatelessComponent} sfc - Stateless functional component to name.
  * @return {React.StatelessComponent} Named stateless functional component.
  */
-export declare function buildNamedSfc<T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T> | React.ComponentClass<T>): React.StatelessComponent<T>;
+export declare function buildNamedSfc<T extends any>(displayName: string, statelessComponent: React.StatelessComponent<T> | React.ComponentClass<T>): NamedSFC<T>;
 export declare const buildNamedStatelessComponent: typeof buildNamedSfc;
 export declare const setSfcDisplayName: typeof buildNamedSfc;
 export declare const setCmpDisplayName: typeof buildNamedSfc;

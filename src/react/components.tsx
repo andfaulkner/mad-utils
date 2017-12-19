@@ -19,10 +19,12 @@ import { InjectionType } from '../types-iso';
 export const IfTruthy = (props: { test: RealAny, children?: any }) => {
     if (!!props.test) {
         if (typeof props.children === 'string') return <span>props.children</span>;
-        return React.Children.only(props.children) as any;
+        return React.Children.only(props.children) as JSX.Element;
     }
     return null;
 };
+
+(IfTruthy as any).displayName = `IfTruthy`;
 
 /**
  * Render the child if 'test' is falsy. Can only accept React components.
@@ -33,11 +35,12 @@ export const IfTruthy = (props: { test: RealAny, children?: any }) => {
 export const IfFalsy = (props: { test: RealAny, children?: any }) => {
     if (!props.test) {
         if (typeof props.children === 'string') return <span>props.children</span>;
-        return React.Children.only(props.children);
+        return React.Children.only(props.children) as JSX.Element;
     }
     return null;
 };
 
+(IfFalsy as any).displayName = `IfFalsy`;
 
 /***************************** COMPONENT-BASED SWITCH-CASE STRUCTURE ******************************/
 /**
