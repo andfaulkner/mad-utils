@@ -2,7 +2,8 @@
 
 // setup file
 import * as Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
+console.log(`Adapter:`, Adapter);
 
 (Enzyme as any).configure({ adapter: new Adapter() });
 
