@@ -267,8 +267,9 @@ export const isTrue = (val: RealAny, include1CharVal: boolean = false): val is t
         val === 'true' ||
         val === 'True' ||
         val === 'TRUE' ||
-        val === true ||
-        (include1CharVal && (val === 't' || val === 'T'))
+        val === true   ||
+        (include1CharVal && (val === 't' || val === 'T')) ||
+        (val.toLowerCase && ((val.toLowerCase() === 'true') || (val.toLowerCase() === 't')))
     );
 
 /**
