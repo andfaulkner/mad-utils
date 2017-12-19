@@ -1,3 +1,8 @@
+0.45.1
+======
+More overflow util styles
+Node -> 8.9.1
+
 0.45.0
 ======
 MAJOR BREAKING CHANGE ::
