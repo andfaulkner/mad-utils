@@ -1,5 +1,5 @@
 {
-    "version": "2.5.2",
+    "version": "2.6.2",
     "compilerOptions": {
         "module": "commonjs",
         "noImplicitAny": false,
@@ -7,6 +7,7 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "strictNullChecks": false,
+        "noStrictGenericChecks": true,
         "outDir": "lib/",
         "declaration": true,
 
