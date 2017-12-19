@@ -1,3 +1,11 @@
+0.45.2
+======
+Aliased overflow util style namespace in SCSS utils - added ovx and ovy prefixes e.g.
+  ovx-hidden
+  ovy-overlay
+  ovx-scroll
+  ovy-visible
+
 0.45.1
 ======
 More overflow util styles
