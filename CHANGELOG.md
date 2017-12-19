@@ -1,6 +1,19 @@
+0.44.0
+======
+Upgraded modules:
+*   TS to v2.16.2 (major upgrade)
+*   React & React-DOM (both internal) to v16
+*   Enzyme to v3 (internal)
+All tests & functions modified to account for upgraded modules (& prior React upgrade)
+isTrue & isFalse made fully case-insensitive
+displayName values added to built-in React components
+Removed buildNamedSfc/setNamedSfc
+Rotation SCSS utilities 
+...etc.
+
 0.43.0
 ======
-Upgraded typings for React & React-Dom to v16
+Upgraded typings for React & React-DOM to v16
 Fixed peerDependencies to provide a range
 
 0.42.4
