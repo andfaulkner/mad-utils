@@ -15,7 +15,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { mount, shallow, ShallowWrapper, ReactWrapper} from 'enzyme';
-import { toClass } from 'recompose';
 
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
 
