@@ -371,14 +371,14 @@
     .rotate-315deg { transform: rotate(315deg) }
 
     /****************************************** OVERFLOW ******************************************/
-    .overflow-x-hidden { overflow-x: hidden }
-    .overflow-y-hidden { overflow-y: hidden }
-    .overflow-x-scroll { overflow-x: scroll }
-    .overflow-y-scroll { overflow-y: scroll }
-    .overflow-x-auto { overflow-x: auto }
-    .overflow-y-auto { overflow-y: auto }
-    .overflow-x-overlay { overflow-x: overlay }
-    .overflow-y-overlay { overflow-y: overlay }
-    .overflow-x-visible { overflow-x: visible }
-    .overflow-y-visible { overflow-y: visible }
+    .overflow-x-hidden, .ovx-hidden { overflow-x: hidden }
+    .overflow-y-hidden, .ovy-hidden { overflow-y: hidden }
+    .overflow-x-scroll, .ovx-scroll { overflow-x: scroll }
+    .overflow-y-scroll, .ovy-scroll { overflow-y: scroll }
+    .overflow-x-auto, .ovx-auto { overflow-x: auto }
+    .overflow-y-auto, .ovy-auto { overflow-y: auto }
+    .overflow-x-overlay, .ovx-overlay { overflow-x: overlay }
+    .overflow-y-overlay, .ovy-overlay { overflow-y: overlay }
+    .overflow-x-visible, .ovx-visible { overflow-x: visible }
+    .overflow-y-visible, .ovy-visible { overflow-y: visible }
 }
