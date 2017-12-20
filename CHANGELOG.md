@@ -1,23 +1,26 @@
 0.46.0
 ======
 Object#get:
-* handles square braces for grabbing values (not just dots)
-* more robust 'bad input' detection
-* fails with undefined
-* gives undefined rather than throwing under more circumstances
-* allows combination of . and [] for calling
-* unit tested extensively
-* working with arrays (DOES NOT split strings though, which is good)
+*   handles square braces for grabbing values (not just dots)
+*   more robust 'bad input' detection
+*   fails with undefined
+*   gives undefined rather than throwing under more circumstances
+*   allows combination of . and [] for calling
+*   unit tested extensively
+*   working with arrays (DOES NOT split strings though, which is good)
 
 Array#flatten function created: turns nested arrays into a single flat array
 
 More margin SCSS utils - with negative margins:
-* mt-n75, mb-n75, mr-n75, ml-n75
+*   mt-n75, mb-n75, mr-n75, ml-n75
     ...up to:
-* mt-n1000, mb-n1000, mr-n1000, ml-n1000
-* in between:
-    * every multiple of 10 up to 100
-    * every multiple of 100 or 250, up to 1000
+*   mt-n1000, mb-n1000, mr-n1000, ml-n1000
+*   in between:
+    *   every multiple of 10 up to 100
+    *   every multiple of 100 or 250, up to 1000
+
+Repaired getFirstUrlPath function in express-routing
+Unit tested getFirstUrlPath & getLastUrlPath
 
 0.45.2
 ======
