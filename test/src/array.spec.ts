@@ -22,6 +22,7 @@ import { m_, array, append,
         contains,
         countOccurrences, removeDuplicates,
         sample,
+        flatten,
         matchAny } from '../../shared';
 
 import { array as arrayFromNode } from '../../node';
@@ -658,6 +659,28 @@ describe(`array sub-module`, function() {
         });
         it(`given an empty object (with no keys), returns undefined`, function() {
             expect(sample({})).to.be.undefined;
+        });
+    });
+
+    describe(`flatten`, function() {
+        it(`given empty array, returns empty array`, function() {
+            expect(flatten([])).to.eql([]);
+        });
+        it(`given a single-level array, returns input as-is`, function() {
+            expect(flatten([1])).to.eql([1]);
+            expect(flatten([1, 2])).to.eql([1, 2]);
+            expect(flatten([1, 2, 3, 4, 5, 6, 7, 8, 9])).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        });
+        it(`given an array of 1-deep nested arrays, returns a single-level array`, function() {
+            expect(flatten([1, 2, [3, 4]])).to.eql([1, 2, 3, 4]);
+        });
+        it(`given an array of 2-deep nested arrays, returns a single-level array`, function() {
+            expect(flatten([1, 2, [3, 4, [5, 6]]])).to.eql([1, 2, 3, 4, 5, 6]);
+            expect(flatten([1, [[2, 3], 4, [5, 6], [7]], [[8]]])).to.eql([1, 2, 3, 4, 5, 6, 7, 8]);
+        });
+        it(`given an array of 3-deep nested arrays, returns a single-level array`, function() {
+            expect(flatten([[[[1, 2], 3], [4], 5], [6, [[7]]], 8]))
+                .to.eql([1, 2, 3, 4, 5, 6, 7, 8]);
         });
     });
 });
