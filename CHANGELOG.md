@@ -4,6 +4,9 @@ Object#get: Fixed generic typing.
 *   New generic type for function: <O = any, T extends object = {}>
     *   Reason: with the previous generic signature, it wasn't possible to define an output type without an input type
 
+Object#define*Prop - minor type fixes (generic can now more easily specify the new property value)
+Unit tested Object#defineGetterProp
+
 0.46.0
 ======
 Object#get:
