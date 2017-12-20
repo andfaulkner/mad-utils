@@ -2,6 +2,7 @@
 import { isNonexistentOrString, RealAny, isArray } from './types-iso';
 import { matchesIgnoreCase, replaceAll } from './string';
 import { englishVariants, frenchVariants } from './internal/lang-constants';
+import { flatten } from './array';
 
 import deepFreezeStrict = require('deep-freeze-strict');
 import { isVerbose } from 'env-var-helpers';
@@ -31,20 +32,6 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
 };
 
 const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
-
-/**
- * Recursive function to help flatten an array.
- */
-const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
-    arr.reduce((acc, cur) => (isArray(cur) ? _flatWalker(acc, cur) : acc.concat(cur)), accIn);
-
-/**
- * @export Flatten an array.
- * @param {Array} arr Array (or set of nested arrays) to flatten.
- * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
- */
-export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
-
 
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.

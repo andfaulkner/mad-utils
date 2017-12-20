@@ -14,12 +14,6 @@ export declare const assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
  */
 export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
 /**
- * @export Flatten an array.
- * @param {Array} arr Array (or set of nested arrays) to flatten.
- * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
- */
-export declare const flatten: <T = any>(arr: T[]) => T[];
-/**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
  * @param {string[]|string} propPath - String in 'key1.key2.etc' form, or array of strings where

@@ -53,7 +53,7 @@ export function first(str: string): string;
 export function first<T>(arr: T[]): T;
 export function first<T>(arrOrStr: T[] | string): T | string { return arrOrStr[0]; }
 
-/** 
+/**
  * Return 2nd character of a string.
  * @param {T[]} str String to return 2nd character from
  */
@@ -457,7 +457,18 @@ export function sample<T = any>(coll: T[] | string | Record<string, T>): T | str
     }
 }
 
-// TODO make removeDuplicates
+/**
+ * Recursive function to help flatten an array.
+ */
+const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
+    arr.reduce((acc, cur) => (isArray(cur) ? _flatWalker(acc, cur) : acc.concat(cur)), accIn);
+
+/**
+ * @export Flatten an array.
+ * @param {Array} arr Array (or set of nested arrays) to flatten.
+ * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
+ */
+export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
 
 
 /***************************************** BARREL EXPORT ******************************************/

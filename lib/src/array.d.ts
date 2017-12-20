@@ -277,5 +277,11 @@ export declare function sample<T = any>(coll: Record<string, T>): [string, T] | 
  * @return {string|undefined} Randomly selected character from string.
  */
 export declare function sample<T = any>(coll: string): string | undefined;
+/**
+ * @export Flatten an array.
+ * @param {Array} arr Array (or set of nested arrays) to flatten.
+ * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
+ */
+export declare const flatten: <T = any>(arr: T[]) => T[];
 /***************************************** BARREL EXPORT ******************************************/
 export { isArray } from './types-iso';
