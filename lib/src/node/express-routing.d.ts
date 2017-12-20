@@ -24,7 +24,14 @@ export declare const urlWithoutLastPath: (url: string) => string;
  */
 export declare const getLastUrlPath: (urlOrReq: string | Request) => string;
 /**
- * Get the first path in the given URL.
+ * @export Get the first path in the given URL.
+ *
+ * Caveat: must be either a full URL, or only show URL data starting at or around the first path
+ * (preceded by '/' is OK)s. It will return the URL otherwise. Reason: it can't read minds. There's
+ * no way to tell if it's the host or 1st path just by looking at it, if it doesn't start with the
+ * protocol or '/'. A section of text starting w/ something else could be either the 1st path or
+ * the domain name. Note that it assumes it's the 1st path in this ambiguous case.
+ *
  * @example getFirstUrlPath('https://www.example.com/auth/login') // => login
  * @param {string} url - URL to get first path from.
  * @return {string} first path in given URL.
