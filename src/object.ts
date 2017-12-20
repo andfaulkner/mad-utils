@@ -47,7 +47,16 @@ export const get = <T extends Object, O = null>(
     objIn: T,
     defaultValue: O = undefined
 ): O => {
-    if (typeof objIn === 'undefined' || objIn == null) return defaultValue;
+    // Handle bad values
+    if ((typeof objIn === 'undefined')
+        || (objIn == null)
+        || (isNaN(objIn as any) && (objIn instanceof Number || typeof objIn === 'number'))
+        || (propPath === '')
+        || (propPath == null)
+        || (typeof propPath === 'undefined')
+    ) {
+        return defaultValue;
+    }
 
     const propArr = (typeof propPath === 'string')
         ? flatten(

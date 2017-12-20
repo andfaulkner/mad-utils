@@ -215,6 +215,19 @@ describe(`object sub-module`, function() {
             let obj: Object;
             expect(get('b', obj, 'DEFAULT')).to.eql('DEFAULT');
         });
+
+        it(`handles null property by returning undefined or default value`, function() {
+            expect(get(null, obj1)).to.be.undefined;
+            expect(get(null, obj1, 'DEF')).to.eql('DEF');
+        });
+        it(`handles undefined property by returning undefined or default value`, function() {
+            expect(get(undefined, obj1)).to.be.undefined;
+            expect(get(undefined, obj1, 'DEF')).to.eql('DEF');
+        });
+        it(`handles '' property by returning undefined or default value`, function() {
+            expect(get('', obj1)).to.be.undefined;
+            expect(get('', obj1, 'DEF')).to.eql('DEF');
+        });
     });
 
     describe(`merge`, function() {
