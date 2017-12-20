@@ -1,5 +1,16 @@
-0.45.3
+0.46.0
 ======
+Object#get:
+* handles square braces for grabbing values (not just dots)
+* more robust 'bad input' detection
+* fails with undefined
+* gives undefined rather than throwing under more circumstances
+* allows combination of . and [] for calling
+* unit tested extensively
+* (still undefined: array behaviour)
+
+Array#flatten function created: turns nested arrays into a single flat array
+
 More margin SCSS utils - with negative margins:
 * mt-n75, mb-n75, mr-n75, ml-n75
     ...up to:
