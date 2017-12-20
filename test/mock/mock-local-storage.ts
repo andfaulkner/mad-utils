@@ -1,3 +1,5 @@
+/// <reference path="../../node_modules/typescript/lib/lib.dom.d.ts" />
+
 //
 // Loosely based on https://github.com/letsrock-today/mock-local-storage
 // Thanks letsrock-today!
@@ -23,7 +25,6 @@ export const mockBrowserStorage = function mockBrowserStorage() {
         }
         store[k] = val + '';
     };
-
 
     store.getItem = (k: string): string => {
         k = k + '';

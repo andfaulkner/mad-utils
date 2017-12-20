@@ -1,3 +1,4 @@
+/// <reference path="../../../node_modules/typescript/lib/lib.dom.d.ts" />
 /**
  * Construct a mock Storage (localStorage / sessionStorage) object. Should be
  * bound to a global, to act as a shim for browser localStorage or sessionStorage
