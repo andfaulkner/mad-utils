@@ -43,8 +43,8 @@ const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
  * @return {any} Value found at the given path.
  */
 export const get = <T extends Object, O = null>(
-    propPath: string[] | string,
     objIn: T,
+    propPath: string[] | string,
     defaultValue: O = undefined
 ): O => {
     // Handle bad values

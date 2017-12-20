@@ -183,50 +183,50 @@ describe(`object sub-module`, function() {
         const obj3 = { a: { b: { c: 'innerLvl3' } } };
 
         it(`returns matching key in object, when given string propPath w/ dots`, function() {
-            expect(get('a', obj1)).to.eql('one');
-            expect(get('a.b', obj2)).to.eql('innerLvl2')
-            expect(get('a.b.c', obj3)).to.eql('innerLvl3')
+            expect(get(obj1, 'a')).to.eql('one');
+            expect(get(obj2, 'a.b')).to.eql('innerLvl2')
+            expect(get(obj3, 'a.b.c')).to.eql('innerLvl3')
         });
         it(`returns matching key in object when given string propPath w/ square braces`, function() {
-            expect(get('a[b]', obj2)).to.eql('innerLvl2')
-            expect(get('a[b][c]', obj3)).to.eql('innerLvl3')
+            expect(get(obj2, 'a[b]')).to.eql('innerLvl2')
+            expect(get(obj3, 'a[b][c]')).to.eql('innerLvl3')
         });
 
         it(`returns undefined if key doesn't exist in object & no defVal given`, function() {
-            expect(get('b', obj1)).to.be.undefined;
-            expect(get('a.b.d.h.j', obj1)).to.be.undefined;
-            expect(get('a[j][z][gr]', obj2)).to.be.undefined;
+            expect(get(obj1, 'b')).to.be.undefined;
+            expect(get(obj1, 'a.b.d.h.j')).to.be.undefined;
+            expect(get(obj2, 'a[j][z][gr]')).to.be.undefined;
         });
         it(`returns undefined if object doesn't exist & no defVal given`, function() {
             let obj: Object;
-            expect(get('a', obj)).to.be.undefined;
+            expect(get(obj, 'a')).to.be.undefined;
         });
 
         it(`returns undefined if given object with path undefined or undefined`, function() {
-            expect(get('a', undefined)).to.be.undefined;
+            expect(get(undefined, 'a')).to.be.undefined;
         });
 
         it(`if given defaultValue, return it if key doesn't exist in object`, function() {
-            expect(get('b', obj1, 'DEFAULT')).to.eql('DEFAULT');
-            expect(get('a.b.d.h.j', obj1, 'DEFAULT')).to.eql('DEFAULT');
-            expect(get('a[j][z][gr]', obj2, 'DEFAULT')).to.eql('DEFAULT');
+            expect(get(obj1, 'b', 'DEFAULT')).to.eql('DEFAULT');
+            expect(get(obj1, 'a.b.d.h.j', 'DEFAULT')).to.eql('DEFAULT');
+            expect(get(obj2, 'a[j][z][gr]', 'DEFAULT')).to.eql('DEFAULT');
         });
         it(`if given defaultValue, return it if object doesn't exist`, function() {
             let obj: Object;
-            expect(get('b', obj, 'DEFAULT')).to.eql('DEFAULT');
+            expect(get(obj, 'b', 'DEFAULT')).to.eql('DEFAULT');
         });
 
         it(`handles null property by returning undefined or default value`, function() {
-            expect(get(null, obj1)).to.be.undefined;
-            expect(get(null, obj1, 'DEF')).to.eql('DEF');
+            expect(get(obj1, null)).to.be.undefined;
+            expect(get(obj1, null, 'DEF')).to.eql('DEF');
         });
         it(`handles undefined property by returning undefined or default value`, function() {
-            expect(get(undefined, obj1)).to.be.undefined;
-            expect(get(undefined, obj1, 'DEF')).to.eql('DEF');
+            expect(get(obj1, undefined)).to.be.undefined;
+            expect(get(obj1, undefined, 'DEF')).to.eql('DEF');
         });
         it(`handles '' property by returning undefined or default value`, function() {
-            expect(get('', obj1)).to.be.undefined;
-            expect(get('', obj1, 'DEF')).to.eql('DEF');
+            expect(get(obj1, '')).to.be.undefined;
+            expect(get(obj1, '', 'DEF')).to.eql('DEF');
         });
     });
 
