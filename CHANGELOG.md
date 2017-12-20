@@ -1,3 +1,9 @@
+0.46.1
+======
+Object#get: Fixed generic typing.
+*   New generic type for function: <O = any, T extends object = {}>
+    *   Reason: with the previous generic signature, it wasn't possible to define an output type without an input type
+
 0.46.0
 ======
 Object#get:
