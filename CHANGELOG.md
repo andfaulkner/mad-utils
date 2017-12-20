@@ -1,3 +1,13 @@
+0.45.3
+======
+More margin SCSS utils - with negative margins:
+* mt-n75, mb-n75, mr-n75, ml-n75
+    ...up to:
+* mt-n1000, mb-n1000, mr-n1000, ml-n1000
+* in between:
+    * every multiple of 10 up to 100
+    * every multiple of 100 or 250, up to 1000
+
 0.45.2
 ======
 Aliased overflow util style namespace in SCSS utils - added ovx and ovy prefixes e.g.
