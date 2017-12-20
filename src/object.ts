@@ -60,7 +60,8 @@ export const get = <T extends Object, O = null>(
 
     const propArr = (typeof propPath === 'string')
         ? flatten(
-            propPath.split('.')
+            propPath.replace(/\.\.+/g, '.')
+                    .split('.')
                     .map(str => str.match(braceMatchRegex)
                                    .filter(subStr => (subStr !== ']') && (subStr !== '['))))
         : propPath;

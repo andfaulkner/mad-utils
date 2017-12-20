@@ -228,6 +228,9 @@ describe(`object sub-module`, function() {
             expect(get(obj1, '')).to.be.undefined;
             expect(get(obj1, '', 'DEF')).to.eql('DEF');
         });
+        it(`eliminates duplicate dots`, function() {
+            expect(get(obj3, 'a.....b..c')).to.eql('innerLvl3');
+        });
     });
 
     describe(`merge`, function() {
