@@ -1,7 +1,7 @@
 /**************************************************************************************************
 *
 *       @file ./express-routing.ts
-*       
+*
 *       TODO FINISH SETTING express-routing MODULE UP IN MAD-UTILS
 *
 */
@@ -17,7 +17,7 @@ import * as Polyglot from 'node-polyglot';
 
 /************************************ OTHER MAD-UTILS MODULES *************************************/
 import { canadaLangCodes } from '../locale';
-import { withoutLast, last, first } from '../array';
+import { withoutLast, last, first, second } from '../array';
 import { cap1LowerRest } from '../string';
 import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../url';
 
@@ -72,8 +72,12 @@ export const getLastUrlPath = (urlOrReq: string | Request): string => {
  * @return {string} first path in given URL.
  */
 export const getFirstUrlPath = (urlOrReq: string | Request): string => {
-    if (typeof urlOrReq === 'string') return first(urlOrReq.split('/'));
-    return first(urlOrReq.originalUrl.split('/'));
+    const cleanURL = (typeof urlOrReq === 'string') ? urlOrReq : urlOrReq.originalUrl;
+    const getFunc = (cleanURL.match(/https?:\/\//) || cleanURL.match(/localhost/)) ? second : first;
+    return getFunc(cleanURL.replace(/^\/(?=[a-zA-Z_0-9])/g, '')
+                           .replace(/https?:\/\//g, '')
+                           .split('/')
+    );
 };
 
 /**
