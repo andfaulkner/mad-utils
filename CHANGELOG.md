@@ -7,7 +7,7 @@ Object#get:
 * gives undefined rather than throwing under more circumstances
 * allows combination of . and [] for calling
 * unit tested extensively
-* (still undefined: array behaviour)
+* working with arrays (DOES NOT split strings though, which is good)
 
 Array#flatten function created: turns nested arrays into a single flat array
 
