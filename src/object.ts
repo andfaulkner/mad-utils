@@ -420,6 +420,7 @@ export const defineGetterProp = <NProps extends Object = {}, O extends Object = 
     defineProperty(obj, propName, { enumerable: true, configurable: true, get: propVal });
     return obj as O & NProps;
 };
+
 export { defineGetterProp as addGetterProp }
 export { defineGetterProp as addGetter }
 export { defineGetterProp as defineGetter }
