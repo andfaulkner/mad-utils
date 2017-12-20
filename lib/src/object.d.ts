@@ -22,7 +22,7 @@ export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export declare const get: <O = null, T extends object = {}>(objIn: T, propPath: string | string[], defaultValue?: O) => O;
+export declare const get: <O = any, T extends object = {}>(objIn: T, propPath: string | string[], defaultValue?: O) => O;
 /**
  * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
  * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
@@ -46,7 +46,7 @@ export declare const eachPair: <T extends Object>(func: (val: T[keyof T], key?: 
  * @return {number} Number of keys in the object, or 0 if it's a non-object (or has no keys).
  */
 export declare const numKeys: (obj: any) => number;
-export declare const numPairs: (obj: any) => number;
+export { numKeys as numPairs };
 /**
  * Powerful key inspection tool. Shows keys of object and all objects in its prototype chain.
  * Displays object name at each layer in the chain
@@ -144,14 +144,14 @@ export declare const defineProp: <NProps extends Object = {}, O extends Object =
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
-export declare const defineImmutableProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: any) => O & NProps;
+export declare const defineImmutableProp: <NProps extends Object = {}, O extends Object = Object, V = any>(obj: O, propName: string, propVal: V) => O & NProps;
 export { defineImmutableProp as defineImmutableMethod };
 export { defineImmutableProp as addImmutableProp };
 export { defineImmutableProp as addImmutableMethod };
 /**
  * Define a mutable (even deletable) public property on an object.
- * @generic <O> - Type of object being merged into
  * @generic <NProps> - Interface containing new prop and its type
+ * @generic <O> - Type of object being merged into
  *
  * @prop {Object} obj - Object being merged into.
  * @prop {string} propName - Name of new prop to add to the gven object.
@@ -159,7 +159,7 @@ export { defineImmutableProp as addImmutableMethod };
  *
  * @return {Object} Initial object with given property added
  */
-export declare const defineMutableProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: any) => O & NProps;
+export declare const defineMutableProp: <NProps extends Object = {}, O extends Object = Object, V = any>(obj: O, propName: string, propVal: V) => O & NProps;
 export { defineMutableProp as defineMutableMethod };
 export { defineMutableProp as addMutableProp };
 export { defineMutableProp as addMutableMethod };
@@ -174,7 +174,7 @@ export { defineMutableProp as addMutableMethod };
  *
  * @return {Object} Initial object with given property added
  */
-export declare const defineGetterProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: any) => O & NProps;
+export declare const defineGetterProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: () => any) => O & NProps;
 export { defineGetterProp as addGetterProp };
 export { defineGetterProp as addGetter };
 export { defineGetterProp as defineGetter };

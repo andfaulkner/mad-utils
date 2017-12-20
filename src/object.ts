@@ -125,7 +125,7 @@ export const numKeys = (obj: RealAny): number => {
     if (typeof obj !== 'object' || obj == null || obj == undefined) return 0;
     return Object.keys(obj).length;
 }
-export const numPairs = numKeys;
+export { numKeys as numPairs };
 
 // TODO Test inspectKeyTree
 /**
@@ -369,8 +369,8 @@ export const defineProp = <NProps extends Object = {}, O extends Object = Object
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
-export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object>(
-    obj: O, propName: string, propVal: any
+export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object, V = any>(
+    obj: O, propName: string, propVal: V
 ): O & NProps => {
     defineProp(obj, propName, propVal, false);
     return obj as O & NProps;
@@ -382,8 +382,8 @@ export { defineImmutableProp as addImmutableMethod }
 
 /**
  * Define a mutable (even deletable) public property on an object.
- * @generic <O> - Type of object being merged into
  * @generic <NProps> - Interface containing new prop and its type
+ * @generic <O> - Type of object being merged into
  *
  * @prop {Object} obj - Object being merged into.
  * @prop {string} propName - Name of new prop to add to the gven object.
@@ -391,8 +391,8 @@ export { defineImmutableProp as addImmutableMethod }
  *
  * @return {Object} Initial object with given property added
  */
-export const defineMutableProp = <NProps extends Object = {}, O extends Object = Object>(
-    obj: O, propName: string, propVal: any
+export const defineMutableProp = <NProps extends Object = {}, O extends Object = Object, V = any>(
+    obj: O, propName: string, propVal: V
 ): O & NProps => {
     defineProp(obj, propName, propVal, true);
     return obj as O & NProps;
@@ -415,7 +415,7 @@ export { defineMutableProp as addMutableMethod }
  * @return {Object} Initial object with given property added
  */
 export const defineGetterProp = <NProps extends Object = {}, O extends Object = Object>(
-    obj: O, propName: string, propVal: any
+    obj: O, propName: string, propVal: () => any
 ): O & NProps => {
     defineProperty(obj, propName, { enumerable: true, configurable: true, get: propVal });
     return obj as O & NProps;

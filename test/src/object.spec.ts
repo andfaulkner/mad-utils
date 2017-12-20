@@ -6,7 +6,8 @@ import { expect } from 'chai';
 import { expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
-import { m_, object, assignFrozenClone, merge, addImmutableProp, addMutableProp,
+import { m_, object, assignFrozenClone, merge,
+        defineImmutableProp, defineMutableProp, defineGetterProp,
         numKeys, hasKey, inspectKeyTree,
         eachPair, isMultilangTextObj, get } from '../../shared';
 import { expectFunctionExists } from '../../node';
@@ -305,45 +306,66 @@ describe(`object sub-module`, function() {
     });
 
 
-    describe(`addImmutableProp`, function() {
-        expectFunctionExists(m_.object.addImmutableProp);
-        expectFunctionExists(addImmutableProp);
+    describe(`defineImmutableProp`, function() {
+        expectFunctionExists(m_.object.defineImmutableProp);
+        expectFunctionExists(defineImmutableProp);
         it(`should be able to add a new property to an object by mutating it externally`, function() {
             const obj = { };
-            addImmutableProp(obj, 'a', 'eh');
+            defineImmutableProp(obj, 'a', 'eh');
             expect((obj as any).a).to.equal('eh');
         });
         it(`should not be able to overwrite properties it has already defined`, function() {
             const obj = { };
-            addImmutableProp(obj, 'a', 'eh');
-            addImmutableProp(obj, 'a', 'okok'); // Should not change the value.
+            defineImmutableProp(obj, 'a', 'eh');
+            defineImmutableProp(obj, 'a', 'okok'); // Should not change the value.
             expect((obj as any).a).to.equal('eh');
         });
         it(`should return the original object with properties added`, function() {
             const obj = { };
-            const newObj = addImmutableProp<{ gr: string }, typeof obj>(obj, 'gr', 'argh');
+            const newObj = defineImmutableProp<{ gr: string }, typeof obj>(obj, 'gr', 'argh');
             expect(newObj.gr).to.eql('argh');
         });
     });
 
-    describe(`addMutableProp`, function() {
-        expectFunctionExists(m_.object.addMutableProp);
-        expectFunctionExists(addMutableProp);
+    describe(`defineMutableProp`, function() {
+        expectFunctionExists(m_.object.defineMutableProp);
+        expectFunctionExists(defineMutableProp);
         it(`should be able to add a new property to an object by mutating it externally`, function() {
             const obj = { };
-            addMutableProp(obj, 'a', 'eh');
+            defineMutableProp(obj, 'a', 'eh');
             expect((obj as any).a).to.equal('eh');
         });
         it(`should be able to overwrite properties it has already defined`, function() {
             const obj = { };
-            addMutableProp(obj, 'a', 'eh');
-            addMutableProp(obj, 'a', 'okok'); // Should change the value.
+            defineMutableProp(obj, 'a', 'eh');
+            defineMutableProp(obj, 'a', 'okok'); // Should change the value.
             expect((obj as any).a).to.equal('okok');
         });
         it(`should return the original object with properties added`, function() {
             const obj = { };
-            const newObj = addMutableProp<{ gr: string }, typeof obj>(obj, 'gr', 'argh');
+            const newObj = defineMutableProp<{ gr: string }, typeof obj>(obj, 'gr', 'argh');
             expect(newObj.gr).to.eql('argh');
+        });
+    });
+
+    describe(`defineGetterProp`, function() {
+        expectFunctionExists(m_.object.defineGetterProp);
+        expectFunctionExists(defineGetterProp);
+        it(`should be able to add a new property to an object by mutating it externally`, function() {
+            const obj = {};
+            defineGetterProp<{a: string}>(obj, 'a', () => 'ehhhhhh');
+            expect((obj as any).a).to.equal('ehhhhhh');
+        });
+        it(`should be able to overwrite properties it has already defined`, function() {
+            const obj = {};
+            defineGetterProp(obj, 'a', () => 'eh');
+            defineGetterProp(obj, 'a', () => 'okok'); // Should change the value.
+            expect((obj as any).a).to.equal('okok');
+        });
+        it(`should return the original object with properties added`, function() {
+            const obj = {};
+            const newObj = defineGetterProp<{a: string}>(obj, 'a', () => 'ehhhhhh');
+            expect(newObj.a).to.equal('ehhhhhh');
         });
     });
 });
