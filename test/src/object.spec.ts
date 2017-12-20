@@ -177,21 +177,43 @@ describe(`object sub-module`, function() {
     describe(`get`, function() {
         expectFunctionExists(m_.object.get);
         expectFunctionExists(get);
-        it(`returns matching key in object, when given string propPath`, function() {
-            const obj = { a: 'one' };
-            const obj2 = { a: { b: 'innerLvl2' } };
-            const obj3 = { a: { b: { c: 'innerLvl3' } } };
-            expect(get('a', obj)).to.eql('one');
+
+        const obj1 = { a: 'one' };
+        const obj2 = { a: { b: 'innerLvl2' } };
+        const obj3 = { a: { b: { c: 'innerLvl3' } } };
+
+        it(`returns matching key in object, when given string propPath w/ dots`, function() {
+            expect(get('a', obj1)).to.eql('one');
             expect(get('a.b', obj2)).to.eql('innerLvl2')
             expect(get('a.b.c', obj3)).to.eql('innerLvl3')
         });
-        it(`returns null if key doesn't exist in object`, function() {
-            const obj = { a: 'one' };
-            expect(get('b', obj)).to.be.null;
+        it(`returns matching key in object when given string propPath w/ square braces`, function() {
+            expect(get('a[b]', obj2)).to.eql('innerLvl2')
+            expect(get('a[b][c]', obj3)).to.eql('innerLvl3')
         });
-        it(`returns null if object doesn't exist`, function() {
+
+        it(`returns undefined if key doesn't exist in object & no defVal given`, function() {
+            expect(get('b', obj1)).to.be.undefined;
+            expect(get('a.b.d.h.j', obj1)).to.be.undefined;
+            expect(get('a[j][z][gr]', obj2)).to.be.undefined;
+        });
+        it(`returns undefined if object doesn't exist & no defVal given`, function() {
             let obj: Object;
-            expect(get('a', obj)).to.be.null;
+            expect(get('a', obj)).to.be.undefined;
+        });
+
+        it(`returns undefined if given object with path undefined or undefined`, function() {
+            expect(get('a', undefined)).to.be.undefined;
+        });
+
+        it(`if given defaultValue, return it if key doesn't exist in object`, function() {
+            expect(get('b', obj1, 'DEFAULT')).to.eql('DEFAULT');
+            expect(get('a.b.d.h.j', obj1, 'DEFAULT')).to.eql('DEFAULT');
+            expect(get('a[j][z][gr]', obj2, 'DEFAULT')).to.eql('DEFAULT');
+        });
+        it(`if given defaultValue, return it if object doesn't exist`, function() {
+            let obj: Object;
+            expect(get('b', obj, 'DEFAULT')).to.eql('DEFAULT');
         });
     });
 

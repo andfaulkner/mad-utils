@@ -30,6 +30,22 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
     return deepFreezeStrict<T>(obj);
 };
 
+const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
+
+/**
+ * Recursive function to help flatten an array.
+ */
+const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
+    arr.reduce((acc, cur) => (isArray(cur) ? _flatWalker(acc, cur) : acc.concat(cur)), accIn);
+
+/**
+ * @export Flatten an array.
+ * @param {Array} arr Array (or set of nested arrays) to flatten.
+ * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
+ */
+export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
+
+
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
@@ -39,16 +55,26 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => {
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export const get = <T extends Object>(propPath: string[] | string, objIn: T): RealAny | void => {
-    if (typeof objIn === 'undefined' || objIn == null) return null;
+export const get = <T extends Object, O = null>(
+    propPath: string[] | string,
+    objIn: T,
+    defaultValue: O = undefined
+): O => {
+    if (typeof objIn === 'undefined' || objIn == null) return defaultValue;
 
-    return (typeof propPath === 'string' ? propPath.split('.') : propPath)
-        .reduce((obj, objPathPt: string) => {
-            const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
-            if (!exists) return null;
-            if (obj[objPathPt]) return obj[objPathPt];
-            return null;
-        }, objIn);
+    const propArr = (typeof propPath === 'string')
+        ? flatten(
+            propPath.split('.')
+                    .map(str => str.match(braceMatchRegex)
+                                   .filter(subStr => (subStr !== ']') && (subStr !== '['))))
+        : propPath;
+
+    return (propArr as Array<string>).reduce((obj, objPathPt: string) => {
+        const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
+        if (!exists) return defaultValue;
+        if (obj[objPathPt]) return obj[objPathPt];
+        return defaultValue;
+    }, objIn);
 };
 
 /**

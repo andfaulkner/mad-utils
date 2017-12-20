@@ -14,6 +14,12 @@ export declare const assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
  */
 export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
 /**
+ * @export Flatten an array.
+ * @param {Array} arr Array (or set of nested arrays) to flatten.
+ * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
+ */
+export declare const flatten: <T = any>(arr: T[]) => T[];
+/**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
  * @param {string[]|string} propPath - String in 'key1.key2.etc' form, or array of strings where
@@ -22,7 +28,7 @@ export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export declare const get: <T extends Object>(propPath: string | string[], objIn: T) => any;
+export declare const get: <T extends Object, O = null>(propPath: string | string[], objIn: T, defaultValue?: O) => O;
 /**
  * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
  * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
