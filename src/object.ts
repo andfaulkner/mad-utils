@@ -42,7 +42,7 @@ const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export const get = <O = null, T extends object = {}>(
+export const get = <O = any, T extends object = {}>(
     objIn: T,
     propPath: string[] | string,
     defaultValue: O = undefined
