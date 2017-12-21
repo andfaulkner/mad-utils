@@ -3,11 +3,30 @@ import { logFactory, logMarkers } from 'mad-logs';
 const log = logFactory()(`validation.ts`, logMarkers.swimmers);
 
 //*************************************** TYPE DEFINITIONS ****************************************/
+export type _RegCond = 'min'
+                    | 'max'
+                    | 'gt'
+                    | 'min_length'
+                    | 'lt'
+                    | 'max_length'
+                    | 'match'
+                    | 'no_match'
+                    | 'length'
+                    | 'exact_length'
+                    | 'length_equals';
+export type _NoMatcherCond = 'match_confirmation';
+
+export type _Matcher = RegExp | number | string;
+
 export type Condition = {
-    type: string,
-    comparison?: RegExp | number,
-    error: string
-}
+    type: _RegCond,
+    matcher: _Matcher,
+    errMsg?: string
+} | {
+    type: _NoMatcherCond,
+    // matcher?: null | undefined,
+    errMsg?: string
+};
 
 
 /******************************************** HELPERS *********************************************/
@@ -25,7 +44,7 @@ function confirmValidation(testStr: string, confirmStr?: string, noConfirmErr?: 
  * Display given error message if validation fails.
  * @param {string} error - Error message to display
  */
-function handleValidationError(error: Error, errDisplayCb: ((message?: any) => void) = alert): false {
+function handleValidationError(error: Error, errDisplayCb: ((message?: any) => void) = console.log): false {
     log.error(`validation error: validate:`, error);
     errDisplayCb(error.message);
     return false;
@@ -41,14 +60,14 @@ export type IsVStrOpt = {
 /******************************************** EXPORTS *********************************************/
 /**
  * Test that given string meets all of the validation conditions.
- * Condition format: { type: string, comparison?: RegExp|number, error: string }
+ * Condition format: { type: string, matcher?: RegExp|number, error: string }
  *     type - accepted values:
  *         min - specifies smallest allowed length
  *         max - specifies longest allowed length
  *         match - string must match the given regular expression
  *         no_match - string must NOT match the given regular expression
  *         match_confirmation - If present, check that testStr matches confirmStr
- *     comparison: Value to run testStr against. e.g. for { type: 'min', comparison: 4, err: 'a' },
+ *     matcher: Value to run testStr against. e.g. for { type: 'min', matcher: 4, err: 'a' },
  *                 check that testStr is a number greater than or equal to 4.
  *     error: Content of 'error' displays if the conditon is not met.
  * @param {Condition[]} conditions - Confirm that string meets all of these conditions.
@@ -61,27 +80,49 @@ export type IsVStrOpt = {
  */
 export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean {
     try {
-        conditions.forEach(cond => {
-            switch (cond.type) {
-                case "gt": case "min": case "greaterthan": case "greater_than":
-                    if (testStr.length >= cond.comparison) return;
+        // Iterate through given conditions/constraints
+        conditions.forEach((props: Condition) => {
+            const {type, errMsg} = props;
+            const matcher = (props.type !== 'match_confirmation') && props.matcher;
+
+            /* MATCHERS */
+            switch (type) {
+                case "gt": case "min": case "min_length":
+                    if (testStr.length >= matcher) return;
                     break;
-                case "lt": case "max": case "lessthan": case "less_than":
-                    if (testStr.length <= cond.comparison) return;
+                case "lt": case "max": case "max_length":
+                    if (testStr.length <= matcher) return;
+                    break;
+                case "length": case "exact_length": case "length_equals":
+                    if (testStr.length === matcher) return;
                     break;
                 case "match":
-                    if (testStr.match(cond.comparison as RegExp)) return;
+                    if (testStr.match(matcher as RegExp)) return;
                     break;
-                case "nomatch": case "no_match":
-                    if (!testStr.match(cond.comparison as RegExp)) return;
+                case "no_match":
+                    if (!testStr.match(matcher as RegExp)) return;
                     break;
                 case "match_confirmation":
-                    return confirmValidation(testStr, confirmStr, cond.error);
+                    return confirmValidation(testStr, confirmStr, errMsg);
                 default:
-                    throw new Error(`Unknown validation condition type: ${cond.type}`);
+                    throw new Error(`Unknown validation condition type: ${type}`);
             }
-            throw new Error(cond.error);
+
+            /* ERROR FACTORY (only reached if no matches above) */
+
+            // If error message arg given, throw error with it as the message
+            if (errMsg) throw new Error(errMsg);
+
+            // If no error message included, build & throw custom error
+            if (typeof confirmStr !== 'string') {
+                throw new Error(`Value: ${testStr}\n  Condition type: ${type}`);
+            } else {
+                throw new Error(`Value: ${testStr}\n  Confirmation value: ${confirmStr}\n  ` +
+                                `Condition type: ${type}`);
+            }
         });
+
+        // Only reaches here if no conditions were violated. Ret true = string is valid.
         return true;
 
     } catch(error) {
