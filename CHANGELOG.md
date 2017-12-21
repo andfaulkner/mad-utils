@@ -1,3 +1,13 @@
+0.47.0
+======
+Validation#isValidString:
+* unit tested (most of it, but not 100% thoroughly)
+* added new 'exact length' condition (len, length, exact_length, length_equals)
+* custom error ourputs on fail, for conditions where no error message given
+* changed 'error' param in 'condition' object (within 'conditions' array) to be 'errMsg'
+* more reusable typings
+* conditions turned into union types with all allowed values provided, rather than being treated as being type 'string'
+
 0.46.1
 ======
 Object#get: Fixed generic typing.
