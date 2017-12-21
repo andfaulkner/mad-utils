@@ -1,7 +1,13 @@
+export declare type _RegCond = 'min' | 'max' | 'gt' | 'min_length' | 'lt' | 'max_length' | 'match' | 'no_match' | 'length' | 'exact_length' | 'length_equals';
+export declare type _NoMatcherCond = 'match_confirmation';
+export declare type _Matcher = RegExp | number | string;
 export declare type Condition = {
-    type: string;
-    comparison?: RegExp | number;
-    error: string;
+    type: _RegCond;
+    matcher: _Matcher;
+    errMsg?: string;
+} | {
+    type: _NoMatcherCond;
+    errMsg?: string;
 };
 export declare type IsVStrOpt = {
     conditions: Condition[];
@@ -12,14 +18,14 @@ export declare type IsVStrOpt = {
 /******************************************** EXPORTS *********************************************/
 /**
  * Test that given string meets all of the validation conditions.
- * Condition format: { type: string, comparison?: RegExp|number, error: string }
+ * Condition format: { type: string, matcher?: RegExp|number, error: string }
  *     type - accepted values:
  *         min - specifies smallest allowed length
  *         max - specifies longest allowed length
  *         match - string must match the given regular expression
  *         no_match - string must NOT match the given regular expression
  *         match_confirmation - If present, check that testStr matches confirmStr
- *     comparison: Value to run testStr against. e.g. for { type: 'min', comparison: 4, err: 'a' },
+ *     matcher: Value to run testStr against. e.g. for { type: 'min', matcher: 4, err: 'a' },
  *                 check that testStr is a number greater than or equal to 4.
  *     error: Content of 'error' displays if the conditon is not met.
  * @param {Condition[]} conditions - Confirm that string meets all of these conditions.
