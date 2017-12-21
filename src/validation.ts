@@ -11,6 +11,7 @@ export type _RegCond = 'min'
                     | 'max_length'
                     | 'match'
                     | 'no_match'
+                    | 'len'
                     | 'length'
                     | 'exact_length'
                     | 'length_equals';
@@ -24,8 +25,14 @@ export type Condition = {
     errMsg?: string
 } | {
     type: _NoMatcherCond,
-    // matcher?: null | undefined,
     errMsg?: string
+};
+
+export type IsVStrOpt = {
+    conditions: Condition[],
+    testStr: string,
+    confirmStr?: string,
+    errDisplayCb?: (message?: any) => void,
 };
 
 
@@ -50,26 +57,21 @@ function handleValidationError(error: Error, errDisplayCb: ((message?: any) => v
     return false;
 }
 
-export type IsVStrOpt = {
-    conditions: Condition[],
-    testStr: string,
-    confirmStr?: string,
-    errDisplayCb?: (message?: any) => void,
-};
-
 /******************************************** EXPORTS *********************************************/
 /**
  * Test that given string meets all of the validation conditions.
- * Condition format: { type: string, matcher?: RegExp|number, error: string }
+ * Condition format: {type: string, matcher?: RegExp|number|string, errMsg: string}
  *     type - accepted values:
- *         min - specifies smallest allowed length
- *         max - specifies longest allowed length
+ *         min|gt|min_length - specifies smallest allowed length
+ *         max|lt|max_length - specifies longest allowed length
+ *         len|length|exact_length|length_equals - specifies the exact length input must be
  *         match - string must match the given regular expression
  *         no_match - string must NOT match the given regular expression
  *         match_confirmation - If present, check that testStr matches confirmStr
- *     matcher: Value to run testStr against. e.g. for { type: 'min', matcher: 4, err: 'a' },
- *                 check that testStr is a number greater than or equal to 4.
- *     error: Content of 'error' displays if the conditon is not met.
+ *     matcher: Comparison value. e.g. for type 'len', val of matcher = exact required input length
+ *     errMsg: Content of 'errMsg' displays if the conditon is not met.
+ *     @example for array item in condition { type: 'min', matcher: 4, err: 'a' } :
+ *              Check that testStr is a number that's >= 4. Throw err w message 'a' if it's not.
  * @param {Condition[]} conditions - Confirm that string meets all of these conditions.
  * @param {string} testStr - String to check the conditions against
  * @param {string} confirmStr? - [OPTIONAL] String to ensure testStr is equal to
@@ -81,7 +83,7 @@ export type IsVStrOpt = {
 export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean {
     try {
         // Iterate through given conditions/constraints
-        conditions.forEach((props: Condition) => {
+        conditions.forEach((props: Condition) => { // {type, matcher?, errMsg}
             const {type, errMsg} = props;
             const matcher = (props.type !== 'match_confirmation') && props.matcher;
 
@@ -93,7 +95,7 @@ export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: I
                 case "lt": case "max": case "max_length":
                     if (testStr.length <= matcher) return;
                     break;
-                case "length": case "exact_length": case "length_equals":
+                case "len": case "length": case "exact_length": case "length_equals":
                     if (testStr.length === matcher) return;
                     break;
                 case "match":

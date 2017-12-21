@@ -8,6 +8,7 @@ import { m_, validation, isValidString } from '../../shared';
 import { validation as validationFromNode } from '../../node';
 import { validation as validationFromBrowser } from '../../browser';
 import * as validationModule from '../../src/validation';
+import { Condition } from '../../src/validation';
 
 const err = m_.validation;
 
@@ -42,21 +43,34 @@ describe(`validation sub-module`, function() {
         it(`should return false if given a string with a disallowed match`, function() {
             expect(isValidStringTestConditions(' oofewof '), `No whitespace allowed`).to.be.false;
         });
+
+        it(`should return false if given a non-matching confirmation string`, function() {
+            expect(isValidStringTestConditions('str_ok', 'non_match')).to.be.false;
+        });
+
+        it(`should return true if given a matching confirmation string`, function() {
+            expect(isValidStringTestConditions('str_ok', 'str_ok')).to.be.true;
+        });
     });
 });
 
+const errDisplayCb = (err: Error) => console.log(err);
+
 /**
- *
+ * Lets us easily run various tests on the various conditions in isValidString validation function.
  */
 function isValidStringTestConditions(testStr: string, confirmStr?: string): boolean | never {
-    return isValidString({
-        testStr,
-        conditions: [
+    const extraVal: Condition[] =
+        (typeof confirmStr === 'string')
+            ? [{type: 'match_confirmation', errMsg: `text.doesnt_match_confirm_str`}]
+            : [];
+
+    const conditions = extraVal.concat([
             {type: 'match',    matcher: /o/g, errMsg: `text.input_doesnt_match`},
             {type: 'no_match', matcher: / /g, errMsg: `text.no_whitespace`     },
             {type: 'max',      matcher: 10,   errMsg: `text.input_too_long`    },
             {type: 'min',      matcher: 3,    errMsg: `text.input_too_short`   },
-        ],
-        errDisplayCb: (err: Error) => console.log(err)
-    });
+        ] as Condition[]);
+
+    return isValidString({testStr, confirmStr, conditions, errDisplayCb});
 }
