@@ -40,7 +40,7 @@ export const expectNonEmptyObjectExists = (nonEmptyObj: any, name: string, extra
         expect(nonEmptyObj).to.not.be.undefined;
         expect(nonEmptyObj).to.not.eql({});
         expect(nonEmptyObj).to.not.eql([]);
-    })
+    });
 };
 
 export { expectFuncExists as expectFunctionExists }

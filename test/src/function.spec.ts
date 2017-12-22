@@ -11,7 +11,7 @@ import { m_, func, getFnAsArr, condSwitch, loopN, loop2, loop3, loop4, loop5 } f
 
 
 /********************************************* TESTS **********************************************/
-describe(`func sub-module`, function() {
+describe(`function sub-module`, function() {
     expectNonEmptyObjectExists(func, 'function (from shared/base export)');
     expectNonEmptyObjectExists(m_.function, 'function (from m_ top-level namespace)');
     expectNonEmptyObjectExists(functionModule, 'function (import all from function.ts file)');
