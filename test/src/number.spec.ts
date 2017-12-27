@@ -72,6 +72,10 @@ describe(`number sub-module`, function() {
             expect(createRangeArray(-10, 20, 5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
         });
 
+        it(`should create an array with a single value when start == end val`, function() {
+            expect(createRangeArray(10, 10, 22)).to.eql([10]);
+        });
+
         it(`should create arr of numbers w/ positive incrementor, & start < end val`, function() {
             expect(createRangeArray(-10, 20, 5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
         });
