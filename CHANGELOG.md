@@ -1,3 +1,14 @@
+0.47.2
+======
+Better docs, arg names, generic names, & generic defaults for:
+    Object->defineProp
+    Object->defineImmutableProp
+    Object->defineMutableProp
+    Object->defineGetterProp
+
+Added Object->defineProp to README.md.
+Fixed CHANGELOG.md formatting.
+
 0.47.1
 ======
 Object#defineProp: Better docs, wrote unit tests
