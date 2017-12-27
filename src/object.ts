@@ -369,17 +369,18 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
 /**
  * Define an immutable public property on an object.
  * @generic <NewKVPairs> - Interface containing new prop and its type
- * @generic <O> - Type of object being merged into
+ * @generic <InputObject> - Type of object being merged into
+ *
  * @prop {Object} obj - Object being merged into.
  * @prop {string} keyName - Name of new prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
-export const defineImmutableProp = <NewKVPair extends Object = {}, O extends Object = {}>(
-    obj: O, keyName: string, propVal: RealAny
-): O & NewKVPair => {
+export const defineImmutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject, keyName: string, propVal: RealAny
+): InputObject & NewKVPair => {
     defineProp(obj, keyName, propVal, false);
-    return obj as O & NewKVPair;
+    return obj as InputObject & NewKVPair;
 };
 
 export { defineImmutableProp as defineImmutableMethod }
@@ -389,7 +390,7 @@ export { defineImmutableProp as addImmutableMethod }
 /**
  * Define a mutable (even deletable) public property on an object.
  * @generic <NewKVPairs> - Interface containing new prop and its type
- * @generic <O> - Type of object being merged into
+ * @generic <InputObject> - Type of object being merged into
  *
  * @prop {Object} obj - Object being merged into.
  * @prop {string} keyName - Name of new prop to add to the gven object.
@@ -397,11 +398,11 @@ export { defineImmutableProp as addImmutableMethod }
  *
  * @return {Object} Initial object with given property added
  */
-export const defineMutableProp = <NewKVPair extends Object = {}, O extends Object = Object>(
-    obj: O, keyName: string, propVal: RealAny
-): O & NewKVPair => {
+export const defineMutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject, keyName: string, propVal: RealAny
+): InputObject & NewKVPair => {
     defineProp(obj, keyName, propVal, true);
-    return obj as O & NewKVPair;
+    return obj as InputObject & NewKVPair;
 };
 
 export { defineMutableProp as defineMutableMethod }
@@ -411,7 +412,7 @@ export { defineMutableProp as addMutableMethod }
 
 /**
  * Define a public mutable (even deletable) getter property on an object.
- * @generic <O> - Type of object being merged into.
+ * @generic <InputObject> - Type of object being merged into.
  * @generic <NProps> - Interface containing new getter prop and its type.
  *
  * @prop {Object} obj - Object being merged into.
@@ -420,11 +421,11 @@ export { defineMutableProp as addMutableMethod }
  *
  * @return {Object} Initial object with given property added
  */
-export const defineGetterProp = <NewKVPair extends Object = {}, O extends Object = Object>(
-    obj: O, keyName: string, propVal: () => any
-): O & NewKVPair => {
+export const defineGetterProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject, keyName: string, propVal: () => any
+): InputObject & NewKVPair => {
     defineProperty(obj, keyName, { enumerable: true, configurable: true, get: propVal });
-    return obj as O & NewKVPair;
+    return obj as InputObject & NewKVPair;
 };
 
 export { defineGetterProp as addGetterProp }
