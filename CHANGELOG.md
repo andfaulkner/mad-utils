@@ -1,3 +1,7 @@
+0.47.1
+======
+Object#defineProp: Better docs, wrote unit tests
+
 0.47.0
 ======
 Validation#isValidString:
