@@ -1203,6 +1203,40 @@ Examples:
     hasKey({ a: 1, b: 2 }, 'c');
     // => false
 
+### [FUNCTION] defineProps
+<N extends Object = {}, I extends Object>(obj: I, key: string, val: Any, isMutable?: bool) => I & N
+*   Add {key} with value {val} to {obj}. If {isMutable} true, make new prop mutable.
+
+Generics:
+*   1 :: N (NewKVPair) extends Object = {}   -- New key-value pair to add to object
+*   2 :: I (InputObject) extends Object = {} -- Original input object to mutate (and return)
+
+Arguments:
+*   obj: InputObject - object to mutate
+*   key: string - new key to add to given object (at arg 'obj')
+*   val: Any - value to assign to new key
+*   isMutable: boolean? - if true, make new property mutable. Default: false.
+
+Return value: (InputObject & NewKVPair)
+*   InputObject with new key-value pair properties merged in.
+*   Note that it also mutates the original value
+
+Examples:
+
+    const obj = {a: 'eh', b: 'bee'}
+    defineProps(obj, 'c', 'sea');
+    // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'sea'}
+
+    const obj = {a: 'eh', b: 'bee'}
+    defineProps(obj, 'c', 'sea');
+    defineProps(obj, 'c', 'seeeee');
+    // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'sea'}
+
+    const obj = {a: 'eh', b: 'bee'}
+    defineProps(obj, 'c', 'sea', true);
+    defineProps(obj, 'c', 'seeeee', true);
+    // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'seeeee'}
+
 
 Namespace: query (isomorphic)
 =============================
