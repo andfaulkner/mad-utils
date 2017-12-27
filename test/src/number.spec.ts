@@ -71,6 +71,20 @@ describe(`number sub-module`, function() {
         it(`should create an array of numbers starting & ending at given values`, function() {
             expect(createRangeArray(-10, 20, 5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
         });
+
+        it(`should create arr of numbers w/ positive incrementor, & start < end val`, function() {
+            expect(createRangeArray(-10, 20, 5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
+        });
+        it(`should create arr of numbers w/ positive incrementor, & start > end val`, function() {
+            expect(createRangeArray(20, -10, 5)).to.eql([20, 15, 10, 5, 0, -5, -10]);
+        });
+        it(`should create arr of numbers w/ negative incrementor, & start < end val`, function() {
+            expect(createRangeArray(-10, 20, -5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
+        });
+        it(`should create arr of numbers w/ negative incrementor, & start > end val`, function() {
+            expect(createRangeArray(20, -10, -5)).to.eql([20, 15, 10, 5, 0, -5, -10]);
+        });
+
     });
 
     describe('coinFlip', function() {
