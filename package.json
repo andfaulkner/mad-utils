@@ -18,8 +18,8 @@
     "compile-ts:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run compile-ts; mocha --opts test/mocha.opts test/",
     "boilerplate-check": "./script/ensure-fully-implemented.rb",
-    "test:coverage": "npm run compile-ts; nyc npm test",
-    "test:watch": "chokidar ./test/** ./src/** ./*.ts -i *.d.ts -i \"/.*.((d.ts)|(js)|(map)|(opts)|(json)|(md))$/\" --initial -c \"npm run test\"",
+    "test-coverage": "npm run compile-ts; nyc npm test",
+    "test-watch": "chokidar ./test/** ./src/** ./*.ts -i *.d.ts -i \"/.*.((d.ts)|(js)|(map)|(opts)|(json)|(md))$/\" --initial -c \"npm run test\"",
     "start": "npm run test:watch",
     "setup": "yarn; git remote remove origin; npm run compile-ts"
   },
