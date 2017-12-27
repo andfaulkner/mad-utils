@@ -130,11 +130,17 @@ export declare const mutablePropConfig: <T = any>(value: T) => {
     value: T;
 };
 /**
- * Define an immutable public property on an object.
- * @param <O> - Type of object being merged into
- * @param <NProps> - Interface containing new prop and its type
+ * Define a property on an object. By default
+ * @generic <O> - Type of object being merged into
+ * @generic <NProps> - Interface containing new prop and its type
+ *
+ * @param {Object} obj Object being merged into
+ * @param {string} propName Name of property to assign value at
+ * @param {RealAny} val Value to assign to property on object 'obj' (first param)
+ * @param {boolean} mutable If true, make new property mutable. Defaults to false.
+ * @return {Object} with new property added.
  */
-export declare const defineProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, methodName: string, method: any, mutable?: boolean) => O & NProps;
+export declare const defineProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, val: any, mutable?: boolean) => O & NProps;
 /**
  * Define an immutable public property on an object.
  * @generic <NProps> - Interface containing new prop and its type
