@@ -1,3 +1,13 @@
+0.47.3
+======
+Number->createChangeArray :: Now handles:
+*   negative incrementor
+*   equal start val & end val
+*   incrementor of '0' (it throws, unless start val === end val)
+*   end val lower than start val (it creates a decrementing array)
+
+More createChangeArray unit tests.
+
 0.47.2
 ======
 Better docs, arg names, generic names, & generic defaults for:
