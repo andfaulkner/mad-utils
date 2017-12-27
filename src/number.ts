@@ -107,7 +107,6 @@ export const uuid = Object.assign(uuidBase, { len6, len8, noDashes }) as UUIDNam
 export const uuidRegex = /[a-zA-Z0-9]{8}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{12}/g;
 
 /********************************************* RANGE **********************************************/
-// TODO create range function
 /**
  * Create range between given numbers, with the provided interval.
  * @param {number} start Number to start at.
@@ -125,23 +124,18 @@ export const createRangeArray = (start: number = 0, end: number, increment: numb
 
     if ((end > start) && (Math.abs(increment) === increment)) {
         for (let i = start; i <= end; i += increment) arr.push(i);
-        return arr;
-    }
 
-    if ((start > end) && (Math.abs(increment) === increment)) {
+    } else if ((start > end) && (Math.abs(increment) === increment)) {
         for (let i = end; i <= start; i += increment) arr.push(i);
         arr.reverse();
-        return arr;
-    }
 
-    if ((end > start) && (Math.abs(increment) !== increment)) {
+    } else if ((end > start) && (Math.abs(increment) !== increment)) {
         for (let i = end; i >= start; i += increment) arr.push(i);
         arr.reverse();
-        return arr;
+
+    } else if ((start > end) && (Math.abs(increment) !== increment)) {
+        for (let i = start; i >= end; i += increment) arr.push(i);
     }
 
-    if ((start > end) && (Math.abs(increment) !== increment)) {
-        for (let i = start; i >= end; i += increment) arr.push(i);
-        return arr;
-    }
+    return arr;
 };
