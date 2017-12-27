@@ -347,39 +347,39 @@ const defineProperty = (Reflect && Reflect.defineProperty) || Object.definePrope
 // TODO test defineProp
 /**
  * Define a property on an object. By default
- * @generic <O> - Type of object being merged into
- * @generic <NProps> - Interface containing new prop and its type
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
  *
  * @param {Object} obj Object being merged into
- * @param {string} propName Name of property to assign value at
+ * @param {string} keyName Name of property to assign value at
  * @param {RealAny} val Value to assign to property on object 'obj' (first param)
  * @param {boolean} mutable If true, make new property mutable. Defaults to false.
  * @return {Object} with new property added.
  */
-export const defineProp = <NProps extends Object = {}, O extends Object = Object>(
-    obj: O,
-    propName: string,
-    val: any,
+export const defineProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    val: RealAny,
     mutable = false
-): O & NProps => {
-    defineProperty(obj, propName, mutable ? mutablePropConfig(val) : immutablePropConfig(val));
-    return obj as O & NProps;
+): InputObject & NewKVPair => {
+    defineProperty(obj, keyName, mutable ? mutablePropConfig(val) : immutablePropConfig(val));
+    return obj as InputObject & NewKVPair;
 };
 
 /**
  * Define an immutable public property on an object.
- * @generic <NProps> - Interface containing new prop and its type
+ * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <O> - Type of object being merged into
  * @prop {Object} obj - Object being merged into.
- * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
-export const defineImmutableProp = <NProps extends Object = {}, O extends Object = Object, V = any>(
-    obj: O, propName: string, propVal: V
-): O & NProps => {
-    defineProp(obj, propName, propVal, false);
-    return obj as O & NProps;
+export const defineImmutableProp = <NewKVPair extends Object = {}, O extends Object = {}>(
+    obj: O, keyName: string, propVal: RealAny
+): O & NewKVPair => {
+    defineProp(obj, keyName, propVal, false);
+    return obj as O & NewKVPair;
 };
 
 export { defineImmutableProp as defineImmutableMethod }
@@ -388,20 +388,20 @@ export { defineImmutableProp as addImmutableMethod }
 
 /**
  * Define a mutable (even deletable) public property on an object.
- * @generic <NProps> - Interface containing new prop and its type
+ * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <O> - Type of object being merged into
  *
  * @prop {Object} obj - Object being merged into.
- * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new property.
  *
  * @return {Object} Initial object with given property added
  */
-export const defineMutableProp = <NProps extends Object = {}, O extends Object = Object, V = any>(
-    obj: O, propName: string, propVal: V
-): O & NProps => {
-    defineProp(obj, propName, propVal, true);
-    return obj as O & NProps;
+export const defineMutableProp = <NewKVPair extends Object = {}, O extends Object = Object>(
+    obj: O, keyName: string, propVal: RealAny
+): O & NewKVPair => {
+    defineProp(obj, keyName, propVal, true);
+    return obj as O & NewKVPair;
 };
 
 export { defineMutableProp as defineMutableMethod }
@@ -415,16 +415,16 @@ export { defineMutableProp as addMutableMethod }
  * @generic <NProps> - Interface containing new getter prop and its type.
  *
  * @prop {Object} obj - Object being merged into.
- * @prop {string} propName - Name of new getter prop to add to the gven object.
+ * @prop {string} keyName - Name of new getter prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new getter property.
  *
  * @return {Object} Initial object with given property added
  */
-export const defineGetterProp = <NProps extends Object = {}, O extends Object = Object>(
-    obj: O, propName: string, propVal: () => any
-): O & NProps => {
-    defineProperty(obj, propName, { enumerable: true, configurable: true, get: propVal });
-    return obj as O & NProps;
+export const defineGetterProp = <NewKVPair extends Object = {}, O extends Object = Object>(
+    obj: O, keyName: string, propVal: () => any
+): O & NewKVPair => {
+    defineProperty(obj, keyName, { enumerable: true, configurable: true, get: propVal });
+    return obj as O & NewKVPair;
 };
 
 export { defineGetterProp as addGetterProp }
