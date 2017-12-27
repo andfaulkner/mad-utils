@@ -131,41 +131,41 @@ export declare const mutablePropConfig: <T = any>(value: T) => {
 };
 /**
  * Define a property on an object. By default
- * @generic <O> - Type of object being merged into
- * @generic <NProps> - Interface containing new prop and its type
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
  *
  * @param {Object} obj Object being merged into
- * @param {string} propName Name of property to assign value at
+ * @param {string} keyName Name of property to assign value at
  * @param {RealAny} val Value to assign to property on object 'obj' (first param)
  * @param {boolean} mutable If true, make new property mutable. Defaults to false.
  * @return {Object} with new property added.
  */
-export declare const defineProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, val: any, mutable?: boolean) => O & NProps;
+export declare const defineProp: <NewKVPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, val: any, mutable?: boolean) => InputObject & NewKVPair;
 /**
  * Define an immutable public property on an object.
- * @generic <NProps> - Interface containing new prop and its type
+ * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <O> - Type of object being merged into
  * @prop {Object} obj - Object being merged into.
- * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
-export declare const defineImmutableProp: <NProps extends Object = {}, O extends Object = Object, V = any>(obj: O, propName: string, propVal: V) => O & NProps;
+export declare const defineImmutableProp: <NewKVPair extends Object = {}, O extends Object = {}>(obj: O, keyName: string, propVal: any) => O & NewKVPair;
 export { defineImmutableProp as defineImmutableMethod };
 export { defineImmutableProp as addImmutableProp };
 export { defineImmutableProp as addImmutableMethod };
 /**
  * Define a mutable (even deletable) public property on an object.
- * @generic <NProps> - Interface containing new prop and its type
+ * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <O> - Type of object being merged into
  *
  * @prop {Object} obj - Object being merged into.
- * @prop {string} propName - Name of new prop to add to the gven object.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new property.
  *
  * @return {Object} Initial object with given property added
  */
-export declare const defineMutableProp: <NProps extends Object = {}, O extends Object = Object, V = any>(obj: O, propName: string, propVal: V) => O & NProps;
+export declare const defineMutableProp: <NewKVPair extends Object = {}, O extends Object = Object>(obj: O, keyName: string, propVal: any) => O & NewKVPair;
 export { defineMutableProp as defineMutableMethod };
 export { defineMutableProp as addMutableProp };
 export { defineMutableProp as addMutableMethod };
@@ -175,12 +175,12 @@ export { defineMutableProp as addMutableMethod };
  * @generic <NProps> - Interface containing new getter prop and its type.
  *
  * @prop {Object} obj - Object being merged into.
- * @prop {string} propName - Name of new getter prop to add to the gven object.
+ * @prop {string} keyName - Name of new getter prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new getter property.
  *
  * @return {Object} Initial object with given property added
  */
-export declare const defineGetterProp: <NProps extends Object = {}, O extends Object = Object>(obj: O, propName: string, propVal: () => any) => O & NProps;
+export declare const defineGetterProp: <NewKVPair extends Object = {}, O extends Object = Object>(obj: O, keyName: string, propVal: () => any) => O & NewKVPair;
 export { defineGetterProp as addGetterProp };
 export { defineGetterProp as addGetter };
 export { defineGetterProp as defineGetter };
