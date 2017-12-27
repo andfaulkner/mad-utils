@@ -115,12 +115,12 @@ export const uuidRegex = /[a-zA-Z0-9]{8}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{4}-EE7
  * @return {Array<number>} Array containing all numbers in the interval.
  */
 export const createRangeArray = (start: number = 0, end: number, increment: number = 1): Array<number> => {
+    // If the first and last values are equal, return that value wrapped in an array
+    if (end === start) return [start];
+
     if (increment === 0) throw new Error('Cannot create a range array with 0 as the increment');
 
     let arr = [] as Array<number>;
-
-    // If the first and last values are equal, return that value wrapped in an array
-    if (end === start) return [start];
 
     if ((end > start) && (Math.abs(increment) === increment)) {
         for (let i = start; i <= end; i += increment) arr.push(i);

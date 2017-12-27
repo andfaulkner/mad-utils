@@ -76,6 +76,13 @@ describe(`number sub-module`, function() {
             expect(createRangeArray(10, 10, 22)).to.eql([10]);
         });
 
+        it(`should throw if given 0 as an incrementor where start !== end val`, function() {
+            expect(() => createRangeArray(1000, 2000, 0)).to.throw();
+        });
+        it(`should NOT throw if given 0 as an incrementor, but start === end val`, function() {
+            expect(() => createRangeArray(1000, 1000, 0)).to.not.throw();
+        });
+
         it(`should create arr of numbers when given positive incrementor, & end > start`, function() {
             expect(createRangeArray(-10, 20, 5)).to.eql([-10, -5, 0, 5, 10, 15, 20]);
         });
