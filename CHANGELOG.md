@@ -12,6 +12,7 @@ Validation#isValidString:
 * more reusable typings
 * conditions turned into union types with all allowed values provided, rather than being treated as being type 'string'
 
+----------------------------------------------------------------------------------------------------
 0.46.1
 ======
 Object#get: Fixed generic typing.
@@ -45,6 +46,7 @@ More margin SCSS utils - with negative margins:
 Repaired getFirstUrlPath function in express-routing
 Unit tested getFirstUrlPath & getLastUrlPath
 
+----------------------------------------------------------------------------------------------------
 0.45.2
 ======
 Aliased overflow util style namespace in SCSS utils - added ovx and ovy prefixes e.g.
@@ -64,6 +66,7 @@ MAJOR BREAKING CHANGE ::
 bug fixed in w-###p size utilities. -all suffix was forgotten, so all w-###p utils acted like w-all-###p utils.
 This means all w-###p utils contained width, max-width, and mid-width properties, while w-all-###p did not work at all.
 
+----------------------------------------------------------------------------------------------------
 0.44.0
 ======
 Upgraded modules:
@@ -77,11 +80,13 @@ Removed buildNamedSfc/setNamedSfc
 Rotation SCSS utilities 
 ...etc.
 
+----------------------------------------------------------------------------------------------------
 0.43.0
 ======
 Upgraded typings for React & React-DOM to v16
 Fixed peerDependencies to provide a range
 
+----------------------------------------------------------------------------------------------------
 0.42.4
 ======
 Fixed replaceInFile type signature
@@ -102,16 +107,19 @@ Removed external-location barrel exports from string, array, date, & types-iso
 Various cleanups in array, string, types-iso, date
 Types known following type detection methods in types-iso
 
+----------------------------------------------------------------------------------------------------
 0.41.0
 ======
 boolStringToBool: saner behaviour
 *   added 2nd param that (if set to false) returns null instead of throwing if invalid input given
 *   unit tested boolStringToBool
 
+----------------------------------------------------------------------------------------------------
 0.40.0
 ======
 Removed all re-exports from array included in string module
 
+----------------------------------------------------------------------------------------------------
 0.39.12
 =======
 Added more whitespace utils
@@ -163,6 +171,7 @@ Added lightened-gray colour to SCSS utils
 ======
 Removed .bot-* SCSS utils (they took up needless space)
 
+----------------------------------------------------------------------------------------------------
 0.38.10
 =======
 Considerably more position SCSS/CSS utilities
