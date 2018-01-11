@@ -163,8 +163,8 @@ export {isNumberLike as isNumLike};
  * @return {boolean} true if given value is integer.
  */
 export const isInteger = (val: RealAny): val is number | Number | string | String => {
-    if (isNumberLike(val) && parseInt(val, 10) === parseFloat(val)) return true;
-    return false;
+    if (Number.isInteger) return Number.isInteger(val);
+    return typeof val === 'number' && isFinite(val) && Math.floor(val) === val;
 };
 
 export {isInteger as isInt};
