@@ -1,13 +1,17 @@
 0.48.0
 ======
-More extensive isIntLike, isIntegerLike, isInteger, isInt tests.
+isInteger (isInt) & isIntegerLike (isIntLike) made saner & more robust:
+*   isInteger no longer accepts integer-like strings (e.g. "12", "43.0")
+    *   (reason: that's what isIntegerLike is for).
+*   isInteger tries to use built-in Number.isInteger before using custom solution.
+*   isIntegerLike now accepts strings ending in .0, .00, .000, .0000, .00000, etc.
+*   More extensive isIntegerLike & isInteger tests.
 
-isInt/isInteger no longer accepts integer-like strings (e.g. "12", "43.0")
-*   reason: that's what isIntegerLike/isIntLike is for.
+SCSS utils:
+*   More overflow SCSS util types
+*   Cleaned up SCSS layout utils & handled more titling edge cases
 
-isIntegerLike now accepts strings ending in .0, .00, .000, .0000, .00000, etc.
-
-isInteger tries to use built-in Number.isInteger before using custom solution.
+Unit test for regular expressions given to removeMatchingText function
 
 0.47.3
 ======
