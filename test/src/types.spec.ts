@@ -18,7 +18,7 @@ const {boolStringToBool} = typesModule;
 /* Sample data */
 const ints = [10, -100, 0, 1, -1, 83294, -212];
 const intsWDots = [10., -100.0, 0.00, 1.00000000000000000000000000000, -1., -323432., 0., -0.];
-const nonIntNums = [10.2, 0.919232, 0.000000001, -0.001, 383.234345, -123124.2342, 10.00000000001];
+const nonIntNums = [10.2, 0.919232, 0.000000001, -0.001, 383.145, -123.42, 10.00000000001, -.3, .6];
 
 
 /********************************************* TESTS **********************************************/
@@ -30,7 +30,7 @@ describe(`types sub-modules`, function() {
 
         describe(`isInteger function (and alias isInt)`, function() {
             expectFunctionExists(typesIso.isInt);
-            numberDetectorFunctionTests('isInteger', typesIso.isInteger);
+            numberDetectorFunctionTests(typesIso.isInteger);
             it(`returns true given a basic integer (with no .0)`, function() {
                 ints.forEach(int => expect(typesIso.isInteger(int)).to.be.true);
             });
@@ -47,6 +47,65 @@ describe(`types sub-modules`, function() {
             });
             it(`returns false given a non-integer-like number`, function() {
                 nonIntNums.forEach(num => expect(typesIso.isInteger(`${num}`)).to.be.false);
+            });
+        });
+
+        describe(`isIntegerLike function`, function() {
+            expectFunctionExists(typesIso.isIntegerLike);
+            expectFunctionExists(typesIso.isIntLike);
+            numberDetectorFunctionTests(typesIso.isIntegerLike);
+            it(`returns true given an integer`, function() {
+                expect(typesIso.isIntegerLike(0)).to.be.true;
+                expect(typesIso.isIntegerLike(1)).to.be.true;
+                expect(typesIso.isIntegerLike(-1)).to.be.true;
+                expect(typesIso.isIntegerLike(24)).to.be.true;
+            });
+            it(`returns false given number w/ decimal (that isn't at the end or followed by 0s)`,
+                function() {
+                    expect(typesIso.isIntegerLike(12.32)).to.be.false;
+                    expect(typesIso.isIntegerLike(-1001.32)).to.be.false;
+                }
+            );
+
+            it(`returns true given string that parses into an int`, function() {
+                ints.forEach(int => expect(typesIso.isIntegerLike(`${int}`)).to.be.true);
+            });
+
+            it(`returns true for "integer strings" ending with a dot`, function() {
+                expect(typesIso.isIntegerLike('0.')).to.be.true;
+                expect(typesIso.isIntegerLike('-0.')).to.be.true;
+                expect(typesIso.isIntegerLike('24.')).to.be.true;
+                expect(typesIso.isIntegerLike('-24.')).to.be.true;
+            });
+
+            it(`returns true for "integer strings" ending with .0, .00, .000, etc`, function() {
+                intsWDots.forEach(int => expect(typesIso.isIntegerLike(`${int}`)).to.be.true);
+                expect(typesIso.isIntegerLike('123.0')).to.be.true;
+                expect(typesIso.isIntegerLike('-123.0')).to.be.true;
+                expect(typesIso.isIntegerLike('6.00')).to.be.true;
+                expect(typesIso.isIntegerLike('-6.00')).to.be.true;
+                expect(typesIso.isIntegerLike('-123.0000000000000000')).to.be.true;
+                expect(typesIso.isIntegerLike('123.0000000000000000')).to.be.true;
+                expect(typesIso.isIntegerLike('0.00000')).to.be.true;
+                expect(typesIso.isIntegerLike('-0.00000')).to.be.true;
+            });
+
+            it(`returns false given a string that parses into a float but not an int`, function() {
+                nonIntNums.forEach(num => expect(typesIso.isIntegerLike(`${num}`)).to.be.false);
+                expect(typesIso.isIntegerLike('12.32')).to.be.false;
+                expect(typesIso.isIntegerLike('-1001.32')).to.be.false;
+                expect(typesIso.isIntegerLike('.32')).to.be.false;
+                expect(typesIso.isIntegerLike('-.32')).to.be.false;
+            });
+            it(`returns false given a string that can't parse into a valid integer`, function() {
+                expect(typesIso.isIntegerLike('123_a.453')).to.be.false;
+                expect(typesIso.isIntegerLike('123..453')).to.be.false;
+                expect(typesIso.isIntegerLike('123.453.123')).to.be.false;
+                expect(typesIso.isIntegerLike('.')).to.be.false;
+                expect(typesIso.isIntegerLike('-.')).to.be.false;
+                expect(typesIso.isIntegerLike('-.123.2')).to.be.false;
+                expect(typesIso.isIntegerLike('-.0.')).to.be.false;
+                expect(typesIso.isIntegerLike('..1.0')).to.be.false;
             });
         });
 
@@ -158,60 +217,6 @@ describe(`types sub-modules`, function() {
             });
         });
 
-        describe(`isIntegerLike function`, function() {
-            expectFunctionExists(typesIso.isIntegerLike);
-            expectFunctionExists(typesIso.isIntLike);
-            it(`returns true given an integer`, function() {
-                expect(typesIso.isIntegerLike(0)).to.be.true;
-                expect(typesIso.isIntegerLike(1)).to.be.true;
-                expect(typesIso.isIntegerLike(-1)).to.be.true;
-                expect(typesIso.isIntegerLike(24)).to.be.true;
-            });
-            it(`returns false given a number containing a decimal`, function() {
-                expect(typesIso.isIntegerLike(12.32)).to.be.false;
-                expect(typesIso.isIntegerLike(-1001.32)).to.be.false;
-            });
-            it(
-                `returns true given a string that can parse into an integer (including ` +
-                    `numbers ending in a dot)`,
-                function() {
-                    expect(typesIso.isIntegerLike('0')).to.be.true;
-                    expect(typesIso.isIntegerLike('1')).to.be.true;
-                    expect(typesIso.isIntegerLike('-1')).to.be.true;
-                    expect(typesIso.isIntegerLike('24')).to.be.true;
-                    expect(typesIso.isIntegerLike('24.')).to.be.true;
-                    expect(typesIso.isIntegerLike('-24.')).to.be.true;
-                },
-            );
-            it(`returns false given a string that can parse into a real number but not an integer`, function() {
-                expect(typesIso.isIntegerLike('12.32')).to.be.false;
-                expect(typesIso.isIntegerLike('-1001.32')).to.be.false;
-                expect(typesIso.isIntegerLike('.32')).to.be.false;
-                expect(typesIso.isIntegerLike('-.32')).to.be.false;
-            });
-            it(`returns false given a string that can't parse into a number, or given any other type of non-number (including NaN)`, function() {
-                expect(typesIso.isIntegerLike({})).to.be.false;
-                expect(typesIso.isIntegerLike([])).to.be.false;
-                expect(typesIso.isIntegerLike(false)).to.be.false;
-                expect(typesIso.isIntegerLike(true)).to.be.false;
-                expect(typesIso.isIntegerLike('')).to.be.false;
-                expect(typesIso.isIntegerLike('gr argh')).to.be.false;
-                expect(typesIso.isIntegerLike(Object)).to.be.false;
-                expect(typesIso.isIntegerLike(typesIso.isIntegerLike)).to.be.false;
-                expect(typesIso.isIntegerLike(NaN)).to.be.false;
-                expect(typesIso.isIntegerLike('123_a.453')).to.be.false;
-                expect(typesIso.isIntegerLike('123..453')).to.be.false;
-                expect(typesIso.isIntegerLike('123.453.123')).to.be.false;
-                expect(typesIso.isIntegerLike('.')).to.be.false;
-                expect(typesIso.isIntegerLike('-.')).to.be.false;
-                expect(typesIso.isIntegerLike('-.123.2')).to.be.false;
-            });
-            it(`returns false if given null, undefined, or no value at all`, function() {
-                expect(typesIso.isIntegerLike(null)).to.be.false;
-                expect(typesIso.isIntegerLike(undefined)).to.be.false;
-                expect((typesIso.isIntegerLike as any)()).to.be.false;
-            });
-        });
 
         describe(`isNonexistentOrString function`, function() {
             expectFunctionExists(typesIso.isNonexistentOrString);
@@ -620,7 +625,7 @@ describe(`types sub-modules`, function() {
  * @param {string}   fnName    Name of function being tested.
  * @param {Function} isIntFunc Actual function being tested.
  */
-function numberDetectorFunctionTests(fnName: string, testFunc: (val: any) => boolean) {
+function numberDetectorFunctionTests(testFunc: (val: any) => boolean) {
     expectFunctionExists(testFunc);
     it(`returns false given an empty object`, function() {
         expect(testFunc({})).to.be.false;
@@ -680,5 +685,26 @@ function numberDetectorFunctionTests(fnName: string, testFunc: (val: any) => boo
                 console.log('Random behaviour for test function');
             }
         )).to.be.false;
+    });
+    it(`returns false given itself (${testFunc && testFunc.name})`, function() {
+        expect(testFunc(testFunc)).to.be.false;
+    });
+    it(`returns false given Number built-in object (prototype)`, function() {
+        expect(testFunc(Number)).to.be.false;
+    });
+    it(`returns false given any other built-in object (doesn't test 'Number')`, function() {
+        expect(testFunc(Object)).to.be.false;
+        expect(testFunc(Array)).to.be.false;
+        expect(testFunc(Math)).to.be.false;
+        expect(testFunc(ArrayBuffer)).to.be.false;
+        expect(testFunc(String)).to.be.false;
+        expect(testFunc(Boolean)).to.be.false;
+        expect(testFunc(Function)).to.be.false;
+        expect(testFunc(JSON)).to.be.false;
+        expect(testFunc(Map)).to.be.false;
+        expect(testFunc(Set)).to.be.false;
+        expect(testFunc(Error)).to.be.false;
+        expect(testFunc(RegExp)).to.be.false;
+        expect(testFunc(Date)).to.be.false;
     });
 }
