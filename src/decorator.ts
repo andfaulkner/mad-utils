@@ -15,28 +15,32 @@ import 'reflect-metadata';
  *
  * @return {Function} Actual decorator, for wrapping methods (this is a decorator factory).
  */
-export function notForWebUse(alternative?: string, envUsage = 'native mobile client or Java server') {
+export function notForWebUse(
+    alternative?: string,
+    envUsage = 'native mobile client or Java server',
+) {
     return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        Reflect.defineMetadata('nonWebMethods', `${target.name} :: ${propertyKey}`, target,
-                               '${target.name}_${propertyKey}');
+        Reflect.defineMetadata(
+            'nonWebMethods',
+            `${target.name} :: ${propertyKey}`,
+            target,
+            '${target.name}_${propertyKey}',
+        );
 
         const originalMethod = descriptor.value;
         descriptor.value = function(...args: any[]) {
             console.warn(
                 `Method ${propertyKey} on class ${target.constructor.name} cannot be used in a ` +
-                `Javascript/Typescript/web environment - it is for ${envUsage} usage only. ` +
-                (alternative ? ('Use ' + alternative + ' instead.') : '')
+                    `Javascript/Typescript/web environment - it is for ${envUsage} usage only. ` +
+                    (alternative ? 'Use ' + alternative + ' instead.' : ''),
             );
             return originalMethod.apply(this, args);
-        }
+        };
         return descriptor;
-    }
-};
+    };
+}
 
-/**
- * @alias notForWebUse
- */
-export const methodNotForWebUse = notForWebUse;
+export {notForWebUse as methodNotForWebUse};
 
-export { DecoratorError, DecoratorErrorProps } from './error';
-export { singleton } from './types-iso';
+export {DecoratorError, DecoratorErrorProps} from './error';
+export {singleton} from './types-iso';
