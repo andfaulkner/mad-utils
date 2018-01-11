@@ -175,9 +175,15 @@ export {isInteger as isInt};
  * @return {boolean} true if tested item is integer-like (or an integer).
  */
 export const isIntegerLike = (val: RealAny): val is number | Number | string | String => {
+    if (isInteger(val)) return true;
     if (!isNumberLike(val)) return false;
+
     const vStr = val.toString();
-    return !matches(/\./g)(val) || vStr.endsWith('.');
+    if (!matches(/\./g)(vStr) || vStr.endsWith('.')) return true;
+
+    const strSplitOnDots = vStr.split('.');
+    if (strSplitOnDots.length === 2) return !!strSplitOnDots[1].match(/^0*$/g);
+    return false;
 };
 
 export {isIntegerLike as isIntLike};
