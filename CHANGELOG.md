@@ -1,3 +1,14 @@
+0.48.0
+======
+More extensive isIntLike, isIntegerLike, isInteger, isInt tests.
+
+isInt/isInteger no longer accepts integer-like strings (e.g. "12", "43.0")
+*   reason: that's what isIntegerLike/isIntLike is for.
+
+isIntegerLike now accepts strings ending in .0, .00, .000, .0000, .00000, etc.
+
+isInteger tries to use built-in Number.isInteger before using custom solution.
+
 0.47.3
 ======
 Number->createChangeArray :: Now handles:
