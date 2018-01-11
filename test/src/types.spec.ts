@@ -15,6 +15,12 @@ import * as typesModule from '../../src/types-iso';
 
 const {boolStringToBool} = typesModule;
 
+/* Sample data */
+const ints = [10, -100, 0, 1, -1, 83294, -212];
+const intsWDots = [10., -100.0, 0.00, 1.00000000000000000000000000000, -1., -323432., 0., -0.];
+const nonIntNums = [10.2, 0.919232, 0.000000001, -0.001, 383.234345, -123124.2342, 10.00000000001];
+
+
 /********************************************* TESTS **********************************************/
 describe(`types sub-modules`, function() {
     describe(`types-iso sub-module`, function() {
@@ -23,26 +29,24 @@ describe(`types sub-modules`, function() {
         expectNonEmptyObjectExists(typesModule, 'types (import all from types.ts file)');
 
         describe(`isInteger function (and alias isInt)`, function() {
-            expectFunctionExists(typesIso.isInteger);
             expectFunctionExists(typesIso.isInt);
-            it(`returns true given an integer`, function() {
-                expect(typesIso.isInteger(10)).to.be.true;
-                expect(typesIso.isInteger(-100)).to.be.true;
-                expect(typesIso.isInteger(0)).to.be.true;
+            numberDetectorFunctionTests('isInteger', typesIso.isInteger);
+            it(`returns true given a basic integer (with no .0)`, function() {
+                ints.forEach(int => expect(typesIso.isInteger(int)).to.be.true);
             });
-            it(`returns false given a non-integer`, function() {
-                expect(typesIso.isInteger(10.2)).to.be.false;
-                expect(typesIso.isInteger('gr')).to.be.false;
-                expect(typesIso.isInteger({})).to.be.false;
-                expect(typesIso.isInteger(false)).to.be.false;
-                expect(typesIso.isInteger(true)).to.be.false;
-                expect(typesIso.isInteger([])).to.be.false;
-                expect(typesIso.isInteger(() => 23)).to.be.false;
+            it(`returns true given an integer with ., .0, .00..., etc. afterwards`, function() {
+                intsWDots.forEach(int => expect(typesIso.isInteger(int)).to.be.true);
             });
-            it(`returns false if given null, undefined, or no value at all`, function() {
-                expect(typesIso.isInteger(null)).to.be.false;
-                expect(typesIso.isInteger(undefined)).to.be.false;
-                expect((typesIso.isInteger as any)()).to.be.false;
+            it(`returns false given an integer-like string (that's what isIntegerLike is for)`, function() {
+                ints.forEach(int => expect(typesIso.isInteger(`${int}`)).to.be.false);
+                intsWDots.forEach(int => expect(typesIso.isInteger(`${int}`)).to.be.false);
+            });
+            it(`returns false given Infinity or -Infinity`, function() {
+                expect(typesIso.isInteger(Infinity)).to.be.false;
+                expect(typesIso.isInteger(-Infinity)).to.be.false;
+            });
+            it(`returns false given a non-integer-like number`, function() {
+                nonIntNums.forEach(num => expect(typesIso.isInteger(`${num}`)).to.be.false);
             });
         });
 
@@ -609,3 +613,72 @@ describe(`types sub-modules`, function() {
         });
     });
 });
+
+/******************************************** HELPERS *********************************************/
+/**
+ * Run sequence of tests against any function expected to return false for all non-numbers
+ * @param {string}   fnName    Name of function being tested.
+ * @param {Function} isIntFunc Actual function being tested.
+ */
+function numberDetectorFunctionTests(fnName: string, testFunc: (val: any) => boolean) {
+    expectFunctionExists(testFunc);
+    it(`returns false given an empty object`, function() {
+        expect(testFunc({})).to.be.false;
+    });
+    it(`returns false given an object with data, even numeric data`, function() {
+        expect(testFunc({test: 'value'})).to.be.false;
+        expect(testFunc({'1': 1})).to.be.false;
+        expect(testFunc({'0': 0})).to.be.false;
+        expect(testFunc({0: 0})).to.be.false;
+        expect(testFunc({1: 1})).to.be.false;
+        expect(testFunc({1: ''})).to.be.false;
+        expect(testFunc({'someValue': 5})).to.be.false;
+    });
+    it(`returns false if given a boolean`, function() {
+        expect(testFunc(false)).to.be.false;
+        expect(testFunc(true)).to.be.false;
+    });
+    it(`returns false if given an empty array`, function() {
+        expect(testFunc([])).to.be.false;
+    });
+    it(`returns false if given an array with data`, function() {
+        expect(testFunc([0])).to.be.false;
+        expect(testFunc([1])).to.be.false;
+        expect(testFunc([0, 1])).to.be.false;
+        expect(testFunc([324, 121, 1523, 123])).to.be.false;
+        expect(testFunc(['0'])).to.be.false;
+        expect(testFunc(['1'])).to.be.false;
+        expect(testFunc([true])).to.be.false;
+    });
+    it(`returns false if given null`, function() {
+        expect(testFunc(null)).to.be.false;
+    });
+    it(`returns false if given undefined or no value at all`, function() {
+        expect(testFunc(undefined)).to.be.false;
+        expect((testFunc as any)()).to.be.false;
+    });
+    it(`returns false if given NaN`, function() {
+        expect(testFunc(NaN)).to.be.false;
+    });
+    it(`returns false if given an empty string`, function() {
+        expect(testFunc('')).to.be.false;
+    });
+    it(`returns false if given a non-empty string`, function() {
+        expect(testFunc('gr')).to.be.false;
+        expect(testFunc('okokokok')).to.be.false;
+        expect(testFunc('some test value')).to.be.false;
+        expect(testFunc(' ')).to.be.false;
+    });
+    it(`returns false if given a function that resolves to an int`, function() {
+        expect(testFunc(() => 23)).to.be.false;
+        expect(testFunc(() => 1)).to.be.false;
+    });
+    it(`returns false if given any function`, function() {
+        expect(testFunc((arg1) => console.log(arg1))).to.be.false;
+        expect(testFunc(
+            function someTestFunction() {
+                console.log('Random behaviour for test function');
+            }
+        )).to.be.false;
+    });
+}
