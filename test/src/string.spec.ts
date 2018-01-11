@@ -518,6 +518,10 @@ describe(`string sub-module`, function() {
             const initStr = 'Hello world';
             expect(removeMatchingText(initStr, 'grargh')).to.eql(initStr);
         });
+        it(`Removes match only at beginning or end of string if regexp requests it`, function() {
+            const initStr = 'Hello old world';
+            expect(removeMatchingText(initStr, /ld$/g)).to.eql('Hello old wor');
+        });
     });
 
     describe(`withLeftIndent -- special string template type`, function() {
@@ -737,7 +741,7 @@ describe(`string sub-module`, function() {
 
     describe(`matchFirst`, function() {
         const testStr = 'TEST :: String to search in';
-        
+
         it(`if given a string to find, returns 1st matching substring (it'll always be the ` +
            `string being searched for)`, function() {
             expect(matchFirst(testStr, 'TEST')).to.eql('TEST');
