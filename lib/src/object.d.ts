@@ -113,6 +113,16 @@ export declare function merge(): {};
  * [NON-MUTATIVE] return empty object ({})
  */
 export declare function merge(obj: null | undefined): {};
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
 /*********************************** ADD NEW OBJECT PROPERTIES ************************************/
 /**
  * Create settings object for an immutable property.
@@ -123,7 +133,19 @@ export declare const immutablePropConfig: <T = any>(value: T) => {
     writable: boolean;
     value: T;
 };
+/**
+ * Create settings object for a mutable but irremovable property.
+ */
 export declare const mutablePropConfig: <T = any>(value: T) => {
+    enumerable: boolean;
+    configurable: boolean;
+    writable: boolean;
+    value: T;
+};
+/**
+ * Create settings object for a mutable and removable property.
+ */
+export declare const deletablePropConfig: <T = any>(value: T) => {
     enumerable: boolean;
     configurable: boolean;
     writable: boolean;
@@ -140,7 +162,7 @@ export declare const mutablePropConfig: <T = any>(value: T) => {
  * @param {boolean} mutable If true, make new property mutable. Defaults to false.
  * @return {Object} with new property added.
  */
-export declare const defineProp: <NewKVPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, val: any, mutable?: boolean) => InputObject & NewKVPair;
+export declare const defineProp: <NewKVPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, val: any, mutable?: boolean | "deletable" | "mutable" | "immutable") => InputObject & NewKVPair;
 /**
  * Define an immutable public property on an object.
  * @generic <NewKVPairs> - Interface containing new prop and its type
