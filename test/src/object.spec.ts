@@ -7,7 +7,7 @@ import { expectNonEmptyObjectExists } from '../../src/node/test';
 
 /******************************** IMPORT OBJECT MODULE FOR TESTING ********************************/
 import { m_, object, assignFrozenClone, merge,
-        defineImmutableProp, defineMutableProp, defineProp, defineGetterProp,
+        defineImmutableProp, defineMutableProp, defineDeletableProp, defineProp, defineGetterProp,
         numKeys, hasKey, inspectKeyTree,
         eachPair, isMultilangTextObj, get } from '../../shared';
 import { expectFunctionExists } from '../../node';
@@ -344,6 +344,33 @@ describe(`object sub-module`, function() {
         it(`should return the original object with properties added`, function() {
             const obj = { };
             const newObj = defineMutableProp<{ gr: string }, typeof obj>(obj, 'gr', 'argh');
+            expect(newObj.gr).to.eql('argh');
+        });
+    });
+
+    describe(`defineDeletableProp`, function() {
+        expectFunctionExists(m_.object.defineDeletableProp);
+        expectFunctionExists(defineDeletableProp);
+        it(`should be able to add a new property to an object by mutating it externally`, function() {
+            const obj = { };
+            defineDeletableProp(obj, 'a', 'eh');
+            expect((obj as any).a).to.equal('eh');
+        });
+        it(`should be able to overwrite properties it has already defined`, function() {
+            const obj = { };
+            defineDeletableProp(obj, 'a', 'eh');
+            defineDeletableProp(obj, 'a', 'okok'); // Should change the value.
+            expect((obj as any).a).to.equal('okok');
+        });
+        it(`should allow properties it's used to define to be deleted`, function() {
+            const obj = { };
+            defineDeletableProp(obj, 'a', 'eh');
+            delete (obj as any).a;
+            expect((obj as any).a).to.be.undefined;
+        });
+        it(`should return the original object with properties added`, function() {
+            const obj = { };
+            const newObj = defineDeletableProp<{ gr: string }, typeof obj>(obj, 'gr', 'argh');
             expect(newObj.gr).to.eql('argh');
         });
     });
