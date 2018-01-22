@@ -1,3 +1,12 @@
+0.49.0
+======
+Added 'addDeletableProp' method to object module
+- same signature as addMutableProp & addImmutableProp:
+    <O extends object, Extensions>(obj: O, propertyName: string, value: any): O & Extensions
+Added 'deletable', 'mutable', & 'immutable' opts to 3rd arg in defineProp function 
+Better docs for prop assignments
+Removed exported mutablePropConfig, immutablePropConfig objects
+
 0.48.0
 ======
 isInteger (isInt) & isIntegerLike (isIntLike) made saner & more robust:
