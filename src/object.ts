@@ -445,41 +445,36 @@ export const deletablePropConfig = <T = any>(value: T) => ({
 // Select correct defineProperty (for use with defineImmutableProp)
 const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
 
-// TODO test defineProp
 /**
- * Define a property on an object. By default
+ * Define a new property on an object. Does not overwrite existing property.
  * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <InputObject> - Type of object being merged into
  *
  * @param {Object} obj Object being merged into
  * @param {string} keyName Name of property to assign value at
- * @param {RealAny} val Value to assign to property on object 'obj' (first param)
+ * @param {RealAny} value Value to assign to property on object 'obj' (first param)
  * @param {boolean} mutable If true, make new property mutable. Defaults to false.
  * @return {Object} with new property added.
  */
 export const defineProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject,
     keyName: string,
-    val: RealAny,
+    value: RealAny,
     mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
 ): InputObject & NewKVPair => {
-    // Which property config to return
-    let propConfig;
-
-    if (mutable === false || mutable === 'immutable') {
-        propConfig = immutablePropConfig(val);
-    } else if (mutable === true || mutable === 'mutable') {
-        propConfig = mutablePropConfig(val);
-    } else {
-        propConfig = deletablePropConfig(val);
-    }
-
-    defineProperty(obj, keyName, propConfig);
+    defineProperty(obj, keyName, {
+        enumerable: true,
+        configurable: mutable === 'deletable',
+        writable: (mutable !== false) && (mutable !== 'immutable'),
+        value
+    });
     return obj as InputObject & NewKVPair;
 };
 
+export {defineProp as defineProperty}
+
 /**
- * Define an immutable public property on an object.
+ * Define an immutable public property on an object. Does not overwrite existing property.
  * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <InputObject> - Type of object being merged into
  *
@@ -491,8 +486,8 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
 export const defineImmutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject, keyName: string, propVal: RealAny
 ): InputObject & NewKVPair => {
-    defineProp(obj, keyName, propVal, 'immutable');
-    return obj as InputObject & NewKVPair;
+    const res = defineProp(obj, keyName, propVal, 'immutable');
+    return (res || obj) as InputObject & NewKVPair;
 };
 
 export { defineImmutableProp as defineImmutableMethod }
@@ -500,7 +495,7 @@ export { defineImmutableProp as addImmutableProp }
 export { defineImmutableProp as addImmutableMethod }
 
 /**
- * Define a mutable (but not deletable) public property on an object.
+ * Define a mutable but not deletable public property on an obj. Doesn't overwrite existing props.
  * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <InputObject> - Type of object being merged into
  *
@@ -522,7 +517,7 @@ export { defineMutableProp as addMutableProp }
 export { defineMutableProp as addMutableMethod }
 
 /**
- * Define a deletable (and mutable) public property on an object.
+ * Define a deletable & mutable public property on an object. Doesn't overwrite existing props.
  * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <InputObject> - Type of object being merged into
  *
