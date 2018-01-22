@@ -372,39 +372,46 @@ describe(`object sub-module`, function() {
     describe(`defineProp`, function() {
         expectFunctionExists(m_.object.defineProp);
         expectFunctionExists(defineProp);
+
         it(`can add new property to object by mutating it externally`, function() {
             const obj = {};
             defineProp<{b: string}>(obj, 'b', 'bee');
             expect((obj as any).b).to.equal('bee');
         });
+
         it(`should return the original object with properties added`, function() {
             const obj = {};
             const newObj = defineProp<{a: string}>(obj, 'a', 'ehh');
             expect(newObj.a).to.equal('ehh');
         });
+
         it(`can add new getter property to object by mutating it externally`, function() {
             const obj = {};
             defineProp<{a: string}>(obj, 'a', 'ehh');
             expect((obj as any).a).to.equal('ehh');
         });
+
         it(`should not be able to overwrite properties it has already defined by default`, function() {
             const obj = {};
             defineProp(obj, 'b', 'bee');
             defineProp(obj, 'b', 'BEEEEEEE'); // Should not change the value.
             expect((obj as any).b).to.equal('bee');
         });
+
         it(`should not be able to overwrite properties it has already defined if mutable arg = false`, function() {
             const obj = {};
             defineProp(obj, 'a', 'eh', false);
             defineProp(obj, 'a', 'okok', false); // Should not change the value.
             expect((obj as any).a).to.equal('eh');
         });
+
         it(`should be able to overwrite already-defined property if mutable arg was true`, function() {
             const obj = {};
             defineProp(obj, 'a', 'eh', true);
             defineProp(obj, 'a', 'okok', true); // Should change the value.
             expect((obj as any).a).to.equal('okok');
         });
+
         it(`should allow edits & deletion of prop defined w mutable arg 'deletable'`, function() {
             const obj = {};
             // Should set the prop.
@@ -416,13 +423,6 @@ describe(`object sub-module`, function() {
             // Should allow deletion of the prop.
             delete newObj.a;
             expect(newObj.a).to.be.undefined;
-        });
-        it(`should both return a new object and mutate the original`, function() {
-            let obj = {};
-            // Should set the prop.
-            let newObj = defineProp<{a: string}, typeof obj>(obj, 'a', 'eh', 'deletable');
-            expect(newObj.a).to.equal('eh');
-            expect((obj as typeof newObj).a).to.equal('eh');
         });
     });
 });
