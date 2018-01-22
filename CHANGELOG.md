@@ -6,6 +6,7 @@ Added 'addDeletableProp' method to object module
 Added 'deletable', 'mutable', & 'immutable' opts to 3rd arg in defineProp function 
 Better docs for prop assignments
 Removed exported mutablePropConfig, immutablePropConfig objects
+Object module cleanups
 
 0.48.0
 ======
