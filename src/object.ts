@@ -1,14 +1,13 @@
 /******************************************** IMPORTS *********************************************/
-import { isNonexistentOrString, RealAny, isArray } from './types-iso';
-import { matchesIgnoreCase, replaceAll } from './string';
-import { englishVariants, frenchVariants } from './internal/lang-constants';
-import { flatten } from './array';
+import {isNonexistentOrString, RealAny, isArray} from './types-iso';
+import {matchesIgnoreCase, replaceAll} from './string';
+import {englishVariants, frenchVariants} from './internal/lang-constants';
+import {flatten} from './array';
 
 import deepFreezeStrict = require('deep-freeze-strict');
-import { isVerbose } from 'env-var-helpers';
-import * as isNode from 'detect-node';
+import {isVerbose} from 'env-var-helpers';
 
-const { assign } = Object;
+const {assign} = Object;
 
 /********************************************* OBJECT *********************************************/
 /**
@@ -16,9 +15,8 @@ const { assign } = Object;
  * @param {...Object[]} args - Any # of objects to merge together into the merged clone object.
  * @return {Object} Frozen merged version of provided objects. Clones originals - no mutation.
  */
-export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> => {
-    return deepFreezeStrict<T>(assign({}, ...args));
-};
+export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> =>
+    deepFreezeStrict<T>(assign({}, ...args));
 
 /**
  * [MUTATIVE] Deep freeze the given object.
@@ -27,9 +25,7 @@ export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> => {
  *                          the object itself as well - it does not create a
  *                          frozen copy (the return is for convenience).
  */
-export const deepFreeze = <T>(obj: T): Readonly<T> => {
-    return deepFreezeStrict<T>(obj);
-};
+export const deepFreeze = <T>(obj: T): Readonly<T> => deepFreezeStrict<T>(obj);
 
 const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
 
@@ -45,26 +41,33 @@ const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
 export const get = <O = any, T extends object = {}>(
     objIn: T,
     propPath: string[] | string,
-    defaultValue: O = undefined
+    defaultValue: O = undefined,
 ): O => {
     // Handle bad values
-    if ((typeof objIn === 'undefined')
-        || (objIn == null)
-        || (isNaN(objIn as any) && (objIn instanceof Number || typeof objIn === 'number'))
-        || (propPath === '')
-        || (propPath == null)
-        || (typeof propPath === 'undefined')
+    if (
+        typeof objIn === 'undefined' ||
+        objIn == null ||
+        (isNaN(objIn as any) && (objIn instanceof Number || typeof objIn === 'number')) ||
+        propPath === '' ||
+        propPath == null ||
+        typeof propPath === 'undefined'
     ) {
         return defaultValue;
     }
 
-    const propArr = (typeof propPath === 'string')
-        ? flatten(
-            propPath.replace(/\.\.+/g, '.')
-                    .split('.')
-                    .map(str => str.match(braceMatchRegex)
-                                   .filter(subStr => (subStr !== ']') && (subStr !== '['))))
-        : propPath;
+    const propArr =
+        typeof propPath === 'string'
+            ? flatten(
+                  propPath
+                      .replace(/\.\.+/g, '.')
+                      .split('.')
+                      .map(str =>
+                          str
+                              .match(braceMatchRegex)
+                              .filter(subStr => subStr !== ']' && subStr !== '['),
+                      ),
+              )
+            : propPath;
 
     return (propArr as Array<string>).reduce((obj, objPathPt: string) => {
         const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
@@ -84,20 +87,20 @@ export const get = <O = any, T extends object = {}>(
 export const isMultilangTextObj = (obj: RealAny): boolean => {
     let matchingKey;
     return !!(
-        typeof obj === 'object' && obj !== null
-        && Object.keys(obj).length > 0
-        && Object.keys(obj).find(key => {
-            if (englishVariants.find(matchesIgnoreCase(key)) ||
-                frenchVariants.find(matchesIgnoreCase(key)))
-            {
+        typeof obj === 'object' &&
+        obj !== null &&
+        Object.keys(obj).length > 0 &&
+        Object.keys(obj).find(key => {
+            if (
+                englishVariants.find(matchesIgnoreCase(key)) ||
+                frenchVariants.find(matchesIgnoreCase(key))
+            ) {
                 matchingKey = key;
                 return true;
             }
-        })
-        && (typeof matchingKey === 'string'
-            || matchingKey == null
-            || matchingKey == undefined)
-        && isNonexistentOrString(obj[matchingKey])
+        }) &&
+        (typeof matchingKey === 'string' || matchingKey == null || matchingKey == undefined) &&
+        isNonexistentOrString(obj[matchingKey])
     );
 };
 
@@ -109,9 +112,9 @@ export const isMultilangTextObj = (obj: RealAny): boolean => {
  * @param {T extends object} obj - Object to iterate over.
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
-export const eachPair =
-    <T extends Object>(func: ((val: T[keyof T], key?: keyof T) => void | RealAny)) => (obj: T): T =>
-{
+export const eachPair = <T extends Object>(
+    func: ((val: T[keyof T], key?: keyof T) => void | RealAny),
+) => (obj: T): T => {
     Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
     return obj;
 };
@@ -124,8 +127,8 @@ export const eachPair =
 export const numKeys = (obj: RealAny): number => {
     if (typeof obj !== 'object' || obj == null || obj == undefined) return 0;
     return Object.keys(obj).length;
-}
-export { numKeys as numPairs };
+};
+export {numKeys as numPairs};
 
 // TODO Test inspectKeyTree
 /**
@@ -137,13 +140,16 @@ export { numKeys as numPairs };
  *                                         chain position & the associated objects' names.
  * @return {string[]} List of keys in obj & its prototype chain (w/ hidden keys if showHidden=true)
  */
-export const inspectKeyTree = (obj, showHidden = true, showProtoChainPosition = false): string[] =>
-{
+export const inspectKeyTree = (
+    obj,
+    showHidden = true,
+    showProtoChainPosition = false,
+): string[] => {
     const getKeys = showHidden ? Object.getOwnPropertyNames : Object.keys;
-    const getName = (obj) => obj && obj.constructor && obj.constructor.name;
+    const getName = obj => obj && obj.constructor && obj.constructor.name;
 
-    const proto =  obj    && (obj as any).__proto__;
-    const proto2 = proto  && (proto as any).__proto__;
+    const proto = obj && (obj as any).__proto__;
+    const proto2 = proto && (proto as any).__proto__;
     const proto3 = proto2 && (proto2 as any).__proto__;
     const proto4 = proto3 && (proto3 as any).__proto__;
     const proto5 = proto4 && (proto4 as any).__proto__;
@@ -151,37 +157,40 @@ export const inspectKeyTree = (obj, showHidden = true, showProtoChainPosition = 
     const proto7 = proto6 && (proto6 as any).__proto__;
     const proto8 = proto7 && (proto7 as any).__proto__;
 
-    const objData = { name: getName(obj), keys: getKeys(obj), };
-    if (proto)  assign(objData, { __proto__:  {name: getName(proto),  keys: getKeys(proto)} });
-    if (proto2) assign(objData, { __proto__2: {name: getName(proto2), keys: getKeys(proto2)} });
-    if (proto3) assign(objData, { __proto__3: {name: getName(proto3), keys: getKeys(proto3)} });
-    if (proto4) assign(objData, { __proto__4: {name: getName(proto4), keys: getKeys(proto4)} });
-    if (proto5) assign(objData, { __proto__5: {name: getName(proto5), keys: getKeys(proto5)} });
-    if (proto6) assign(objData, { __proto__6: {name: getName(proto6), keys: getKeys(proto6)} });
-    if (proto7) assign(objData, { __proto__7: {name: getName(proto7), keys: getKeys(proto7)} });
-    if (proto8) assign(objData, { __proto__8: {name: getName(proto8), keys: getKeys(proto8)} });
+    const objData = {name: getName(obj), keys: getKeys(obj)};
+    if (proto) assign(objData, {__proto__: {name: getName(proto), keys: getKeys(proto)}});
+    if (proto2) assign(objData, {__proto__2: {name: getName(proto2), keys: getKeys(proto2)}});
+    if (proto3) assign(objData, {__proto__3: {name: getName(proto3), keys: getKeys(proto3)}});
+    if (proto4) assign(objData, {__proto__4: {name: getName(proto4), keys: getKeys(proto4)}});
+    if (proto5) assign(objData, {__proto__5: {name: getName(proto5), keys: getKeys(proto5)}});
+    if (proto6) assign(objData, {__proto__6: {name: getName(proto6), keys: getKeys(proto6)}});
+    if (proto7) assign(objData, {__proto__7: {name: getName(proto7), keys: getKeys(proto7)}});
+    if (proto8) assign(objData, {__proto__8: {name: getName(proto8), keys: getKeys(proto8)}});
 
     if (showProtoChainPosition) {
-        console.log(assign({}, objData, {
-            prototypeKeys:   obj.prototype   ? getKeys(obj.prototype)   : [],
-            constructorKeys: obj.constructor ? getKeys(obj.constructor) : [],
-        }));
+        console.log(
+            assign({}, objData, {
+                prototypeKeys: obj.prototype ? getKeys(obj.prototype) : [],
+                constructorKeys: obj.constructor ? getKeys(obj.constructor) : [],
+            }),
+        );
     }
 
-    const allKeysInPrototypeChain =
-        getKeys(objData)
-            .reduce((acc, collKey) => (collKey === 'name' || collKey === 'keys')
-                                          ? acc
-                                          : acc.concat(objData[collKey].keys), [])
-            .concat(objData.keys || []);
+    const allKeysInPrototypeChain = getKeys(objData)
+        .reduce(
+            (acc, collKey) =>
+                collKey === 'name' || collKey === 'keys' ? acc : acc.concat(objData[collKey].keys),
+            [],
+        )
+        .concat(objData.keys || []);
     console.log(allKeysInPrototypeChain);
 
     return allKeysInPrototypeChain;
 };
 
-export { inspectKeyTree as inspectKeys }
-export { inspectKeyTree as keyInspector }
-export { inspectKeyTree as keyTreeInspector }
+export {inspectKeyTree as inspectKeys};
+export {inspectKeyTree as keyInspector};
+export {inspectKeyTree as keyTreeInspector};
 
 /**
  * Determine if an object contains a given key.
@@ -196,17 +205,14 @@ export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
     }
     return false;
 };
-export { hasKey as containsKey };
-export { hasKey as includesKey };
-
+export {hasKey as containsKey};
+export {hasKey as includesKey};
 
 // /**
 //  * @returns true if object contains given key
 //  */
 // export const containsKey = (obj: object, key: string): boolean =>
 //     Object.keys(obj).some(objKet => objKet === key);
-
-
 
 /********************************************* MERGE **********************************************/
 export type MergeParamTypes<T> = Object | string | T[] | any[] | null | undefined;
@@ -219,7 +225,18 @@ export type MergeReturnTypes<T> = Object | string | T[] | any[] | {};
  * @return {Object} conglomerate object. Contains all key-value pairs from all args given.
  */
 export function merge<P, Q, R, S, T, U, V, W, X, Y, Z, L>(
-    o1: P, o2?: Q, o3?: R, o4?: S, o5?: T, o6?: U, o7?: V, o8?: W, o9?: X, o10?: Y, o11?: Z, o12?: L
+    o1: P,
+    o2?: Q,
+    o3?: R,
+    o4?: S,
+    o5?: T,
+    o6?: U,
+    o7?: V,
+    o8?: W,
+    o9?: X,
+    o10?: Y,
+    o11?: Z,
+    o12?: L,
 ): P & Q & R & S & T & U & V & W & X & Y & Z & L;
 
 /**
@@ -272,7 +289,7 @@ export function merge<T>(...objs: MergeParamTypes<T>[]): MergeReturnTypes<T> {
     // Handle no given params. Return {} in this case.
     if (objs.length === 0) return {};
     // Determine if first value is null or undefined.
-    const isFirstUndef = typeof objs[0] === 'undefined' ;
+    const isFirstUndef = typeof objs[0] === 'undefined';
     const isFirstNull = objs[0] == null;
     const isFirstEmpty = isFirstUndef || isFirstNull;
 
@@ -312,35 +329,153 @@ export function merge<T>(...objs: MergeParamTypes<T>[]): MergeReturnTypes<T> {
         return objs.reduce((acc: Object, curObj: Object) => {
             if (typeof curObj === 'undefined' || curObj == null) return acc;
             if (typeof curObj === 'string' || isArray(curObj) || typeof curObj !== 'object') {
-                throw new Error(`If given object as the 1st value, merge will only accept ` +
-                    `objects for the rest of the values, However, merge was given a ` +
-                    `${isArray(curObj) ? 'array' : typeof curObj}.`);
+                throw new Error(
+                    `If given object as the 1st value, merge will only accept ` +
+                        `objects for the rest of the values, However, merge was given a ` +
+                        `${isArray(curObj) ? 'array' : typeof curObj}.`,
+                );
             }
             return assign(acc, curObj);
         }, {});
     }
+}
+
+/*********************************** ADD NEW OBJECT PROPERTIES ************************************/
+// Select correct defineProperty (for use with defineImmutableProp)
+const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
+
+/**
+ * Define a new property on an object. Does not overwrite existing property.
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @param {Object} obj Object being merged into
+ * @param {string} keyName Name of property to assign value at
+ * @param {RealAny} value Value to assign to property on object 'obj' (first param)
+ * @param {boolean} mutable If true, make new property mutable. Defaults to false.
+ * @return {Object} with new property added.
+ */
+export const defineProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    value: RealAny,
+    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
+): InputObject & NewKVPair => {
+    defineProperty(obj, keyName, {
+        enumerable: true,
+        configurable: mutable === 'deletable',
+        writable: mutable !== false && mutable !== 'immutable',
+        value,
+    });
+    return obj as InputObject & NewKVPair;
 };
 
+export {defineProp as defineProperty};
+
+/**
+ * Define an immutable public property on an object. Does not overwrite existing property.
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ * @return {Object} Initial object with given property added
+ */
+export const defineImmutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    propVal: RealAny,
+): InputObject & NewKVPair => {
+    const res = defineProp(obj, keyName, propVal, 'immutable');
+    return (res || obj) as InputObject & NewKVPair;
+};
+
+export {defineImmutableProp as defineImmutableMethod};
+export {defineImmutableProp as addImmutableProp};
+export {defineImmutableProp as addImmutableMethod};
+
+/**
+ * Define a mutable but not deletable public property on an obj. Doesn't overwrite existing props.
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ *
+ * @return {Object} Initial object with given property added
+ */
+export const defineMutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    propVal: RealAny,
+): InputObject & NewKVPair => {
+    defineProp(obj, keyName, propVal, 'mutable');
+    return obj as InputObject & NewKVPair;
+};
+
+export {defineMutableProp as defineMutableMethod};
+export {defineMutableProp as addMutableProp};
+export {defineMutableProp as addMutableMethod};
+
+/**
+ * Define a deletable & mutable public property on an object. Doesn't overwrite existing props.
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ *
+ * @return {Object} Initial object with given property added
+ */
+export const defineDeletableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    propVal: RealAny,
+): InputObject & NewKVPair => {
+    defineProp(obj, keyName, propVal, 'deletable');
+    return obj as InputObject & NewKVPair;
+};
+
+export {defineDeletableProp as defineDeletableMethod};
+export {defineDeletableProp as addDeletableProp};
+export {defineDeletableProp as addDeletableMethod};
+
+/**
+ * Define a public mutable (even deletable) getter property on an object.
+ * @generic <InputObject> - Type of object being merged into.
+ * @generic <NProps> - Interface containing new getter prop and its type.
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} keyName - Name of new getter prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new getter property.
+ *
+ * @return {Object} Initial object with given property added
+ */
+export const defineGetterProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    propVal: () => any,
+): InputObject & NewKVPair => {
+    defineProperty(obj, keyName, {enumerable: true, configurable: true, get: propVal});
+    return obj as InputObject & NewKVPair;
+};
+
+export {defineGetterProp as addGetterProp};
+export {defineGetterProp as addGetter};
+export {defineGetterProp as defineGetter};
+export {defineGetterProp as addGetProp};
+export {defineGetterProp as defineGetProp};
 
 
 
 
-
-
-
 /**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/****************************************** UNPUBLISHED *******************************************/
+/* UNPUBLISHED ************************************************************************************/
 function isNonArrayOrFuncObj(val: RealAny) {
     return val != null && typeof val === 'object' && Array.isArray(val) === false;
-
 }
 
 function isObjectObject(val: RealAny) {
@@ -362,7 +497,7 @@ function isPlainObject(val: RealAny) {
 
     // Most likely a plain Object
     return true;
-};
+}
 
 function isObject(val: RealAny) {
     return val != null && (isPlainObject(val) || typeof val === 'function' || Array.isArray(val));
@@ -392,173 +527,5 @@ function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Ob
     }
     return res;
 }
+/* END UNPUBLISHED ********************************************************************************/
 /**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-
-
-
-
-
-
-
-
-/*********************************** ADD NEW OBJECT PROPERTIES ************************************/
-// TODO test immutablePropConfig
-/**
- * Create settings object for an immutable property.
- */
-export const immutablePropConfig = <T = any>(value: T) => ({
-    enumerable: true,
-    configurable: false,
-    writable: false,
-    value
-});
-
-/**
- * Create settings object for a mutable but irremovable property.
- */
-export const mutablePropConfig = <T = any>(value: T) => ({
-    enumerable: true,
-    configurable: false,
-    writable: true,
-    value
-});
-
-/**
- * Create settings object for a mutable and removable property.
- */
-export const deletablePropConfig = <T = any>(value: T) => ({
-    enumerable: true,
-    configurable: true,
-    writable: true,
-    value
-});
-
-// Select correct defineProperty (for use with defineImmutableProp)
-const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
-
-/**
- * Define a new property on an object. Does not overwrite existing property.
- * @generic <NewKVPairs> - Interface containing new prop and its type
- * @generic <InputObject> - Type of object being merged into
- *
- * @param {Object} obj Object being merged into
- * @param {string} keyName Name of property to assign value at
- * @param {RealAny} value Value to assign to property on object 'obj' (first param)
- * @param {boolean} mutable If true, make new property mutable. Defaults to false.
- * @return {Object} with new property added.
- */
-export const defineProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
-    obj: InputObject,
-    keyName: string,
-    value: RealAny,
-    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
-): InputObject & NewKVPair => {
-    defineProperty(obj, keyName, {
-        enumerable: true,
-        configurable: mutable === 'deletable',
-        writable: (mutable !== false) && (mutable !== 'immutable'),
-        value
-    });
-    return obj as InputObject & NewKVPair;
-};
-
-export {defineProp as defineProperty}
-
-/**
- * Define an immutable public property on an object. Does not overwrite existing property.
- * @generic <NewKVPairs> - Interface containing new prop and its type
- * @generic <InputObject> - Type of object being merged into
- *
- * @prop {Object} obj - Object being merged into.
- * @prop {string} keyName - Name of new prop to add to the gven object.
- * @prop {string} propVal - Actual value to assign to the new property.
- * @return {Object} Initial object with given property added
- */
-export const defineImmutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
-    obj: InputObject, keyName: string, propVal: RealAny
-): InputObject & NewKVPair => {
-    const res = defineProp(obj, keyName, propVal, 'immutable');
-    return (res || obj) as InputObject & NewKVPair;
-};
-
-export { defineImmutableProp as defineImmutableMethod }
-export { defineImmutableProp as addImmutableProp }
-export { defineImmutableProp as addImmutableMethod }
-
-/**
- * Define a mutable but not deletable public property on an obj. Doesn't overwrite existing props.
- * @generic <NewKVPairs> - Interface containing new prop and its type
- * @generic <InputObject> - Type of object being merged into
- *
- * @prop {Object} obj - Object being merged into.
- * @prop {string} keyName - Name of new prop to add to the gven object.
- * @prop {string} propVal - Actual value to assign to the new property.
- *
- * @return {Object} Initial object with given property added
- */
-export const defineMutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
-    obj: InputObject, keyName: string, propVal: RealAny
-): InputObject & NewKVPair => {
-    defineProp(obj, keyName, propVal, 'mutable');
-    return obj as InputObject & NewKVPair;
-};
-
-export { defineMutableProp as defineMutableMethod }
-export { defineMutableProp as addMutableProp }
-export { defineMutableProp as addMutableMethod }
-
-/**
- * Define a deletable & mutable public property on an object. Doesn't overwrite existing props.
- * @generic <NewKVPairs> - Interface containing new prop and its type
- * @generic <InputObject> - Type of object being merged into
- *
- * @prop {Object} obj - Object being merged into.
- * @prop {string} keyName - Name of new prop to add to the gven object.
- * @prop {string} propVal - Actual value to assign to the new property.
- *
- * @return {Object} Initial object with given property added
- */
-export const defineDeletableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
-    obj: InputObject, keyName: string, propVal: RealAny
-): InputObject & NewKVPair => {
-    defineProp(obj, keyName, propVal, 'deletable');
-    return obj as InputObject & NewKVPair;
-};
-
-export { defineDeletableProp as defineDeletableMethod }
-export { defineDeletableProp as addDeletableProp }
-export { defineDeletableProp as addDeletableMethod }
-
-
-/**
- * Define a public mutable (even deletable) getter property on an object.
- * @generic <InputObject> - Type of object being merged into.
- * @generic <NProps> - Interface containing new getter prop and its type.
- *
- * @prop {Object} obj - Object being merged into.
- * @prop {string} keyName - Name of new getter prop to add to the gven object.
- * @prop {string} propVal - Actual value to assign to the new getter property.
- *
- * @return {Object} Initial object with given property added
- */
-export const defineGetterProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
-    obj: InputObject, keyName: string, propVal: () => any
-): InputObject & NewKVPair => {
-    defineProperty(obj, keyName, { enumerable: true, configurable: true, get: propVal });
-    return obj as InputObject & NewKVPair;
-};
-
-export { defineGetterProp as addGetterProp }
-export { defineGetterProp as addGetter }
-export { defineGetterProp as defineGetter }
-export { defineGetterProp as addGetProp }
-export { defineGetterProp as defineGetProp }

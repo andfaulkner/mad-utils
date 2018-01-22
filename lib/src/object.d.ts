@@ -113,44 +113,6 @@ export declare function merge(): {};
  * [NON-MUTATIVE] return empty object ({})
  */
 export declare function merge(obj: null | undefined): {};
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/**************************************************************************************************/
-/*********************************** ADD NEW OBJECT PROPERTIES ************************************/
-/**
- * Create settings object for an immutable property.
- */
-export declare const immutablePropConfig: <T = any>(value: T) => {
-    enumerable: boolean;
-    configurable: boolean;
-    writable: boolean;
-    value: T;
-};
-/**
- * Create settings object for a mutable but irremovable property.
- */
-export declare const mutablePropConfig: <T = any>(value: T) => {
-    enumerable: boolean;
-    configurable: boolean;
-    writable: boolean;
-    value: T;
-};
-/**
- * Create settings object for a mutable and removable property.
- */
-export declare const deletablePropConfig: <T = any>(value: T) => {
-    enumerable: boolean;
-    configurable: boolean;
-    writable: boolean;
-    value: T;
-};
 /**
  * Define a new property on an object. Does not overwrite existing property.
  * @generic <NewKVPairs> - Interface containing new prop and its type
