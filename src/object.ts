@@ -322,6 +322,94 @@ export function merge<T>(...objs: MergeParamTypes<T>[]): MergeReturnTypes<T> {
 };
 
 
+
+
+
+
+
+
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/****************************************** UNPUBLISHED *******************************************/
+function isNonArrayOrFuncObj(val: RealAny) {
+    return val != null && typeof val === 'object' && Array.isArray(val) === false;
+
+}
+
+function isObjectObject(val: RealAny) {
+    return isNonArrayOrFuncObj(val) && Object.prototype.toString.call(val) === '[object Object]';
+}
+
+function isPlainObject(val: RealAny) {
+    // If it's an object that returns [object Object]'
+    if (isObjectObject(val) === false) return false;
+
+    // If it has a modified constructor
+    if (typeof val.constructor !== 'function') return false;
+
+    // If it has a modified prototype
+    if (isObjectObject(val.constructor.prototype) === false) return false;
+
+    // If constructor does not have an Object-specific method
+    if (val.constructor.prototype.hasOwnProperty('isPrototypeOf') === false) return false;
+
+    // Most likely a plain Object
+    return true;
+};
+
+function isObject(val: RealAny) {
+    return val != null && (isPlainObject(val) || typeof val === 'function' || Array.isArray(val));
+}
+
+function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Object) => boolean) {
+    if (!isObject(obj)) return {};
+
+    if (typeof props === 'function') {
+        fn = props;
+        props = [];
+    }
+
+    if (typeof props === 'string') props = [props];
+
+    const isFunction = typeof fn === 'function';
+    const keys = Object.keys(obj);
+    const res = {};
+
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        const val = obj[key];
+
+        if (!props || (props.indexOf(key) === -1 && (!isFunction || fn(val, key, obj)))) {
+            res[key] = val;
+        }
+    }
+    return res;
+}
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+/**************************************************************************************************/
+
+
+
+
+
+
+
+
 /*********************************** ADD NEW OBJECT PROPERTIES ************************************/
 // TODO test immutablePropConfig
 /**
@@ -334,7 +422,20 @@ export const immutablePropConfig = <T = any>(value: T) => ({
     value
 });
 
+/**
+ * Create settings object for a mutable but irremovable property.
+ */
 export const mutablePropConfig = <T = any>(value: T) => ({
+    enumerable: true,
+    configurable: false,
+    writable: true,
+    value
+});
+
+/**
+ * Create settings object for a mutable and removable property.
+ */
+export const deletablePropConfig = <T = any>(value: T) => ({
     enumerable: true,
     configurable: true,
     writable: true,
@@ -360,9 +461,20 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
     obj: InputObject,
     keyName: string,
     val: RealAny,
-    mutable = false
+    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
 ): InputObject & NewKVPair => {
-    defineProperty(obj, keyName, mutable ? mutablePropConfig(val) : immutablePropConfig(val));
+    // Which property config to return
+    let propConfig;
+
+    if (mutable === false || mutable === 'immutable') {
+        propConfig = immutablePropConfig(val);
+    } else if (mutable === true || mutable === 'mutable') {
+        propConfig = mutablePropConfig(val);
+    } else {
+        propConfig = deletablePropConfig(val);
+    }
+
+    defineProperty(obj, keyName, propConfig);
     return obj as InputObject & NewKVPair;
 };
 
