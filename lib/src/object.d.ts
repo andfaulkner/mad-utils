@@ -178,7 +178,7 @@ export { defineImmutableProp as defineImmutableMethod };
 export { defineImmutableProp as addImmutableProp };
 export { defineImmutableProp as addImmutableMethod };
 /**
- * Define a mutable (even deletable) public property on an object.
+ * Define a mutable (but not deletable) public property on an object.
  * @generic <NewKVPairs> - Interface containing new prop and its type
  * @generic <InputObject> - Type of object being merged into
  *
@@ -192,6 +192,21 @@ export declare const defineMutableProp: <NewKVPair extends Object = {}, InputObj
 export { defineMutableProp as defineMutableMethod };
 export { defineMutableProp as addMutableProp };
 export { defineMutableProp as addMutableMethod };
+/**
+ * Define a deletable (and mutable) public property on an object.
+ * @generic <NewKVPairs> - Interface containing new prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @prop {Object} obj - Object being merged into.
+ * @prop {string} keyName - Name of new prop to add to the gven object.
+ * @prop {string} propVal - Actual value to assign to the new property.
+ *
+ * @return {Object} Initial object with given property added
+ */
+export declare const defineDeletableProp: <NewKVPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, propVal: any) => InputObject & NewKVPair;
+export { defineDeletableProp as defineDeletableMethod };
+export { defineDeletableProp as addDeletableProp };
+export { defineDeletableProp as addDeletableMethod };
 /**
  * Define a public mutable (even deletable) getter property on an object.
  * @generic <InputObject> - Type of object being merged into.
