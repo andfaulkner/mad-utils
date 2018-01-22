@@ -405,5 +405,24 @@ describe(`object sub-module`, function() {
             defineProp(obj, 'a', 'okok', true); // Should change the value.
             expect((obj as any).a).to.equal('okok');
         });
+        it(`should allow edits & deletion of prop defined w mutable arg 'deletable'`, function() {
+            const obj = {};
+            // Should set the prop.
+            const newObj = defineProp<{a: string}, typeof obj>(obj, 'a', 'eh', 'deletable');
+            expect(newObj.a).to.equal('eh');
+            // Should allow modification of the prop.
+            newObj.a = 'ay-eeeee!';
+            expect(newObj.a).to.equal('ay-eeeee!');
+            // Should allow deletion of the prop.
+            delete newObj.a;
+            expect(newObj.a).to.be.undefined;
+        });
+        it(`should both return a new object and mutate the original`, function() {
+            let obj = {};
+            // Should set the prop.
+            let newObj = defineProp<{a: string}, typeof obj>(obj, 'a', 'eh', 'deletable');
+            expect(newObj.a).to.equal('eh');
+            expect((obj as typeof newObj).a).to.equal('eh');
+        });
     });
 });
