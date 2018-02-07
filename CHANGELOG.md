@@ -1,12 +1,9 @@
-0.49.0
+0.49.1
 ======
-Added 'addDeletableProp' method to object module
-- same signature as addMutableProp & addImmutableProp:
-    <O extends object, Extensions>(obj: O, propertyName: string, value: any): O & Extensions
-Added 'deletable', 'mutable', & 'immutable' opts to 3rd arg in defineProp function 
-Better docs for prop assignments
-Removed exported mutablePropConfig, immutablePropConfig objects
-Object module cleanups
+getDecoratorType function added to decorator.ts
+*   determines what type of decorator the arguments represent
+*   e.g. if arguments received by placing a decorator above a class, emits "CLASS";
+         on a static prop, it emits 'STATIC_PROPERTY', etc.
 
 0.48.0
 ======
