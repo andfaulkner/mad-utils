@@ -42,34 +42,10 @@ export function notForWebUse(
 
 export {notForWebUse as methodNotForWebUse};
 
+/***************************************** DECORATOR TYPE *****************************************/
 /**
- *  Perform actual decoration action, regardless of whether config was given or not
+ * Available decorator types
  */
-
-function testDec(name) {
-    return function testDecorator(...args): void {
-        const isConstructor = !!(args[0] && args[0].constructor);
-        const isProto = !!(args[0] && args[0].prototype);
-        log.info(
-            `testDec ~~[[${name}]]~~> declaration type :: ${getDeclarationType(...args)}`,
-            `\n  args:`,
-            args,
-            `\n  target:`,
-            args[0],
-            `\n  target.constructor:`,
-            args[0] && args[0].constructor,
-            `\n  target.prototype:`,
-            args[0] && args[0].prototype,
-            `\n  target[key]:`,
-            args[0] && args[0][args[1]],
-            `\n  target.prototype[key]:`,
-            isProto && args[0].prototype[args[1]],
-            `\n  target.constructor[key]:`,
-            isConstructor && args[0].constructor[args[1]],
-        );
-    };
-}
-
 export type DecoratorTargetType =
     | 'CLASS'
     | 'STATIC_PROPERTY'
@@ -97,7 +73,7 @@ export type DecoratorTargetType =
  *     class MyClass { ... }
  *
  *     function SomeDecorator(...args) {
- *         console.log(`SomeDecorator declaration type:`, getDeclarationType(...args));
+ *         console.log(`SomeDecorator declaration type:`, getDecoratorType(...args));
  *     }
  *
  *     // --> "SomeDecorator declaration type: CLASS"

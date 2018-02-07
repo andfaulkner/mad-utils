@@ -16,7 +16,40 @@ import 'reflect-metadata';
  */
 export declare function notForWebUse(alternative?: string, envUsage?: string): (target: any, propertyKey: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 export { notForWebUse as methodNotForWebUse };
-/*********************************** DECORATOR CREATION HELPERS ***********************************/
+/***************************************** DECORATOR TYPE *****************************************/
+/**
+ * Available decorator types
+ */
+export declare type DecoratorTargetType = 'CLASS' | 'STATIC_PROPERTY' | 'INSTANCE_PROPERTY' | 'PARAMETER' | 'STATIC_METHOD' | 'INSTANCE_METHOD' | 'ACCESSOR' | 'INVALID';
+/**
+ * Determine the decorator declaration type based on the arguments it receives.
+ *
+ *    Less than 1, or more than 3 arguments                                    --> INVALID
+ *    1 arg  : arg1 is function                                                --> CLASS
+ *    2 args : arg1 is function; arg2 is string or symbol                      --> STATIC_PROPERTY
+ *    2 args : arg1.constructor is function, arg2 is string                    --> INSTANCE_PROPERTY
+ *    3 args : arg3 is number                                                  --> PARAMETER
+ *    3 args : arg1 is function w prototype & constructor; arg3 is descriptor  --> STATIC_METHOD
+ *    3 args : arg1.constructor is function; arg3 is descriptor w no get, set  --> INSTANCE_METHOD
+ *    3 args : arg1.constructor is function; arg3 is descriptor w get &/or set --> ACCESSOR
+ *
+ * @example
+ *     @SomeDecorator
+ *     class MyClass { ... }
+ *
+ *     function SomeDecorator(...args) {
+ *         console.log(`SomeDecorator declaration type:`, getDecoratorType(...args));
+ *     }
+ *
+ *     // --> "SomeDecorator declaration type: CLASS"
+ *
+ * @param {any[]} args Arguments initially passed to a function by decorator syntax e.g. @decorator
+ *                     The "implicit" arguments given to a decorator by virtue of its placement.
+ *
+ * @return {string} CLASS, STATIC_PROPERTY, INSTANCE_PROPERTY, PARAMETER, ACCESSOR,
+ *                  STATIC_METHOD, INSTANCE_METHOD, or INVALID (based on detected type).
+ */
+export declare function getDecoratorType(...args: any[]): DecoratorTargetType;
 /***************************************** BARREL EXPORTS *****************************************/
 export { DecoratorError, DecoratorErrorProps } from './error';
 export { singleton } from './types-iso';
