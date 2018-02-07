@@ -3,17 +3,16 @@
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
-import { m_, decorator } from '../../shared';
+import {m_, decorator} from '../../shared';
 
-import { decorator as decoratorFromNode } from '../../node';
-import { decorator as decoratorFromBrowser } from '../../browser';
+import {decorator as decoratorFromNode} from '../../node';
+import {decorator as decoratorFromBrowser} from '../../browser';
 import * as decoratorModule from '../../src/decorator';
 
 const dec = m_.decorator;
-
 
 /********************************************* TESTS **********************************************/
 describe(`decorator sub-module`, function() {
