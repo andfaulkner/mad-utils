@@ -42,5 +42,102 @@ export function notForWebUse(
 
 export {notForWebUse as methodNotForWebUse};
 
+/**
+ *  Perform actual decoration action, regardless of whether config was given or not
+ */
+
+function testDec(name) {
+    return function testDecorator(...args): void {
+        const isConstructor = !!(args[0] && args[0].constructor);
+        const isProto = !!(args[0] && args[0].prototype);
+        log.info(
+            `testDec ~~[[${name}]]~~> declaration type :: ${getDeclarationType(...args)}`,
+            `\n  args:`,
+            args,
+            `\n  target:`,
+            args[0],
+            `\n  target.constructor:`,
+            args[0] && args[0].constructor,
+            `\n  target.prototype:`,
+            args[0] && args[0].prototype,
+            `\n  target[key]:`,
+            args[0] && args[0][args[1]],
+            `\n  target.prototype[key]:`,
+            isProto && args[0].prototype[args[1]],
+            `\n  target.constructor[key]:`,
+            isConstructor && args[0].constructor[args[1]],
+        );
+    };
+}
+
+export type DecoratorTargetType =
+    | 'CLASS'
+    | 'STATIC_PROPERTY'
+    | 'INSTANCE_PROPERTY'
+    | 'PARAMETER'
+    | 'STATIC_METHOD'
+    | 'INSTANCE_METHOD'
+    | 'ACCESSOR'
+    | 'INVALID';
+
+/**
+ * Determine the decorator declaration type based on the arguments it receives.
+ *
+ *    Less than 1, or more than 3 arguments                                    --> INVALID
+ *    1 arg  : arg1 is function                                                --> CLASS
+ *    2 args : arg1 is function; arg2 is string or symbol                      --> STATIC_PROPERTY
+ *    2 args : arg1.constructor is function, arg2 is string                    --> INSTANCE_PROPERTY
+ *    3 args : arg3 is number                                                  --> PARAMETER
+ *    3 args : arg1 is function w prototype & constructor; arg3 is descriptor  --> STATIC_METHOD
+ *    3 args : arg1.constructor is function; arg3 is descriptor w no get, set  --> INSTANCE_METHOD
+ *    3 args : arg1.constructor is function; arg3 is descriptor w get &/or set --> ACCESSOR
+ *
+ * @example
+ *     @SomeDecorator
+ *     class MyClass { ... }
+ *
+ *     function SomeDecorator(...args) {
+ *         console.log(`SomeDecorator declaration type:`, getDeclarationType(...args));
+ *     }
+ *
+ *     // --> "SomeDecorator declaration type: CLASS"
+ */
+export function getDecoratorType(...args): DecoratorTargetType {
+    const [target, key, descriptor] = args;
+
+    const isTargetFunction = typeof target === 'function';
+    const isTargetObject = typeof target === 'object';
+    const isTargetConstructorFunction = typeof target.constructor === 'function';
+    const targetHasPrototype = typeof target.prototype === 'object';
+    const isKeyStringOrSymbol = typeof key === 'string' || typeof key === 'symbol';
+
+    switch (args.filter(arg => typeof arg !== 'undefined' && arg !== null).length) {
+        case 1:
+            if (isTargetFunction) return 'CLASS';
+            return 'INVALID';
+
+        case 2:
+            if (isTargetFunction && isKeyStringOrSymbol) return 'STATIC_PROPERTY';
+            if (isTargetConstructorFunction && typeof key === 'string') return 'INSTANCE_PROPERTY';
+            return 'INVALID';
+
+        case 3:
+            if (typeof descriptor === 'number') return 'PARAMETER';
+
+            if (isTargetFunction && targetHasPrototype && isTargetConstructorFunction) {
+                return 'STATIC_METHOD';
+            }
+
+            if (isTargetObject && isTargetConstructorFunction && typeof key === 'string') {
+                return descriptor.get || descriptor.set ? 'ACCESSOR' : 'INSTANCE_METHOD';
+            }
+            return 'INVALID';
+
+        default:
+            return 'INVALID';
+    }
+}
+
+/***************************************** BARREL EXPORTS *****************************************/
 export {DecoratorError, DecoratorErrorProps} from './error';
 export {singleton} from './types-iso';
