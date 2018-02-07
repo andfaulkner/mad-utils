@@ -1,3 +1,9 @@
+0.49.2
+======
+Exporting DecoratorTargetType type from decorator module
+Fixed getDecoratorType docs
+Removed test code from decorator module
+
 0.49.1
 ======
 getDecoratorType function added to decorator.ts
