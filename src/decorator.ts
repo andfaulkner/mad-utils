@@ -101,6 +101,12 @@ export type DecoratorTargetType =
  *     }
  *
  *     // --> "SomeDecorator declaration type: CLASS"
+ *
+ * @param {any[]} args Arguments initially passed to a function by decorator syntax e.g. @decorator
+ *                     The "implicit" arguments given to a decorator by virtue of its placement.
+ *
+ * @return {string} CLASS, STATIC_PROPERTY, INSTANCE_PROPERTY, PARAMETER, ACCESSOR,
+ *                  STATIC_METHOD, INSTANCE_METHOD, or INVALID (based on detected type).
  */
 export function getDecoratorType(...args): DecoratorTargetType {
     const [target, key, descriptor] = args;
