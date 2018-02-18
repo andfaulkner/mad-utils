@@ -2,6 +2,8 @@
  * Remove unneeded statements from given stack trace: calls to Node core & common
  * third-party libs. Replaces error statement with an info label. Optionally IDs
  * the function requesting the stack.
+ * @param {string} stack Stacktrace in string form
+ * @param {string} srcFn Name of source function stacktrace originated from
  */
 export declare function scrubStackTrace(stack: string, srcFn?: string): string;
 export declare type DecoratorErrorProps = {

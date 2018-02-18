@@ -33,15 +33,21 @@ export declare type DecoratorTargetType = 'CLASS' | 'STATIC_PROPERTY' | 'INSTANC
  *    3 args : arg1.constructor is function; arg3 is descriptor w no get, set  --> INSTANCE_METHOD
  *    3 args : arg1.constructor is function; arg3 is descriptor w get &/or set --> ACCESSOR
  *
- * @example
- *     @SomeDecorator
+ * @example Usage on class:
+ *     @someDecorator
  *     class MyClass { ... }
+ *     // On MyClass init, emits: "someDecorator declaration type: CLASS"
  *
- *     function SomeDecorator(...args) {
- *         console.log(`SomeDecorator declaration type:`, getDecoratorType(...args));
+ * @example Usage on parts of in a class:
+ *     class MyClass {
+ *         @someDecorator
+ *         username: string = '';
+ *         // On MyClass init, emits: "someDecorator declaration type: INSTANCE_PROPERTY"
+ *
+ *         @someDecorator
+ *         fetchData() { ... }
+ *         // On MyClass init, emits: "someDecorator declaration type: INSTANCE_METHOD"
  *     }
- *
- *     // --> "SomeDecorator declaration type: CLASS"
  *
  * @param {any[]} args Arguments initially passed to a function by decorator syntax e.g. @decorator
  *                     The "implicit" arguments given to a decorator by virtue of its placement.
