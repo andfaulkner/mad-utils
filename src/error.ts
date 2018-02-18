@@ -100,9 +100,9 @@ export function removeFromStack(stack: string, libsToRm: Array<string> = defLibs
 /**
  * Split the stack trace, get the first item (aka the most recent item)
  */
-export function getFirstStackItem(stack: string);
-export function getFirstStackItem<T extends Error>(error: T);
-export function getFirstStackItem<T extends Error>(stackOrError: string | T) {
+export function getFirstStackItem(stack: string): string;
+export function getFirstStackItem<T extends Error>(error: T): string;
+export function getFirstStackItem<T extends Error>(stackOrError: string | T): string {
     return (typeof stackOrError === 'string')
         ? stackOrError.split('\n    at ')[0]
         : stackOrError.stack.split('\n    at ')[0];
@@ -111,9 +111,9 @@ export function getFirstStackItem<T extends Error>(stackOrError: string | T) {
 /**
  * Split the stack trace, get the 2nd item (aka the 2nd most recent item).
  */
-export function getSecondStackItem(stack: string);
-export function getSecondStackItem<T extends Error>(error: T);
-export function getSecondStackItem<T extends Error>(stackOrError: string | T) {
+export function getSecondStackItem(stack: string): string;
+export function getSecondStackItem<T extends Error>(error: T): string;
+export function getSecondStackItem<T extends Error>(stackOrError: string | T): string {
     return (typeof stackOrError === 'string')
         ? stackOrError.split('\n    at ')[1]
         : stackOrError.stack.split('\n    at ')[1];
@@ -122,9 +122,9 @@ export function getSecondStackItem<T extends Error>(stackOrError: string | T) {
 /**
  * Split the stack trace, get the 3rd item (aka the 3rd most recent item).
  */
-export function getThirdStackItem(stack: string);
-export function getThirdStackItem<T extends Error>(error: T);
-export function getThirdStackItem<T extends Error>(stackOrError: string | T) {
+export function getThirdStackItem(stack: string): string;
+export function getThirdStackItem<T extends Error>(error: T): string;
+export function getThirdStackItem<T extends Error>(stackOrError: string | T): string {
     return (typeof stackOrError === 'string')
         ? stackOrError.split('\n    at ')[2]
         : stackOrError.stack.split('\n    at ')[2];
