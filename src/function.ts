@@ -1,4 +1,4 @@
-import { RealAny } from './types-iso';
+import {RealAny} from './types-iso';
 
 /**
  * Return a function's source code in nicely spaced array format.
@@ -21,14 +21,13 @@ export const getFunctionSrcAsArray = getFnAsArr;
  * @param {Function} func - Function to repeatedly run.
  * @return {Array<any>} Array containing function return values.
  */
-export const loopN =
-    <T>(n: number, func: ((...args) => T)): T[] => {
-        let retArr = [];
-        for (let i = 0; i < n; i++) {
-            retArr.push(func());
-        }
-        return retArr;
-    };
+export const loopN = <T>(n: number, func: ((...args) => T)): T[] => {
+    let retArr = [];
+    for (let i = 0; i < n; i++) {
+        retArr.push(func());
+    }
+    return retArr;
+};
 
 /** Run given function 2X, returning results as an array containing both return vals. */
 export const loop2 = <T>(func: ((...args) => T)): T[] => loopN(2, func);
@@ -38,7 +37,6 @@ export const loop3 = <T>(func: ((...args) => T)): T[] => loopN(3, func);
 export const loop4 = <T>(func: ((...args) => T)): T[] => loopN(4, func);
 /** Run given function 5X, returning results as an array containing all 5 return vals. */
 export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
-
 
 /****************************************** CONDITIONALS ******************************************/
 /**
@@ -61,12 +59,12 @@ export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
 export function condSwitch(
     cond: boolean | RealAny,
     val: RealAny,
-    ...condValPairsAndOrDefVal: RealAny[]): RealAny | never
-{
+    ...condValPairsAndOrDefVal: RealAny[]
+): RealAny | never {
     if (cond) return val;
     if (condValPairsAndOrDefVal.length === 1) return condValPairsAndOrDefVal[0];
 
-    while(condValPairsAndOrDefVal.length > 1) {
+    while (condValPairsAndOrDefVal.length > 1) {
         if (condValPairsAndOrDefVal[0]) return condValPairsAndOrDefVal[1];
         loop2(() => condValPairsAndOrDefVal.shift());
     }
@@ -74,8 +72,9 @@ export function condSwitch(
     if (condValPairsAndOrDefVal.length === 0) {
         throw new Error(
             'No matching val found. To avoid throwing in this scenario, pass args to consSwitch' +
-            'in pairs, where #1 is the test, and #2 is the return val if test is truthy - then ' +
-            'follow them with a final "else" value to return if no other tests are truthy');
+                'in pairs, where #1 is the test, and #2 is the return val if test is truthy - then ' +
+                'follow them with a final "else" value to return if no other tests are truthy',
+        );
     }
 
     return condValPairsAndOrDefVal[0];
@@ -94,7 +93,7 @@ export function condSwitch(
  */
 export function delegateAll<S, I>(self: S, input: I): S & I {
     Object.keys(input).forEach(k =>
-        Object.defineProperty(self, k, Object.getOwnPropertyDescriptor(input, k))
+        Object.defineProperty(self, k, Object.getOwnPropertyDescriptor(input, k)),
     );
     return self as S & I;
 }
@@ -107,13 +106,16 @@ export function delegateAll<S, I>(self: S, input: I): S & I {
  * @return {string} String containing a comma-separated list of arguments. e.g.: 'id, name, age'
  */
 export const getArgsFromFuncAsString = (func: Function): string =>
-    func.toString().split('\n').join('')
-                   .split(/[\(\)]/g)[1]
-                   .split(/ *, */g)
-                   .join(', ');
+    func
+        .toString()
+        .split('\n')
+        .join('')
+        .split(/[\(\)]/g)[1]
+        .split(/ *, */g)
+        .join(', ');
 
-export { getArgsFromFuncAsString as getParamNames }
-export { getArgsFromFuncAsString as getParameterNames }
-export { getArgsFromFuncAsString as getArgNames }
-export { getArgsFromFuncAsString as getArgumentNames }
-export { getArgsFromFuncAsString as getArgs }
+export {getArgsFromFuncAsString as getParamNames};
+export {getArgsFromFuncAsString as getParameterNames};
+export {getArgsFromFuncAsString as getArgNames};
+export {getArgsFromFuncAsString as getArgumentNames};
+export {getArgsFromFuncAsString as getArgs};
