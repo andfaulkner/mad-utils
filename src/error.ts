@@ -1,4 +1,4 @@
-import { ClassConstructor, SingletonInterface, singleton } from './types-iso';
+import {ClassConstructor, SingletonInterface, singleton} from './types-iso';
 
 const stackNoiseLibsRegex = /\/node_modules(?=\/).*(\/react\/|\/mocha\/|\/ts\-node\/)/g;
 const nodeStackNoiseRegex = / \(timers\.js:[0-9]/g;
@@ -12,26 +12,29 @@ export function scrubStackTrace(stack: string, srcFn?: string) {
     // Create label IDing the cleaned stack, including (optionally) IDing the requesting function.
     const stackLabel = `  Stack (minus vendor & core) up to ${srcFn ? srcFn + ' ' : ''}call:`;
     // Replace 'Error' statement with stack label.
-    return stack
-        .split(/^Error(?=\n)/).join(stackLabel)
-        // Filter useless stack info
-        .split(/\n    at /g)
-        // Exclude stacktrace references to mocha, react, and ts-node.
-        .filter(line => !line.match(stackNoiseLibsRegex))
-        // Exclude stacktrace references to NodeJS' internal timers.js module.
-        .filter(line => !line.match(nodeStackNoiseRegex))
-        .join('\n   |-> ')
+    return (
+        stack
+            .split(/^Error(?=\n)/)
+            .join(stackLabel)
+            // Filter useless stack info
+            .split(/\n    at /g)
+            // Exclude stacktrace references to mocha, react, and ts-node.
+            .filter(line => !line.match(stackNoiseLibsRegex))
+            // Exclude stacktrace references to NodeJS' internal timers.js module.
+            .filter(line => !line.match(nodeStackNoiseRegex))
+            .join('\n   |-> ')
+    );
 }
 
 export type DecoratorErrorProps = {
-    message: string,
-    messageCause: string,
-    decoratorName: string,
-    wrappedItem?: any,
+    message: string;
+    messageCause: string;
+    decoratorName: string;
+    wrappedItem?: any;
 };
 
 export interface DecoratorError {
-    new(cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
+    new (cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
 }
 
 /**
@@ -45,14 +48,16 @@ export const DecoratorError = (() => {
         this.decoratorName = decoratorName;
         this.wrappedItem = wrappedItem;
         console.log('this.stack:', this.stack);
-        console.error(`ERROR :: Invalid usage of decorator ${decoratorName}. ` +
-                      (wrappedItem ? `Attempted to apply to ${wrappedItem}. ` : ``) +
-                      `Error cause: ${cause}`);
+        console.error(
+            `ERROR :: Invalid usage of decorator ${decoratorName}. ` +
+                (wrappedItem ? `Attempted to apply to ${wrappedItem}. ` : ``) +
+                `Error cause: ${cause}`,
+        );
         return this;
     }
 
     DecoratorError.prototype = Object.create(Error.prototype);
-    return ((DecoratorError as any) as DecoratorError);
+    return (DecoratorError as any) as DecoratorError;
 })();
 
 // Regex utils
@@ -70,11 +75,11 @@ const defLibsToExclude = ['express', 'body-parser', 'cookie-parser'];
 export function removeFromStack(stack: string, libsToRm: Array<string> = defLibsToExclude): string {
     // Partial regex for excluding all libraries in libsToRm. Inject into full regex.
     const filterLibStr = libsToRm.reduce((acc, lib, idx) => {
-        const cleanLibName = lib.replace('-', '\-');
-        if (idx !== (libsToRm.length - 1)) {
-            acc += `(${cleanLibName})|`
+        const cleanLibName = lib.replace('-', '-');
+        if (idx !== libsToRm.length - 1) {
+            acc += `(${cleanLibName})|`;
         } else {
-            acc += `(${cleanLibName}))`
+            acc += `(${cleanLibName}))`;
         }
         return acc;
     }, `(`);
@@ -86,8 +91,8 @@ export function removeFromStack(stack: string, libsToRm: Array<string> = defLibs
     // Filter the stack
     const cleanStack = stack
         .split('\n')
-        .filter((stackEl, idx, arr) => !(stackFilterLibs.exec(stackEl)))
-        .filter((stackEl, idx, arr) => !(stackFilterNode.exec(stackEl)))
+        .filter((stackEl, idx, arr) => !stackFilterLibs.exec(stackEl))
+        .filter((stackEl, idx, arr) => !stackFilterNode.exec(stackEl))
         .join('\n');
 
     return cleanStack;
