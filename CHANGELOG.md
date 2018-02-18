@@ -2,7 +2,7 @@
 ======
 Prettier run on: error, decorator, function 
 Cleanups in error module
-'wip' directory added, work-in-progress error code moved into it
+'wip' directory added, work-in-progress error & function code moved into it
 
 0.49.2
 ======
