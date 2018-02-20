@@ -30,15 +30,15 @@ export declare function removeFromStack(stack: string, libsToRm?: Array<string>)
 /**
  * Split the stack trace, get the first item (aka the most recent item)
  */
-export declare function getFirstStackItem(stack: string): any;
-export declare function getFirstStackItem<T extends Error>(error: T): any;
+export declare function getFirstStackItem(stack: string): string;
+export declare function getFirstStackItem<T extends Error>(error: T): string;
 /**
  * Split the stack trace, get the 2nd item (aka the 2nd most recent item).
  */
-export declare function getSecondStackItem(stack: string): any;
-export declare function getSecondStackItem<T extends Error>(error: T): any;
+export declare function getSecondStackItem(stack: string): string;
+export declare function getSecondStackItem<T extends Error>(error: T): string;
 /**
  * Split the stack trace, get the 3rd item (aka the 3rd most recent item).
  */
-export declare function getThirdStackItem(stack: string): any;
-export declare function getThirdStackItem<T extends Error>(error: T): any;
+export declare function getThirdStackItem(stack: string): string;
+export declare function getThirdStackItem<T extends Error>(error: T): string;
