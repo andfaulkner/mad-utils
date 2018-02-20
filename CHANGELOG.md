@@ -1,7 +1,7 @@
 0.50.0
 ======
 Prettier run on: error, decorator, function 
-Cleanups in error module
+Cleanups in error module - including more added typings
 'wip' directory added, work-in-progress error & function code moved into it
 
 0.49.2
