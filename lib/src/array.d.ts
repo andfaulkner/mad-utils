@@ -225,38 +225,14 @@ export { removeDuplicates as removeDuplicateItems };
  * Namespace for certain "reversed" operations.
  */
 export declare const without: {
-    last: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    last2: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    last3: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    lastN: {
-        <T>(str: string, numToRm: number): string;
-        <T>(arr: T[], numToRm: number): T[];
-    };
-    first: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    first2: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    first3: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    firstN: {
-        <T>(str: string, numToRm: number): string;
-        <T>(arr: T[], numToRm: number): T[];
-    };
+    last: typeof withoutLast;
+    last2: typeof withoutLast2;
+    last3: typeof withoutLast3;
+    lastN: typeof withoutLastN;
+    first: typeof withoutFirst;
+    first2: typeof withoutFirst2;
+    first3: typeof withoutFirst3;
+    firstN: typeof withoutFirstN;
 };
 /******************************************* COLLECTION *******************************************/
 /**

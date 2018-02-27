@@ -75,7 +75,7 @@ export declare const Case: (props: {
  *      // Renders '<span>3rd child case! Contains text</span>'
  *   - why the <span>? React can't just render text without an element around it.
  */
-export declare const Switch: ({children, test}: {
+export declare const Switch: ({ children, test }: {
     children?: any;
     test: any;
 }) => JSX.Element;

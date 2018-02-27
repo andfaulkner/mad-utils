@@ -201,91 +201,32 @@ export declare const madUtils: {
  * Most common functions from mad-utils used in browser.
  */
 export declare const common: {
-    first: {
-        (str: string): string;
-        <T>(arr: T[]): T;
-    };
-    last: {
-        (str: string): string;
-        <T>(arr: T[]): T;
-    };
-    first2: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    last2: {
-        (str: string): string;
-        <T>(arr: T[]): T[];
-    };
+    first: typeof array.first;
+    last: typeof array.last;
+    first2: typeof array.first2;
+    last2: typeof array.last2;
     without: {
-        last: {
-            <T>(str: string): string;
-            <T>(arr: T[]): T[];
-        };
-        last2: {
-            <T>(str: string): string;
-            <T>(arr: T[]): T[];
-        };
-        last3: {
-            <T>(str: string): string;
-            <T>(arr: T[]): T[];
-        };
-        lastN: {
-            <T>(str: string, numToRm: number): string;
-            <T>(arr: T[], numToRm: number): T[];
-        };
-        first: {
-            <T>(str: string): string;
-            <T>(arr: T[]): T[];
-        };
-        first2: {
-            <T>(str: string): string;
-            <T>(arr: T[]): T[];
-        };
-        first3: {
-            <T>(str: string): string;
-            <T>(arr: T[]): T[];
-        };
-        firstN: {
-            <T>(str: string, numToRm: number): string;
-            <T>(arr: T[], numToRm: number): T[];
-        };
+        last: typeof array.withoutLast;
+        last2: typeof array.withoutLast2;
+        last3: typeof array.withoutLast3;
+        lastN: typeof array.withoutLastN;
+        first: typeof array.withoutFirst;
+        first2: typeof array.withoutFirst2;
+        first3: typeof array.withoutFirst3;
+        firstN: typeof array.withoutFirstN;
     };
-    withoutFirst: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    withoutLast: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    withoutFirst2: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    withoutLast2: {
-        <T>(str: string): string;
-        <T>(arr: T[]): T[];
-    };
-    removeMatches: {
-        (arr1: any[], arr2: any): any[];
-        (arr1: any[], arr2: any[]): any[];
-    };
+    withoutFirst: typeof array.withoutFirst;
+    withoutLast: typeof array.withoutLast;
+    withoutFirst2: typeof array.withoutFirst2;
+    withoutLast2: typeof array.withoutLast2;
+    removeMatches: typeof array.removeMatches;
     rmAllFalsy: (arr: any[]) => any[];
     isArray: (val: any) => val is any[];
-    isLeapYear: (year: isoTypes.NumLike) => boolean;
+    isLeapYear: typeof date.isLeapYear;
     now: (timeFormat?: string) => string;
-    condSwitch: (cond: any, val: any, ...condValPairsAndOrDefVal: any[]) => any;
+    condSwitch: typeof func.condSwitch;
     uuid: number.UUIDNamespace;
-    merge: {
-        <P, Q, R, S, T, U, V, W, X, Y, Z, L>(o1: P, o2?: Q, o3?: R, o4?: S, o5?: T, o6?: U, o7?: V, o8?: W, o9?: X, o10?: Y, o11?: Z, o12?: L): P & Q & R & S & T & U & V & W & X & Y & Z & L;
-        <R>(obj: R): R;
-        (...strs: string[]): string;
-        <T>(...arrs: T[][]): T[];
-        (...objs: any[][]): any[];
-        (): {};
-        (obj: null): {};
-    };
+    merge: typeof object.merge;
     hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
     eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
@@ -315,6 +256,6 @@ export declare const common: {
     CharInputStream: typeof stream.CharInputStream;
     isNode: any;
 } & {
-    parseUserAgent: (userAgent?: string) => dom.ParsedUserAgent;
-    getFromStorage: (key: string, store?: Object) => string | void;
+    parseUserAgent: typeof dom.parseUserAgent;
+    getFromStorage: typeof localStore.getFromStorage;
 };
