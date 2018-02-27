@@ -86,6 +86,21 @@ export const diceRoll6Sided = () => {
     return 6;
 }
 
+// TODO test getRandomInt
+/**
+ * Generate a random integer between (and including) given min & max values
+ *
+ * @param {number} min Lowest possible number that can be generated
+ * @param {number} max Highest possible number that can be generated
+ *
+ * @return {number} Randomly selected integer between given min & max values
+ */
+const getRandomInt = (min: Int, max: Int): Int => {
+    const minInt = Math.ceil(min);
+    const maxInt = Math.floor(max);
+    return Math.round(Math.random() * (maxInt - minInt)) + minInt;
+};
+
 /********************************************** UUID **********************************************/
 const uuidBase = (): string => uuidImport();
 
