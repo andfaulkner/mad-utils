@@ -5,7 +5,7 @@ Added new function getRandomInt:
 
 Typescript upgraded to 2.7.2
 
-Upgraded modules to latest: tslint, prettier, ts-node, nodemon
+Upgraded modules to latest: tslint, eslint, prettier, ts-node, nodemon
 
 Various styling, linting, transpiling, etc configuration changes
 *   made consistent with other projects
