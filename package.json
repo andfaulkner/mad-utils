@@ -181,7 +181,7 @@
     "snyk": "^1.24.6",
     "supertest": "^2.0.1",
     "test-console": "^1.0.0",
-    "ts-node": "^3.3.0",
+    "ts-node": "^5.0.0",
     "tslint": "^4.4.2",
     "tslint-eslint-rules": "^3.3.0",
     "tslint-microsoft-contrib": "^4.0.0",
