@@ -1,3 +1,15 @@
+0.50.1
+======
+Added new function getRandomInt:
+*  gets random integer between given min & max values
+
+Typescript upgraded to 2.7.2
+
+Upgraded modules to latest: tslint, prettier, ts-node, nodemon
+
+Various styling, linting, transpiling, etc configuration changes
+*   made consistent with other projects
+
 0.50.0
 ======
 Prettier run on: error, decorator, function 
