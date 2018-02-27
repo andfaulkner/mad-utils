@@ -5,7 +5,7 @@ parser: 'typescript'
 printWidth: 100
 tabWidth: 4
 useTabs: false
-proseWrap: true # <- md only
+proseWrap: "preserve" # <- md only
 
 # Braces
 bracketSpacing: false
@@ -13,7 +13,7 @@ jsxBracketSameLine: false
 
 # Punctuation
 semi: true
-trailingComma: 'all'
+trailingComma: 'es5'
 singleQuote: true
 
 # JSON config
@@ -22,3 +22,6 @@ overrides:
   options:
     trailingComma: 'none'
     parser: 'json'
+- files: '*.js'
+  options:
+    trailingComma: 'none'
