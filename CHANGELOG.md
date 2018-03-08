@@ -1,3 +1,8 @@
+0.50.3
+======
+Fixed object module error
+Exported sortObject
+
 0.50.2
 ======
 Added sortObject function in object module

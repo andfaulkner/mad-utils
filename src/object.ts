@@ -1,3 +1,6 @@
+// TODO Test sortObject
+// TODO Test inspectKeyTree
+
 /******************************************** IMPORTS *********************************************/
 import {isNonexistentOrString, RealAny, isArray} from './types-iso';
 import {matchesIgnoreCase, replaceAll} from './string';
@@ -131,7 +134,6 @@ export const numKeys = (obj: RealAny): number => {
 };
 export {numKeys as numPairs};
 
-// TODO Test inspectKeyTree
 /**
  * Powerful key inspection tool. Shows keys of object and all objects in its prototype chain.
  * Displays object name at each layer in the chain
@@ -477,11 +479,10 @@ export {defineGetterProp as defineGetProp};
  * @param {Object} obj Source object (sort its keys)
  * @return {Object} Duplicate of input object with keys sorted
  */
-function sortObject(obj: Record<string, any>): Record<string, any> {
-    return keys(obj)
+export const sortObject = (obj: Record<string, any>): Record<string, any> =>
+    keys(obj)
         .sort()
         .reduce((acc, key) => assign(acc, {[key]: obj[key]}), {});
-}
 
 /**************************************************************************************************/
 /* UNPUBLISHED ************************************************************************************/
@@ -525,11 +526,11 @@ function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Ob
     if (typeof props === 'string') props = [props];
 
     const isFunction = typeof fn === 'function';
-    const keys = keys(obj);
+    const lKeys = keys(obj);
     const res = {};
 
-    for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
+    for (let i = 0; i < lKeys.length; i++) {
+        const key = lKeys[i];
         const val = obj[key];
 
         if (!props || (props.indexOf(key) === -1 && (!isFunction || fn(val, key, obj)))) {

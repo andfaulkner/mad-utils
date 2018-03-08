@@ -187,3 +187,11 @@ export { defineGetterProp as addGetter };
 export { defineGetterProp as defineGetter };
 export { defineGetterProp as addGetProp };
 export { defineGetterProp as defineGetProp };
+/******************************************** SORTING *********************************************/
+/**
+ * Sort an object by its keys, return duplicate object.
+ *
+ * @param {Object} obj Source object (sort its keys)
+ * @return {Object} Duplicate of input object with keys sorted
+ */
+export declare const sortObject: (obj: Record<string, any>) => Record<string, any>;
