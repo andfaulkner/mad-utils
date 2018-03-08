@@ -7,7 +7,10 @@ import {flatten} from './array';
 import deepFreezeStrict = require('deep-freeze-strict');
 import {isVerbose} from 'env-var-helpers';
 
-const {assign} = Object;
+/********************************************* CONFIG *********************************************/
+const {assign, keys} = Object;
+
+const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
 
 /********************************************* OBJECT *********************************************/
 /**
@@ -27,8 +30,6 @@ export const assignFrozenClone = <T>(...args: {}[]): Readonly<T> =>
  */
 export const deepFreeze = <T>(obj: T): Readonly<T> => deepFreezeStrict<T>(obj);
 
-const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
-
 /**
  * Safely get the given prop (via array of path props or 'access string') from the given object.
  *
@@ -41,7 +42,7 @@ const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
 export const get = <O = any, T extends object = {}>(
     objIn: T,
     propPath: string[] | string,
-    defaultValue: O = undefined,
+    defaultValue: O = undefined
 ): O => {
     // Handle bad values
     if (
@@ -64,8 +65,8 @@ export const get = <O = any, T extends object = {}>(
                       .map(str =>
                           str
                               .match(braceMatchRegex)
-                              .filter(subStr => subStr !== ']' && subStr !== '['),
-                      ),
+                              .filter(subStr => subStr !== ']' && subStr !== '[')
+                      )
               )
             : propPath;
 
@@ -89,8 +90,8 @@ export const isMultilangTextObj = (obj: RealAny): boolean => {
     return !!(
         typeof obj === 'object' &&
         obj !== null &&
-        Object.keys(obj).length > 0 &&
-        Object.keys(obj).find(key => {
+        keys(obj).length > 0 &&
+        keys(obj).find(key => {
             if (
                 englishVariants.find(matchesIgnoreCase(key)) ||
                 frenchVariants.find(matchesIgnoreCase(key))
@@ -113,9 +114,9 @@ export const isMultilangTextObj = (obj: RealAny): boolean => {
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
 export const eachPair = <T extends Object>(
-    func: ((val: T[keyof T], key?: keyof T) => void | RealAny),
+    func: ((val: T[keyof T], key?: keyof T) => void | RealAny)
 ) => (obj: T): T => {
-    Object.keys(obj).forEach((key: keyof T) => func(obj[key], key));
+    keys(obj).forEach((key: keyof T) => func(obj[key], key));
     return obj;
 };
 
@@ -126,7 +127,7 @@ export const eachPair = <T extends Object>(
  */
 export const numKeys = (obj: RealAny): number => {
     if (typeof obj !== 'object' || obj == null || obj == undefined) return 0;
-    return Object.keys(obj).length;
+    return keys(obj).length;
 };
 export {numKeys as numPairs};
 
@@ -143,9 +144,9 @@ export {numKeys as numPairs};
 export const inspectKeyTree = (
     obj,
     showHidden = true,
-    showProtoChainPosition = false,
+    showProtoChainPosition = false
 ): string[] => {
-    const getKeys = showHidden ? Object.getOwnPropertyNames : Object.keys;
+    const getKeys = showHidden ? Object.getOwnPropertyNames : keys;
     const getName = obj => obj && obj.constructor && obj.constructor.name;
 
     const proto = obj && (obj as any).__proto__;
@@ -172,7 +173,7 @@ export const inspectKeyTree = (
             assign({}, objData, {
                 prototypeKeys: obj.prototype ? getKeys(obj.prototype) : [],
                 constructorKeys: obj.constructor ? getKeys(obj.constructor) : [],
-            }),
+            })
         );
     }
 
@@ -180,7 +181,7 @@ export const inspectKeyTree = (
         .reduce(
             (acc, collKey) =>
                 collKey === 'name' || collKey === 'keys' ? acc : acc.concat(objData[collKey].keys),
-            [],
+            []
         )
         .concat(objData.keys || []);
     console.log(allKeysInPrototypeChain);
@@ -201,7 +202,7 @@ export {inspectKeyTree as keyTreeInspector};
  */
 export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
     if (typeof obj === 'object' && obj != null) {
-        return Object.keys(obj).some((k: keyof T) => k === matchKey);
+        return keys(obj).some((k: keyof T) => k === matchKey);
     }
     return false;
 };
@@ -212,7 +213,7 @@ export {hasKey as includesKey};
 //  * @returns true if object contains given key
 //  */
 // export const containsKey = (obj: object, key: string): boolean =>
-//     Object.keys(obj).some(objKet => objKet === key);
+//     keys(obj).some(objKet => objKet === key);
 
 /********************************************* MERGE **********************************************/
 export type MergeParamTypes<T> = Object | string | T[] | any[] | null | undefined;
@@ -236,7 +237,7 @@ export function merge<P, Q, R, S, T, U, V, W, X, Y, Z, L>(
     o9?: X,
     o10?: Y,
     o11?: Z,
-    o12?: L,
+    o12?: L
 ): P & Q & R & S & T & U & V & W & X & Y & Z & L;
 
 /**
@@ -332,7 +333,7 @@ export function merge<T>(...objs: MergeParamTypes<T>[]): MergeReturnTypes<T> {
                 throw new Error(
                     `If given object as the 1st value, merge will only accept ` +
                         `objects for the rest of the values, However, merge was given a ` +
-                        `${isArray(curObj) ? 'array' : typeof curObj}.`,
+                        `${isArray(curObj) ? 'array' : typeof curObj}.`
                 );
             }
             return assign(acc, curObj);
@@ -359,7 +360,7 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
     obj: InputObject,
     keyName: string,
     value: RealAny,
-    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
+    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable'
 ): InputObject & NewKVPair => {
     defineProperty(obj, keyName, {
         enumerable: true,
@@ -385,7 +386,7 @@ export {defineProp as defineProperty};
 export const defineImmutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject,
     keyName: string,
-    propVal: RealAny,
+    propVal: RealAny
 ): InputObject & NewKVPair => {
     const res = defineProp(obj, keyName, propVal, 'immutable');
     return (res || obj) as InputObject & NewKVPair;
@@ -409,7 +410,7 @@ export {defineImmutableProp as addImmutableMethod};
 export const defineMutableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject,
     keyName: string,
-    propVal: RealAny,
+    propVal: RealAny
 ): InputObject & NewKVPair => {
     defineProp(obj, keyName, propVal, 'mutable');
     return obj as InputObject & NewKVPair;
@@ -433,7 +434,7 @@ export {defineMutableProp as addMutableMethod};
 export const defineDeletableProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject,
     keyName: string,
-    propVal: RealAny,
+    propVal: RealAny
 ): InputObject & NewKVPair => {
     defineProp(obj, keyName, propVal, 'deletable');
     return obj as InputObject & NewKVPair;
@@ -457,7 +458,7 @@ export {defineDeletableProp as addDeletableMethod};
 export const defineGetterProp = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject,
     keyName: string,
-    propVal: () => any,
+    propVal: () => any
 ): InputObject & NewKVPair => {
     defineProperty(obj, keyName, {enumerable: true, configurable: true, get: propVal});
     return obj as InputObject & NewKVPair;
@@ -469,8 +470,18 @@ export {defineGetterProp as defineGetter};
 export {defineGetterProp as addGetProp};
 export {defineGetterProp as defineGetProp};
 
-
-
+/******************************************** SORTING *********************************************/
+/**
+ * Sort an object by its keys, return duplicate object.
+ *
+ * @param {Object} obj Source object (sort its keys)
+ * @return {Object} Duplicate of input object with keys sorted
+ */
+function sortObject(obj: Record<string, any>): Record<string, any> {
+    return keys(obj)
+        .sort()
+        .reduce((acc, key) => assign(acc, {[key]: obj[key]}), {});
+}
 
 /**************************************************************************************************/
 /* UNPUBLISHED ************************************************************************************/
@@ -514,7 +525,7 @@ function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Ob
     if (typeof props === 'string') props = [props];
 
     const isFunction = typeof fn === 'function';
-    const keys = Object.keys(obj);
+    const keys = keys(obj);
     const res = {};
 
     for (let i = 0; i < keys.length; i++) {
