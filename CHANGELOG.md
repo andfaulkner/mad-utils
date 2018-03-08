@@ -1,3 +1,8 @@
+0.50.2
+======
+Added sortObject function in object module
+Object module cleanups (prettier, extracted keys from Object, etc.) 
+
 0.50.1
 ======
 Added new function getRandomInt:
