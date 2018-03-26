@@ -215,16 +215,18 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
         : str;
     let retStr = cleanStr
         .trim()
-        //Remove apostrophes, quotes, commas, |, ?, !, and ,
+        //Remove apostrophes, quotes, commas, |, ?, and !
         .replace(/('|"|\!|\?|\`|,|\|)/g, '')
-        // Replace periods with _s
+        // Replace . with _
         .replace(/(\.)/g, '_')
-        // From sentence e.g. Let's go to the store
+        // Replace ' ' with '_'
         .replace(/ /g, '_')
         // From PascalCase or camelCase
         .replace(/([A-Z])/g, '_$1')
         // From dash-case, including "Dash-Title-Case" (dash-case with caps)
         .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
+        // Replace slash (both / and \) with _
+        .replace(/[\/\\]/g, '_')
         // Eliminate repeat, preceding, and trailing underscores, and stray dashes.
         .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
         .replace(/_{1,}/g, '_')
