@@ -1,13 +1,24 @@
 0.51.0
 ======
 Eliminated the following aliases from the string module:
-    * toSnakecase (alias of toSnakeCase) 
-    * rmSpaces, rmWhitespace, eliminateWhitespace (aliases of removeWhitespace) 
-    * getFirstMatch, firstMach (aliases of matchFirst)
-    * repeatString, repeatChar (aliases of repeatChars)
+    *   toSnakecase (alias of toSnakeCase) 
+    *   rmSpaces, rmWhitespace, eliminateWhitespace (aliases of removeWhitespace) 
+    *   getFirstMatch, firstMach (aliases of matchFirst)
+    *   repeatString, repeatChar (aliases of repeatChars)
+    *   centeredPad (alias of centerPad)
+    *   withoutSurroundingQuotes (alias of removeSurroundingQuotes)
+    *   isRegexStr (alias of isRegexString)
+    *   getFlagsFromRegexStr (alias of getFlagsFromRegexString)
+
+Renamed removeSurroundingRegexSlashes -> removeSlashesFlagsSurroundingRegexString & removed aliases:
+    *   withoutSurroundingRegexSlashes
+    *   withoutRegexSlashesAndFlags
+    *   removeRegexSlashesAndFlags
+    *   removeSurroundingRegexSlashesAndFlags
+
+Removed matchCharInChars from string module, along with aliases isOneOfChars & matchOneOfChars
 
 toSnakeCase now handles slashes (replaces / or \ with _)
-
 
 0.50.3
 ======

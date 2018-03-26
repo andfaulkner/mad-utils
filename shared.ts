@@ -161,7 +161,7 @@ export const commonShared = {
     endsWithExt: string.endsWithExt,
     leftPad: string.leftPad,
     rightPad: string.rightPad,
-    centeredPad: string.centeredPad,
+    centerPad: string.centerPad,
 
     isNonexistentOrString: types.isNonexistentOrString,
     isNumberLike: types.isNumberLike,

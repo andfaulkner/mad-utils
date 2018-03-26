@@ -272,17 +272,8 @@ export declare const rightPad: (strToPad?: string, outWidth?: number, padChar?: 
  *
  * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
  */
-export declare const centeredPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
-export { centeredPad as centerPad };
+export declare const centerPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
 /**************************************** CHARACTER TESTS *****************************************/
-/**
- * TODO Unit test matchCharInChars
- * @example matchChars('\t\n\s ', 'hello everyone'); // => true
- * @return {boolean} true if matchChar is one of the characters in charsToMatchAgainst
- */
-export declare const matchCharInChars: (charsToMatchAgainst: string, matchChar: string) => boolean;
-export { matchCharInChars as isOneOfChars };
-export { matchCharInChars as matchOneOfChars };
 /**
  * @return {boolean} If given string is a whitespace character, return true.
  */
@@ -303,34 +294,29 @@ export declare const isOperatorChar: (matchChar: string) => boolean;
  * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
  */
 export declare const removeSurroundingQuotes: (str: string) => string;
-export { removeSurroundingQuotes as withoutSurroundingQuotes };
 /**
  * Returns true if string is a RegExp or string that can compile to RegExp.
  * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
  * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
  */
 export declare const isRegexString: (str: string | RegExp) => boolean;
-export { isRegexString as isRegexStr };
 /**
  * Get flags from string in regex string format - i.e. "/regex_query/flags".
  * @param {string} str String to get flags from. Grabs from chars after the final /.
  * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form.
  */
 export declare const getFlagsFromRegexString: (str: string) => string;
-export { getFlagsFromRegexString as getFlagsFromRegexStr };
 /**
- * Remove left & right side '/', and all right-side flags from given regex string.
+ * Remove left & right side '/', and all right-side flags from given regex in string form
+ * @example removeSlashesFlagsSurroundingRegexString("/asdf/gi") // => "asdf"
+ *
  * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
- * @return {string} Regex string with the flags and bookending '/' chars removed.
+ * @return {string} Regex string with the flags and bookending '/' chars removed
  */
-export declare const removeSurroundingRegexSlashes: (str: string) => string;
-export { removeSurroundingRegexSlashes as withoutSurroundingRegexSlashes };
-export { removeSurroundingRegexSlashes as withoutRegexSlashesAndFlags };
-export { removeSurroundingRegexSlashes as removeRegexSlashesAndFlags };
-export { removeSurroundingRegexSlashes as removeRegexLiteralChars };
+export declare const removeSlashesFlagsSurroundingRegexString: (str: string) => string;
 /*********************************** TEST EXPORTS ***********************************/
 /**
- * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
+ * Ensure proper char for padding was passed to rightPad, leftPad, and centerPad.
  */
 declare function _cleanCharToPadWith(padChar?: string | number): string;
 export { _cleanCharToPadWith };

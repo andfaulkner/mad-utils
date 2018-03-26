@@ -513,23 +513,10 @@ export const rightPad = (strToPad: string = '', outWidth: number = 0, padChar: s
  *
  * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
  */
-export const centeredPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') =>
+export const centerPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') =>
     pad(strToPad, outWidth, padChar, 'center');
 
-export {centeredPad as centerPad};
-
 /**************************************** CHARACTER TESTS *****************************************/
-/**
- * TODO Unit test matchCharInChars
- * @example matchChars('\t\n\s ', 'hello everyone'); // => true
- * @return {boolean} true if matchChar is one of the characters in charsToMatchAgainst
- */
-export const matchCharInChars = (charsToMatchAgainst: chars, matchChar: char): boolean =>
-    matchChar && matchChar.length === 1 && charsToMatchAgainst.indexOf(matchChar) >= 0;
-
-export {matchCharInChars as isOneOfChars};
-export {matchCharInChars as matchOneOfChars};
-
 /**
  * @return {boolean} If given string is a whitespace character, return true.
  */
@@ -545,7 +532,7 @@ export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.
  * @return {boolean} If given string is a operator character, return true.
  */
 export const isOperatorChar = (matchChar: char): boolean =>
-    !!matchChar && matchChar.length === 1 && matchCharInChars('+-*=|&<>?:/!%^~]', matchChar);
+    !!matchChar && matchChar.length === 1 && (`+-*=|&<>?:/!%^~]`.indexOf(matchChar) >= 0);
 
 /**************************************** STRING -> REGEX *****************************************/
 const RegExpFlags = 'yumig';
@@ -568,8 +555,6 @@ export const removeSurroundingQuotes = (str: string): string => {
     return str;
 };
 
-export {removeSurroundingQuotes as withoutSurroundingQuotes};
-
 /**
  * Returns true if string is a RegExp or string that can compile to RegExp.
  * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
@@ -577,8 +562,6 @@ export {removeSurroundingQuotes as withoutSurroundingQuotes};
  */
 export const isRegexString = (str: string | RegExp): boolean =>
     str instanceof RegExp || !!str.match(/^\/[\s\S]+\/[yumig]{0,5}$/);
-
-export {isRegexString as isRegexStr};
 
 /**
  * Get flags from string in regex string format - i.e. "/regex_query/flags".
@@ -620,24 +603,19 @@ export const getFlagsFromRegexString = (str: string): string | null => {
     }, '');
 };
 
-export {getFlagsFromRegexString as getFlagsFromRegexStr};
-
 /**
- * Remove left & right side '/', and all right-side flags from given regex string.
+ * Remove left & right side '/', and all right-side flags from given regex in string form
+ * @example removeSlashesFlagsSurroundingRegexString("/asdf/gi") // => "asdf"
+ *
  * @param {string} str Regex string to remove slashes from (e.g. '/find_this_value/gm')
- * @return {string} Regex string with the flags and bookending '/' chars removed.
+ * @return {string} Regex string with the flags and bookending '/' chars removed
  */
-export const removeSurroundingRegexSlashes = (str: string): string =>
+export const removeSlashesFlagsSurroundingRegexString = (str: string): string =>
     str.replace(/^\//, '').replace(/\/[yumig]{0,5}$/, '');
-
-export {removeSurroundingRegexSlashes as withoutSurroundingRegexSlashes};
-export {removeSurroundingRegexSlashes as withoutRegexSlashesAndFlags};
-export {removeSurroundingRegexSlashes as removeRegexSlashesAndFlags};
-export {removeSurroundingRegexSlashes as removeRegexLiteralChars};
 
 /*********************************** TEST EXPORTS ***********************************/
 /**
- * Ensure proper char for padding was passed to rightPad, leftPad, and centeredPad.
+ * Ensure proper char for padding was passed to rightPad, leftPad, and centerPad.
  */
 function _cleanCharToPadWith(padChar: string | number = ' ') {
     if (typeof padChar === 'number' && padChar === 0) return '0';

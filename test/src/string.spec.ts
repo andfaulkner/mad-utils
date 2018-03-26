@@ -21,11 +21,11 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         endsInDotScss, endsInDotTsx, endsWithExt,
         toSnakeCase, toCamelCase,
         withLeftIndent,
-        isWhitespaceChar, isAlphanumericChar, isOperatorChar, matchCharInChars,
-        removeSurroundingQuotes, removeSurroundingRegexSlashes,
+        isWhitespaceChar, isAlphanumericChar, isOperatorChar,
+        removeSurroundingQuotes, removeSlashesFlagsSurroundingRegexString,
         isRegexString, getFlagsFromRegexString,
         matchFirst,
-        leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith
+        leftPad, rightPad, centerPad, pad, _cleanCharToPadWith
     } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -424,30 +424,30 @@ describe(`string sub-module`, function() {
         });
     });
 
-    describe(`centeredPad`, function() {
+    describe(`centerPad`, function() {
         it(`adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
             `original string must be expanded by an even number of of chars`, function()
         {
-            const paddedStr1 = centeredPad('asdf', 12, 'z');
+            const paddedStr1 = centerPad('asdf', 12, 'z');
             expect(paddedStr1).to.eql('zzzzasdfzzzz');
         });
         it(`adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
             `original string must be expanded by an even number of of chars. Rounds down for left` +
             `side, & up for right side`, function() {
-            const paddedStr1 = centeredPad('asdf', 8, ' ');
+            const paddedStr1 = centerPad('asdf', 8, ' ');
             expect(paddedStr1).to.eql('  asdf  ');
         });
         it(`returns string as-is if final expected length less than initial str width`, function() {
-            const paddedStr1 = centeredPad('qwertyuiop', 5, ' ');
+            const paddedStr1 = centerPad('qwertyuiop', 5, ' ');
             log.info(`paddedStr1:`, paddedStr1);
             expect(paddedStr1).to.eql('qwertyuiop');
         });
         it(`if padChar not given, use ' ' by default`, function() {
-            const paddedStr1 = centeredPad('qwertyuiop', 16);
+            const paddedStr1 = centerPad('qwertyuiop', 16);
             expect(paddedStr1).to.eql('   qwertyuiop   ');
         });
         it(`if length not given, return the string as-is by default`, function() {
-            const paddedStr1 = centeredPad('qwertyuiop');
+            const paddedStr1 = centerPad('qwertyuiop');
             expect(paddedStr1).to.eql('qwertyuiop');
         });
     });
@@ -663,20 +663,20 @@ describe(`string sub-module`, function() {
         });
     });
 
-    describe(`removeSurroundingRegexSlashes`, function() {
-        expectFunctionExists(removeSurroundingRegexSlashes);
+    describe(`removeSlashesFlagsSurroundingRegexString`, function() {
+        expectFunctionExists(removeSlashesFlagsSurroundingRegexString);
         it(`Removes regex slashes surrounding a string when no flags are present`, function() {
-            expect(removeSurroundingRegexSlashes('/asdf/')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/')).to.eql('asdf');
         });
         it(`Removes regex slashes surrounding a string and any included flags`, function() {
-            expect(removeSurroundingRegexSlashes('/asdf/g')).to.eql('asdf');
-            expect(removeSurroundingRegexSlashes('/asdf/mg')).to.eql('asdf');
-            expect(removeSurroundingRegexSlashes('/asdf/yumig')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/g')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/mg')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/yumig')).to.eql('asdf');
         });
         it(`Leaves slashes inside a string intact`, function() {
-            expect(removeSurroundingRegexSlashes('/asdf/g')).to.eql('asdf');
-            expect(removeSurroundingRegexSlashes('/asdf/mg')).to.eql('asdf');
-            expect(removeSurroundingRegexSlashes('/asdf/yumig')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/g')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/mg')).to.eql('asdf');
+            expect(removeSlashesFlagsSurroundingRegexString('/asdf/yumig')).to.eql('asdf');
         });
     });
 
