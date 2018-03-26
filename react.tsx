@@ -61,7 +61,7 @@ export const {
     first, last, first2, last2,
     without, withoutFirst, withoutLast, withoutFirst2, withoutLast2,
     rmAllFalsy,
-    centerPad, leftPad, rightPad, eliminateWhitespace, chomp,
+    centerPad, leftPad, rightPad, removeWhitespace, chomp,
     getLangFromUrlPathname, parseQueryParams, parseUserAgent,
     deepFreeze, assignFrozenClone, merge,
     isArray, isBoolean, isTrue, isFalse, isInteger, isIntegerLike, isNumberLike, isStringOrNumber,

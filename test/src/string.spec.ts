@@ -15,7 +15,7 @@ import * as stringModule from '../../src/string';
 const str = m_.string;
 const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
         removeMatchingText, chomp,
-        eliminateWhitespace, removeWhitespace, rmWhitespace, rmSpaces,
+        removeWhitespace,
         getBaseFilenameFromPath,
         endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
         endsInDotScss, endsInDotTsx, endsWithExt,
@@ -25,12 +25,12 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         removeSurroundingQuotes, removeSurroundingRegexSlashes,
         isRegexString, getFlagsFromRegexString,
         matchFirst,
-        leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith } = str;
+        leftPad, rightPad, centeredPad, pad, _cleanCharToPadWith
+    } = str;
 
 /******************************************** LOGGING *********************************************/
 import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite));
-
 
 /********************************************* TESTS **********************************************/
 describe(`string sub-module`, function() {
@@ -165,10 +165,6 @@ describe(`string sub-module`, function() {
 
     describe('removeWhitespace', function() {
         expectFunctionExists(removeWhitespace);
-        // Ensure aliases exist.
-        expectFunctionExists(eliminateWhitespace);
-        expectFunctionExists(rmWhitespace);
-        expectFunctionExists(rmSpaces);
 
         it(`should remove all whitespace from a string (non-mutatively)`, function() {
             expect(removeWhitespace('asdf')).to.eql('asdf');

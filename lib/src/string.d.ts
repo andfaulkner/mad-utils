@@ -62,25 +62,18 @@ export declare const escapeRegExp: (regexStr: string) => string;
  */
 export declare const matchesIgnoreCase: (matchOn: string) => (val: string) => boolean;
 /**
- * String that creates a blank line without using \n.
+ * String that creates a blank line without using \n
  */
 export declare const newlineStr = "\n";
 /**
- * Remove all spaces in the given string.
+ * Remove all spaces in the given string
  *
- * @param {string} str - String to remove spaces from
+ * @example removeWhitespace(' my test  string   '); // => myteststring
+ *
+ * @param {string} str String to remove spaces from
  * @return {string} input string with spaces removed
- *
- * @example elminateWhitespace(' my test  string   ');
- *          // => myteststring
  */
 export declare const removeWhitespace: (str: string) => string;
-/** Alias for removeWhitespace */
-export declare const eliminateWhitespace: (str: string) => string;
-/** Alias for removeWhitespace */
-export declare const rmWhitespace: (str: string) => string;
-/** Alias for removeWhitespace */
-export declare const rmSpaces: (str: string) => string;
 /**
  * Remove all chars in charsToChomp string from end of given string str.
  * Defaults to eliminating carriage return and newline.

@@ -165,28 +165,20 @@ export const matchesIgnoreCase = (matchOn: string) => (val: string): boolean =>
     !!val.toLowerCase().match(matchOn.toLowerCase());
 
 /**
- * String that creates a blank line without using \n.
+ * String that creates a blank line without using \n
  */
 export const newlineStr = `
 `;
 
 /**
- * Remove all spaces in the given string.
+ * Remove all spaces in the given string
  *
- * @param {string} str - String to remove spaces from
+ * @example removeWhitespace(' my test  string   '); // => myteststring
+ *
+ * @param {string} str String to remove spaces from
  * @return {string} input string with spaces removed
- *
- * @example elminateWhitespace(' my test  string   ');
- *          // => myteststring
  */
 export const removeWhitespace = (str: string): string => str.replace(/ /g, '');
-
-/** Alias for removeWhitespace */
-export const eliminateWhitespace = removeWhitespace;
-/** Alias for removeWhitespace */
-export const rmWhitespace = removeWhitespace;
-/** Alias for removeWhitespace */
-export const rmSpaces = removeWhitespace;
 
 /**
  * Remove all chars in charsToChomp string from end of given string str.
@@ -195,10 +187,8 @@ export const rmSpaces = removeWhitespace;
  * @param {string} charsToChomp - String (acting as array of chars) containing all chars to chomp.
  * @return {string} str with all chars in charsToChomp eliminated from end of string.
  */
-export const chomp = (str: string, charsToChomp: string = '\n\r'): string => {
-    const charsToChompRegexStr = charsToChomp.split('').join('|');
-    return str.replace(new RegExp(`(${charsToChompRegexStr})+$`, 'g'), '');
-};
+export const chomp = (str: string, charsToChomp: string = '\n\r'): string =>
+    str.replace(new RegExp(`(${charsToChomp.split('').join('|')})+$`, 'g'), '');
 
 /**
  * Convert camelCase, PascalCase, or dash-case to snake_case.
@@ -225,7 +215,7 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
         .replace(/([A-Z])/g, '_$1')
         // From dash-case, including "Dash-Title-Case" (dash-case with caps)
         .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
-        // Replace slash (both / and \) with _
+        // Replace slash (/ or \) with _
         .replace(/[\/\\]/g, '_')
         // Eliminate repeat, preceding, and trailing underscores, and stray dashes.
         .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
@@ -674,10 +664,6 @@ export {leftPad as padLeft};
 export {rightPad as padRight};
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
-// export { splitLines, first, first2, first3, firstN, last, last2, last3, lastN, without,
-//          withoutFirst, withoutFirst2, withoutFirst3, withoutLast, withoutLast2, withoutLast3,
-//          withoutFirstN, withoutLastN } from './array';
-
 export {countOccurrences as countChars} from './array';
 export {countOccurrences as countCharOccurrences} from './array';
 export {countOccurrences as charOccurrences} from './array';
