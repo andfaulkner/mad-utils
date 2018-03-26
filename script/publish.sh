@@ -44,28 +44,28 @@ replace-in-file /mad\-utils\.git#v[0-9]+\.[0-9]+\.[0-9]+\.?[0-9]?[0-9]?[0-9]?[0-
 # # git: Add, commit, and push package.json change to repo, then publish new version
 git add package.json
 git commit -m "Bump to version $NEW_VERSION_NUMBER"
-# git push origin master
-# git tag v$1
-# git push origin v$1
-# npm publish
-# echo "Published v$1 of $(curdir)!"
+git push origin master
+git tag v$1
+git push origin v$1
+npm publish
+echo "Published v$1 of $(curdir)!"
 
-# # # gojavelin
-# # pushd $JAVELIN_DIR
-# # yarn remove mad-utils
-# # yarn add mad-utils
-# # git add package.json yarn.lock
-# # git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
-# # gpocur
+# # gojavelin
+# pushd $JAVELIN_DIR
+# yarn remove mad-utils
+# yarn add mad-utils
+# git add package.json yarn.lock
+# git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
+# gpocur
+# gowebclient
+
 # # gowebclient
+# pushd $WEBCLIENT_DIR
+# yarn remove mad-utils
+# yarn add mad-utils
+# git add package.json yarn.lock
+# git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
+# gpocur
 
-# # # gowebclient
-# # pushd $WEBCLIENT_DIR
-# # yarn remove mad-utils
-# # yarn add mad-utils
-# # git add package.json yarn.lock
-# # git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
-# # gpocur
-
-# # # Start webclient build again
-# # ./common-cmds clean
+# # Start webclient build again
+# ./common-cmds clean
