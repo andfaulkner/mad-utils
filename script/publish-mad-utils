@@ -69,7 +69,7 @@ alias g_curbr="git status | head -1 | awk '{print \$3}'"
 alias gpocur='echo "$(g_curbr)" | xargs git push origin'
 
 ############################################ RUN SCRIPT ############################################
-# Push current branch and create a new tag
+# Push current branch
 gpocur
 
 # Replace the version number in package.json
@@ -79,11 +79,11 @@ replace-in-file /mad\-utils\.git#v[0-9]+\.[0-9]+\.[0-9]+\.?[0-9]?[0-9]?[0-9]?[0-
 # git: Add, commit, and push package.json change to repo, then publish new version
 git add package.json
 git commit -m "Bump to version $NEW_VERSION_NUMBER"
-git push origin master
+gpocur
 git tag v$1
 git push origin v$1
 npm publish
-echo "Published v$1 of $(curdir)!"
+echo "Published v$1 of mad-utils!"
 
 ###################################### UPGRADE IN OTHER REPOS ######################################
 # Exit if --local-reinstalls not set

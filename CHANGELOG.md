@@ -1,3 +1,8 @@
+0.51.2
+======
+publish script expanded - added docs, renamed, more functionality
+    *   Made reinstallation into Javelin & webclient optional
+
 0.51.1
 ======
 Added basic publish script
