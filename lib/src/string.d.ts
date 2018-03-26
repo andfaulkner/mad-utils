@@ -38,8 +38,6 @@ export declare const matches: (valToFind: string | number | RegExp) => (valToSea
  * @return {string} first substring to match the given string or RegExp; '' if no matches found.
  */
 export declare const matchFirst: (strToSearchIn: string, matcher: string | RegExp) => string;
-export { matchFirst as getFirstMatch };
-export { matchFirst as firstMatch };
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * Converts string to form that lets it be used as a pure 'literal' string to match against

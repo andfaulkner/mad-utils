@@ -136,9 +136,6 @@ export const matchFirst = (strToSearchIn: string, matcher: string | RegExp): str
     return (matches && matches[0]) || '';
 };
 
-export {matchFirst as getFirstMatch};
-export {matchFirst as firstMatch};
-
 /**
  * Escape a string for use as a regex. Allows repeat matching on a single string.
  * Converts string to form that lets it be used as a pure 'literal' string to match against
