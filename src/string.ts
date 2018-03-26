@@ -312,7 +312,7 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
 
     // |** 5 **| Cut out the required number of spaces
     const linesPreppedArr = lines.map((line: string) =>
-        line.replace(new RegExp(`^${initialIndent}`, 'm'), leftPadSpaces),
+        line.replace(new RegExp(`^${initialIndent}`, 'm'), leftPadSpaces)
     );
 
     // |** 6 **| Convert array back to string.
@@ -456,7 +456,7 @@ export const pad = (
     strToPad: string = '',
     outWidth: number = 0,
     padChar: string = ' ',
-    side: Sides = 'center',
+    side: Sides = 'center'
 ) => {
     const cleanStr = strToPad.toString();
     if (typeof outWidth === 'undefined' || outWidth == null) return cleanStr;
@@ -611,7 +611,7 @@ export const getFlagsFromRegexString = (str: string): string | null => {
         if (!matchesFlag) {
             console.warn(
                 `Invalid RegExp string : ${str}. '${char}' is not a ` +
-                    `flag - only y, u, m, i, and g are valid flags.`,
+                    `flag - only y, u, m, i, and g are valid flags.`
             );
             return null;
         }
@@ -620,7 +620,7 @@ export const getFlagsFromRegexString = (str: string): string | null => {
         if (acc && acc.split('').find(flag => flag === matchesFlag[0])) {
             console.warn(
                 `Invalid RegExp string : ${str}. RegExp strings can ` +
-                    `only contain one of each flag (y, u, m, i, and g).`,
+                    `only contain one of each flag (y, u, m, i, and g).`
             );
             return null;
         }
