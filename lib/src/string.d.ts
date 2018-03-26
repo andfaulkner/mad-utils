@@ -98,7 +98,6 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
  * @return {string} given string converted to snake_case.
  */
 export declare const toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
-export declare const toSnakecase: (str: string, consecUppercaseToLowercase?: boolean) => string;
 /**
  * Converts any string to camelCase.
  * This includes consistently making the first letter lowercase, capitalizing the 1st char after

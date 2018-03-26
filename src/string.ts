@@ -237,8 +237,6 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
     return retStr;
 };
 
-export const toSnakecase = toSnakeCase;
-
 /**
  * Converts any string to camelCase.
  * This includes consistently making the first letter lowercase, capitalizing the 1st char after

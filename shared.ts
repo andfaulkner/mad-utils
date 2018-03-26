@@ -149,7 +149,7 @@ export const commonShared = {
     getLangFromUrlPathname: url.getLangFromUrlPathname,
     urlMinusQueryParams: url.urlMinusQueryParams,
 
-    toSnakeCase: string.toSnakecase,
+    toSnakeCase: string.toSnakeCase,
     cap1LowerRest: string.cap1LowerRest,
     capitalize: string.capitalize,
     replaceAll: string.replaceAll,

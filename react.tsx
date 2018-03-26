@@ -24,7 +24,7 @@ export const logSyntheticEventValue = (callerName: string, logFn: FuncW2OrMoreAr
     // Handle cases where event does not have key 'target'.
     if (!(event.target && (typeof event.target === 'object' || typeof event.target === 'function'))) {
         logFn(`${callerName} :: value not present in event.target`);
-    
+
     // Handle cases where event *does* have key 'target' (happy path!).
     } else {
         logFn(`${callerName} :: event.target['value']:`, event.target['value']);
@@ -71,7 +71,7 @@ export const {
     uuid,
     eachPair,
     replaceAll,
-    toSnakecase, toCamelCase, capitalize, cap1LowerRest, repeatChars,
+    toSnakeCase, toCamelCase, capitalize, cap1LowerRest, repeatChars,
     condSwitch,
     singleton,
     isLeapYear, now,
