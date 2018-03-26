@@ -10,6 +10,8 @@ Eliminated the following aliases from the string module:
     *   isRegexStr (alias of isRegexString)
     *   getFlagsFromRegexStr (alias of getFlagsFromRegexString)
 
+No longer exporting _cleanCharToPadWith from string module (it's now local-only)
+
 Renamed removeSurroundingRegexSlashes -> removeSlashesFlagsSurroundingRegexString & removed aliases:
     *   withoutSurroundingRegexSlashes
     *   withoutRegexSlashesAndFlags

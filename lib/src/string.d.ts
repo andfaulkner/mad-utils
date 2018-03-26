@@ -314,12 +314,6 @@ export declare const getFlagsFromRegexString: (str: string) => string;
  * @return {string} Regex string with the flags and bookending '/' chars removed
  */
 export declare const removeSlashesFlagsSurroundingRegexString: (str: string) => string;
-/*********************************** TEST EXPORTS ***********************************/
-/**
- * Ensure proper char for padding was passed to rightPad, leftPad, and centerPad.
- */
-declare function _cleanCharToPadWith(padChar?: string | number): string;
-export { _cleanCharToPadWith };
 export { leftPad as padLeft };
 export { rightPad as padRight };
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/

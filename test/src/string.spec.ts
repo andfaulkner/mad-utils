@@ -25,7 +25,7 @@ const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgn
         removeSurroundingQuotes, removeSlashesFlagsSurroundingRegexString,
         isRegexString, getFlagsFromRegexString,
         matchFirst,
-        leftPad, rightPad, centerPad, pad, _cleanCharToPadWith
+        leftPad, rightPad, centerPad, pad,
     } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -470,15 +470,6 @@ describe(`string sub-module`, function() {
         {
             const paddedStr1 = pad('asdf', 12, '|', 'right');
             expect(paddedStr1).to.eql('asdf||||||||');
-        });
-    });
-
-    describe(`_cleanCharToPadWith (private function)`, function() {
-        it(`returns '0' if given 0`, function() {
-            expect((_cleanCharToPadWith as any)(0)).to.eql('0');
-        });
-        it(`returns '0' if given 0`, function() {
-            expect((_cleanCharToPadWith as any)(0)).to.eql('0');
         });
     });
 

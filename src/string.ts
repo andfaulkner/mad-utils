@@ -623,9 +623,6 @@ function _cleanCharToPadWith(padChar: string | number = ' ') {
     return ' ';
 }
 
-// test export
-export {_cleanCharToPadWith};
-
 // Aliases
 export {leftPad as padLeft};
 export {rightPad as padRight};
