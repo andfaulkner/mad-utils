@@ -1,3 +1,7 @@
+0.51.1
+======
+Added basic publish script
+
 0.51.0
 ======
 Eliminated the following aliases from the string module:
