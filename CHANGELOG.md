@@ -1,3 +1,14 @@
+0.51.0
+======
+Gets rid of toSnakecase
+*   leaves toSnakeCase as only variant
+
+Gets rid of rmSpaces, rmWhitespace, eliminateWhitespace
+*   leaves removeWhitespace as only variant
+
+toSnakeCase now handles slashes (replaces / or \ with _)
+
+
 0.50.3
 ======
 Fixed object module error
