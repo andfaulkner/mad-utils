@@ -177,6 +177,7 @@
     "react": "16.2.0",
     "react-addons-test-utils": "^15.x",
     "react-dom": "16.2.0",
+    "replace-in-file": "^3.4.0",
     "sinon": "^1.17.6",
     "snyk": "^1.24.6",
     "supertest": "^2.0.1",
