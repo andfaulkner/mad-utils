@@ -1,10 +1,9 @@
 0.51.0
 ======
-Gets rid of toSnakecase
-*   leaves toSnakeCase as only variant
-
-Gets rid of rmSpaces, rmWhitespace, eliminateWhitespace
-*   leaves removeWhitespace as only variant
+Eliminated the following aliases from the string module:
+    * toSnakecase (alias of toSnakeCase) 
+    * rmSpaces, rmWhitespace, eliminateWhitespace (aliases of removeWhitespace) 
+    * getFirstMatch, firstMach (aliases of matchFirst)
 
 toSnakeCase now handles slashes (replaces / or \ with _)
 
