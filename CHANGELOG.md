@@ -4,6 +4,7 @@ Eliminated the following aliases from the string module:
     * toSnakecase (alias of toSnakeCase) 
     * rmSpaces, rmWhitespace, eliminateWhitespace (aliases of removeWhitespace) 
     * getFirstMatch, firstMach (aliases of matchFirst)
+    * repeatString, repeatChar (aliases of repeatChars)
 
 toSnakeCase now handles slashes (replaces / or \ with _)
 

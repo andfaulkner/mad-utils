@@ -200,7 +200,7 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
     const cleanStr = consecUppercaseToLowercase
         ? str.replace(/([a-z])([A-Z]+)([A-Z])([a-z])/g, '$1_$2_$3$4').toLowerCase()
         : str;
-    let retStr = cleanStr
+    return cleanStr
         .trim()
         //Remove apostrophes, quotes, commas, |, ?, and !
         .replace(/('|"|\!|\?|\`|,|\|)/g, '')
@@ -221,7 +221,6 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
         .replace(/(_|\-){1,}$/, '')
         // Remove caps (snake_case is always lowercase)
         .toLowerCase();
-    return retStr;
 };
 
 /**
@@ -327,13 +326,6 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
  * @return {string} string consisting of len repeats of charToRepeat.
  */
 export const repeatChars = (repStr: string, len: Int): string => arrayN(len, repStr).join('');
-
-export {repeatChars as repeatString};
-
-/**
- * Alias for repeatChar
- */
-export {repeatChars as repeatChar};
 
 /*************************************** FILE PATH STRINGS ****************************************/
 /**

@@ -151,11 +151,6 @@ export declare function withLeftIndent(strings: any, leftPadSize?: number, xz?: 
  * @return {string} string consisting of len repeats of charToRepeat.
  */
 export declare const repeatChars: (repStr: string, len: number) => string;
-export { repeatChars as repeatString };
-/**
- * Alias for repeatChar
- */
-export { repeatChars as repeatChar };
 /*************************************** FILE PATH STRINGS ****************************************/
 /**
  * If given string ends in given substring preceded by a '.', returns true.
