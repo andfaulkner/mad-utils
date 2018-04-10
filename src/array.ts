@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { Any, RealAny, isArray } from './types-iso';
+import {Any, RealAny, isArray} from './types-iso';
 
 /******************************************** MATCHING ********************************************/
 /**
@@ -16,8 +16,9 @@ export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
     const isValToFindNaN = typeof valToFind === 'number' && isNaN(valToFind);
     return matchVals.some(val => {
         if (isValToFindNaN && typeof val === 'number' && isNaN(val)) return true;
-        return isValToFindObj ? cleanValToFind === (val && JSON.stringify(val))
-                              : cleanValToFind === val;
+        return isValToFindObj
+            ? cleanValToFind === (val && JSON.stringify(val))
+            : cleanValToFind === val;
     });
 };
 
@@ -28,11 +29,13 @@ export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
  * @return {boolean} true if arr contains val
  */
 export const contains = (arr: any[], val: any): boolean =>
-    arr.some(item => (item === val || (typeof item === 'number' && typeof val === 'number'
-                                       && isNaN(item) && isNaN(val))));
+    arr.some(
+        item =>
+            item === val ||
+            (typeof item === 'number' && typeof val === 'number' && isNaN(item) && isNaN(val))
+    );
 
-export { contains as includes };
-
+export {contains as includes};
 
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 
@@ -51,7 +54,9 @@ export function first(str: string): string;
  * @param {T[]} arr Array to return first item from
  */
 export function first<T>(arr: T[]): T;
-export function first<T>(arrOrStr: T[] | string): T | string { return arrOrStr[0]; }
+export function first<T>(arrOrStr: T[] | string): T | string {
+    return arrOrStr[0];
+}
 
 /**
  * Return 2nd character of a string.
@@ -64,17 +69,23 @@ export function second<T>(str: string): string;
  * @param {T[]} arr Array to return 2nd item from
  */
 export function second<T>(arr: T[]): T;
-export function second<T>(arrOrStr: T[] | string): T | string { return arrOrStr[1]; }
+export function second<T>(arrOrStr: T[] | string): T | string {
+    return arrOrStr[1];
+}
 
 /** Return third item in an array. */
 export function third<T>(str: string): string;
 export function third<T>(arr: T[]): T;
-export function third<T>(arrOrStr: T[] | string): T | string { return arrOrStr[2]; }
+export function third<T>(arrOrStr: T[] | string): T | string {
+    return arrOrStr[2];
+}
 
 /** Return last item in an array or string. */
 export function last(str: string): string;
 export function last<T>(arr: T[]): T;
-export function last<T>(arrOrStr: T[] | string): T | string { return arrOrStr.slice(-1)[0]; }
+export function last<T>(arrOrStr: T[] | string): T | string {
+    return arrOrStr.slice(-1)[0];
+}
 
 /** Return second last item in an array or string. */
 export function secondLast(str: string): string;
@@ -87,7 +98,7 @@ export function secondLast<T>(arrOrStr: T[] | string): T | string {
 // tslint:disable-next-line:no-magic-numbers max-line-length
 export function thirdLast(str: string): string;
 export function thirdLast<T>(arr: T[]): T;
-export function thirdLast<T>(arrOrStr: T[] | string ): T | string {
+export function thirdLast<T>(arrOrStr: T[] | string): T | string {
     // tslint:disable-next-line:no-magic-numbers
     return arrOrStr.slice(-3, -2)[0];
 }
@@ -99,24 +110,32 @@ export function thirdLast<T>(arrOrStr: T[] | string ): T | string {
 /** Return first 2 items in an array. */
 export function first2<T>(str: string): string;
 export function first2<T>(arr: T[]): T[];
-export function first2<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 2); }
+export function first2<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(0, 2);
+}
 
 /** Return first 3 items in an array. */
 export function first3<T>(str: string): string;
 export function first3<T>(arr: T[]): T[];
 // tslint:disable-next-line:no-magic-numbers
-export function first3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(0, 3); }
+export function first3<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(0, 3);
+}
 
 /** Return last 2 items in an array. */
 export function last2(str: string): string;
 export function last2<T>(arr: T[]): T[];
-export function last2<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(-2); }
+export function last2<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(-2);
+}
 
 /** Return last 3 items in an array. */
 export function last3(str: string): string;
 export function last3<T>(arr: T[]): T[];
 // tslint:disable-next-line:no-magic-numbers
-export function last3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr.slice(-3); }
+export function last3<T>(arrOrStr: T[] | string): T[] | string {
+    return arrOrStr.slice(-3);
+}
 
 //
 // VARIABLE NUMBER OF ITEMS FROM START OR END
@@ -127,7 +146,7 @@ export function last3<T>(arrOrStr: T[] | string): T[] | string { return arrOrStr
  */
 export function firstN(str: string, n: number): string;
 export function firstN<T>(arr: T[], n: number): T[];
-export function firstN <T>(arrOrStr: T[] | string, n: number): T[] | string {
+export function firstN<T>(arrOrStr: T[] | string, n: number): T[] | string {
     if (typeof arrOrStr === 'string') return arrOrStr.slice(0, n);
     return arrOrStr.length >= n ? arrayN<void>(n).map((__, idx) => arrOrStr[idx]) : arrOrStr;
 }
@@ -160,11 +179,10 @@ export const arrayN = <T>(len: number, fillValue?: T): T[] | never => {
     if (len.toString().match(/\./)) {
         throw new TypeError(nonIntegerFirstArgErr);
     }
-    const cleanLen = (typeof len === 'string') ? parseInt(len, 10) : len;
+    const cleanLen = typeof len === 'string' ? parseInt(len, 10) : len;
     if (fillValue) return Array.from(Array(cleanLen)).map(item => fillValue);
     return Array.from(Array(cleanLen));
 };
-
 
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
 /**
@@ -240,9 +258,9 @@ export function withoutLast3<T>(arrOrStr: T[] | string): T[] | string {
  * @return {Array<any>} Array with last N items excluded.
  */
 export function withoutLastN<T>(str: string, numToRm: number): string;
-export function withoutLastN<T>(arr: T[], numToRm: number) : T[];
+export function withoutLastN<T>(arr: T[], numToRm: number): T[];
 export function withoutLastN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
-    return arrOrStr.slice(0, (numToRm === 0) ? arrOrStr.length : (-1 * numToRm));
+    return arrOrStr.slice(0, numToRm === 0 ? arrOrStr.length : -1 * numToRm);
 }
 
 /**
@@ -254,7 +272,7 @@ export function withoutFirstN<T>(str: string, numToRm: number): string;
 export function withoutFirstN<T>(arr: T[], numToRm: number): T[];
 export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] | string {
     return arrOrStr.slice(1 * numToRm);
-};
+}
 
 /**
  * Append all items in arr2 to the end of arr1 (non-mutatively) and return it.
@@ -286,10 +304,8 @@ export function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: Any[]): An
 
     const first2Arrs = _cleanArrForAppend(arr1).concat(_cleanArrForAppend(arr2));
 
-    return (arrs.length > 0)
-        ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs)
-        : first2Arrs;
-};
+    return arrs.length > 0 ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs) : first2Arrs;
+}
 
 /**
  * Return new array with all items in arr2OrItem removed from array1; or if array2 is
@@ -327,8 +343,8 @@ export function pushIfUniq<T = any>(arr: T[], newItem: T): T[] {
     return arr;
 }
 
-export { pushIfUniq as pushIfNew }
-export { pushIfUniq as pushUniq }
+export {pushIfUniq as pushIfNew};
+export {pushIfUniq as pushUniq};
 
 /**
  * Split large multiline string into array where each line is an item. Also removes blank lines.
@@ -339,11 +355,11 @@ export { pushIfUniq as pushUniq }
  * @return {Array<string>} Array where each item is a line from the input string, with falsy
  *                         values removed.
  */
-export const splitLines =
-(str: string, opts: { preserveEmptyLines: boolean } = { preserveEmptyLines: false }): string[] =>
-    opts.preserveEmptyLines
-        ? str.toString().split('\n')
-        : rmAllFalsy(str.toString().split('\n'));
+export const splitLines = (
+    str: string,
+    opts: {preserveEmptyLines: boolean} = {preserveEmptyLines: false}
+): string[] =>
+    opts.preserveEmptyLines ? str.toString().split('\n') : rmAllFalsy(str.toString().split('\n'));
 
 // TODO test countOccurrences.
 
@@ -365,13 +381,13 @@ export function countOccurrences<T = any>(arr: T[] | string): Map<T, number>;
 export function countOccurrences(arr: any[] | string, value?: any): Map<any, number> | number {
     const map = new Map<any, number>();
     for (let item of arr) map.set(item, (map.get(item) || 0) + 1);
-    return (typeof value === 'undefined') ? map : map.get(value);
+    return typeof value === 'undefined' ? map : map.get(value);
 }
 
-export { countOccurrences as count }
-export { countOccurrences as countAll }
-export { countOccurrences as countItems }
-export { countOccurrences as countArrayItems }
+export {countOccurrences as count};
+export {countOccurrences as countAll};
+export {countOccurrences as countItems};
+export {countOccurrences as countArrayItems};
 
 /**
  * Remove duplicate characters from the string
@@ -391,17 +407,16 @@ export function removeDuplicates(coll: string | any[]): any[] | string {
     const occurrences = countOccurrences(coll).keys();
     let out = [];
     let cur;
-    while(cur = occurrences.next().value) out.push(cur);
-    return (typeof coll === 'string' ? out.join('') : out);
+    while ((cur = occurrences.next().value)) out.push(cur);
+    return typeof coll === 'string' ? out.join('') : out;
 }
 
-export { removeDuplicates as uniq }
-export { removeDuplicates as uniqVals }
-export { removeDuplicates as unique }
-export { removeDuplicates as uniqueVals }
-export { removeDuplicates as removeDuplicateVals }
-export { removeDuplicates as removeDuplicateItems }
-
+export {removeDuplicates as uniq};
+export {removeDuplicates as uniqVals};
+export {removeDuplicates as unique};
+export {removeDuplicates as uniqueVals};
+export {removeDuplicates as removeDuplicateVals};
+export {removeDuplicates as removeDuplicateItems};
 
 /**
  * Namespace for certain "reversed" operations.
@@ -416,7 +431,6 @@ export const without = {
     first3: withoutFirst3,
     firstN: withoutFirstN,
 };
-
 
 /******************************************* COLLECTION *******************************************/
 /**
@@ -442,12 +456,14 @@ export function sample<T = any>(coll: string): string | undefined;
 
 // TODO make sample work for Map instances.
 
-export function sample<T = any>(coll: T[] | string | Record<string, T>): T | string | [string, T] | undefined {
+export function sample<T = any>(
+    coll: T[] | string | Record<string, T>
+): T | string | [string, T] | undefined {
     if (isArray(coll)) {
         return coll[Math.floor(Math.random() * (coll as T[]).length)];
     }
     if (typeof coll === 'string' || coll instanceof String) {
-        return coll.split('')[Math.floor(Math.random() * (coll.split('').length))];
+        return coll.split('')[Math.floor(Math.random() * coll.split('').length)];
     }
     if (typeof coll === 'object') {
         const objKeys = Object.keys(coll);
@@ -470,15 +486,13 @@ const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
  */
 export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
 
-
 /***************************************** BARREL EXPORT ******************************************/
-export { isArray } from './types-iso';
-
+export {isArray} from './types-iso';
 
 /**************************************** INTERNAL HELPERS ****************************************/
 /**
  * Ensures an array is an array
  */
-function _cleanArrForAppend (a: RealAny[]) {
-    return (a.constructor.name !== 'Array' && a.constructor.constructor.name !== 'Array') ? [a] : a;
+function _cleanArrForAppend(a: RealAny[]) {
+    return a.constructor.name !== 'Array' && a.constructor.constructor.name !== 'Array' ? [a] : a;
 }

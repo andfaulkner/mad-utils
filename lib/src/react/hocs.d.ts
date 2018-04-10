@@ -11,4 +11,4 @@ import { MadLog } from 'mad-logs';
  * @param {string} verbosity - verbosity level to log at. Defaults to 'verbose'.
  * @example @logOnRender(log) class MyClass { ... }
  */
-export declare function logOnRender(logger?: MadLog, verbosity?: 'silly' | 'verbose' | 'debug' | 'info' | 'warn' | 'error' | 'wtf'): <T extends Newable<React.Component<any, any>>>(WrappedComponent: T) => T;
+export declare function logOnRender(logger?: MadLog, verbosity?: 'silly' | 'verbose' | 'debug' | 'info' | 'warn' | 'error' | 'wtf'): <T extends Newable<React.Component<any, any, never>>>(WrappedComponent: T) => T;

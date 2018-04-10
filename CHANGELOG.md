@@ -1,3 +1,9 @@
+0.51.3
+======
+Cleaned up code in array module
+
+Upgraded React, React-DOM, moment, lodash, nodemon, prettier, & tslint (+ all tslint plugins)
+
 0.51.2
 ======
 publish script expanded - added docs, renamed, more functionality
