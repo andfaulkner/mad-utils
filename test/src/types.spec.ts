@@ -380,6 +380,69 @@ describe(`types sub-modules`, function() {
             });
         });
 
+        describe(`isFunction function`, function() {
+            expectFunctionExists(typesIso.isFunction);
+            it(`returns true if given an arrow function`, function() {
+                expect(typesIso.isFunction(() => '')).to.be.true;
+                expect(typesIso.isFunction(() => true)).to.be.true;
+                expect(typesIso.isFunction(() => null)).to.be.true;
+                expect(typesIso.isFunction((arg1, arg2) => arg1 + arg2)).to.be.true;
+            });
+            it(`returns true if given a classic ES5 (and under) lambda function`, function() {
+                expect(typesIso.isFunction(function() { return 'ok'; })).to.be.true;
+                expect(typesIso.isFunction(function() { return false; })).to.be.true;
+                expect(typesIso.isFunction(function() {})).to.be.true;
+                expect(typesIso.isFunction(function(arg1, arg2) {})).to.be.true;
+                expect(typesIso.isFunction(function(arg1, arg2) { return arg1 + arg2 })).to.be.true;
+            });
+            it(`returns true if given a named classic ES5 (and under) function`, function() {
+                expect(typesIso.isFunction(function testFunc1() { return 'ok'; })).to.be.true;
+                expect(typesIso.isFunction(function testFunc2() { return false; })).to.be.true;
+                expect(typesIso.isFunction(function testFunc3() {})).to.be.true;
+                expect(typesIso.isFunction(function testFunc4(arg1, arg2) {})).to.be.true;
+                expect(typesIso.isFunction(function testFunc5(arg1, arg2) { return arg1 + arg2 })).to.be.true;
+            });
+            it(`returns false if given a RegExp`, function() {
+                expect(typesIso.isFunction(/asdf/g)).to.be.false;
+                expect(typesIso.isFunction(new RegExp('asdf'))).to.be.false;
+            });
+            it(`returns false if given a symbol`, function() {
+                expect(typesIso.isFunction(Symbol())).to.be.false;
+                expect(typesIso.isFunction(Symbol('okokok'))).to.be.false;
+                expect(typesIso.isFunction(Symbol.for('asdf'))).to.be.false;
+            });
+            it(`returns false if given undefined or null`, function() {
+                expect(typesIso.isFunction(null)).to.be.false;
+                expect(typesIso.isFunction(undefined)).to.be.false;
+                expect((typesIso.isFunction as any)()).to.be.false;
+            });
+            it(`returns false if given a string, boolean, NaN, or number`, function() {
+                expect(typesIso.isFunction('')).to.be.false;
+                expect(typesIso.isFunction('asdf')).to.be.false;
+                expect(typesIso.isFunction(false)).to.be.false;
+                expect(typesIso.isFunction(true)).to.be.false;
+                expect(typesIso.isFunction(NaN)).to.be.false;
+                expect(typesIso.isFunction(0)).to.be.false;
+                expect(typesIso.isFunction(1)).to.be.false;
+                expect(typesIso.isFunction(21398123)).to.be.false;
+                expect(typesIso.isFunction(-1)).to.be.false;
+            });
+            it(`returns false if given an object or array`, function() {
+                expect(typesIso.isFunction({})).to.be.false;
+                expect(typesIso.isFunction([])).to.be.false;
+                expect(typesIso.isFunction({a: 1, b: 'two'})).to.be.false;
+                expect(typesIso.isFunction(['a', 'b'])).to.be.false;
+                expect(typesIso.isFunction([0])).to.be.false;
+                expect(typesIso.isFunction([() => null])).to.be.false;
+                expect(typesIso.isFunction([() => 'out', (arg1) => 999])).to.be.false;
+            });
+            it(`returns true if given a function with an object merged in`, function() {
+                expect(typesIso.isFunction(
+                    Object.assign(function testFunc() { return 'result'; }, {a: 1, b: 2})
+                )).to.be.true;
+            });
+        });
+
         describe(`isDateLike function`, function() {
             expectFunctionExists(typesIso.isDateLike);
             it(`should return true for dates & moment objects`, function() {

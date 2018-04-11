@@ -147,6 +147,11 @@ export declare const isTrue: (val: any, include1CharVal?: boolean) => val is tru
  */
 export declare const isFalse: (val: any, include1CharVal?: boolean) => val is false;
 /**
+ * @param {Any} val Return true if this value is a function
+ * @return {boolean} True if val is a function, otherwise false
+ */
+export declare const isFunction: <T = (...args: any[]) => any>(val: any) => val is T;
+/**
  * Any class wrapped in this decorator becomes a singleton immediately.
  * Throws if attempt is made to wrap a non-class.
  *

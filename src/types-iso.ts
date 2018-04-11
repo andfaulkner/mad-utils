@@ -299,6 +299,16 @@ export const isFalse = (val: RealAny, include1CharVal: boolean = false): val is 
             (val.toLowerCase() === 'false' || (include1CharVal && val.toLowerCase() === 'f')))
     );
 
+/**
+ * @param {Any} val Return true if this value is a function
+ * @return {boolean} True if val is a function, otherwise false
+ */
+export const isFunction = <T = ((...args: any[]) => any)>(val: RealAny): val is T => {
+    const str = Object.prototype.toString.call(val);
+    return str === '[object Function]' || (typeof val === 'function' && str !== '[object RegExp]');
+};
+
+
 // TODO improve singleton design-time behaviour - i.e. proper type hints + Intellisense.
 /**
  * Any class wrapped in this decorator becomes a singleton immediately.
