@@ -195,3 +195,5 @@ export { defineGetterProp as defineGetProp };
  * @return {Object} Duplicate of input object with keys sorted
  */
 export declare const sortObject: (obj: Record<string, any>) => Record<string, any>;
+export declare type OmitPred<T = any> = (val: T, key: string, obj?: Object) => boolean;
+export declare function omit<T = any>(obj: Object, props: string | string[] | OmitPred<T>, fn: OmitPred<T>): {};
