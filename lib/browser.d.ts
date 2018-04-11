@@ -247,7 +247,7 @@ export declare const common: {
     leftPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     rightPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     centerPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
-    isNonexistentOrString: (val: any) => val is string;
+    isVoidOrString: (val: any) => val is string;
     isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
     isBoolean: (val: any) => val is boolean;
     isDateLike: (val: any) => boolean;

@@ -2,7 +2,7 @@
 // TODO Test inspectKeyTree
 
 /******************************************** IMPORTS *********************************************/
-import {isNonexistentOrString, RealAny, isArray} from './types-iso';
+import {isVoidOrString, RealAny, isArray, isFunction} from './types-iso';
 import {matchesIgnoreCase, replaceAll} from './string';
 import {englishVariants, frenchVariants} from './internal/lang-constants';
 import {flatten} from './array';
@@ -104,7 +104,7 @@ export const isMultilangTextObj = (obj: RealAny): boolean => {
             }
         }) &&
         (typeof matchingKey === 'string' || matchingKey == null || matchingKey == undefined) &&
-        isNonexistentOrString(obj[matchingKey])
+        isVoidOrString(obj[matchingKey])
     );
 };
 
@@ -515,7 +515,13 @@ function isObject(val: RealAny) {
     return val != null && (isPlainObject(val) || typeof val === 'function' || Array.isArray(val));
 }
 
-function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Object) => boolean) {
+export type OmitPred<T = any> = (val: T, key: string, obj?: Object) => boolean;
+
+export function omit<T = any>(
+    obj: Object,
+    props: string | string[] | OmitPred<T>,
+    fn: OmitPred<T>
+) {
     if (!isObject(obj)) return {};
 
     if (typeof props === 'function') {
@@ -525,19 +531,36 @@ function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Ob
 
     if (typeof props === 'string') props = [props];
 
-    const isFunction = typeof fn === 'function';
-    const lKeys = keys(obj);
-    const res = {};
-
-    for (let i = 0; i < lKeys.length; i++) {
-        const key = lKeys[i];
-        const val = obj[key];
-
-        if (!props || (props.indexOf(key) === -1 && (!isFunction || fn(val, key, obj)))) {
-            res[key] = val;
-        }
-    }
-    return res;
+    return keys(obj).reduce((acc, k) =>
+        (!props || ((props as any[]).indexOf(k) === -1 && (!isFunction(fn) || fn(obj[k], k, obj))))
+            ? assign(acc, {[k]: obj[k]})
+            : acc,
+        {}
+    );
 }
+
+// function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Object) => boolean) {
+//     if (!isObject(obj)) return {};
+
+//     if (typeof props === 'function') {
+//         fn = props;
+//         props = [];
+//     }
+
+//     if (typeof props === 'string') props = [props];
+
+//     const lKeys = keys(obj);
+//     const res = {};
+
+//     for (let i = 0; i < lKeys.length; i++) {
+//         const key = lKeys[i];
+//         const val = obj[key];
+
+//         if (!props || (props.indexOf(key) === -1 && (!isFunction || fn(val, key, obj)))) {
+//             res[key] = val;
+//         }
+//     }
+//     return res;
+// }
 /* END UNPUBLISHED ********************************************************************************/
 /**************************************************************************************************/

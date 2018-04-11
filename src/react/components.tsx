@@ -4,9 +4,6 @@ import * as ReactDOM from 'react-dom';
 
 import { RealAny } from '../types-iso';
 
-/************************************** THIRD-PARTY MODULES ***************************************/
-import { InjectionType } from '../types-iso';
-
 /*************************************** BASIC CONDITIONALS ***************************************/
 /**
  * Render the child if 'test' is truthy. Can only accept React components.

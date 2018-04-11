@@ -1390,7 +1390,7 @@ Examples:
 ### escapeRegExp
 *   WIP documentation
 
-### isNonexistentOrString
+### isVoidOrString
 *   WIP documentation
 
 ### matches
@@ -1484,7 +1484,7 @@ Examples:
 *   True if 2 given strings' match, with casing ignored.
 *   WIP documentation
 
-### [FUNCTION] isNonexistentOrString
+### [FUNCTION] isVoidOrString
 *   True if given item doesn't exist, or is a string.
 *   WIP documentation
 

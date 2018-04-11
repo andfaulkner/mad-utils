@@ -14,14 +14,9 @@ export { RealAny as Any };
  * Union aliases
  */
 export declare type StrOrNum = string | number;
-export { StrOrNum as NumOrStr };
-export { StrOrNum as NumberOrString };
 export declare type StrOrNever = string | never;
-export { StrOrNever as NeverOrStr };
-export declare type StringOrNonexistent = string | null | undefined;
-export { StringOrNonexistent as StrOrNonexistent };
-export declare type StrOrErr = String | Error;
-export { StrOrErr as StrOrError };
+export declare type StrOrVoid = string | void;
+export declare type StrOrErr = string | Error;
 /**
  * Any type that can potentially be cast to a number.
  */
@@ -30,15 +25,9 @@ export declare type NumLike = StrOrNum | StrOrNum[];
  * Alias to indicate variable injected by a decorator.
  */
 export declare type Injection<T> = T;
-export declare type InjectionType<T> = T;
-export declare type OptionalInjection<T> = T;
-export declare type OptionalInjectedType<T> = T;
-export declare type RequiredInjection<T> = T;
-export declare type RequiredInjectionType<T> = T;
-export declare type MandatoryInjection<T> = T;
-export declare type MandatoryInjectionType<T> = T;
-export declare type MandatoryInjectionViaDecorator<T> = T;
-export declare type MandatoryInjectionViaDecoratorType<T> = T;
+export { Injection as OptionalInjection };
+export { Injection as RequiredInjection };
+export { Injection as MandatoryInjection };
 /**
  * Extend to (optionally) include Polyglot
  */
@@ -47,33 +36,25 @@ export interface PolyglotProps {
 }
 export declare type StringHash = Record<string, string>;
 export declare type StringNumHash = Record<string, number>;
-export declare type StringNumberHash = Record<string, number>;
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
  * Most commonly used HTTP Request types.
  */
-export declare type MainHTTPRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-export declare type MainHTTPReqType = MainHTTPRequestType;
-export declare type MainHttpRequestType = MainHTTPRequestType;
-export declare type MainHttpReqType = MainHTTPRequestType;
+export declare type CommonHTTPRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export { CommonHTTPRequestType as MainHTTPRequestType };
+export { CommonHTTPRequestType as CommonRequestType };
 /**
  * All (known) HTTP Request types.
  */
-export declare type AnyHTTPReqType = MainHTTPReqType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
-export declare type AnyHTTPRequestType = AnyHTTPReqType;
-export declare type AnyHttpReqType = AnyHTTPReqType;
-export declare type AnyHttpRequestType = AnyHTTPReqType;
-export declare type HTTPRequestType = AnyHTTPReqType;
-export declare type HTTPReqType = AnyHTTPReqType;
-export declare type HttpRequestType = AnyHTTPReqType;
-export declare type HttpReqType = AnyHTTPReqType;
+export declare type AnyHTTPReqType = CommonHTTPRequestType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
+export { AnyHTTPReqType as HTTPRequestType };
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
- *  @param {StringOrNonexistent|RealAny} val Value to type check.
+ *  @param {StrOrVoid|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export declare const isNonexistentOrString: (val: any) => val is string;
+export declare const isVoidOrString: (val: any) => val is string;
 /**
  * Detect whether given value is a number. (Note: NaN returns false here).
  * @param {any} val Test if val is a number

@@ -65,7 +65,7 @@ export const {
     getLangFromUrlPathname, parseQueryParams, parseUserAgent,
     deepFreeze, assignFrozenClone, merge,
     isArray, isBoolean, isTrue, isFalse, isInteger, isIntegerLike, isNumberLike, isStringOrNumber,
-    isDateLike, isMultilangTextObj, isNonexistentOrString,
+    isDateLike, isMultilangTextObj, isVoidOrString,
     isDataEnumItem, isIndexEnumItem, isNumericEnumItem, castToNum,
     getFromStorage,
     uuid,

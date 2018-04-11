@@ -163,7 +163,7 @@ export const commonShared = {
     rightPad: string.rightPad,
     centerPad: string.centerPad,
 
-    isNonexistentOrString: types.isNonexistentOrString,
+    isVoidOrString: types.isVoidOrString,
     isNumberLike: types.isNumberLike,
     isBoolean: types.isBoolean,
     isDateLike: types.isDateLike,

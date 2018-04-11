@@ -218,38 +218,38 @@ describe(`types sub-modules`, function() {
         });
 
 
-        describe(`isNonexistentOrString function`, function() {
-            expectFunctionExists(typesIso.isNonexistentOrString);
+        describe(`isVoidOrString function`, function() {
+            expectFunctionExists(typesIso.isVoidOrString);
             it(`returns true for undefined or null`, function() {
-                expect(typesIso.isNonexistentOrString(null)).to.equal(true);
-                expect(typesIso.isNonexistentOrString(undefined)).to.equal(true);
-                expect((typesIso.isNonexistentOrString as any)()).to.equal(true);
+                expect(typesIso.isVoidOrString(null)).to.equal(true);
+                expect(typesIso.isVoidOrString(undefined)).to.equal(true);
+                expect((typesIso.isVoidOrString as any)()).to.equal(true);
             });
             it(`returns true for string`, function() {
-                expect(typesIso.isNonexistentOrString('')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('asdf')).to.equal(true);
-                expect(typesIso.isNonexistentOrString(' ')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('  asdfasdf  ')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('  123  ')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('123')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('true')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('null')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('undefined')).to.equal(true);
-                expect(typesIso.isNonexistentOrString('0')).to.equal(true);
+                expect(typesIso.isVoidOrString('')).to.equal(true);
+                expect(typesIso.isVoidOrString('asdf')).to.equal(true);
+                expect(typesIso.isVoidOrString(' ')).to.equal(true);
+                expect(typesIso.isVoidOrString('  asdfasdf  ')).to.equal(true);
+                expect(typesIso.isVoidOrString('  123  ')).to.equal(true);
+                expect(typesIso.isVoidOrString('123')).to.equal(true);
+                expect(typesIso.isVoidOrString('true')).to.equal(true);
+                expect(typesIso.isVoidOrString('null')).to.equal(true);
+                expect(typesIso.isVoidOrString('undefined')).to.equal(true);
+                expect(typesIso.isVoidOrString('0')).to.equal(true);
             });
             it(`returns false for non-string, non-null, non-undefined items `, function() {
-                expect(typesIso.isNonexistentOrString(123)).to.equal(false);
-                expect(typesIso.isNonexistentOrString(false)).to.equal(false);
-                expect(typesIso.isNonexistentOrString(true)).to.equal(false);
-                expect(typesIso.isNonexistentOrString({})).to.equal(false);
-                expect(typesIso.isNonexistentOrString([])).to.equal(false);
-                expect(typesIso.isNonexistentOrString(['asdf'])).to.equal(false);
-                expect(typesIso.isNonexistentOrString({asdf: 'asdf'})).to.equal(false);
-                expect(typesIso.isNonexistentOrString(0)).to.equal(false);
-                expect(typesIso.isNonexistentOrString(1)).to.equal(false);
-                expect(typesIso.isNonexistentOrString(NaN)).to.equal(false);
-                expect(typesIso.isNonexistentOrString(Object)).to.equal(false);
-                expect(typesIso.isNonexistentOrString(typesIso.isNonexistentOrString)).to.equal(
+                expect(typesIso.isVoidOrString(123)).to.equal(false);
+                expect(typesIso.isVoidOrString(false)).to.equal(false);
+                expect(typesIso.isVoidOrString(true)).to.equal(false);
+                expect(typesIso.isVoidOrString({})).to.equal(false);
+                expect(typesIso.isVoidOrString([])).to.equal(false);
+                expect(typesIso.isVoidOrString(['asdf'])).to.equal(false);
+                expect(typesIso.isVoidOrString({asdf: 'asdf'})).to.equal(false);
+                expect(typesIso.isVoidOrString(0)).to.equal(false);
+                expect(typesIso.isVoidOrString(1)).to.equal(false);
+                expect(typesIso.isVoidOrString(NaN)).to.equal(false);
+                expect(typesIso.isVoidOrString(Object)).to.equal(false);
+                expect(typesIso.isVoidOrString(typesIso.isVoidOrString)).to.equal(
                     false,
                 );
             });

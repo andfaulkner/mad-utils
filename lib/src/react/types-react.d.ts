@@ -1,7 +1,7 @@
 /// <reference types="react" />
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
-import { MandatoryInjectionViaDecorator } from '../types-iso';
+import { MandatoryInjection } from '../types-iso';
 /******************************************** EXPORTS *********************************************/
 export declare type InputChangeEvent = React.FormEvent<HTMLInputElement>;
 export declare type FormSubmitEvent = React.FormEvent<HTMLFormElement>;
@@ -16,8 +16,7 @@ export { AnyEventHandler as AnyEventType };
 export interface ReactChildString {
     children?: string;
 }
-export interface ChildString extends ReactChildString {
-}
+export { ReactChildString as ChildString };
 /**
  * Should match any type of React component: Class, ClassicClass, or stateless functional component
  */
@@ -79,7 +78,7 @@ export interface RRLocation {
  * As used in react-router-dom. Delivered to a component in props.history via withRouter.
  */
 export interface RRHistory {
-    action: "POP" | "PUSH" | "REPLACE";
+    action: 'POP' | 'PUSH' | 'REPLACE';
     block: () => any;
     createHref: (location: any) => any;
     go: (n: number) => void;
@@ -101,7 +100,7 @@ export interface RRMatch {
  * Use with components wrapped in React-Router's withRouter decorator.
  */
 export interface RouterProps {
-    history?: MandatoryInjectionViaDecorator<RRHistory>;
-    location?: MandatoryInjectionViaDecorator<RRLocation>;
-    match?: MandatoryInjectionViaDecorator<RRMatch>;
+    history?: MandatoryInjection<RRHistory>;
+    location?: MandatoryInjection<RRLocation>;
+    match?: MandatoryInjection<RRMatch>;
 }

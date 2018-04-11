@@ -2,38 +2,42 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { MandatoryInjectionViaDecorator } from '../types-iso';
+import {MandatoryInjection} from '../types-iso';
 
 /******************************************** EXPORTS *********************************************/
 export type InputChangeEvent = React.FormEvent<HTMLInputElement>;
-export type FormSubmitEvent  = React.FormEvent<HTMLFormElement>;
-export type DivClickEvent    = React.MouseEvent<HTMLDivElement>;
+export type FormSubmitEvent = React.FormEvent<HTMLFormElement>;
+export type DivClickEvent = React.MouseEvent<HTMLDivElement>;
 
 export type InputChangeHandler = React.EventHandler<InputChangeEvent>;
-export type FormSubmitHandler  = React.EventHandler<FormSubmitEvent>;
-export type DivClickHandler    = React.EventHandler<DivClickEvent>;
-export type AnyEventHandler    = React.EventHandler<any>;
+export type FormSubmitHandler = React.EventHandler<FormSubmitEvent>;
+export type DivClickHandler = React.EventHandler<DivClickEvent>;
+export type AnyEventHandler = React.EventHandler<any>;
 
-export { InputChangeHandler as InputChangeType }
-export { FormSubmitHandler  as FormSubmitType  }
-export { AnyEventHandler    as AnyEventType    }
+export {InputChangeHandler as InputChangeType};
+export {FormSubmitHandler as FormSubmitType};
+export {AnyEventHandler as AnyEventType};
 
-export interface ReactChildString { children?: string };
-export interface ChildString extends ReactChildString {}
+export interface ReactChildString {
+    children?: string;
+}
+export {ReactChildString as ChildString};
 
 /**
  * Should match any type of React component: Class, ClassicClass, or stateless functional component
  */
 export type AnyComponent<T> =
-    React.StatelessComponent<T> | React.ComponentClass<T> | React.ClassicComponentClass<T>;
+    | React.StatelessComponent<T>
+    | React.ComponentClass<T>
+    | React.ClassicComponentClass<T>;
 
 /**
  * Named stateless functional components / JSX elements.
  * Normally Typescript does not allow you to assign them display names, resulting in:
  *     <Unknown></Unknown>
  */
-export type NamedSFC<P extends {}> = ((props: P) => JSX.Element) & { displayName: string };
-export { NamedSFC as NamedReactSFC }
+export type NamedSFC<P extends {}> = ((props: P) => JSX.Element) & {displayName: string};
+export {NamedSFC as NamedReactSFC};
 
 /**
  * Basic React stateless functional component signature.
@@ -76,42 +80,42 @@ export interface Newable<T> {
  * As used in react-router-dom. Delivered to a component in props.location via withRouter.
  */
 export interface RRLocation {
-    hash: string,
-    key: string | null,
-    pathname: string,
-    search: string,
-    state: string | null,
+    hash: string;
+    key: string | null;
+    pathname: string;
+    search: string;
+    state: string | null;
 }
 
 /**
  * As used in react-router-dom. Delivered to a component in props.history via withRouter.
  */
 export interface RRHistory {
-    action: "POP" | "PUSH" | "REPLACE"
-    block: () => any
-    createHref: (location: any) => any
-    go: (n: number) => void
-    goBack: () => void
-    goForward: () => void
-    length: number
-    listen: (listener: any) => any
-    location: RRLocation
-    push: (path: string) => any
-    replace: (path: string, state: string) => void
+    action: 'POP' | 'PUSH' | 'REPLACE';
+    block: () => any;
+    createHref: (location: any) => any;
+    go: (n: number) => void;
+    goBack: () => void;
+    goForward: () => void;
+    length: number;
+    listen: (listener: any) => any;
+    location: RRLocation;
+    push: (path: string) => any;
+    replace: (path: string, state: string) => void;
 }
 
 export interface RRMatch {
-    isExact: boolean
-    params: any
-    path: string
-    url: string
+    isExact: boolean;
+    params: any;
+    path: string;
+    url: string;
 }
 
 /**
  * Use with components wrapped in React-Router's withRouter decorator.
  */
 export interface RouterProps {
-    history?: MandatoryInjectionViaDecorator<RRHistory>
-    location?: MandatoryInjectionViaDecorator<RRLocation>
-    match?: MandatoryInjectionViaDecorator<RRMatch>
+    history?: MandatoryInjection<RRHistory>;
+    location?: MandatoryInjection<RRLocation>;
+    match?: MandatoryInjection<RRMatch>;
 }

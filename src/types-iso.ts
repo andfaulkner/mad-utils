@@ -1,6 +1,5 @@
 /******************************************** IMPORTS *********************************************/
 import * as moment from 'moment';
-import {DecoratorError} from './error';
 import {isVerbose} from 'env-var-helpers';
 import {matches} from './string';
 import * as Polyglot from 'node-polyglot';
@@ -15,8 +14,7 @@ export interface SingletonInterface<U> {
     new <Y>(...args: any[]): Y;
 }
 
-// For cases where something truly can be any value (contrast with the most common
-// case where 'any' is used in lieu of determining a highly complex type)
+// For cases where something truly can be any value
 export type RealAny = any;
 export {RealAny as Any};
 
@@ -24,17 +22,9 @@ export {RealAny as Any};
  * Union aliases
  */
 export type StrOrNum = string | number;
-export {StrOrNum as NumOrStr};
-export {StrOrNum as NumberOrString};
-
 export type StrOrNever = string | never;
-export {StrOrNever as NeverOrStr};
-
-export type StringOrNonexistent = string | null | undefined;
-export {StringOrNonexistent as StrOrNonexistent};
-
-export type StrOrErr = String | Error;
-export {StrOrErr as StrOrError};
+export type StrOrVoid = string | void;
+export type StrOrErr = string | Error;
 
 /**
  * Any type that can potentially be cast to a number.
@@ -45,19 +35,9 @@ export type NumLike = StrOrNum | StrOrNum[];
  * Alias to indicate variable injected by a decorator.
  */
 export type Injection<T> = T;
-export type InjectionType<T> = T;
-
-export type OptionalInjection<T> = T;
-export type OptionalInjectedType<T> = T;
-
-export type RequiredInjection<T> = T;
-export type RequiredInjectionType<T> = T;
-
-export type MandatoryInjection<T> = T;
-export type MandatoryInjectionType<T> = T;
-
-export type MandatoryInjectionViaDecorator<T> = T;
-export type MandatoryInjectionViaDecoratorType<T> = T;
+export {Injection as OptionalInjection};
+export {Injection as RequiredInjection};
+export {Injection as MandatoryInjection};
 
 /**
  * Extend to (optionally) include Polyglot
@@ -66,41 +46,31 @@ export interface PolyglotProps {
     polyglot?: Readonly<Polyglot>;
 }
 
+// Record / Hash aliases
 export type StringHash = Record<string, string>;
 export type StringNumHash = Record<string, number>;
-export type StringNumberHash = Record<string, number>;
 
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
  * Most commonly used HTTP Request types.
  */
-export type MainHTTPRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-export type MainHTTPReqType = MainHTTPRequestType;
-export type MainHttpRequestType = MainHTTPRequestType;
-export type MainHttpReqType = MainHTTPRequestType;
+export type CommonHTTPRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export {CommonHTTPRequestType as MainHTTPRequestType};
+export {CommonHTTPRequestType as CommonRequestType};
 
 /**
  * All (known) HTTP Request types.
  */
-export type AnyHTTPReqType = MainHTTPReqType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
-export type AnyHTTPRequestType = AnyHTTPReqType;
-export type AnyHttpReqType = AnyHTTPReqType;
-export type AnyHttpRequestType = AnyHTTPReqType;
-
-export type HTTPRequestType = AnyHTTPReqType;
-export type HTTPReqType = AnyHTTPReqType;
-export type HttpRequestType = AnyHTTPReqType;
-export type HttpReqType = AnyHTTPReqType;
+export type AnyHTTPReqType = CommonHTTPRequestType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
+export {AnyHTTPReqType as HTTPRequestType};
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if the value is null, undefined, or a string.
- *  @param {StringOrNonexistent|RealAny} val Value to type check.
+ *  @param {StrOrVoid|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export const isNonexistentOrString = (
-    val: StringOrNonexistent | RealAny,
-): val is string | undefined =>
+export const isVoidOrString = (val: StrOrVoid | RealAny): val is string | undefined =>
     typeof val === 'undefined' || val === null || typeof val === 'string';
 
 /**
@@ -130,7 +100,6 @@ export {isNumber as isNum};
  */
 export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
     if (typeof val === 'undefined' || val == null) return false;
-
     if (isNumber(val)) return true;
 
     if (typeof val === 'string') {
@@ -139,11 +108,14 @@ export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean 
                 .replace('.', '')
                 .replace(/^\-/, '')
                 .match(/\D/)
-        )
+        ) {
             return false;
-        // Let '.123' and '-.123' type strings through.
+        }
+
+        // Allow strings in e.g. '.123' and '-.123' format to pass
         let cleanVal = val.match(/^\.\d/) ? '0' + val : val;
         cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
+
         return !isNaN(parseInt(cleanVal, 10));
     }
 
@@ -203,8 +175,10 @@ export const isStringOrNumber = (val: RealAny): val is number | Number | string 
  */
 export const isBoolean = (val: any | boolean): val is boolean => {
     if (val === true || val === false) return true;
+
     const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
     if (hasValueOfFn && (val.valueOf() === true || val.valueOf() === false)) return true;
+
     return false;
 };
 
@@ -230,8 +204,8 @@ export const isDateLike = (val: RealAny): boolean => {
         Object.keys(val).find(
             key =>
                 !key.match(
-                    /((hours?)|(minutes?)|((milli)?seconds?)|(days?)|(dates?)|(months?)|(years?))/,
-                ),
+                    /((hours?)|(minutes?)|((milli)?seconds?)|(days?)|(dates?)|(months?)|(years?))/
+                )
         )
     ) {
         return false;
@@ -308,7 +282,6 @@ export const isFunction = <T = ((...args: any[]) => any)>(val: RealAny): val is 
     return str === '[object Function]' || (typeof val === 'function' && str !== '[object RegExp]');
 };
 
-
 // TODO improve singleton design-time behaviour - i.e. proper type hints + Intellisense.
 /**
  * Any class wrapped in this decorator becomes a singleton immediately.
@@ -383,7 +356,7 @@ const bstbErrMsg = 'Must input true, false, t, f, y, n, yes, or no';
  */
 export const boolStringToBool = (
     val: string | boolean,
-    strict: boolean = true,
+    strict: boolean = true
 ): boolean | null | never => {
     // Ensure not void, undefined, or NaN, and that toString doesn't return null.
     if (
