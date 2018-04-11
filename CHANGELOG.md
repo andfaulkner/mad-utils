@@ -30,7 +30,7 @@ Removed StrOrNum aliases:
     - NumberOrString
 
 Removed StrOrErr alias: StrOrError
--   corrected StrOrErr to match on string (rather than String)
+    - also, corrected StrOrErr to match on string (rather than String)
 
 Removed StringNumHash alias: StringNumberHash
 
@@ -41,8 +41,11 @@ Added function 'isFunction' on types-iso module
 Added function 'omit' on 'object' module
 
 Ran prettier on:
-    - types-react
-    - types-iso
+    - types-react.ts
+    - types-iso.ts
+    - object.spec.ts
+
+
 
 0.51.3
 ======

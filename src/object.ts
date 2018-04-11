@@ -515,12 +515,57 @@ function isObject(val: RealAny) {
     return val != null && (isPlainObject(val) || typeof val === 'function' || Array.isArray(val));
 }
 
-export type OmitPred<T = any> = (val: T, key: string, obj?: Object) => boolean;
+export type OmitPred<T = any> = (val: T, key?: string, obj?: Object) => boolean;
 
-export function omit<T = any>(
+/**
+ * Omit property with the given key from obj
+ * @param {string[]} prop Key to omit from the given object
+ */
+export function omit<R = O, O extends object = Object>(obj: O, prop: string): R;
+
+/**
+ * Omit all properties with keys matching strings in the given array, from obj
+ * @param {string[]} props Keys to omit from the given object
+ */
+export function omit<R = O, O extends object = Object>(obj: O, props: string[]): R;
+
+/**
+ * Omit all properties from obj, where predicate doesn't return true
+ * @param {Function} predicate :: (val, key, coll?) => boolean
+ */
+export function omit<R = O, O extends object = Object, T = any>(obj: O, predicate: OmitPred<T>): R;
+
+/**
+ * Omit all properties from obj, where a) predicate returns falsy; or b) key matches given string
+ * @param {string[]} prop Key to omit from the given object
+ * @param {Function} predicate :: (val, key, coll?) => boolean
+ */
+export function omit<R = O, O extends object = Object, T = any>(
+    obj: O,
+    prop: string,
+    predicate: OmitPred<T>
+): R;
+
+/**
+ * Omit all properties from object, where either:
+ *     a) predicate returns falsy; or
+ *     b) key matches one of the given strings
+ * @param {string[]} props Keys to omit from the given object
+ * @param {Function} predicate :: (val, key, coll?) => boolean
+ */
+export function omit<R = O, O extends object = Object, T = any>(
+    obj: O,
+    props: string[],
+    predicate: OmitPred<T>
+): R;
+
+/*
+ ***************************** ACTUAL OMIT IMPLEMENTATION *****************************
+ */
+export function omit<O extends object = Object, T = any>(
     obj: Object,
     props: string | string[] | OmitPred<T>,
-    fn: OmitPred<T>
+    fn?: OmitPred<T>
 ) {
     if (!isObject(obj)) return {};
 
@@ -531,10 +576,12 @@ export function omit<T = any>(
 
     if (typeof props === 'string') props = [props];
 
-    return keys(obj).reduce((acc, k) =>
-        (!props || ((props as any[]).indexOf(k) === -1 && (!isFunction(fn) || fn(obj[k], k, obj))))
-            ? assign(acc, {[k]: obj[k]})
-            : acc,
+    return keys(obj).reduce(
+        (acc, k) =>
+            !props ||
+            ((props as any[]).indexOf(k) === -1 && (!isFunction(fn) || fn(obj[k], k, obj)))
+                ? assign(acc, {[k]: obj[k]})
+                : acc,
         {}
     );
 }

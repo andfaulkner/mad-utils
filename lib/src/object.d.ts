@@ -195,5 +195,33 @@ export { defineGetterProp as defineGetProp };
  * @return {Object} Duplicate of input object with keys sorted
  */
 export declare const sortObject: (obj: Record<string, any>) => Record<string, any>;
-export declare type OmitPred<T = any> = (val: T, key: string, obj?: Object) => boolean;
-export declare function omit<T = any>(obj: Object, props: string | string[] | OmitPred<T>, fn: OmitPred<T>): {};
+export declare type OmitPred<T = any> = (val: T, key?: string, obj?: Object) => boolean;
+/**
+ * Omit property with the given key from obj
+ * @param {string[]} prop Key to omit from the given object
+ */
+export declare function omit<R = O, O extends object = Object>(obj: O, prop: string): R;
+/**
+ * Omit all properties with keys matching strings in the given array, from obj
+ * @param {string[]} props Keys to omit from the given object
+ */
+export declare function omit<R = O, O extends object = Object>(obj: O, props: string[]): R;
+/**
+ * Omit all properties from obj, where predicate doesn't return true
+ * @param {Function} predicate :: (val, key, coll?) => boolean
+ */
+export declare function omit<R = O, O extends object = Object, T = any>(obj: O, predicate: OmitPred<T>): R;
+/**
+ * Omit all properties from obj, where a) predicate returns falsy; or b) key matches given string
+ * @param {string[]} prop Key to omit from the given object
+ * @param {Function} predicate :: (val, key, coll?) => boolean
+ */
+export declare function omit<R = O, O extends object = Object, T = any>(obj: O, prop: string, predicate: OmitPred<T>): R;
+/**
+ * Omit all properties from object, where either:
+ *     a) predicate returns falsy; or
+ *     b) key matches one of the given strings
+ * @param {string[]} props Keys to omit from the given object
+ * @param {Function} predicate :: (val, key, coll?) => boolean
+ */
+export declare function omit<R = O, O extends object = Object, T = any>(obj: O, props: string[], predicate: OmitPred<T>): R;

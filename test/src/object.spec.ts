@@ -22,6 +22,7 @@ import {
     eachPair,
     isMultilangTextObj,
     get,
+    omit
 } from '../../shared';
 
 import {expectFunctionExists} from '../../node';
@@ -506,4 +507,38 @@ describe(`object sub-module`, function() {
             expect(newObj.a).to.be.undefined;
         });
     });
+
+    describe(`omit`, function() {
+        let testObj = {a: 1, b: 2};
+        let testObjBig = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6};
+
+        it(`return object omitting property with key matching the given string`, function() {
+            expect(omit(testObj, 'a')).to.eql({b: 2});
+            expect(omit(testObj, 'z')).to.eql(testObj);
+        });
+        it(`given empty object, always returns empty object`, function() {
+            expect(omit({}, '')).to.eql({});
+            expect(omit({}, 'asdfaerg')).to.eql({});
+            expect(omit({}, [])).to.eql({});
+            expect(omit({}, ['a'])).to.eql({});
+            expect(omit({}, ['a', 'b', 'c', 'd'])).to.eql({});
+        });
+        it(`return object omitting properties with keys matching the given strings`, function() {
+            expect(omit(testObj, ['a'])).to.eql({b: 2});
+            expect(omit(testObj, ['a', 'b'])).to.eql({});
+            expect(omit(testObjBig, ['a', 'b', 'd', 'f'])).to.eql({c: 3, e: 5});
+            expect(omit(testObjBig, ['b', 'c', 'd'])).to.eql({a: 1, e: 5, f: 6});
+        });
+        it(`returns object omitting properties where given predicate returned falsy`, function() {
+            expect(omit(testObj, (val, key) => key === 'a')).to.eql({a: 1});
+            expect(omit(testObjBig, val => val > 3)).to.eql({d: 4, e: 5, f: 6});
+        });
+        it(`returns obj omitting props where predicate->falsy or key matched string`, function() {
+            expect(omit(testObjBig, 'e', val => val > 3)).to.eql({d: 4, f: 6});
+        });
+        it(`returns obj omitting props where predicate->falsy or key matched one of the strings`, function() {
+            expect(omit(testObjBig, ['d', 'e'], val => val > 2)).to.eql({c: 3, f: 6});
+        });
+    });
+
 });
