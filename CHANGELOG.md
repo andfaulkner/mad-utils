@@ -1,3 +1,49 @@
+0.52.0
+======
+Removed Injection aliases:
+    - MandatoryInjectionViaDecoratorType
+    - MandatoryInjectionViaDecorator
+    - MandatoryInjectionType
+    - RequiredInjectionType
+    - OptionalInjectedType
+    - InjectionType
+
+Removed HTTPRequestType aliases:
+    - AnyHTTPRequestType
+    - AnyHttpRequestType
+    - AnyHttpReqType
+    - HTTPReqType
+    - HttpRequestType
+    - HttpReqType
+
+Remove MainHTTPRequestType aliases:
+    - MainHTTPReqType
+    - MainHttpRequestType
+    - MainHttpReqType
+
+Added MainHTTPRequestType aliases:
+    - CommonHTTPRequestType
+    - CommonRequestType
+
+Removed StrOrNum aliases:
+    - NumOrStr
+    - NumberOrString
+
+Removed StrOrErr alias: StrOrError
+-   corrected StrOrErr to match on string (rather than String)
+
+Removed StringNumHash alias: StringNumberHash
+
+Renamed StrOrNonexistent to StrOrVoid, and removed alias StringOrNonexistent
+Renamed isNonexistentOrString to isVoidOrString
+
+Added function 'isFunction' on types-iso module
+Added function 'omit' on 'object' module
+
+Ran prettier on:
+    - types-react
+    - types-iso
+
 0.51.3
 ======
 Cleaned up code in array module
