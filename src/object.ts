@@ -362,10 +362,11 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
     obj: InputObject,
     keyName: string,
     value: RealAny,
-    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable'
+    mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
+    enumerable: boolean = true,
 ): InputObject & NewKVPair => {
     defineProperty(obj, keyName, {
-        enumerable: true,
+        enumerable,
         configurable: mutable === 'deletable',
         writable: mutable !== false && mutable !== 'immutable',
         value,
@@ -374,6 +375,30 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
 };
 
 export {defineProp as defineProperty};
+
+/**
+ * Define a new method on an object. Naturally immutable & non-enumerable. Must be a function.
+ * @generic <NewKVPairs> - Interface containing new function prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @param {Object} obj Object being merged into
+ * @param {string} keyName Name of property to add function at
+ * @param {Function} value Function to assign to key on object 'obj' (first param in NewKFPair)
+ * @return {Object} with new property added
+ */
+export const defineMethod = <NewKFPair extends Object = {}, InputObject extends Object = {}>(
+    obj: InputObject,
+    keyName: string,
+    func: NewKFPair[keyof NewKFPair] & Function,
+): InputObject & NewKFPair => {
+    defineProperty(obj, keyName, {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: func,
+    });
+    return obj as InputObject & NewKFPair;
+};
 
 /**
  * Define an immutable public property on an object. Does not overwrite existing property.
@@ -484,8 +509,7 @@ export const sortObject = (obj: Record<string, any>): Record<string, any> =>
         .sort()
         .reduce((acc, key) => assign(acc, {[key]: obj[key]}), {});
 
-/**************************************************************************************************/
-/* UNPUBLISHED ************************************************************************************/
+/********************************************** OMIT **********************************************/
 function isNonArrayOrFuncObj(val: RealAny) {
     return val != null && typeof val === 'object' && Array.isArray(val) === false;
 }
@@ -531,14 +555,14 @@ export function omit<R = O, O extends object = Object>(obj: O, props: string[]):
 
 /**
  * Omit all properties from obj, where predicate doesn't return true
- * @param {Function} predicate :: (val, key, coll?) => boolean
+ * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
 export function omit<R = O, O extends object = Object, T = any>(obj: O, predicate: OmitPred<T>): R;
 
 /**
  * Omit all properties from obj, where a) predicate returns falsy; or b) key matches given string
  * @param {string[]} prop Key to omit from the given object
- * @param {Function} predicate :: (val, key, coll?) => boolean
+ * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
 export function omit<R = O, O extends object = Object, T = any>(
     obj: O,
@@ -551,7 +575,7 @@ export function omit<R = O, O extends object = Object, T = any>(
  *     a) predicate returns falsy; or
  *     b) key matches one of the given strings
  * @param {string[]} props Keys to omit from the given object
- * @param {Function} predicate :: (val, key, coll?) => boolean
+ * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
 export function omit<R = O, O extends object = Object, T = any>(
     obj: O,
@@ -560,7 +584,7 @@ export function omit<R = O, O extends object = Object, T = any>(
 ): R;
 
 /*
- ***************************** ACTUAL OMIT IMPLEMENTATION *****************************
+ * ACTUAL OMIT IMPLEMENTATION
  */
 export function omit<O extends object = Object, T = any>(
     obj: Object,
@@ -585,29 +609,3 @@ export function omit<O extends object = Object, T = any>(
         {}
     );
 }
-
-// function omit(obj: Object, props: string[], fn: (val: any, key: string, obj?: Object) => boolean) {
-//     if (!isObject(obj)) return {};
-
-//     if (typeof props === 'function') {
-//         fn = props;
-//         props = [];
-//     }
-
-//     if (typeof props === 'string') props = [props];
-
-//     const lKeys = keys(obj);
-//     const res = {};
-
-//     for (let i = 0; i < lKeys.length; i++) {
-//         const key = lKeys[i];
-//         const val = obj[key];
-
-//         if (!props || (props.indexOf(key) === -1 && (!isFunction || fn(val, key, obj)))) {
-//             res[key] = val;
-//         }
-//     }
-//     return res;
-// }
-/* END UNPUBLISHED ********************************************************************************/
-/**************************************************************************************************/
