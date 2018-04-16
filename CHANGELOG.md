@@ -1,3 +1,11 @@
+0.52.2
+======
+Adds new defineMethod function to object module
+
+0.52.1
+======
+Upgrades errorsmith to v0.3.0
+
 0.52.0
 ======
 Removed Injection aliases:
