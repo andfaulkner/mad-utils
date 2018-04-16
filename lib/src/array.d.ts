@@ -72,12 +72,12 @@ export declare function firstN<T>(arr: T[], n: number): T[];
 export declare function lastN(str: string, n: number): string;
 export declare function lastN<T>(arr: T[], n: number): T[];
 /**
- * Create array of requested # of repeats of given fillValue, or undefined if no fillValue given.
- * @param {number} len Length of array to create.
- * @param {RealAny} fillValue Item to repeat 'len' number of times {OPT}
- * @return {Array<void|typeof fillValue>} Array w 'len' # of fillValue arg (or undefined) repeats.
+ * Create array of requested # of repeats of given fillVal, or undefined if no fillVal given
+ * @param {number} len Length of array to create
+ * @param {RealAny} fillVal Item to repeat 'len' number of times {OPT}
+ * @return {Array<void|typeof fillVal>} Array w 'len' # of fillVal arg (or undefined) repeats
  */
-export declare const arrayN: <T>(len: number, fillValue?: T) => T[];
+export declare const arrayN: <T>(len: number, fillVal?: T) => T[];
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
 /**
  * Exclude first item from string or array.

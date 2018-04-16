@@ -163,25 +163,25 @@ export function lastN<T>(arrOrStr: T[] | string, n: number): string | T[] {
 //
 
 /**
- * Create array of requested # of repeats of given fillValue, or undefined if no fillValue given.
- * @param {number} len Length of array to create.
- * @param {RealAny} fillValue Item to repeat 'len' number of times {OPT}
- * @return {Array<void|typeof fillValue>} Array w 'len' # of fillValue arg (or undefined) repeats.
+ * Create array of requested # of repeats of given fillVal, or undefined if no fillVal given
+ * @param {number} len Length of array to create
+ * @param {RealAny} fillVal Item to repeat 'len' number of times {OPT}
+ * @return {Array<void|typeof fillVal>} Array w 'len' # of fillVal arg (or undefined) repeats
  */
-export const arrayN = <T>(len: number, fillValue?: T): T[] | never => {
+export const arrayN = <T>(len: number, fillVal?: T): T[] | never => {
     const nonIntegerFirstArgErr = 'mad-utils :: first arg to arrayN must be an integer';
+
     if (typeof len !== 'number' || isNaN(parseInt(len.toString(), 10))) {
         throw new TypeError(nonIntegerFirstArgErr);
     }
-    if (len < 0) {
-        throw new TypeError('mad-utils :: first arg to arrayN must be an integer above 0');
-    }
-    if (len.toString().match(/\./)) {
-        throw new TypeError(nonIntegerFirstArgErr);
-    }
+    if (len < 0) throw new TypeError('mad-utils :: first arg to arrayN must be an integer above 0');
+    if (len.toString().match(/\./)) throw new TypeError(nonIntegerFirstArgErr);
+
     const cleanLen = typeof len === 'string' ? parseInt(len, 10) : len;
-    if (fillValue) return Array.from(Array(cleanLen)).map(item => fillValue);
-    return Array.from(Array(cleanLen));
+
+    return (typeof fillVal !== 'undefined')
+        ? Array.from(Array(cleanLen)).map(__ => fillVal)
+        : Array.from(Array(cleanLen));
 };
 
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/

@@ -2,33 +2,53 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-
 /************************************* IMPORT TEST UTILITIES **************************************/
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists, expectFunctionExists } from '../../src/node/test';
-import { inspect } from 'util';
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/test';
+import {inspect} from 'util';
 
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
-import { m_, array, append,
-        first, second, third,
-        last, secondLast, thirdLast,
-        first2, first3, firstN,
-        last2, last3, lastN,
-        arrayN,
-        rmAllFalsy, pushIfUniq, splitLines, without,
-        withoutLast, withoutLast2, withoutLast3, withoutLastN,
-        withoutFirst, withoutFirst2, withoutFirst3, withoutFirstN,
-        removeMatches,
-        contains,
-        countOccurrences, removeDuplicates,
-        sample,
-        flatten,
-        matchAny } from '../../shared';
+import {
+    m_,
+    array,
+    append,
+    first,
+    second,
+    third,
+    last,
+    secondLast,
+    thirdLast,
+    first2,
+    first3,
+    firstN,
+    last2,
+    last3,
+    lastN,
+    arrayN,
+    rmAllFalsy,
+    pushIfUniq,
+    splitLines,
+    without,
+    withoutLast,
+    withoutLast2,
+    withoutLast3,
+    withoutLastN,
+    withoutFirst,
+    withoutFirst2,
+    withoutFirst3,
+    withoutFirstN,
+    removeMatches,
+    contains,
+    countOccurrences,
+    removeDuplicates,
+    sample,
+    flatten,
+    matchAny,
+} from '../../shared';
 
-import { array as arrayFromNode } from '../../node';
-import { array as arrayFromBrowser } from '../../browser';
+import {array as arrayFromNode} from '../../node';
+import {array as arrayFromBrowser} from '../../browser';
 import * as arrayModule from '../../src/array';
-
 
 /********************************************* TESTS **********************************************/
 describe(`array sub-module`, function() {
@@ -253,15 +273,17 @@ describe(`array sub-module`, function() {
             expect(m_.array.arrayN(3)).to.eql([undefined, undefined, undefined]);
             expect(m_.array.arrayN(1)).to.eql([undefined]);
         });
-        it(`returns array containing given number of copies of provided item if run w 2 args: 1 ` +
-            `int & 1 other item of any type`, function()
-        {
-            expect(m_.array.arrayN(1, 'asdf')).to.be.length(1);
-            expect(m_.array.arrayN(1, 'asdf')).to.eql(['asdf']);
-            expect(m_.array.arrayN(2, {})).to.be.length(2);
-            expect(m_.array.arrayN(2, { ok: 'yep'})).to.eql([{ ok: 'yep'}, { ok: 'yep'}]);
-            expect(arrayN(4, 5)).to.eql([5, 5, 5, 5]);
-        });
+        it(
+            `returns array containing given number of copies of provided item if run w 2 args: 1 ` +
+                `int & 1 other item of any type`,
+            function() {
+                expect(m_.array.arrayN(1, 'asdf')).to.be.length(1);
+                expect(m_.array.arrayN(1, 'asdf')).to.eql(['asdf']);
+                expect(m_.array.arrayN(2, {})).to.be.length(2);
+                expect(m_.array.arrayN(2, {ok: 'yep'})).to.eql([{ok: 'yep'}, {ok: 'yep'}]);
+                expect(arrayN(4, 5)).to.eql([5, 5, 5, 5]);
+            }
+        );
         it(`returns empty array if first arg is array of length 0`, function() {
             expect(arrayN(0)).to.be.length(0);
             expect(arrayN(0)).to.eql([]);
@@ -272,6 +294,12 @@ describe(`array sub-module`, function() {
             expect(() => arrayN(-1)).to.throw(TypeError);
             expect(() => arrayN(4.12, [])).to.throw(TypeError);
             expect(() => arrayN(4.12, [`this shit ain't gon' fly`])).to.throw(TypeError);
+        });
+        it(`fills with null if value given is null, & undefined if val is undefined`, function() {
+            expect(arrayN(2, null)).to.be.length(2);
+            expect(arrayN(2, null)).to.eql([null, null]);
+            expect(arrayN(2, undefined)).to.be.length(2);
+            expect(arrayN(2, undefined)).to.eql([undefined, undefined]);
         });
     });
 
@@ -286,12 +314,20 @@ describe(`array sub-module`, function() {
 
         it(`given arr w/ multiple falsy vals, returns new array w/ the falsy vals rm`, function() {
             expect(rmAllFalsy(['one', false, false, false, 'three'])).to.eql(['one', 'three']);
-            expect(rmAllFalsy([false, false, 'one', false, 'three', false]))
-                .to.eql(['one', 'three']);
-            expect(rmAllFalsy(['one', null, 'three', null, 'five', undefined]))
-                .to.eql(['one', 'three', 'five']);
-            expect(rmAllFalsy(['', '', 'one', 0, 'three', null, 'five', undefined, false]))
-                .to.eql(['one', 'three', 'five']);
+            expect(rmAllFalsy([false, false, 'one', false, 'three', false])).to.eql([
+                'one',
+                'three',
+            ]);
+            expect(rmAllFalsy(['one', null, 'three', null, 'five', undefined])).to.eql([
+                'one',
+                'three',
+                'five',
+            ]);
+            expect(rmAllFalsy(['', '', 'one', 0, 'three', null, 'five', undefined, false])).to.eql([
+                'one',
+                'three',
+                'five',
+            ]);
             expect(rmAllFalsy([false, '', '', '', 0, null, undefined, false])).to.eql([]);
         });
 
@@ -310,7 +346,6 @@ describe(`array sub-module`, function() {
             expect(rmAllFalsy([NaN, NaN, {}, [], NaN, 22, 'ok'])).to.eql([{}, [], 22, 'ok']);
         });
     });
-
 
     describe(`-- #pushIfUniq`, function() {
         it(`adds item to array if array doesn't contain given item`, function() {
@@ -347,10 +382,13 @@ describe(`array sub-module`, function() {
             expect(splitLines('\n\n\n\n\n\n')).to.eql([]);
         });
         it(`Keep empty lines in output if preserveEmptyLines option is set to true`, function() {
-            expect(splitLines('\n', { preserveEmptyLines: true })).to.eql(['', '']);
-            expect(splitLines('\na\n', { preserveEmptyLines: true })).to.eql(['', 'a', '']);
-            expect(splitLines('123a\n123\n', { preserveEmptyLines: true })).to
-                .eql(['123a', '123', '']);
+            expect(splitLines('\n', {preserveEmptyLines: true})).to.eql(['', '']);
+            expect(splitLines('\na\n', {preserveEmptyLines: true})).to.eql(['', 'a', '']);
+            expect(splitLines('123a\n123\n', {preserveEmptyLines: true})).to.eql([
+                '123a',
+                '123',
+                '',
+            ]);
             // expect(splitLines('\n\n')).to.eql([]);
             // expect(splitLines('\n\n\n\n\n\n')).to.eql([]);
         });
@@ -552,13 +590,17 @@ describe(`array sub-module`, function() {
             expect(removeMatches([null, 'two', 'three', 4], [null, 4, 'two', 'three'])).to.eql([]);
         });
         it(`Excludes items in 2nd arg from 1st arg even if duplicates found in 2nd arg`, function() {
-            expect(removeMatches([null, 'two', 'three', 4], [null, 'two', 'two', 4])).to.eql(['three']);
-            expect(removeMatches([null, 'two', 'three', 4], [null, 4, 'two', 'three', 4])).to
-                .eql([]);
+            expect(removeMatches([null, 'two', 'three', 4], [null, 'two', 'two', 4])).to.eql([
+                'three',
+            ]);
+            expect(removeMatches([null, 'two', 'three', 4], [null, 4, 'two', 'three', 4])).to.eql(
+                []
+            );
             expect(removeMatches([1, 2, 3, 4], [1, 4, 4, 4, 4, 4, 4, 4])).to.eql([2, 3]);
             expect(removeMatches([1, 2, 3, 4], [1, 4, 4, 4, 4, 4, 4, 4, 2])).to.eql([3]);
-            expect(removeMatches([1, 2, 3, 4], [1, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2])).to
-                .eql([3]);
+            expect(removeMatches([1, 2, 3, 4], [1, 2, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2])).to.eql([
+                3,
+            ]);
         });
     });
 
@@ -573,24 +615,19 @@ describe(`array sub-module`, function() {
         it(`returns true if given array contains empty object and item is empty object`, function() {
             expect(matchAny([1, 'asdf', {}, 3])({})).to.be.true;
         });
-        it(`returns true if given array contains simple data object with props matching item`,
-        function() {
-            expect(matchAny([1, 'asdf', { a: 1 }, 3])({ a: 1 })).to.be.true;
+        it(`returns true if given array contains simple data object with props matching item`, function() {
+            expect(matchAny([1, 'asdf', {a: 1}, 3])({a: 1})).to.be.true;
         });
-        it(`returns true if given array contains undefined and item is undefined`,
-        function() {
+        it(`returns true if given array contains undefined and item is undefined`, function() {
             expect(matchAny([1, 'asdf', undefined, 3])(undefined)).to.be.true;
         });
-        it(`returns true if given array contains NaN and item is NaN`,
-        function() {
+        it(`returns true if given array contains NaN and item is NaN`, function() {
             expect(matchAny([1, 'asdf', NaN, 3])(NaN)).to.be.true;
         });
-        it(`returns true if given array contains empty array and item is empty array`,
-        function() {
+        it(`returns true if given array contains empty array and item is empty array`, function() {
             expect(matchAny([1, 'asdf', [], 3])([])).to.be.true;
         });
-        it(`returns true if given array contains a simple array that matches the item`,
-        function() {
+        it(`returns true if given array contains a simple array that matches the item`, function() {
             expect(matchAny([1, 'asdf', [1, 2, 3], 3])([1, 2, 3])).to.be.true;
         });
 
@@ -610,8 +647,8 @@ describe(`array sub-module`, function() {
         });
         it(`Returns false if array doesn't contain given value`, function() {
             expect(contains(['a', 'b', 'c'], 'd')).to.be.false;
-            expect(contains([1, 2, 3], 4)).to.be.false
-            expect(contains([], '')).to.be.false
+            expect(contains([1, 2, 3], 4)).to.be.false;
+            expect(contains([], '')).to.be.false;
         });
     });
 
@@ -631,13 +668,17 @@ describe(`array sub-module`, function() {
     describe('removeDuplicates', function() {
         it(`Returns a new version of an array with all duplicates removed`, function() {
             const testOutArr = removeDuplicates([1, 1, 2, 3, 1, 1, 2, 1, 3]);
-            expect(testOutArr).to.have.members([1, 2, 3])
-            expect(testOutArr).to.be.an('array').with.lengthOf(3);
+            expect(testOutArr).to.have.members([1, 2, 3]);
+            expect(testOutArr)
+                .to.be.an('array')
+                .with.lengthOf(3);
         });
         it(`Returns a new version of a string with all duplicate chars removed`, function() {
             const testOutStr = removeDuplicates('aaaasssssddddfffff');
             expect(testOutStr).to.eql('asdf');
-            expect(testOutStr).to.be.a('string').with.lengthOf(4);
+            expect(testOutStr)
+                .to.be.a('string')
+                .with.lengthOf(4);
         });
     });
 
@@ -655,7 +696,7 @@ describe(`array sub-module`, function() {
             expect(sample([])).to.be.undefined;
         });
         it(`given an object, gets a random key-value pair (as [key, value])`, function() {
-            expect([['a', 1], ['b', 2], ['c', 3]]).to.deep.include(sample({ a: 1, b: 2, c: 3 }));
+            expect([['a', 1], ['b', 2], ['c', 3]]).to.deep.include(sample({a: 1, b: 2, c: 3}));
         });
         it(`given an empty object (with no keys), returns undefined`, function() {
             expect(sample({})).to.be.undefined;
@@ -679,8 +720,16 @@ describe(`array sub-module`, function() {
             expect(flatten([1, [[2, 3], 4, [5, 6], [7]], [[8]]])).to.eql([1, 2, 3, 4, 5, 6, 7, 8]);
         });
         it(`given an array of 3-deep nested arrays, returns a single-level array`, function() {
-            expect(flatten([[[[1, 2], 3], [4], 5], [6, [[7]]], 8]))
-                .to.eql([1, 2, 3, 4, 5, 6, 7, 8]);
+            expect(flatten([[[[1, 2], 3], [4], 5], [6, [[7]]], 8])).to.eql([
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+            ]);
         });
     });
 });
