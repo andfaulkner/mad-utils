@@ -1,3 +1,7 @@
+0.53.0
+======
+Fixes arrayN function (array module) - can correctly create arrays filled with falsy values
+
 0.52.2
 ======
 Adds new defineMethod function to object module
