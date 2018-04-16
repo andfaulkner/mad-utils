@@ -124,8 +124,19 @@ export declare function merge(obj: null | undefined): {};
  * @param {boolean} mutable If true, make new property mutable. Defaults to false.
  * @return {Object} with new property added.
  */
-export declare const defineProp: <NewKVPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, value: any, mutable?: boolean | "deletable" | "mutable" | "immutable") => InputObject & NewKVPair;
+export declare const defineProp: <NewKVPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, value: any, mutable?: boolean | "deletable" | "mutable" | "immutable", enumerable?: boolean) => InputObject & NewKVPair;
 export { defineProp as defineProperty };
+/**
+ * Define a new method on an object. Naturally immutable & non-enumerable. Must be a function.
+ * @generic <NewKVPairs> - Interface containing new function prop and its type
+ * @generic <InputObject> - Type of object being merged into
+ *
+ * @param {Object} obj Object being merged into
+ * @param {string} keyName Name of property to add function at
+ * @param {Function} value Function to assign to key on object 'obj' (first param in NewKFPair)
+ * @return {Object} with new property added
+ */
+export declare const defineMethod: <NewKFPair extends Object = {}, InputObject extends Object = {}>(obj: InputObject, keyName: string, func: NewKFPair[keyof NewKFPair] & Function) => InputObject & NewKFPair;
 /**
  * Define an immutable public property on an object. Does not overwrite existing property.
  * @generic <NewKVPairs> - Interface containing new prop and its type
@@ -208,13 +219,13 @@ export declare function omit<R = O, O extends object = Object>(obj: O, prop: str
 export declare function omit<R = O, O extends object = Object>(obj: O, props: string[]): R;
 /**
  * Omit all properties from obj, where predicate doesn't return true
- * @param {Function} predicate :: (val, key, coll?) => boolean
+ * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
 export declare function omit<R = O, O extends object = Object, T = any>(obj: O, predicate: OmitPred<T>): R;
 /**
  * Omit all properties from obj, where a) predicate returns falsy; or b) key matches given string
  * @param {string[]} prop Key to omit from the given object
- * @param {Function} predicate :: (val, key, coll?) => boolean
+ * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
 export declare function omit<R = O, O extends object = Object, T = any>(obj: O, prop: string, predicate: OmitPred<T>): R;
 /**
@@ -222,6 +233,6 @@ export declare function omit<R = O, O extends object = Object, T = any>(obj: O, 
  *     a) predicate returns falsy; or
  *     b) key matches one of the given strings
  * @param {string[]} props Keys to omit from the given object
- * @param {Function} predicate :: (val, key, coll?) => boolean
+ * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
 export declare function omit<R = O, O extends object = Object, T = any>(obj: O, props: string[], predicate: OmitPred<T>): R;
