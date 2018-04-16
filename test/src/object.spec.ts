@@ -16,6 +16,7 @@ import {
     defineDeletableProp,
     defineProp,
     defineGetterProp,
+    defineMethod,
     numKeys,
     hasKey,
     inspectKeyTree,
@@ -448,6 +449,38 @@ describe(`object sub-module`, function() {
             defineGetterProp(obj, 'a', () => 'eh');
             defineGetterProp(obj, 'a', () => 'okok'); // Should change the value.
             expect((obj as any).a).to.equal('okok');
+        });
+    });
+
+    describe(`defineMethod`, function() {
+        expectFunctionExists(m_.object.defineMethod);
+        expectFunctionExists(defineMethod);
+
+        type AddFnType = {fn: () => string}
+        const obj = {} as AddFnType;
+
+        before(function() {
+            defineMethod<AddFnType>(obj, 'fn', function fn() { return 'ok' });
+        });
+
+        it(`should add a new function to an object`, function() {
+            expect(obj.fn).to.be.a('function');
+            expect(obj.fn()).to.eql('ok');
+        });
+
+        it(`function added to object should be immutable`, function() {
+            try {(obj as any).fn = 'ok'} catch {}
+            expect(obj.fn).to.be.a('function');
+            expect(obj.fn()).to.eql('ok');
+
+            try {delete obj.fn} catch {}
+            expect(obj.fn).to.be.a('function');
+            expect(obj.fn()).to.eql('ok');
+        });
+
+        it(`function added to object should not be unenumerable`, function() {
+            Object.keys(obj);
+            expect(Object.keys(obj)).to.not.include('fn');
         });
     });
 
