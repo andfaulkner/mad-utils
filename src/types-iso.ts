@@ -50,6 +50,13 @@ export interface PolyglotProps {
 export type StringHash = Record<string, string>;
 export type StringNumHash = Record<string, number>;
 
+export type BoolOrError = boolean | Error;
+export {BoolOrError as BoolOrErr}
+export {BoolOrError as ErrOrBool}
+export {BoolOrError as ErrorOrBool}
+export {BoolOrError as ErrorOrBoolean}
+export {BoolOrError as BooleanOrError}
+
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
  * Most commonly used HTTP Request types.
