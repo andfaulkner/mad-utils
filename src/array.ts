@@ -179,7 +179,7 @@ export const arrayN = <T>(len: number, fillVal?: T): T[] | never => {
 
     const cleanLen = typeof len === 'string' ? parseInt(len, 10) : len;
 
-    return (typeof fillVal !== 'undefined')
+    return typeof fillVal !== 'undefined'
         ? Array.from(Array(cleanLen)).map(__ => fillVal)
         : Array.from(Array(cleanLen));
 };
