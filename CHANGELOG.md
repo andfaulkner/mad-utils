@@ -1,3 +1,14 @@
+0.53.1
+======
+New BoolOrError type - either a boolean or an error. Aliases:
+    - BoolOrErr
+    - ErrOrBool
+    - ErrorOrBool
+    - ErrorOrBoolean
+    - BooleanOrError
+
+More in-code docs for util-styles (SCSS)
+
 0.53.0
 ======
 Fixes arrayN function (array module) - can correctly create arrays filled with falsy values
