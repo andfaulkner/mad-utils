@@ -35,7 +35,7 @@
  *
  * ****************************************************
  * ********************** LAYOUT **********************
- * 
+ *
  * ****** MARGIN ******
  * m: margin - all
  * mt: margin-top
@@ -43,12 +43,21 @@
  * mr: margin-right
  * ml: margin-left
  *
+ * dmt-$1--smt-$2
+ *     $1: margin-top above 460 height
+ *     $2: margin-top below 460 height
+ * dmb-$1--smb-$2
+ *     $1: margin-bottom above 460 height
+ *     $2: margin-bottom below 460 height
+ *
  * ****** PADDING ******
  * p:  padding - all
  * pt: padding-top
  * pb: padding-bottom
  * pr: padding-right
  * pl: padding-left
+ *
+ * p-inherit: padding-inherit
  *
  * ****** BORDER ******
  * bw: border-width
@@ -64,7 +73,18 @@
  * brs: border-right-style
  *
  * br: border-radius
-*
+ *
+ * bc: border-color
+ * bbc: border-bottom-color
+ * btc: border-top-color
+ * blc: border-left-color
+ * brc: border-right-color
+ *
+ * ## Misc ##
+ * b-hidden:        Hidden border
+ * box-shadow-none: Eliminate box shadow
+ * bl-5:            Solid left border w/ width 5
+ *
  * ****** SIZE ******
  * w: width
  * h: height
@@ -108,15 +128,20 @@
  *
  * ********** VERTICAL ALIGN **********
  * - va-middle      - va-bottom         - va-top
- * 
+ *
  * *****************************************************
  * ********************* TEXT **************************
- * fs: font-size
- * fw: font-weight
- * ti: text-indent
- * lh: line-height
- * ta: text-align
- * ff: font-family
+ * fs:         font-size
+ * fw:         font-weight
+ * ff:         font-family
+ * ts:         text-shadow
+ *
+ * ls:         letter-spacing
+ * lh:         line-height
+ * ta:         text-align
+ * ti:         text-indent
+ * ws:         whitespace
+ * whitespace: whitespace
  *
  * Misc text:
  *     uppercase, lowercase, capitalize
@@ -128,25 +153,54 @@
  * bg:     background colour
  * bgfill: background colour - clobber all other background definitions
  *
- * Colours available (incomplete):
- *     white, light-gray, mid-gray, dark-gray, black
- *     bg-white, bg-light-gray, bg-mid-gray, bg-dark-gray, bg-black
+ * Colour styles - examples (each has the following 5 categories, 3 examples given):
+ * -   white,           light-gray,           black
+ * -   bg-white,        bg-light-gray,        bg-black
+ * -   bg-white-hover,  bg-light-gray-hover,  bg-black-hover
+ * -   bg-white-active, bg-light-gray-active, bg-black-active
+ * -   border-white,    border-light-active,  border-black
+ *
+ * Colour list
+ * -   transparent
+ *
+ * -   white
+ * -   faintest-gray, fainter-gray, faint-gray, lightest-gray, lighter-gray,
+ *     lighterish-gray, lightened-gray, light-gray, nearer-light-gray,
+ *     near-light-gray, mid-light-gray, dim-gray, upper-light-gray, light-mid-gray,
+ *     gray, mid-dark-gray, dark-gray, darker-gray, ultra-dark-gray
+ * -   black
+ *
+ * -   dark-pink, red, mid-red, mid-dark-red, dark-red
+ * -   orange, slight-dark-orange
+ * -   yellow
+ *
+ * -   forest-green, pale-green, bright-green, mid-green, mid-dark-green, dark-green
+ * -   cyan, dark-cyan
+ *
+ * -   blue, faintest-blue, fainter-blue, faint-blue, pale-sky-blue,
+ *     palest-blue, paler-blue, pale-blue, mid-light-blue, light-sky-blue, sky-blue,
+ *     slight-dark-blue, mid-near-dark-blue, mid-dark-blue, dark-blue, slightly-dark-blue
+ *
+ * -   light-purple, mid-purple, dark-purple
  *
  * Colour variables are in ./scss/colors/colors.scss
  * Colour styles based on the colour vars are in ./scss/colors/color-styles.scss
  * All are exported in the util-styles.scss file.
  *
- * ****** CURSOR ******
+ *
+ *******************************************************
+ ************************ CURSOR ***********************
  * All are set to show up in hover and active states.
- *     cur-default
- *     cur-pointer
  *     cur-none
+ *     cur-default
+ *     cur-pointer, pointer
  *     cur-move
  *     cur-col-resize
  *     cur-row-resize
  *     cur-help
  *
- * ****** OPACITY ******
+ *******************************************************
+ ************************ OPACITY **********************
  * opa: opacity
  * Can have values from 0 (0.0) to 100 (1.0). e.g.:
  *     - opa-0        - opa-1        - opa-2        - opa-3        - opa-4
@@ -157,11 +211,12 @@
  *     - opa-100
  *
  * ****** MISC ******
- * float, f:  float. f-right, f-left, float-right, float-left.
- * states:    state collection. Complimentary hover & active.
- * va:        vertical-align. va-middle, va-bottom, va-top
- * vis:       visibility. e.g. vis-hidden. Also .hidden, .visible, .collapse.
- * z, zi:     z-index. e.g. z-n100, zi-1000, z-0, zi-1, z-5
+ * float, f:      float. f-right, f-left, float-right, float-left
+ * states:        state collection. Complimentary hover & active
+ * va:            vertical-align. va-middle, va-bottom, va-top
+ * vis:           visibility. e.g. vis-hidden. Also .hidden, .visible, .collapse
+ * z, zi:         z-index. e.g. z-n100, zi-1000, z-0, zi-1, z-5
+ * overflow, ov:  overflow. ov-hidden, ov-visible, ov-auto, ov-overlay, ov-scroll
  */
 
 :global {
