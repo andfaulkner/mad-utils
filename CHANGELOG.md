@@ -1,3 +1,8 @@
+0.53.2
+======
+Fixes error in object module -> get function (where 0 & '' values trigger the default value)
+Fixes bc-gray in border.scss (it changes border-color, not border-color-right)
+
 0.53.1
 ======
 New BoolOrError type - either a boolean or an error. Aliases:
