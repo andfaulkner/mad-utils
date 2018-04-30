@@ -76,7 +76,7 @@ export const get = <O = any, T extends object = {}>(
     return (propArr as Array<string>).reduce((obj, objPathPt: string) => {
         const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
         if (!exists) return defaultValue;
-        if (obj[objPathPt]) return obj[objPathPt];
+        if (typeof obj[objPathPt] !== 'undefined' && obj[objPathPt] !== null) return obj[objPathPt];
         return defaultValue;
     }, objIn);
 };
