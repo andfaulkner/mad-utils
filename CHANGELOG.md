@@ -1,3 +1,7 @@
+0.53.3
+======
+Width & height utils for 0px (h-0, w-0, maxw-0, maxh-0, minw-0, minh-0, w-all-0, h-all-0)
+
 0.53.2
 ======
 Fixes error in object module -> get function (where 0 & '' values trigger the default value)
