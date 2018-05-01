@@ -178,6 +178,7 @@
     div.w-3, .w-3 { width: 3px }
     div.w-2, .w-2 { width: 2px }
     div.w-1, .w-1 { width: 1px }
+    div.w-0, .w-0 { width: 0px }
 
     /*** WIDTH: % ***/
     div.w-100p, .w-100p { width: 100% }
@@ -382,6 +383,7 @@
     .w-all-3 { max-width: 3px; min-width: 3px; width: 3px; }
     .w-all-2 { max-width: 2px; min-width: 2px; width: 2px; }
     .w-all-1 { max-width: 1px; min-width: 1px; width: 1px; }
+    .w-all-0 { max-width: 0px; min-width: 0px; width: 0px; }
 
 
     /*** WIDTH: all: % ***/
@@ -591,6 +593,7 @@
     div.h-3, .h-3 { height: 3px }
     div.h-2, .h-2 { height: 2px }
     div.h-1, .h-1 { height: 1px }
+    div.h-0, .h-0 { height: 0px }
 
     /*** HEIGHT: % ***/
     div.h-100p, .h-100p { height: 100% }
@@ -796,6 +799,7 @@
     .h-all-3 { max-height: 3px; min-height: 3px; height: 3px; }
     .h-all-2 { max-height: 2px; min-height: 2px; height: 2px; }
     .h-all-1 { max-height: 1px; min-height: 1px; height: 1px; }
+    .h-all-0 { max-height: 0px; min-height: 0px; height: 0px; }
 
 
     /*** WIDTH: all: px ***/
@@ -913,6 +917,7 @@
     .w-all-3 { max-width: 3px; min-width: 3px; width: 3px; }
     .w-all-2 { max-width: 2px; min-width: 2px; width: 2px; }
     .w-all-1 { max-width: 1px; min-width: 1px; width: 1px; }
+    .w-all-0 { max-width: 0px; min-width: 0px; width: 0px; }
 
 
     /*** HEIGHT: all: % ***/
@@ -1286,6 +1291,7 @@
     div.maxh-3, .maxh-3 { max-height: 3px }
     div.maxh-2, .maxh-2 { max-height: 2px }
     div.maxh-1, .maxh-1 { max-height: 1px }
+    div.maxh-0, .maxh-0 { max-height: 0px }
 
     /****** min-height: px ******/
     div.minh-1000, .minh-1000 { min-height: 1000px }
@@ -1342,6 +1348,7 @@
     div.minh-3, .minh-3 { min-height: 3px }
     div.minh-2, .minh-2 { min-height: 2px }
     div.minh-1, .minh-1 { min-height: 1px }
+    div.minh-0, .minh-0 { min-height: 0px }
 
     /************************************ MAX-WIDTH, MIN-WIDTH px *************************************/
     /****** max-width: px ******/
@@ -1407,6 +1414,7 @@
     div.maxw-3, .maxw-3 { max-width: 3px }
     div.maxw-2, .maxw-2 { max-width: 2px }
     div.maxw-1, .maxw-1 { max-width: 1px }
+    div.maxw-0, .maxw-0 { max-width: 0px }
 
     /****** min-width: px ******/
     div.minw-1000, .minw-1000 { min-width: 1000px }
@@ -1471,6 +1479,7 @@
     div.minw-3, .minw-3 { min-width: 3px }
     div.minw-2, .minw-2 { min-width: 2px }
     div.minw-1, .minw-1 { min-width: 1px }
+    div.minw-0, .minw-0 { min-width: 0px }
 
     @media (min-height : 460px) {
         div .dh-25--sh-21, button.dh-25--sh-21, .dh-25--sh-21 { height: 25px; }
