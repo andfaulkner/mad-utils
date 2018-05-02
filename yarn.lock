@@ -1329,6 +1329,10 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
+env-var-helpers@3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.4.1.tgz#c4595627e63d677f6529160e7b69b6140a8b67aa"
+
 env-var-helpers@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.2.0.tgz#15e69e2f85bf590c8c58c6f48925385391e733f7"
@@ -1336,10 +1340,6 @@ env-var-helpers@^3.0.0:
     detect-node "^2.0.3"
     mad-logs "^9.1.1"
     string.prototype.padend "^3.0.0"
-
-env-var-helpers@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.4.0.tgz#565b5fb089f255d6f59be71d2b07a6829cf96605"
 
 enzyme-adapter-react-16@^1.1.1:
   version "1.1.1"
