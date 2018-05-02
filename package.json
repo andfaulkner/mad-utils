@@ -159,7 +159,7 @@
     "cheerio": "^1.0.0-rc.2",
     "chokidar": "^2.0.3",
     "colors": "^1.1.2",
-    "env-var-helpers": "3.4.1",
+    "env-var-helpers": "^3.4.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.18.1",
