@@ -2971,6 +2971,18 @@ mad-logs@^9.1.1:
     lodash.isfunction "^3.0.8"
     string.prototype.padend "^3.0.0"
 
+mad-logs@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-9.1.2.tgz#2c7fb30e86972b9ba05be1ae73ca1266e3ffa73e"
+  dependencies:
+    "@types/lodash" "^4.14.108"
+    colors "^1.1.2"
+    detect-node "^2.0.3"
+    env-var-helpers "^3.4.1"
+    global "^4.3.1"
+    lodash.isfunction "^3.0.8"
+    string.prototype.padend "^3.0.0"
+
 make-dir@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.2.0.tgz#6d6a49eead4aae296c53bbf3a1a008bd6c89469b"
