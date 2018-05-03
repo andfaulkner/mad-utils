@@ -1341,6 +1341,12 @@ env-var-helpers@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.4.1.tgz#c4595627e63d677f6529160e7b69b6140a8b67aa"
 
+env-var-helpers@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-4.0.1.tgz#a37929c924c5a530982f60e367cefccfa3793139"
+  dependencies:
+    mad-logs "^9.1.2"
+
 enzyme-adapter-react-16@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.1.1.tgz#a8f4278b47e082fbca14f5bfb1ee50ee650717b4"
