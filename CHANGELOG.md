@@ -1,3 +1,8 @@
+0.53.4
+======
+Upgrade common-constants -> v4.1.0
+Upgrade dev modules (prettier, tslint, etc)
+
 0.53.3
 ======
 Width & height utils for 0px (h-0, w-0, maxw-0, maxh-0, minw-0, minh-0, w-all-0, h-all-0)
