@@ -29,10 +29,6 @@
     "@types/express" "*"
     "@types/node" "*"
 
-"@types/chai@^3.5.2":
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/@types/chai/-/chai-3.5.2.tgz#c11cd2817d3a401b7ba0f5a420f35c56139b1c1e"
-
 "@types/chai@^4.1.3":
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.1.3.tgz#b8a74352977a23b604c01aa784f5b793443fb7dc"
@@ -113,10 +109,6 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
 
-"@types/mocha@^2.2.41":
-  version "2.2.48"
-  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.48.tgz#3523b126a0b049482e1c3c11877460f76622ffab"
-
 "@types/mocha@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.0.tgz#b3c8e69f038835db1a7fdc0b3d879fc50506e29e"
@@ -138,10 +130,6 @@
 "@types/node@8.10.0":
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.0.tgz#f5d649cc49af8ed6507d15dc6e9b43fe8b927540"
-
-"@types/node@^6.0.52":
-  version "6.0.103"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.103.tgz#4fddb6c254756e98004039da4e4f4230d1e397ca"
 
 "@types/react-dom@^16.0.5":
   version "16.0.5"
@@ -897,13 +885,9 @@ commander@^2.12.1, commander@^2.9.0:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
-common-constants@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/common-constants/-/common-constants-4.0.0.tgz#1e168addd6bdc8889b56e9f1a5ff57ebb0dc70a6"
-  dependencies:
-    "@types/chai" "^3.5.2"
-    "@types/mocha" "^2.2.41"
-    "@types/node" "^6.0.52"
+common-constants@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/common-constants/-/common-constants-4.1.0.tgz#5efefb507746f4d703ece98561a6da188e2b0b08"
 
 commondir@^1.0.1:
   version "1.0.1"

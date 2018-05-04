@@ -136,7 +136,7 @@
     "@types/ua-parser-js": "^0.7.31",
     "app-root-path": "^2.0.1",
     "chai": "^4.0.2",
-    "common-constants": "^4.0.0",
+    "common-constants": "^4.1.0",
     "connect": "^3.6.2",
     "deep-freeze-strict": "^1.1.1",
     "detect-node": "^2.0.3",
