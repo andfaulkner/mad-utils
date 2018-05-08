@@ -44,7 +44,7 @@ const baseWebAssetExts = [].concat(baseWebImgAssetExtensions)
  * Extract full URL from request, and ensure no trailing slash at end.
  * @param {Request} req - Express request object.
  */
-export const getNoTrailingSlashUrl = (req: Request): string => _.trimEnd(req.originalUrl, '/');
+export const getNoTrailingSlashUrl = (req: Request) => req.originalUrl.replace(/\/+?$/g, '');
 
 /**
  * Return the given url with the last path removed.
