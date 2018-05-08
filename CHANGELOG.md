@@ -1,3 +1,12 @@
+0.54.1
+======
+Add getCookieFromReq function to express-routing
+*   Extracts cookie from express request headers property
+
+isSupportedLang (express-routing):
+*   now eliminates trailing slashes before comparison
+*   Unit tests
+
 0.54.0
 ======
 Fix express-routing: getNoTrailingSlashUrl function
