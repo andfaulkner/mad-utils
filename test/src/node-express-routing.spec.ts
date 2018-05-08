@@ -12,6 +12,7 @@ import {
     expressRouting,
     getFirstUrlPath,
     getLastUrlPath,
+    getUrlPathFromReq,
 } from '../../node';
 
 import * as nodeExpressRouting from '../../src/node/express-routing';
@@ -62,6 +63,39 @@ describe(`error sub-module`, function() {
         it(`returns last path in given Request object (mock) at originalUrl`, function() {
             expect(getLastUrlPath({originalUrl: `http://example.com/1/two/CORRECT_PATH`} as any))
                 .to.eql('CORRECT_PATH');
+        });
+    });
+
+    describe(`getUrlPathFromReq`, function() {
+        it(`returns '' if given req object with '' as originalUrl`, function() {
+            expect(getUrlPathFromReq({originalUrl: ''} as any)).to.eql('');
+            expect(getUrlPathFromReq({originalUrl: ''} as any, true)).to.eql('');
+        });
+        it(`returns '/' if given req object with '/' as originalUrl`, function() {
+            expect(getUrlPathFromReq({originalUrl: '/'} as any)).to.eql('/');
+            expect(getUrlPathFromReq({originalUrl: '/'} as any, true)).to.eql('/');
+        });
+        it(`If trailingSlash=false, ret '/home' given req obj w originalUrl '/home' or '/home/'`, function() {
+            expect(getUrlPathFromReq({originalUrl: '/home'} as any, false)).to.eql('/home');
+            expect(getUrlPathFromReq({originalUrl: '/home/'} as any, false)).to.eql('/home');
+        });
+        it(`If trailingSlash=true, ret '/home' given originalUrl '/home', & '/home/' given '/home/'`, function() {
+            expect(getUrlPathFromReq({originalUrl: '/home'} as any, true)).to.eql('/home');
+            expect(getUrlPathFromReq({originalUrl: '/home/'} as any, true)).to.eql('/home/');
+        });
+        it(`If trailingSlash=false, ret '/home/help' given originalUrl '/home/help', & '/home/help' given '/home/help/'`, function() {
+            expect(getUrlPathFromReq({originalUrl: '/home/help'} as any, false)).to.eql('/home/help');
+            expect(getUrlPathFromReq({originalUrl: '/home/help/'} as any, false)).to.eql('/home/help');
+        });
+        it(`If trailingSlash=true, ret '/home/help' given originalUrl '/home/help', & '/home/help/' given '/home/help/'`, function() {
+            expect(getUrlPathFromReq({originalUrl: '/home/help'} as any, true)).to.eql('/home/help');
+            expect(getUrlPathFromReq({originalUrl: '/home/help/'} as any, true)).to.eql('/home/help/');
+        });
+        it(`removes multiple trailing slashes (leaves 1 if trailingSlash=true)`, function() {
+            expect(getUrlPathFromReq({originalUrl: '/home//////'} as any)).to.eql('/home');
+            expect(getUrlPathFromReq({originalUrl: '/home/help//'} as any)).to.eql('/home/help');
+            expect(getUrlPathFromReq({originalUrl: '/home/help///////'} as any, false)).to.eql('/home/help');
+            expect(getUrlPathFromReq({originalUrl: '/home/help//'} as any, true)).to.eql('/home/help/');
         });
     });
 });
