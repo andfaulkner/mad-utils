@@ -1,7 +1,12 @@
 0.54.0
 ======
 Fix express-routing: getNoTrailingSlashUrl function
-- It no longer sometimes duplicates pre-slash string parts, or relies on lodash
+    *   Rename getNoTrailingSlashUrl -> getUrlPathFromReq
+    *   Fix docs
+    *   Takes keepTrailingSlash param (default false) that leaves trailing slash on end if true
+    *   It no longer sometimes duplicates pre-slash string parts
+    *   Removed lodash dependency (from getUrlPathFromReq)
+    *   Unit tests
 
 Rename checks for request type (express-routing):
     isJsAsset -> isRequestForJsAsset
