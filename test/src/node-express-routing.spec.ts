@@ -8,7 +8,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import {m_, error, nodeError} from '../../node';
 
-import {expressRouting, getFirstUrlPath, getLastUrlPath, getUrlPathFromReq} from '../../node';
+import {expressRouting, getFirstUrlPath, getLastUrlPath, getUrlPathFromReq, isSupportedLang} from '../../node';
 
 import * as nodeExpressRouting from '../../src/node/express-routing';
 
@@ -107,6 +107,29 @@ describe(`error sub-module`, function() {
             expect(getUrlPathFromReq({originalUrl: '/home/help//'} as any, true)).to.eql(
                 '/home/help/'
             );
+        });
+    });
+
+    describe(`isSupportedLang`, function() {
+        it(`returns true if given 'en' or 'fr' (with default supportedLangs)`, function() {
+            expect(isSupportedLang('en')).to.be.true;
+            expect(isSupportedLang('fr')).to.be.true;
+        });
+        it(`can handle trailing slashes - returns true if given 'en/' or 'fr/' (w def supportedLangs)`, function() {
+            expect(isSupportedLang('en/')).to.be.true;
+            expect(isSupportedLang('fr/')).to.be.true;
+        });
+        it(`Allows a custom language set to be set, returns true if given val from custom set)`, function() {
+            expect(isSupportedLang('swahili', ['swahili', 'zulu', 'en'])).to.be.true;
+            expect(isSupportedLang('zulu/', ['swahili', 'zulu', 'en'])).to.be.true;
+        });
+        it(`Returns false if given value other than 'en' or 'fr' (default supportedLangs)`, function() {
+            expect(isSupportedLang('swahili')).to.be.false;
+            expect(isSupportedLang('zulu/')).to.be.false;
+        });
+        it(`Returns false if given a value not in the given supportedLangs list`, function() {
+            expect(isSupportedLang('en', ['swahili', 'zulu'])).to.be.false;
+            expect(isSupportedLang('swahili/', ['en', 'zulu'])).to.be.false;
         });
     });
 });
