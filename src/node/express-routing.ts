@@ -1,43 +1,39 @@
 /**************************************************************************************************
-*
-*       @file ./express-routing.ts
-*
-*       TODO FINISH SETTING express-routing MODULE UP IN MAD-UTILS
-*
-*/
+ *
+ *       @file ./express-routing.ts
+ *
+ *       TODO FINISH SETTING express-routing MODULE UP IN MAD-UTILS
+ *
+ */
 
 /*************************************** THIRD-PARTY MODULES **************************************/
 import * as path from 'path';
 import * as fs from 'fs';
 import * as _ from 'lodash';
-import { path as rootPath } from 'app-root-path';
-import { Request, Response } from 'express';
-import { isDevelopment } from 'env-var-helpers';
+import {path as rootPath} from 'app-root-path';
+import {Request, Response} from 'express';
+import {isDevelopment} from 'env-var-helpers';
 import * as Polyglot from 'node-polyglot';
 
 /************************************ OTHER MAD-UTILS MODULES *************************************/
-import { canadaLangCodes } from '../locale';
-import { withoutLast, last, first, second } from '../array';
-import { cap1LowerRest } from '../string';
-import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../url';
-
+import {canadaLangCodes} from '../locale';
+import {withoutLast, last, first, second} from '../array';
+import {cap1LowerRest} from '../string';
+import {getUrlPathBeforeLang, getUrlPathAfterLang} from '../url';
 
 /************************** BARREL EXPORTS FROM OTHER mad-utils MODULES ***************************/
-export { getUrlPathBeforeLang, getUrlPathAfterLang }
+export {getUrlPathBeforeLang, getUrlPathAfterLang};
 
 /**************************************** TYPE DEFINITIONS ****************************************/
 type AssetFileResolver = (req: Request) => string;
 type AssetTypes = 'js' | 'css' | 'img';
 
-
 /*********************************** BASIC WEB FILE EXTENSIONS ************************************/
-const baseWebImgAssetExtensions = ['ico', 'png', 'svg', 'bmp', 'gif', 'tiff']
+const baseWebImgAssetExtensions = ['ico', 'png', 'svg', 'bmp', 'gif', 'tiff'];
 const baseWebCodeAssetExtensions = ['js', 'css'];
 const baseWebFontAssetExtensions = ['ttf', 'eot', 'woff', 'woff2', 'ttc'];
 
-const baseWebAssetExts = [].concat(baseWebImgAssetExtensions)
-                           .concat(baseWebCodeAssetExtensions);
-
+const baseWebAssetExts = [].concat(baseWebImgAssetExtensions).concat(baseWebCodeAssetExtensions);
 
 /**************************************** FUNCTION EXPORTS ****************************************/
 /**
@@ -79,11 +75,13 @@ export const getLastUrlPath = (urlOrReq: string | Request): string => {
  * @return {string} first path in given URL.
  */
 export const getFirstUrlPath = (urlOrReq: string | Request): string => {
-    const cleanURL = (typeof urlOrReq === 'string') ? urlOrReq : urlOrReq.originalUrl;
-    const getFunc = (cleanURL.match(/https?:\/\//) || cleanURL.match(/localhost/)) ? second : first;
-    return getFunc(cleanURL.replace(/^\/(?=[a-zA-Z_0-9])/g, '')
-                           .replace(/https?:\/\//g, '')
-                           .split('/')
+    const cleanURL = typeof urlOrReq === 'string' ? urlOrReq : urlOrReq.originalUrl;
+    const getFunc = cleanURL.match(/https?:\/\//) || cleanURL.match(/localhost/) ? second : first;
+    return getFunc(
+        cleanURL
+            .replace(/^\/(?=[a-zA-Z_0-9])/g, '')
+            .replace(/https?:\/\//g, '')
+            .split('/')
     );
 };
 
@@ -101,7 +99,7 @@ export const getExt = (req: Request): string => getLastUrlPath(req.originalUrl).
  */
 export const isRequestForAsset = (req: Request, assetExts = baseWebAssetExts): boolean =>
     assetExts.some(ext => req.originalUrl.endsWith(`.${ext}`));
-export { isRequestForAsset as isReqForAsset }
+export {isRequestForAsset as isReqForAsset};
 
 /**
  * True if given request is for an image asset.
@@ -109,7 +107,7 @@ export { isRequestForAsset as isReqForAsset }
  */
 export const isImageAsset = (req: Request, imgAssetExts = baseWebImgAssetExtensions): boolean =>
     imgAssetExts.some(ext => req.originalUrl.endsWith(`.${ext}`));
-export { isImageAsset as isImgAsset }
+export {isImageAsset as isImgAsset};
 
 /**
  * True if given request is for a font asset (note: not triggered by svg)
@@ -130,14 +128,14 @@ export const isCodeAsset = (req: Request, codeAssetExts = baseWebCodeAssetExtens
  * @param {Request} req - Express request object.
  */
 export const isJsAsset = (req: Request): boolean => req.originalUrl.endsWith(`.js`);
-export { isJsAsset as isJSAsset }
+export {isJsAsset as isJSAsset};
 
 /**
  * True if given request is for a CSS asset.
  * @param {Request} req - Express request object.
  */
 export const isCssAsset = (req: Request): boolean => req.originalUrl.endsWith(`.css`);
-export { isCssAsset as isCSSAsset }
+export {isCssAsset as isCSSAsset};
 
 /**
  * Returns true if give string is a supported language.
