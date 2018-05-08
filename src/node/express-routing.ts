@@ -37,10 +37,19 @@ const baseWebAssetExts = [].concat(baseWebImgAssetExtensions).concat(baseWebCode
 
 /**************************************** FUNCTION EXPORTS ****************************************/
 /**
- * Extract full URL from request, and ensure no trailing slash at end.
- * @param {Request} req - Express request object.
+ * Extract "full URL" (the request path/req.originalUrl e.g. '/auth') from
+ * request. If '/' is the entire value, return '/'
+ * @param {boolean} keepTrailingSlash If false, ensure no trailing slash at end {DEF: false}
+ * @param {Request} req Express request object
+ * @return {string} Processed "path" from Express request object e.g. '/home/main'
  */
-export const getNoTrailingSlashUrl = (req: Request) => req.originalUrl.replace(/\/+?$/g, '');
+export const getUrlPathFromReq = (req: Request, keepTrailingSlash = false) => {
+    const url = keepTrailingSlash
+        ? req.originalUrl.replace(/\/+$/g, '/')
+        : req.originalUrl.replace(/\/+?$/g, '');
+    if (req.originalUrl.includes('/') && url === '') return '/';
+    return url;
+};
 
 /**
  * Return the given url with the last path removed.

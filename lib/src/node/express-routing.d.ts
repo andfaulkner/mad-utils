@@ -5,10 +5,13 @@ import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../url';
 export { getUrlPathBeforeLang, getUrlPathAfterLang };
 /**************************************** FUNCTION EXPORTS ****************************************/
 /**
- * Extract full URL from request, and ensure no trailing slash at end.
- * @param {Request} req - Express request object.
+ * Extract "full URL" (the request path/req.originalUrl e.g. '/auth') from
+ * request. If '/' is the entire value, return '/'
+ * @param {boolean} keepTrailingSlash If false, ensure no trailing slash at end {DEF: false}
+ * @param {Request} req Express request object
+ * @return {string} Processed "path" from Express request object e.g. '/home/main'
  */
-export declare const getNoTrailingSlashUrl: (req: Request) => string;
+export declare const getUrlPathFromReq: (req: Request, keepTrailingSlash?: boolean) => string;
 /**
  * Return the given url with the last path removed.
  * @example getLastUrlPath('https://www.example.com/auth/login') // => https://www.example.com
@@ -70,14 +73,14 @@ export declare const isCodeAsset: (req: Request, codeAssetExts?: string[]) => bo
  * True if given request is for a JS asset.
  * @param {Request} req - Express request object.
  */
-export declare const isJsAsset: (req: Request) => boolean;
-export { isJsAsset as isJSAsset };
+export declare const isJsAssetRequest: (req: Request) => boolean;
+export { isJsAssetRequest as isRequestForJsAsset };
 /**
  * True if given request is for a CSS asset.
  * @param {Request} req - Express request object.
  */
-export declare const isCssAsset: (req: Request) => boolean;
-export { isCssAsset as isCSSAsset };
+export declare const isCssAssetRequest: (req: Request) => boolean;
+export { isCssAssetRequest as isRequestForCssAsset };
 /**
  * Returns true if give string is a supported language.
  * @param {string} str Check if this string is in the supported languages list.
