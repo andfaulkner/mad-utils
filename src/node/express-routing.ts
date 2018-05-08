@@ -152,7 +152,7 @@ export {isCssAssetRequest as isRequestForCssAsset};
  * @return {boolean} true if the given string is a supported language.
  */
 export const isSupportedLang = (matchString: string, supportedLangs = canadaLangCodes): boolean =>
-    supportedLangs.some(curLang => curLang === matchString);
+    supportedLangs.some(curLang => curLang === matchString.replace(/\/+?$/g, ''));
 
 /**
  * Get the MIME type of the intended response based on the given type and (if type is not
@@ -173,3 +173,10 @@ export const getMimeType = (type: 'js' | 'css' | 'img', req?: Request): string =
     if (ext === 'jpg') return 'image/jpeg';
     return `image/${ext}`;
 };
+
+/***************************** GRAB FROM EXPRESS REQUEST OBJECT (REQ) *****************************/
+/**
+ * @return {string} Cookie string extracted from request (if present). Default: ''
+ */
+const getCookieFromReq = (req: Request) =>
+    req.cookies || (req.headers && (req.headers.cookie || req.headers.cookies)) || '';
