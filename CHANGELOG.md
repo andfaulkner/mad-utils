@@ -1,3 +1,14 @@
+0.54.0
+======
+Fix express-routing: getNoTrailingSlashUrl function
+- It no longer sometimes duplicates pre-slash string parts, or relies on lodash
+
+Rename checks for request type (express-routing):
+    isJsAsset -> isRequestForJsAsset
+    isJSAsset -> isJsAssetRequest
+    isCssAsset -> isRequestForCssAsset
+    isCSSAsset -> isCssAssetRequest
+
 0.53.4
 ======
 Upgrade common-constants -> v4.1.0
