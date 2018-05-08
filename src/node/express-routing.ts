@@ -127,15 +127,15 @@ export const isCodeAsset = (req: Request, codeAssetExts = baseWebCodeAssetExtens
  * True if given request is for a JS asset.
  * @param {Request} req - Express request object.
  */
-export const isJsAsset = (req: Request): boolean => req.originalUrl.endsWith(`.js`);
-export {isJsAsset as isJSAsset};
+export const isJsAssetRequest = (req: Request): boolean => req.originalUrl.endsWith(`.js`);
+export {isJsAssetRequest as isRequestForJsAsset};
 
 /**
  * True if given request is for a CSS asset.
  * @param {Request} req - Express request object.
  */
-export const isCssAsset = (req: Request): boolean => req.originalUrl.endsWith(`.css`);
-export {isCssAsset as isCSSAsset};
+export const isCssAssetRequest = (req: Request): boolean => req.originalUrl.endsWith(`.css`);
+export {isCssAssetRequest as isRequestForCssAsset};
 
 /**
  * Returns true if give string is a supported language.
