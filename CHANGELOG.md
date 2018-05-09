@@ -1,3 +1,9 @@
+0.54.2
+======
+UNRELEASED
+
+Add .gitattributes
+
 0.54.1
 ======
 Add getCookieFromReq function to express-routing
