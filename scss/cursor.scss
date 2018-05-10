@@ -15,5 +15,5 @@
     // Remove outline appearing on element focus. NOTE: do not use unless you have another tag
     // "below" this one that displays the outline when the UI element is tabbed to, otherwise
     // you will render this element inaccessible (e.g. unusable for the motor-impaired)
-    .outline-none, .no-outline { outline: none }
+    .outline-none:focus, .no-outline:focus { outline: none }
 }

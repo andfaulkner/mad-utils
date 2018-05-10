@@ -1,3 +1,8 @@
+0.54.3
+======
+Quick patch to fix .outline-none & .no-outline CSS util classes
+    *   set to operate on focus rather than always
+
 0.54.2
 ======
 Add .gitattributes
