@@ -11,4 +11,9 @@
 
     .cur-col-resize, .cur-col-resize:hover, .cur-col-resize:active { cursor: col-resize }
     .cur-row-resize, .cur-row-resize:hover, .cur-row-resize:active { cursor: row-resize }
+
+    // Remove outline appearing on element focus. NOTE: do not use unless you have another tag
+    // "below" this one that displays the outline when the UI element is tabbed to, otherwise
+    // you will render this element inaccessible (e.g. unusable for the motor-impaired)
+    .outline-none, .no-outline { outline: none }
 }
