@@ -1,8 +1,8 @@
 0.54.2
 ======
-UNRELEASED
-
 Add .gitattributes
+Add .outline-none & .no-outline CSS util classes
+Upgrade colors module to 1.2.4 (and @types/colors to 1.2.1)
 
 0.54.1
 ======
