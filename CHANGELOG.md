@@ -1,3 +1,19 @@
+0.55.0
+======
+Changes to blue colour SCSS util classes:
+    *   Rename SCSS variable   ::  "midLightBlue"       => "lighterSkyBlue"
+        *   Rename SCSS class  ::  "mid-light-blue"     => "lighter-sky-blue"
+    *   Rename SCSS variable   ::  "paleSkyBlue"        => "skyBlue"
+        *   Rename SCSS class  ::  "pale-sky-blue"      => "sky-blue"
+    *   Rename SCSS variable   ::  "skyBlue"            => "darkSkyBlue"
+        *   Rename SCSS class  ::  "sky-blue"           => "dark-sky-blue"
+    *   Rename SCSS variable   ::  "slightlyDarkBlue"   => "palestDarkBlue"
+        *   Rename SCSS class  ::  "slightly-dark-blue" => "palest-dark-blue"
+    *   New SCSS variable  :: "palerDarkBlue"
+        *   New SCSS class :: "pale-dark-blue"
+    *   Rename SCSS variable   ::  "slightDarkBlue"     => "paleDarkBlue"
+        *   Rename SCSS class  ::  "slight-dark-blue"   => "pale-dark-blue"
+
 0.54.3
 ======
 Quick patch to fix .outline-none & .no-outline CSS util classes
