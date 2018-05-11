@@ -59,13 +59,14 @@ $faintBlue: #e5f0f8;
 $palestBlue: #d5e6f4;
 $palerBlue: #b9d6ee;
 $paleBlue: #8bbbe3;
-$midLightBlue: #007bb6;
+$lighterSkyBlue: #007bb6; // midLightBlue => lighterSkyBlue
 $lightSkyBlue: #03a0ff;
-$paleSkyBlue: #4a90e2;
-$skyBlue: #0a88ff;
+$skyBlue: #4a90e2;        // paleSkyBlue => skyBlue
+$darkSkyBlue: #0a88ff;    // skyBlue => darkSkyBlue
 $blue: #006eb1;
-$slightlyDarkBlue: #337ab7;
-$slightDarkBlue: #1955a5;
+$palestDarkBlue: #337ab7; // slightlyDarkBlue => palestDarkBlue
+$palerDarkBlue: #216ba5;  // NEW: palerDarkBlue
+$paleDarkBlue: #1955a5;   // slightDarkBlue => paleDarkBlue
 $midDarkBlue: #306199;
 $midNearDarkBlue: #0b59a1;
 $darkBlue: #32506d;
