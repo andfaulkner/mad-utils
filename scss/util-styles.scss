@@ -41,7 +41,7 @@
  * ********************** LAYOUT **********************
  *
  * ****** MARGIN ******
- * m: margin - all
+ * m:  margin - all
  * mt: margin-top
  * mb: margin-bottom
  * mr: margin-right
@@ -64,22 +64,22 @@
  * p-inherit: padding-inherit
  *
  * ****** BORDER ******
- * bw: border-width
+ * bw:  border-width
  * bbw: border-bottom-width
  * btw: border-top-width
  * blw: border-left-width
  * brw: border-right-width
  *
- * bs: border-style
+ * bs:  border-style
  * bbs: border-bottom-style
  * bts: border-top-style
  * bls: border-left-style
  * brs: border-right-style
  *
- * br: border-radius
+ * br:    border-radius
  * br-#p: border-radius by percentage
  *
- * bc: border-color
+ * bc:  border-color
  * bbc: border-bottom-color
  * btc: border-top-color
  * blc: border-left-color
@@ -91,10 +91,10 @@
  * bl-5:            Solid left border w/ width 5
  *
  * ****** SIZE ******
- * w: width
- * h: height
- * mw: max-width
- * mh: max-height
+ * w:    width
+ * h:    height
+ * mw:   max-width
+ * mh:   max-height
  * minw: min-width
  * minh: min-height
  *
@@ -219,12 +219,12 @@
  *     - opa-100
  *
  * ****** MISC ******
- * float, f:      float. f-right, f-left, float-right, float-left
- * states:        state collection. Complimentary hover & active
- * va:            vertical-align. va-middle, va-bottom, va-top
- * vis:           visibility. e.g. vis-hidden. Also .hidden, .visible, .collapse
- * z, zi:         z-index. e.g. z-n100, zi-1000, z-0, zi-1, z-5
- * overflow, ov:  overflow. ov-hidden, ov-visible, ov-auto, ov-overlay, ov-scroll
+ * float, f:     float. f-right, f-left, float-right, float-left
+ * states:       state collection. Complimentary hover & active
+ * va:           vertical-align. va-middle, va-bottom, va-top
+ * vis:          visibility. e.g. vis-hidden. Also .hidden, .visible, .collapse
+ * z, zi:        z-index. e.g. z-n100, zi-1000, z-0, zi-1, z-5
+ * overflow, ov: overflow. ov-hidden, ov-visible, ov-auto, ov-overlay, ov-scroll
  */
 
 :global {
