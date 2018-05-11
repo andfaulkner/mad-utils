@@ -1,3 +1,8 @@
+0.55.1
+======
+Add border-radius by percentage util-styles e.g. br-10p
+Update & clean up general rules in in-code docs for SCSS utils (in util-styles)
+
 0.55.0
 ======
 Changes to blue colour SCSS util classes:
