@@ -22,16 +22,20 @@
 /**
  * ****************************************** REFERENCE ******************************************
  *
- * TODO Update util-styles reference (mad-utils)
+ * TODO Update util-styles reference (mad-utils) - in README
  *
- * ****** GENERAL ******
- * -   Any number preceded by n indicates negative. e.g.
- *         .mt-n24 { margin-top: -24px }
- *             vs.
- *         .mt-24 { margin-top: 24px }
- * -   Any style followed by -nl indicates that the last item in the set is excluded. e.g.
- *         .bw-4-nl:not(:last-child) { border-width: 4px }
- *         -   applies a 4px wide border to all items in a set but the last
+ * ************** GENERAL RULES/PATTERNS ***************
+ * Any number preceded by n (.classname-n#) indicates a negative value. e.g.:
+ *     .mt-n24 { margin-top: -24px }
+ *         vs.
+ *     .mt-24 { margin-top: 24px }
+ *
+ * Any number followed by p (classname-#p) indicates percentage e.g.:
+ *     .br-10p { border-radius: 10% }
+ *
+ * Any style with suffix -nl (classname-#-nl) indicates exclusion of last item in the set e.g.:
+ *     .bw-4-nl:not(:last-child) { border-width: 4px }
+ *     -   applies a 4px wide border to all items in a set but the last
  *
  * ****************************************************
  * ********************** LAYOUT **********************
@@ -73,6 +77,7 @@
  * brs: border-right-style
  *
  * br: border-radius
+ * br-#p: border-radius by percentage
  *
  * bc: border-color
  * bbc: border-bottom-color
