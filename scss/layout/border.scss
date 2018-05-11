@@ -114,6 +114,7 @@
     .brw-6-nl:not(:last-child) { border-right-width: 1.5rem }
 
     /********* BORDER RADIUS *********/
+    // border-radius by px
     .br-0 { border-radius: 0px }
     .br-1 { border-radius: 1px }
     .br-2 { border-radius: 2px }
@@ -181,6 +182,21 @@
     .br-1500 { border-radius: 1500px }
     .br-1750 { border-radius: 1750px }
     .br-2000 { border-radius: 2000px }
+
+    // border-radius by %
+    .br-0p   { border-radius: 0%   }
+    .br-1p   { border-radius: 1%   }
+    .br-2p   { border-radius: 2%   }
+    .br-5p   { border-radius: 5%   }
+    .br-10p  { border-radius: 10%  }
+    .br-20p  { border-radius: 20%  }
+    .br-25p  { border-radius: 25%  }
+    .br-50p  { border-radius: 50%  }
+    .br-75p  { border-radius: 75%  }
+    .br-95p  { border-radius: 95%  }
+    .br-98p  { border-radius: 98%  }
+    .br-99p  { border-radius: 99%  }
+    .br-100p { border-radius: 100% }
 
     /****************************************** BORDER STYLE ******************************************/
     /*********** BORDER STYLE - ALL ***********/
