@@ -126,7 +126,7 @@ export function condSwitch(
  * @param {number} wait Time to wait before next call of function allowed
  * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
  */
-function throttle(cb: (...args: any[]) => any, wait: number, immediate = true): (() => void) {
+export function throttle(cb: (...args: any[]) => any, wait: number, immediate = true): () => void {
     let blocked = false;
     return () => {
         if (!blocked) {
