@@ -1,3 +1,8 @@
+0.55.2
+======
+Add throttle function
+Clean up after changes to blue SCSS util class changes
+
 0.55.1
 ======
 Add border-radius by percentage util-styles e.g. br-10p
