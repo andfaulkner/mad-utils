@@ -1,3 +1,7 @@
+0.55.3
+======
+Fix dark-sky-blue color class names (in SCSS util classes)
+
 0.55.2
 ======
 Add throttle function
