@@ -7,7 +7,7 @@ import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
 import { func as functionFromNode } from '../../node';
 import { func as functionFromBrowser } from '../../browser';
 import * as functionModule from '../../src/function';
-import { m_, func, getFnAsArr, condSwitch, loopN, loop2, loop3, loop4, loop5 } from '../../shared';
+import { m_, func, getFnAsArr, condSwitch, loopN, loop2, loop3, loop4, loop5, throttle } from '../../shared';
 
 
 /********************************************* TESTS **********************************************/
