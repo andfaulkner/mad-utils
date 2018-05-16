@@ -67,3 +67,10 @@ export { getArgsFromFuncAsString as getArgs };
  *                                  20);
  */
 export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...condValPairsAndOrDefVal: RealAny[]): RealAny | never;
+/************************************* RUN TIMING / LIMITING **************************************/
+/**
+ * @param {Function} cb Call max 1X/[wait]ms & call at interval start if [immediate]=true {default}
+ * @param {number} wait Time to wait before next call of function allowed
+ * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
+ */
+export declare function throttle(cb: (...args: any[]) => any, wait: number, immediate?: boolean): () => void;

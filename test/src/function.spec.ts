@@ -1,14 +1,24 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-import { expect } from 'chai';
-import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
+import {expect} from 'chai';
+import {expectFunctionExists, expectNonEmptyObjectExists} from '../../node';
 
 /******************************* IMPORT FUNCTION MODULE FOR TESTING *******************************/
-import { func as functionFromNode } from '../../node';
-import { func as functionFromBrowser } from '../../browser';
+import {func as functionFromNode} from '../../node';
+import {func as functionFromBrowser} from '../../browser';
 import * as functionModule from '../../src/function';
-import { m_, func, getFnAsArr, condSwitch, loopN, loop2, loop3, loop4, loop5, throttle } from '../../shared';
-
+import {
+    m_,
+    func,
+    getFnAsArr,
+    condSwitch,
+    loopN,
+    loop2,
+    loop3,
+    loop4,
+    loop5,
+    throttle,
+} from '../../shared';
 
 /********************************************* TESTS **********************************************/
 describe(`function sub-module`, function() {
@@ -43,7 +53,9 @@ describe(`function sub-module`, function() {
         it(`Returns the 2nd arg if the 1st arg is truthy`, function() {
             expect(condSwitch(true, 'val1', 'elseVal')).to.eql('val1');
             expect(condSwitch(true, 'val1', true, 'arg2', true, 'arg3', 'elseVal')).to.eql('val1');
-            expect(condSwitch('cond1', 'val1', 'cond2', 'val2', 'cond3', 'val3', 'elseVal')).to.eql('val1');
+            expect(condSwitch('cond1', 'val1', 'cond2', 'val2', 'cond3', 'val3', 'elseVal')).to.eql(
+                'val1'
+            );
         });
         it(`Returns the 3rd arg if the 1st arg is falsy and only 3 args were given`, function() {
             expect(condSwitch(false, 'val1', 'elseVal')).to.eql('elseVal');
@@ -54,28 +66,94 @@ describe(`function sub-module`, function() {
             expect(condSwitch('', 'v1', false, 'v2', null, 'v3', 'elseVal')).to.eql('elseVal');
         });
         it(`Allows any odd number of conditions`, function() {
-            expect(condSwitch(
-                '' + '', 'val1',    undefined, 'val2',
-                      0, 'val3',    null,      'val4',
-                    NaN, 'val5',    '',        'val6',
-                  false, 'val7',    0 + 0,     'val8',  'elseVal')).to.eql('elseVal');
-            const nan = '' as any / 0;
-            expect(condSwitch(
-                '' + '', 'val1',    undefined, 'val2',
-                      0, 'val3',    null,      'val4',
-                    NaN, 'val5',    '',        'val6',
-                  false, 'val7',    0 + 0,     'val8',
-                  0 - 0, 'val9',    1 - 1,     'val10',
-                    nan, 'val11',   0 * 0,     'val12',
-                  0 / 0, 'val13',   10099 * 0, 'val14',  'elseVal')).to.eql('elseVal');
-            expect(condSwitch(
-                '' + '', 'val1',    undefined, 'val2',
-                      0, 'val3',    null,      'val4',
-                    NaN, 'val5',    '',        'val6',
-                  false, 'val7',    0 + 0,     'val8',
-                  0 - 0, 'val9',    1 - 1,     'val10',
-                   true, 'val11',   0 * 0,     'val12',
-                  0 / 0, 'val13',   10099 * 0, 'val14',  'elseVal')).to.eql('val11');
+            expect(
+                condSwitch(
+                    '' + '',
+                    'val1',
+                    undefined,
+                    'val2',
+                    0,
+                    'val3',
+                    null,
+                    'val4',
+                    NaN,
+                    'val5',
+                    '',
+                    'val6',
+                    false,
+                    'val7',
+                    0 + 0,
+                    'val8',
+                    'elseVal'
+                )
+            ).to.eql('elseVal');
+            const nan = ('' as any) / 0;
+            expect(
+                condSwitch(
+                    '' + '',
+                    'val1',
+                    undefined,
+                    'val2',
+                    0,
+                    'val3',
+                    null,
+                    'val4',
+                    NaN,
+                    'val5',
+                    '',
+                    'val6',
+                    false,
+                    'val7',
+                    0 + 0,
+                    'val8',
+                    0 - 0,
+                    'val9',
+                    1 - 1,
+                    'val10',
+                    nan,
+                    'val11',
+                    0 * 0,
+                    'val12',
+                    0 / 0,
+                    'val13',
+                    10099 * 0,
+                    'val14',
+                    'elseVal'
+                )
+            ).to.eql('elseVal');
+            expect(
+                condSwitch(
+                    '' + '',
+                    'val1',
+                    undefined,
+                    'val2',
+                    0,
+                    'val3',
+                    null,
+                    'val4',
+                    NaN,
+                    'val5',
+                    '',
+                    'val6',
+                    false,
+                    'val7',
+                    0 + 0,
+                    'val8',
+                    0 - 0,
+                    'val9',
+                    1 - 1,
+                    'val10',
+                    true,
+                    'val11',
+                    0 * 0,
+                    'val12',
+                    0 / 0,
+                    'val13',
+                    10099 * 0,
+                    'val14',
+                    'elseVal'
+                )
+            ).to.eql('val11');
         });
         it(`allows an even number of conditions as long as at least one condition returns truthy`, function() {
             expect(condSwitch(true, 'v1', false, 'v2')).to.eql('v1');
@@ -135,6 +213,43 @@ describe(`function sub-module`, function() {
             let j = 0;
             expect(loop5(() => j++)).to.eql([0, 1, 2, 3, 4]);
             expect(j).to.eql(5);
+        });
+    });
+
+    describe(`throttle`, function() {
+        it(`runs given function immediately if immediate param = true (default)`, function() {
+            let val = false;
+            const throttledFn = throttle(() => val = true, 200);
+            throttledFn();
+            expect(val).to.be.true;
+
+            let val2 = false;
+            const throttledFn2 = throttle(() => val2 = true, 200, true);
+            throttledFn2();
+            expect(val2).to.be.true;
+        });
+        it(`doesn't run given function immediately if immediate param = false`, function() {
+            let val = false;
+            const throttledFn = throttle(() => val = true, 200, false);
+            throttledFn();
+            expect(val).to.be.false;
+        });
+        it(`doesn't run function 2X if request to run occurs before [wait]ms elapses`, function() {
+            let val = 0;
+            const throttledFn = throttle(() => val++, 200, true);
+            throttledFn();
+            throttledFn();
+            throttledFn();
+            expect(val).to.eql(1);
+        });
+        it(`runs function again if request to run occurs after [wait]ms elapses`, function() {
+            let val = 0;
+            const throttledFn = throttle(() => val++, 200, true);
+            throttledFn();
+            setTimeout(() => throttledFn(), 300);
+            throttledFn();
+            throttledFn();
+            setTimeout(() => expect(val).to.eql(2), 500);
         });
     });
 });
