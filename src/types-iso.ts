@@ -51,11 +51,11 @@ export type StringHash = Record<string, string>;
 export type StringNumHash = Record<string, number>;
 
 export type BoolOrError = boolean | Error;
-export {BoolOrError as BoolOrErr}
-export {BoolOrError as ErrOrBool}
-export {BoolOrError as ErrorOrBool}
-export {BoolOrError as ErrorOrBoolean}
-export {BoolOrError as BooleanOrError}
+export {BoolOrError as BoolOrErr};
+export {BoolOrError as ErrOrBool};
+export {BoolOrError as ErrorOrBool};
+export {BoolOrError as ErrorOrBoolean};
+export {BoolOrError as BooleanOrError};
 
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
@@ -167,6 +167,17 @@ export const isIntegerLike = (val: RealAny): val is number | Number | string | S
 
 export {isIntegerLike as isIntLike};
 
+/**
+ * True if val is a string or String-inheriting object
+ * @param {any} val Value to test
+ * @return {boolean} true if tested item is a string or String-inheriting object
+ */
+export const isString = <T extends string | String = string>(val: RealAny): val is T =>
+    typeof val === 'string' ||
+    (val != null &&
+        typeof val === 'object' &&
+        (Object.prototype.toString.call(val) === '[object String]' ||
+            (val.constructor && Object.getPrototypeOf(val.constructor) === String)));
 /**
  * True if val is a string or a number.
  * @param {any} val - Item to test.
