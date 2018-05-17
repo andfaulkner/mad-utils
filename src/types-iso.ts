@@ -77,9 +77,8 @@ export {AnyHTTPReqType as HTTPRequestType};
  *  @param {StrOrVoid|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export const isVoidOrString = <T extends undefined | string = string>(
-    val: StrOrVoid | RealAny
-): val is T => typeof val === 'undefined' || val === null || typeof val === 'string';
+export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | null | string =>
+    typeof val === 'undefined' || val === null || isString(val);
 
 /**
  * Detect whether given value is a number. (Note: NaN returns false here).
@@ -115,7 +114,7 @@ export const isNumberLike = <
     if (typeof val === 'undefined' || val == null) return false;
     if (isNumber(val)) return true;
 
-    if (typeof val === 'string') {
+    if (isString(val)) {
         if (
             val
                 .replace('.', '')
@@ -151,7 +150,7 @@ export const isInteger = <T extends number | Number | string | String = number>(
     val: RealAny
 ): val is T => {
     if (Number.isInteger) return Number.isInteger(val);
-    return typeof val === 'number' && isFinite(val) && Math.floor(val) === val;
+    return typeof isNumber(val) && isFinite(val) && Math.floor(val) === val;
 };
 
 export {isInteger as isInt};
@@ -193,9 +192,8 @@ export const isString = <T extends string | String = string>(val: RealAny): val 
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is a string or a number.
  */
-export const isStringOrNumber = <T extends number | Number | string | String = string>(
-    val: RealAny
-): val is T => isString(val) || isNumberLike(val);
+export const isStringOrNumber = (val: RealAny): val is number | Number | string | String =>
+    isString(val) || isNumberLike(val);
 
 /**
  * Returns true if val is true or false.
@@ -222,10 +220,7 @@ export {isBoolean as isBool};
  */
 export const isDateLike = (val: RealAny): boolean => {
     if (val instanceof moment || val instanceof Date) return true;
-    if (
-        ((typeof val === 'number' || val instanceof Number) && val < 0) ||
-        (typeof val === 'string' && parseInt(val, 10) < 0)
-    ) {
+    if ((isNumber(val) && val < 0) || (isString(val) && parseInt(val, 10) < 0)) {
         return false;
     }
     if (
@@ -271,17 +266,13 @@ export const isArray = <T = any>(val: RealAny): val is T[] => {
  * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
-export const isTrue = <T extends true | string = true>(val: RealAny, include1CharVal: boolean = false): val is T =>
-    !!(
-        val === 'true' ||
-        val === 'True' ||
-        val === 'TRUE' ||
-        val === true ||
-        (include1CharVal && val && (val === 't' || val === 'T')) ||
-        (val &&
-            val.toLowerCase &&
-            (val.toLowerCase() === 'true' || (include1CharVal && val.toLowerCase() === 't')))
-    );
+export const isTrue = <T extends true | string | String = true>(
+    val: RealAny,
+    include1CharVal: boolean = false
+): val is T =>
+    val === true ||
+    (isString(val) &&
+        (val.toLowerCase() === 'true' || (include1CharVal && val.toLowerCase() === 't')));
 
 /**
  * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false).
@@ -289,18 +280,13 @@ export const isTrue = <T extends true | string = true>(val: RealAny, include1Cha
  * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true.
  * @return {boolean} false if given value is a variant of false, otherwise false.
  */
-export const isFalse = <T extends false | string = false>(val: RealAny, include1CharVal: boolean = false): val is T =>
-    !!(
-        val === 'false' ||
-        val === 'False' ||
-        val === 'FALSE' ||
-        val === false ||
-        (include1CharVal && (val === 'f' || val === 'F')) ||
-        (typeof val !== 'undefined' &&
-            val !== null &&
-            val.toLowerCase &&
-            (val.toLowerCase() === 'false' || (include1CharVal && val.toLowerCase() === 'f')))
-    );
+export const isFalse = <T extends false | string | String = false>(
+    val: RealAny,
+    include1CharVal: boolean = false
+): val is T =>
+    val === false ||
+    (isString(val) &&
+        (val.toLowerCase() === 'false' || (include1CharVal && val.toLowerCase() === 'f')));
 
 /**
  * @param {Any} val Return true if this value is a function
@@ -356,13 +342,13 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
  *                                    When false, return an Error if given type isn't a number.
  * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
  */
-export const castToNum = (numLike: NumLike, throwOnFail = true): number | Error | never => {
-    if (typeof numLike === 'number') return numLike;
-    if (isNumberLike(numLike, true)) return parseFloat(numLike as string);
+export const castToNum = (val: NumLike, throwOnFail = true): number | Error | never => {
+    if (isNumber(val)) return val;
+    if (isNumberLike(val, true)) return parseFloat(val as string);
 
     const baseErrMsg =
         `castToNum can only accept numbers, #s in string form e.g. "1", or ` +
-        `1-item arrays containing either type. Invalid value: ${numLike}`;
+        `1-item arrays containing either type. Invalid value: ${val}`;
 
     if (throwOnFail) {
         throw new Error(baseErrMsg);

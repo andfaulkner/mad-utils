@@ -221,7 +221,7 @@ export declare const common: {
     withoutLast2: typeof array.withoutLast2;
     removeMatches: typeof array.removeMatches;
     rmAllFalsy: (arr: any[]) => any[];
-    isArray: (val: any) => val is any[];
+    isArray: <T = any>(val: any) => val is T[];
     isLeapYear: typeof date.isLeapYear;
     now: (timeFormat?: string) => string;
     condSwitch: typeof func.condSwitch;
@@ -248,11 +248,11 @@ export declare const common: {
     rightPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     centerPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     isVoidOrString: (val: any) => val is string;
-    isNumberLike: (val: any, allowArrayWith1Num?: boolean) => boolean;
-    isBoolean: (val: any) => val is boolean;
+    isNumberLike: <T extends string | number | String | Number | (number | Number)[] = number>(val: any, allowArrayWith1Num?: boolean) => val is T;
+    isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
     isDateLike: (val: any) => boolean;
-    isTrue: (val: any, include1CharVal?: boolean) => val is true;
-    castToNum: (numLike: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
+    isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
+    castToNum: (val: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
     CharInputStream: typeof stream.CharInputStream;
     isNode: any;
 } & {
