@@ -6,9 +6,10 @@
 import {expect} from 'chai';
 import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 
 /******************************* IMPORT TYPES MODULES FOR TESTING *********************************/
-import {m_, types as typesIso, types, isBoolean} from '../../shared';
+import {m_, types as typesIso, types, isBoolean, isString} from '../../shared';
 import {types as typesNode} from '../../node';
 import {types as typesBrowser} from '../../browser';
 import * as typesModule from '../../src/types-iso';
@@ -137,6 +138,77 @@ describe(`types sub-modules`, function() {
             });
         });
 
+        describe(`isString function`, function() {
+            expectFunctionExists(typesIso.isString);
+            it(`returns true if given a string - including an empty string`, function() {
+                expect(isString('')).to.be.true;
+                expect(isString('asdf')).to.be.true;
+                expect(isString('1')).to.be.true;
+                expect(isString('null')).to.be.true;
+                expect(isString('{}')).to.be.true;
+            });
+            it(`returns true if given a String instance`, function() {
+                const str = new String('ok');
+                expect(isString(str)).to.be.true;
+                expect(isString(new String(''))).to.be.true;
+                expect(isString(new String(1))).to.be.true;
+                expect(isString(new String(null))).to.be.true;
+            });
+            it(`returns true if given a String-inheriting object instance`, function() {
+                class PrefixedString extends String {};
+                console.log("PrefixedString:");
+                console.log(PrefixedString);
+                console.log("new PrefixedString():");
+                console.log(new PrefixedString());
+                console.log("typeof new PrefixedString():");
+                console.log(typeof new PrefixedString());
+                console.log("typeof new PrefixedString() != null:");
+                console.log(typeof new PrefixedString() != null);
+                console.log("typeof new PrefixedString() === 'object':");
+                console.log(typeof new PrefixedString() === 'object');
+                console.log("Object.prototype.toString.call(new PrefixedString()):");
+                console.log(Object.prototype.toString.call(new PrefixedString()));
+                console.log("isString(new PrefixedString()):");
+                console.log(isString(new PrefixedString()));
+                console.log("is new PrefixedString() a string? Manual test:");
+                console.log(
+                    typeof (new PrefixedString()) === 'string' ||
+                    ((new PrefixedString()) != null &&
+                        typeof (new PrefixedString()) === 'object' &&
+                        Object.prototype.toString.call((new PrefixedString())) === '[object String]')
+                );
+                console.log("_.isString(new PrefixedString()):");
+                console.log(_.isString(new PrefixedString()));
+                console.log("isString:");
+                console.log(isString);
+                expect(isString(new PrefixedString())).to.be.true;
+            });
+            it(`returns false if given a val that isn't a string or String instance`, function() {
+                expect(isString(null)).to.be.false;
+                expect(isString(undefined)).to.be.false;
+                expect((isString as any)()).to.be.false;
+
+                expect(isString(0)).to.be.false;
+                expect(isString(1)).to.be.false;
+                expect(isString(-1)).to.be.false;
+                expect(isString(222)).to.be.false;
+                expect(isString(-222)).to.be.false;
+                expect(isString(NaN)).to.be.false;
+
+                expect(isString(Symbol())).to.be.false;
+
+                expect(isString({})).to.be.false;
+                expect(isString({str: 'string'})).to.be.false;
+                expect(isString({toString: () => true})).to.be.false;
+
+                expect(isString(isString)).to.be.false;
+                expect(isString(() => 'asdf')).to.be.false;
+                expect(isString(String)).to.be.false;
+
+                expect(isString(new Map())).to.be.false;
+                expect(isString(new Set())).to.be.false;
+            });
+        });
         describe(`isNumberLike function`, function() {
             expectFunctionExists(typesIso.isNumberLike);
             expectFunctionExists(typesIso.isNumLike);
