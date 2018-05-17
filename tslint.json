@@ -10,6 +10,13 @@
     "rules": {
         "array-type": [true, "array-simple"],
         "arrow-parens": false,
+        "ban-types": [
+            true,
+            ["String", "Avoid using the `String` type. Use `string` instead"],
+            ["Boolean", "Avoid using the `Boolean` type. Use `boolean` instead"],
+            ["Number", "Avoid using the `Number` type. Use `number` instead"],
+            ["Symbol", "Avoid using the `Symbol` type. Use `symbol` instead"]
+        ],
         "block-spacing": [true, "always"],
         "brace-style": [true, "1tbs", { "allowSingleLine": true }],
         "chai-prefer-contains-to-index-of": true,
