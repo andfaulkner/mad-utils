@@ -1,3 +1,11 @@
+0.56.0
+======
+Add robust isString function to types-iso module
+Add type guards to types-iso functions
+More robust isStringOrNumber function (detects more string cases)
+Simpler isTrue & isFalse functions
+Replace typeof comparisons in types-iso with more robust detection functions (isString, etc)
+
 0.55.3
 ======
 Fix dark-sky-blue color class names (in SCSS util classes)
