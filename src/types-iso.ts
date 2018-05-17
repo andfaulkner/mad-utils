@@ -77,15 +77,16 @@ export {AnyHTTPReqType as HTTPRequestType};
  *  @param {StrOrVoid|RealAny} val Value to type check.
  *  @return {boolean} true if val is null, undefined, or a string.
  */
-export const isVoidOrString = (val: StrOrVoid | RealAny): val is string | undefined =>
-    typeof val === 'undefined' || val === null || typeof val === 'string';
+export const isVoidOrString = <T extends undefined | string = string>(
+    val: StrOrVoid | RealAny
+): val is T => typeof val === 'undefined' || val === null || typeof val === 'string';
 
 /**
  * Detect whether given value is a number. (Note: NaN returns false here).
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false.
  */
-export const isNumber = (val: RealAny): val is number | Number => {
+export const isNumber = <T extends number | Number = number>(val: RealAny): val is T => {
     if (typeof val === 'undefined' || val == null) return false;
 
     if (typeof val === 'number' && !isNaN(val)) return true;
@@ -105,7 +106,12 @@ export {isNumber as isNum};
  * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
  * @return {boolean} True if item is 'number-like', otherwise false.
  */
-export const isNumberLike = (val: RealAny, allowArrayWith1Num = false): boolean => {
+export const isNumberLike = <
+    T extends number | Number | (number | Number)[] | string | String = number
+>(
+    val: RealAny,
+    allowArrayWith1Num = false
+): val is T => {
     if (typeof val === 'undefined' || val == null) return false;
     if (isNumber(val)) return true;
 
@@ -141,7 +147,9 @@ export {isNumberLike as isNumLike};
  * @param {any} val Value to check type of.
  * @return {boolean} true if given value is integer.
  */
-export const isInteger = (val: RealAny): val is number | Number | string | String => {
+export const isInteger = <T extends number | Number | string | String = number>(
+    val: RealAny
+): val is T => {
     if (Number.isInteger) return Number.isInteger(val);
     return typeof val === 'number' && isFinite(val) && Math.floor(val) === val;
 };
@@ -153,7 +161,9 @@ export {isInteger as isInt};
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is integer-like (or an integer).
  */
-export const isIntegerLike = (val: RealAny): val is number | Number | string | String => {
+export const isIntegerLike = <T extends number | Number | string | String = number>(
+    val: RealAny
+): val is T => {
     if (isInteger(val)) return true;
     if (!isNumberLike(val)) return false;
 
@@ -183,15 +193,16 @@ export const isString = <T extends string | String = string>(val: RealAny): val 
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is a string or a number.
  */
-export const isStringOrNumber = (val: RealAny): val is number | Number | string | String =>
-    typeof val === 'string' || isNumberLike(val);
+export const isStringOrNumber = <T extends number | Number | string | String = string>(
+    val: RealAny
+): val is T => isString(val) || isNumberLike(val);
 
 /**
  * Returns true if val is true or false.
  * @param {any} val - Item to test.
  * @return {boolean} true if val is a boolean.
  */
-export const isBoolean = (val: any | boolean): val is boolean => {
+export const isBoolean = <T extends boolean | Boolean = boolean>(val: any | boolean): val is T => {
     if (val === true || val === false) return true;
 
     const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
@@ -236,7 +247,7 @@ export const isDateLike = (val: RealAny): boolean => {
  * @param {any} val Check if val is an array.
  * @return {boolean} True if arg 'value' is an Array,
  */
-export const isArray = (val: RealAny): val is any[] => {
+export const isArray = <T = any>(val: RealAny): val is T[] => {
     // Works in fully compliant ES5, ES6, ES7, ES8 ES[+] environments (Node, new browsers, etc.)
     if (Array.isArray) return Array.isArray(val);
     // Works in browsers without Array.isArray.
@@ -260,7 +271,7 @@ export const isArray = (val: RealAny): val is any[] => {
  * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true.
  * @return {boolean} true if given value is a variant of true, otherwise false.
  */
-export const isTrue = (val: RealAny, include1CharVal: boolean = false): val is true =>
+export const isTrue = <T extends true | string = true>(val: RealAny, include1CharVal: boolean = false): val is T =>
     !!(
         val === 'true' ||
         val === 'True' ||
@@ -278,7 +289,7 @@ export const isTrue = (val: RealAny, include1CharVal: boolean = false): val is t
  * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true.
  * @return {boolean} false if given value is a variant of false, otherwise false.
  */
-export const isFalse = (val: RealAny, include1CharVal: boolean = false): val is false =>
+export const isFalse = <T extends false | string = false>(val: RealAny, include1CharVal: boolean = false): val is T =>
     !!(
         val === 'false' ||
         val === 'False' ||
