@@ -93,6 +93,12 @@ export { isInteger as isInt };
 export declare const isIntegerLike: (val: any) => val is string | number | String | Number;
 export { isIntegerLike as isIntLike };
 /**
+ * True if val is a string or String-inheriting object
+ * @param {any} val Value to test
+ * @return {boolean} true if tested item is a string or String-inheriting object
+ */
+export declare const isString: <T extends string | String = string>(val: any) => val is T;
+/**
  * True if val is a string or a number.
  * @param {any} val - Item to test.
  * @return {boolean} true if tested item is a string or a number.
