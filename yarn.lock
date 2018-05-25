@@ -2953,9 +2953,9 @@ lru-cache@^4.0.0, lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-mad-logs@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.0.0.tgz#c09dcc010e286d9969bfdc5cdaf8f75f768b57ef"
+mad-logs@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.1.0.tgz#e83cf8248ce7bc9a5410bf08ba673c57536ee7f8"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
