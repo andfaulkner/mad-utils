@@ -1,7 +1,8 @@
-0.57.2 [UNPUB]
-==============
+0.57.2
+======
 New alias for rmAllFalsy: compact
-sample working for Set & Map objects
+Function 'sample' working for Set & Map objects
+Rm logs from function 'get'
 
 0.57.1
 ======
