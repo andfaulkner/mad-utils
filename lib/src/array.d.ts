@@ -164,6 +164,7 @@ export declare function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny
  * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
  */
 export declare const rmAllFalsy: (arr: any[]) => any[];
+export { rmAllFalsy as compact };
 /**
  * Add item to array if item not already present in array.
  * @param {Array} arr Array to potentially add item to
@@ -242,20 +243,20 @@ export declare const without: {
  */
 export declare function sample<T = any>(coll: T[]): T | undefined;
 /**
- * Return random entry ([key, value]) from given object/collection, or undefined if it has no keys.
- * @param {Object} coll Object to get random value from.
+ * Return random entry ([key, value]) from given object/collection, or undefined if it has no keys
+ * @param {Object} coll Object to get random value from
  * @return {[string, any]|undefined} Randomly selected [key, value] array from object
  */
 export declare function sample<T = any>(coll: Record<string, T>): [string, T] | undefined;
 /**
- * Return random character from given string, or undefined if it's an empty string.
- * @param {string} coll String to get random character from.
- * @return {string|undefined} Randomly selected character from string.
+ * Return random character from given string, or undefined if it's an empty string
+ * @param {string} coll String to get random character from
+ * @return {string|undefined} Randomly selected character from string
  */
 export declare function sample<T = any>(coll: string): string | undefined;
 /**
- * @export Flatten an array.
- * @param {Array} arr Array (or set of nested arrays) to flatten.
+ * @export Flatten an array
+ * @param {Array} arr Array (or set of nested arrays) to flatten
  * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
  */
 export declare const flatten: <T = any>(arr: T[]) => T[];

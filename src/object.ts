@@ -50,8 +50,6 @@ export const get = <
     propPath: string[] | string,
     defaultValue: RV = undefined
 ): RV => {
-    console.log(`get ~~~ obj:`, obj, `propPath:`, propPath, `defaultValue:`, defaultValue);
-
     // Handle obj value of null
     if (obj === null) return obj as null;
 
@@ -70,20 +68,15 @@ export const get = <
                           .replace(/\.\.+/g, '.')
                           .split('.')
                           .map(str => {
-                              console.log(`get ~~~ propArr calc --> map: str:`, str);
                               const match = str.match(braceMatchRegex);
-                              console.log(`get ~~~ propArr calc --> map: match:`, match);
                               return match && match.filter(s => s !== ']' && s !== '[');
                           })
                   )
               )
             : propPath;
-    console.log(`get ~~~ propArr:`, propArr);
 
     // Walk obj by property path array
     return (propArr as Array<string>).reduce((acc, key: string) => {
-        console.log(`get ~~~ acc:`, acc);
-        console.log(`get ~~~ key:`, key);
         if (typeof acc === 'undefined' || acc === null) return defaultValue;
         if (typeof acc[key] === 'undefined') return defaultValue;
         return acc[key];
