@@ -22,7 +22,7 @@ export declare const deepFreeze: <T>(obj: T) => Readonly<T>;
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export declare const get: <O = any, T extends string | number | boolean | object | Function | Symbol = {}>(objIn: T, propPath: string | string[], defaultValue?: O) => O;
+export declare const get: <RV = any, O extends string | number | boolean | object | Function | Symbol = {}>(obj: O, propPath: string | string[], defaultValue?: RV) => RV;
 /**
  * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
  * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
