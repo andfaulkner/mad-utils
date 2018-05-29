@@ -432,6 +432,10 @@ export const without = {
     firstN: withoutFirstN,
 };
 
+function randomAbsIntBelow(len: number) {
+    return Math.floor(Math.random() * len);
+}
+
 /******************************************* COLLECTION *******************************************/
 /**
  * Get a random value from an array, or return undefined if array is empty.
@@ -441,34 +445,41 @@ export const without = {
 export function sample<T = any>(coll: T[]): T | undefined;
 
 /**
- * Return random entry ([key, value]) from given object/collection, or undefined if it has no keys.
- * @param {Object} coll Object to get random value from.
+ * Return random entry ([key, value]) from given object/collection, or undefined if it has no keys
+ * @param {Object} coll Object to get random value from
  * @return {[string, any]|undefined} Randomly selected [key, value] array from object
  */
 export function sample<T = any>(coll: Record<string, T>): [string, T] | undefined;
 
 /**
- * Return random character from given string, or undefined if it's an empty string.
- * @param {string} coll String to get random character from.
- * @return {string|undefined} Randomly selected character from string.
+ * Return random character from given string, or undefined if it's an empty string
+ * @param {string} coll String to get random character from
+ * @return {string|undefined} Randomly selected character from string
  */
 export function sample<T = any>(coll: string): string | undefined;
 
-// TODO make sample work for Map instances.
+// TODO make sample work for non-standard iterables
+// TODO test sample for non-standard iterables, Sets, Maps
 
 export function sample<T = any>(
     coll: T[] | string | Record<string, T>
 ): T | string | [string, T] | undefined {
     if (isArray(coll)) {
-        return coll[Math.floor(Math.random() * (coll as T[]).length)];
+        return coll[Math.floor(randomAbsIntBelow((coll as T[]).length))];
     }
+
     if (typeof coll === 'string' || coll instanceof String) {
-        return coll.split('')[Math.floor(Math.random() * coll.split('').length)];
+        return coll.split('')[randomAbsIntBelow(coll.split('').length)];
     }
+
+    if (coll instanceof Map || coll instanceof Set) {
+        return Array.from(coll)[randomAbsIntBelow(coll.size)]
+    }
+
     if (typeof coll === 'object') {
         const objKeys = Object.keys(coll);
         if (objKeys.length === 0) return;
-        const selectedKey = objKeys[Math.floor(Math.random() * objKeys.length)];
+        const selectedKey = objKeys[randomAbsIntBelow(objKeys.length)];
         return [selectedKey, coll[selectedKey]];
     }
 }
@@ -480,8 +491,8 @@ const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
     arr.reduce((acc, cur) => (isArray(cur) ? _flatWalker(acc, cur) : acc.concat(cur)), accIn);
 
 /**
- * @export Flatten an array.
- * @param {Array} arr Array (or set of nested arrays) to flatten.
+ * @export Flatten an array
+ * @param {Array} arr Array (or set of nested arrays) to flatten
  * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
  */
 export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
