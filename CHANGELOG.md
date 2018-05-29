@@ -1,3 +1,15 @@
+0.57.0
+======
+Revamped get function:
+-   Can now handle symbol, string, boolean, function, & number types as input
+    -   Traverses all of the above
+-   Returns null if value at final path is null
+-   Handles trailing and preceding dots in path
+-   Many more function tests
+
+New ls-0pt* namespace/aliases (e.g. ls-0pt5) for letter-spacing SCSS utils
+-   Previously it was only found at ls-0p* (e.g. ls-0p5), which caused confusion
+
 0.56.0
 ======
 Add robust isString function to types-iso module
