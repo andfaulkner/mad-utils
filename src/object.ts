@@ -42,7 +42,7 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => deepFreezeStrict<T>(obj);
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export const get = <O = any, T extends object = {}>(
+export const get = <O = any, T extends (object | number | string | Function | Symbol | boolean) = {}>(
     objIn: T,
     propPath: string[] | string,
     defaultValue: O = undefined
@@ -51,7 +51,6 @@ export const get = <O = any, T extends object = {}>(
     if (
         typeof objIn === 'undefined' ||
         objIn == null ||
-        (isNaN(objIn as any) && (objIn instanceof Number || typeof objIn === 'number')) ||
         propPath === '' ||
         propPath == null ||
         typeof propPath === 'undefined'
