@@ -5,7 +5,7 @@
 import {isVoidOrString, RealAny, isArray, isFunction} from './types-iso';
 import {matchesIgnoreCase, replaceAll} from './string';
 import {englishVariants, frenchVariants} from './internal/lang-constants';
-import {flatten} from './array';
+import {flatten, rmAllFalsy} from './array';
 
 import deepFreezeStrict = require('deep-freeze-strict');
 import {isVerbose} from 'env-var-helpers';
@@ -50,6 +50,8 @@ export const get = <
     propPath: string[] | string,
     defaultValue: RV = undefined
 ): RV => {
+    console.log(`get ~~~ obj:`, obj, `propPath:`, propPath, `defaultValue:`, defaultValue);
+
     // Handle obj value of null
     if (obj === null) return obj as null;
 
@@ -62,16 +64,26 @@ export const get = <
     // Parse property path
     const propArr =
         typeof propPath === 'string'
-            ? flatten(
-                  propPath
-                      .replace(/\.\.+/g, '.')
-                      .split('.')
-                      .map(str => str.match(braceMatchRegex).filter(s => s !== ']' && s !== '['))
+            ? rmAllFalsy(
+                  flatten(
+                      propPath
+                          .replace(/\.\.+/g, '.')
+                          .split('.')
+                          .map(str => {
+                              console.log(`get ~~~ propArr calc --> map: str:`, str);
+                              const match = str.match(braceMatchRegex);
+                              console.log(`get ~~~ propArr calc --> map: match:`, match);
+                              return match && match.filter(s => s !== ']' && s !== '[');
+                          })
+                  )
               )
             : propPath;
+    console.log(`get ~~~ propArr:`, propArr);
 
     // Walk obj by property path array
     return (propArr as Array<string>).reduce((acc, key: string) => {
+        console.log(`get ~~~ acc:`, acc);
+        console.log(`get ~~~ key:`, key);
         if (typeof acc === 'undefined' || acc === null) return defaultValue;
         if (typeof acc[key] === 'undefined') return defaultValue;
         return acc[key];
