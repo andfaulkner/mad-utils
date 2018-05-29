@@ -74,10 +74,10 @@ export const get = <O = any, T extends object = {}>(
             : propPath;
 
     return (propArr as Array<string>).reduce((obj, objPathPt: string) => {
-        const exists = typeof obj !== 'undefined' && typeof obj === 'object' && obj != null;
-        if (!exists) return defaultValue;
-        if (typeof obj[objPathPt] !== 'undefined' && obj[objPathPt] !== null) return obj[objPathPt];
-        return defaultValue;
+        if (typeof obj === 'undefined') return defaultValue;
+        if (obj == null) return obj;
+        if (typeof obj[objPathPt] === 'undefined') return defaultValue;
+        return obj[objPathPt];
     }, objIn);
 };
 
@@ -363,7 +363,7 @@ export const defineProp = <NewKVPair extends Object = {}, InputObject extends Ob
     keyName: string,
     value: RealAny,
     mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
-    enumerable: boolean = true,
+    enumerable: boolean = true
 ): InputObject & NewKVPair => {
     defineProperty(obj, keyName, {
         enumerable,
@@ -389,7 +389,7 @@ export {defineProp as defineProperty};
 export const defineMethod = <NewKFPair extends Object = {}, InputObject extends Object = {}>(
     obj: InputObject,
     keyName: string,
-    func: NewKFPair[keyof NewKFPair] & Function,
+    func: NewKFPair[keyof NewKFPair] & Function
 ): InputObject & NewKFPair => {
     defineProperty(obj, keyName, {
         enumerable: false,
@@ -609,3 +609,45 @@ export function omit<O extends object = Object, T = any>(
         {}
     );
 }
+
+// /*
+//  * ACTUAL OMIT IMPLEMENTATION
+//  */
+// export function omit<O extends object = Object, T = any>(
+//     obj: Object,
+//     props: string | string[] | OmitPred<T>,
+//     fn?: OmitPred<T>
+// ) {
+//     if (!isObject(obj)) return {};
+//     if (!props || props.length < 1) return obj;
+
+//     if (typeof props === 'function') {
+//         fn = props;
+//         props = [];
+//     }
+
+//     if (typeof props === 'string') props = [props];
+
+//     // Get all of own and inherited keys
+//     let objKeys = [];
+//     for (let key in props) {
+//         if (
+//             !(
+//                 key === 'constructor' &&
+//                 ((typeof obj[key] === 'function' && obj[key].prototype) ||
+//                     Object.prototype.hasOwnProperty.call(obj, key))
+//             )
+//         ) {
+//             objKeys.push(key);
+//         }
+//     }
+
+//     return objKeys.reduce(
+//         (acc, k) =>
+//             !props ||
+//             ((props as any[]).indexOf(k) === -1 && (!isFunction(fn) || fn(obj[k], k, obj)))
+//                 ? assign(acc, {[k]: obj[k]})
+//                 : acc,
+//         {}
+//     );
+// }
