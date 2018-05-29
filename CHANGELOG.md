@@ -1,4 +1,9 @@
-0.57.0
+0.57.2 [UNPUB]
+==============
+New alias for rmAllFalsy: compact
+sample working for Set & Map objects
+
+0.57.1
 ======
 Revamped get function:
 -   Can now handle symbol, string, boolean, function, & number types as input
