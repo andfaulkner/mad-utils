@@ -42,42 +42,40 @@ export const deepFreeze = <T>(obj: T): Readonly<T> => deepFreezeStrict<T>(obj);
  * @param {Object} obj - Object to get the value from using the given path.
  * @return {any} Value found at the given path.
  */
-export const get = <O = any, T extends (object | number | string | Function | Symbol | boolean) = {}>(
-    objIn: T,
+export const get = <
+    RV = any,
+    O extends object | number | string | Function | Symbol | boolean = {}
+>(
+    obj: O,
     propPath: string[] | string,
-    defaultValue: O = undefined
-): O => {
-    // Handle bad values
-    if (
-        typeof objIn === 'undefined' ||
-        objIn == null ||
-        propPath === '' ||
-        propPath == null ||
-        typeof propPath === 'undefined'
-    ) {
-        return defaultValue;
-    }
+    defaultValue: RV = undefined
+): RV => {
+    // Handle obj value of null
+    if (obj === null) return obj as null;
 
+    // Handle undefined obj
+    if (typeof obj === 'undefined') return defaultValue;
+
+    // Handle bad or empty prop paths
+    if (propPath === '' || propPath == null || typeof propPath === 'undefined') return defaultValue;
+
+    // Parse property path
     const propArr =
         typeof propPath === 'string'
             ? flatten(
                   propPath
                       .replace(/\.\.+/g, '.')
                       .split('.')
-                      .map(str =>
-                          str
-                              .match(braceMatchRegex)
-                              .filter(subStr => subStr !== ']' && subStr !== '[')
-                      )
+                      .map(str => str.match(braceMatchRegex).filter(s => s !== ']' && s !== '['))
               )
             : propPath;
 
-    return (propArr as Array<string>).reduce((obj, objPathPt: string) => {
-        if (typeof obj === 'undefined') return defaultValue;
-        if (obj == null) return obj;
-        if (typeof obj[objPathPt] === 'undefined') return defaultValue;
-        return obj[objPathPt];
-    }, objIn);
+    // Walk obj by property path array
+    return (propArr as Array<string>).reduce((acc, key: string) => {
+        if (typeof acc === 'undefined' || acc === null) return defaultValue;
+        if (typeof acc[key] === 'undefined') return defaultValue;
+        return acc[key];
+    }, obj);
 };
 
 /**
