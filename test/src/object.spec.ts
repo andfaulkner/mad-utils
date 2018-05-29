@@ -264,6 +264,31 @@ describe(`object sub-module`, function() {
         it(`eliminates duplicate dots`, function() {
             expect(get(obj3, 'a.....b..c')).to.eql('innerLvl3');
         });
+        it(`drills into functions`, function() {
+            const fn = function meeka() {};
+            expect(get(fn, 'name')).to.eql('meeka');
+            expect(get(fn, 'name.length')).to.eql(5);
+        });
+        it(`drills into numbers`, function() {
+            const num = 6;
+            expect(get(num, 'constructor.name')).to.eql('Number');
+        });
+        it(`drills into NaN`, function() {
+            const num = 6;
+            expect(get(NaN, 'toExponential.name')).to.eql('toExponential');
+        });
+        it(`drills into symbols`, function() {
+            const num = Symbol('okokok');
+            expect(get(num, 'constructor.name')).to.eql('Symbol');
+        });
+        it(`drills into strings`, function() {
+            const str = 'okokok';
+            expect(get(str, 'length.constructor.name')).to.eql('Number');
+        });
+        it(`drills into booleans`, function() {
+            const boola = true;
+            expect(get(boola, 'constructor.name')).to.eql('Boolean');
+        });
     });
 
     describe(`merge`, function() {
