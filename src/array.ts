@@ -331,6 +331,7 @@ export function removeMatches(arr1: RealAny[], arr2: RealAny[] | any): RealAny[]
  * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
  */
 export const rmAllFalsy = (arr: RealAny[]) => arr.filter(item => !!item);
+export {rmAllFalsy as compact};
 
 /**
  * Add item to array if item not already present in array.
@@ -361,8 +362,7 @@ export const splitLines = (
 ): string[] =>
     opts.preserveEmptyLines ? str.toString().split('\n') : rmAllFalsy(str.toString().split('\n'));
 
-// TODO test countOccurrences.
-
+// TODO test countOccurrences
 /**
  * Count number of occurrences of matching value in the array.
  * @param {any[]} arr - Array to search for the item.
