@@ -215,6 +215,7 @@ describe(`object sub-module`, function() {
         const obj2 = {a: {b: 'innerLvl2'}};
         const obj3 = {a: {b: {c: 'innerLvl3'}}};
 
+        // Objects given as obj input, with valid paths
         it(`returns matching key in object, when given string propPath w/ dots`, function() {
             expect(get(obj1, 'a')).to.eql('one');
             expect(get(obj2, 'a.b')).to.eql('innerLvl2');
@@ -224,21 +225,28 @@ describe(`object sub-module`, function() {
             expect(get(obj2, 'a[b]')).to.eql('innerLvl2');
             expect(get(obj3, 'a[b][c]')).to.eql('innerLvl3');
         });
-
         it(`returns undefined if key doesn't exist in object & no defVal given`, function() {
             expect(get(obj1, 'b')).to.be.undefined;
             expect(get(obj1, 'a.b.d.h.j')).to.be.undefined;
             expect(get(obj2, 'a[j][z][gr]')).to.be.undefined;
         });
+
+        // Empty objects as obj input
         it(`returns undefined if object doesn't exist & no defVal given`, function() {
             let obj: Object;
             expect(get(obj, 'a')).to.be.undefined;
         });
-
-        it(`returns undefined if given object with path undefined or undefined`, function() {
+        it(`returns undefined if given undefined as input object`, function() {
             expect(get(undefined, 'a')).to.be.undefined;
         });
+        it(`returns null if given null as input object`, function() {
+            expect(get(null, 'a')).to.be.null;
+        });
+        it(`returns null if given null as input object & a default value`, function() {
+            expect(get(null, 'a', 'ok')).to.be.null;
+        });
 
+        // Default value tests
         it(`if given defaultValue, return it if key doesn't exist in object`, function() {
             expect(get(obj1, 'b', 'DEFAULT')).to.eql('DEFAULT');
             expect(get(obj1, 'a.b.d.h.j', 'DEFAULT')).to.eql('DEFAULT');
@@ -261,9 +269,21 @@ describe(`object sub-module`, function() {
             expect(get(obj1, '')).to.be.undefined;
             expect(get(obj1, '', 'DEF')).to.eql('DEF');
         });
+
+        // Special parsing tests
         it(`eliminates duplicate dots`, function() {
             expect(get(obj3, 'a.....b..c')).to.eql('innerLvl3');
         });
+        it(`eliminates trailing dots`, function() {
+            expect(get(obj3, 'a.b.c.')).to.eql('innerLvl3');
+            expect(get(obj3, 'a.b.c..')).to.eql('innerLvl3');
+        });
+        it(`eliminates preceding dots`, function() {
+            expect(get(obj3, '.a.b.c')).to.eql('innerLvl3');
+            expect(get(obj3, '..a.b.c')).to.eql('innerLvl3');
+        });
+
+        // Non-standard object handling
         it(`drills into functions`, function() {
             const fn = function meeka() {};
             expect(get(fn, 'name')).to.eql('meeka');
