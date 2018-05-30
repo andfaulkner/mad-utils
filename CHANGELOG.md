@@ -1,3 +1,7 @@
+0.57.3
+======
+Add more z-indexes to SCSS utils
+
 0.57.2
 ======
 New alias for rmAllFalsy: compact
