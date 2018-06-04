@@ -1,3 +1,9 @@
+0.57.4
+======
+Add deburrFrenchEnglish function
+*   Deburr map contains all accents/diacritics found in both English and French
+    *   These get mapped to the accentless versions
+
 0.57.3
 ======
 Add more z-indexes to SCSS utils
