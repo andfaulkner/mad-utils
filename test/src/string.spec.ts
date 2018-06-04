@@ -2,34 +2,56 @@
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /************************************* IMPORT TESTING MODULES *************************************/
-import { expect } from 'chai';
-import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
+import {expect} from 'chai';
+import {expectFunctionExists, expectNonEmptyObjectExists} from '../../node';
 
 /******************************** IMPORT STRING MODULE FOR TESTING ********************************/
-import { m_, string } from '../../shared';
+import {m_, string} from '../../shared';
 
-import { string as stringFromNode } from '../../node';
-import { string as stringFromBrowser } from '../../browser';
+import {string as stringFromNode} from '../../node';
+import {string as stringFromBrowser} from '../../browser';
 import * as stringModule from '../../src/string';
 
 const str = m_.string;
-const { matches, replaceAll, cap1LowerRest, capitalize, escapeRegExp, matchesIgnoreCase,
-        removeMatchingText, chomp,
-        removeWhitespace,
-        getBaseFilenameFromPath,
-        endsInDotJs, endsInDotTs, endsInDotCss, endsInDotHbs, endsInDotJson, endsInDotJsx,
-        endsInDotScss, endsInDotTsx, endsWithExt,
-        toSnakeCase, toCamelCase,
-        withLeftIndent,
-        isWhitespaceChar, isAlphanumericChar, isOperatorChar,
-        removeSurroundingQuotes, removeSlashesFlagsSurroundingRegexString,
-        isRegexString, getFlagsFromRegexString,
-        matchFirst,
-        leftPad, rightPad, centerPad, pad,
-    } = str;
+const {
+    matches,
+    replaceAll,
+    cap1LowerRest,
+    capitalize,
+    escapeRegExp,
+    matchesIgnoreCase,
+    removeMatchingText,
+    chomp,
+    removeWhitespace,
+    getBaseFilenameFromPath,
+    endsInDotJs,
+    endsInDotTs,
+    endsInDotCss,
+    endsInDotHbs,
+    endsInDotJson,
+    endsInDotJsx,
+    endsInDotScss,
+    endsInDotTsx,
+    endsWithExt,
+    toSnakeCase,
+    toCamelCase,
+    withLeftIndent,
+    isWhitespaceChar,
+    isAlphanumericChar,
+    isOperatorChar,
+    removeSurroundingQuotes,
+    removeSlashesFlagsSurroundingRegexString,
+    isRegexString,
+    getFlagsFromRegexString,
+    matchFirst,
+    leftPad,
+    rightPad,
+    centerPad,
+    pad,
+} = str;
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite));
 
 /********************************************* TESTS **********************************************/
@@ -51,7 +73,7 @@ describe(`string sub-module`, function() {
         expect(m_.str.capitalize('THE QUICK BROWN FOX')).to.eql('THE QUICK BROWN FOX');
     });
 
-    it('.capitalize -- returns \'\' if given \'\'', function() {
+    it(".capitalize -- returns '' if given ''", function() {
         expect(capitalize('')).to.eql('');
     });
 
@@ -87,39 +109,37 @@ describe(`string sub-module`, function() {
 
     describe('function "matches"', function() {
         expectFunctionExists(matches);
-        it(`should return true if used as a predicate in a find operation where the string ` +
-            `given to match can be found in the array .find is being called on`, function()
-        {
-            expect(['hello', 'everybody'].some(matches('everybody'))).to.be.true;
-            expect([1, 2, 3].some(matches(2))).to.be.true;
-            expect(['hello', 'everybody'].some(matches('dr nick'))).to.be.false;
-            expect([1, '2', 3].some(matches(2))).to.be.false;
-            expect([1, 2, 3].some(matches('2'))).to.be.false;
-        });
-        it(`should return true if given a regex to search for, then the returned function is given a string that the regex matches`,
-        function() {
+        it(
+            `should return true if used as a predicate in a find operation where the string ` +
+                `given to match can be found in the array .find is being called on`,
+            function() {
+                expect(['hello', 'everybody'].some(matches('everybody'))).to.be.true;
+                expect([1, 2, 3].some(matches(2))).to.be.true;
+                expect(['hello', 'everybody'].some(matches('dr nick'))).to.be.false;
+                expect([1, '2', 3].some(matches(2))).to.be.false;
+                expect([1, 2, 3].some(matches('2'))).to.be.false;
+            }
+        );
+        it(`should return true if given a regex to search for, then the returned function is given a string that the regex matches`, function() {
             expect(matches(/asdf/)('asdfasdf')).to.be.true;
             expect(matches(/2/)('123')).to.be.true;
             expect(matches(/z/)('z')).to.be.true;
             expect(matches(/z/)('aefaezjtyjrty')).to.be.true;
             expect(matches(/qwerty/)('12345qwertyuiop')).to.be.true;
         });
-        it(`should return true if given a regex to search for, then the returned function is given a number that (when converted to string) the regex matches`,
-        function() {
+        it(`should return true if given a regex to search for, then the returned function is given a number that (when converted to string) the regex matches`, function() {
             expect(matches(/2/)(123)).to.be.true;
             expect(matches(/\./)(143.234)).to.be.true;
             expect(matches(/3\.2/)(143.234)).to.be.true;
         });
-        it(`should return true if given a string predicate, then the returned function is given a string that the predicate matches`,
-        function() {
+        it(`should return true if given a string predicate, then the returned function is given a string that the predicate matches`, function() {
             expect(matches('asdf')('asdfasdf')).to.be.true;
             expect(matches('2')('123')).to.be.true;
             expect(matches('0')('909')).to.be.true;
             expect(matches('z')('z')).to.be.true;
             expect(matches('z')('aefaezjtyjrty')).to.be.true;
         });
-        it(`should return false if given a string predicate, then the returned function is given a string that the predicate doesn't match`,
-        function() {
+        it(`should return false if given a string predicate, then the returned function is given a string that the predicate doesn't match`, function() {
             expect(matches('2')('3')).to.be.false;
             expect(matches('88')('18385')).to.be.false;
             expect(matches('0')('1')).to.be.false;
@@ -128,8 +148,7 @@ describe(`string sub-module`, function() {
             expect(matches('zzz')('aaa')).to.be.false;
             expect(matches('xax')('ii')).to.be.false;
         });
-        it(`should return true if given a number predicate, then the returned function is given a number that the predicate matches (when both are converted into strings)`,
-        function() {
+        it(`should return true if given a number predicate, then the returned function is given a number that the predicate matches (when both are converted into strings)`, function() {
             expect(matches(2)(123)).to.be.true;
             expect(matches(8)(1283)).to.be.true;
             expect(matches(111)(311183)).to.be.true;
@@ -137,8 +156,7 @@ describe(`string sub-module`, function() {
             expect(matches(1.0)(1.0)).to.be.true;
             expect(matches(1.0)(1)).to.be.true;
         });
-        it(`should return false if given a number predicate, then the returned function is given a number that the predicate doesn't match (when both are converted into strings)`,
-        function() {
+        it(`should return false if given a number predicate, then the returned function is given a number that the predicate doesn't match (when both are converted into strings)`, function() {
             expect(matches(2)(3)).to.be.false;
             expect(matches(88)(18385)).to.be.false;
             expect(matches(0)(1)).to.be.false;
@@ -148,19 +166,22 @@ describe(`string sub-module`, function() {
 
     describe('escapeRegExp', function() {
         expectFunctionExists(escapeRegExp);
-        it(`converts string to form that lets it be used as a pure 'literal' (where special regex` +
-            `chars in the string are escaped for use as regular, literal values) when building ` +
-            `regexes with new RegExp`, function()
-        {
-            expect(escapeRegExp('')).to.eql('');
-            expect(escapeRegExp('asdf')).to.eql('asdf');
-            expect(escapeRegExp('ok[2]')).to.eql('ok\\[2\\]');
-            expect(escapeRegExp('*.min.js')).to.eql('\\*\\.min\\.js');
+        it(
+            `converts string to form that lets it be used as a pure 'literal' (where special regex` +
+                `chars in the string are escaped for use as regular, literal values) when building ` +
+                `regexes with new RegExp`,
+            function() {
+                expect(escapeRegExp('')).to.eql('');
+                expect(escapeRegExp('asdf')).to.eql('asdf');
+                expect(escapeRegExp('ok[2]')).to.eql('ok\\[2\\]');
+                expect(escapeRegExp('*.min.js')).to.eql('\\*\\.min\\.js');
 
-            const filenamesListMatches = 'config/*.ts, src/*.js, build/*.min.js, script/*.js'
-                    .match(new RegExp(escapeRegExp('*.js'), 'g'));
-            expect(filenamesListMatches).to.eql(['*.js', '*.js']);
-        });
+                const filenamesListMatches = 'config/*.ts, src/*.js, build/*.min.js, script/*.js'.match(
+                    new RegExp(escapeRegExp('*.js'), 'g')
+                );
+                expect(filenamesListMatches).to.eql(['*.js', '*.js']);
+            }
+        );
     });
 
     describe('removeWhitespace', function() {
@@ -171,8 +192,9 @@ describe(`string sub-module`, function() {
             expect(removeWhitespace(' asdf ')).to.eql('asdf');
             expect(removeWhitespace(' hello universe! ')).to.eql('hellouniverse!');
             expect(removeWhitespace('        w ')).to.eql('w');
-            expect(removeWhitespace('And   Now For   Something     Completely Different     '))
-                .to.eql('AndNowForSomethingCompletelyDifferent');
+            expect(
+                removeWhitespace('And   Now For   Something     Completely Different     ')
+            ).to.eql('AndNowForSomethingCompletelyDifferent');
             expect(removeWhitespace('         ')).to.eql('');
         });
     });
@@ -260,13 +282,13 @@ describe(`string sub-module`, function() {
             expect(toCamelCase('Some.test,,,,,string"')).to.eql('someTestString');
             expect(toCamelCase('Some.test....string...,"')).to.eql('someTestString');
             expect(toCamelCase('Some.test....??|string...,!!"')).to.eql('someTestString');
-            expect(toCamelCase('\'\'\'Some`test`string???!|`"')).to.eql('someTestString');
+            expect(toCamelCase("'''Some`test`string???!|`\"")).to.eql('someTestString');
         });
         it(`eliminates special chars: @#$%^&*_-+\\;:?/~`, function() {
             expect(toCamelCase('Some@Test#String')).to.eql('someTestString');
             expect(toCamelCase('Some$Test%String')).to.eql('someTestString');
             expect(toCamelCase('Some&Test^String')).to.eql('someTestString');
-            expect(toCamelCase('\'\'\'Some`test`string???!|`"')).to.eql('someTestString');
+            expect(toCamelCase("'''Some`test`string???!|`\"")).to.eql('someTestString');
             expect(toCamelCase('Some,test,string')).to.eql('someTestString');
             expect(toCamelCase('Some=test=string')).to.eql('someTestString');
             expect(toCamelCase('Some+test+string')).to.eql('someTestString');
@@ -283,7 +305,7 @@ describe(`string sub-module`, function() {
         it(`eliminates quotes, capitalizing the first char directly after each quote`, function() {
             expect(toCamelCase('Some"test"string')).to.eql('someTestString');
             expect(toCamelCase('Some"Test"String')).to.eql('someTestString');
-            expect(toCamelCase('Some\'Test\'String')).to.eql('someTestString');
+            expect(toCamelCase("Some'Test'String")).to.eql('someTestString');
             expect(toCamelCase('Some`Test`String')).to.eql('someTestString');
             expect(toCamelCase('Some"Test\'String')).to.eql('someTestString');
             expect(toCamelCase('Some`Test"String')).to.eql('someTestString');
@@ -320,14 +342,16 @@ describe(`string sub-module`, function() {
 
     describe('matchesIgnoreCase', function() {
         expectFunctionExists(matchesIgnoreCase);
-        it(`returns true if an item in the tested array matches the given string, even if the ` +
-            `casing (lower vs upper) is different`, function()
-        {
-            expect(matchesIgnoreCase('asdf')('asdf')).to.be.true;
-            expect(matchesIgnoreCase('AsDf')('asdf')).to.be.true;
-            expect(matchesIgnoreCase('asdf')('ASDF')).to.be.true;
-            expect(['one', 'two', '3'].find(matchesIgnoreCase('TWO'))).to.eql('two');
-        });
+        it(
+            `returns true if an item in the tested array matches the given string, even if the ` +
+                `casing (lower vs upper) is different`,
+            function() {
+                expect(matchesIgnoreCase('asdf')('asdf')).to.be.true;
+                expect(matchesIgnoreCase('AsDf')('asdf')).to.be.true;
+                expect(matchesIgnoreCase('asdf')('ASDF')).to.be.true;
+                expect(['one', 'two', '3'].find(matchesIgnoreCase('TWO'))).to.eql('two');
+            }
+        );
     });
 
     describe(`getBaseFilenameFromPath`, function() {
@@ -425,18 +449,23 @@ describe(`string sub-module`, function() {
     });
 
     describe(`centerPad`, function() {
-        it(`adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
-            `original string must be expanded by an even number of of chars`, function()
-        {
-            const paddedStr1 = centerPad('asdf', 12, 'z');
-            expect(paddedStr1).to.eql('zzzzasdfzzzz');
-        });
-        it(`adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
-            `original string must be expanded by an even number of of chars. Rounds down for left` +
-            `side, & up for right side`, function() {
-            const paddedStr1 = centerPad('asdf', 8, ' ');
-            expect(paddedStr1).to.eql('  asdf  ');
-        });
+        it(
+            `adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
+                `original string must be expanded by an even number of of chars`,
+            function() {
+                const paddedStr1 = centerPad('asdf', 12, 'z');
+                expect(paddedStr1).to.eql('zzzzasdfzzzz');
+            }
+        );
+        it(
+            `adds given char (whitespace) to both sides of outWidth. Puts half on each side if ` +
+                `original string must be expanded by an even number of of chars. Rounds down for left` +
+                `side, & up for right side`,
+            function() {
+                const paddedStr1 = centerPad('asdf', 8, ' ');
+                expect(paddedStr1).to.eql('  asdf  ');
+            }
+        );
         it(`returns string as-is if final expected length less than initial str width`, function() {
             const paddedStr1 = centerPad('qwertyuiop', 5, ' ');
             log.info(`paddedStr1:`, paddedStr1);
@@ -453,24 +482,30 @@ describe(`string sub-module`, function() {
     });
 
     describe(`pad`, function() {
-        it(`if final arg is 'center', adds given char to both sides of outWidth. Puts 1/2 on each` +
-            ` side if original string must be expanded by an even number of of chars`, function()
-        {
-            const paddedStr1 = pad('asdf', 12, 'z', 'center');
-            expect(paddedStr1).to.eql('zzzzasdfzzzz');
-        });
-        it(`if final arg is 'left' & given char is whitespace, add N # of whitespace chars to ` +
-           `left side of given string to pad`, function()
-        {
-            const paddedStr1 = pad('asdf', 12, ' ', 'left');
-            expect(paddedStr1).to.eql('        asdf');
-        });
-        it(`if final arg is 'right' & given char is a non-whitespace char, add N # of repeats ` +
-           `of the char to right side of the given string (i.e. given to fn to pad it)`, function()
-        {
-            const paddedStr1 = pad('asdf', 12, '|', 'right');
-            expect(paddedStr1).to.eql('asdf||||||||');
-        });
+        it(
+            `if final arg is 'center', adds given char to both sides of outWidth. Puts 1/2 on each` +
+                ` side if original string must be expanded by an even number of of chars`,
+            function() {
+                const paddedStr1 = pad('asdf', 12, 'z', 'center');
+                expect(paddedStr1).to.eql('zzzzasdfzzzz');
+            }
+        );
+        it(
+            `if final arg is 'left' & given char is whitespace, add N # of whitespace chars to ` +
+                `left side of given string to pad`,
+            function() {
+                const paddedStr1 = pad('asdf', 12, ' ', 'left');
+                expect(paddedStr1).to.eql('        asdf');
+            }
+        );
+        it(
+            `if final arg is 'right' & given char is a non-whitespace char, add N # of repeats ` +
+                `of the char to right side of the given string (i.e. given to fn to pad it)`,
+            function() {
+                const paddedStr1 = pad('asdf', 12, '|', 'right');
+                expect(paddedStr1).to.eql('asdf||||||||');
+            }
+        );
     });
 
     describe(`chomp`, function() {
@@ -523,20 +558,17 @@ describe(`string sub-module`, function() {
         it(`Removes preceding whitespace that exists on every line, replaces with given indent val`, function() {
             expect(withLeftIndent`${4}
                 First line
-                Second line`
-            ).to.eql('    First line\n    Second line')
+                Second line`).to.eql('    First line\n    Second line');
         });
         it(`Removes preceding whitespace that exists on every line, & adds no indent if indent val is 0`, function() {
             expect(withLeftIndent`${0}
                 First line
-                Second line`
-            ).to.eql('First line\nSecond line')
+                Second line`).to.eql('First line\nSecond line');
         });
         it(`Defaults to indent 0`, function() {
             expect(withLeftIndent`
                 First line
-                Second line`
-            ).to.eql('First line\nSecond line')
+                Second line`).to.eql('First line\nSecond line');
         });
     });
 
@@ -649,8 +681,8 @@ describe(`string sub-module`, function() {
             expect(removeSurroundingQuotes(`"as"df"`)).to.eql(`as"df`);
         });
         it(`Removes backticks surrounding a string, ignoring inner backticks`, function() {
-            expect(removeSurroundingQuotes("`asdf`")).to.eql("asdf");
-            expect(removeSurroundingQuotes("`as`df`")).to.eql("as`df");
+            expect(removeSurroundingQuotes('`asdf`')).to.eql('asdf');
+            expect(removeSurroundingQuotes('`as`df`')).to.eql('as`df');
         });
     });
 
@@ -686,13 +718,13 @@ describe(`string sub-module`, function() {
             expect(isRegexString('/asdf_morechars[0-9]/yumig')).to.be.true;
         });
         it(`returns true if string is in regex format with no flags and has \\n vals`, function() {
-            expect(isRegexString('/\n_[0-9a-zA-Z]+_\$/')).to.be.true;
+            expect(isRegexString('/\n_[0-9a-zA-Z]+_$/')).to.be.true;
         });
         it(`returns true if string is in regex format with flags and has \\n vals`, function() {
-            expect(isRegexString('/\n_[0-9a-zA-Z]+_\$/yumig')).to.be.true;
+            expect(isRegexString('/\n_[0-9a-zA-Z]+_$/yumig')).to.be.true;
         });
         it(`returns true if given a RegExp object`, function() {
-            expect(isRegexString(/asdf/mig)).to.be.true;
+            expect(isRegexString(/asdf/gim)).to.be.true;
             expect(isRegexString(new RegExp('asdf', 'gm'))).to.be.true;
         });
     });
@@ -704,12 +736,12 @@ describe(`string sub-module`, function() {
             expect(getFlagsFromRegexString('/asdfasdf/yumig')).to.eql('yumig');
         });
         it(`Returns an empty string from a regex string with no flags`, function() {
-            expect(getFlagsFromRegexString('/\n_[0-9a-zA-Z]+_\$/')).to.eql('');
-            expect(getFlagsFromRegexString('/^[0-9]\*&__[a-z]\+~~/')).to.eql('');
+            expect(getFlagsFromRegexString('/\n_[0-9a-zA-Z]+_$/')).to.eql('');
+            expect(getFlagsFromRegexString('/^[0-9]*&__[a-z]+~~/')).to.eql('');
         });
         it(`Returns null given an invalid regex string`, function() {
-            expect(getFlagsFromRegexString('\n_[0-9a-zA-Z]+_\$/')).to.be.null;
-            expect(getFlagsFromRegexString('_#\!_[0-9A-Z]+_ppQ\$/yumig')).to.be.null;
+            expect(getFlagsFromRegexString('\n_[0-9a-zA-Z]+_$/')).to.be.null;
+            expect(getFlagsFromRegexString('_#!_[0-9A-Z]+_ppQ$/yumig')).to.be.null;
             expect(getFlagsFromRegexString('asdf')).to.be.null;
             expect(getFlagsFromRegexString('asdf/')).to.be.null;
             expect(getFlagsFromRegexString('/asdf')).to.be.null;
@@ -729,10 +761,13 @@ describe(`string sub-module`, function() {
     describe(`matchFirst`, function() {
         const testStr = 'TEST :: String to search in';
 
-        it(`if given a string to find, returns 1st matching substring (it'll always be the ` +
-           `string being searched for)`, function() {
-            expect(matchFirst(testStr, 'TEST')).to.eql('TEST');
-        });
+        it(
+            `if given a string to find, returns 1st matching substring (it'll always be the ` +
+                `string being searched for)`,
+            function() {
+                expect(matchFirst(testStr, 'TEST')).to.eql('TEST');
+            }
+        );
         it(`returns empty string if no match`, function() {
             expect(matchFirst(testStr, 'okokok')).to.eql('');
             expect(matchFirst(testStr, /^should_not_match_anything/)).to.eql('');
@@ -748,8 +783,11 @@ describe(`string sub-module`, function() {
  * Test an endsWith* function
  */
 function testMatchFilenameWithExtensionFunction(
-    funcName: string, func: Function, ext: string, nonMatchingExt: string)
-{
+    funcName: string,
+    func: Function,
+    ext: string,
+    nonMatchingExt: string
+) {
     describe(`${funcName}`, function() {
         expectFunctionExists(func);
         it(`Returns true if a string (presumably a filename) ends in .${ext}`, function() {
@@ -762,8 +800,7 @@ function testMatchFilenameWithExtensionFunction(
         it(`Returns false if a string (presumably a filename) does not end in .${ext}`, function() {
             const nonMatchingFilename1 = 'does/not/match';
             const nonMatchingFilename2 = 'not-a-${ext}-file';
-            const nonMatchingFilename3 =
-                `./name-w-${ext}-but-without-extension-${ext}.${nonMatchingExt}`;
+            const nonMatchingFilename3 = `./name-w-${ext}-but-without-extension-${ext}.${nonMatchingExt}`;
             const nonMatchingFilename4 = 'path/to/not-a-${ext}-file-either.${nonMatchingExt}';
             expect(func(nonMatchingFilename1)).to.be.false;
             expect(func(nonMatchingFilename2)).to.be.false;
@@ -772,7 +809,6 @@ function testMatchFilenameWithExtensionFunction(
         });
     });
 }
-
 
 /*********************************** MESSY withLeftIndent TESTS ***********************************/
 function testWithLeftIndentMultilineBasic() {
@@ -785,14 +821,14 @@ function testWithLeftIndentMultilineBasic() {
 }
 
 function defMultilineWithLeftIndentStr1() {
-return withLeftIndent`${4}
+    return withLeftIndent`${4}
 asdf
-asdf`
+asdf`;
 }
 
 function defMultilineWithLeftIndentStr2() {
-return withLeftIndent`${8}
+    return withLeftIndent`${8}
 asdf
 
-asdf`
+asdf`;
 }
