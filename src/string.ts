@@ -613,7 +613,20 @@ export const getFlagsFromRegexString = (str: string): string | null => {
 export const removeSlashesFlagsSurroundingRegexString = (str: string): string =>
     str.replace(/^\//, '').replace(/\/[yumig]{0,5}$/, '');
 
-/*********************************** TEST EXPORTS ***********************************/
+import {accentToNoneCharMap} from './internal/accent-to-none-char-map';
+
+/**
+ * Remove french accents from strings, as well as rare accents occurring in English
+ */
+export const deburrFrenchEnglish = (str: string): string => {
+    if (!str) return '';
+    let outArr = [];
+    for (const char of str.split('')) {
+        outArr.push(accentToNoneCharMap[char] || char);
+    }
+    return outArr.join('');
+};
+
 /**
  * Ensure proper char for padding was passed to rightPad, leftPad, and centerPad.
  */
