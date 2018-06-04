@@ -314,6 +314,10 @@ export declare const getFlagsFromRegexString: (str: string) => string;
  * @return {string} Regex string with the flags and bookending '/' chars removed
  */
 export declare const removeSlashesFlagsSurroundingRegexString: (str: string) => string;
+/**
+ * Remove french accents from strings, as well as rare accents occurring in English
+ */
+export declare const deburrFrenchEnglish: (str: string) => string;
 export { leftPad as padLeft };
 export { rightPad as padRight };
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/

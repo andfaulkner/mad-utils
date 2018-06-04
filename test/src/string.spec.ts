@@ -48,6 +48,7 @@ const {
     rightPad,
     centerPad,
     pad,
+    deburrFrenchEnglish,
 } = str;
 
 /******************************************** LOGGING *********************************************/
@@ -775,6 +776,25 @@ describe(`string sub-module`, function() {
         it(`returns first substring matching given RegExp`, function() {
             expect(matchFirst(testStr, /^.+::/g)).to.eql('TEST ::');
             expect(matchFirst(testStr, /search [a-zA-Z]+$/g)).to.eql('search in');
+        });
+    });
+
+    describe(`deburrFrenchEnglish`, function() {
+        it(`Removes accents from words`, function() {
+            expect(deburrFrenchEnglish("tête-à-tête")).to.equal("tete-a-tete");
+            expect(deburrFrenchEnglish("smörgåsbord")).to.equal("smorgasbord");
+            expect(deburrFrenchEnglish("maître d'hôtel")).to.equal("maitre d'hotel");
+            expect(deburrFrenchEnglish("cause célèbre")).to.equal("cause celebre");
+            expect(deburrFrenchEnglish("cañón")).to.equal("canon");
+        });
+        it(`Leaves words as-is if no accents`, function() {
+            expect(deburrFrenchEnglish("hello")).to.equal("hello");
+        });
+        it(`Returns empty strings as-is`, function() {
+            expect(deburrFrenchEnglish("")).to.equal("");
+        });
+        it(`Returns null as ''`, function() {
+            expect(deburrFrenchEnglish(null)).to.equal("");
         });
     });
 });
