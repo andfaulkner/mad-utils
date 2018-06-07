@@ -1,3 +1,11 @@
+0.57.5
+======
+Add optional 2nd config param to rmAllFalsy (alias: compact) function, with options:
+    *   'allFalsy'  - Remove all falsy values [DEFAULT]
+    *   'nullUndef' - Remove only null & undefined values
+    *   'keep0'     - Remove all falsy values except 0
+    *   'keepStr'   - Remove all falsy values except ''
+
 0.57.4
 ======
 Add deburrFrenchEnglish function
