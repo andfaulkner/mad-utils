@@ -304,7 +304,7 @@ describe(`array sub-module`, function() {
     });
 
     describe(`-- #rmAllFalsy`, function() {
-        it(`given arr w/ a single falsy val, returns new array w/ the falsy val rm`, function() {
+        it(`given arr w a single falsy val, ret new arr w the falsy val rm`, function() {
             expect(rmAllFalsy(['one', undefined, 'three'])).to.eql(['one', 'three']);
             expect(rmAllFalsy(['one', 0, 'three'])).to.eql(['one', 'three']);
             expect(rmAllFalsy(['one', '', 'three'])).to.eql(['one', 'three']);
@@ -344,6 +344,22 @@ describe(`array sub-module`, function() {
             expect(rmAllFalsy([NaN, NaN, NaN])).to.eql([]);
             expect(rmAllFalsy([1, NaN, 3, NaN, 5])).to.eql([1, 3, 5]);
             expect(rmAllFalsy([NaN, NaN, {}, [], NaN, 22, 'ok'])).to.eql([{}, [], 22, 'ok']);
+        });
+
+        it(`leaves 0 in place if 'keep0' given as 2nd prop`, function() {
+            expect(rmAllFalsy([undefined, 'a', 0, null], 'keep0')).to.eql(['a', 0]);
+            expect(rmAllFalsy([0], 'keep0')).to.eql([0]);
+        });
+
+        it(`leaves '' in place if 'keepStr' given as 2nd prop`, function() {
+            expect(rmAllFalsy([undefined, 'a', '', null], 'keepStr')).to.eql(['a', '']);
+            expect(rmAllFalsy([''], 'keepStr')).to.eql(['']);
+        });
+
+        it(`only removes undefined & null if 'nullUndef' given as 2nd prop`, function() {
+            const outArr = ['a', '', NaN, 0, 'b'];
+            expect(rmAllFalsy([undefined, 'a', '', NaN, 0, 'b', null], 'nullUndef')).to.eql(outArr);
+            expect(rmAllFalsy([undefined, '', null, NaN], 'nullUndef')).to.eql(['', NaN]);
         });
     });
 
