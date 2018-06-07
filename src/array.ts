@@ -325,12 +325,38 @@ export function removeMatches(arr1: RealAny[], arr2: RealAny[] | any): RealAny[]
     });
 }
 
+export type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
+
 /**
- * Return new array with all falsy values in the given array eliminated.
- * @param {Array} arr - Array containing any values of any type.
- * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
+ * Remove falsy values from the given array
+ * By default removes all falsy val types, but 2nd param can set it to only rm certain falsy types
+ *
+ * @param {Array} arr Array containing any values of any type
+ * @param {string} falsyTypes: 'allFalsy'  [DEFAULT] Remove all falsy values
+ *                             'nullUndef' Remove only null & undefined values
+ *                             'keep0'     Remove all falsy values except 0
+ *                             'keepStr'   Remove all falsy values except ''
+ * @return {Array} arr param with falsy vals of set types removed (default: remove all falsy vals)
  */
-export const rmAllFalsy = (arr: RealAny[]) => arr.filter(item => !!item);
+export const rmAllFalsy = <T = any>(arr: T[], falsyType: _FalsyType = 'allFalsy'): T[] => {
+        switch (falsyType) {
+            case undefined:
+            case 'allFalsy':
+                return arr.filter(val => !!val);
+            case 'keep0':
+                return arr.filter(val => !!val || (val as any) === 0);
+            case 'keepStr':
+                return arr.filter(val => !!val || (val as any) === '');
+            case 'nullUndef':
+                return arr.filter(val => val !== null && typeof val !== 'undefined');
+            default:
+                throw new Error(
+                    `If set, Array.compact arg must be 1 of 'allFalsy', ` +
+                        `'nullUndef', 'keep0', or 'keepStr'`
+                );
+        }
+};
+
 export {rmAllFalsy as compact};
 
 /**
@@ -473,7 +499,7 @@ export function sample<T = any>(
     }
 
     if (coll instanceof Map || coll instanceof Set) {
-        return Array.from(coll)[randomAbsIntBelow(coll.size)]
+        return Array.from(coll)[randomAbsIntBelow(coll.size)];
     }
 
     if (typeof coll === 'object') {
