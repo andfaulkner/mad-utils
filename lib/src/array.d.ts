@@ -158,12 +158,19 @@ export declare function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: An
  */
 export declare function removeMatches(arr1: RealAny[], arr2: any): RealAny[];
 export declare function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny[];
+export declare type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
 /**
- * Return new array with all falsy values in the given array eliminated.
- * @param {Array} arr - Array containing any values of any type.
- * @return {Array} - input array minus falsy vals. Eliminates 0, '', null, undefined, NaN, false.
+ * Remove falsy values from the given array
+ * By default removes all falsy val types, but 2nd param can set it to only rm certain falsy types
+ *
+ * @param {Array} arr Array containing any values of any type
+ * @param {string} falsyTypes: 'allFalsy'  [DEFAULT] Remove all falsy values
+ *                             'nullUndef' Remove only null & undefined values
+ *                             'keep0'     Remove all falsy values except 0
+ *                             'keepStr'   Remove all falsy values except ''
+ * @return {Array} arr param with falsy vals of set types removed (default: remove all falsy vals)
  */
-export declare const rmAllFalsy: (arr: any[]) => any[];
+export declare const rmAllFalsy: <T = any>(arr: T[], falsyType?: _FalsyType) => T[];
 export { rmAllFalsy as compact };
 /**
  * Add item to array if item not already present in array.

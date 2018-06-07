@@ -243,7 +243,7 @@ export declare const common: {
     withoutFirst2: typeof array.withoutFirst2;
     withoutLast2: typeof array.withoutLast2;
     removeMatches: typeof array.removeMatches;
-    rmAllFalsy: (arr: any[]) => any[];
+    rmAllFalsy: <T = any>(arr: T[], falsyType?: array._FalsyType) => T[];
     isArray: <T = any>(val: any) => val is T[];
     isLeapYear: typeof date.isLeapYear;
     now: (timeFormat?: string) => string;
