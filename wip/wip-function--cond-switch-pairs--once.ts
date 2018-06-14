@@ -54,6 +54,54 @@ export function condSwitch(
     return condValPairsAndOrDefVal[0];
 }
 
+/******************************* COND (MADE OF SET OF ARRAY PAIRS) ********************************/
+/**
+ * Return for each:
+ *
+ *   cond():                         throw error
+ *   cond(nonArrayVal):              throw error
+ *   cond(nonArrayVal[]):            throw error
+ *   cond([val]):                    throw error
+ *   cond(val, ...[condition, val]): throw error
+ *   cond(...[condition, val],
+ *          val,
+ *          ...[condition, val]):    throw error
+ *   cond([condition, val]):         val if condition true; otherwise null
+ *   cond(...[condition, val]):      val for 1st arg where condition true; otherwise null
+ */
+export function cond(...conds: [any, any][]): any {
+    // cond(): throw error
+    if (conds.length === 0) throw new Error(`Cond requires 1 argument`);
+
+    const cond1 = conds[0];
+
+    // cond(nonArrayVal):              throw error
+    // cond(nonArrayVal[]):            throw error
+    // cond([val]):                    throw error
+    // cond(val, ...[condition, val]): throw error
+    if (!Array.isArray(cond1) || cond1.length < 2) {
+        throw new Error(`1st arg to cond must be an array with at least 2 items`);
+    }
+
+    // cond([condition, val]): val if condition true; otherwise null
+    if (conds.length === 1) return !!cond1[0] ? cond1[1] : null;
+
+    // cond(...[condition, val], val, ...[condition, val]): throw error
+    conds.forEach(cond => {
+        if (!Array.isArray(cond) || cond.length < 2) {
+            throw new Error(`all args to cond must be arrays with 2 items`);
+        }
+    });
+
+    // cond(...[condition, val]): val for 1st arg where condition true; otherwise null
+    for (const cond of conds) {
+        if (!!cond[0]) return cond[1];
+    }
+
+    // No matches condition
+    return null;
+}
+
 // TODO
 
 // export type _DefaultVal<T = any> = {default: T};
