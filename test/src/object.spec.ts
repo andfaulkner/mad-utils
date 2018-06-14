@@ -23,7 +23,7 @@ import {
     eachPair,
     isMultilangTextObj,
     get,
-    omit
+    omit,
 } from '../../shared';
 
 import {expectFunctionExists} from '../../node';
@@ -501,11 +501,13 @@ describe(`object sub-module`, function() {
         expectFunctionExists(m_.object.defineMethod);
         expectFunctionExists(defineMethod);
 
-        type AddFnType = {fn: () => string}
+        type AddFnType = {fn: () => string};
         const obj = {} as AddFnType;
 
         before(function() {
-            defineMethod<AddFnType>(obj, 'fn', function fn() { return 'ok' });
+            defineMethod<AddFnType>(obj, 'fn', function fn() {
+                return 'ok';
+            });
         });
 
         it(`should add a new function to an object`, function() {
@@ -514,11 +516,15 @@ describe(`object sub-module`, function() {
         });
 
         it(`function added to object should be immutable`, function() {
-            try {(obj as any).fn = 'ok'} catch {}
+            try {
+                (obj as any).fn = 'ok';
+            } catch {}
             expect(obj.fn).to.be.a('function');
             expect(obj.fn()).to.eql('ok');
 
-            try {delete obj.fn} catch {}
+            try {
+                delete obj.fn;
+            } catch {}
             expect(obj.fn).to.be.a('function');
             expect(obj.fn()).to.eql('ok');
         });
@@ -618,5 +624,4 @@ describe(`object sub-module`, function() {
             expect(omit(testObjBig, ['d', 'e'], val => val > 2)).to.eql({c: 3, f: 6});
         });
     });
-
 });
