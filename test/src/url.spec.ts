@@ -3,27 +3,33 @@
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /******************************** IMPORT QUERY MODULE FOR TESTING *********************************/
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test';
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
+import {expectFunctionExists} from '../../node';
 
-import { m_, url, parseQueryParams, getLangFromUrlPathname, lastUrlPath,
-         getUrlPathAroundLang, getUrlPathAfterLang, getUrlPathBeforeLang,
-         getLangFromURLPathname, langFromUrlPathname, langFromURLPathname,
-         getQueryParamString,
-         urlMinusLastPath,
-         swapLastURLPath,
-         urlWithoutProtocol,
-         urlProtocolString,
-         swapMatchingURLPaths
+import {
+    m_,
+    url,
+    parseQueryParams,
+    getLangFromUrlPathname,
+    lastUrlPath,
+    getUrlPathAroundLang,
+    getUrlPathAfterLang,
+    getUrlPathBeforeLang,
+    getLangFromURLPathname,
+    langFromUrlPathname,
+    langFromURLPathname,
+    getQueryParamString,
+    urlMinusLastPath,
+    swapLastURLPath,
+    urlWithoutProtocol,
+    urlProtocolString,
+    swapMatchingURLPaths,
 } from '../../shared';
-import { expectFunctionExists } from '../../node';
 
-import { url as urlFromNode } from '../../node';
-import { url as urlFromBrowser } from '../../browser';
+import {url as urlFromNode} from '../../node';
+import {url as urlFromBrowser} from '../../browser';
 import * as urlModule from '../../src/url';
-
-const urlFns = m_.url;
-
 
 /********************************************* TESTS **********************************************/
 describe(`url sub-module`, function() {
@@ -67,7 +73,7 @@ describe(`url sub-module`, function() {
         it('-- pulls current lang out of given pathname string', function() {
             expect(getLangFromUrlPathname('/en/home')).to.eql('en');
             expect(getLangFromUrlPathname('/fr/home')).to.eql('fr');
-        })
+        });
         it('-- ignores lang values in other parts of given string (besides the paths)', function() {
             expect(getLangFromUrlPathname('auth/fr/home?lang=en')).to.eql('fr');
             expect(getLangFromUrlPathname('auth/en/home/freestuff')).to.eql('en');
@@ -119,17 +125,19 @@ describe(`url sub-module`, function() {
             expect(getUrlPathAfterLang('asdf/en/one/two')).to.eql('one/two');
         });
         it(`returns substring 'one/two' when given { url: '1/2/en/one/two'}`, function() {
-            expect(getUrlPathAfterLang({ url: '1/2/en/one/two'})).to.eql('one/two');
+            expect(getUrlPathAfterLang({url: '1/2/en/one/two'})).to.eql('one/two');
         });
         it(`returns substring following first '/fr/' match in given string`, function() {
             expect(getUrlPathAfterLang('asdf/fr/one/two')).to.eql('one/two');
         });
         it(`returns 'three/4' when given { url: '1/2/ga/three/4', curLang: 'ga' }`, function() {
-            expect(getUrlPathAfterLang({ url: '1/2/ga/three/4', curLang: 'ga' })).to.eql('three/4');
+            expect(getUrlPathAfterLang({url: '1/2/ga/three/4', curLang: 'ga'})).to.eql('three/4');
         });
         it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] }`, function() {
-            expect(getUrlPathAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] })).to.eql('3/4');
-            expect(getUrlPathAfterLang({ url: '1/2/ok/3/4', supportedLangs: ['ok'] })).to.eql('3/4');
+            expect(getUrlPathAfterLang({url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok']})).to.eql(
+                '3/4'
+            );
+            expect(getUrlPathAfterLang({url: '1/2/ok/3/4', supportedLangs: ['ok']})).to.eql('3/4');
         });
         // TODO test getUrlPathAfterLang's no-arg condition :: getUrlPathAfterLang();
     });
@@ -139,17 +147,19 @@ describe(`url sub-module`, function() {
             expect(getUrlPathBeforeLang('asdf/en/one/two')).to.eql('asdf');
         });
         it(`returns substring '1/2' when given { url: '1/2/en/one/two'}`, function() {
-            expect(getUrlPathBeforeLang({ url: '1/2/en/one/two'})).to.eql('1/2');
+            expect(getUrlPathBeforeLang({url: '1/2/en/one/two'})).to.eql('1/2');
         });
         it(`returns substring following first '/fr/' match in given string`, function() {
             expect(getUrlPathBeforeLang('asdf/fr/one/two')).to.eql('asdf');
         });
         it(`returns 'three/4' when given { url: '1/2/ga/three/4', curLang: 'ga' }`, function() {
-            expect(getUrlPathBeforeLang({ url: '1/2/ga/three/4', curLang: 'ga' })).to.eql('1/2');
+            expect(getUrlPathBeforeLang({url: '1/2/ga/three/4', curLang: 'ga'})).to.eql('1/2');
         });
         it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] }`, function() {
-            expect(getUrlPathBeforeLang({ url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'] })).to.eql('1/2');
-            expect(getUrlPathBeforeLang({ url: '1/2/ok/3/4', supportedLangs: ['ok'] })).to.eql('1/2');
+            expect(getUrlPathBeforeLang({url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok']})).to.eql(
+                '1/2'
+            );
+            expect(getUrlPathBeforeLang({url: '1/2/ok/3/4', supportedLangs: ['ok']})).to.eql('1/2');
         });
         // TODO test getUrlPathBeforeLang's no-arg condition :: getUrlPathBeforeLang();
     });
@@ -158,12 +168,13 @@ describe(`url sub-module`, function() {
 
     describe(`.urlPathAroundLang`, function() {
         it(`returns '3/4' when given { url: '1/2/ok/3/4', supportedLangs: ['ga', 'ok'], getStrBeforeLang: true }`, function() {
-            expect(getUrlPathAroundLang({
-                url: '1/2/ok/3/4',
-                supportedLangs: ['ga', 'ok'],
-                getStrBeforeLang: true
-            })).to
-               .eql('1/2');
+            expect(
+                getUrlPathAroundLang({
+                    url: '1/2/ok/3/4',
+                    supportedLangs: ['ga', 'ok'],
+                    getStrBeforeLang: true,
+                })
+            ).to.eql('1/2');
         });
     });
 
@@ -204,8 +215,9 @@ describe(`url sub-module`, function() {
 
             const testURL = `${baseTestURL}/1/2/3?${testQueryStr}`;
 
-            expect(swapLastURLPath('FINAL', testURL))
-                .to.eql(`${baseTestURL}/1/2/FINAL?${testQueryStr}`);
+            expect(swapLastURLPath('FINAL', testURL)).to.eql(
+                `${baseTestURL}/1/2/FINAL?${testQueryStr}`
+            );
         });
     });
 
@@ -233,23 +245,30 @@ describe(`url sub-module`, function() {
         const testUrl = `${testHost}/first/second/third?${testQuery}`;
 
         it(`swaps new path val into URL paths matching entire given string. Ignores query string`, function() {
-            expect(swapMatchingURLPaths('first', 'ONE', testUrl))
-                .to.eql(`${testHost}/ONE/second/third?${testQuery}`);
-            expect(swapMatchingURLPaths('second', 'TWO', testUrl))
-                .to.eql(`${testHost}/first/TWO/third?${testQuery}`);
-            expect(swapMatchingURLPaths('third', 'THREE', testUrl))
-                .to.eql(`${testHost}/first/second/THREE?${testQuery}`);
+            expect(swapMatchingURLPaths('first', 'ONE', testUrl)).to.eql(
+                `${testHost}/ONE/second/third?${testQuery}`
+            );
+            expect(swapMatchingURLPaths('second', 'TWO', testUrl)).to.eql(
+                `${testHost}/first/TWO/third?${testQuery}`
+            );
+            expect(swapMatchingURLPaths('third', 'THREE', testUrl)).to.eql(
+                `${testHost}/first/second/THREE?${testQuery}`
+            );
         });
 
         it(`swaps new path val into URL paths fully matching given RegExp. Ignores query string`, function() {
-            expect(swapMatchingURLPaths(/[a-z]irs[a-z]/, 'ONE', testUrl))
-                .to.eql(`${testHost}/ONE/second/third?${testQuery}`);
-            expect(swapMatchingURLPaths(/[a-z]eco[a-z]{2}/, 'TWO', testUrl))
-                .to.eql(`${testHost}/first/TWO/third?${testQuery}`);
-            expect(swapMatchingURLPaths(/.+rd/, 'THREE', testUrl))
-                .to.eql(`${testHost}/first/second/THREE?${testQuery}`);
-            expect(swapMatchingURLPaths(/fir[a-z]+$/, 'FIRST', testUrl))
-                .to.eql(`${testHost}/FIRST/second/third?${testQuery}`);
+            expect(swapMatchingURLPaths(/[a-z]irs[a-z]/, 'ONE', testUrl)).to.eql(
+                `${testHost}/ONE/second/third?${testQuery}`
+            );
+            expect(swapMatchingURLPaths(/[a-z]eco[a-z]{2}/, 'TWO', testUrl)).to.eql(
+                `${testHost}/first/TWO/third?${testQuery}`
+            );
+            expect(swapMatchingURLPaths(/.+rd/, 'THREE', testUrl)).to.eql(
+                `${testHost}/first/second/THREE?${testQuery}`
+            );
+            expect(swapMatchingURLPaths(/fir[a-z]+$/, 'FIRST', testUrl)).to.eql(
+                `${testHost}/FIRST/second/third?${testQuery}`
+            );
         });
 
         it(`does not swap new path val into partially matching URL paths.`, function() {
@@ -260,8 +279,9 @@ describe(`url sub-module`, function() {
         });
 
         it(`swaps all when there are multiple matching paths (ignoring query string)`, function() {
-            expect(swapMatchingURLPaths(/.+/, 'MATCH', testUrl))
-                .to.eql(`${testHost}/MATCH/MATCH/MATCH?${testQuery}`);
+            expect(swapMatchingURLPaths(/.+/, 'MATCH', testUrl)).to.eql(
+                `${testHost}/MATCH/MATCH/MATCH?${testQuery}`
+            );
         });
     });
 });

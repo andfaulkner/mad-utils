@@ -5,25 +5,24 @@ import * as Enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 console.log(`Adapter:`, Adapter);
 
-(Enzyme as any).configure({ adapter: new Adapter() });
-
+(Enzyme as any).configure({adapter: new Adapter()});
 
 /*************************************** IMPORT TEST UTILS ****************************************/
-import { expect } from 'chai';
+import {expect} from 'chai';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { mount, shallow, ShallowWrapper, ReactWrapper} from 'enzyme';
+import {mount, shallow, ShallowWrapper, ReactWrapper} from 'enzyme';
 
-import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
+import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { IfTruthy, IfFalsy, Switch, Case, Default } from '../../src/react/components';
+import {IfTruthy, IfFalsy, Switch, Case, Default} from '../../src/react/components';
 // RouterProps, InputChangeType, FormSubmitHandler, FormSubmitType, InputChangeHandler, setSfcDisplayName, buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('react--components.spec.tsx', colors.black.bgCyan));
 
 /******************************************** HELPERS *********************************************/
@@ -42,13 +41,15 @@ const numChildren = (cmp: ShallowWrapper<any, any>) => cmp.children().length;
  * Gets the child of the rendered component.
  * @example getChildNode(shallow(<div>Hello</div>)); // => 'Hello'
  */
-const getChildNode = (cmp: ShallowWrapper<any, any>) => cmp.children().first().text();
+const getChildNode = (cmp: ShallowWrapper<any, any>) =>
+    cmp
+        .children()
+        .first()
+        .text();
 
 class TestClass extends React.Component<{}, {}> {
     render() {
-        return (
-            <div>ok</div>
-        );
+        return <div>ok</div>;
     }
 }
 
@@ -70,16 +71,8 @@ describe(`React module`, function() {
             let wrappedTruthyFalse: ShallowWrapper<any, any>;
 
             before(function() {
-                wrappedTruthyTrue = shallow(
-                    <IfTruthy test={true}>
-                        {trueElement}
-                    </IfTruthy>
-                );
-                wrappedTruthyFalse = shallow(
-                    <IfTruthy test={false}>
-                        {falseElement}
-                    </IfTruthy>
-                );
+                wrappedTruthyTrue = shallow(<IfTruthy test={true}>{trueElement}</IfTruthy>);
+                wrappedTruthyFalse = shallow(<IfTruthy test={false}>{falseElement}</IfTruthy>);
             });
 
             it(`Renders children if value given to prop 'test' is truthy`, function() {
@@ -97,16 +90,8 @@ describe(`React module`, function() {
             let wrappedFalsyFalse: ShallowWrapper<any, any>;
 
             before(function() {
-                wrappedFalsyTrue = shallow(
-                    <IfFalsy test={true}>
-                        {falseElement}
-                    </IfFalsy>
-                );
-                wrappedFalsyFalse = shallow(
-                    <IfFalsy test={false}>
-                        {trueElement}
-                    </IfFalsy>
-                );
+                wrappedFalsyTrue = shallow(<IfFalsy test={true}>{falseElement}</IfFalsy>);
+                wrappedFalsyFalse = shallow(<IfFalsy test={false}>{trueElement}</IfFalsy>);
             });
             it(`Renders children if value given to prop 'test' is falsy`, function() {
                 expect(numChildren(wrappedFalsyFalse)).to.eql(1);
@@ -131,23 +116,40 @@ describe(`React module`, function() {
             before(function() {
                 switch_caseMatch_noDef = shallow(
                     <Switch test={true}>
-                        <Case val={false}><div>CASE1_should_not_match</div></Case>
-                        <Case val={true}><div>CASE2_should_match</div></Case>
-                    </Switch>);
+                        <Case val={false}>
+                            <div>CASE1_should_not_match</div>
+                        </Case>
+                        <Case val={true}>
+                            <div>CASE2_should_match</div>
+                        </Case>
+                    </Switch>
+                );
 
                 switch_noCaseMatch_def = shallow(
                     <Switch test={'test_str_w_no_matching_child_case'}>
-                        <Case val={false}><div>CASE1_should_not_match</div></Case>
-                        <Case val={false}><div>CASE2_should_not_match</div></Case>
-                        <Default><span>DEFAULT_should_match</span></Default>
-                    </Switch>);
+                        <Case val={false}>
+                            <div>CASE1_should_not_match</div>
+                        </Case>
+                        <Case val={false}>
+                            <div>CASE2_should_not_match</div>
+                        </Case>
+                        <Default>
+                            <span>DEFAULT_should_match</span>
+                        </Default>
+                    </Switch>
+                );
 
                 switch_caseMatch_def_strRet = shallow(
                     <Switch test={'MATCHING_CASE'}>
-                        <Case val={'__NOT_A_MATCH__'}><div>CASE1_should_not_match</div></Case>
+                        <Case val={'__NOT_A_MATCH__'}>
+                            <div>CASE1_should_not_match</div>
+                        </Case>
                         <Case val={'MATCHING_CASE'}>CASE2_str_should_match</Case>
-                        <Default><span>DEFAULT_should_not_match</span></Default>
-                    </Switch>);
+                        <Default>
+                            <span>DEFAULT_should_not_match</span>
+                        </Default>
+                    </Switch>
+                );
             });
 
             it(`Returns the content of a matching <Case>, with <Default> defined`, function() {
@@ -164,7 +166,6 @@ describe(`React module`, function() {
                 expect(switch_caseMatch_def_strRet.is('span')).to.be.true;
                 expect(getChildNode(switch_caseMatch_def_strRet)).to.eql('CASE2_str_should_match');
             });
-
         });
     });
 });

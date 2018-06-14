@@ -2,16 +2,16 @@
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /*************************************** IMPORT TEST UTILS ****************************************/
-import { expect } from 'chai';
+import {expect} from 'chai';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { mount, shallow, ShallowWrapper } from 'enzyme';
+import {mount, shallow, ShallowWrapper} from 'enzyme';
 
-import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
+import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { logOnRender } from '../../src/react/hocs';
+import {logOnRender} from '../../src/react/hocs';
 
 /********************************************* TESTS **********************************************/
 describe(`React module`, function() {
