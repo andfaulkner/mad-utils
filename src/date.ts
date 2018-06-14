@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 import {dateTime} from 'common-constants';
-import {isDateLike, castToNum, NumLike, isInt, isNumberLike, StrOrNever} from './types-iso';
+import {isDateLike, castToNum, StrOrNum, isInt, isNumberLike, StrOrNever} from './types-iso';
 
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -11,7 +11,7 @@ export const defaultTimestampFormat = `YYYY/MM/DD : HH:mm:ss`;
  * @param {NumLike} year - Determine if the given number is a leap year.
  * @return {boolean|number} True if a leap year; false if not; throw if invalid year given.
  */
-export function isLeapYear(year: NumLike): boolean | never {
+export function isLeapYear(year: StrOrNum): boolean | never {
     const yearClean = castToNum(year);
     if (yearClean instanceof Error || !isInt(yearClean)) {
         throw new Error('mad-utils::isLeapYear must receive integer or value parsable to integer');

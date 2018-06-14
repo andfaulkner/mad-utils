@@ -27,11 +27,6 @@ export type StrOrVoid = string | void;
 export type StrOrErr = string | Error;
 
 /**
- * Any type that can potentially be cast to a number.
- */
-export type NumLike = StrOrNum | StrOrNum[];
-
-/**
  * Alias to indicate variable injected by a decorator.
  */
 export type Injection<T> = T;
@@ -98,18 +93,13 @@ export const isNumber = <T extends number | Number = number>(val: RealAny): val 
 export {isNumber as isNum};
 
 /**
- * Returns true if the given argument is a number, a string that can be parsed into a number, or
- * a 1-item array containing either aforementioned type.
- * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
- * @param {RealAny} val Item being tested for number-like nature.
- * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
- * @return {boolean} True if item is 'number-like', otherwise false.
+ * Returns true if the given argument is a number or a string that can be parsed into a number
+ * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers
+ * @param {RealAny} val Item being tested for number-like nature
+ * @return {boolean} True if item is 'number-like', otherwise false
  */
-export const isNumberLike = <
-    T extends number | Number | (number | Number)[] | string | String = number
->(
-    val: RealAny,
-    allowArrayWith1Num = false
+export const isNumberLike = <T extends number | Number | string | String = number>(
+    val: RealAny
 ): val is T => {
     if (typeof val === 'undefined' || val == null) return false;
     if (isNumber(val)) return true;
@@ -130,11 +120,6 @@ export const isNumberLike = <
 
         return !isNaN(parseInt(cleanVal, 10));
     }
-
-    // Avoid checking nested arrays for numbers to prevent e.g. [[[[[2]]]]] from returning true.
-    // Also allows explicitly blocking single-item arrays with just 1 number ([5]) being true.
-    if (!allowArrayWith1Num) return false;
-    if (isArray(val) && val.length === 1) return isNumberLike(val[0], false);
 
     return false;
 };
@@ -337,14 +322,14 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
 /**
  * Convert item to a number (if given item is of a type that can be converted as such).
  * If not, throw an error if this is specified.
- * @param {NumLike} numLike Value to cast to a number
+ * @param {StrOrNum} val Value to cast to a number
  * @param {boolean} throwOnFail (OPT) When true, throw if given type isn't a number.
  *                                    When false, return an Error if given type isn't a number.
  * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
  */
-export const castToNum = (val: NumLike, throwOnFail = true): number | Error | never => {
+export const castToNum = (val: StrOrNum, throwOnFail = true): number | Error | never => {
     if (isNumber(val)) return val;
-    if (isNumberLike(val, true)) return parseFloat(val as string);
+    if (isNumberLike(val)) return parseFloat(val as string);
 
     const baseErrMsg =
         `castToNum can only accept numbers, #s in string form e.g. "1", or ` +

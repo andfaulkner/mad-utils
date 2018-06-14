@@ -1,5 +1,3 @@
-/// <reference types="connect" />
-/// <reference types="express" />
 import * as connect from 'connect';
 import { colors } from 'mad-logs/lib/node';
 import { Application, Router } from 'express';

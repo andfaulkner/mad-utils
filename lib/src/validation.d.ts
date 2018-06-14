@@ -38,7 +38,7 @@ export declare type IsVStrOpt = {
  *                                     Defaults to alert.
  * @return {boolean} true if all validation conditions are passed. False if not.
  */
-export declare function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean;
+export declare function isValidString({ conditions, testStr, confirmStr, errDisplayCb }: IsVStrOpt): boolean;
 /**
  * Returns true if email address is probably (but not necessarily) correctly formatted.
  *

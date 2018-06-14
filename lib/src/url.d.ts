@@ -1,5 +1,5 @@
 /*************************************** TYPE AUGMENTATION ****************************************/
-declare global  {
+declare global {
     namespace NodeJS {
         interface Global {
             location: {

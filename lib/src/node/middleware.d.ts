@@ -1,4 +1,3 @@
-/// <reference types="connect" />
 import { ApplyMiddlewareFn, ExpressApp, MWare } from './types-node';
 import * as connect from 'connect';
 /**

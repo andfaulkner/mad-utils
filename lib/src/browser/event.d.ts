@@ -16,5 +16,5 @@ export declare const mouseEventFactory: ((globalTarget?: any) => MouseEvent);
  *     Running it removes matching MouseEvent from the element passed to the parent.
  *     Reason: The outputted function can be assigned as a clicked handler (e.g., in React).
  */
-export declare const removeClickEventFromId: ((id?: string, event?) => (ev?: MouseEvent) => void);
+export declare const removeClickEventFromId: ((id?: string, event?: any) => (ev?: MouseEvent) => void);
 export declare const addClickEventToId: ((id: string, cb: EventFunction) => void);

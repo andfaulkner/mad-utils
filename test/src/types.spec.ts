@@ -257,15 +257,9 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isNumberLike([54])).to.be.false;
                 expect(typesIso.isNumberLike([54, 89])).to.be.false;
             });
-            it(`returns true if given array  w/ 1 number-like value, & true as the 2nd arg`, function() {
-                expect(typesIso.isNumberLike([2], true)).to.be.true;
-                expect(typesIso.isNumberLike([54], true)).to.be.true;
-            });
-            it(`returns false if given array w/ array w/ 1 number-like value, even w/ true as the 2nd arg`, function() {
-                expect(typesIso.isNumberLike([[2]], false)).to.be.false;
-                expect(typesIso.isNumberLike([[2]], true)).to.be.false;
-                expect(typesIso.isNumberLike([[54]], false)).to.be.false;
-                expect(typesIso.isNumberLike([[54]], true)).to.be.false;
+            it(`returns false if given array  w/ 1 number-like value`, function() {
+                expect(typesIso.isNumberLike([2])).to.be.false;
+                expect(typesIso.isNumberLike([54])).to.be.false;
             });
         });
 

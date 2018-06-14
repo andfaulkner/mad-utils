@@ -56,3 +56,7 @@ export declare const browserVersion: () => any;
 * @return {string} Version of the browser's rendering engine. E.g. "530.12"
  */
 export declare const browserEngineVersion: () => any;
+/******************************************** HELPERS *********************************************/
+/**
+ * Get element by ID. TODO: allow getting by class, tag, etc.
+ */

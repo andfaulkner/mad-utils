@@ -1,4 +1,4 @@
-import { NumLike } from './types-iso';
+import { StrOrNum } from './types-iso';
 export declare type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
 /**
@@ -6,7 +6,7 @@ export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
  * @param {NumLike} year - Determine if the given number is a leap year.
  * @return {boolean|number} True if a leap year; false if not; throw if invalid year given.
  */
-export declare function isLeapYear(year: NumLike): boolean | never;
+export declare function isLeapYear(year: StrOrNum): boolean | never;
 /**
  * Convert numeric day of the week to string day of the week.
  * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Monday', 6 becomes 'Saturday')

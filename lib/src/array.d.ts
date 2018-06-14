@@ -172,6 +172,7 @@ export declare type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
  */
 export declare const rmAllFalsy: <T = any>(arr: T[], falsyType?: _FalsyType) => T[];
 export { rmAllFalsy as compact };
+export { rmAllFalsy as rmFalsyVals };
 /**
  * Add item to array if item not already present in array.
  * @param {Array} arr Array to potentially add item to

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
 import { MandatoryInjection } from '../types-iso';

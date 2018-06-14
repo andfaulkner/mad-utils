@@ -1,4 +1,10 @@
-/// <reference types="express" />
+/**************************************************************************************************
+ *
+ *       @file ./express-routing.ts
+ *
+ *       TODO FINISH SETTING express-routing MODULE UP IN MAD-UTILS
+ *
+ */
 import { Request } from 'express';
 import { getUrlPathBeforeLang, getUrlPathAfterLang } from '../url';
 /************************** BARREL EXPORTS FROM OTHER mad-utils MODULES ***************************/

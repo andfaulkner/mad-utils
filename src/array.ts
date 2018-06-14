@@ -358,6 +358,7 @@ export const rmAllFalsy = <T = any>(arr: T[], falsyType: _FalsyType = 'allFalsy'
 };
 
 export {rmAllFalsy as compact};
+export {rmAllFalsy as rmFalsyVals}
 
 /**
  * Add item to array if item not already present in array.

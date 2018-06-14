@@ -119,9 +119,9 @@ export const isMultilangTextObj = (obj: RealAny): boolean => {
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
 export const eachPair = <T extends Object>(
-    func: ((val: T[keyof T], key?: keyof T) => void | RealAny)
+    func: ((val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => void | RealAny)
 ) => (obj: T): T => {
-    keys(obj).forEach((key: keyof T) => func(obj[key], key));
+    keys(obj).forEach((key: Extract<keyof T, string>) => func(obj[key], key));
     return obj;
 };
 
@@ -206,7 +206,7 @@ export {inspectKeyTree as keyTreeInspector};
  */
 export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
     if (typeof obj === 'object' && obj != null) {
-        return keys(obj).some((k: keyof T) => k === matchKey);
+        return keys(obj).some((k: Extract<keyof T, string>) => k === matchKey);
     }
     return false;
 };

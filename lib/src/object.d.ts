@@ -39,7 +39,7 @@ export declare const isMultilangTextObj: (obj: any) => boolean;
  * @param {T extends object} obj - Object to iterate over.
  * @return {T extends Object} Returns the object initially passed in (for chaining)
  */
-export declare const eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
+export declare const eachPair: <T extends Object>(func: (val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => any) => (obj: T) => T;
 /**
  * Get number of keys/pairs in an object. If given a non-object, return 0.
  * @param {Object} obj - Object to get the number of keys of.

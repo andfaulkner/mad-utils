@@ -228,7 +228,7 @@ export declare const common: {
     uuid: number.UUIDNamespace;
     merge: typeof object.merge;
     hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
-    eachPair: <T extends Object>(func: (val: T[keyof T], key?: keyof T) => any) => (obj: T) => T;
+    eachPair: <T extends Object>(func: (val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     deepFreeze: <T>(obj: T) => Readonly<T>;
     parseQueryParams: <T>(queryParamsStr?: string) => T;
@@ -248,11 +248,11 @@ export declare const common: {
     rightPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     centerPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
     isVoidOrString: (val: any) => val is string;
-    isNumberLike: <T extends string | number | String | Number | (number | Number)[] = number>(val: any, allowArrayWith1Num?: boolean) => val is T;
+    isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
     isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
     isDateLike: (val: any) => boolean;
     isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
-    castToNum: (val: isoTypes.NumLike, throwOnFail?: boolean) => number | Error;
+    castToNum: (val: string | number, throwOnFail?: boolean) => number | Error;
     CharInputStream: typeof stream.CharInputStream;
     isNode: any;
 } & {

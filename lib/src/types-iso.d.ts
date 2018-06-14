@@ -1,4 +1,3 @@
-/// <reference types="node-polyglot" />
 import * as Polyglot from 'node-polyglot';
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
@@ -17,10 +16,6 @@ export declare type StrOrNum = string | number;
 export declare type StrOrNever = string | never;
 export declare type StrOrVoid = string | void;
 export declare type StrOrErr = string | Error;
-/**
- * Any type that can potentially be cast to a number.
- */
-export declare type NumLike = StrOrNum | StrOrNum[];
 /**
  * Alias to indicate variable injected by a decorator.
  */
@@ -69,14 +64,12 @@ export declare const isVoidOrString: (val: any) => val is string;
 export declare const isNumber: <T extends number | Number = number>(val: any) => val is T;
 export { isNumber as isNum };
 /**
- * Returns true if the given argument is a number, a string that can be parsed into a number, or
- * a 1-item array containing either aforementioned type.
- * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers.
- * @param {RealAny} val Item being tested for number-like nature.
- * @param {boolean} allowArrayWith1Num Return true for 1-item number arrays e.g. [7]. Default: false
- * @return {boolean} True if item is 'number-like', otherwise false.
+ * Returns true if the given argument is a number or a string that can be parsed into a number
+ * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers
+ * @param {RealAny} val Item being tested for number-like nature
+ * @return {boolean} True if item is 'number-like', otherwise false
  */
-export declare const isNumberLike: <T extends string | number | String | Number | (number | Number)[] = number>(val: any, allowArrayWith1Num?: boolean) => val is T;
+export declare const isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
 export { isNumberLike as isNumLike };
 /**
  * Returns true if given value is an integer (does not include num-like strings).
@@ -164,12 +157,12 @@ export declare const singleton: <T extends ClassConstructor>(constructor: T) => 
 /**
  * Convert item to a number (if given item is of a type that can be converted as such).
  * If not, throw an error if this is specified.
- * @param {NumLike} numLike Value to cast to a number
+ * @param {StrOrNum} val Value to cast to a number
  * @param {boolean} throwOnFail (OPT) When true, throw if given type isn't a number.
  *                                    When false, return an Error if given type isn't a number.
  * @return {number|Error|never} value converted to number, Error, or nothing if it threw error.
  */
-export declare const castToNum: (val: NumLike, throwOnFail?: boolean) => number | Error;
+export declare const castToNum: (val: string | number, throwOnFail?: boolean) => number | Error;
 /**
  * Convert string representation of a boolean value to a boolean value. Return error if this
  * isn't possible. If something is already a boolean, it simply passes it through.
