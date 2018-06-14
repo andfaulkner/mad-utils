@@ -24,6 +24,8 @@ Remove NumberLike, NumLike types
 isNumberLike function no longer handles string & nunber arrays with 1 item
 isLeapYear function no longer takes string & nunber arrays with 1 item
 
+
+----------------------------------------------------------------------------------------------------
 0.57.5
 ======
 Add optional 2nd config param to rmAllFalsy (alias: compact) function, with options:
@@ -60,6 +62,8 @@ Revamped get function:
 New ls-0pt* namespace/aliases (e.g. ls-0pt5) for letter-spacing SCSS utils
 -   Previously it was only found at ls-0p* (e.g. ls-0p5), which caused confusion
 
+
+----------------------------------------------------------------------------------------------------
 0.56.0
 ======
 Add robust isString function to types-iso module
@@ -68,6 +72,8 @@ More robust isStringOrNumber function (detects more string cases)
 Simpler isTrue & isFalse functions
 Replace typeof comparisons in types-iso with more robust detection functions (isString, etc)
 
+
+----------------------------------------------------------------------------------------------------
 0.55.3
 ======
 Fix dark-sky-blue color class names (in SCSS util classes)
@@ -98,6 +104,8 @@ Changes to blue colour SCSS util classes:
     *   Rename SCSS variable   ::  "slightDarkBlue"     => "paleDarkBlue"
         *   Rename SCSS class  ::  "slight-dark-blue"   => "pale-dark-blue"
 
+
+----------------------------------------------------------------------------------------------------
 0.54.3
 ======
 Quick patch to fix .outline-none & .no-outline CSS util classes
@@ -134,6 +142,8 @@ Rename checks for request type (express-routing):
     isCssAsset -> isRequestForCssAsset
     isCSSAsset -> isCssAssetRequest
 
+
+----------------------------------------------------------------------------------------------------
 0.53.4
 ======
 Upgrade common-constants -> v4.1.0
@@ -163,6 +173,8 @@ More in-code docs for util-styles (SCSS)
 ======
 Fixes arrayN function (array module) - can correctly create arrays filled with falsy values
 
+
+----------------------------------------------------------------------------------------------------
 0.52.2
 ======
 Adds new defineMethod function to object module
@@ -219,7 +231,7 @@ Ran prettier on:
     - object.spec.ts
 
 
-
+----------------------------------------------------------------------------------------------------
 0.51.3
 ======
 Cleaned up code in array module
@@ -247,7 +259,7 @@ Eliminated the following aliases from the string module:
     *   isRegexStr (alias of isRegexString)
     *   getFlagsFromRegexStr (alias of getFlagsFromRegexString)
 
-No longer exporting _cleanCharToPadWith from string module (it's now local-only)
+No longer exporting \_cleanCharToPadWith from string module (it's now local-only)
 
 Renamed removeSurroundingRegexSlashes -> removeSlashesFlagsSurroundingRegexString & removed aliases:
     *   withoutSurroundingRegexSlashes
@@ -257,8 +269,10 @@ Renamed removeSurroundingRegexSlashes -> removeSlashesFlagsSurroundingRegexStrin
 
 Removed matchCharInChars from string module, along with aliases isOneOfChars & matchOneOfChars
 
-toSnakeCase now handles slashes (replaces / or \ with _)
+toSnakeCase now handles slashes (replaces / or \ with \_)
 
+
+----------------------------------------------------------------------------------------------------
 0.50.3
 ======
 Fixed object module error
@@ -287,6 +301,8 @@ Prettier run on: error, decorator, function
 Cleanups in error module - including more added typings
 'wip' directory added, work-in-progress error & function code moved into it
 
+
+----------------------------------------------------------------------------------------------------
 0.49.2
 ======
 Exporting DecoratorTargetType type from decorator module
@@ -300,6 +316,8 @@ getDecoratorType function added to decorator.ts
 *   e.g. if arguments received by placing a decorator above a class, emits "CLASS";
          on a static prop, it emits 'STATIC_PROPERTY', etc.
 
+
+----------------------------------------------------------------------------------------------------
 0.48.0
 ======
 isInteger (isInt) & isIntegerLike (isIntLike) made saner & more robust:
@@ -315,6 +333,8 @@ SCSS utils:
 
 Unit test for regular expressions given to removeMatchingText function
 
+
+----------------------------------------------------------------------------------------------------
 0.47.3
 ======
 Number->createChangeArray :: Now handles:
@@ -350,14 +370,15 @@ Validation#isValidString:
 * more reusable typings
 * conditions turned into union types with all allowed values provided, rather than being treated as being type 'string'
 
+
 ----------------------------------------------------------------------------------------------------
 0.46.1
 ======
 Object#get: Fixed generic typing.
 *   New generic type for function: <O = any, T extends object = {}>
-    *   Reason: with the previous generic signature, it wasn't possible to define an output type without an input type
+    *   Reason: with previous generic signature, it was impossible to define an output type without an input type
 
-Object#define*Prop - minor type fixes (generic can now more easily specify the new property value)
+Object#define\*Prop - minor type fixes (generic can now more easily specify the new property value)
 Unit tested Object#defineGetterProp
 
 0.46.0
@@ -384,6 +405,7 @@ More margin SCSS utils - with negative margins:
 Repaired getFirstUrlPath function in express-routing
 Unit tested getFirstUrlPath & getLastUrlPath
 
+
 ----------------------------------------------------------------------------------------------------
 0.45.2
 ======
@@ -404,6 +426,7 @@ MAJOR BREAKING CHANGE ::
 bug fixed in w-###p size utilities. -all suffix was forgotten, so all w-###p utils acted like w-all-###p utils.
 This means all w-###p utils contained width, max-width, and mid-width properties, while w-all-###p did not work at all.
 
+
 ----------------------------------------------------------------------------------------------------
 0.44.0
 ======
@@ -418,11 +441,13 @@ Removed buildNamedSfc/setNamedSfc
 Rotation SCSS utilities 
 ...etc.
 
+
 ----------------------------------------------------------------------------------------------------
 0.43.0
 ======
 Upgraded typings for React & React-DOM to v16
 Fixed peerDependencies to provide a range
+
 
 ----------------------------------------------------------------------------------------------------
 0.42.4
@@ -445,6 +470,7 @@ Removed external-location barrel exports from string, array, date, & types-iso
 Various cleanups in array, string, types-iso, date
 Types known following type detection methods in types-iso
 
+
 ----------------------------------------------------------------------------------------------------
 0.41.0
 ======
@@ -452,10 +478,12 @@ boolStringToBool: saner behaviour
 *   added 2nd param that (if set to false) returns null instead of throwing if invalid input given
 *   unit tested boolStringToBool
 
+
 ----------------------------------------------------------------------------------------------------
 0.40.0
 ======
 Removed all re-exports from array included in string module
+
 
 ----------------------------------------------------------------------------------------------------
 0.39.12
@@ -508,6 +536,7 @@ Added lightened-gray colour to SCSS utils
 0.39.0
 ======
 Removed .bot-* SCSS utils (they took up needless space)
+
 
 ----------------------------------------------------------------------------------------------------
 0.38.10
@@ -579,6 +608,8 @@ Added url functions:
     *   urlReplacePathMatches
     *   urlReplaceMatchingPaths
 
+
+----------------------------------------------------------------------------------------------------
 0.37.2
 ======
 *   Added createRangeArray
@@ -605,6 +636,8 @@ Added url functions:
         border-pale-sky-blue
         border-light-purple
 
+
+----------------------------------------------------------------------------------------------------
 0.36.6
 ======
 *   defineGetterProp method. Aliases:
@@ -661,6 +694,7 @@ Added functions:
 
 Added types:
 *   Any: Another alias for any
+
 
 ----------------------------------------------------------------------------------------------------
 0.35.0
