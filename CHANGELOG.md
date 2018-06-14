@@ -9,7 +9,7 @@ Fix typings (to allow TS v2.9.2 to work) in object module for:
     *   defineDeletableProp
     *   defineGetterProp
 
-Code cleanups (prettier, doc fixes)
+Code cleanup (prettier, doc fixes) on all tests, object module, & types-iso module
 
 0.58.0
 ======
