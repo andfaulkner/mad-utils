@@ -9,6 +9,8 @@ Fix typings (to allow TS v2.9.2 to work) in object module for:
     *   defineDeletableProp
     *   defineGetterProp
 
+Code cleanups (prettier, doc fixes)
+
 0.58.0
 ======
 Upgrade Typescript to v2.9.2
