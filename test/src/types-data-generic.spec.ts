@@ -1,17 +1,26 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
 /******************************** IMPORT ERROR MODULE FOR TESTING *********************************/
-import { canadianProvinces, canadianProvincesOrNone,
-         sexes, sexesWithOther, gender, genderFull } from '../../shared';
+import {
+    canadianProvinces,
+    canadianProvincesOrNone,
+    sexes,
+    sexesWithOther,
+    gender,
+    genderFull,
+} from '../../shared';
 
 /********************************************* TESTS **********************************************/
 describe(`Generic data tests`, function() {
     describe(`Canadian provinces`, function() {
         expectNonEmptyObjectExists(canadianProvinces, 'Canadian provinces object exists');
-        expectNonEmptyObjectExists(canadianProvincesOrNone, 'Canadian provinces object with none included exists');
+        expectNonEmptyObjectExists(
+            canadianProvincesOrNone,
+            'Canadian provinces object with none included exists'
+        );
 
         it(`canadianProvinces is deep frozen`, function() {
             expect(canadianProvinces).to.be.frozen;
@@ -25,10 +34,14 @@ describe(`Generic data tests`, function() {
     describe(`Sex/Gender`, function() {
         expectNonEmptyObjectExists(sexes, 'Basic sexes object exists');
         expectNonEmptyObjectExists(sexesWithOther, 'Basic sexes object w "other" included exists');
-        expectNonEmptyObjectExists(gender,
-            'Basic gender object (identical to sexesWithOther) exists');
-        expectNonEmptyObjectExists(genderFull,
-            'Extensive gender object (with piles of "experimental" & less common genders) exists');
+        expectNonEmptyObjectExists(
+            gender,
+            'Basic gender object (identical to sexesWithOther) exists'
+        );
+        expectNonEmptyObjectExists(
+            genderFull,
+            'Extensive gender object (with piles of "experimental" & less common genders) exists'
+        );
 
         it(`sexes is deep frozen`, function() {
             expect(sexes).to.be.frozen;

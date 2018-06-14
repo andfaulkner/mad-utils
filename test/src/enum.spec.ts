@@ -3,26 +3,34 @@
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('enum.spec.ts', colors.blue.bgMagenta));
 
-
 /******************************** IMPORT ENUM MODULE FOR TESTING **********************************/
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
-import { m_, Enum } from '../../shared';
-import { Enum as EnumFromNode } from '../../node';
-import { Enum as EnumFromBrowser } from '../../browser';
+import {m_, Enum} from '../../shared';
+import {Enum as EnumFromNode} from '../../node';
+import {Enum as EnumFromBrowser} from '../../browser';
 import * as EnumModule from '../../src/enum';
 
 const en = m_.enum;
 
-
 /********************************************* TESTS **********************************************/
 describe(`enum sub-module`, function() {
-    enum ColorTest { BLUE, ReD, black }
-    enum Suits { HEARTS, CLUBS, SPADES, DIAMONDS }
+    enum ColorTest {
+        BLUE,
+        ReD,
+        black,
+    }
+
+    enum Suits {
+        HEARTS,
+        CLUBS,
+        SPADES,
+        DIAMONDS,
+    }
 
     expectNonEmptyObjectExists(Enum, 'Enum (from shared/base export)');
     expectNonEmptyObjectExists(m_.Enum, 'Enum (from m_ top-level namespace)');
@@ -82,7 +90,7 @@ describe(`enum sub-module`, function() {
         expect(m_.enum.isDataEnumItem('0', Suits)).to.be.false;
         expect(m_.enum.isDataEnumItem(1, Suits)).to.be.false;
 
-        log.silly("isDataEnumItem tests :: Suits[0]:", Suits[0]);
+        log.silly('isDataEnumItem tests :: Suits[0]:', Suits[0]);
         expect(m_.enum.isDataEnumItem(0, Suits)).to.be.false;
     });
 });

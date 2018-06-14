@@ -1,21 +1,20 @@
+// TODO test isDateLike
+
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /********************************* IMPORT DATE MODULE FOR TESTING *********************************/
-import { expect } from 'chai';
-import { isVerbose } from 'env-var-helpers';
+import {expect} from 'chai';
+import {isVerbose} from 'env-var-helpers';
 
-import { m_, date, isLeapYear, isDateLike } from '../../shared';
-
-import { date as dateFromNode } from '../../node';
-import { date as dateFromBrowser } from '../../browser';
+import {m_, date, isLeapYear, isDateLike} from '../../shared';
+import {date as dateFromNode} from '../../node';
+import {date as dateFromBrowser} from '../../browser';
 import * as dateModule from '../../src/date';
 
-import { expectNonEmptyObjectExists } from '../../src/node/test'
-import { expectFunctionExists, convertDayOfWeekNumToString, now } from '../../node';
-
-const dateFns = m_.date;
+import {expectNonEmptyObjectExists} from '../../src/node/test';
+import {expectFunctionExists, convertDayOfWeekNumToString, now} from '../../node';
 
 /********************************************* TESTS **********************************************/
 describe(`date sub-module`, function() {
@@ -48,7 +47,7 @@ describe(`date sub-module`, function() {
             expect(isLeapYear('1600')).to.be.true;
         });
         it(`throws error if given a value that cannot be converted to an integer`, function() {
-            expect(() => isLeapYear({ 1: '5' } as any)).to.throw(Error);
+            expect(() => isLeapYear({1: '5'} as any)).to.throw(Error);
             expect(() => isLeapYear([1, 2, 3] as any)).to.throw(Error);
             expect(() => isLeapYear('asdf')).to.throw(Error);
             expect(() => isLeapYear({} as any)).to.throw(Error);
@@ -124,21 +123,19 @@ describe(`date sub-module`, function() {
         });
 
         it(`throws if given a number/numberString outside the 0-6 range, or another type.`, function() {
-            expect(() => convertDayOfWeekNumToString('7'    as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString(7      as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString(-1     as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString(-1     as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString('7' as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(7 as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(-1 as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString(-1 as any)).to.throw();
             expect(() => convertDayOfWeekNumToString('asdf' as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString([]     as any)).to.throw();
-            expect(() => convertDayOfWeekNumToString({}     as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString([] as any)).to.throw();
+            expect(() => convertDayOfWeekNumToString({} as any)).to.throw();
         });
     });
 
     describe(`now function`, function() {
         expectFunctionExists(now);
-        it(`should return current date & time in YYYY/MM/DD : HH:MM:SS format if given no args`,
-            function()
-        {
+        it(`should return current date & time in YYYY/MM/DD : HH:MM:SS format if given no args`, function() {
             const jsNow = new Date();
             const jsFormattedDateTime =
                 `${jsNow.getFullYear()}/` +
@@ -148,19 +145,21 @@ describe(`date sub-module`, function() {
                 `${jsNow.getMinutes() < 10 ? `0` : ``}${jsNow.getMinutes()}:` +
                 `${jsNow.getSeconds() < 10 ? `0` : ``}${jsNow.getSeconds()}`;
             if (isVerbose) console.log('date.spec.ts :: now :: jsNow:', jsNow);
-            if (isVerbose) console.log('date.spec.ts :: now :: jsFormattedDateTime:', jsFormattedDateTime);
-            expect(now()).to.eql(jsFormattedDateTime)
+            if (isVerbose)
+                console.log('date.spec.ts :: now :: jsFormattedDateTime:', jsFormattedDateTime);
+            expect(now()).to.eql(jsFormattedDateTime);
         });
-        it(`should return current date & time in any valid MomentJS format (e.g. YYYY/MM/DD) ` +
-            `given as an arg`, function()
-        {
-            const jsNow = new Date();
-            const jsFormattedDate =
-                `${jsNow.getFullYear()}/` +
-                `${jsNow.getMonth() < 9 ? `0` : ``}${jsNow.getMonth() + 1}/` +
-                `${jsNow.getDate() < 10 ? `0` : ``}${jsNow.getDate()}`;
-            expect(now(`YYYY/MM/DD`)).to.eql(jsFormattedDate);
-        });
+        it(
+            `should return current date & time in any valid MomentJS format (e.g. YYYY/MM/DD) ` +
+                `given as an arg`,
+            function() {
+                const jsNow = new Date();
+                const jsFormattedDate =
+                    `${jsNow.getFullYear()}/` +
+                    `${jsNow.getMonth() < 9 ? `0` : ``}${jsNow.getMonth() + 1}/` +
+                    `${jsNow.getDate() < 10 ? `0` : ``}${jsNow.getDate()}`;
+                expect(now(`YYYY/MM/DD`)).to.eql(jsFormattedDate);
+            }
+        );
     });
 });
-

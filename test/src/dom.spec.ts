@@ -1,20 +1,31 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
-import 'jsdom-global/register'
 
-import { window, userAgent as mockUserAgent } from '../mock/mock-window';
+import 'jsdom-global/register';
+
+import {window, userAgent as mockUserAgent} from '../mock/mock-window';
 
 /********************************* IMPORT DOM MODULE FOR TESTING **********************************/
-import { expect } from 'chai';
+import {expect} from 'chai';
 
-import { m_, dom, parseUserAgent, getUserAgentString, osName, osVersion, browserName, osNameSnakeCase,
-         browserVersion, browserEngineName, browserEngineVersion, ParsedUserAgent } from '../../browser';
+import {
+    m_,
+    dom,
+    parseUserAgent,
+    getUserAgentString,
+    osName,
+    osVersion,
+    browserName,
+    osNameSnakeCase,
+    browserVersion,
+    browserEngineName,
+    browserEngineVersion,
+    ParsedUserAgent,
+} from '../../browser';
 
-import { dom as domFromBrowser } from '../../browser';
+import {dom as domFromBrowser} from '../../browser';
 import * as domModule from '../../src/browser/dom';
-
-import { expectNonEmptyObjectExists, expectFunctionExists } from '../../src/node/test'
-const docObjModel = m_.dom;
+import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/test';
 
 /********************************************* TESTS **********************************************/
 describe(`dom sub-module`, function() {
@@ -28,13 +39,14 @@ describe(`dom sub-module`, function() {
     const commonSrc = 'as stored in user agent string on window';
 
     describe(`UserAgent functions`, function() {
-        const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36" +
-                          " (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36";
-        const mockOSName = "Mac OS";
+        const userAgent =
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36' +
+            ' (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36';
+        const mockOSName = 'Mac OS';
         const mockOSSnakeCase = 'mac_os';
-        const mockOSVersion = "10.11.6";
-        const mockBrowserName = "Chrome";
-        const mockBrowserVersion = "59.0.3071.115";
+        const mockOSVersion = '10.11.6';
+        const mockBrowserName = 'Chrome';
+        const mockBrowserVersion = '59.0.3071.115';
         const mockEngineName = 'WebKit';
         const mockEngineVersion = '537.36';
 
@@ -58,8 +70,7 @@ describe(`dom sub-module`, function() {
             });
         });
 
-        it(`-- #getUserAgentString: returns raw user agent str from window.navigator object`,
-            function() {
+        it(`-- #getUserAgentString: returns raw user agent str from window.navigator object`, function() {
             expect(getUserAgentString()).to.equal(mockUserAgent);
         });
 

@@ -1,15 +1,14 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
 /******************************** IMPORT TESTS MODULE FOR TESTING *********************************/
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test';
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
-import { m_, test } from '../../node';
-import { test as testFromNode } from '../../node';
+import {m_, test} from '../../node';
+import {test as testFromNode} from '../../node';
 import * as testModule from '../../src/node/test';
 
 const testHelpers = m_.test;
-
 
 /********************************************* TESTS **********************************************/
 describe(`test sub-module`, function() {

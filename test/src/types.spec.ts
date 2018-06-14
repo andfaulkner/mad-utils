@@ -18,9 +18,10 @@ const {boolStringToBool} = typesModule;
 
 /* Sample data */
 const ints = [10, -100, 0, 1, -1, 83294, -212];
+// prettier-ignore
 const intsWDots = [10., -100.0, 0.00, 1.00000000000000000000000000000, -1., -323432., 0., -0.];
+// prettier-ignore
 const nonIntNums = [10.2, 0.919232, 0.000000001, -0.001, 383.145, -123.42, 10.00000000001, -.3, .6];
-
 
 /********************************************* TESTS **********************************************/
 describe(`types sub-modules`, function() {
@@ -61,12 +62,10 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isIntegerLike(-1)).to.be.true;
                 expect(typesIso.isIntegerLike(24)).to.be.true;
             });
-            it(`returns false given number w/ decimal (that isn't at the end or followed by 0s)`,
-                function() {
-                    expect(typesIso.isIntegerLike(12.32)).to.be.false;
-                    expect(typesIso.isIntegerLike(-1001.32)).to.be.false;
-                }
-            );
+            it(`returns false given number w/ decimal (that isn't at the end or followed by 0s)`, function() {
+                expect(typesIso.isIntegerLike(12.32)).to.be.false;
+                expect(typesIso.isIntegerLike(-1001.32)).to.be.false;
+            });
 
             it(`returns true given string that parses into an int`, function() {
                 ints.forEach(int => expect(typesIso.isIntegerLike(`${int}`)).to.be.true);
@@ -155,31 +154,32 @@ describe(`types sub-modules`, function() {
                 expect(isString(new String(null))).to.be.true;
             });
             it(`returns true if given a String-inheriting object instance`, function() {
-                class PrefixedString extends String {};
-                console.log("PrefixedString:");
+                class PrefixedString extends String {}
+                console.log('PrefixedString:');
                 console.log(PrefixedString);
-                console.log("new PrefixedString():");
+                console.log('new PrefixedString():');
                 console.log(new PrefixedString());
-                console.log("typeof new PrefixedString():");
+                console.log('typeof new PrefixedString():');
                 console.log(typeof new PrefixedString());
-                console.log("typeof new PrefixedString() != null:");
+                console.log('typeof new PrefixedString() != null:');
                 console.log(typeof new PrefixedString() != null);
                 console.log("typeof new PrefixedString() === 'object':");
                 console.log(typeof new PrefixedString() === 'object');
-                console.log("Object.prototype.toString.call(new PrefixedString()):");
+                console.log('Object.prototype.toString.call(new PrefixedString()):');
                 console.log(Object.prototype.toString.call(new PrefixedString()));
-                console.log("isString(new PrefixedString()):");
+                console.log('isString(new PrefixedString()):');
                 console.log(isString(new PrefixedString()));
-                console.log("is new PrefixedString() a string? Manual test:");
+                console.log('is new PrefixedString() a string? Manual test:');
                 console.log(
-                    typeof (new PrefixedString()) === 'string' ||
-                    ((new PrefixedString()) != null &&
-                        typeof (new PrefixedString()) === 'object' &&
-                        Object.prototype.toString.call((new PrefixedString())) === '[object String]')
+                    typeof new PrefixedString() === 'string' ||
+                        (new PrefixedString() != null &&
+                            typeof new PrefixedString() === 'object' &&
+                            Object.prototype.toString.call(new PrefixedString()) ===
+                                '[object String]')
                 );
-                console.log("_.isString(new PrefixedString()):");
+                console.log('_.isString(new PrefixedString()):');
                 console.log(_.isString(new PrefixedString()));
-                console.log("isString:");
+                console.log('isString:');
                 console.log(isString);
                 expect(isString(new PrefixedString())).to.be.true;
             });
@@ -283,7 +283,6 @@ describe(`types sub-modules`, function() {
             });
         });
 
-
         describe(`isVoidOrString function`, function() {
             expectFunctionExists(typesIso.isVoidOrString);
             it(`returns true for undefined or null`, function() {
@@ -315,9 +314,7 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isVoidOrString(1)).to.equal(false);
                 expect(typesIso.isVoidOrString(NaN)).to.equal(false);
                 expect(typesIso.isVoidOrString(Object)).to.equal(false);
-                expect(typesIso.isVoidOrString(typesIso.isVoidOrString)).to.equal(
-                    false,
-                );
+                expect(typesIso.isVoidOrString(typesIso.isVoidOrString)).to.equal(false);
             });
         });
 
@@ -455,18 +452,42 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isFunction((arg1, arg2) => arg1 + arg2)).to.be.true;
             });
             it(`returns true if given a classic ES5 (and under) lambda function`, function() {
-                expect(typesIso.isFunction(function() { return 'ok'; })).to.be.true;
-                expect(typesIso.isFunction(function() { return false; })).to.be.true;
+                expect(
+                    typesIso.isFunction(function() {
+                        return 'ok';
+                    })
+                ).to.be.true;
+                expect(
+                    typesIso.isFunction(function() {
+                        return false;
+                    })
+                ).to.be.true;
                 expect(typesIso.isFunction(function() {})).to.be.true;
                 expect(typesIso.isFunction(function(arg1, arg2) {})).to.be.true;
-                expect(typesIso.isFunction(function(arg1, arg2) { return arg1 + arg2 })).to.be.true;
+                expect(
+                    typesIso.isFunction(function(arg1, arg2) {
+                        return arg1 + arg2;
+                    })
+                ).to.be.true;
             });
             it(`returns true if given a named classic ES5 (and under) function`, function() {
-                expect(typesIso.isFunction(function testFunc1() { return 'ok'; })).to.be.true;
-                expect(typesIso.isFunction(function testFunc2() { return false; })).to.be.true;
+                expect(
+                    typesIso.isFunction(function testFunc1() {
+                        return 'ok';
+                    })
+                ).to.be.true;
+                expect(
+                    typesIso.isFunction(function testFunc2() {
+                        return false;
+                    })
+                ).to.be.true;
                 expect(typesIso.isFunction(function testFunc3() {})).to.be.true;
                 expect(typesIso.isFunction(function testFunc4(arg1, arg2) {})).to.be.true;
-                expect(typesIso.isFunction(function testFunc5(arg1, arg2) { return arg1 + arg2 })).to.be.true;
+                expect(
+                    typesIso.isFunction(function testFunc5(arg1, arg2) {
+                        return arg1 + arg2;
+                    })
+                ).to.be.true;
             });
             it(`returns false if given a RegExp`, function() {
                 expect(typesIso.isFunction(/asdf/g)).to.be.false;
@@ -500,12 +521,19 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isFunction(['a', 'b'])).to.be.false;
                 expect(typesIso.isFunction([0])).to.be.false;
                 expect(typesIso.isFunction([() => null])).to.be.false;
-                expect(typesIso.isFunction([() => 'out', (arg1) => 999])).to.be.false;
+                expect(typesIso.isFunction([() => 'out', arg1 => 999])).to.be.false;
             });
             it(`returns true if given a function with an object merged in`, function() {
-                expect(typesIso.isFunction(
-                    Object.assign(function testFunc() { return 'result'; }, {a: 1, b: 2})
-                )).to.be.true;
+                expect(
+                    typesIso.isFunction(
+                        Object.assign(
+                            function testFunc() {
+                                return 'result';
+                            },
+                            {a: 1, b: 2}
+                        )
+                    )
+                ).to.be.true;
             });
         });
 
@@ -551,7 +579,7 @@ describe(`types sub-modules`, function() {
                     expect(typesIso.isDateLike({oko: 123})).to.be.false;
                     expect(typesIso.isDateLike({oko: 123, date: 10})).to.be.false;
                     expect(typesIso.isDateLike('12312354')).to.be.false;
-                },
+                }
             );
         });
 
@@ -595,7 +623,7 @@ describe(`types sub-modules`, function() {
                     expect(newInstance.someString).to.eql('my string argument');
                     expect(newInstance.someString).to.eql(singletonObject.someString);
                     expect(newInstance).to.eql(singletonObject);
-                },
+                }
             );
             it(`has no effect on classes it's not applied to`, function() {
                 const nonSingletonInstance = new NonSingletonObject('string one');
@@ -766,7 +794,7 @@ function numberDetectorFunctionTests(testFunc: (val: any) => boolean) {
         expect(testFunc({0: 0})).to.be.false;
         expect(testFunc({1: 1})).to.be.false;
         expect(testFunc({1: ''})).to.be.false;
-        expect(testFunc({'someValue': 5})).to.be.false;
+        expect(testFunc({someValue: 5})).to.be.false;
     });
     it(`returns false if given a boolean`, function() {
         expect(testFunc(false)).to.be.false;
@@ -808,12 +836,12 @@ function numberDetectorFunctionTests(testFunc: (val: any) => boolean) {
         expect(testFunc(() => 1)).to.be.false;
     });
     it(`returns false if given any function`, function() {
-        expect(testFunc((arg1) => console.log(arg1))).to.be.false;
-        expect(testFunc(
-            function someTestFunction() {
+        expect(testFunc(arg1 => console.log(arg1))).to.be.false;
+        expect(
+            testFunc(function someTestFunction() {
                 console.log('Random behaviour for test function');
-            }
-        )).to.be.false;
+            })
+        ).to.be.false;
     });
     it(`returns false given itself (${testFunc && testFunc.name})`, function() {
         expect(testFunc(testFunc)).to.be.false;

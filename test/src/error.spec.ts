@@ -2,18 +2,17 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
 /******************************** IMPORT ERROR MODULE FOR TESTING *********************************/
-import { m_, error } from '../../shared';
+import {m_, error} from '../../shared';
 
-import { error as errorFromNode } from '../../node';
-import { error as errorFromBrowser } from '../../browser';
+import {error as errorFromNode} from '../../node';
+import {error as errorFromBrowser} from '../../browser';
 import * as errorModule from '../../src/error';
 
 const err = m_.error;
-
 
 /********************************************* TESTS **********************************************/
 describe(`error sub-module`, function() {
