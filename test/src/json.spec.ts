@@ -1,19 +1,18 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
 /************************************** THIRD-PARTY IMPORTS ***************************************/
-import { json, m_, mUtils, } from '../../shared';
-import { json as jsonFromNode } from '../../node';
-import { json as jsonFromBrowser } from '../../browser';
+import {json, m_, mUtils} from '../../shared';
+import {json as jsonFromNode} from '../../node';
+import {json as jsonFromBrowser} from '../../browser';
 import * as jsonModule from '../../src/json';
 
 /******************************************** LOGGING *********************************************/
-import { buildFileTag, nodeLogFactory, colors } from 'mad-logs/lib/node';
+import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('mad-utils::json.spec.ts', colors.green.bgWhite));
-
 
 /********************************************** MOCK **********************************************/
 const testObj = {
@@ -33,7 +32,7 @@ const testObj = {
     h: 'Final data item in json',
     fn3: function() {
         console.log('Goodbye everyone!');
-    }
+    },
 };
 
 const testObjJsonStr = JSON.stringify(testObj);
@@ -82,4 +81,3 @@ describe(`json sub-module`, function() {
         });
     });
 });
-

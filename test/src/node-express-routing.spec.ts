@@ -8,7 +8,13 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import {m_, error, nodeError} from '../../node';
 
-import {expressRouting, getFirstUrlPath, getLastUrlPath, getUrlPathFromReq, isSupportedLang} from '../../node';
+import {
+    expressRouting,
+    getFirstUrlPath,
+    getLastUrlPath,
+    getUrlPathFromReq,
+    isSupportedLang,
+} from '../../node';
 
 import * as nodeExpressRouting from '../../src/node/express-routing';
 

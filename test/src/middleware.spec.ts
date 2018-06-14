@@ -1,15 +1,14 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
 /****************************** IMPORT MIDDLEWARE MODULE FOR TESTING ******************************/
-import { expect } from 'chai';
+import {expect} from 'chai';
 
-import { m_, middleware } from '../../node';
-import { middleware as middlewareFromNode } from '../../node';
+import {m_, middleware} from '../../node';
+import {middleware as middlewareFromNode} from '../../node';
 import * as middlewareModule from '../../src/node/middleware';
 
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 const mw = m_.middleware;
-
 
 /********************************************* TESTS **********************************************/
 describe(`middleware sub-module`, function() {

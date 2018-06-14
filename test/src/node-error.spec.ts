@@ -1,11 +1,11 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-import { expect } from 'chai';
-import { expectNonEmptyObjectExists } from '../../src/node/test'
+import {expect} from 'chai';
+import {expectNonEmptyObjectExists} from '../../src/node/test';
 
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
-import { m_, error, nodeError } from '../../node';
-import { error as nodeErrorFromNode } from '../../node';
+import {m_, error, nodeError} from '../../node';
+import {error as nodeErrorFromNode} from '../../node';
 import * as nodeErrorModule from '../../src/node/node-error';
 
 /********************************************* TESTS **********************************************/

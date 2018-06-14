@@ -2,22 +2,16 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
-//
-//  FULLY TESTED
-//
-
 /*************************************** IMPORT TEST UTILS ****************************************/
-import { expect } from 'chai';
-import { expectFunctionExists, expectNonEmptyObjectExists } from '../../src/node/test';
-
+import {expect} from 'chai';
+import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
-import { m_, number } from '../../shared';
-import { number as numberFromNode } from '../../node';
-import { number as numberFromBrowser, uuid } from '../../browser';
+import {m_, number} from '../../shared';
+import {number as numberFromNode} from '../../node';
+import {number as numberFromBrowser, uuid} from '../../browser';
 import * as numberModule from '../../src/number';
-import { createRangeArray, coinFlip, diceRoll6Sided } from '../../src/number';
-
+import {createRangeArray, coinFlip, diceRoll6Sided} from '../../src/number';
 
 /********************************************* TESTS **********************************************/
 describe(`number sub-module`, function() {
@@ -37,8 +31,9 @@ describe(`number sub-module`, function() {
             console.log(`\n    number.uuid: testUuid1:`, testUuid1);
             expect(testUuid1).to.exist;
             expect(testUuid1).to.be.a('string');
-            expect(testUuid1)
-                .to.match(/^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}$/);
+            expect(testUuid1).to.match(
+                /^[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12}$/
+            );
         });
 
         expectFunctionExists(uuid.len6, 'uuid.len6');
@@ -114,7 +109,9 @@ describe(`number sub-module`, function() {
     describe('diceRoll6Sided', function() {
         it(`should output 1, 2, 3, 4, 5, or 6`, function() {
             expect(diceRoll6Sided()).to.be.a('number');
-            expect(diceRoll6Sided()).to.be.lessThan(7).and.greaterThan(0);
+            expect(diceRoll6Sided())
+                .to.be.lessThan(7)
+                .and.greaterThan(0);
             const roll = diceRoll6Sided();
             expect(Math.round(roll)).to.eql(roll);
         });
