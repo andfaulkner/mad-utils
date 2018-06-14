@@ -1,5 +1,16 @@
-0.58.0 (WIP)
-============
+0.58.1
+======
+Fix typings (to allow TS v2.9.2 to work) in object module for:
+    *   defineProp
+    *   defineMethod
+    *   defineMethod
+    *   defineImmutableProp
+    *   defineMutableProp
+    *   defineDeletableProp
+    *   defineGetterProp
+
+0.58.0
+======
 Upgrade Typescript to v2.9.2
 
 Add rmAllFalsy alias rmFalsyVals
