@@ -1,25 +1,20 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-// setup file
+/******************************************* TEST SETUP *******************************************/
 import * as Enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-console.log(`Adapter:`, Adapter);
-
 (Enzyme as any).configure({adapter: new Adapter()});
 
 /*************************************** IMPORT TEST UTILS ****************************************/
-import {expect} from 'chai';
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import {expect} from 'chai';
 import {mount, shallow, ShallowWrapper, ReactWrapper} from 'enzyme';
-
 import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
 
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
 import {IfTruthy, IfFalsy, Switch, Case, Default} from '../../src/react/components';
-// RouterProps, InputChangeType, FormSubmitHandler, FormSubmitType, InputChangeHandler, setSfcDisplayName, buildNamedStatelessComponent, ChildrenPassthruProps, NamedSFC
 
 /******************************************** LOGGING *********************************************/
 import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
@@ -27,7 +22,7 @@ const log = nodeLogFactory(buildFileTag('react--components.spec.tsx', colors.bla
 
 /******************************************** HELPERS *********************************************/
 /**
- * Gets number of children of the rendered component.
+ * Gets number of children of the rendered component
  * @example numChildren(shallow(
  *              <div>
  *                  <span>El 1</span>
@@ -38,7 +33,7 @@ const log = nodeLogFactory(buildFileTag('react--components.spec.tsx', colors.bla
 const numChildren = (cmp: ShallowWrapper<any, any>) => cmp.children().length;
 
 /**
- * Gets the child of the rendered component.
+ * Gets the child of the rendered component
  * @example getChildNode(shallow(<div>Hello</div>)); // => 'Hello'
  */
 const getChildNode = (cmp: ShallowWrapper<any, any>) =>
