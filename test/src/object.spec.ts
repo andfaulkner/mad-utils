@@ -423,7 +423,7 @@ describe(`object sub-module`, function() {
         });
         it(`should return the original object with properties added`, function() {
             const obj = {};
-            const newObj = defineImmutableProp<{gr: string}, typeof obj>(obj, 'gr', 'argh');
+            const newObj = defineImmutableProp<{gr: string} & typeof obj>(obj, 'gr', 'argh');
             expect(newObj.gr).to.eql('argh');
         });
     });
@@ -444,7 +444,7 @@ describe(`object sub-module`, function() {
         });
         it(`should return the original object with properties added`, function() {
             const obj = {};
-            const newObj = defineMutableProp<{gr: string}, typeof obj>(obj, 'gr', 'argh');
+            const newObj = defineMutableProp<{gr: string} & typeof obj>(obj, 'gr', 'argh');
             expect(newObj.gr).to.eql('argh');
         });
     });
@@ -471,7 +471,7 @@ describe(`object sub-module`, function() {
         });
         it(`should return the original object with properties added`, function() {
             const obj = {};
-            const newObj = defineDeletableProp<{gr: string}, typeof obj>(obj, 'gr', 'argh');
+            const newObj = defineDeletableProp<{gr: string} & typeof obj>(obj, 'gr', 'argh');
             expect(newObj.gr).to.eql('argh');
         });
     });
@@ -575,7 +575,7 @@ describe(`object sub-module`, function() {
         it(`should allow edits & deletion of prop defined w mutable arg 'deletable'`, function() {
             const obj = {};
             // Should set the prop.
-            const newObj = defineProp<{a: string}, typeof obj>(obj, 'a', 'eh', 'deletable');
+            const newObj = defineProp<{a: string} & typeof obj>(obj, 'a', 'eh', 'deletable');
             expect(newObj.a).to.equal('eh');
             // Should allow modification of the prop.
             newObj.a = 'ay-eeeee!';
