@@ -155,32 +155,6 @@ describe(`types sub-modules`, function() {
             });
             it(`returns true if given a String-inheriting object instance`, function() {
                 class PrefixedString extends String {}
-                console.log('PrefixedString:');
-                console.log(PrefixedString);
-                console.log('new PrefixedString():');
-                console.log(new PrefixedString());
-                console.log('typeof new PrefixedString():');
-                console.log(typeof new PrefixedString());
-                console.log('typeof new PrefixedString() != null:');
-                console.log(typeof new PrefixedString() != null);
-                console.log("typeof new PrefixedString() === 'object':");
-                console.log(typeof new PrefixedString() === 'object');
-                console.log('Object.prototype.toString.call(new PrefixedString()):');
-                console.log(Object.prototype.toString.call(new PrefixedString()));
-                console.log('isString(new PrefixedString()):');
-                console.log(isString(new PrefixedString()));
-                console.log('is new PrefixedString() a string? Manual test:');
-                console.log(
-                    typeof new PrefixedString() === 'string' ||
-                        (new PrefixedString() != null &&
-                            typeof new PrefixedString() === 'object' &&
-                            Object.prototype.toString.call(new PrefixedString()) ===
-                                '[object String]')
-                );
-                console.log('_.isString(new PrefixedString()):');
-                console.log(_.isString(new PrefixedString()));
-                console.log('isString:');
-                console.log(isString);
                 expect(isString(new PrefixedString())).to.be.true;
             });
             it(`returns false if given a val that isn't a string or String instance`, function() {
