@@ -1,3 +1,16 @@
+0.58.0 (WIP)
+============
+Upgrade Typescript to v2.9.2
+
+Add rmAllFalsy alias rmFalsyVals
+*   Reason: the name 'rmAllFalsy' is unsemantic, because the function can be
+    configured to instead remove a selected subset of falsy val types
+
+Remove NumberLike, NumLike types
+
+isNumberLike function no longer handles string & nunber arrays with 1 item
+isLeapYear function no longer takes string & nunber arrays with 1 item
+
 0.57.5
 ======
 Add optional 2nd config param to rmAllFalsy (alias: compact) function, with options:
