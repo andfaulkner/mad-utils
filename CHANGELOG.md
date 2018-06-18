@@ -1,3 +1,7 @@
+0.58.2 (WIP)
+============
+Formatted CHANGELOG
+
 0.58.1
 ======
 Fix typings (to allow TS v2.9.2 to work) in object module for:
