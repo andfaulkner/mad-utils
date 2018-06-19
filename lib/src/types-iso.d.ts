@@ -136,7 +136,7 @@ export declare const isFalse: <T extends string | false | String = false>(val: a
  * @param {Any} val Return true if this value is a function
  * @return {boolean} True if val is a function, otherwise false
  */
-export declare const isFunction: <T = (...args: any[]) => any>(val: any) => val is T;
+export declare const isFunction: <T extends Function = (...args: any[]) => any>(val: any) => val is T;
 /**
  * Any class wrapped in this decorator becomes a singleton immediately
  * Throws if attempt is made to wrap a non-class

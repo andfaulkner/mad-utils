@@ -277,8 +277,8 @@ export const isFalse = <T extends false | string | String = false>(
  * @param {Any} val Return true if this value is a function
  * @return {boolean} True if val is a function, otherwise false
  */
-export const isFunction = <T = ((...args: any[]) => any)>(val: RealAny): val is T => {
-    const str = Object.prototype.toString.call(val);
+export const isFunction = <T extends Function = ((...args: any[]) => any)>(val: RealAny): val is T => {
+    const str = {}.toString.call(val);
     return str === '[object Function]' || (typeof val === 'function' && str !== '[object RegExp]');
 };
 
