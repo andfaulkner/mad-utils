@@ -2,6 +2,8 @@
 ============
 Formatted CHANGELOG
 
+Fix typings for isFunction
+
 0.58.1
 ======
 Fix typings (to allow TS v2.9.2 to work) in object module for:
