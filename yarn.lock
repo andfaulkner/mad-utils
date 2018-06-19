@@ -2953,15 +2953,14 @@ lru-cache@^4.0.0, lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-mad-logs@^10.1.6:
-  version "10.1.6"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.1.6.tgz#23431eac3f9ae97594119bf360a86819596f14b4"
+mad-logs@^10.1.7:
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.1.7.tgz#fb873f098a192dfe4ca9cff268494f53f222e160"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
     env-var-helpers "^4.0.1"
     global "^4.3.1"
-    lodash.isfunction "^3.0.8"
     string.prototype.padend "^3.0.0"
 
 mad-logs@^9.1.1:
