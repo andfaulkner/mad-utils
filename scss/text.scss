@@ -138,44 +138,44 @@
     .ls-0pt45, .ls-0p45 {letter-spacing: 0.45px}
     .ls-0pt5,  .ls-0p5 {letter-spacing: 0.5px}
     .ls-0pt75, .ls-0p75 {letter-spacing: 0.75px}
-    .ls-1 {letter-spacing: 1px}
+    .ls-1   {letter-spacing: 1px}
     .ls-1.5 {letter-spacing: 1.5px}
-    .ls-2 {letter-spacing: 2px}
+    .ls-2   {letter-spacing: 2px}
     .ls-2.5 {letter-spacing: 2.5px}
-    .ls-3 {letter-spacing: 3px}
+    .ls-3   {letter-spacing: 3px}
 
     /****************************************** FONT FAMILY ******************************************/
-    .ff-better-helvetica {
+    div div .ff-better-helvetica, .ff-better-helvetica {
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
                      Helvetica, Arial, "Lucida Grande", sans-serif;
     }
-    .better-helvetica {
+    div div .better-helvetica, .better-helvetica {
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
                      Helvetica, Arial, "Lucida Grande", sans-serif;
     }
-    .ff-helvetica-neue             {font-family: "Helvetica Neue", sans-serif      }
-    .ff-helvetica-neue-serif       {font-family: "Helvetica Neue"                  }
-    .helvetica-neue                {font-family: "Helvetica Neue", sans-serif      }
-    .helvetica-neue-serif          {font-family: "Helvetica Neue"                  }
+    div div .ff-helvetica-neue, .ff-helvetica-neue             {font-family: "Helvetica Neue", sans-serif      }
+    div div .ff-helvetica-neue-serif, .ff-helvetica-neue-serif {font-family: "Helvetica Neue"                  }
+    div div .helvetica-neue, .helvetica-neue                   {font-family: "Helvetica Neue", sans-serif      }
+    div div .helvetica-neue-serif, .helvetica-neue-serif       {font-family: "Helvetica Neue"                  }
 
-    .ff-HelveticaNeue              {font-family: HelveticaNeue, sans-serif         }
-    .ff-HelveticaNeue-serif        {font-family: HelveticaNeue                     }
-    .HelveticaNeue                 {font-family: HelveticaNeue, sans-serif         }
-    .HelveticaNeue-serif           {font-family: HelveticaNeue                     }
+    div div .ff-HelveticaNeue, .ff-HelveticaNeue             {font-family: HelveticaNeue, sans-serif         }
+    div div .ff-HelveticaNeue-serif, .ff-HelveticaNeue-serif {font-family: HelveticaNeue                     }
+    div div .HelveticaNeue, .HelveticaNeue                   {font-family: HelveticaNeue, sans-serif         }
+    div div .HelveticaNeue-serif, .HelveticaNeue-serif       {font-family: HelveticaNeue                     }
 
-    .ff-helvetica-neue-light       {font-family: "Helvetica Neue Light", sans-serif}
-    .ff-helvetica-neue-light-serif {font-family: "Helvetica Neue Light"            }
-    .helvetica-neue-light          {font-family: "Helvetica Neue Light", sans-serif}
-    .helvetica-neue-light-serif    {font-family: "Helvetica Neue Light"            }
+    div div .ff-helvetica-neue-light, .ff-helvetica-neue-light             {font-family: "Helvetica Neue Light", sans-serif}
+    div div .ff-helvetica-neue-light-serif, .ff-helvetica-neue-light-serif {font-family: "Helvetica Neue Light"            }
+    div div .helvetica-neue-light, .helvetica-neue-light                   {font-family: "Helvetica Neue Light", sans-serif}
+    div div .helvetica-neue-light-serif, .helvetica-neue-light-serif       {font-family: "Helvetica Neue Light"            }
 
     /******************************************** SHADOW *********************************************/
     .ts-none {text-shadow: none}
 
     /******************************************* ALIGNMENT *******************************************/
-    div input.ta-left, input.ta-left, div.ta-left, .ta-left   {text-align: left  }
-    div input.ta-left, input.ta-left, div.ta-left, .ta-left   {text-align: left  }
+    div input.ta-left, input.ta-left, div.ta-left, .ta-left         {text-align: left  }
+    div input.ta-left, input.ta-left, div.ta-left, .ta-left         {text-align: left  }
     div input.ta-center, input.ta-center, div.ta-center, .ta-center {text-align: center}
-    div input.ta-right, input.ta-right, div.ta-right, .ta-right  {text-align: right }
+    div input.ta-right, input.ta-right, div.ta-right, .ta-right     {text-align: right }
 
     /* Utilities */
     .ellipsize {
