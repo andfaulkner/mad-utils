@@ -1,4 +1,4 @@
-0.58.2
+0.58.3
 ======
 Formatted CHANGELOG
 
