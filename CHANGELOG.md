@@ -1,5 +1,5 @@
-0.58.2 (WIP)
-============
+0.58.2
+======
 Formatted CHANGELOG
 
 Fix typings for isFunction
@@ -8,6 +8,11 @@ SCSS text utils:
     *   Convert ls-#.# to ls-#pt# & ls-#p#
     *   Higher specificity for font-family utils
     *   Higher specificity for font-size
+
+"sample" function:
+    *   handles empty Maps & Sets
+    *   unit tests for Map & Set
+    *   type signatures for Map & Set inputs
 
 0.58.1
 ======
