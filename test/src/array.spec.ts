@@ -717,6 +717,32 @@ describe(`array sub-module`, function() {
         it(`given an empty object (with no keys), returns undefined`, function() {
             expect(sample({})).to.be.undefined;
         });
+        it(`given a Map, gets a random array pair from it`, function() {
+            const myMap = new Map([['a', 1], ['b', 2], ['c', 3], ['d', 4], ['e', 5]]);
+            const mySample = sample(myMap);
+            expect(mySample).to.have.length(2);
+            expect(mySample[0]).to.match(/^[abcde]$/);
+            expect(mySample[1].toString()).to.match(/^[12345]$/);
+        });
+        it(`given an empty Map, returns an empty array`, function() {
+            const myMap2 = new Map();
+            console.log('myMap');
+            console.log(myMap2);
+            const mySample2 = sample(myMap2);
+            console.log('mySample');
+            console.log(mySample2);
+            expect(mySample2).to.have.length(0);
+            expect(mySample2).to.eql([]);
+        });
+        it(`given a Set, gets a random item from it`, function() {
+            const mySet = new Set(['a', 'b', 'c', 'd']);
+            expect(sample(mySet)).to.match(/^[abcd]$/);
+        });
+        it(`given an empty Set, returns []`, function() {
+            const mySet = new Set();
+            expect(sample(mySet)).to.eql([]);
+        });
+
     });
 
     describe(`flatten`, function() {
