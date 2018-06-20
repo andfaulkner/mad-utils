@@ -1,72 +1,72 @@
 :global {
     //****************************************** TEXT-INDENT ******************************************/
-    .ti-1   { text-indent: 1px   }
-    .ti-2   { text-indent: 2px   }
-    .ti-4   { text-indent: 4px   }
-    .ti-5   { text-indent: 5px   }
-    .ti-8   { text-indent: 8px   }
-    .ti-10  { text-indent: 10px  }
-    .ti-15  { text-indent: 15px  }
-    .ti-20  { text-indent: 20px  }
-    .ti-25  { text-indent: 25px  }
-    .ti-30  { text-indent: 30px  }
-    .ti-40  { text-indent: 40px  }
-    .ti-50  { text-indent: 50px  }
-    .ti-75  { text-indent: 75px  }
-    .ti-100 { text-indent: 100px }
+    .ti-1   {text-indent: 1px  }
+    .ti-2   {text-indent: 2px  }
+    .ti-4   {text-indent: 4px  }
+    .ti-5   {text-indent: 5px  }
+    .ti-8   {text-indent: 8px  }
+    .ti-10  {text-indent: 10px }
+    .ti-15  {text-indent: 15px }
+    .ti-20  {text-indent: 20px }
+    .ti-25  {text-indent: 25px }
+    .ti-30  {text-indent: 30px }
+    .ti-40  {text-indent: 40px }
+    .ti-50  {text-indent: 50px }
+    .ti-75  {text-indent: 75px }
+    .ti-100 {text-indent: 100px}
 
     /********************************************* TEXT **********************************************/
-    .fs-10 { font-size: 10px }
-    .fs-11 { font-size: 11px }
-    .fs-12 { font-size: 12px }
-    .fs-13 { font-size: 13px }
-    .fs-14 { font-size: 14px }
-    .fs-15 { font-size: 15px }
-    .fs-16 { font-size: 16px }
-    .fs-17 { font-size: 17px }
-    .fs-18 { font-size: 18px }
-    .fs-19 { font-size: 19px }
-    .fs-20 { font-size: 20px }
-    .fs-21 { font-size: 21px }
-    .fs-22 { font-size: 22px }
-    .fs-23 { font-size: 23px }
-    .fs-24 { font-size: 24px }
-    .fs-25 { font-size: 25px }
-    .fs-26 { font-size: 26px }
-    .fs-27 { font-size: 27px }
-    .fs-28 { font-size: 28px }
-    .fs-29 { font-size: 29px }
-    .fs-30 { font-size: 30px }
-    .fs-31 { font-size: 31px }
-    .fs-32 { font-size: 32px }
-    .fs-33 { font-size: 33px }
-    .fs-34 { font-size: 34px }
-    .fs-35 { font-size: 35px }
-    .fs-36 { font-size: 36px }
-    .fs-38 { font-size: 38px }
-    .fs-40 { font-size: 40px }
-    .fs-45 { font-size: 45px }
-    .fs-50 { font-size: 50px }
+    div div .fs-10, .fs-10 {font-size: 10px}
+    div div .fs-11, .fs-11 {font-size: 11px}
+    div div .fs-12, .fs-12 {font-size: 12px}
+    div div .fs-13, .fs-13 {font-size: 13px}
+    div div .fs-14, .fs-14 {font-size: 14px}
+    div div .fs-15, .fs-15 {font-size: 15px}
+    div div .fs-16, .fs-16 {font-size: 16px}
+    div div .fs-17, .fs-17 {font-size: 17px}
+    div div .fs-18, .fs-18 {font-size: 18px}
+    div div .fs-19, .fs-19 {font-size: 19px}
+    div div .fs-20, .fs-20 {font-size: 20px}
+    div div .fs-21, .fs-21 {font-size: 21px}
+    div div .fs-22, .fs-22 {font-size: 22px}
+    div div .fs-23, .fs-23 {font-size: 23px}
+    div div .fs-24, .fs-24 {font-size: 24px}
+    div div .fs-25, .fs-25 {font-size: 25px}
+    div div .fs-26, .fs-26 {font-size: 26px}
+    div div .fs-27, .fs-27 {font-size: 27px}
+    div div .fs-28, .fs-28 {font-size: 28px}
+    div div .fs-29, .fs-29 {font-size: 29px}
+    div div .fs-30, .fs-30 {font-size: 30px}
+    div div .fs-31, .fs-31 {font-size: 31px}
+    div div .fs-32, .fs-32 {font-size: 32px}
+    div div .fs-33, .fs-33 {font-size: 33px}
+    div div .fs-34, .fs-34 {font-size: 34px}
+    div div .fs-35, .fs-35 {font-size: 35px}
+    div div .fs-36, .fs-36 {font-size: 36px}
+    div div .fs-38, .fs-38 {font-size: 38px}
+    div div .fs-40, .fs-40 {font-size: 40px}
+    div div .fs-45, .fs-45 {font-size: 45px}
+    div div .fs-50, .fs-50 {font-size: 50px}
 
     //****************************************** FONT WEIGHT ******************************************/
-    div.fw-300, div input.fw-300, input.fw-300, .fw-300             { font-weight: 300    }
-    div.fw-500, div input.fw-500, input.fw-500, .fw-500             { font-weight: 500    }
-    div.fw-normal, div input.fw-normal, input.fw-normal, .fw-normal { font-weight: normal }
-    div.no-bold, div input.no-bold, input.no-bold, .no-bold         { font-weight: normal }
-    div.fw-bold, div input.fw-bold, input.fw-bold, .fw-bold         { font-weight: bold   }
-    div.bold, div input.bold, input.bold, .bold                     { font-weight: bold   }
+    div.fw-300, div input.fw-300, input.fw-300, .fw-300             {font-weight: 300   }
+    div.fw-500, div input.fw-500, input.fw-500, .fw-500             {font-weight: 500   }
+    div.fw-normal, div input.fw-normal, input.fw-normal, .fw-normal {font-weight: normal}
+    div.no-bold, div input.no-bold, input.no-bold, .no-bold         {font-weight: normal}
+    div.fw-bold, div input.fw-bold, input.fw-bold, .fw-bold         {font-weight: bold  }
+    div.bold, div input.bold, input.bold, .bold                     {font-weight: bold  }
 
     //**************************************** FONT DECORATION ****************************************/
-    .underline                { text-decoration: underline }
-    .no-underline             { text-decoration: none      }
-    .no-hover-underline:hover { text-decoration: none      }
-    .italic                   { font-style: italic         }
-    .italics                  { font-style: italic         }
+    .underline                {text-decoration: underline}
+    .no-underline             {text-decoration: none     }
+    .no-hover-underline:hover {text-decoration: none     }
+    .italic                   {font-style: italic        }
+    .italics                  {font-style: italic        }
 
     //************************************** FONT CAPITALIZATION **************************************/
-    .uppercase  { text-transform: uppercase  }
-    .lowercase  { text-transform: lowercase  }
-    .capitalize { text-transform: capitalize }
+    .uppercase  {text-transform: uppercase }
+    .lowercase  {text-transform: lowercase }
+    .capitalize {text-transform: capitalize}
 
     // REVERSE TEXT
     .reverse-text, .text-reverse, .text-flipx, .flipx-text {
@@ -76,35 +76,35 @@
     }
 
     //****************************************** LINE HEGHT *******************************************/
-    .lh-5   { line-height: 5px   }
-    .lh-6   { line-height: 6px   }
-    .lh-7   { line-height: 7px   }
-    .lh-8   { line-height: 8px   }
-    .lh-9   { line-height: 9px   }
-    .lh-10  { line-height: 10px  }
-    .lh-11  { line-height: 11px  }
-    .lh-12  { line-height: 12px  }
-    .lh-13  { line-height: 13px  }
-    .lh-14  { line-height: 14px  }
-    .lh-15  { line-height: 15px  }
-    .lh-16  { line-height: 16px  }
-    .lh-17  { line-height: 17px  }
-    .lh-18  { line-height: 18px  }
-    .lh-19  { line-height: 19px  }
-    .lh-20  { line-height: 20px  }
-    .lh-21  { line-height: 21px  }
-    .lh-22  { line-height: 22px  }
-    .lh-23  { line-height: 23px  }
-    .lh-24  { line-height: 24px  }
-    .lh-25  { line-height: 25px  }
-    .lh-30  { line-height: 30px  }
-    .lh-35  { line-height: 35px  }
-    .lh-36  { line-height: 36px  }
-    .lh-40  { line-height: 40px  }
-    .lh-45  { line-height: 45px  }
-    .lh-50  { line-height: 50px  }
-    .lh-75  { line-height: 75px  }
-    .lh-100 { line-height: 100px }
+    .lh-5   {line-height: 5px  }
+    .lh-6   {line-height: 6px  }
+    .lh-7   {line-height: 7px  }
+    .lh-8   {line-height: 8px  }
+    .lh-9   {line-height: 9px  }
+    .lh-10  {line-height: 10px }
+    .lh-11  {line-height: 11px }
+    .lh-12  {line-height: 12px }
+    .lh-13  {line-height: 13px }
+    .lh-14  {line-height: 14px }
+    .lh-15  {line-height: 15px }
+    .lh-16  {line-height: 16px }
+    .lh-17  {line-height: 17px }
+    .lh-18  {line-height: 18px }
+    .lh-19  {line-height: 19px }
+    .lh-20  {line-height: 20px }
+    .lh-21  {line-height: 21px }
+    .lh-22  {line-height: 22px }
+    .lh-23  {line-height: 23px }
+    .lh-24  {line-height: 24px }
+    .lh-25  {line-height: 25px }
+    .lh-30  {line-height: 30px }
+    .lh-35  {line-height: 35px }
+    .lh-36  {line-height: 36px }
+    .lh-40  {line-height: 40px }
+    .lh-45  {line-height: 45px }
+    .lh-50  {line-height: 50px }
+    .lh-75  {line-height: 75px }
+    .lh-100 {line-height: 100px}
 
     /**************************************** LETTER-SPACING *****************************************/
     .ls-normal {letter-spacing: normal}
@@ -153,29 +153,29 @@
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
                      Helvetica, Arial, "Lucida Grande", sans-serif;
     }
-    .ff-helvetica-neue             { font-family: "Helvetica Neue", sans-serif       }
-    .ff-helvetica-neue-serif       { font-family: "Helvetica Neue"                   }
-    .helvetica-neue                { font-family: "Helvetica Neue", sans-serif       }
-    .helvetica-neue-serif          { font-family: "Helvetica Neue"                   }
+    .ff-helvetica-neue             {font-family: "Helvetica Neue", sans-serif      }
+    .ff-helvetica-neue-serif       {font-family: "Helvetica Neue"                  }
+    .helvetica-neue                {font-family: "Helvetica Neue", sans-serif      }
+    .helvetica-neue-serif          {font-family: "Helvetica Neue"                  }
 
-    .ff-HelveticaNeue              { font-family: HelveticaNeue, sans-serif          }
-    .ff-HelveticaNeue-serif        { font-family: HelveticaNeue                      }
-    .HelveticaNeue                 { font-family: HelveticaNeue, sans-serif          }
-    .HelveticaNeue-serif           { font-family: HelveticaNeue                      }
+    .ff-HelveticaNeue              {font-family: HelveticaNeue, sans-serif         }
+    .ff-HelveticaNeue-serif        {font-family: HelveticaNeue                     }
+    .HelveticaNeue                 {font-family: HelveticaNeue, sans-serif         }
+    .HelveticaNeue-serif           {font-family: HelveticaNeue                     }
 
-    .ff-helvetica-neue-light       { font-family: "Helvetica Neue Light", sans-serif }
-    .ff-helvetica-neue-light-serif { font-family: "Helvetica Neue Light"             }
-    .helvetica-neue-light          { font-family: "Helvetica Neue Light", sans-serif }
-    .helvetica-neue-light-serif    { font-family: "Helvetica Neue Light"             }
+    .ff-helvetica-neue-light       {font-family: "Helvetica Neue Light", sans-serif}
+    .ff-helvetica-neue-light-serif {font-family: "Helvetica Neue Light"            }
+    .helvetica-neue-light          {font-family: "Helvetica Neue Light", sans-serif}
+    .helvetica-neue-light-serif    {font-family: "Helvetica Neue Light"            }
 
     /******************************************** SHADOW *********************************************/
-    .ts-none { text-shadow: none }
+    .ts-none {text-shadow: none}
 
     /******************************************* ALIGNMENT *******************************************/
-    div input.ta-left, input.ta-left, div.ta-left, .ta-left   { text-align: left   }
-    div input.ta-left, input.ta-left, div.ta-left, .ta-left   { text-align: left   }
-    div input.ta-center, input.ta-center, div.ta-center, .ta-center { text-align: center }
-    div input.ta-right, input.ta-right, div.ta-right, .ta-right  { text-align: right  }
+    div input.ta-left, input.ta-left, div.ta-left, .ta-left   {text-align: left  }
+    div input.ta-left, input.ta-left, div.ta-left, .ta-left   {text-align: left  }
+    div input.ta-center, input.ta-center, div.ta-center, .ta-center {text-align: center}
+    div input.ta-right, input.ta-right, div.ta-right, .ta-right  {text-align: right }
 
     /* Utilities */
     .ellipsize {
@@ -191,11 +191,11 @@
     }
 
     /***************************************** WORD WRAPPING ******************************************/
-    .whitespace-no-wrap, .whitespace-nowrap, .whitespace-nw, .ws-no-wrap, .ws-nowrap, .ws-nw { white-space: nowrap }
-    .whitespace-normal, .whitespace-norm, .whitespace-nw, .ws-normal, .ws-norm, .ws-n { white-space: normal }
-    .whitespace-pre, .ws-pre { white-space: pre }
-    .whitespace-pre-line, .whitespace-preline, .whitespace-pl .ws-pre-line, .ws-preline, .ws-pl { white-space: pre-line }
-    .whitespace-pre-wrap, .whitespace-prewrap, .whitespace-pw .ws-pre-wrap, .ws-prewrap, .ws-pw { white-space: pre-wrap }
-    .whitespace-unset, .whitespace-us, .ws-unset, .ws-us { white-space: unset }
+    .whitespace-no-wrap, .whitespace-nowrap, .whitespace-nw, .ws-no-wrap, .ws-nowrap, .ws-nw {white-space: nowrap}
+    .whitespace-normal, .whitespace-norm, .whitespace-nw, .ws-normal, .ws-norm, .ws-n {white-space: normal}
+    .whitespace-pre, .ws-pre {white-space: pre}
+    .whitespace-pre-line, .whitespace-preline, .whitespace-pl .ws-pre-line, .ws-preline, .ws-pl {white-space: pre-line}
+    .whitespace-pre-wrap, .whitespace-prewrap, .whitespace-pw .ws-pre-wrap, .ws-prewrap, .ws-pw {white-space: pre-wrap}
+    .whitespace-unset, .whitespace-us, .ws-unset, .ws-us {white-space: unset}
 
 }
