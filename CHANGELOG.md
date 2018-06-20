@@ -4,6 +4,11 @@ Formatted CHANGELOG
 
 Fix typings for isFunction
 
+SCSS text utils:
+    *   Convert ls-#.# to ls-#pt# & ls-#p#
+    *   Higher specificity for font-family utils
+    *   Higher specificity for font-size
+
 0.58.1
 ======
 Fix typings (to allow TS v2.9.2 to work) in object module for:
