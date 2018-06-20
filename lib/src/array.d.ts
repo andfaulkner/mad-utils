@@ -263,6 +263,12 @@ export declare function sample<T = any>(coll: Record<string, T>): [string, T] | 
  */
 export declare function sample<T = any>(coll: string): string | undefined;
 /**
+ * Return random pair from given Map, or [] if it's an empty Map
+ * @param {Map<K, V>} coll Map to get random pair from
+ * @return {[K, V]} Randomly selected pair from string, or [] if map is empty
+ */
+export declare function sample<K = any, V = any>(coll: Map<K, V>): ([K, V] | undefined[]);
+/**
  * @export Flatten an array
  * @param {Array} arr Array (or set of nested arrays) to flatten
  * @return {Array} Flattened array. e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
