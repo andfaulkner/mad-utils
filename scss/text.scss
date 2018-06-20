@@ -108,65 +108,75 @@
 
     /**************************************** LETTER-SPACING *****************************************/
     .ls-normal {letter-spacing: normal}
-    .ls-n3 {letter-spacing: -3px}
-    .ls-n2.5 {letter-spacing: -2.5px}
-    .ls-n2 {letter-spacing: -2px}
-    .ls-n1.5 {letter-spacing: -1.5px}
-    .ls-n1 {letter-spacing: -1px}
+    .ls-n3     {letter-spacing: -3px  }
+    .ls-n2.5   {letter-spacing: -2.5px}
+    .ls-n2     {letter-spacing: -2px  }
+    .ls-n1.5   {letter-spacing: -1.5px}
+    .ls-n1     {letter-spacing: -1px  }
     .ls-n0pt75, .ls-n0p75 {letter-spacing: -0.75px}
-    .ls-n0pt5,  .ls-n0p5 {letter-spacing: -0.5px}
+    .ls-n0pt5,  .ls-n0p5  {letter-spacing: -0.5px }
     .ls-n0pt45, .ls-n0p45 {letter-spacing: -0.45px}
-    .ls-n0pt4,  .ls-n0p4 {letter-spacing: -0.4px}
+    .ls-n0pt4,  .ls-n0p4  {letter-spacing: -0.4px }
     .ls-n0pt35, .ls-n0p35 {letter-spacing: -0.35px}
-    .ls-n0pt3,  .ls-n0p3 {letter-spacing: -0.3px}
+    .ls-n0pt3,  .ls-n0p3  {letter-spacing: -0.3px }
     .ls-n0pt25, .ls-n0p25 {letter-spacing: -0.25px}
-    .ls-n0pt2,  .ls-n0p2 {letter-spacing: -0.2px}
+    .ls-n0pt2,  .ls-n0p2  {letter-spacing: -0.2px }
     .ls-n0pt15, .ls-n0p15 {letter-spacing: -0.15px}
-    .ls-n0pt1,  .ls-n0p1 {letter-spacing: -0.1px}
+    .ls-n0pt1,  .ls-n0p1  {letter-spacing: -0.1px }
     .ls-n0pt05, .ls-n0p05 {letter-spacing: -0.05px}
 
     .ls-0 {letter-spacing: 0px}
 
     .ls-0pt05, .ls-0p05 {letter-spacing: 0.05px}
-    .ls-0pt1,  .ls-0p1 {letter-spacing: 0.1px}
+    .ls-0pt1,  .ls-0p1  {letter-spacing: 0.1px }
     .ls-0pt15, .ls-0p15 {letter-spacing: 0.15px}
-    .ls-0pt2,  .ls-0p2 {letter-spacing: 0.2px}
+    .ls-0pt2,  .ls-0p2  {letter-spacing: 0.2px }
     .ls-0pt25, .ls-0p25 {letter-spacing: 0.25px}
-    .ls-0pt3,  .ls-0p3 {letter-spacing: 0.3px}
+    .ls-0pt3,  .ls-0p3  {letter-spacing: 0.3px }
     .ls-0pt35, .ls-0p35 {letter-spacing: 0.35px}
-    .ls-0pt4,  .ls-0p4 {letter-spacing: 0.4px}
+    .ls-0pt4,  .ls-0p4  {letter-spacing: 0.4px }
     .ls-0pt45, .ls-0p45 {letter-spacing: 0.45px}
-    .ls-0pt5,  .ls-0p5 {letter-spacing: 0.5px}
+    .ls-0pt5,  .ls-0p5  {letter-spacing: 0.5px }
     .ls-0pt75, .ls-0p75 {letter-spacing: 0.75px}
-    .ls-1                      {letter-spacing: 1px}
-    .ls-1p5, .ls-1pt5 {letter-spacing: 1.5px}
-    .ls-2                      {letter-spacing: 2px}
-    .ls-2p5, .ls-2pt5 {letter-spacing: 2.5px}
-    .ls-3                      {letter-spacing: 3px}
+    .ls-1               {letter-spacing: 1px   }
+    .ls-1p5, .ls-1pt5   {letter-spacing: 1.5px }
+    .ls-2               {letter-spacing: 2px   }
+    .ls-2p5, .ls-2pt5   {letter-spacing: 2.5px }
+    .ls-3               {letter-spacing: 3px   }
 
     /****************************************** FONT FAMILY ******************************************/
+    div div .better-helvetica, .better-helvetica,
     div div .ff-better-helvetica, .ff-better-helvetica {
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
                      Helvetica, Arial, "Lucida Grande", sans-serif;
     }
-    div div .better-helvetica, .better-helvetica {
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-                     Helvetica, Arial, "Lucida Grande", sans-serif;
+
+    div div .helvetica-neue, .helvetica-neue,
+    div div .ff-helvetica-neue, .ff-helvetica-neue {
+        font-family: "Helvetica Neue", sans-serif
     }
-    div div .ff-helvetica-neue, .ff-helvetica-neue             {font-family: "Helvetica Neue", sans-serif      }
-    div div .ff-helvetica-neue-serif, .ff-helvetica-neue-serif {font-family: "Helvetica Neue"                  }
-    div div .helvetica-neue, .helvetica-neue                   {font-family: "Helvetica Neue", sans-serif      }
-    div div .helvetica-neue-serif, .helvetica-neue-serif       {font-family: "Helvetica Neue"                  }
+    div div .ff-helvetica-neue-serif, .ff-helvetica-neue-serif.
+    div div .helvetica-neue-serif, .helvetica-neue-serif {
+        font-family: "Helvetica Neue"
+    }
 
-    div div .ff-HelveticaNeue, .ff-HelveticaNeue             {font-family: HelveticaNeue, sans-serif         }
-    div div .ff-HelveticaNeue-serif, .ff-HelveticaNeue-serif {font-family: HelveticaNeue                     }
-    div div .HelveticaNeue, .HelveticaNeue                   {font-family: HelveticaNeue, sans-serif         }
-    div div .HelveticaNeue-serif, .HelveticaNeue-serif       {font-family: HelveticaNeue                     }
+    div div .ff-HelveticaNeue, .ff-HelveticaNeue,
+    div div .HelveticaNeue, .HelveticaNeue {
+        font-family: HelveticaNeue, sans-serif
+    }
+    div div .ff-HelveticaNeue-serif, .ff-HelveticaNeue-serif,
+    div div .HelveticaNeue-serif, .HelveticaNeue-serif {
+        font-family: HelveticaNeue
+    }
 
-    div div .ff-helvetica-neue-light, .ff-helvetica-neue-light             {font-family: "Helvetica Neue Light", sans-serif}
-    div div .ff-helvetica-neue-light-serif, .ff-helvetica-neue-light-serif {font-family: "Helvetica Neue Light"            }
-    div div .helvetica-neue-light, .helvetica-neue-light                   {font-family: "Helvetica Neue Light", sans-serif}
-    div div .helvetica-neue-light-serif, .helvetica-neue-light-serif       {font-family: "Helvetica Neue Light"            }
+    div div .ff-helvetica-neue-light, .ff-helvetica-neue-light,
+    div div .helvetica-neue-light, .helvetica-neue-light {
+        font-family: "Helvetica Neue Light", sans-serif
+    }
+    div div .ff-helvetica-neue-light-serif, .ff-helvetica-neue-light-serif,
+    div div .helvetica-neue-light-serif, .helvetica-neue-light-serif {
+        font-family: "Helvetica Neue Light"
+    }
 
     /******************************************** SHADOW *********************************************/
     .ts-none {text-shadow: none}
