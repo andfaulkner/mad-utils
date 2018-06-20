@@ -389,7 +389,6 @@ export const splitLines = (
 ): string[] =>
     opts.preserveEmptyLines ? str.toString().split('\n') : rmAllFalsy(str.toString().split('\n'));
 
-// TODO test countOccurrences
 /**
  * Count number of occurrences of matching value in the array.
  * @param {any[]} arr - Array to search for the item.
@@ -486,11 +485,10 @@ export function sample<T = any>(coll: Record<string, T>): [string, T] | undefine
 export function sample<T = any>(coll: string): string | undefined;
 
 // TODO make sample work for non-standard iterables
-// TODO test sample for non-standard iterables, Sets, Maps
 
-export function sample<T = any>(
-    coll: T[] | string | Record<string, T>
-): T | string | [string, T] | undefined {
+export function sample<T = any, K = any, V = any>(
+    coll: T[] | string | Record<string, T> | Map<any, any>
+): (T | string | [string, T] | undefined | [K, V] | undefined[]) {
     if (isArray(coll)) {
         return coll[Math.floor(randomAbsIntBelow((coll as T[]).length))];
     }
@@ -500,9 +498,11 @@ export function sample<T = any>(
     }
 
     if (coll instanceof Map || coll instanceof Set) {
+        if (coll.size === 0) return [];
         return Array.from(coll)[randomAbsIntBelow(coll.size)];
     }
 
+    // Non-map or set objects
     if (typeof coll === 'object') {
         const objKeys = Object.keys(coll);
         if (objKeys.length === 0) return;
