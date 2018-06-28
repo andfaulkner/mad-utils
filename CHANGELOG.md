@@ -1,3 +1,8 @@
+0.60.0 (WIP) [BREAKING CHANGES]
+===============================
+Remove:
+    - confusing DecoratorError pseudo-class/function
+
 0.59.0 [BREAKING CHANGES]
 =========================
 New function 'runAll' - runs all functions in the given array & return results of each
