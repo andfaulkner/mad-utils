@@ -139,3 +139,12 @@ export function throttle(cb: (...args: any[]) => any, wait: number, immediate = 
         }
     };
 }
+
+/**
+ * Run all functions in the given array, return results of each
+ */
+export const runAll = <R = any>(arr: Function[], ...args: any[]): R[] => {
+    let res = [];
+    arr.forEach(fn => res.push(fn(...args)));
+    return res;
+};

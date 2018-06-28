@@ -74,3 +74,7 @@ export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...con
  * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
  */
 export declare function throttle(cb: (...args: any[]) => any, wait: number, immediate?: boolean): () => void;
+/**
+ * Run all functions in the given array, return results of each
+ */
+export declare const runAll: <R = any>(arr: Function[], ...args: any[]) => R[];
