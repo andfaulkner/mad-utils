@@ -2,13 +2,13 @@
 =========================
 New function 'runAll' - runs all functions in the given array & return results of each
 
-nyc working (test-coverage)
-
 Remove functions:
     - delegateAll - it's too dangerous & erratic to use safely
     - merge - it's pointless and confusing. Use ES7 object spread syntax instead
               e.g. {key: val, ...something}
 
+nyc working (test-coverage)
+File cleanups (prettier, docs more consistent)
 
 0.58.4
 ======
