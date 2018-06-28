@@ -1,3 +1,9 @@
+0.58.5
+======
+New function 'runAll' - runs all functions in the given array & return results of each
+
+nyc working (test-coverage)
+
 0.58.4
 ======
 Formatted CHANGELOG
