@@ -6,19 +6,6 @@
  * @param {string} srcFn Name of source function stacktrace originated from
  */
 export declare function scrubStackTrace(stack: string, srcFn?: string): string;
-export declare type DecoratorErrorProps = {
-    message: string;
-    messageCause: string;
-    decoratorName: string;
-    wrappedItem?: any;
-};
-export interface DecoratorError {
-    new (cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
-}
-/**
- * Throw when a decorator is improperly used. Should only be declared in a decorator function.
- */
-export declare const DecoratorError: DecoratorError;
 /**
  * Remove all stack trace items containing references to any of the given libraries.
  * Must be passed an actual stack for this to work.

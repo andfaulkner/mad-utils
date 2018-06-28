@@ -57,5 +57,4 @@ export declare type DecoratorTargetType = 'CLASS' | 'STATIC_PROPERTY' | 'INSTANC
  */
 export declare function getDecoratorType(...args: any[]): DecoratorTargetType;
 /***************************************** BARREL EXPORTS *****************************************/
-export { DecoratorError, DecoratorErrorProps } from './error';
 export { singleton } from './types-iso';
