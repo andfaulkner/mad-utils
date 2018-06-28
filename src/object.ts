@@ -254,11 +254,6 @@ export {defineProp as defineProperty};
  * @param {Function} value Function to assign to key on object 'obj' (first param in NewKVPair)
  * @return {Object} with new property added
  */
-// export const defineMethod = <NewKVPair extends Object = {}, InputObject extends Object = {}>(
-//     obj: InputObject,
-//     keyName: string,
-//     func: NewKVPair[keyof NewKVPair] & Function
-// ): InputObject & NewKVPair => {
 export const defineMethod = <R extends object = any>(
     obj: object,
     keyName: string,
