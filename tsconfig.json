@@ -39,7 +39,6 @@
 
         "./index.ts",
         "./react.tsx",
-        "./react-mobx.tsx",
         "./shared.ts",
         "./node.ts",
         "./browser.ts",
