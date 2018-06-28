@@ -1,5 +1,5 @@
 import { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, validation, stream };
+export { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, validation, stream, };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -55,7 +55,7 @@ export declare const mUtils: {
     error: typeof error;
     event: typeof event;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -94,7 +94,7 @@ export declare const __: {
     error: typeof error;
     event: typeof event;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -133,7 +133,7 @@ export declare const m_: {
     error: typeof error;
     event: typeof event;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -172,7 +172,7 @@ export declare const madUtils: {
     error: typeof error;
     event: typeof event;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -198,7 +198,7 @@ export declare const madUtils: {
     validation: typeof validation;
 };
 /**
- * Most common functions from mad-utils used in browser.
+ * Most common functions from mad-utils used in browser
  */
 export declare const common: {
     first: typeof array.first;

@@ -68,7 +68,7 @@ export declare const mUtils: {
     error: typeof error;
     find: typeof search;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -103,7 +103,7 @@ export declare const __: {
     error: typeof error;
     find: typeof search;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -138,7 +138,7 @@ export declare const m_: {
     error: typeof error;
     find: typeof search;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -173,7 +173,7 @@ export declare const madUtils: {
     error: typeof error;
     find: typeof search;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;

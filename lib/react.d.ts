@@ -2,19 +2,19 @@
 export * from './src/react/types-react';
 export * from './src/react/hocs';
 export * from './src/react/components';
-declare type FuncW2OrMoreArgs = (arg1: any, ...args: any[]) => (any | void);
+declare type FuncW2OrMoreArgs = (arg1: any, ...args: any[]) => any | void;
 /**
- * Log the value of a React Synthetic event's target component/element.
- * @param {string} callerName Name of function/method calling logSyntheticEvent.
- * @param {Function} logFn Function to use to perform the logging. Must accept at least 2 params.
- * @param {SyntheticEvent|any} event Event to log.
+ * Log the value of a React Synthetic event's target component/element
+ * @param {string} callerName Name of function/method calling logSyntheticEvent
+ * @param {Function} logFn Function to use to perform the logging. Must accept at least 2 params
+ * @param {SyntheticEvent|any} event Event to log
  */
 export declare const logSyntheticEventValue: (callerName: string, logFn?: FuncW2OrMoreArgs) => (event: any) => void;
 /********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
 export * from './browser';
 import * as browserUtils from './browser';
 export { Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer } from './src/number';
-export { PolyglotProps, StrOrNever, StrOrNum, RealAny, Injection, MandatoryInjection, OptionalInjection } from './src/types-iso';
+export { PolyglotProps, StrOrNever, StrOrNum, RealAny, Injection, MandatoryInjection, OptionalInjection, } from './src/types-iso';
 export { browserUtils };
 export declare const first: typeof browserUtils.first, last: typeof browserUtils.last, first2: typeof browserUtils.first2, last2: typeof browserUtils.last2, without: {
     last: typeof browserUtils.withoutLast;

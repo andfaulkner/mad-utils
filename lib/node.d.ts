@@ -1,5 +1,5 @@
 import { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, validation, stream };
+export { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, validation, stream, };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
@@ -69,7 +69,7 @@ export declare const mUtils: {
     expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -110,7 +110,7 @@ export declare const __: {
     expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -151,7 +151,7 @@ export declare const m_: {
     expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -192,7 +192,7 @@ export declare const madUtils: {
     expressRouting: typeof expressRouting;
     file: typeof file;
     func: typeof func;
-    'function': typeof func;
+    function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
@@ -220,7 +220,7 @@ export declare const madUtils: {
 };
 import * as connect from 'connect';
 /**
- * Most common functions from mad-utils used in Node.
+ * Most common functions from mad-utils used in Node
  */
 export declare const common: {
     first: typeof array.first;
@@ -253,7 +253,6 @@ export declare const common: {
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     deepFreeze: <T>(obj: T) => Readonly<T>;
     parseQueryParams: <T>(queryParamsStr?: string) => T;
-    /************************************ COMMON FUNCTION EXPORTS *************************************/
     getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
     urlMinusQueryParams: (url?: string) => string;
     toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
