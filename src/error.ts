@@ -33,40 +33,6 @@ export function scrubStackTrace(stack: string, srcFn?: string): string {
     );
 }
 
-export type DecoratorErrorProps = {
-    message: string;
-    messageCause: string;
-    decoratorName: string;
-    wrappedItem?: any;
-};
-
-export interface DecoratorError {
-    new (cause: string, decoratorName: string, wrappedItem?: any): DecoratorErrorProps;
-}
-
-/**
- * Throw when a decorator is improperly used. Should only be declared in a decorator function.
- */
-export const DecoratorError = (() => {
-    function DecoratorError(cause: string, decoratorName: string, wrappedItem?: any): void {
-        Error.captureStackTrace(this);
-        this.messageCause = this.message = cause;
-        this.name = `DecoratorError`;
-        this.decoratorName = decoratorName;
-        this.wrappedItem = wrappedItem;
-        console.log('this.stack:', this.stack);
-        console.error(
-            `ERROR :: Invalid usage of decorator ${decoratorName}. ` +
-                (wrappedItem ? `Attempted to apply to ${wrappedItem}. ` : ``) +
-                `Error cause: ${cause}`,
-        );
-        return this;
-    }
-
-    DecoratorError.prototype = Object.create(Error.prototype);
-    return (DecoratorError as any) as DecoratorError;
-})();
-
 /**
  * Remove all stack trace items containing references to any of the given libraries.
  * Must be passed an actual stack for this to work.

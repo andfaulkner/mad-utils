@@ -127,5 +127,4 @@ export function getDecoratorType(...args): DecoratorTargetType {
 }
 
 /***************************************** BARREL EXPORTS *****************************************/
-export {DecoratorError, DecoratorErrorProps} from './error';
 export {singleton} from './types-iso';
