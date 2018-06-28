@@ -26,20 +26,36 @@
     "exclude": [
         "*.js",
         "*.json",
-        "build"
+        "build",
+        "./wip/*",
+        "./wip/*.ts",
+        "./wip/**",
+        "./wip/**.ts"
     ],
     "include": [
-        "./*.ts",
-        "./*.tsx",
-        "./typings/*.d.ts",
         "./node_modules/@types/**/*.d.ts",
         "./node_modules/moment/moment.d.ts",
         "./node_modules/typescript/lib/lib.es2015.d.ts",
 
+        "./index.ts",
+        "./react.tsx",
+        "./react-mobx.tsx",
+        "./shared.ts",
+        "./node.ts",
+        "./browser.ts",
+
+        "./typings/*.d.ts",
+        "./typings/**/*.d.ts",
+
         "./src/*.ts",
         "./src/**/*.ts",
+        "./src/*.tsx",
+        "./src/**/*.tsx",
 
         "./test/*.ts",
-        "./test/**/*.ts"
+        "./test/**/*.ts",
+
+        "./test/*.tsx",
+        "./test/**/*.tsx"
     ]
 }

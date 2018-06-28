@@ -190,5 +190,16 @@
   "peerDependencies": {
     "pretty-error": ">=2.1.1"
   },
+  "nyc": {
+    "exclude": [
+      "test/**",
+      "build",
+      "lib",
+      "wip",
+      "scss",
+      "typings",
+      "script"
+    ]
+  },
   "snyk": true
 }
