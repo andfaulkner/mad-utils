@@ -1,76 +1,75 @@
 /******************************************** IMPORTS *********************************************/
 import * as array from './src/array';
 export * from './src/array';
-export { array }
+export {array};
 
 import * as date from './src/date';
 export * from './src/date';
-export { date };
+export {date};
 
 import * as decorator from './src/decorator';
 export * from './src/decorator';
-export { decorator };
+export {decorator};
 
 import * as Enum from './src/enum';
 export * from './src/enum';
-export { Enum };
+export {Enum};
 
 import * as error from './src/error';
 export * from './src/error';
-export { error };
+export {error};
 
 import * as func from './src/function';
 export * from './src/function';
-export { func };
+export {func};
 
 import * as json from './src/json';
 export * from './src/json';
-export { json };
+export {json};
 
 import * as locale from './src/locale';
 export * from './src/locale';
-export { locale };
+export {locale};
 
 import * as number from './src/number';
 export * from './src/number';
-export { number };
+export {number};
 
 import * as object from './src/object';
 export * from './src/object';
-export { object };
+export {object};
 
 import * as url from './src/url';
 export * from './src/url';
-export { url };
+export {url};
 
 import * as search from './src/search';
 export * from './src/search';
-export { search };
+export {search};
 
 import * as string from './src/string';
 export * from './src/string';
-export { string };
+export {string};
 
 import * as types from './src/types-iso';
 export * from './src/types-iso';
-export { types };
+export {types};
 
 import * as dataTypes from './src/types-data-generic';
 export * from './src/types-data-generic';
-export { dataTypes };
+export {dataTypes};
 
 import * as validation from './src/validation';
 export * from './src/validation';
-export { validation };
+export {validation};
 
 import * as stream from './src/stream';
 export * from './src/stream';
-export { stream };
+export {stream};
 
 // Import isNode (detect node vs browser)
 import * as isNode from 'detect-node';
-export { isNode }
-
+export {isNode};
 
 /********************************************* EXPORT *********************************************/
 /**
@@ -88,7 +87,7 @@ export const mUtils = {
     error,
     find: search,
     func: func,
-    'function': func,
+    function: func,
     functionUtils: func,
     genericDataTypes: dataTypes,
     isNode,
@@ -127,7 +126,7 @@ export const commonShared = {
     withoutFirst: array.withoutFirst,
     withoutLast: array.withoutLast,
     withoutFirst2: array.withoutFirst2,
-    withoutLast2 : array.withoutLast2 ,
+    withoutLast2: array.withoutLast2,
     removeMatches: array.removeMatches,
     rmAllFalsy: array.rmAllFalsy,
     isArray: array.isArray,
@@ -173,4 +172,4 @@ export const commonShared = {
     isNode,
 };
 
-export { commonShared as commonIso }
+export {commonShared as commonIso};
