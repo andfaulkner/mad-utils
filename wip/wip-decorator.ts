@@ -1,3 +1,6 @@
+/******************************************** LOGGING *********************************************/
+import {logFactory, Styles} from 'mad-logs/lib/shared';
+const log = logFactory('wip-decorator.ts', Styles.neverEnough);
 
 // Entry:
 //     if args, log:  `ClassName#methodName ran :: args:`, args
