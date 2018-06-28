@@ -38,24 +38,6 @@ export const loop4 = <T>(func: ((...args) => T)): T[] => loopN(4, func);
 /** Run given function 5X, returning results as an array containing all 5 return vals */
 export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
 
-/**
- * TODO test delegateAll
- *
- * Mixin creator
- *
- * @param {Object|ClassConstructor} self Object delegating calls to input
- * @param {Object|ClassInstance} input Object being delegated to by self
- * @return {Object} Conglomerate object: self with all public methods & values of input mixed in
- *
- * @example delegateAll(this, input)
- */
-export function delegateAll<S, I>(self: S, input: I): S & I {
-    Object.keys(input).forEach(k =>
-        Object.defineProperty(self, k, Object.getOwnPropertyDescriptor(input, k))
-    );
-    return self as S & I;
-}
-
 // TODO test getArgsFromFuncAsString
 
 /**
