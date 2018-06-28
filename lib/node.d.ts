@@ -248,12 +248,12 @@ export declare const common: {
     now: (timeFormat?: string) => string;
     condSwitch: typeof func.condSwitch;
     uuid: number.UUIDNamespace;
-    merge: typeof object.merge;
     hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
     eachPair: <T extends Object>(func: (val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
     deepFreeze: <T>(obj: T) => Readonly<T>;
     parseQueryParams: <T>(queryParamsStr?: string) => T;
+    /************************************ COMMON FUNCTION EXPORTS *************************************/
     getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
     urlMinusQueryParams: (url?: string) => string;
     toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;

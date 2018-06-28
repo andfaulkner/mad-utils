@@ -139,7 +139,6 @@ export const commonShared = {
 
     uuid: number.uuid,
 
-    merge: object.merge,
     hasKey: object.hasKey,
     eachPair: object.eachPair,
     assignFrozenClone: object.assignFrozenClone,

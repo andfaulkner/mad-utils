@@ -70,49 +70,6 @@ export { inspectKeyTree as keyTreeInspector };
 export declare const hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
 export { hasKey as containsKey };
 export { hasKey as includesKey };
-/********************************************* MERGE **********************************************/
-export declare type MergeParamTypes<T> = Object | string | T[] | any[] | null | undefined;
-export declare type MergeReturnTypes<T> = Object | string | T[] | any[] | {};
-/**
- * [NON-MUTATIVE] merge all objects into a single object.
- * @param {Object} o1 - First object to merge in.
- * @param {Object} ...objs - Optional additional objects to merge in.
- * @return {Object} conglomerate object. Contains all key-value pairs from all args given.
- */
-export declare function merge<P, Q, R, S, T, U, V, W, X, Y, Z, L>(o1: P, o2?: Q, o3?: R, o4?: S, o5?: T, o6?: U, o7?: V, o8?: W, o9?: X, o10?: Y, o11?: Z, o12?: L): P & Q & R & S & T & U & V & W & X & Y & Z & L;
-/**
- * [NON-MUTATIVE] merge all objects into a single object (deals with 'single argument' case).
- * @param {Object} obj Object to "merge" (since there's only one, it just merges with {})
- * @return {Object} Merged object (simply a duplicate of obj).
- */
-export declare function merge<R>(obj: R): R;
-/**
- * [NON-MUTATIVE] merge all strings into a single string.
- * @param {string} strs Strings to merge.
- * @return {string} Conglomerate string. E.g. given args 'ab' & 'cd', would return 'abcd'
- */
-export declare function merge(...strs: string[]): string;
-/**
- * [NON-MUTATIVE] concatenate all given arrays, of given type.
- * @param {Array<T>[]} arrs Arrays to concatenate, all of type T.
- * @return {T[]} Conglomerate array. e.g. given args [1, 2] & [3]], would return [1, 2, 3].
- */
-export declare function merge<T>(...arrs: T[][]): T[];
-/**
- * [NON-MUTATIVE] concatenate all given arrays, containing any types.
- * @param {Array<T>[]} arrs Arrays to concatenate, containing items of any type.
- * @return {T[]} Concatenated array (from params), containing only values of declared type (T).
- * @example merge<number>([1, 3], [6]); // => [1, 3, 6]. Return type: number[].
- */
-export declare function merge(...objs: any[][]): any[];
-/**
- * [NON-MUTATIVE] return empty object ({})
- */
-export declare function merge(): {};
-/**
- * [NON-MUTATIVE] return empty object ({})
- */
-export declare function merge(obj: null | undefined): {};
 /**
  * Define a new property on an object without overwriting existing property
  * @generic <R> Return object

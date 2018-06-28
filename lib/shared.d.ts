@@ -223,7 +223,6 @@ export declare const commonShared: {
     now: (timeFormat?: string) => string;
     condSwitch: typeof func.condSwitch;
     uuid: number.UUIDNamespace;
-    merge: typeof object.merge;
     hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
     eachPair: <T extends Object>(func: (val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;

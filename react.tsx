@@ -63,7 +63,7 @@ export const {
     rmAllFalsy,
     centerPad, leftPad, rightPad, removeWhitespace, chomp,
     getLangFromUrlPathname, parseQueryParams, parseUserAgent,
-    deepFreeze, assignFrozenClone, merge,
+    deepFreeze, assignFrozenClone,
     isArray, isBoolean, isTrue, isFalse, isInteger, isIntegerLike, isNumberLike, isStringOrNumber,
     isDateLike, isMultilangTextObj, isVoidOrString,
     isDataEnumItem, isIndexEnumItem, isNumericEnumItem, castToNum,

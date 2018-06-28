@@ -10,7 +10,6 @@ import {
     m_,
     object,
     assignFrozenClone,
-    merge,
     defineImmutableProp,
     defineMutableProp,
     defineDeletableProp,
@@ -308,102 +307,6 @@ describe(`object sub-module`, function() {
         it(`drills into booleans`, function() {
             const boola = true;
             expect(get(boola, 'constructor.name')).to.eql('Boolean');
-        });
-    });
-
-    describe(`merge`, function() {
-        it(`merges 2 objects together, where each has 1 key-value pair`, function() {
-            expect(merge({a: 'a'}, {b: 'b'})).to.eql({a: 'a', b: 'b'});
-        });
-        it(`merges 3 objects together, where each has 1 key-value pair`, function() {
-            expect(merge({a: 'a'}, {b: 'b'}, {c: 'c'})).to.eql({a: 'a', b: 'b', c: 'c'});
-        });
-        it(`merges 3 objects together, where each has multiple key-value pairs`, function() {
-            expect(merge({a: 'a', b: 'b'}, {c: 'c', d: 'd', e: 'e'})).to.eql({
-                a: 'a',
-                b: 'b',
-                c: 'c',
-                d: 'd',
-                e: 'e',
-            });
-        });
-        it(`can merge a blank object and an object with contents`, function() {
-            expect(merge({}, {a: 'a'})).to.eql({a: 'a'});
-            expect(merge({a: 'a'}, {})).to.eql({a: 'a'});
-        });
-        it(`returns {} if given undefined`, function() {
-            expect(merge(undefined)).to.eql({});
-        });
-        it(`returns {} if given null`, function() {
-            expect(merge(null)).to.eql({});
-        });
-        it(`returns {} if given null`, function() {
-            expect(merge(null)).to.eql({});
-        });
-        it(`merges strings together if given strings`, function() {
-            expect(merge('a', 'b', '123')).to.eql('ab123');
-        });
-        it(`concats arrays if given arrays`, function() {
-            expect(merge(['a', 'b', 'cdef'], ['g', 'h'])).to.eql(['a', 'b', 'cdef', 'g', 'h']);
-        });
-        it(`skips over undefined when merging arrays`, function() {
-            expect(merge(['a', 'b', 'cdef'], undefined, ['g', 'h'])).to.eql([
-                'a',
-                'b',
-                'cdef',
-                'g',
-                'h',
-            ]);
-        });
-        it(`skips over null when merging arrays`, function() {
-            expect(merge(['a', 'b', 'cdef'], null, ['g', 'h'])).to.eql([
-                'a',
-                'b',
-                'cdef',
-                'g',
-                'h',
-            ]);
-        });
-
-        it(`skips over undefined in 1st arg, & merges rest as arrays if array given as 2nd arg`, function() {
-            expect(merge(undefined, ['a', 'b', 'cdef'], ['g', 'h'])).to.eql([
-                'a',
-                'b',
-                'cdef',
-                'g',
-                'h',
-            ]);
-        });
-        it(`skips over null in 1st arg, & merges rest as arrays if array given as 2nd arg`, function() {
-            expect(merge(null, ['a', 'b', 'cdef'], ['g', 'h'])).to.eql([
-                'a',
-                'b',
-                'cdef',
-                'g',
-                'h',
-            ]);
-        });
-        it(`skips over undefined in 1st arg, & merges rest as objects if object given as 2nd arg`, function() {
-            expect(merge(undefined, {a: 'a'}, {b: 'b'})).to.eql({a: 'a', b: 'b'});
-        });
-        it(`skips over null in 1st arg, & merges rest as objects if object given as 2nd arg`, function() {
-            expect(merge(null, {a: 'a'}, {b: 'b'})).to.eql({a: 'a', b: 'b'});
-        });
-        it(`skips over undefined in 1st arg, & merges rest as strings if string given as 2nd arg`, function() {
-            expect(merge(undefined, 'gr', ' ', 'argh')).to.eql('gr argh');
-        });
-        it(`skips over null in 1st arg, & merges rest as strings if string given as 2nd arg`, function() {
-            expect(merge(null, 'gr', ' ', 'argh')).to.eql('gr argh');
-        });
-
-        it(`returns {} if given a pile of nulls`, function() {
-            expect(merge(null, null, null, null)).to.eql({});
-        });
-        it(`returns {} if given a pile of undefined values`, function() {
-            expect(merge(undefined, undefined, undefined, undefined)).to.eql({});
-        });
-        it(`returns {} if given a pile of mixed undefined and null values`, function() {
-            expect(merge(undefined, null, undefined, undefined, null, null)).to.eql({});
         });
     });
 
