@@ -213,12 +213,6 @@ export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
 export {hasKey as containsKey};
 export {hasKey as includesKey};
 
-// /**
-//  * @returns true if object contains given key
-//  */
-// export const containsKey = (obj: object, key: string): boolean =>
-//     keys(obj).some(objKet => objKet === key);
-
 /*********************************** ADD NEW OBJECT PROPERTIES ************************************/
 // Select correct defineProperty (for use with defineImmutableProp)
 const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
