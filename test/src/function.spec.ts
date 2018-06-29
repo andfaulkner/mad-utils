@@ -18,6 +18,7 @@ import {
     loop4,
     loop5,
     throttle,
+    getArgNames,
 } from '../../shared';
 
 /********************************************* TESTS **********************************************/
@@ -250,6 +251,41 @@ describe(`function sub-module`, function() {
             throttledFn();
             throttledFn();
             setTimeout(() => expect(val).to.eql(2), 500);
+        });
+    });
+
+    describe('getArgNames', function() {
+        it(`returns empty list given arrow function with no params`, function() {
+            const fn = () => console.log('output');
+            expect(getArgNames(fn)).to.eql([]);
+        });
+        it(`gets list of arguments from given arrow function with params`, function() {
+            const fn = (arg1, arg2) => console.log('output');
+            expect(getArgNames(fn)).to.eql(['arg1', 'arg2']);
+        });
+        it(`returns empty list given classic named function with no params`, function() {
+            function fn() {
+                console.log('output');
+            };
+            expect(getArgNames(fn)).to.eql([]);
+        });
+        it(`gets list of arguments from given classic function with params`, function() {
+            function fn(arg1, arg2) {
+                console.log('output');
+            };
+            expect(getArgNames(fn)).to.eql(['arg1', 'arg2']);
+        });
+        it(`returns empty list given classic lambda with no params`, function() {
+            const fn = function() {
+                console.log('output');
+            };
+            expect(getArgNames(fn)).to.eql([]);
+        });
+        it(`gets list of arguments from given classic lambda with params`, function() {
+            const fn = function(arg1, arg2) {
+                console.log('output');
+            };
+            expect(getArgNames(fn)).to.eql(['arg1', 'arg2']);
         });
     });
 });
