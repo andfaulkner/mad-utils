@@ -43,7 +43,7 @@ export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
  * @param {Function} func Function to get the arguments/params of
  * @return {string[]} List of argument names in string form e.g.: ['id', 'name', age']
  */
-export const getArgsFromFunc = (func: Function): string[] =>
+export const getArgNames = (func: Function): string[] =>
     func
         .toString()
         .split('\n')
@@ -51,11 +51,8 @@ export const getArgsFromFunc = (func: Function): string[] =>
         .split(/[\(\)]/g)[1]
         .split(/ *, */g);
 
-export {getArgsFromFunc as getParamNames};
-export {getArgsFromFunc as getParameterNames};
-export {getArgsFromFunc as getArgNames};
-export {getArgsFromFunc as getArgumentNames};
-export {getArgsFromFunc as getArgs};
+export {getArgNames as getArgsFromFunc};
+export {getArgNames as getArgs};
 
 /****************************************** CONDITIONALS ******************************************/
 /**
