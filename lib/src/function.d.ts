@@ -43,6 +43,8 @@ export { getArgNames as getArgs };
  * If no conditions pass, the final arg given (default val) is returned
  * If no final arg is given, it instead throws an error
  *
+ * If using prettier, it's useful to place prettier-ignore directive above usage, for readability
+ *
  * Each pair of arguments:
  *     @param {boolean|any} cond Condition to check for truthiness
  *     @param {any} val Value returned if the test condition is truthy
@@ -50,6 +52,7 @@ export { getArgNames as getArgs };
  *     @param {any} defVal Value returned if no test conditions are met
  *
  * @example If size is 'tiny', returns 12; if size is 'small', returns 14; otherwise, returns 20:
+ *     // prettier-ignore
  *     condSwitch(size === 'tiny',  12,
  *                size === 'small', 14,
  *                                  20);
