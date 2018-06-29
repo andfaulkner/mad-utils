@@ -1,7 +1,12 @@
 0.60.0 (WIP) [BREAKING CHANGES]
 ===============================
-Remove:
-    - confusing DecoratorError pseudo-class/function
+Remove confusing DecoratorError pseudo-class/function
+
+getArgsFromFuncAsString (now getArgNames):
+    - Rename to getArgNames
+    - Returns an array of arguments rather than a comma-separated string
+    - Remove aliases getParamNames, getParameterNames, getArgumentNames, getArgs
+
 
 0.59.0 [BREAKING CHANGES]
 =========================
