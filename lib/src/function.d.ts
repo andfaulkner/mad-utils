@@ -1,19 +1,19 @@
 import { RealAny } from './types-iso';
 /**
  * Return a function's source code in nicely spaced array format
- * @param {Function} func - The function to examine
+ * @param {Function} func The function to examine
  * @return {string[]} function source code in an array, where each 'line' is an item
  */
 export declare function getFnAsArr(func: Function): string[];
 /**
  * @alias getFnAsArr
  */
-export declare const getFunctionSrcAsArray: typeof getFnAsArr;
+export { getFnAsArr as getFunctionSrcAsArray };
 /***************************************** LOOP UTILITIES *****************************************/
 /**
  * Run given function N times, returning results as an array containing all N return vals
- * @param {number} n - Number of times to run given function
- * @param {Function} func - Function to repeatedly run
+ * @param {number} n Number of times to run given function
+ * @param {Function} func Function to repeatedly run
  * @return {Array<any>} Array containing function return values
  */
 export declare const loopN: <T>(n: number, func: (...args: any[]) => T) => T[];
@@ -44,10 +44,10 @@ export { getArgNames as getArgs };
  * If no final arg is given, it instead throws an error
  *
  * Each pair of arguments:
- *     @param {boolean|any} cond - condition to check for truthiness
- *     @param {any} val - value returned if the test condition is truthy
+ *     @param {boolean|any} cond Condition to check for truthiness
+ *     @param {any} val Value returned if the test condition is truthy
  * Final argument:
- *     @param {any} defVal - value returned if no test conditions are met
+ *     @param {any} defVal Value returned if no test conditions are met
  *
  * @example If size is 'tiny', returns 12; if size is 'small', returns 14; otherwise, returns 20:
  *     condSwitch(size === 'tiny',  12,
