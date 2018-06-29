@@ -110,6 +110,8 @@ export function condSwitch(
  * @param {Function} cb Call max 1X/[wait]ms & call at interval start if [immediate]=true {default}
  * @param {number} wait Time to wait before next call of function allowed
  * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
+ * @example throttle(() => console.log('Called!'), 1000);
+ *          // 10 "clicks" within 1 second will output 'Called!' only once (on initial "click")
  */
 export function throttle(cb: (...args: any[]) => any, wait: number, immediate = true): () => void {
     let blocked = false;
