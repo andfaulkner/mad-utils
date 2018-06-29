@@ -38,27 +38,24 @@ export const loop4 = <T>(func: ((...args) => T)): T[] => loopN(4, func);
 /** Run given function 5X, returning results as an array containing all 5 return vals */
 export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
 
-// TODO test getArgsFromFuncAsString
-
 /**
  * Rough method to list a function's arguments/parameters (untyped)
  * @param {Function} func Function to get the arguments/params of
- * @return {string} String containing a comma-separated list of arguments. e.g.: 'id, name, age'
+ * @return {string[]} List of argument names in string form e.g.: ['id', 'name', age']
  */
-export const getArgsFromFuncAsString = (func: Function): string =>
+export const getArgsFromFunc = (func: Function): string[] =>
     func
         .toString()
         .split('\n')
         .join('')
         .split(/[\(\)]/g)[1]
-        .split(/ *, */g)
-        .join(', ');
+        .split(/ *, */g);
 
-export {getArgsFromFuncAsString as getParamNames};
-export {getArgsFromFuncAsString as getParameterNames};
-export {getArgsFromFuncAsString as getArgNames};
-export {getArgsFromFuncAsString as getArgumentNames};
-export {getArgsFromFuncAsString as getArgs};
+export {getArgsFromFunc as getParamNames};
+export {getArgsFromFunc as getParameterNames};
+export {getArgsFromFunc as getArgNames};
+export {getArgsFromFunc as getArgumentNames};
+export {getArgsFromFunc as getArgs};
 
 /****************************************** CONDITIONALS ******************************************/
 /**
@@ -110,8 +107,9 @@ export function condSwitch(
  * @param {Function} cb Call max 1X/[wait]ms & call at interval start if [immediate]=true {default}
  * @param {number} wait Time to wait before next call of function allowed
  * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
+ *
  * @example throttle(() => console.log('Called!'), 1000);
- *          // 10 "clicks" within 1 second will output 'Called!' only once (on initial "click")
+ *          // 10 "clicks" within 1 second will output 'Called!' only once, on initial "click"
  */
 export function throttle(cb: (...args: any[]) => any, wait: number, immediate = true): () => void {
     let blocked = false;
