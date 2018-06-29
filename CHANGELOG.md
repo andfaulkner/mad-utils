@@ -6,6 +6,7 @@ getArgsFromFuncAsString (now getArgNames):
     - Rename to getArgNames
     - Returns an array of arguments rather than a comma-separated string
     - Remove aliases getParamNames, getParameterNames, getArgumentNames, getArgs
+    - Add unit tests
 
 
 0.59.0 [BREAKING CHANGES]

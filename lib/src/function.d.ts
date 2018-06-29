@@ -28,14 +28,11 @@ export declare const loop5: <T>(func: (...args: any[]) => T) => T[];
 /**
  * Rough method to list a function's arguments/parameters (untyped)
  * @param {Function} func Function to get the arguments/params of
- * @return {string} String containing a comma-separated list of arguments. e.g.: 'id, name, age'
+ * @return {string[]} List of argument names in string form e.g.: ['id', 'name', age']
  */
-export declare const getArgsFromFuncAsString: (func: Function) => string;
-export { getArgsFromFuncAsString as getParamNames };
-export { getArgsFromFuncAsString as getParameterNames };
-export { getArgsFromFuncAsString as getArgNames };
-export { getArgsFromFuncAsString as getArgumentNames };
-export { getArgsFromFuncAsString as getArgs };
+export declare const getArgNames: (func: Function) => string[];
+export { getArgNames as getArgsFromFunc };
+export { getArgNames as getArgs };
 /****************************************** CONDITIONALS ******************************************/
 /**
  * Function-based switch expression
@@ -63,6 +60,9 @@ export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...con
  * @param {Function} cb Call max 1X/[wait]ms & call at interval start if [immediate]=true {default}
  * @param {number} wait Time to wait before next call of function allowed
  * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
+ *
+ * @example throttle(() => console.log('Called!'), 1000);
+ *          // 10 "clicks" within 1 second will output 'Called!' only once, on initial "click"
  */
 export declare function throttle(cb: (...args: any[]) => any, wait: number, immediate?: boolean): () => void;
 /**
