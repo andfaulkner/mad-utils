@@ -1,5 +1,5 @@
-0.60.0 (WIP) [BREAKING CHANGES]
-===============================
+0.60.0 [BREAKING CHANGES]
+=========================
 Remove confusing DecoratorError pseudo-class/function
 
 getArgsFromFuncAsString (now getArgNames):
