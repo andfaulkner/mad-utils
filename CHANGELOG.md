@@ -8,6 +8,9 @@ getArgsFromFuncAsString (now getArgNames):
     - Remove aliases getParamNames, getParameterNames, getArgumentNames, getArgs
     - Add unit tests
 
+condSwitch docs improved (adds note about usage with prettier)
+
+Unit tests for runAll
 
 0.59.0 [BREAKING CHANGES]
 =========================
