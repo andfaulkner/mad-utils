@@ -19,6 +19,7 @@ import {
     loop5,
     throttle,
     getArgNames,
+    runAll,
 } from '../../shared';
 
 /********************************************* TESTS **********************************************/
@@ -286,6 +287,14 @@ describe(`function sub-module`, function() {
                 console.log('output');
             };
             expect(getArgNames(fn)).to.eql(['arg1', 'arg2']);
+        });
+    });
+    describe(`runAll`, function() {
+        it(`returns empty array given an empty array`, function() {
+            expect(runAll([])).to.eql([]);
+        });
+        it(`returns result of  array given an empty array`, function() {
+            expect(runAll([])).to.eql([]);
         });
     });
 });
