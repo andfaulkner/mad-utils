@@ -221,18 +221,18 @@ describe(`function sub-module`, function() {
     describe(`throttle`, function() {
         it(`runs given function immediately if immediate param = true (default)`, function() {
             let val = false;
-            const throttledFn = throttle(() => val = true, 200);
+            const throttledFn = throttle(() => (val = true), 200);
             throttledFn();
             expect(val).to.be.true;
 
             let val2 = false;
-            const throttledFn2 = throttle(() => val2 = true, 200, true);
+            const throttledFn2 = throttle(() => (val2 = true), 200, true);
             throttledFn2();
             expect(val2).to.be.true;
         });
         it(`doesn't run given function immediately if immediate param = false`, function() {
             let val = false;
-            const throttledFn = throttle(() => val = true, 200, false);
+            const throttledFn = throttle(() => (val = true), 200, false);
             throttledFn();
             expect(val).to.be.false;
         });
@@ -267,13 +267,13 @@ describe(`function sub-module`, function() {
         it(`returns empty list given classic named function with no params`, function() {
             function fn() {
                 console.log('output');
-            };
+            }
             expect(getArgNames(fn)).to.eql([]);
         });
         it(`gets list of arguments from given classic function with params`, function() {
             function fn(arg1, arg2) {
                 console.log('output');
-            };
+            }
             expect(getArgNames(fn)).to.eql(['arg1', 'arg2']);
         });
         it(`returns empty list given classic lambda with no params`, function() {
@@ -289,12 +289,35 @@ describe(`function sub-module`, function() {
             expect(getArgNames(fn)).to.eql(['arg1', 'arg2']);
         });
     });
+
     describe(`runAll`, function() {
         it(`returns empty array given an empty array`, function() {
             expect(runAll([])).to.eql([]);
         });
-        it(`returns result of  array given an empty array`, function() {
-            expect(runAll([])).to.eql([]);
+        it(`returns return val of function in an array, if given array w/ 1 function`, function() {
+            expect(runAll([() => 'result'])).to.eql(['result']);
+        });
+        it(`returns array of return vals from all functions in an array`, function() {
+            expect(runAll([() => 'result 1', () => 'result 2', () => 'result 3'])).to.eql([
+                'result 1',
+                'result 2',
+                'result 3',
+            ]);
+        });
+        it(`Passes args past 1st arg to all functions in array (as arguments)`, function() {
+            // prettier-ignore
+            expect(
+                runAll(
+                    [
+                        (name, age) => `Hello ${age}-year-old ${name}!`,
+                        (name, age) => `How are you doing, ${age}-year-old ${name}?`,
+                    ],
+                    'Meeka', 7
+                )
+            ).to.eql([
+                'Hello 7-year-old Meeka!',
+                'How are you doing, 7-year-old Meeka?'
+            ]);
         });
     });
 });
