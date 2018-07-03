@@ -9,9 +9,9 @@ import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/t
 /******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
 import {m_, number} from '../../shared';
 import {number as numberFromNode} from '../../node';
-import {number as numberFromBrowser, uuid} from '../../browser';
+import {number as numberFromBrowser, uuid, loopN} from '../../browser';
 import * as numberModule from '../../src/number';
-import {createRangeArray, coinFlip, diceRoll6Sided} from '../../src/number';
+import {createRangeArray, coinFlip, diceRoll6Sided, getRandomInt} from '../../src/number';
 
 /********************************************* TESTS **********************************************/
 describe(`number sub-module`, function() {
@@ -114,6 +114,20 @@ describe(`number sub-module`, function() {
                 .and.greaterThan(0);
             const roll = diceRoll6Sided();
             expect(Math.round(roll)).to.eql(roll);
+        });
+    });
+
+    describe(`getRandomInt`, function() {
+        it(`returns a random integer between min and max values`, function() {
+            loopN(100, () => {
+                const val = getRandomInt(0, 10);
+                expect(val)
+                    .to.be.greaterThan(-1)
+                    .and.lessThan(11);
+            });
+        });
+        it(`returns min/max value if min & max value are equal`, function() {
+            expect(getRandomInt(1, 1)).to.eql(1);
         });
     });
 });
