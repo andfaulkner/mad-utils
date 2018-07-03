@@ -67,6 +67,15 @@ export declare const coinFlip: () => "HEADS" | "TAILS";
  */
 export declare const diceRoll6Sided: () => 1 | 2 | 3 | 4 | 5 | 6;
 /**
+ * Generate a random integer between (and including) given min & max values
+ *
+ * @param {number} min Lowest possible number that can be generated
+ * @param {number} max Highest possible number that can be generated
+ *
+ * @return {number} Randomly selected integer between given min & max values
+ */
+export declare const getRandomInt: (min: number, max: number) => number;
+/**
  * Export UUID. If uuid itself is run as a function, it generates a UUID. uuid object contains
  * child functions uuid.len6, uuid.len8, and uuid.noDashes
  */
