@@ -129,5 +129,14 @@ describe(`number sub-module`, function() {
         it(`returns min/max value if min & max value are equal`, function() {
             expect(getRandomInt(1, 1)).to.eql(1);
         });
+        it(`can return the min val and the max val, and any int in between`, function() {
+            let res = [];
+            loopN(250, () => res.push(getRandomInt(0, 3)));
+            expect(res).to.include(0);
+            expect(res).to.include(1);
+            expect(res).to.include(2);
+            expect(res).to.include(3);
+
+        });
     });
 });
