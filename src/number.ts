@@ -95,7 +95,7 @@ export const diceRoll6Sided = () => {
  *
  * @return {number} Randomly selected integer between given min & max values
  */
-const getRandomInt = (min: Int, max: Int): Int => {
+export const getRandomInt = (min: Int, max: Int): Int => {
     const minInt = Math.ceil(min);
     const maxInt = Math.floor(max);
     return Math.round(Math.random() * (maxInt - minInt)) + minInt;
