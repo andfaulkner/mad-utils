@@ -107,13 +107,15 @@ describe(`number sub-module`, function() {
     });
 
     describe('diceRoll6Sided', function() {
-        it(`should output 1, 2, 3, 4, 5, or 6`, function() {
-            expect(diceRoll6Sided()).to.be.a('number');
-            expect(diceRoll6Sided())
-                .to.be.lessThan(7)
-                .and.greaterThan(0);
-            const roll = diceRoll6Sided();
-            expect(Math.round(roll)).to.eql(roll);
+        it(`should always output 1, 2, 3, 4, 5, or 6`, function() {
+            loopN(50, () => {
+                expect(diceRoll6Sided()).to.be.a('number');
+                expect(diceRoll6Sided())
+                    .to.be.lessThan(7)
+                    .and.greaterThan(0);
+                const roll = diceRoll6Sided();
+                expect(Math.round(roll)).to.eql(roll);
+            });
         });
     });
 
