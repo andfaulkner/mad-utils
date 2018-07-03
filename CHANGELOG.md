@@ -8,9 +8,13 @@ getArgsFromFuncAsString (now getArgNames):
     - Remove aliases getParamNames, getParameterNames, getArgumentNames, getArgs
     - Add unit tests
 
+Export getRandomInt function to generate a random integer between min and max values
+
 condSwitch docs improved (adds note about usage with prettier)
 
-Unit tests for runAll
+Unit tests for:
+    - runAll
+    - getRandomInt
 
 0.59.0 [BREAKING CHANGES]
 =========================
