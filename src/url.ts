@@ -1,23 +1,25 @@
 /*************************************** TYPE AUGMENTATION ****************************************/
 // Set globals to always have access to location obj w/ proper shape (even if empty e.g. in Node)
-declare global {                                                   // Augment Node.js `global`
-    namespace NodeJS { interface Global {
-        location: {href: string, pathname: string, search: string}
-    }}
-    interface Window extends NodeJS.Global { }                     // Augment Browser `window`
-    interface WorkerGlobalScope extends NodeJS.Global { }          // Augment Web Worker `self`
+declare global {
+    // Augment Node.js `global`
+    namespace NodeJS {
+        interface Global {
+            location: {href: string; pathname: string; search: string};
+        }
+    }
+    interface Window extends NodeJS.Global {} // Augment Browser `window`
+    interface WorkerGlobalScope extends NodeJS.Global {} // Augment Web Worker `self`
 }
 
 // Attach empty location object to global in Node (or anywhere global.location isn't present).
 const isNode = require('detect-node');
-if (isNode) global.location = global.location || { href: '', pathname: '', search: '' } as any;
-
+if (isNode) global.location = global.location || ({href: '', pathname: '', search: ''} as any);
 
 /**************************************** PROJECT MODULES *****************************************/
-import { defaultSupportedLangs } from './internal/lang-constants';
-import { last, first, matchAny, without } from './array';
-import { removeMatchingText, chomp } from './string';
-import { StrOrErr } from './types-iso';
+import {defaultSupportedLangs} from './internal/lang-constants';
+import {last, first, matchAny, without} from './array';
+import {removeMatchingText, chomp} from './string';
+import {StrOrErr} from './types-iso';
 
 /****************************************** QUERY PARAMS ******************************************/
 /**
@@ -35,15 +37,21 @@ export const parseQueryParams = <T>(queryParamsStr?: string): T => {
     // Various types of query param strings that actually signify no query params.
     if (queryParamsString.match(/((\?)|(\?\=)|(\?\&)|(\?\=\&)|(\?\&\=))$/)) return null;
     // If no query param symbols are present in a string, it cannot be a query param string.
-    if ((queryParamsString.split('=').length === 1
-            && (queryParamsString.split('?').length === 1)
-            && queryParamsString.split('&').length === 1)) {
+    if (
+        queryParamsString.split('=').length === 1 &&
+        queryParamsString.split('?').length === 1 &&
+        queryParamsString.split('&').length === 1
+    ) {
         return null;
     }
     // Parse the query params if they exist.
-    return queryParamsString.replace(/^\?/, '').split('&').reduce(
-        (acc, pair) => Object.assign(acc, { [pair.split('=')[0]]: pair.split('=')[1] }),
-    {}) as T;
+    return queryParamsString
+        .replace(/^\?/, '')
+        .split('&')
+        .reduce(
+            (acc, pair) => Object.assign(acc, {[pair.split('=')[0]]: pair.split('=')[1]}),
+            {}
+        ) as T;
 };
 
 /******************************************** LANGUAGE ********************************************/
@@ -54,28 +62,30 @@ export const parseQueryParams = <T>(queryParamsStr?: string): T => {
  * @param {string} defaultLang Default language, if none detected. Default: 'en' {OPT}
  * @return {string} current language, in 2-letter form. Often either 'en' or 'fr'.
  */
-export const getLangFromUrlPathname =
-    (urlPath?: string, supportedLangs = defaultSupportedLangs, defaultLang: string = 'en'): string =>
-{
+export const getLangFromUrlPathname = (
+    urlPath?: string,
+    supportedLangs = defaultSupportedLangs,
+    defaultLang: string = 'en'
+): string => {
     const cleanUrlPath: string = typeof urlPath === 'string' ? urlPath : global.location.pathname;
     const getLangMatch = (lang: string) =>
         !!cleanUrlPath.match(new RegExp(`/(${lang}[^a-zA-Z0-9])|(/${lang}$)`, 'g'));
     return supportedLangs.find(getLangMatch) || defaultLang;
 };
 
-export { getLangFromUrlPathname as langFromUrlPathname }
-export { getLangFromUrlPathname as getLangFromURLPathname }
-export { getLangFromUrlPathname as langFromURLPathname }
-export { getLangFromUrlPathname as getLangFromUrl }
-export { getLangFromUrlPathname as getLangFromURL }
-export { getLangFromUrlPathname as langFromUrl }
-export { getLangFromUrlPathname as langFromURL }
+export {getLangFromUrlPathname as langFromUrlPathname};
+export {getLangFromUrlPathname as getLangFromURLPathname};
+export {getLangFromUrlPathname as langFromURLPathname};
+export {getLangFromUrlPathname as getLangFromUrl};
+export {getLangFromUrlPathname as getLangFromURL};
+export {getLangFromUrlPathname as langFromUrl};
+export {getLangFromUrlPathname as langFromURL};
 
 export type UrlPathsLangProps = {
-    url?:            string,
-    curLang?:        string,
-    supportedLangs?: string[],
-}
+    url?: string;
+    curLang?: string;
+    supportedLangs?: string[];
+};
 
 /**
  * Get all paths in the URL before or after the first appearance of /:curLang/
@@ -88,32 +98,34 @@ export type UrlPathsLangProps = {
  * @param {boolean} getStrBeforeLang [OPTIONAL] If true, ret pre-match str; else ret post-match str.
  */
 export const getUrlPathAroundLang = (
-    props: (UrlPathsLangProps & { getStrBeforeLang?: boolean }) | string | null
+    props: (UrlPathsLangProps & {getStrBeforeLang?: boolean}) | string | null
 ): StrOrErr => {
-    const getStrBeforeLang = (typeof props === 'object') ? props.getStrBeforeLang : false;
+    const getStrBeforeLang = typeof props === 'object' ? props.getStrBeforeLang : false;
 
-    const url: string = (typeof props === 'string')
-        ? props
-        : (props && props.url) || global.location.pathname;
+    const url: string =
+        typeof props === 'string' ? props : (props && props.url) || global.location.pathname;
 
-    const supportedLangs = (typeof props === 'object' && props.supportedLangs)
-        ? props.supportedLangs
-        : defaultSupportedLangs;
+    const supportedLangs =
+        typeof props === 'object' && props.supportedLangs
+            ? props.supportedLangs
+            : defaultSupportedLangs;
 
-    const curLang = (typeof props === 'object' && props.curLang)
-        ? props.curLang
-        : getLangFromUrlPathname(url, supportedLangs);
+    const curLang =
+        typeof props === 'object' && props.curLang
+            ? props.curLang
+            : getLangFromUrlPathname(url, supportedLangs);
 
     const urlSplitOnLangPath = url.split(`/${curLang}/`);
     if (urlSplitOnLangPath.length < 1) {
         return new Error('No language abbreviation found in the URL path');
     }
 
-    return getStrBeforeLang ? urlSplitOnLangPath[0]  // get values before
-                            : urlSplitOnLangPath[1]; // get values after
+    return getStrBeforeLang
+        ? urlSplitOnLangPath[0] // get values before
+        : urlSplitOnLangPath[1]; // get values after
 };
 
-export { getUrlPathAroundLang as getPreOrPostLangUrlPaths }
+export {getUrlPathAroundLang as getPreOrPostLangUrlPaths};
 
 /**
  * Get all paths in the URL following the first appearance of /:curLang/
@@ -123,15 +135,14 @@ export { getUrlPathAroundLang as getPreOrPostLangUrlPaths }
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
 export const getUrlPathAfterLang = (props: UrlPathsLangProps | string | null): StrOrErr => {
-    const propsObj = typeof props === 'object' ? props : {}
+    const propsObj = typeof props === 'object' ? props : {};
     if (typeof props === 'string') {
         propsObj.url = props;
     }
-    return getUrlPathAroundLang(Object.assign(propsObj, { getStrBeforeLang: false }));
+    return getUrlPathAroundLang(Object.assign(propsObj, {getStrBeforeLang: false}));
 };
 
-export { getUrlPathAfterLang as postLangUrlPaths }
-
+export {getUrlPathAfterLang as postLangUrlPaths};
 
 /**
  * Get all paths in the URL prior to the first appearance of /:curLang/
@@ -141,28 +152,29 @@ export { getUrlPathAfterLang as postLangUrlPaths }
  * @param {Array<string>} [OPTIONAL] supportedLangs Detectable languages. Default: ['en', 'fr']
  */
 export const getUrlPathBeforeLang = (props: UrlPathsLangProps | string | null): StrOrErr => {
-    const propsObj = typeof props === 'object' ? props : {}
+    const propsObj = typeof props === 'object' ? props : {};
     if (typeof props === 'string') {
         propsObj.url = props;
     }
-    return getUrlPathAroundLang(Object.assign(propsObj, { getStrBeforeLang: true }));
+    return getUrlPathAroundLang(Object.assign(propsObj, {getStrBeforeLang: true}));
 };
 
-export { getUrlPathBeforeLang as preLangUrlPaths }
-
+export {getUrlPathBeforeLang as preLangUrlPaths};
 
 /**
- * Swaps language code in the given URL to the provided value. 
+ * Swaps language code in the given URL to the provided value.
  * @param {string} newLang New language code to swap to. e.g. 'en' OR 'fr'
- * @param {Object|string} props 
+ * @param {Object|string} props
  *        - @param {string} url {OPT} URL to swap language code in.
  *        - @param {string} curLang {OPT} current lang. If provided, will only swap matching path.
  *        - @param {string[]} supportedLangs {OPT} Allowed languages codes. If given, will only
  *                                                 swap path matching an item in the array
  * @return {string} New URL with language swapped.
  */
-export const getUrlWithLangSwapped = (newLang: string, props: UrlPathsLangProps | string | null): string =>
-    `${getUrlPathBeforeLang(props)}${newLang}${getUrlPathAfterLang(props)}`;
+export const getUrlWithLangSwapped = (
+    newLang: string,
+    props: UrlPathsLangProps | string | null
+): string => `${getUrlPathBeforeLang(props)}${newLang}${getUrlPathAfterLang(props)}`;
 
 /**
  * Return copy of the given (or current) URL with the query parameters removed.
@@ -189,7 +201,7 @@ export const lastUrlPath = (url?: string, strict: boolean = true): string => {
 
     const hrefMinusQueryParams = urlMinusQueryParams(hrefMinusProtocol);
     const finalHref = !strict ? chomp(hrefMinusQueryParams, '/') : hrefMinusQueryParams;
-    return last(finalHref.split('/'))
+    return last(finalHref.split('/'));
 };
 
 /**
@@ -198,12 +210,12 @@ export const lastUrlPath = (url?: string, strict: boolean = true): string => {
 export const urlGetQuery = (url?: string): string => {
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
     return without.first(cleanUrl.split('?')).join('');
-}
+};
 
-export { urlGetQuery as getQueryString }
-export { urlGetQuery as getQueryParamString }
-export { urlGetQuery as urlGetQueryString }
-export { urlGetQuery as urlGetQueryParamString }
+export {urlGetQuery as getQueryString};
+export {urlGetQuery as getQueryParamString};
+export {urlGetQuery as urlGetQueryString};
+export {urlGetQuery as urlGetQueryParamString};
 
 /**
  * Return the URL with the protocol string ('http://', 'https://') removed.
@@ -216,7 +228,7 @@ export const urlWithoutProtocol = (url?: string): string => {
     return removeMatchingText(cleanUrl, /^https?:\/\//);
 };
 
-export { urlWithoutProtocol as urlMinusProtocol }
+export {urlWithoutProtocol as urlMinusProtocol};
 
 /**
  * Get protocol string from the given URL - either http://, https://, or '' if none given.
@@ -229,11 +241,11 @@ export const urlProtocolString = (url?: string): string => {
     return (matches && matches[0]) || '';
 };
 
-export { urlProtocolString as urlGetProtocolString }
-export { urlProtocolString as getUrlProtocolString }
-export { urlProtocolString as getURLProtocolString }
-export { urlProtocolString as getProtocolStringFromUrl }
-export { urlProtocolString as getProtocolStringFromURL }
+export {urlProtocolString as urlGetProtocolString};
+export {urlProtocolString as getUrlProtocolString};
+export {urlProtocolString as getURLProtocolString};
+export {urlProtocolString as getProtocolStringFromUrl};
+export {urlProtocolString as getProtocolStringFromURL};
 
 /**
  * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
@@ -247,17 +259,17 @@ export const urlMinusLastPath = (url?: string, excludeQuery = true): string => {
 
     // If there are no paths, set to the URL base; otherwise lop off the last item after a '/'
     const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
-    const urlNoQueryLastPathHttp = (urlParts.length === 1) ? urlParts[0]
-                                                           : without.last(urlParts).join('/');
+    const urlNoQueryLastPathHttp =
+        urlParts.length === 1 ? urlParts[0] : without.last(urlParts).join('/');
 
     // Re-include protocol string; and if excludeQuery == false, also re-include query string.
-    return httpStr + (excludeQuery ? urlNoQueryLastPathHttp
-                                   : `${urlNoQueryLastPathHttp}?${queryStr}`);
+    return (
+        httpStr + (excludeQuery ? urlNoQueryLastPathHttp : `${urlNoQueryLastPathHttp}?${queryStr}`)
+    );
 };
 
-export { urlMinusLastPath as getURLMinusLastPath }
-export { urlMinusLastPath as getUrlMinusLastPath }
-
+export {urlMinusLastPath as getURLMinusLastPath};
+export {urlMinusLastPath as getUrlMinusLastPath};
 
 /**
  * Get URL minus the last path. e.g. https://localhost:80/a/b => https://localhost:80/a
@@ -267,7 +279,7 @@ export { urlMinusLastPath as getUrlMinusLastPath }
 export const swapLastURLPath = (newPathVal: string, url?: string): string => {
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
     const queryStr = urlGetQuery(cleanUrl);
-    return `${ urlMinusLastPath(cleanUrl) }/${ newPathVal }${ queryStr ? ('?' + queryStr) : '' }`
+    return `${urlMinusLastPath(cleanUrl)}/${newPathVal}${queryStr ? '?' + queryStr : ''}`;
 };
 
 /**
@@ -283,32 +295,30 @@ export const swapMatchingURLPaths = (
     url?: string
 ): string => {
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
-    
+
     const httpStr = urlProtocolString(cleanUrl);
     const queryStr = urlGetQuery(cleanUrl);
     const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
 
-    const urlPartsSwapped = urlParts.map(
-        (urlPt: string, idx: number) => {
-            const urlPtStrMatches = urlPt.match(pathMatcher);
-            return ((idx !== 0) && (((urlPtStrMatches && urlPtStrMatches[0]) || '') === urlPt))
-                ? newPathVal
-                : urlPt
-        }
-    );
+    const urlPartsSwapped = urlParts.map((urlPt: string, idx: number) => {
+        const urlPtStrMatches = urlPt.match(pathMatcher);
+        return idx !== 0 && ((urlPtStrMatches && urlPtStrMatches[0]) || '') === urlPt
+            ? newPathVal
+            : urlPt;
+    });
 
     return `${httpStr}${urlPartsSwapped.join('/')}?${queryStr}`;
 };
 
-export { swapMatchingURLPaths as swapMatchingUrlPaths }
-export { swapMatchingURLPaths as swapUrlPaths }
-export { swapMatchingURLPaths as swapURLPaths }
-export { swapMatchingURLPaths as urlSwapPathMatches }
-export { swapMatchingURLPaths as urlSwapMatchingPaths }
+export {swapMatchingURLPaths as swapMatchingUrlPaths};
+export {swapMatchingURLPaths as swapUrlPaths};
+export {swapMatchingURLPaths as swapURLPaths};
+export {swapMatchingURLPaths as urlSwapPathMatches};
+export {swapMatchingURLPaths as urlSwapMatchingPaths};
 
-export { swapMatchingURLPaths as replaceMatchingURLPaths }
-export { swapMatchingURLPaths as replaceMatchingUrlPaths }
-export { swapMatchingURLPaths as replaceUrlPaths }
-export { swapMatchingURLPaths as replaceURLPaths }
-export { swapMatchingURLPaths as urlReplacePathMatches }
-export { swapMatchingURLPaths as urlReplaceMatchingPaths }
+export {swapMatchingURLPaths as replaceMatchingURLPaths};
+export {swapMatchingURLPaths as replaceMatchingUrlPaths};
+export {swapMatchingURLPaths as replaceUrlPaths};
+export {swapMatchingURLPaths as replaceURLPaths};
+export {swapMatchingURLPaths as urlReplacePathMatches};
+export {swapMatchingURLPaths as urlReplaceMatchingPaths};
