@@ -11,16 +11,16 @@ export type characters = string;
 
 /***************************************** LOCAL HELPERS ******************************************/
 /**
- * Determine what item in a array of strings has the smallest indent.
- * Purpose: to remove this amount of indent from all lines, thus preserving nested indentation.
- * We can then define the indentation ourselves in a variable.
+ * Determine what item in a array of strings has the smallest indent
+ * Purpose: to remove this amount of indent from all lines, thus preserving nested indentation
+ * We can then define the indentation ourselves in a variable
  *
  * It's all about avoiding problems like this with multiline templates:
  *
  *         <body>
  *             <div id="project-wrapper">
  *                 <div id="react-root">
- *         <!-- Cancer -->
+ *         <!-- Vomit -->
  *         <div id="my-inner-component">
  *             <span class="yay-a-span">
  *                 <div>*cries</div>
@@ -31,36 +31,37 @@ export type characters = string;
  *         </body>
  */
 const _detectShortestIndentInArray = (lines: string[] | string): number => {
-    // Ensure input is an array.
+    // Ensure input is an array
     const lineArr = (Array.isArray(lines) ? lines : [lines]) as string[];
 
-    // Set flag to exclude last line from comparison if it's an empty whitespace-only line.
+    // Set flag to exclude last line from comparison if it's an empty whitespace-only line
     const excludeLast = !!lines[lines.length - 1].match(/^\s+$/);
 
     return lineArr.reduce((acc: number, line: string, idx: number) => {
-        // Exclude last line from comparison if it's an empty whitespace-only line.
+        // Exclude last line from comparison if it's an empty whitespace-only line
         if (excludeLast && idx === lines.length - 1) return acc;
 
-        // If any line found with no indent, prevent comparisons for the remainder of the loop.
+        // If any line found with no indent, prevent comparisons for the remainder of the loop
         if (acc === 0) return acc;
 
-        // Match on current line's indentation.
+        // Match on current line's indentation
         const match = line.match(/^\s+/m);
 
-        // If there's no match, there's no indent. Set to 0.
+        // If there's no match, there's no indent - set to 0
         if (!match || !match.input || !match[0]) return 0;
 
-        // If indent length is shorter than the prior shortest, return as new shortest length.
+        // If indent length is shorter than the prior shortest, return as new shortest length
         return match[0].length < acc ? match[0].length : acc;
     }, 120);
 };
 
 /**
- * Ensure left-size indent makes sense. It must be an integer, or string that
- * can parse to an integer.
- * @param {number|string} leftPadSize - Content of required interpolated item
- *                                      placed directly after the start quote.
- * @return {never|void} Throw if leftPadSize is invalid.
+ * Ensure left-size indent makes sense
+ * It must be an integer, or string that can parse to an integer
+ *
+ * @param {number|string} leftPadSize Content of required interpolated item
+ *                                    placed directly after the start quote
+ * @return {never|void} Throw if leftPadSize is invalid
  */
 const _validateWithLeftIndent = (leftPadSize: number | string): never | void => {
     const nullLeftPadSize = !leftPadSize && leftPadSize !== 0;
@@ -94,9 +95,11 @@ export const capitalize = (str: string): string =>
     !str ? '' : str.charAt(0).toUpperCase() + str.slice(1);
 
 /**
- * Replace all matching strings in a text segment with a given replacement string. Can also match
- * against a regex. Main benefit: *ALL* matching strings get replaced.
- * @param {string} text - string to search and replace in
+ * Replace all matching strings in a text segment with a given replacement string
+ * Can also match against a regex
+ * Main benefit: *ALL* matching strings get replaced
+ *
+ * @param {string} text String to search and replace in
  * @param {string|RegExp} find String or RegExp to match against
  * @param {string} replace Replacement text
  * @return {string} original text with replacements made
@@ -107,12 +110,15 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
         : text.replace(find, replace);
 
 /**
- * Inversion of String.prototype.match, for usage as a predicate, but also works for searching
- * with a RegExp or number. The type of the item to find for & the item being searched must match,
- * unless valToFind is a RegExp.
- * @param {string|number|RegExp} valToFind - Value to search for in valToSearchIn.
- * @param {string|number} valToSearchIn - string or number to match against.
- * @return {boolean} true if a match is found.
+ * Inversion of String.prototype.match, for usage as a predicate, but also
+ * works for searching with a RegExp or number
+ *
+ * The type of the item to find for & the item being searched must match, unless
+ * valToFind is a RegExp
+ *
+ * @param {string|number|RegExp} valToFind Value to search for in valToSearchIn
+ * @param {string|number} valToSearchIn string or number to match against
+ * @return {boolean} true if a match is found
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
 export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNum): boolean => {
@@ -126,10 +132,10 @@ export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNu
 };
 
 /**
- * Get first substring to match the given string or RegExp.
+ * Get first substring to match the given string or RegExp
  * @param {string} strToSearchIn String to search for the string or RegExp
- * @param {string|RegExp} matcher String or RegExp to find in strToSearchIn.
- * @return {string} first substring to match the given string or RegExp; '' if no matches found.
+ * @param {string|RegExp} matcher String or RegExp to find in strToSearchIn
+ * @return {string} first substring to match the given string or RegExp; '' if no matches found
  */
 export const matchFirst = (strToSearchIn: string, matcher: string | RegExp): string => {
     const matches = strToSearchIn.match(matcher);
@@ -137,24 +143,24 @@ export const matchFirst = (strToSearchIn: string, matcher: string | RegExp): str
 };
 
 /**
- * Escape a string for use as a regex. Allows repeat matching on a single string.
- * Converts string to form that lets it be used as a pure 'literal' string to match against
- * directly if passed to new RegExp (no special chars taken into account).
+ * Escape a string for use as a regex. Allows repeat matching on a single string
+ * Converts string to form that lets it be used as a pure 'literal' string to match
+ * against directly if passed to new RegExp (no special chars taken into account)
  *
  * It essentially escapes special regex characters/metacharacters (e.g. *, ., +) in such a
- * way that the regex builder ignores their special and instead seeks them literally.
+ * way that the regex builder ignores their special and instead seeks them literally
  *
  * @example escapeRegExp('*.js'); //=> '\\*\\.js'
- * @param {string} regexStr - String to escape for use in literal form in a regex builder.
- * @return {string} escaped string.
+ * @param {string} regexStr String to escape for use in literal form in a regex builder
+ * @return {string} escaped string
  */
 export const escapeRegExp = (regexStr: string): string =>
     regexStr.replace(/([\/\\()\[\]{}.*+^$?|=:!])/g, '\\$1');
 
 /**
- * Inversion of String.prototype.match, for usage as a predicate, where case is ignored.
- * @param {string} matchAgainst - string to match against.
- * @return {boolean} true if a match is found.
+ * Inversion of String.prototype.match, for usage as a predicate, where case is ignored
+ * @param {string} matchAgainst String to match against
+ * @return {boolean} true if a match is found
  *
  * @example USAGE ::  ['gr', 'HeLLo'].find(matchesIgnoreCase('hello')); // => true
  */
@@ -178,22 +184,24 @@ export const newlineStr = `
 export const removeWhitespace = (str: string): string => str.replace(/ /g, '');
 
 /**
- * Remove all chars in charsToChomp string from end of given string str.
- * Defaults to eliminating carriage return and newline.
- * @param {string} str - String to chomp (from end)
- * @param {string} charsToChomp - String (acting as array of chars) containing all chars to chomp.
- * @return {string} str with all chars in charsToChomp eliminated from end of string.
+ * Remove all chars in charsToChomp string from end of given string str
+ * Defaults to eliminating carriage return and newline
+ *
+ * @param {string} str String to chomp (from end)
+ * @param {string} charsToChomp String (acting as array of chars) containing all chars to chomp
+ * @return {string} str with all chars in charsToChomp eliminated from end of string
  */
 export const chomp = (str: string, charsToChomp: string = '\n\r'): string =>
     str.replace(new RegExp(`(${charsToChomp.split('').join('|')})+$`, 'g'), '');
 
 /**
- * Convert camelCase, PascalCase, or dash-case to snake_case.
- * @param {string} str - String to convert to snake_case.
- * @param {boolean} consecUppercaseToLowercase - if true, converts consecutive uppercase chars to
+ * Convert camelCase, PascalCase, or dash-case to snake_case
+ *
+ * @param {string} str String to convert to snake_case
+ * @param {boolean} consecUppercaseToLowercase If true, converts consecutive uppercase chars to
  *                  lowercase, rather than putting _ between them (the default behaviour)
- *                  e.g. newOSName -> new_os_name, instead of new_o_s_name.
- * @return {string} given string converted to snake_case.
+ *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
+ * @return {string} given string converted to snake_case
  */
 export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): string => {
     // Conditionally deal with consecutive capital letters
@@ -214,7 +222,7 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
         .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
         // Replace slash (/ or \) with _
         .replace(/[\/\\]/g, '_')
-        // Eliminate repeat, preceding, and trailing underscores, and stray dashes.
+        // Eliminate repeat, preceding, and trailing underscores, and stray dashes
         .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
         .replace(/_{1,}/g, '_')
         .replace(/^(_|\-){1,}/, '')
@@ -241,10 +249,10 @@ export const toCamelCase = (str: string) => {
 };
 
 /**
- * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
+ * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed
  * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
  * @param {string} str String to remove matches from
- * @param {string|RegExp} matcherToRm - String to remove from str
+ * @param {string|RegExp} matcherToRm String to remove from str
  * @return {string} str with all instances of matcherToRm removed
  */
 export const removeMatchingText = (str: string, matcherToRm: string | RegExp): string =>
@@ -257,17 +265,17 @@ export const removeMatchingText = (str: string, matcherToRm: string | RegExp): s
  *
  * WARNING: DOES NOT ALLOW INTERPOLATIONS
  *
- * Template string type that allows for properly-indented multiline strings.
+ * Template string type that allows for properly-indented multiline strings
  *
  * Defines a template string type with the following behaviours:
  *     1. Eliminates all left-size indentation on each line;
  *     2. Can take a single interpolation variable to be placed directly after the start caret,
  *        which must contain an integer or string that can be parsed to an integer;
- *     3. Sets the final left-size indentation to equal the value of said interpolation variable.
- *        - If interpolation variable is not given, the value defaults to 0.
+ *     3. Sets the final left-size indentation to equal the value of said interpolation variable
+ *        - If interpolation variable is not given, the value defaults to 0
  *
  * Removes as much left-size whitespace as is present in the shortest indent, then adds the
- * requested number of spaces to the indent.
+ * requested number of spaces to the indent
  *
  *     @example  Input:
  *                   |                withLeftIndent`${4}
@@ -283,20 +291,20 @@ export const removeMatchingText = (str: string, matcherToRm: string | RegExp): s
  *                   |            puts "Also, hello left indent!"
  *                   |        end
  *
- *               Note: ("|" is the left edge of the file).
+ *               Note: ("|" is the left edge of the file)
  *
- * @return {string} Properly indented string.
+ * @return {string} Properly indented string
  */
 export function withLeftIndent(strings, leftPadSize = 0, xz?) {
     _validateWithLeftIndent(leftPadSize);
 
-    // |** 0 **| Detect position of first 'data' string in raw strings array.
+    // |** 0 **| Detect position of first 'data' string in raw strings array
     const firstStringPos = typeof strings[1] !== 'undefined' && strings[1] != null ? 1 : 0;
 
-    // |** 1 **| Convert single string with '\n' delimiting lines to an array split on \n.
+    // |** 1 **| Convert single string with '\n' delimiting lines to an array split on \n
     const lines: string[] = strings[firstStringPos].split('\n');
 
-    // |** 2 **| Remove 1st element if it's ''. This is the 'pre-initial-variable' string.
+    // |** 2 **| Remove 1st element if it's '' (This is the 'pre-initial-variable' string)
     if (lines[0].length === 0) lines.shift();
 
     // |** 3 **| Determine which line has the shortest indent.
@@ -311,30 +319,30 @@ export function withLeftIndent(strings, leftPadSize = 0, xz?) {
         line.replace(new RegExp(`^${initialIndent}`, 'm'), leftPadSpaces)
     );
 
-    // |** 6 **| Convert array back to string.
+    // |** 6 **| Convert array back to string
     const linesPrepped = linesPreppedArr.join(`\n`);
 
-    // |** 7 **| Remove trailing whitespace in empty lines, and return result.
+    // |** 7 **| Remove trailing whitespace in empty lines, and return result
     return linesPrepped.replace(/^\s+$/gm, '');
 }
 
 /****************************************** REPEAT CHARS ******************************************/
 /**
- * Create string consisting of 'len' number of  repeats of 'charToRepeat'.
- * @param {number} len - number of repeats of charToRepeat in output string
- * @param {string} charToRepeat - Character to repeat in the output string
- * @return {string} string consisting of len repeats of charToRepeat.
+ * Create string consisting of 'len' number of  repeats of 'charToRepeat'
+ * @param {number} len Number of repeats of charToRepeat in output string
+ * @param {string} charToRepeat Character to repeat in the output string
+ * @return {string} string consisting of len repeats of charToRepeat
  */
 export const repeatChars = (repStr: string, len: Int): string => arrayN(len, repStr).join('');
 
 /*************************************** FILE PATH STRINGS ****************************************/
 /**
- * If given string ends in given substring preceded by a '.', returns true.
- * Note: only works for extensions with up to 4 parts. e.g. .b.c.d.e
+ * If given string ends in given substring preceded by a '.', returns true
+ * Note: only works for extensions with up to 4 parts e.g. .b.c.d.e
  *
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @param {string} ext - Any string, but it's meant to be a file extension (e.g. js).
- * @return {boolean} true if file ends in given extension.
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @param {string} ext Any string, but it's meant to be a file extension (e.g. js)
+ * @return {boolean} true if file ends in given extension
  *
  * @example endsWithExt('ok.tsx', 'tsx') // => true
  */
@@ -435,7 +443,7 @@ export type Sides = 'left' | 'right' | 'center';
  *
  * @param {string} strToPad Initial string to pad to given length with given char
  * @param {number} outWidth Width to increase the string to (by adding padding char repeatedly)
- * @param {string} padChar Character to repeatedly add to left side of strToPad.
+ * @param {string} padChar Character to repeatedly add to left side of strToPad
  * @param {Sides} side Side to add padCharTo :: values: 'left', 'right', 'center'
  *                     For center, adds char on each side, w the odd number extra added to the right
  *
@@ -490,12 +498,12 @@ export const leftPad = (strToPad: string = '', outWidth: number = 0, padChar: st
     pad(strToPad, outWidth, padChar, 'left');
 
 /**
- * Pad string to the given length, with additional characters added to right side. If
- * initial string is longer than the width to pad to, return initial string unmodified.
+ * Pad string to the given length, with additional characters added to right side
+ * If initial string is longer than the width to pad to, return initial string unmodified
  *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to increase the string to (by adding char to right side)
- * @param {string} padChar - Character to repeatedly add to right side of strToPad.
+ * @param {string} strToPad Initial string to pad to given length with given char
+ * @param {number} outWidth Width to increase the string to (by adding char to right side)
+ * @param {string} padChar Character to repeatedly add to right side of strToPad
  *
  * @return {string} strToPad padded to outWidth length via rightside repeats of padChar
  */
@@ -503,13 +511,13 @@ export const rightPad = (strToPad: string = '', outWidth: number = 0, padChar: s
     pad(strToPad, outWidth, padChar, 'right');
 
 /**
- * Pad string to the given length, with additional characters added to both sides. If
- * init string is longer than the width to pad to, return the initial string unmodified.
+ * Pad string to the given length, with additional characters added to both sides
+ * If init string is longer than the width to pad to, return the initial string unmodified
  * If an odd number of chars must be added, add the extra char on the right side
  *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to extend string to (adds 1/2 of char reps on each side)
- * @param {string} padChar - char to pad with.
+ * @param {string} strToPad Initial string to pad to given length with given char
+ * @param {number} outWidth Width to extend string to (adds 1/2 of char reps on each side)
+ * @param {string} padChar char to pad with
  *
  * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
  */
@@ -518,18 +526,18 @@ export const centerPad = (strToPad: string = '', outWidth: number = 0, padChar: 
 
 /**************************************** CHARACTER TESTS *****************************************/
 /**
- * @return {boolean} If given string is a whitespace character, return true.
+ * @return {boolean} If given string is a whitespace character, return true
  */
 export const isWhitespaceChar = (matchChar: char): boolean =>
     matchChar && matchChar.length === 1 && '\t\n '.indexOf(matchChar) >= 0;
 
 /**
- * @return {boolean} If given string is a whitespace character, return true.
+ * @return {boolean} If given string is a whitespace character, return true
  */
 export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.test(matchChar);
 
 /**
- * @return {boolean} If given string is a operator character, return true.
+ * @return {boolean} If given string is a operator character, return true
  */
 export const isOperatorChar = (matchChar: char): boolean =>
     !!matchChar && matchChar.length === 1 && (`+-*=|&<>?:/!%^~]`.indexOf(matchChar) >= 0);
@@ -538,10 +546,10 @@ export const isOperatorChar = (matchChar: char): boolean =>
 const RegExpFlags = 'yumig';
 
 /**
- * If matching quotes found at left- & right-most positions of given string, remove them.
- * If none found, returns string as-is.
+ * If matching quotes found at left- & right-most positions of given string, remove them
+ * If none found, returns string as-is
  * @param  {string} str String to check & remove from
- * @return {string} Input string with bookending quotes removed.
+ * @return {string} Input string with bookending quotes removed
  * @example removeSurroundingQuotes('"asdf"'); // => 'asdf'
  */
 export const removeSurroundingQuotes = (str: string): string => {
@@ -556,17 +564,17 @@ export const removeSurroundingQuotes = (str: string): string => {
 };
 
 /**
- * Returns true if string is a RegExp or string that can compile to RegExp.
- * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format.
- * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp.
+ * Returns true if string is a RegExp or string that can compile to RegExp
+ * @param {string|RegExp} str Check if this is a RegExp or string in '/chars/flags' format
+ * @return {boolean} True if input is a string in '/chars/flags' format, or a RegExp
  */
 export const isRegexString = (str: string | RegExp): boolean =>
     str instanceof RegExp || !!str.match(/^\/[\s\S]+\/[yumig]{0,5}$/);
 
 /**
- * Get flags from string in regex string format - i.e. "/regex_query/flags".
- * @param {string} str String to get flags from. Grabs from chars after the final /.
- * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form.
+ * Get flags from string in regex string format - i.e. "/regex_query/flags"
+ * @param {string} str String to get flags from. Grabs from chars after the final /
+ * @return {string|null} String of flag chars e.g. '', 'yum', 'g'. null if str isn't in regex form
  */
 export const getFlagsFromRegexString = (str: string): string | null => {
     if (!isRegexString(str)) return null;
@@ -574,7 +582,7 @@ export const getFlagsFromRegexString = (str: string): string | null => {
     // Get the actual flag 'section'
     const flagSect = str.split('/').reverse()[0];
 
-    // Iterate through the section of the string past the last slash, 1 char at a time.
+    // Iterate through the section of the string past the last slash, 1 char at a time
     return flagSect.split('').reduce((acc, char) => {
         // See if any flag matches the current character
         const matchesFlag = RegExpFlags.match(char);
@@ -597,7 +605,7 @@ export const getFlagsFromRegexString = (str: string): string | null => {
             return null;
         }
 
-        // Otherwise set the flag property to true in the flags object.
+        // Otherwise set the flag property to true in the flags object
         acc += matchesFlag[0];
         return acc;
     }, '');
@@ -628,7 +636,7 @@ export const deburrFrenchEnglish = (str: string): string => {
 };
 
 /**
- * Ensure proper char for padding was passed to rightPad, leftPad, and centerPad.
+ * Ensure proper char for padding was passed to rightPad, leftPad, and centerPad
  */
 function _cleanCharToPadWith(padChar: string | number = ' ') {
     if (typeof padChar === 'number' && padChar === 0) return '0';
@@ -636,7 +644,6 @@ function _cleanCharToPadWith(padChar: string | number = ' ') {
     return ' ';
 }
 
-// Aliases
 export {leftPad as padLeft};
 export {rightPad as padRight};
 
