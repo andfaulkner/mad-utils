@@ -180,6 +180,9 @@ export const isString = <T extends string | String = string>(val: RealAny): val 
 export const isStringOrNumber = (val: RealAny): val is number | Number | string | String =>
     isString(val) || isNumberLike(val);
 
+export {isStringOrNumber as isStringOrNum}
+export {isStringOrNumber as isStrOrNum}
+
 /**
  * Returns true if val is true or false
  * @param {any} val Item to test
