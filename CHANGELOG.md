@@ -1,3 +1,16 @@
+0.61.0
+======
+Add isStringOrNumber aliases isStringOrNum & isStrOrNum
+
+More TS-usable docs in function module
+
+Remove 'location' module - moved to storage in wip/old/browser--geocode.ts
+*   Reason: too specific, too brittle, too tied to Google
+*   Eliminates "getCurrentCity" function
+
+Remove unwanted log in node/test.ts module
+*   Previously, expectEmptyObject would log typeof testValue
+
 0.60.0 [BREAKING CHANGES]
 =========================
 Remove confusing DecoratorError pseudo-class/function
