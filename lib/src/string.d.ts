@@ -4,21 +4,21 @@ export declare type character = string;
 export declare type characters = string;
 /*********************************** EXPORTED STRING FUNCTIONS ************************************/
 /**
- * Capitalize the first letter of a string, and convert other letters in the string to lowercase.
+ * Capitalize the first letter of a string, and convert other letters in the string to lowercase
  */
 export declare const cap1LowerRest: (str: string) => string;
 /**
- * Capitalize the first letter of a string.
- * If given a null value, returns ''.
+ * Capitalize the first letter of a string
+ * If given a null value, returns ''
  */
 export declare const capitalize: (str: string) => string;
 /**
  * Replace all matching strings in a text segment with a given replacement string. Can also match
  * against a regex. Main benefit: *ALL* matching strings get replaced.
- * @param {string} text - string to search and replace in.
- * @param {string|RegExp} find - string or RegExp to match against
- * @param {string} replace - replacement text
- * @return {string} original text with replacements made.
+ * @param {string} text - string to search and replace in
+ * @param {string|RegExp} find String or RegExp to match against
+ * @param {string} replace Replacement text
+ * @return {string} original text with replacements made
  */
 export declare const replaceAll: (text: string, find: string | RegExp, replace: string) => string;
 /**
@@ -90,19 +90,19 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
  */
 export declare const toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
 /**
- * Converts any string to camelCase.
+ * Converts any string to camelCase
  * This includes consistently making the first letter lowercase, capitalizing the 1st char after
- * each non-alphanumeric char, and eliminating all non-alphanumeric characters and whitespace.
+ * each non-alphanumeric char, and eliminating all non-alphanumeric characters and whitespace
  * @param {string} str String to convert to camelCase
- * @return {string} String converted to camelCase format.
+ * @return {string} String converted to camelCase format
  */
 export declare const toCamelCase: (str: string) => string;
 /**
  * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed.
  * @example removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
- * @param {string} str - String to remove matches from.
- * @param {string|RegExp} matcherToRm - String to remove from str.
- * @return {string} str with all instances of matcherToRm removed.
+ * @param {string} str String to remove matches from
+ * @param {string|RegExp} matcherToRm - String to remove from str
+ * @return {string} str with all instances of matcherToRm removed
  */
 export declare const removeMatchingText: (str: string, matcherToRm: string | RegExp) => string;
 /************************************** STRING INTERPOLATION **************************************/
@@ -164,88 +164,87 @@ export declare const repeatChars: (repStr: string, len: number) => string;
  */
 export declare const endsWithExt: (inode: string, ext: string) => boolean;
 /**
- * If given string ends in .js, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .js.
+ * If given string ends in .js, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .js
  */
 export declare const endsInDotJs: (inode: string) => boolean;
 /**
- * If given string ends in .jsx, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .jsx.
+ * If given string ends in .jsx, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .jsx
  */
 export declare const endsInDotJsx: (inode: string) => boolean;
 /**
- * If given string ends in .ts, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .ts.
+ * If given string ends in .ts, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .ts
  */
 export declare const endsInDotTs: (inode: string) => boolean;
 /**
- * If given string ends in .tsx, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .tsx.
+ * If given string ends in .tsx, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .tsx
  */
 export declare const endsInDotTsx: (inode: string) => boolean;
 /**
- * If given string ends in .json, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .json.
+ * If given string ends in .json, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .json
  */
 export declare const endsInDotJson: (inode: string) => boolean;
 /**
- * If given string ends in .hbs, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .hbs.
+ * If given string ends in .hbs, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .hbs
  */
 export declare const endsInDotHbs: (inode: string) => boolean;
 /**
- * If given string ends in .css, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .css.
+ * If given string ends in .css, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .css
  */
 export declare const endsInDotCss: (inode: string) => boolean;
 /**
- * If given string ends in .scss, returns true.
- * @param {string} inode - Any string, but it's intended for a file/directory path.
- * @return {boolean} true if file ends in .scss.
+ * If given string ends in .scss, returns true
+ * @param {string} inode Any string, but it's intended for a file/directory path
+ * @return {boolean} true if file ends in .scss
  */
 export declare const endsInDotScss: (inode: string) => boolean;
 /**
  * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)
- * @param {string} inode - Any string, but it's intended to be a file/directory path.
+ * @param {string} inode Any string, but it's intended to be a file/directory path
  * @return {boolean} true if file doesn't end in .min.[anyExt] (e.g. a.min.json, b.min.css)
  */
 export declare const isNonMinFile: (inode: string) => boolean;
 /**
- * Get the base filename from the given path.
+ * Get the base filename from the given path
  * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
  */
 export declare const getBaseFilenameFromPath: (filePath: string) => string;
 /***************************************** STRING PADDING *****************************************/
 export declare type Sides = 'left' | 'right' | 'center';
 /**
- * Pad string to the given length, with additional characters added to the given side - or split
- * across both sides if side arg is 'center'. If initial string is longer than the width to pad
- * to, return initial string unmodified.
+ * Pad string to the given length, with additional characters added to the given
+ * side - or split across both sides if side arg is 'center'
+ * If initial string is longer than the width to pad to, return initial string unmodified
  *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to increase the string to (by adding padding char repeatedly)
- * @param {string} padChar - Character to repeatedly add to left side of strToPad.
- * @param {Sides} side - Side to add padCharTo. Values: 'left', 'right', 'center'. For center,
- *                       adds char on each side, with the odd number extra added to the right.
+ * @param {string} strToPad Initial string to pad to given length with given char
+ * @param {number} outWidth Width to increase the string to (by adding padding char repeatedly)
+ * @param {string} padChar Character to repeatedly add to left side of strToPad.
+ * @param {Sides} side Side to add padCharTo :: values: 'left', 'right', 'center'
+ *                     For center, adds char on each side, w the odd number extra added to the right
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
 export declare const pad: (strToPad?: string, outWidth?: number, padChar?: string, side?: Sides) => string;
-export declare const _centerPad: (strToPad?: string, outWidth?: number, padChar?: string) => string;
 /**
- * Pad string to the given length, with additional characters added to left side. If
- * initial string is longer than the width to pad to, return initial string unmodified.
+ * Pad string to the given length, with additional characters added to left side
+ * If initial string is longer than the width to pad to, return initial string unmodified
  *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to increase the string to (by adding char to left side)
- * @param {string} padChar - Character to repeatedly add to left side of strToPad.
+ * @param {string} strToPad Initial string to pad to given length with given char
+ * @param {number} outWidth Width to increase the string to (by adding char to left side)
+ * @param {string} padChar Character to repeatedly add to left side of strToPad
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
