@@ -66,11 +66,6 @@ import * as event from './src/browser/event';
 export * from './src/browser/event';
 export {event};
 
-// Import location module
-import * as location from './src/browser/location';
-export * from './src/browser/location';
-export {location};
-
 // Import local-store module
 import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
@@ -117,7 +112,6 @@ export const mUtils = {
     localStoreUtils: localStore,
     localStorage: localStore,
     localStorageUtils: localStore,
-    location,
     number,
     object,
     url,
