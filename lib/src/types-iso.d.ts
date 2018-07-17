@@ -97,6 +97,8 @@ export declare const isString: <T extends string | String = string>(val: any) =>
  * @return {boolean} true if tested item is a string or a number
  */
 export declare const isStringOrNumber: (val: any) => val is string | number | String | Number;
+export { isStringOrNumber as isStringOrNum };
+export { isStringOrNumber as isStrOrNum };
 /**
  * Returns true if val is true or false
  * @param {any} val Item to test

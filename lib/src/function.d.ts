@@ -4,10 +4,7 @@ import { RealAny } from './types-iso';
  * @param {Function} func The function to examine
  * @return {string[]} function source code in an array, where each 'line' is an item
  */
-export declare function getFnAsArr(func: Function): string[];
-/**
- * @alias getFnAsArr
- */
+export declare const getFnAsArr: (func: Function) => string[];
 export { getFnAsArr as getFunctionSrcAsArray };
 /***************************************** LOOP UTILITIES *****************************************/
 /**
@@ -60,9 +57,12 @@ export { getArgNames as getArgs };
 export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...condValPairsAndOrDefVal: RealAny[]): RealAny | never;
 /************************************* RUN TIMING / LIMITING **************************************/
 /**
- * @param {Function} cb Call max 1X/[wait]ms & call at interval start if [immediate]=true {default}
+ * Throttle function [cb] such that it only runs 1X within given interval ([wait] arg - in ms)
+ * Called at beginning of interval if [immediate] is true (default), otherwise run at end
+ *
+ * @param {Function} cb Call max 1X/[wait]ms & call at wait start if [immediate]=true {default}
  * @param {number} wait Time to wait before next call of function allowed
- * @param {boolean} immediate If true, call at the beginning of the interval {default=true}
+ * @param {boolean} immediate If true, call at the beginning of the wait interval {default=true}
  *
  * @example throttle(() => console.log('Called!'), 1000);
  *          // 10 "clicks" within 1 second will output 'Called!' only once, on initial "click"
