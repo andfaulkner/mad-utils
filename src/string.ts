@@ -414,13 +414,13 @@ export const endsInDotScss = (inode: string) => endsWithExt(inode, 'scss');
 
 /**
  * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)
- * @param {string} inode - Any string, but it's intended to be a file/directory path.
+ * @param {string} inode Any string, but it's intended to be a file/directory path
  * @return {boolean} true if file doesn't end in .min.[anyExt] (e.g. a.min.json, b.min.css)
  */
 export const isNonMinFile = (inode: string) => inode.split(/\./g).reverse()[1] !== 'min';
 
 /**
- * Get the base filename from the given path.
+ * Get the base filename from the given path
  * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
  */
 export const getBaseFilenameFromPath = (filePath: string) => filePath.split('/').slice(-1)[0];
@@ -429,15 +429,15 @@ export const getBaseFilenameFromPath = (filePath: string) => filePath.split('/')
 export type Sides = 'left' | 'right' | 'center';
 
 /**
- * Pad string to the given length, with additional characters added to the given side - or split
- * across both sides if side arg is 'center'. If initial string is longer than the width to pad
- * to, return initial string unmodified.
+ * Pad string to the given length, with additional characters added to the given
+ * side - or split across both sides if side arg is 'center'
+ * If initial string is longer than the width to pad to, return initial string unmodified
  *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to increase the string to (by adding padding char repeatedly)
- * @param {string} padChar - Character to repeatedly add to left side of strToPad.
- * @param {Sides} side - Side to add padCharTo. Values: 'left', 'right', 'center'. For center,
- *                       adds char on each side, with the odd number extra added to the right.
+ * @param {string} strToPad Initial string to pad to given length with given char
+ * @param {number} outWidth Width to increase the string to (by adding padding char repeatedly)
+ * @param {string} padChar Character to repeatedly add to left side of strToPad.
+ * @param {Sides} side Side to add padCharTo :: values: 'left', 'right', 'center'
+ *                     For center, adds char on each side, w the odd number extra added to the right
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
@@ -464,7 +464,7 @@ export const pad = (
     }
 };
 
-export const _centerPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') => {
+const _centerPad = (strToPad: string = '', outWidth: number = 0, padChar: string = ' ') => {
     const cleanStr = strToPad.toString();
     const padCharClean = _cleanCharToPadWith(padChar);
     const widthToAddToEachSide = (outWidth - cleanStr.length) / 2;
@@ -477,12 +477,12 @@ export const _centerPad = (strToPad: string = '', outWidth: number = 0, padChar:
 };
 
 /**
- * Pad string to the given length, with additional characters added to left side. If
- * initial string is longer than the width to pad to, return initial string unmodified.
+ * Pad string to the given length, with additional characters added to left side
+ * If initial string is longer than the width to pad to, return initial string unmodified
  *
- * @param {string} strToPad - Initial string to pad to given length with given char.
- * @param {number} outWidth - Width to increase the string to (by adding char to left side)
- * @param {string} padChar - Character to repeatedly add to left side of strToPad.
+ * @param {string} strToPad Initial string to pad to given length with given char
+ * @param {number} outWidth Width to increase the string to (by adding char to left side)
+ * @param {string} padChar Character to repeatedly add to left side of strToPad
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
