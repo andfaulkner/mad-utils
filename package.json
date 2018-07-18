@@ -143,6 +143,7 @@
     "fs-extra-promise": "^1.0.1",
     "handlebars-webpack-plugin": "^1.2.0",
     "mad-logs": "^10.2.0",
+    "mad-utils": "^0.61.0",
     "moment": "^2.22.2",
     "reflect-metadata": "^0.1.10",
     "ua-parser-js": "^0.7.13"
