@@ -77,11 +77,11 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
 ### get : (Object, string, any?) => any
-Get the item at the given object path.
+Safely get the item at the given object path.
 
-    get(someObj, 'prop.stores.ui.currentRecord');
-    get(someObj, 'object.path.to.get.value.from');
-    get(someObj, 'prop.stores.ui.currentRecord', "Default value");
+    const obj = {a: {b: {c: 'value'}}};
+    get(obj, 'a.b.c');                    // => 'value'
+    get(obj, 'a.b.zzz', 'default value'); // => 'default value'
 
 Installation
 ============
@@ -1058,8 +1058,21 @@ Examples:
 
 Namespace: object (isomorphic)
 ==============================
-### get
-*   Get the item at the given object path.
+### [FUNCTION] get
+(Object, string, any?) => any
+*   Safely get the item at the given object path.
+*   1st arg = object to get from
+*   2nd arg = object path to get value from
+*   3rd arg = default value (if no value found at given path)
+
+Examples:
+
+    const obj = {a: {b: {c: 'value'}}};
+    get(obj, 'a.b.c');
+    // => 'value'
+
+    get(obj, 'a.b.zzz', 'default value');
+    // => 'default value'
 
 ### assignFrozenClone
 (Object, ...Object[]) => Readonly<Object>
