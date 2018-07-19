@@ -1,7 +1,7 @@
-export declare type char = string;
-export declare type chars = string;
-export declare type character = string;
-export declare type characters = string;
+export declare type Char = string;
+export declare type Chars = string;
+export declare type Character = string;
+export declare type Characters = string;
 /*********************************** EXPORTED STRING FUNCTIONS ************************************/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase

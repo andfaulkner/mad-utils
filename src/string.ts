@@ -3,11 +3,10 @@ import {StrOrNum} from './types-iso';
 import {Int} from './number';
 import {withoutFirst, arrayN} from './array';
 
-export type char = string;
-export type chars = string;
-
-export type character = string;
-export type characters = string;
+export type Char = string;
+export type Chars = string;
+export type Character = string;
+export type Characters = string;
 
 /***************************************** LOCAL HELPERS ******************************************/
 /**
@@ -528,18 +527,18 @@ export const centerPad = (strToPad: string = '', outWidth: number = 0, padChar: 
 /**
  * @return {boolean} If given string is a whitespace character, return true
  */
-export const isWhitespaceChar = (matchChar: char): boolean =>
+export const isWhitespaceChar = (matchChar: Char): boolean =>
     matchChar && matchChar.length === 1 && '\t\n '.indexOf(matchChar) >= 0;
 
 /**
  * @return {boolean} If given string is a whitespace character, return true
  */
-export const isAlphanumericChar = (matchChar: char): boolean => /^[a-zA-Z0-9]$/.test(matchChar);
+export const isAlphanumericChar = (matchChar: Char): boolean => /^[a-zA-Z0-9]$/.test(matchChar);
 
 /**
  * @return {boolean} If given string is a operator character, return true
  */
-export const isOperatorChar = (matchChar: char): boolean =>
+export const isOperatorChar = (matchChar: Char): boolean =>
     !!matchChar && matchChar.length === 1 && (`+-*=|&<>?:/!%^~]`.indexOf(matchChar) >= 0);
 
 /**************************************** STRING -> REGEX *****************************************/
