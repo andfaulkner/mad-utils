@@ -6,6 +6,10 @@ Rename character utility types (capitalize the names):
 *   character -> Character
 *   characters -> Characters
 
+README.md changes:
+*   Remove merge function
+*   Update 'get' function description
+
 0.61.0
 ======
 Add isStringOrNumber aliases isStringOrNum & isStrOrNum
