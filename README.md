@@ -76,29 +76,6 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
     uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
-
-#### merge : (Array<Object | string | T[] | any[] | null | undefined>) => Object | string | T[] | any[] | {}
-*   Unholy lovechild of Object.assign, +, clone, and Array.concat...with superpowers.
-*   Merge all objects, strings, or arrays together, without mutating original object.
-*   If given a single object, string, or array, returns a shallow copy of it.
-*   If given all nulls and/or undefineds (or a single null or undefined), returns {}.
-*   When used to merge objects, Typescript automatically knows what keys the new object has.
-
-Examples:
-
-    merge({ a: 'a' }, { b: 'b' });                 // => { a: 'a', b: 'b' }
-    merge('Quick brown fox ', '...', ' lazy dog'); // => 'Quick brown fox ... lazy dog'
-    merge(['a', 'b'], ['c', 4, 5, 6], [], [7]);    // => ['a', 'b', 'c', 4, 5, 6, 7]
-    merge<number>([1, 2, 3], [8], [100, 102]);     // => [1, 2, 3, 8, 100, 102]  <- of type number[]
-    merge();                                       // => {}
-    merge(null, undefined, undefined, null, null); // => {}
-    merge({ k: 'value' });                         // => { k: 'value' }
-
-    const newObj = merge({ firstKey: 'firstVal', secondKey: 'secondVal' }, { objTwoKey: 'obj2Val' });
-    // => newObj now equals:  { firstKey: 'firstVal', secondKey: 'secondVal', objTwoKey: 'obj2Val' }
-    // Typescript can automatically autocomplete keys firstKey, secondKey, & objTwoKey from newObj.
-    //   e.g. newObj.objTwoKey << filled in using autocomplete.
-
 Installation
 ============
 *   npm:
@@ -1108,42 +1085,6 @@ Examples:
     obj.a = 6;
     obj.a
     // => 1
-
-### [FUNCTION] merge
-(Array<Object | string | T[] | any[] | null | undefined>) => Object | string | T[] | any[] | {}
-*   Merge all objects, strings, or arrays together, without mutating original object
-*   If given a single object, string, or array, returns a shallow copy of it.
-*   If given all nulls and/or undefineds (or a single null or undefined), returns {}.
-*   When used to merge objects, Typescript automatically knows what keys the new object has.
-
-Examples:
-
-    merge({ a: 'a' }, { b: 'b' });
-    // => { a: 'a', b: 'b' }
-
-    merge('The quick brown fox', ' ', 'jumped over the lazy dog');
-    // => 'The quick brown fox jumped over the lazy dog'
-
-    merge(['a', 'b'], ['c', 4, 5, 6], [], [7]);
-    // => ['a', 'b', 'c', 4, 5, 6, 7]
-
-    merge<number>([1, 2, 3], [80], [100, 101, 102]);
-    // => [1, 2, 3, 80, 100, 101, 102]  <<-- has return type number[].
-
-    merge();
-    // => {}
-
-    merge(null, undefined, undefined, null, null);
-    // => {}
-
-    merge({ k: 'value' });
-    // => { k: 'value' }
-
-    const newObj = merge({ firstKey: 'firstVal', secondKey: 'secondVal' }, { objTwoKey: 'obj2Val' });
-    // => newObj now equals:  { firstKey: 'firstVal', secondKey: 'secondVal', objTwoKey: 'obj2Val' }
-    // Typescript can automatically autocomplete keys firstKey, secondKey, & objTwoKey from newObj.
-    //   e.g. newObj.objTwoKey << filled in using autocomplete.
-
 
 ### [FUNCTION] isMultilangTextObj
 (Object) => boolean
