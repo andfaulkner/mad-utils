@@ -76,6 +76,13 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
     uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
+### get : (Object, string, any?) => any
+Get the item at the given object path.
+
+    get(someObj, 'prop.stores.ui.currentRecord');
+    get(someObj, 'object.path.to.get.value.from');
+    get(someObj, 'prop.stores.ui.currentRecord', "Default value");
+
 Installation
 ============
 *   npm:
