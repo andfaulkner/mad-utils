@@ -1,3 +1,11 @@
+0.62.0 (WIP)
+============
+Rename character utility types (capitalize the names):
+*   char -> Char
+*   chars -> Chars
+*   character -> Character
+*   characters -> Characters
+
 0.61.0
 ======
 Add isStringOrNumber aliases isStringOrNum & isStrOrNum
