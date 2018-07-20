@@ -81,6 +81,8 @@ export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | nul
 export const isAlphabeticChar = <T extends string = string>(val: RealAny): val is T =>
     !!(val && val.match && val.match(/^[a-zA-Z]$/));
 
+export {isAlphabeticChar as isAlphaChar}
+
 /**
  * Detect whether given value is a number. (Note: NaN returns false here)
  * @param {any} val Test if val is a number
