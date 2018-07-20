@@ -1,3 +1,9 @@
+0.62.1
+======
+Add isAlphaChar alias for isAlphabeticChar
+
+More robust check for moment object validity
+
 0.62.0
 ======
 Rename character utility types (capitalize the names):
