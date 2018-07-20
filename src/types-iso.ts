@@ -68,7 +68,7 @@ export {AnyHTTPReqType as HTTPRequestType};
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**
- *  Returns true if the value is null, undefined, or a string
+ *  Returns true if [val] is null, undefined, or a string
  *  @param {StrOrVoid|RealAny} val Value to type check
  *  @return {boolean} true if val is null, undefined, or a string
  */
@@ -81,16 +81,15 @@ export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | nul
 export const isAlphabeticChar = <T extends string = string>(val: RealAny): val is T =>
     !!(val && val.match && val.match(/^[a-zA-Z]$/));
 
-export {isAlphabeticChar as isAlphaChar}
+export {isAlphabeticChar as isAlphaChar};
 
 /**
- * Detect whether given value is a number. (Note: NaN returns false here)
+ * Detect whether [val] is a number (Note: NaN returns false here)
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false
  */
 export const isNumber = <T extends number | Number = number>(val: RealAny): val is T => {
     if (typeof val === 'undefined' || val == null) return false;
-
     if (typeof val === 'number' && !isNaN(val)) return true;
     if (Object.getPrototypeOf(val) === Number && !isNaN(val)) return true;
     if (val instanceof Number) return true;
@@ -101,8 +100,8 @@ export const isNumber = <T extends number | Number = number>(val: RealAny): val 
 export {isNumber as isNum};
 
 /**
- * Returns true if the given argument is a number or a string that can be parsed into a number
- * Excludes NaN, which is not considered number-like. Accepts '.123' and '-.123' formatted numbers
+ * Returns true if [val] is a number, or a string that can be parsed into a number
+ * Excludes NaN, accepts '.123' and '-.123' formatted numbers
  * @param {RealAny} val Item being tested for number-like nature
  * @return {boolean} True if item is 'number-like', otherwise false
  */
@@ -135,7 +134,7 @@ export const isNumberLike = <T extends number | Number | string | String = numbe
 export {isNumberLike as isNumLike};
 
 /**
- * Returns true if given value is an integer (does not include num-like strings)
+ * Returns true if [val] is an integer (does not include num-like strings)
  * @param {any} val Value to check type of
  * @return {boolean} true if given value is integer
  */
@@ -149,7 +148,7 @@ export const isInteger = <T extends number | Number | string | String = number>(
 export {isInteger as isInt};
 
 /**
- * True if val is an integer or a string that can be converted to an integer
+ * Returns true if [val] is an integer, or a string that can be converted to an integer
  * @param {any} val Item to test
  * @return {boolean} true if tested item is integer-like (or an integer)
  */
@@ -170,7 +169,7 @@ export const isIntegerLike = <T extends number | Number | string | String = numb
 export {isIntegerLike as isIntLike};
 
 /**
- * True if val is a string or String-inheriting object
+ * True if [val] is a string, or a String-inheriting object
  * @param {any} val Value to test
  * @return {boolean} true if tested item is a string or String-inheriting object
  */
@@ -181,8 +180,8 @@ export const isString = <T extends string | String = string>(val: RealAny): val 
         (Object.prototype.toString.call(val) === '[object String]' ||
             (val.constructor && Object.getPrototypeOf(val.constructor) === String)));
 /**
- * True if val is a string or a number
- * @param {any} val Item to test
+ * True if [val] is a string or a number
+ * @param {any} val Value to test
  * @return {boolean} true if tested item is a string or a number
  */
 export const isStringOrNumber = (val: RealAny): val is number | Number | string | String =>
@@ -192,7 +191,7 @@ export {isStringOrNumber as isStringOrNum};
 export {isStringOrNumber as isStrOrNum};
 
 /**
- * Returns true if val is true or false
+ * Returns true if [val] is true or false
  * @param {any} val Item to test
  * @return {boolean} true if val is a boolean
  */
@@ -208,11 +207,12 @@ export const isBoolean = <T extends boolean | Boolean = boolean>(val: any | bool
 export {isBoolean as isBool};
 
 /**
- * Returns true if the given argument is a moment instance, Date instance, or any string, number,
- * or object that moment is able to parse. Excludes negative numbers and strings that parse to
- * negative numbers, and objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
- * @param {any} val Item to test for Date-like properties
- * @return {boolean} True if item is date-like
+ * Returns true if [val] is a moment instance, Date instance, or any string,
+ * number, or object that moment is able to parse
+ * Excludes negative numbers and strings that parse to negative numbers, and
+ * objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
+ * @param {any} val Value to test for Date-like properties
+ * @return {boolean} True if value is date-like
  */
 export const isDateLike = (val: RealAny): boolean => {
     if (val instanceof moment || val instanceof Date) return true;
