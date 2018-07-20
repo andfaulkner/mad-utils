@@ -608,6 +608,37 @@ describe(`types sub-modules`, function() {
         });
     });
 
+    describe(`isAlphabeticChar`, function() {
+        it(`Returns true given any (single-length) alphabetic character`, function() {
+            expect(typesIso.isAlphabeticChar('a')).to.eql(true);
+            expect(typesIso.isAlphabeticChar('F')).to.eql(true);
+            expect(typesIso.isAlphabeticChar('Z')).to.eql(true);
+        });
+        it(`Returns false given any alphabetic string longer than 1 character`, function() {
+            expect(typesIso.isAlphabeticChar('ay')).to.eql(false);
+            expect(typesIso.isAlphabeticChar('FE')).to.eql(false);
+            expect(typesIso.isAlphabeticChar('Zh')).to.eql(false);
+        });
+        it(`Returns false given non-alphabetic character`, function() {
+            expect(typesIso.isAlphabeticChar('1')).to.eql(false);
+            expect(typesIso.isAlphabeticChar('&')).to.eql(false);
+            expect(typesIso.isAlphabeticChar('<')).to.eql(false);
+        });
+        it(`Returns false given non-string values`, function() {
+            expect(typesIso.isAlphabeticChar(null)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(undefined)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(0)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(1)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(NaN)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(String)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(() => '')).to.eql(false);
+            expect(typesIso.isAlphabeticChar({})).to.eql(false);
+            expect(typesIso.isAlphabeticChar({a: 1})).to.eql(false);
+            expect(typesIso.isAlphabeticChar([])).to.eql(false);
+            expect(typesIso.isAlphabeticChar(['a', 'bbb'])).to.eql(false);
+        });
+    });
+
     describe(`isNumber`, function() {
         class NewNumber extends Number {}
 
