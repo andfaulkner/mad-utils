@@ -76,6 +76,12 @@ export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | nul
     typeof val === 'undefined' || val === null || isString(val);
 
 /**
+ * Returns true if [val] is an alphabetic character
+ */
+export const isAlphabeticChar = <T extends string = string>(val: RealAny): val is T =>
+    !!(val && val.match && val.match(/^[a-zA-Z]$/));
+
+/**
  * Detect whether given value is a number. (Note: NaN returns false here)
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false
@@ -180,8 +186,8 @@ export const isString = <T extends string | String = string>(val: RealAny): val 
 export const isStringOrNumber = (val: RealAny): val is number | Number | string | String =>
     isString(val) || isNumberLike(val);
 
-export {isStringOrNumber as isStringOrNum}
-export {isStringOrNumber as isStrOrNum}
+export {isStringOrNumber as isStringOrNum};
+export {isStringOrNumber as isStrOrNum};
 
 /**
  * Returns true if val is true or false
@@ -280,7 +286,9 @@ export const isFalse = <T extends false | string | String = false>(
  * @param {Any} val Return true if this value is a function
  * @return {boolean} True if val is a function, otherwise false
  */
-export const isFunction = <T extends Function = ((...args: any[]) => any)>(val: RealAny): val is T => {
+export const isFunction = <T extends Function = ((...args: any[]) => any)>(
+    val: RealAny
+): val is T => {
     const str = {}.toString.call(val);
     return str === '[object Function]' || (typeof val === 'function' && str !== '[object RegExp]');
 };
