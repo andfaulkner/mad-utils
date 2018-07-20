@@ -614,6 +614,9 @@ describe(`types sub-modules`, function() {
             expect(typesIso.isAlphabeticChar('F')).to.eql(true);
             expect(typesIso.isAlphabeticChar('Z')).to.eql(true);
         });
+        it(`Returns false given empty string`, function() {
+            expect(typesIso.isAlphabeticChar('')).to.eql(false);
+        });
         it(`Returns false given any alphabetic string longer than 1 character`, function() {
             expect(typesIso.isAlphabeticChar('ay')).to.eql(false);
             expect(typesIso.isAlphabeticChar('FE')).to.eql(false);
@@ -627,15 +630,26 @@ describe(`types sub-modules`, function() {
         it(`Returns false given non-string values`, function() {
             expect(typesIso.isAlphabeticChar(null)).to.eql(false);
             expect(typesIso.isAlphabeticChar(undefined)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(-Infinity)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(-1)).to.eql(false);
             expect(typesIso.isAlphabeticChar(0)).to.eql(false);
             expect(typesIso.isAlphabeticChar(1)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(Infinity)).to.eql(false);
             expect(typesIso.isAlphabeticChar(NaN)).to.eql(false);
             expect(typesIso.isAlphabeticChar(String)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(Function.prototype)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(Object.prototype)).to.eql(false);
             expect(typesIso.isAlphabeticChar(() => '')).to.eql(false);
+            expect(typesIso.isAlphabeticChar(function f() {})).to.eql(false);
             expect(typesIso.isAlphabeticChar({})).to.eql(false);
             expect(typesIso.isAlphabeticChar({a: 1})).to.eql(false);
             expect(typesIso.isAlphabeticChar([])).to.eql(false);
-            expect(typesIso.isAlphabeticChar(['a', 'bbb'])).to.eql(false);
+            expect(typesIso.isAlphabeticChar(['a', 999])).to.eql(false);
+            expect(typesIso.isAlphabeticChar([null])).to.eql(false);
+            expect(typesIso.isAlphabeticChar(true)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(Symbol())).to.eql(false);
+            expect(typesIso.isAlphabeticChar(Symbol('Q'))).to.eql(false);
         });
     });
 
