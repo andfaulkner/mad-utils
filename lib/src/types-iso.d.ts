@@ -57,6 +57,10 @@ export { AnyHTTPReqType as HTTPRequestType };
  */
 export declare const isVoidOrString: (val: any) => val is string;
 /**
+ * Returns true if [val] is an alphabetic character
+ */
+export declare const isAlphabeticChar: <T extends string = string>(val: any) => val is T;
+/**
  * Detect whether given value is a number. (Note: NaN returns false here)
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false
