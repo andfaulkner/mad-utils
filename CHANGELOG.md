@@ -1,10 +1,12 @@
-0.62.0 (WIP)
-============
+0.62.0
+======
 Rename character utility types (capitalize the names):
 *   char -> Char
 *   chars -> Chars
 *   character -> Character
 *   characters -> Characters
+
+Add isAlphabeticChar function that returns true if given an alphabetic character
 
 README.md changes:
 *   Remove merge function
