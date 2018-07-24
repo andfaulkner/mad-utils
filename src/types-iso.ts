@@ -230,7 +230,7 @@ export const isDateLike = (val: RealAny): boolean => {
     ) {
         return false;
     }
-    return (moment(val) as any)._isValid;
+    return moment(val).isValid();
 };
 
 /**
