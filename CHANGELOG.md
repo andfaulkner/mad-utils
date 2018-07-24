@@ -1,3 +1,7 @@
+0.62.2 (WIP)
+============
+Various typing fixes
+
 0.62.1
 ======
 Add isAlphaChar alias for isAlphabeticChar
