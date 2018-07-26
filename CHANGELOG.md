@@ -1,6 +1,8 @@
-0.62.2 (WIP)
-============
-Various typing fixes
+0.63.0 [BREAKING CHANGES]
+=========================
+moment.js is now a peer dependency (to allow for proper locale handling)
+
+Various typing & doc fixes
 
 0.62.1
 ======
