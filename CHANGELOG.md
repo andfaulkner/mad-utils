@@ -4,6 +4,8 @@ moment.js is now a peer dependency (to allow for proper locale handling)
 
 Various typing & doc fixes
 
+Add dateStringWithMonthTextToMoment function
+
 0.62.1
 ======
 Add isAlphaChar alias for isAlphabeticChar
