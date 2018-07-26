@@ -7,8 +7,11 @@
 /********************************* IMPORT DATE MODULE FOR TESTING *********************************/
 import {expect} from 'chai';
 import {isVerbose} from 'env-var-helpers';
+import * as moment from 'moment';
+import 'moment/locale/fr-ca';
 
-import {m_, date, isLeapYear, isDateLike} from '../../shared';
+
+import {m_, date, isLeapYear, isDateLike, dateStringWithMonthTextToMoment} from '../../shared';
 import {date as dateFromNode} from '../../node';
 import {date as dateFromBrowser} from '../../browser';
 import * as dateModule from '../../src/date';
@@ -17,7 +20,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 import {expectFunctionExists, convertDayOfWeekNumToString, now} from '../../node';
 
 /********************************************* TESTS **********************************************/
-describe(`date sub-module`, function() {
+describe.only(`date sub-module`, function() {
     expectNonEmptyObjectExists(date, 'date (from shared/base export)');
     expectNonEmptyObjectExists(m_.date, 'date (from m_ top-level namespace)');
     expectNonEmptyObjectExists(dateModule, 'date (import all from date.ts file)');
@@ -161,5 +164,62 @@ describe(`date sub-module`, function() {
                 expect(now(`YYYY/MM/DD`)).to.eql(jsFormattedDate);
             }
         );
+    });
+
+    describe(`dateStringWithMonthTextToMoment function`, function() {
+        expectFunctionExists(dateStringWithMonthTextToMoment);
+        expectFunctionExists(m_.date.dateStringWithMonthTextToMoment);
+        it(`Handles a variety of inputs`, function() {
+            moment.locale('fr-ca');
+            const dateStr1 = dateStringWithMonthTextToMoment(`25 juil 2018`);
+            const dateStr2 = dateStringWithMonthTextToMoment(`25 juil. 2018`);
+            const dateStr3 = dateStringWithMonthTextToMoment(`25 juillet 1980`);
+            const dateStr4 = dateStringWithMonthTextToMoment(`25 février 2018`);
+            const dateStr5 = dateStringWithMonthTextToMoment(`25 Février 2018`);
+            const dateStr6 = dateStringWithMonthTextToMoment(`Février 25, 2018`);
+            moment.locale('en');
+            const dateStr7 = dateStringWithMonthTextToMoment(`25 june 2018`);
+            const dateStr8 = dateStringWithMonthTextToMoment(`25 June 2018`);
+            const dateStr9 = dateStringWithMonthTextToMoment(`25 October 2018`);
+            const dateStr10 = dateStringWithMonthTextToMoment(`25 oct 2018`);
+            const dateStr11 = dateStringWithMonthTextToMoment(`25 oct. 2018`);
+            const dateStr12 = dateStringWithMonthTextToMoment(`June 30, 2018`);
+            const dateStr13 = dateStringWithMonthTextToMoment(`Dec. 31, 2018`);
+            const dateStr14 = dateStringWithMonthTextToMoment(`1 Jan 2018`);
+            const dateStr15 = dateStringWithMonthTextToMoment(`1 January 2018`);
+            const dateStr16 = dateStringWithMonthTextToMoment(`2018 Dec. 20`);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 1  :: dateStr1:`,  dateStr1);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 2  :: dateStr2:`,  dateStr2);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 3  :: dateStr3:`,  dateStr3);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 4  :: dateStr4:`,  dateStr4);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 5  :: dateStr5:`,  dateStr5);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 6  :: dateStr6:`,  dateStr6);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 7  :: dateStr7:`,  dateStr7);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 8  :: dateStr8:`,  dateStr8);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 9  :: dateStr9:`,  dateStr9);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 10 :: dateStr10:`, dateStr10);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 11 :: dateStr11:`, dateStr11);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 12 :: dateStr12:`, dateStr12);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 13 :: dateStr13:`, dateStr13);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 14 :: dateStr14:`, dateStr14);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 15 :: dateStr15:`, dateStr15);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 16 :: dateStr16:`, dateStr16);
+            expect(dateStr1.isValid()).to.be.true;
+            expect(dateStr2.isValid()).to.be.true;
+            expect(dateStr3.isValid()).to.be.true;
+            expect(dateStr4.isValid()).to.be.true;
+            expect(dateStr5.isValid()).to.be.true;
+            expect(dateStr6.isValid()).to.be.true;
+            expect(dateStr7.isValid()).to.be.true;
+            expect(dateStr8.isValid()).to.be.true;
+            expect(dateStr9.isValid()).to.be.true;
+            expect(dateStr10.isValid()).to.be.true;
+            expect(dateStr11.isValid()).to.be.true;
+            expect(dateStr12.isValid()).to.be.true;
+            expect(dateStr13.isValid()).to.be.true;
+            expect(dateStr14.isValid()).to.be.true;
+            expect(dateStr15.isValid()).to.be.true;
+            expect(dateStr16.isValid()).to.be.true;
+        });
     });
 });

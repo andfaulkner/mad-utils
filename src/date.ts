@@ -1,5 +1,6 @@
 import * as moment from 'moment';
 import {dateTime} from 'common-constants';
+import {rmFalsyVals} from './array';
 import {isDateLike, castToNum, StrOrNum, isInt, isNumberLike, StrOrNever} from './types-iso';
 
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
@@ -75,3 +76,86 @@ export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = fals
  */
 export const now = (timeFormat: string = defaultTimestampFormat): string =>
     moment().format(timeFormat);
+
+/********************************************* CONFIG *********************************************/
+// Date part regexes
+const dateRegex = /(^[0-9]$)|(^[0-2][0-9]$)|(^3[01]$)/gi;
+const yearRegex = /[0-9]{4}/gi;
+
+// Add all types of month matches
+const allMonthStrs = (momentLib: typeof moment, locale: string) =>
+    momentLib.localeData(locale)
+        .monthsShort()
+        .map(mn => mn.replace(/\.$/gi, '')) // Remove dots from end
+        .concat(momentLib.localeData(locale).months())
+        .map(mn => mn.toLowerCase()); // Make all lowercase
+
+/**
+ * Convert date strings containing month text to moment
+ * Assumes strings only contain 4-digit year
+ *
+ * Examples:
+ *     25 juil 2018
+ *     25 juil. 2018
+ *     25 juillet 1980
+ *     25 février 2018
+ *     25 Février 2018
+ *     25 june 2018
+ *     25 June 2018
+ *     25 October 2018
+ *     25 oct 2018
+ *     25 oct. 2018
+ *     June 30, 2018
+ *     Février 25, 2018
+ */
+export const dateStringWithMonthTextToMoment = (date: string, locale?: string) => {
+    const lc = locale || moment.locale();
+
+    console.log(`dateStringWithMonthTextToMoment :: moment.locale():`, moment.locale());
+
+    // Split string into date, month, year substrings, removing "." if found in month
+    const dateParts = date.match(/(\b[^\d\s\-\\/.,:;~+]+)|([0-9]+)/gi).map(pt => pt.toLowerCase());
+    console.log(`dateStringWithMonthTextToMoment :: dateParts:`, dateParts);
+
+    if (!dateParts || dateParts.length < 3) return null;
+
+    /*********** Month ***********/
+    const monthStrs = allMonthStrs(moment, lc);
+    console.log(`dateStringWithMonthTextToMoment :: monthStrs:`, monthStrs);
+
+    const monthDatePtsIdx = dateParts.findIndex(pt => monthStrs.some(moStr => pt.includes(moStr))); //monthRegex.test(pt));
+    console.log(`dateStringWithMonthTextToMoment :: monthDatePtsIdx:`, monthDatePtsIdx);
+
+    const monthStr = monthDatePtsIdx !== -1 ? dateParts.splice(monthDatePtsIdx, 1)[0] : null;
+    console.log(`dateStringWithMonthTextToMoment :: monthStr:`, monthStr);
+
+    const monthMatchNum = monthStrs.findIndex(curMonth => curMonth === monthStr);
+    console.log(`dateStringWithMonthTextToMoment :: monthMatchNum:`, monthMatchNum);
+
+    // Get the numeric month position, from 1-12
+    const month = monthMatchNum !== -1 ? (monthMatchNum % 12) + 1 : null;
+    console.log(`dateStringWithMonthTextToMoment :: month:`, month);
+
+    /*********** Year ***********/
+    const yearDatePtsIdx = dateParts.findIndex(pt => !!pt.match(yearRegex));
+    const yearStr = yearDatePtsIdx !== -1 ? dateParts.splice(yearDatePtsIdx, 1)[0] : null;
+    const year = parseInt(yearStr);
+    console.log(`dateStringWithMonthTextToMoment :: year:`, year);
+
+    /*********** Date (of month) ***********/
+    const dateDatePtsIdx = dateParts.findIndex(pt => !!pt.match(dateRegex));
+    const dateStr = dateDatePtsIdx !== -1 ? dateParts.splice(dateDatePtsIdx, 1)[0] : null;
+    const dateOfMonth = parseInt(dateStr);
+    console.log(`dateStringWithMonthTextToMoment :: dateOfMonth:`, dateOfMonth);
+
+    // If no match found for month, year, or date, this was a bad date string, so return null
+    if (!month || !year || !dateOfMonth) {
+        console.warn(
+            `[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`
+        );
+        return null;
+    }
+
+    // Build final output object
+    return moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
+};
