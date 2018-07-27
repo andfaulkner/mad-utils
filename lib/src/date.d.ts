@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { StrOrNum } from './types-iso';
 export declare type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
@@ -67,7 +68,7 @@ export declare const now: (timeFormat?: string) => string;
  *     2018-10-15
  *     15-10-2018  <- if opts.fallbackFormat = 'DD-MM-YYYY'
  */
-export declare const dateStringWithMonthTextToMoment: (date: string, opts?: {
+export declare const dateStringWithMonthTextToMoment: (date: string | moment.Moment, opts?: {
     locale?: string;
     fallbackFormat?: string | boolean;
 }) => any;
