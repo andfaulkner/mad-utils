@@ -172,10 +172,8 @@ describe.only(`date sub-module`, function() {
         it(`Handles dates with English months with 'en' locale set`, function() {
             // Store initial locale (for reset after test)
             const origLocale = moment.locale();
-
             // Set locale to English
             moment.locale('en');
-
             expect(dateStringWithMonthTextToMoment(`25 june 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`25 June 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`25 October 2018`).isValid()).to.be.true;
@@ -187,7 +185,6 @@ describe.only(`date sub-module`, function() {
             expect(dateStringWithMonthTextToMoment(`1 January 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`2018 Dec. 20`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`2018, 31 Dec`).isValid()).to.be.true;
-
             // Reset to inital locale
             moment.locale(origLocale);
         });
@@ -195,28 +192,23 @@ describe.only(`date sub-module`, function() {
         it(`Handles dates with French months with fr-ca locale set`, function() {
             // Store initial locale (for reset after test)
             const origLocale = moment.locale();
-
             // Set locale to French
             moment.locale('fr-ca');
-
             expect(dateStringWithMonthTextToMoment(`25 juil 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`25 juil. 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`25 juillet 1980`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`25 février 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`25 Février 2018`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`Février 25, 2018`).isValid()).to.be.true;
-
             // Reset to inital locale
             moment.locale(origLocale);
         });
 
         it(`Handles dates with specific given locale, without changing global locale`, function() {
             const origLocale = moment.locale();
-
             expect(dateStringWithMonthTextToMoment(`2018 Dec. 20`, {locale: 'en'}).isValid()).to.be
                 .true;
             expect(moment.locale()).to.eql(origLocale);
-
             expect(dateStringWithMonthTextToMoment(`25 février 2018`, {locale: 'fr-ca'}).isValid())
                 .to.be.true;
             expect(moment.locale()).to.eql(origLocale);
