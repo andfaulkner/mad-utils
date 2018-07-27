@@ -93,6 +93,14 @@ const allMonthStrs = (momentLib: typeof moment, locale: string) =>
 
 /********************************* CONVERSION TO moment.js OBJECT *********************************/
 /**
+ * If dateStringWithMonthTextToMoment gets invalid [date] string, log warning & return null
+ */
+const _invalidDateStringHandler = (date: string) => {
+    console.warn(`[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`);
+    return null;
+};
+
+/**
  * Performs fallback behaviour for dateStringWithMonthTextToMoment
  * See dateStringWithMonthTextToMoment for more info
  */
@@ -166,10 +174,7 @@ export const dateStringWithMonthTextToMoment = (
 
     // Handle empty strings & null
     if (!date) {
-        console.warn(
-            `[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`
-        );
-        return null;
+        return _invalidDateStringHandler(date);
     }
 
     // Split string into date, month, year substrings, removing "." if found in month
@@ -200,10 +205,7 @@ export const dateStringWithMonthTextToMoment = (
 
     // If no match found for month, year, or date, this was a bad date string, so return null
     if (!month || !year || !dateOfMonth) {
-        console.warn(
-            `[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`
-        );
-        return null;
+        return _invalidDateStringHandler(date);
     }
 
     // Build & return final output moment object
@@ -214,9 +216,6 @@ export const dateStringWithMonthTextToMoment = (
 
     // If invalid moment date produced, return null
     else {
-        console.warn(
-            `[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`
-        );
-        return null;
+        return _invalidDateStringHandler(date);
     }
 };
