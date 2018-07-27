@@ -110,13 +110,17 @@ const _dateStringWithMonthTextToMomentFallback = (
     locale?: string,
     fallbackFormat: string | boolean = true
 ) => {
+    // Create month & date strings that can handle single digit inputs
+    const month = (dateParts[1].length === 1) ? `0${dateParts[1]}` : dateParts[1];
+    const dateOfMonth = (dateParts[2].length === 1) ? `0${dateParts[2]}` : dateParts[2];
+
     // If no fallbackFormat string given & it's not set to false, & the date matches ISO format
     if (
         fallbackFormat === true &&
         dateParts.length === 3 &&
         (dateParts[0].length === 4 && !isNaN(dateParts[0] as any)) &&
-        (dateParts[1].length === 2 && !isNaN(dateParts[1] as any)) &&
-        (dateParts[2].length === 2 && !isNaN(dateParts[2] as any))
+        (month.length === 2 && !isNaN(month as any)) &&
+        (dateOfMonth.length === 2 && !isNaN(dateOfMonth as any))
     ) {
         const retVal = moment(date, undefined, locale);
         if (retVal.isValid && retVal.isValid()) return retVal;
@@ -165,17 +169,19 @@ const _dateStringWithMonthTextToMomentFallback = (
  *     15-10-2018  <- if opts.fallbackFormat = 'DD-MM-YYYY'
  */
 export const dateStringWithMonthTextToMoment = (
-    date: string,
+    date: string | moment.Moment,
     opts: {locale?: string; fallbackFormat?: string | boolean} = {}
 ) => {
+    // Return date as-is if it's already a moment date
+    if (moment.isMoment(date)) return date;
+
+    // Handle empty strings & null (return null, with a warning)
+    if (!date) return _invalidDateStringHandler(date);
+
+    // Extract default props
     const {locale} = opts;
     const fallbackFormat = opts.fallbackFormat || true;
     const lc = locale || moment.locale();
-
-    // Handle empty strings & null
-    if (!date) {
-        return _invalidDateStringHandler(date);
-    }
 
     // Split string into date, month, year substrings, removing "." if found in month
     const dateParts = date.match(/(\b[^\d\s\-\\/.,:;~+]+)|([0-9]+)/gi).map(pt => pt.toLowerCase());
