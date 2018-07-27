@@ -214,16 +214,37 @@ describe.only(`date sub-module`, function() {
             expect(moment.locale()).to.eql(origLocale);
         });
 
-        it(`returns null with invalid inputs`, function() {
+        it(`returns null with empty inputs`, function() {
             expect(dateStringWithMonthTextToMoment(null)).to.be.null;
             expect(dateStringWithMonthTextToMoment(``)).to.be.null;
+        });
+
+        it(`returns null with nonexistent dates`, function() {
+            expect(dateStringWithMonthTextToMoment(`Jan 50, 2020`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`Feb 30, 1980`)).to.be.null;
+        });
+
+        it(`returns null with non-standard date formats when given no fallbackFormat`, function() {
             expect(dateStringWithMonthTextToMoment(`10-10-2019`)).to.be.null;
-            expect(dateStringWithMonthTextToMoment(`10102019`)).to.be.null;
-            expect(dateStringWithMonthTextToMoment(`Jan 33, 2020`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`10-10-10`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`02-2020-10`)).to.be.null;
         });
 
         it(`returns moment object when given ISO-formatted strings (but no fallback)`, function() {
             expect(dateStringWithMonthTextToMoment(`2017-10-19`).isValid()).to.be.true;
+        });
+
+        it(`returns moment object when given ISO-formatted strings (but no fallback) with single digit month and/or year`, function() {
+            expect(dateStringWithMonthTextToMoment(`2017-10-3`).isValid()).to.be.true;
+            expect(dateStringWithMonthTextToMoment(`2017-1-23`).isValid()).to.be.true;
+            expect(dateStringWithMonthTextToMoment(`2017-1-3`).isValid()).to.be.true;
+            expect(dateStringWithMonthTextToMoment(`2017-01-3`).isValid()).to.be.true;
+            expect(dateStringWithMonthTextToMoment(`2017-1-03`).isValid()).to.be.true;
+        });
+
+        it(`returns moment object as-is when given a moment object`, function() {
+            const date = moment();
+            expect(dateStringWithMonthTextToMoment(date)).to.eql(date);
         });
 
         it(`handles non-ISO date strings with a fallback (if fallback given)`, function() {
