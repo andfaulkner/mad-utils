@@ -122,9 +122,18 @@ const _dateStringWithMonthTextToMomentFallback = (
 };
 
 /**
+ * **** WARNING: SOMEWHAT EXPERIMENTAL ****
+ * **** CONSIDER THIS FUNCTION 'ALPHA' ****
+ *
  * Convert [date] strings containing month text to moment
  * Assumes strings only contain 4-digit year
+ *
  * Uses currently set locale in moment unless a new [locale] string is provided
+ *
+ * If no month found:
+ * - If [opts.fallbackFormat] is given, it attempts to use that to format the string
+ * - If no [opts.fallbackFormat] is given, it falls back to trying to parse string in ISO format
+ * - If false is given as [opts.fallbackFormat], it returns null
  *
  * Example strings this can handle:
  *     25 juil 2018
@@ -141,6 +150,8 @@ const _dateStringWithMonthTextToMomentFallback = (
  *     Février 25, 2018
  *     2018 January 13
  *     2018, 31 Dec
+ *     2018-10-15
+ *     15-10-2018  <- if opts.fallbackFormat = 'DD-MM-YYYY'
  */
 export const dateStringWithMonthTextToMoment = (
     date: string,
