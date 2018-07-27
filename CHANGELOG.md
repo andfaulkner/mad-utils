@@ -1,4 +1,4 @@
-0.63.3
+0.63.4
 ======
 dateStringWithMonthTextToMoment improvements:
 *   Handles 2-part date strings (returns null)
