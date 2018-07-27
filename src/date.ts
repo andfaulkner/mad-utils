@@ -111,15 +111,16 @@ const _dateStringWithMonthTextToMomentFallback = (
         (dateParts[2].length === 2 && !isNaN(dateParts[2] as any))
     ) {
         const retVal = moment(date, undefined, locale);
-        return (retVal.isValid && retVal.isValid()) ? retVal : null;
+        if (retVal.isValid && retVal.isValid()) return retVal;
     }
 
     // If fallbackFormat string given
-    if (typeof fallbackFormat === 'string') {
+    else if (typeof fallbackFormat === 'string') {
         const retVal = moment(date, fallbackFormat, locale);
-        return (retVal.isValid && retVal.isValid()) ? retVal : null;
+        if (retVal.isValid && retVal.isValid()) return retVal;
     }
 
+    console.warn(`[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`);
     return null;
 };
 
@@ -164,7 +165,12 @@ export const dateStringWithMonthTextToMoment = (
     const lc = locale || moment.locale();
 
     // Handle empty strings & null
-    if (!date) return null;
+    if (!date) {
+        console.warn(
+            `[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`
+        );
+        return null;
+    }
 
     // Split string into date, month, year substrings, removing "." if found in month
     const dateParts = date.match(/(\b[^\d\s\-\\/.,:;~+]+)|([0-9]+)/gi).map(pt => pt.toLowerCase());
@@ -200,6 +206,17 @@ export const dateStringWithMonthTextToMoment = (
         return null;
     }
 
-    // Build & return final output object
-    return moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
+    // Build & return final output moment object
+    const retVal = moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
+    if (retVal && retVal.isValid && retVal.isValid()) {
+        return retVal;
+    }
+
+    // If invalid moment date produced, return null
+    else {
+        console.warn(
+            `[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`
+        );
+        return null;
+    }
 };
