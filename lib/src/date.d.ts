@@ -37,9 +37,18 @@ export declare const convertDayOfWeekNumToString: (day: NumRange0To6, abbreviate
  */
 export declare const now: (timeFormat?: string) => string;
 /**
+ ************************ WARNING: SOMEWHAT EXPERIMENTAL ***********************
+ ************************ CONSIDER THIS FUNCTION 'ALPHA' ***********************
+ *
  * Convert [date] strings containing month text to moment
  * Assumes strings only contain 4-digit year
+ *
  * Uses currently set locale in moment unless a new [locale] string is provided
+ *
+ * If no month found:
+ * - If [opts.fallbackFormat] is given, it tries to use it to format the string
+ * - If no [opts.fallbackFormat] given, it tries to parse string in ISO format
+ * - If false is given as [opts.fallbackFormat], it returns null
  *
  * Example strings this can handle:
  *     25 juil 2018
@@ -56,6 +65,8 @@ export declare const now: (timeFormat?: string) => string;
  *     Février 25, 2018
  *     2018 January 13
  *     2018, 31 Dec
+ *     2018-10-15
+ *     15-10-2018  <- if opts.fallbackFormat = 'DD-MM-YYYY'
  */
 export declare const dateStringWithMonthTextToMoment: (date: string, opts?: {
     locale?: string;
