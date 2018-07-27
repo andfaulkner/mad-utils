@@ -110,9 +110,18 @@ const _dateStringWithMonthTextToMomentFallback = (
     locale?: string,
     fallbackFormat: string | boolean = true
 ) => {
+    if (dateParts.length !== 3) {
+        if (typeof fallbackFormat === 'string') {
+            const retVal = moment(date, fallbackFormat, locale);
+            if (retVal.isValid && retVal.isValid()) return retVal;
+        }
+        return _invalidDateStringHandler(date);
+    }
+
     // Create month & date strings that can handle single digit inputs
     const month = (dateParts[1].length === 1) ? `0${dateParts[1]}` : dateParts[1];
     const dateOfMonth = (dateParts[2].length === 1) ? `0${dateParts[2]}` : dateParts[2];
+
 
     // If no fallbackFormat string given & it's not set to false, & the date matches ISO format
     if (
