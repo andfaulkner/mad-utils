@@ -91,10 +91,11 @@ const allMonthStrs = (momentLib: typeof moment, locale: string) =>
         .map(mn => mn.toLowerCase()); // Make all lowercase
 
 /**
- * Convert date strings containing month text to moment
+ * Convert [date] strings containing month text to moment
  * Assumes strings only contain 4-digit year
+ * Uses currently set locale in moment unless a new [locale] string is provided
  *
- * Examples:
+ * Example strings this can handle:
  *     25 juil 2018
  *     25 juil. 2018
  *     25 juillet 1980
@@ -107,11 +108,16 @@ const allMonthStrs = (momentLib: typeof moment, locale: string) =>
  *     25 oct. 2018
  *     June 30, 2018
  *     Février 25, 2018
+ *     2018 January 13
+ *     2018, 31 Dec
  */
 export const dateStringWithMonthTextToMoment = (date: string, locale?: string) => {
+    console.log(`dateStringWithMonthTextToMoment :: [INPUT] date:`, date);
     const lc = locale || moment.locale();
-
     console.log(`dateStringWithMonthTextToMoment :: moment.locale():`, moment.locale());
+
+    // Handle empty strings & null
+    if (!date) return null;
 
     // Split string into date, month, year substrings, removing "." if found in month
     const dateParts = date.match(/(\b[^\d\s\-\\/.,:;~+]+)|([0-9]+)/gi).map(pt => pt.toLowerCase());
@@ -157,5 +163,7 @@ export const dateStringWithMonthTextToMoment = (date: string, locale?: string) =
     }
 
     // Build final output object
-    return moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
+    const finalOutput = moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
+    console.log(`dateStringWithMonthTextToMoment :: [RETURN]: finalOutput:`, finalOutput);
+    return finalOutput;
 };
