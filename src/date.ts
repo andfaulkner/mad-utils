@@ -92,7 +92,8 @@ const allMonthStrs = (momentLib: typeof moment, locale: string) =>
         .map(mn => mn.toLowerCase()); // Make all lowercase
 
 /**
- * Try parsing the moment object anyway if given a string with no month
+ * Performs fallback behaviour for dateStringWithMonthTextToMoment
+ * See dateStringWithMonthTextToMoment for more info
  */
 const _dateStringWithMonthTextToMomentFallback = (
     date: string,
@@ -122,8 +123,8 @@ const _dateStringWithMonthTextToMomentFallback = (
 };
 
 /**
- * **** WARNING: SOMEWHAT EXPERIMENTAL ****
- * **** CONSIDER THIS FUNCTION 'ALPHA' ****
+ ************************ WARNING: SOMEWHAT EXPERIMENTAL ***********************
+ ************************ CONSIDER THIS FUNCTION 'ALPHA' ***********************
  *
  * Convert [date] strings containing month text to moment
  * Assumes strings only contain 4-digit year
@@ -131,8 +132,8 @@ const _dateStringWithMonthTextToMomentFallback = (
  * Uses currently set locale in moment unless a new [locale] string is provided
  *
  * If no month found:
- * - If [opts.fallbackFormat] is given, it attempts to use that to format the string
- * - If no [opts.fallbackFormat] is given, it falls back to trying to parse string in ISO format
+ * - If [opts.fallbackFormat] is given, it tries to use it to format the string
+ * - If no [opts.fallbackFormat] given, it tries to parse string in ISO format
  * - If false is given as [opts.fallbackFormat], it returns null
  *
  * Example strings this can handle:
@@ -159,17 +160,13 @@ export const dateStringWithMonthTextToMoment = (
 ) => {
     const {locale} = opts;
     const fallbackFormat = opts.fallbackFormat || true;
-
-    console.log(`dateStringWithMonthTextToMoment :: [INPUT] date:`, date);
     const lc = locale || moment.locale();
-    console.log(`dateStringWithMonthTextToMoment :: moment.locale():`, moment.locale());
 
     // Handle empty strings & null
     if (!date) return null;
 
     // Split string into date, month, year substrings, removing "." if found in month
     const dateParts = date.match(/(\b[^\d\s\-\\/.,:;~+]+)|([0-9]+)/gi).map(pt => pt.toLowerCase());
-    console.log(`dateStringWithMonthTextToMoment :: dateParts:`, dateParts);
 
     // If there's no month string in the output, use the fallback behaviour
     if (!dateParts || dateParts.length !== 3 || !dateParts.some(pt => isNaN(pt as any))) {
@@ -178,32 +175,22 @@ export const dateStringWithMonthTextToMoment = (
 
     /*********** Month ***********/
     const monthStrs = allMonthStrs(moment, lc);
-    console.log(`dateStringWithMonthTextToMoment :: monthStrs:`, monthStrs);
-
     const monthDatePtsIdx = dateParts.findIndex(pt => monthStrs.some(moStr => pt.includes(moStr))); //monthRegex.test(pt));
-    console.log(`dateStringWithMonthTextToMoment :: monthDatePtsIdx:`, monthDatePtsIdx);
-
     const monthStr = monthDatePtsIdx !== -1 ? dateParts.splice(monthDatePtsIdx, 1)[0] : null;
-    console.log(`dateStringWithMonthTextToMoment :: monthStr:`, monthStr);
-
     const monthMatchNum = monthStrs.findIndex(curMonth => curMonth === monthStr);
-    console.log(`dateStringWithMonthTextToMoment :: monthMatchNum:`, monthMatchNum);
 
     // Get the numeric month position, from 1-12
     const month = monthMatchNum !== -1 ? (monthMatchNum % 12) + 1 : null;
-    console.log(`dateStringWithMonthTextToMoment :: month:`, month);
 
     /*********** Year ***********/
     const yearDatePtsIdx = dateParts.findIndex(pt => !!pt.match(yearRegex));
     const yearStr = yearDatePtsIdx !== -1 ? dateParts.splice(yearDatePtsIdx, 1)[0] : null;
     const year = parseInt(yearStr);
-    console.log(`dateStringWithMonthTextToMoment :: year:`, year);
 
     /*********** Date (of month) ***********/
     const dateDatePtsIdx = dateParts.findIndex(pt => !!pt.match(dateRegex));
     const dateStr = dateDatePtsIdx !== -1 ? dateParts.splice(dateDatePtsIdx, 1)[0] : null;
     const dateOfMonth = parseInt(dateStr);
-    console.log(`dateStringWithMonthTextToMoment :: dateOfMonth:`, dateOfMonth);
 
     // If no match found for month, year, or date, this was a bad date string, so return null
     if (!month || !year || !dateOfMonth) {
@@ -215,6 +202,5 @@ export const dateStringWithMonthTextToMoment = (
 
     // Build final output object
     const finalOutput = moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
-    console.log(`dateStringWithMonthTextToMoment :: [RETURN]: finalOutput:`, finalOutput);
     return finalOutput;
 };
