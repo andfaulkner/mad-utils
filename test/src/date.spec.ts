@@ -234,6 +234,22 @@ describe.only(`date sub-module`, function() {
             expect(dateStringWithMonthTextToMoment(`2017-10-19`).isValid()).to.be.true;
         });
 
+        it(`returns null when given 2-part date strings`, function() {
+            expect(dateStringWithMonthTextToMoment(`2017-10`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`10-1900`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`1-1900`)).to.be.null;
+        });
+
+        it(`returns null when given invalid strings with dashes`, function() {
+            expect(dateStringWithMonthTextToMoment(`Non-spécifié`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`non-valid`)).to.be.null;
+        });
+
+        it(`returns null when given phrases with spaces`, function() {
+            expect(dateStringWithMonthTextToMoment(`This is not valid`)).to.be.null;
+            expect(dateStringWithMonthTextToMoment(`This is not valid`)).to.be.null;
+        });
+
         it(`returns moment object when given ISO-formatted strings (but no fallback) with single digit month and/or year`, function() {
             expect(dateStringWithMonthTextToMoment(`2017-10-3`).isValid()).to.be.true;
             expect(dateStringWithMonthTextToMoment(`2017-1-23`).isValid()).to.be.true;
