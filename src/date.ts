@@ -141,6 +141,7 @@ const _dateStringWithMonthTextToMomentFallback = (
  ************************ CONSIDER THIS FUNCTION 'ALPHA' ***********************
  *
  * Convert [date] strings containing month text to moment
+ * Returns moment objects as-is
  * Assumes strings only contain 4-digit year
  *
  * Uses currently set locale in moment unless a new [locale] string is provided
