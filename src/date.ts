@@ -175,10 +175,9 @@ export const dateStringWithMonthTextToMoment = (
 
     /*********** Month ***********/
     const monthStrs = allMonthStrs(moment, lc);
-    const monthDatePtsIdx = dateParts.findIndex(pt => monthStrs.some(moStr => pt.includes(moStr))); //monthRegex.test(pt));
+    const monthDatePtsIdx = dateParts.findIndex(pt => monthStrs.some(moStr => pt.includes(moStr)));
     const monthStr = monthDatePtsIdx !== -1 ? dateParts.splice(monthDatePtsIdx, 1)[0] : null;
     const monthMatchNum = monthStrs.findIndex(curMonth => curMonth === monthStr);
-
     // Get the numeric month position, from 1-12
     const month = monthMatchNum !== -1 ? (monthMatchNum % 12) + 1 : null;
 
@@ -200,7 +199,6 @@ export const dateStringWithMonthTextToMoment = (
         return null;
     }
 
-    // Build final output object
-    const finalOutput = moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
-    return finalOutput;
+    // Build & return final output object
+    return moment({date: dateOfMonth, month: month - 1, year}, undefined, lc);
 };
