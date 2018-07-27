@@ -210,6 +210,18 @@ describe.only(`date sub-module`, function() {
             moment.locale(origLocale);
         });
 
+        it(`Handles dates with specific given locale, without changing global locale`, function() {
+            const origLocale = moment.locale();
+
+            expect(dateStringWithMonthTextToMoment(`2018 Dec. 20`, {locale: 'en'}).isValid()).to.be
+                .true;
+            expect(moment.locale()).to.eql(origLocale);
+
+            expect(dateStringWithMonthTextToMoment(`25 février 2018`, {locale: 'fr-ca'}).isValid())
+                .to.be.true;
+            expect(moment.locale()).to.eql(origLocale);
+        });
+
         it(`returns null with invalid inputs`, function() {
             expect(dateStringWithMonthTextToMoment(null)).to.be.null;
             expect(dateStringWithMonthTextToMoment(``)).to.be.null;
