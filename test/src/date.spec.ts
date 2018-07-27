@@ -10,7 +10,6 @@ import {isVerbose} from 'env-var-helpers';
 import * as moment from 'moment';
 import 'moment/locale/fr-ca';
 
-
 import {m_, date, isLeapYear, isDateLike, dateStringWithMonthTextToMoment} from '../../shared';
 import {date as dateFromNode} from '../../node';
 import {date as dateFromBrowser} from '../../browser';
@@ -170,40 +169,78 @@ describe.only(`date sub-module`, function() {
         expectFunctionExists(dateStringWithMonthTextToMoment);
         expectFunctionExists(m_.date.dateStringWithMonthTextToMoment);
         it(`Handles a variety of inputs`, function() {
+            const origLocale = moment.locale();
             moment.locale('fr-ca');
+
+            console.log(`\n\nStarting dateStr1 test...`);
             const dateStr1 = dateStringWithMonthTextToMoment(`25 juil 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 1  :: dateStr1:`, dateStr1);
+
+            console.log(`\n\nStarting dateStr2 test...`);
             const dateStr2 = dateStringWithMonthTextToMoment(`25 juil. 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 2  :: dateStr2:`, dateStr2);
+
+            console.log(`\n\nStarting dateStr3 test...`);
             const dateStr3 = dateStringWithMonthTextToMoment(`25 juillet 1980`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 3  :: dateStr3:`, dateStr3);
+
+            console.log(`\n\nStarting dateStr4 test...`);
             const dateStr4 = dateStringWithMonthTextToMoment(`25 février 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 4  :: dateStr4:`, dateStr4);
+
+            console.log(`\n\nStarting dateStr5 test...`);
             const dateStr5 = dateStringWithMonthTextToMoment(`25 Février 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 5  :: dateStr5:`, dateStr5);
+
+            console.log(`\n\nStarting dateStr6 test...`);
             const dateStr6 = dateStringWithMonthTextToMoment(`Février 25, 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 6  :: dateStr6:`, dateStr6);
+
             moment.locale('en');
+
+            console.log(`\n\nStarting dateStr7 test...`);
             const dateStr7 = dateStringWithMonthTextToMoment(`25 june 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 7  :: dateStr7:`, dateStr7);
+
+            console.log(`\n\nStarting dateStr8 test...`);
             const dateStr8 = dateStringWithMonthTextToMoment(`25 June 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 8  :: dateStr8:`, dateStr8);
+
+            console.log(`\n\nStarting dateStr9 test...`);
             const dateStr9 = dateStringWithMonthTextToMoment(`25 October 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 9  :: dateStr9:`, dateStr9);
+
+            console.log(`\n\nStarting dateStr10 test...`);
             const dateStr10 = dateStringWithMonthTextToMoment(`25 oct 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 10 :: dateStr10:`, dateStr10);
+
+            console.log(`\n\nStarting dateStr11 test...`);
             const dateStr11 = dateStringWithMonthTextToMoment(`25 oct. 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 11 :: dateStr11:`, dateStr11);
+
+            console.log(`\n\nStarting dateStr12 test...`);
             const dateStr12 = dateStringWithMonthTextToMoment(`June 30, 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 12 :: dateStr12:`, dateStr12);
+
+            console.log(`\n\nStarting dateStr13 test...`);
             const dateStr13 = dateStringWithMonthTextToMoment(`Dec. 31, 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 13 :: dateStr13:`, dateStr13);
+
+            console.log(`\n\nStarting dateStr14 test...`);
             const dateStr14 = dateStringWithMonthTextToMoment(`1 Jan 2018`);
+            console.log(`[dateStringWithMonthTextToMoment]  TEST 14 :: dateStr14:`, dateStr14);
+
+            console.log(`\n\nStarting dateStr15 test...`);
             const dateStr15 = dateStringWithMonthTextToMoment(`1 January 2018`);
-            const dateStr16 = dateStringWithMonthTextToMoment(`2018 Dec. 20`);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 1  :: dateStr1:`,  dateStr1);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 2  :: dateStr2:`,  dateStr2);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 3  :: dateStr3:`,  dateStr3);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 4  :: dateStr4:`,  dateStr4);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 5  :: dateStr5:`,  dateStr5);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 6  :: dateStr6:`,  dateStr6);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 7  :: dateStr7:`,  dateStr7);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 8  :: dateStr8:`,  dateStr8);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 9  :: dateStr9:`,  dateStr9);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 10 :: dateStr10:`, dateStr10);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 11 :: dateStr11:`, dateStr11);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 12 :: dateStr12:`, dateStr12);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 13 :: dateStr13:`, dateStr13);
-            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 14 :: dateStr14:`, dateStr14);
             console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 15 :: dateStr15:`, dateStr15);
+
+            console.log(`\n\nStarting dateStr16 test...`);
+            const dateStr16 = dateStringWithMonthTextToMoment(`2018 Dec. 20`);
             console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 16 :: dateStr16:`, dateStr16);
+
+            console.log(`\n\nStarting dateStr17 test...`);
+            const dateStr17 = dateStringWithMonthTextToMoment(`2018, 31 Dec`);
+            console.log(`\n\n[dateStringWithMonthTextToMoment]  TEST 17 :: dateStr17:`, dateStr17);
             expect(dateStr1.isValid()).to.be.true;
             expect(dateStr2.isValid()).to.be.true;
             expect(dateStr3.isValid()).to.be.true;
@@ -220,6 +257,50 @@ describe.only(`date sub-module`, function() {
             expect(dateStr14.isValid()).to.be.true;
             expect(dateStr15.isValid()).to.be.true;
             expect(dateStr16.isValid()).to.be.true;
+            expect(dateStr17.isValid()).to.be.true;
+            // Reset to inital locale
+            moment.locale(origLocale);
+        });
+
+        it(`returns null with invalid inputs`, function() {
+            console.log(`\n\nStarting testStrInvalid1 test...`);
+            const testStrInvalid1 = dateStringWithMonthTextToMoment(null);
+            console.log(`testStrInvalid1:`, testStrInvalid1);
+
+            console.log(`\n\nStarting testStrInvalid2 test...`);
+            const testStrInvalid2 = dateStringWithMonthTextToMoment(``);
+            console.log(`testStrInvalid2:`, testStrInvalid2);
+
+            console.log(`\n\nStarting testStrInvalid3 test...`);
+            const testStrInvalid3 = dateStringWithMonthTextToMoment(`10-10-2019`);
+            console.log(`testStrInvalid3:`, testStrInvalid3);
+
+            console.log(`\n\nStarting testStrInvalid4 test...`);
+            const testStrInvalid4 = dateStringWithMonthTextToMoment(`10102019`);
+            console.log(`testStrInvalid4:`, testStrInvalid4);
+
+            console.log(`\n\nStarting testStrInvalid5 test...`);
+            const testStrInvalid5 = dateStringWithMonthTextToMoment(`Jan 33, 2020`);
+            console.log(`testStrInvalid5:`, testStrInvalid5);
+
+            expect(testStrInvalid1).to.be.null;
+            expect(testStrInvalid2).to.be.null;
+            expect(testStrInvalid3).to.be.null;
+            expect(testStrInvalid4).to.be.null;
+            expect(testStrInvalid5).to.be.null;
+        });
+
+        it(`handles moment-friendly strings with a fallback`, function() {
+            const fallbackStr1 = dateStringWithMonthTextToMoment(`2017-10-19`);
+            console.log(`fallbackStr1:`, fallbackStr1);
+            expect(fallbackStr1.isValid()).to.be.true;
+
+            const fallbackStr2 = dateStringWithMonthTextToMoment(
+                `19-10-2017`,
+                {fallbackFormat: 'DD-MM-YYYY'}
+            );
+            console.log(`fallbackStr2:`, fallbackStr2);
+            expect(fallbackStr2.isValid()).to.be.true;
         });
     });
 });
