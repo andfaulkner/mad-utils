@@ -91,6 +91,7 @@ const allMonthStrs = (momentLib: typeof moment, locale: string) =>
         .concat(momentLib.localeData(locale).months())
         .map(mn => mn.toLowerCase()); // Make all lowercase
 
+/********************************* CONVERSION TO moment.js OBJECT *********************************/
 /**
  * Performs fallback behaviour for dateStringWithMonthTextToMoment
  * See dateStringWithMonthTextToMoment for more info
