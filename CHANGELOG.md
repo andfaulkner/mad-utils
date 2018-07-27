@@ -1,5 +1,12 @@
-0.63.2 (WIP)
-============
+0.63.3
+======
+dateStringWithMonthTextToMoment improvements:
+*   Handles 2-part date strings (returns null)
+*   Handles text strings with dashes in them (returns null)
+*   Handles text 'phrases' - i.e. strings with spaces in them (returns null)
+
+0.63.2
+======
 dateStringWithMonthTextToMoment improvements:
 *   Handles moment objects (returns them as-is)
 *   Handles single digit values for month & date
