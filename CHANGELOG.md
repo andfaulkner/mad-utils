@@ -1,3 +1,13 @@
+0.63.2 (WIP)
+============
+dateStringWithMonthTextToMoment improvements:
+*   Handles moment objects (returns them as-is)
+*   Handles single digit values for month & date
+
+0.63.1
+======
+Warning always shown when null returned from dateStringWithMonthTextToMoment
+
 0.63.0
 ======
 moment.js is now a peer dependency (to allow for proper locale handling)
