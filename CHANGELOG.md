@@ -5,6 +5,7 @@ moment.js is now a peer dependency (to allow for proper locale handling)
 Various typing & doc fixes
 
 Add dateStringWithMonthTextToMoment function
+*   Converts any date string containing a text-based month into a moment object
 
 0.62.1
 ======
