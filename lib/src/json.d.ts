@@ -5,4 +5,3 @@
  * @return {string} Stringified form of JSON.stringify with functions kept around.
  */
 export declare const jsonStringifyWFuncs: (obj: Object) => string;
-export declare const jsonParseWFuncRehydrate_unsafe: (json: string) => Object;

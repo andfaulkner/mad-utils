@@ -15,39 +15,6 @@ export const jsonStringifyWFuncs = (obj: Object): string =>
     JSON.stringify(obj, (key: string, value: RealAny) =>
         typeof value === 'function' ? value.toString() : value);
 
-export const jsonParseWFuncRehydrate_unsafe = (json: string): Object => {
-    const objFromStrJSON = JSON.parse(json, (key: string, val: any) => {
-        if (typeof val === 'function') {
-            const isFuncStr = val.match(/^function\s+[a-zA-Z0-9_\$]*?\s*\([^\)]*\)[\s\n]*\{.*\}$/);
-            const isLambdaStr = val.match(/^\([^\)]*\)\s\=>\s/);
-
-            if (isLambdaStr || isFuncStr) {
-                // Detect all args from function string, pull them into an array.
-                let funcArgs = _extractArgsFromFuncStr(val);
-
-                // Exclude unneeded parts in all function strings (both arrow & regular function)
-                let funcStr = _baseCleanFuncStrForNewFunc(val);
-
-                // Type-specific cleanups on function string (separate cleans for arrow & regular)
-                if (isFuncStr) {
-                    funcStr = funcStr.replace(/^function[^\(]\([^\)]*\)\s*\{\) => \{?/, '')
-                } else if (isLambdaStr) {
-                    funcStr = funcStr.replace(/^\([^\)]*\) => \{?/, '')
-                }
-
-                const newFunc = new Function(...funcArgs, funcStr);
-                if (isVerbose) console.log(
-                    `${fn} jsonParseWFuncRehydrate_unsafe :: newFunc:`, newFunc);
-                return newFunc;
-            }
-        }
-        return val;
-    });
-    if (isVerbose) console.log(
-        `${fn} JSONParseWFuncRehydrate_unsafe :: objFromStrJSON:`, objFromStrJSON);
-    return objFromStrJSON;
-};
-
 /**
  * Initial common set of cleaning tasks for prepping stringified functions of any type (lambda
  * arrow functions vs classic function declarations or assignments) for use in new Function.

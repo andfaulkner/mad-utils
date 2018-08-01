@@ -47,10 +47,8 @@ describe(`json sub-module`, function() {
 
     describe(`functions exported`, function() {
         let jsonStrWFuncs: string;
-        let jsonParseWFuncRehydrate: Object;
         before(function() {
             jsonStrWFuncs = json.jsonStringifyWFuncs(testObj);
-            jsonParseWFuncRehydrate = json.jsonParseWFuncRehydrate_unsafe(testObjJsonStr);
         });
         it('exists', function() {
             expect(mUtils).to.exist;
@@ -67,16 +65,6 @@ describe(`json sub-module`, function() {
                 expect(jsonStrWFuncs).to.contain('"b"');
                 expect(jsonStrWFuncs).to.contain('"c"');
                 expect(jsonStrWFuncs).to.contain('"f"');
-            });
-        });
-
-        describe(`[namespace json] jsonParseWFuncRehydrate_unsafe`, function() {
-            it(`exists`, function() {
-                expect(mUtils.json.jsonParseWFuncRehydrate_unsafe).to.exist;
-            });
-            it(`can be instantiated`, function() {
-                expect(jsonParseWFuncRehydrate).to.exist;
-                expect(jsonParseWFuncRehydrate).to.be.an('object');
             });
         });
     });
