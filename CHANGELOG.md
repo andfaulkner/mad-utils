@@ -1,4 +1,4 @@
-0.64.0 [BREAKING CHANGES]
+0.65.0 [BREAKING CHANGES]
 =========================
 Remove entire JSON module
 *   Remove jsonParseWFuncRehydrate_unsafe function
@@ -6,8 +6,8 @@ Remove entire JSON module
 
 More missing tests (sortObject)
 
-0.63.4
-======
+0.64.4 (version jump due to release error)
+==========================================
 dateStringWithMonthTextToMoment improvements:
 *   Handles 2-part date strings (returns null)
 *   Handles text strings with dashes in them (returns null)
