@@ -497,28 +497,16 @@ describe(`object sub-module`, function() {
     });
 
     describe(`sortObject`, function() {
-        const testObj = {
-            z: 1,
-            a: 2,
-            m: 3,
-            d: 4,
-            s: 5,
-            t: 6,
-            b: 7,
-        };
-
-        // Duplicate of original test object
-        const origTestObj = {...testObj};
-
-        // New, sorted object
-        const newObj = sortObject(testObj);
+        const testObj = {z: 1, a: 2, m: 3, d: 4, s: 5, t: 6, b: 7};
+        const origTestObj = {...testObj}; // Duplicate of original test object
+        const newObj = sortObject(testObj); // New, sorted object
 
         it(`Doesn't mutate original object`, function() {
-           expect(testObj).to.eql(origTestObj);
+            expect(testObj).to.eql(origTestObj);
         });
 
         it(`Sorts the keys of an object`, function() {
-           expect(Object.keys(newObj)).to.eql(['a', 'b', 'd', 'm', 's', 't', 'z']);
+            expect(Object.keys(newObj)).to.eql(['a', 'b', 'd', 'm', 's', 't', 'z']);
         });
     });
 
