@@ -4,6 +4,8 @@ Remove entire JSON module
 *   Remove jsonParseWFuncRehydrate_unsafe function
 *   Remove jsonStringifyWFuncs function
 
+More missing tests (sortObject)
+
 0.63.4
 ======
 dateStringWithMonthTextToMoment improvements:
