@@ -23,6 +23,7 @@ import {
     isMultilangTextObj,
     get,
     omit,
+    sortObject,
 } from '../../shared';
 
 import {expectFunctionExists} from '../../node';
@@ -492,6 +493,32 @@ describe(`object sub-module`, function() {
             // Should allow deletion of the prop.
             delete newObj.a;
             expect(newObj.a).to.be.undefined;
+        });
+    });
+
+    describe(`sortObject`, function() {
+        const testObj = {
+            z: 1,
+            a: 2,
+            m: 3,
+            d: 4,
+            s: 5,
+            t: 6,
+            b: 7,
+        };
+
+        // Duplicate of original test object
+        const origTestObj = {...testObj};
+
+        // New, sorted object
+        const newObj = sortObject(testObj);
+
+        it(`Doesn't mutate original object`, function() {
+           expect(testObj).to.eql(origTestObj);
+        });
+
+        it(`Sorts the keys of an object`, function() {
+           expect(Object.keys(newObj)).to.eql(['a', 'b', 'd', 'm', 's', 't', 'z']);
         });
     });
 
