@@ -1,6 +1,8 @@
 0.64.0 [BREAKING CHANGES]
 =========================
-Remove jsonParseWFuncRehydrate_unsafe
+Remove entire JSON module
+*   Remove jsonParseWFuncRehydrate_unsafe function
+*   Remove jsonStringifyWFuncs function
 
 0.63.4
 ======
