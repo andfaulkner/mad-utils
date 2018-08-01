@@ -6,7 +6,6 @@ import {
     Enum,
     error,
     func,
-    json,
     locale,
     number,
     object,
@@ -26,7 +25,6 @@ export {
     Enum,
     error,
     func,
-    json,
     locale,
     number,
     object,
@@ -43,7 +41,6 @@ export * from './src/decorator';
 export * from './src/enum';
 export * from './src/error';
 export * from './src/function';
-export * from './src/json';
 export * from './src/locale';
 export * from './src/number';
 export * from './src/object';
@@ -105,8 +102,6 @@ export const mUtils = {
     functionUtils: func,
     genericDataTypes: dataTypes,
     isNode,
-    json,
-    jsonUtils: json,
     locale,
     localStore,
     localStoreUtils: localStore,

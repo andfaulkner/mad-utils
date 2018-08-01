@@ -1,12 +1,11 @@
-import { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, error, func, json, locale, number, object, url, search, string, validation, stream, };
+import { array, date, decorator, Enum, error, func, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
+export { array, date, decorator, Enum, error, func, locale, number, object, url, search, string, validation, stream, };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
 export * from './src/enum';
 export * from './src/error';
 export * from './src/function';
-export * from './src/json';
 export * from './src/locale';
 export * from './src/number';
 export * from './src/object';
@@ -56,8 +55,6 @@ export declare const mUtils: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;
@@ -94,8 +91,6 @@ export declare const __: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;
@@ -132,8 +127,6 @@ export declare const m_: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;
@@ -170,8 +163,6 @@ export declare const madUtils: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     localStore: typeof localStore;
     localStoreUtils: typeof localStore;

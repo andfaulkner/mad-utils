@@ -17,9 +17,6 @@ export { error };
 import * as func from './src/function';
 export * from './src/function';
 export { func };
-import * as json from './src/json';
-export * from './src/json';
-export { json };
 import * as locale from './src/locale';
 export * from './src/locale';
 export { locale };
@@ -72,8 +69,6 @@ export declare const mUtils: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     math: typeof number;
     num: typeof number;
@@ -107,8 +102,6 @@ export declare const __: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     math: typeof number;
     num: typeof number;
@@ -142,8 +135,6 @@ export declare const m_: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     math: typeof number;
     num: typeof number;
@@ -177,8 +168,6 @@ export declare const madUtils: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     math: typeof number;
     num: typeof number;

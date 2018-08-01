@@ -23,10 +23,6 @@ import * as func from './src/function';
 export * from './src/function';
 export {func};
 
-import * as json from './src/json';
-export * from './src/json';
-export {json};
-
 import * as locale from './src/locale';
 export * from './src/locale';
 export {locale};
@@ -91,8 +87,6 @@ export const mUtils = {
     functionUtils: func,
     genericDataTypes: dataTypes,
     isNode,
-    json,
-    jsonUtils: json,
     locale,
     math: number,
     num: number,

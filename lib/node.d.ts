@@ -1,12 +1,11 @@
-import { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, func, json, locale, number, object, url, search, string, validation, stream, };
+import { array, date, decorator, Enum, func, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
+export { array, date, decorator, Enum, func, locale, number, object, url, search, string, validation, stream, };
 export * from './src/array';
 export * from './src/date';
 export * from './src/decorator';
 export * from './src/enum';
 export * from './src/error';
 export * from './src/function';
-export * from './src/json';
 export * from './src/locale';
 export * from './src/number';
 export * from './src/node/node-error';
@@ -73,8 +72,6 @@ export declare const mUtils: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
@@ -114,8 +111,6 @@ export declare const __: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
@@ -155,8 +150,6 @@ export declare const m_: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
@@ -196,8 +189,6 @@ export declare const madUtils: {
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
-    json: typeof json;
-    jsonUtils: typeof json;
     locale: typeof locale;
     middleware: typeof middleware;
     nodeErr: typeof nodeError;
