@@ -1,3 +1,7 @@
+0.64.0 [BREAKING CHANGES]
+=========================
+Remove jsonParseWFuncRehydrate_unsafe
+
 0.63.4
 ======
 dateStringWithMonthTextToMoment improvements:
