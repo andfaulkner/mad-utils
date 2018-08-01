@@ -19,7 +19,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 import {expectFunctionExists, convertDayOfWeekNumToString, now} from '../../node';
 
 /********************************************* TESTS **********************************************/
-describe.only(`date sub-module`, function() {
+describe(`date sub-module`, function() {
     expectNonEmptyObjectExists(date, 'date (from shared/base export)');
     expectNonEmptyObjectExists(m_.date, 'date (from m_ top-level namespace)');
     expectNonEmptyObjectExists(dateModule, 'date (import all from date.ts file)');
