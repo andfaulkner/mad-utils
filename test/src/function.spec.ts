@@ -246,21 +246,31 @@ describe(`function sub-module`, function() {
         });
         it(`runs function again if request to run occurs after [wait]ms elapses`, function() {
             let val = 0;
-            const throttledFn = throttle(() => val++, 200, true);
+            const throttledFn = throttle(() => val++, 50, true);
             throttledFn();
-            setTimeout(() => throttledFn(), 300);
+            setTimeout(() => throttledFn(), 100);
             throttledFn();
             throttledFn();
-            setTimeout(() => expect(val).to.eql(2), 500);
+            setTimeout(() => expect(val).to.eql(2), 150);
         });
         it(`requires the correct arguments for the created 'throttled' function`, function() {
             let arr = [];
-            const throttledFn = throttle((str: string) => arr.push(str), 200, true);
+            const throttledFn = throttle((str: string) => arr.push(str), 50, true);
             throttledFn('First');
-            setTimeout(() => throttledFn('Second'), 300);
+            setTimeout(() => throttledFn('Second'), 100);
             throttledFn("WON'T BE INCLUDED");
             throttledFn("ALSO WON'T BE INCLUDED");
-            setTimeout(() => expect(arr).to.eql(['First', 'Second']), 500);
+            setTimeout(() => expect(arr).to.eql(['First', 'Second']), 150);
+        });
+        it(`transfers data keys from given function to throttled function`, function() {
+            const arr = [];
+            const fn = Object.assign(() => arr.push(fn.dataVal), {dataVal: 'VALUE'});
+            const throttledFn = throttle(fn, 50, true);
+            expect((throttledFn as any).dataVal).to.eql('VALUE');
+            throttledFn();
+            throttledFn();
+            setTimeout(() => throttledFn(), 100);
+            setTimeout(() => expect(arr).to.eql(['VALUE', 'VALUE']), 150);
         });
     });
 
