@@ -21,13 +21,32 @@ export const loopN = <T>(n: number, func: ((...args) => T)): T[] => {
     return retArr;
 };
 
-/** Run given function 2X, returning results as an array containing both return vals */
+/**
+ * Run given function 2X, returning results as an array containing both return vals
+ * @param {Function} func Function to run 2X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export const loop2 = <T>(func: ((...args) => T)): T[] => loopN(2, func);
-/** Run given function 3X, returning results as an array containing all 3 return vals */
+
+/**
+ * Run given function 3X, returning results as an array containing all 3 return vals
+ * @param {Function} func Function to run 3X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export const loop3 = <T>(func: ((...args) => T)): T[] => loopN(3, func);
-/** Run given function 4X, returning results as an array containing all 4 return vals */
+
+/**
+ * Run given function 4X, returning results as an array containing all 4 return vals
+ * @param {Function} func Function to run 4X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export const loop4 = <T>(func: ((...args) => T)): T[] => loopN(4, func);
-/** Run given function 5X, returning results as an array containing all 5 return vals */
+
+/**
+ * Run given function 5X, returning results as an array containing all 5 return vals
+ * @param {Function} func Function to run 5X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
 
 /**
@@ -128,7 +147,8 @@ export function throttle<A, CB extends (...fnArgs: A[]) => void>(
 }
 
 /**
- * Run all functions in the given array, return results of each
+ * Run all functions in given array [arr], optionally with each argument after
+ * the 1st as args passed to each function; return results in an array
  */
 export const runAll = <R = any>(arr: Function[], ...args: any[]): R[] => {
     let res = [];

@@ -14,13 +14,29 @@ export { getFnAsArr as getFunctionSrcAsArray };
  * @return {Array<any>} Array containing function return values
  */
 export declare const loopN: <T>(n: number, func: (...args: any[]) => T) => T[];
-/** Run given function 2X, returning results as an array containing both return vals */
+/**
+ * Run given function 2X, returning results as an array containing both return vals
+ * @param {Function} func Function to run 2X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export declare const loop2: <T>(func: (...args: any[]) => T) => T[];
-/** Run given function 3X, returning results as an array containing all 3 return vals */
+/**
+ * Run given function 3X, returning results as an array containing all 3 return vals
+ * @param {Function} func Function to run 3X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export declare const loop3: <T>(func: (...args: any[]) => T) => T[];
-/** Run given function 4X, returning results as an array containing all 4 return vals */
+/**
+ * Run given function 4X, returning results as an array containing all 4 return vals
+ * @param {Function} func Function to run 4X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export declare const loop4: <T>(func: (...args: any[]) => T) => T[];
-/** Run given function 5X, returning results as an array containing all 5 return vals */
+/**
+ * Run given function 5X, returning results as an array containing all 5 return vals
+ * @param {Function} func Function to run 5X
+ * @return {T[]} Array of return values (one from each run of the function)
+ */
 export declare const loop5: <T>(func: (...args: any[]) => T) => T[];
 /**
  * Rough method to list a function's arguments/parameters (untyped)
@@ -69,6 +85,7 @@ export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...con
  */
 export declare function throttle<A, CB extends (...fnArgs: A[]) => void>(cb: CB, wait: number, immediate?: boolean): CB;
 /**
- * Run all functions in the given array, return results of each
+ * Run all functions in given array [arr], optionally with each argument after
+ * the 1st as args passed to each function; return results in an array
  */
 export declare const runAll: <R = any>(arr: Function[], ...args: any[]) => R[];
