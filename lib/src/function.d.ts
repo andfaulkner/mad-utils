@@ -83,7 +83,12 @@ export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...con
  * @example throttle(() => console.log('Called!'), 1000);
  *          // 10 "clicks" within 1 second will output 'Called!' only once, on initial "click"
  */
-export declare function throttle<A, CB extends (...fnArgs: A[]) => void>(cb: CB, wait: number, immediate?: boolean): CB;
+export declare function throttle<CB extends () => any>(cb: CB, wait: number, immediate?: boolean): () => void;
+export declare function throttle<A1>(cb: (a1: A1) => any, wait: number, immediate?: boolean): (a1: A1) => void;
+export declare function throttle<A1, A2>(cb: (a1: A1, a2: A2) => any, wait: number, immediate?: boolean): (a1: A1, a2: A2) => void;
+export declare function throttle<A1, A2, A3>(cb: (a1: A1, a2: A2, a3: A3) => any, wait: number, immediate?: boolean): (a1: A1, a2: A2, a3: A3) => void;
+export declare function throttle<A1, A2, A3, A4>(cb: (a1: A1, a2: A2, a3: A3, a4: A4) => any, wait: number, immediate?: boolean): (a1: A1, a2: A2, a3: A3, a4: A4) => void;
+export declare function throttle<A1, A2, A3, A4, A5>(cb: (a1: A1, a2: A2, a3: A3, a4: A4, a5: A5) => any, wait: number, immediate?: boolean): (a1: A1, a2: A2, a3: A3, a4: A4, a5: A5) => void;
 /**
  * Run all functions in given array [arr], optionally with each argument after
  * the 1st as args passed to each function; return results in an array
