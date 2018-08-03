@@ -1,3 +1,7 @@
+0.65.1 (WIP) 
+============
+* Fix typings & argument handling in throttle function
+
 0.65.0 [BREAKING CHANGES]
 =========================
 Remove entire JSON module
