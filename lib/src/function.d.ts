@@ -67,7 +67,7 @@ export declare function condSwitch(cond: boolean | RealAny, val: RealAny, ...con
  * @example throttle(() => console.log('Called!'), 1000);
  *          // 10 "clicks" within 1 second will output 'Called!' only once, on initial "click"
  */
-export declare function throttle(cb: (...args: any[]) => any, wait: number, immediate?: boolean): () => void;
+export declare function throttle<A, CB extends (...fnArgs: A[]) => void>(cb: CB, wait: number, immediate?: boolean): CB;
 /**
  * Run all functions in the given array, return results of each
  */

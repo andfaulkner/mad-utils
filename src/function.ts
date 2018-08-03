@@ -108,18 +108,23 @@ export function condSwitch(
  * @example throttle(() => console.log('Called!'), 1000);
  *          // 10 "clicks" within 1 second will output 'Called!' only once, on initial "click"
  */
-export function throttle(cb: (...args: any[]) => any, wait: number, immediate = true): () => void {
+export function throttle<A, CB extends (...fnArgs: A[]) => void>(
+    cb: CB,
+    wait: number,
+    immediate = true
+): CB {
     let blocked = false;
-    return () => {
+    const retVal = (...fnArgs: A[]) => {
         if (!blocked) {
             blocked = true;
             setTimeout(() => {
                 blocked = false;
-                if (!immediate) return cb();
+                if (!immediate) return cb(...fnArgs);
             }, wait);
-            if (immediate) cb();
+            if (immediate) cb(...fnArgs);
         }
     };
+    return retVal as CB;
 }
 
 /**
