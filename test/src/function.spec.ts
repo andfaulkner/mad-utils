@@ -253,6 +253,15 @@ describe(`function sub-module`, function() {
             throttledFn();
             setTimeout(() => expect(val).to.eql(2), 500);
         });
+        it(`requires the correct arguments for the created 'throttled' function`, function() {
+            let arr = [];
+            const throttledFn = throttle((str: string) => arr.push(str), 200, true);
+            throttledFn('First');
+            setTimeout(() => throttledFn('Second'), 300);
+            throttledFn("WON'T BE INCLUDED");
+            throttledFn("ALSO WON'T BE INCLUDED");
+            setTimeout(() => expect(arr).to.eql(['First', 'Second']), 500);
+        });
     });
 
     describe('getArgNames', function() {
