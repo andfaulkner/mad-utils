@@ -169,7 +169,7 @@ export function throttle<A>(
     immediate = true
 ): (...fnArgs: A[]) => void {
     let blocked = false;
-    const retVal = (...fnArgs: A[]) => {
+    const retVal = function throttledFn(...fnArgs: A[]) {
         if (!blocked) {
             blocked = true;
             setTimeout(() => {
