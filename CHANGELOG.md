@@ -1,6 +1,11 @@
-0.65.1 (WIP) 
-============
-* Fix typings & argument handling in throttle function
+0.65.1
+======
+throttle function:
+*   Fix typings
+*   Can now handles arguments
+*   Transfers data keys on source function to throttled return function
+*   Leaves "this" binding alone in throttled return function
+
 
 0.65.0 [BREAKING CHANGES]
 =========================
