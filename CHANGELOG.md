@@ -1,3 +1,16 @@
+0.67.1
+======
+Remove dev module fs-extra (there's fs-extra-promise already)
+
+Upgrade dev modules
+- synk -> v1.90.2
+- prettier -> v1.14.2
+- nodemon -> v1.18.3
+- ts-node -> v7.0.1
+- sinon -> 6.1.5
+- tslint -> 5.11.0
+  - Also upgrade all plugins to latest
+
 0.67.0 [BREAKING]
 =================
 Remove node-polyglot module
