@@ -329,7 +329,9 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
         }
     };
 
-    Object.defineProperty(SingletonClass, 'name', {value: constructor.name});
+    try {
+        Object.defineProperty(SingletonClass, 'name', {value: constructor.name});
+    } catch {}
 
     return SingletonClass as SingletonInterface<any> & typeof constructor;
 };
