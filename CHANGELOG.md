@@ -1,3 +1,7 @@
+0.66.0
+======
+Upgrade env-var-helpers to v5.0.0 (a semi-breaking change)
+
 0.65.1
 ======
 throttle function:
