@@ -12,6 +12,17 @@
     mad-logs "^9.1.1"
     traceback "^0.3.1"
 
+"@ottawamhealth/errorsmith@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@ottawamhealth/errorsmith/-/errorsmith-0.4.1.tgz#7ebbad62f7e54d106765590aca1be457d2201789"
+  dependencies:
+    app-root-path "^2.0.1"
+    clarify "^2.1.0"
+    detect-node "^2.0.3"
+    mad-logs "^10.2.0"
+    mad-utils "^0.65.1"
+    traceback "^0.3.1"
+
 "@sinonjs/formatio@^2.0.0":
   version "2.0.0"
   resolved "http://registry.npmjs.org/@sinonjs/formatio/-/formatio-2.0.0.tgz#84db7e9eb5531df18a8c5e0bfb6e449e55e654b2"

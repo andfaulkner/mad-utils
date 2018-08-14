@@ -124,7 +124,7 @@
   },
   "homepage": "https://github.com/andfaulkner/misc-ts-utils-isomorphic#readme",
   "dependencies": {
-    "@ottawamhealth/errorsmith": "^0.3.1",
+    "@ottawamhealth/errorsmith": "^0.4.1",
     "@types/chai": "^4.1.4",
     "@types/connect": "^3.4.30",
     "@types/deep-freeze-strict": "^1.1.0",
