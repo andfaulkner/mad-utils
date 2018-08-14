@@ -1,6 +1,7 @@
 0.66.0
 ======
 Upgrade env-var-helpers to v5.0.0 (a semi-breaking change)
+Upgrade errorsmith to v0.4.0 (semi-breaking)
 
 0.65.1
 ======
