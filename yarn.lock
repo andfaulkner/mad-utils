@@ -3014,6 +3014,33 @@ mad-utils@^0.61.0:
     reflect-metadata "^0.1.10"
     ua-parser-js "^0.7.13"
 
+mad-utils@^0.65.1:
+  version "0.65.1"
+  resolved "https://registry.yarnpkg.com/mad-utils/-/mad-utils-0.65.1.tgz#914ad04ea79ca5df8b65d553a7c67fedbd072782"
+  dependencies:
+    "@ottawamhealth/errorsmith" "^0.3.1"
+    "@types/chai" "^4.1.4"
+    "@types/connect" "^3.4.30"
+    "@types/deep-freeze-strict" "^1.1.0"
+    "@types/express" "^4.0.35"
+    "@types/history" "^4.6.0"
+    "@types/node-polyglot" "^0.4.30"
+    "@types/react" "^16.3.8"
+    "@types/react-dom" "^16.0.5"
+    "@types/ua-parser-js" "^0.7.31"
+    app-root-path "^2.0.1"
+    chai "^4.0.2"
+    common-constants "^4.1.0"
+    connect "^3.6.2"
+    deep-freeze-strict "^1.1.1"
+    detect-node "^2.0.3"
+    fs-extra-promise "^1.0.1"
+    handlebars-webpack-plugin "^1.2.0"
+    mad-logs "^10.2.0"
+    mad-utils "^0.61.0"
+    reflect-metadata "^0.1.10"
+    ua-parser-js "^0.7.13"
+
 make-dir@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.2.0.tgz#6d6a49eead4aae296c53bbf3a1a008bd6c89469b"
