@@ -1,5 +1,20 @@
-0.66.3 [POTENTIALLY BREAKING]
-=============================
+0.67.0 [BREAKING]
+=================
+Remove node-polyglot module
+Remove PolyglotProps type
+
+Gets singleton method (from types-iso) works in environments where both:
+- running Object.defineProperty on a read-only value throws
+- all classes are read-only
+
+Makes isDateLike more robust:
+- Includes moment.isMoment check
+- Returns false immediately on receiving undefined, null, or false
+
+
+
+0.66.3 [BREAKING]
+=================
 Upgrade env-var-helpers to v5.0.0 (a semi-breaking change)
 Upgrade errorsmith to v0.4.1 (semi-breaking)
 Upgrade mad-logs to v10.3.3 (semi-breaking)
