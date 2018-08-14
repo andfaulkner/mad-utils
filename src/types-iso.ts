@@ -1,8 +1,8 @@
 /******************************************** IMPORTS *********************************************/
 import * as moment from 'moment';
+import * as Polyglot from 'node-polyglot';
 import {isVerbose} from 'env-var-helpers';
 import {matches} from './string';
-import * as Polyglot from 'node-polyglot';
 
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
@@ -215,10 +215,10 @@ export {isBoolean as isBool};
  * @return {boolean} True if value is date-like
  */
 export const isDateLike = (val: RealAny): boolean => {
-    if (val instanceof moment || val instanceof Date) return true;
-    if ((isNumber(val) && val < 0) || (isString(val) && parseInt(val, 10) < 0)) {
-        return false;
-    }
+    if (val instanceof moment || val instanceof Date || moment.isMoment(val)) return true;
+
+    if ((isNumber(val) && val < 0) || (isString(val) && parseInt(val, 10) < 0)) return false;
+
     if (
         typeof val === 'object' &&
         Object.keys(val).find(
@@ -230,11 +230,12 @@ export const isDateLike = (val: RealAny): boolean => {
     ) {
         return false;
     }
+
     return moment(val).isValid();
 };
 
 /**
- * True if given values is an array (Robust, works across multiple JS envs)
+ * True if given values is an array (robust, works across multiple JS envs)
  * @param {any} val Check if val is an array
  * @return {boolean} True if arg 'value' is an Array
  */
@@ -329,6 +330,7 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
     };
 
     Object.defineProperty(SingletonClass, 'name', {value: constructor.name});
+
     return SingletonClass as SingletonInterface<any> & typeof constructor;
 };
 
@@ -356,7 +358,7 @@ export const castToNum = (val: StrOrNum, throwOnFail = true): number | Error | n
     }
 };
 
-const bstbErrMsg = 'Must input true, false, t, f, y, n, yes, or no';
+const bstbErrMsg = `Must input true, false, t, f, y, n, yes, or no`;
 
 /**
  * Convert string representation of a boolean value to a boolean value
@@ -395,7 +397,4 @@ export const boolStringToBool = (
     return null;
 };
 
-/**
- * @alias for boolStringToBool
- */
 export {boolStringToBool as toBoolFromBoolString};
