@@ -2980,13 +2980,13 @@ mad-logs@^10.2.0:
     global "^4.3.1"
     string.prototype.padend "^3.0.0"
 
-mad-logs@^10.3.1:
-  version "10.3.1"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.1.tgz#7b75369daf18a79210077498c22f4de115c460f8"
+mad-logs@^10.3.2:
+  version "10.3.2"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.2.tgz#32e1c89389cdfcc7b31ceb35afd25b991e6d82e5"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
-    env-var-helpers "^4.0.1"
+    env-var-helpers "^5.0.0"
     global "^4.3.1"
     string.prototype.padend "^3.0.0"
 
