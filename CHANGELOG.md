@@ -1,7 +1,8 @@
-0.66.1 [POTENTIALLY BREAKING]
+0.66.2 [POTENTIALLY BREAKING]
 =============================
 Upgrade env-var-helpers to v5.0.0 (a semi-breaking change)
 Upgrade errorsmith to v0.4.1 (semi-breaking)
+Upgrade mad-logs to v10.3.3 (semi-breaking)
 
 0.65.1
 ======
