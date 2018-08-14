@@ -62,7 +62,6 @@ import * as isoTypesUtils from './src/types-iso';
 // Export types
 export {Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer} from './src/number';
 export {
-    PolyglotProps,
     StrOrNever,
     StrOrNum,
     RealAny,
