@@ -121,7 +121,7 @@ export { isBoolean as isBool };
  */
 export declare const isDateLike: (val: any) => boolean;
 /**
- * True if given values is an array (Robust, works across multiple JS envs)
+ * True if given values is an array (robust, works across multiple JS envs)
  * @param {any} val Check if val is an array
  * @return {boolean} True if arg 'value' is an Array
  */
@@ -183,7 +183,4 @@ export declare const castToNum: (val: string | number, throwOnFail?: boolean) =>
  *                         Otherwise throw
  */
 export declare const boolStringToBool: (val: string | boolean, strict?: boolean) => boolean;
-/**
- * @alias for boolStringToBool
- */
 export { boolStringToBool as toBoolFromBoolString };
