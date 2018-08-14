@@ -9,11 +9,9 @@
 /*************************************** THIRD-PARTY MODULES **************************************/
 import * as path from 'path';
 import * as fs from 'fs';
-import * as _ from 'lodash';
 import {path as rootPath} from 'app-root-path';
 import {Request, Response} from 'express';
 import {isDevelopment} from 'env-var-helpers';
-import * as Polyglot from 'node-polyglot';
 
 /************************************ OTHER MAD-UTILS MODULES *************************************/
 import {canadaLangCodes} from '../locale';

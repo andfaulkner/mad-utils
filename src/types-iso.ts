@@ -1,6 +1,5 @@
 /******************************************** IMPORTS *********************************************/
 import * as moment from 'moment';
-import * as Polyglot from 'node-polyglot';
 import {isVerbose} from 'env-var-helpers';
 import {matches} from './string';
 
@@ -33,13 +32,6 @@ export type Injection<T> = T;
 export {Injection as OptionalInjection};
 export {Injection as RequiredInjection};
 export {Injection as MandatoryInjection};
-
-/**
- * Extend to (optionally) include Polyglot
- */
-export interface PolyglotProps {
-    polyglot?: Readonly<Polyglot>;
-}
 
 // Record / Hash aliases
 export type StringHash = Record<string, string>;
