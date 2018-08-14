@@ -2,27 +2,6 @@
 # yarn lockfile v1
 
 
-"@ottawamhealth/errorsmith@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@ottawamhealth/errorsmith/-/errorsmith-0.3.1.tgz#b13d6da43779ec5750c3ee94b26cd09e6ad66f19"
-  dependencies:
-    app-root-path "^2.0.1"
-    clarify "^2.1.0"
-    detect-node "^2.0.3"
-    mad-logs "^9.1.1"
-    traceback "^0.3.1"
-
-"@ottawamhealth/errorsmith@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@ottawamhealth/errorsmith/-/errorsmith-0.4.1.tgz#7ebbad62f7e54d106765590aca1be457d2201789"
-  dependencies:
-    app-root-path "^2.0.1"
-    clarify "^2.1.0"
-    detect-node "^2.0.3"
-    mad-logs "^10.2.0"
-    mad-utils "^0.65.1"
-    traceback "^0.3.1"
-
 "@sinonjs/formatio@^2.0.0":
   version "2.0.0"
   resolved "http://registry.npmjs.org/@sinonjs/formatio/-/formatio-2.0.0.tgz#84db7e9eb5531df18a8c5e0bfb6e449e55e654b2"
@@ -115,10 +94,6 @@
 "@types/lodash@^4.14.109":
   version "4.14.109"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.109.tgz#b1c4442239730bf35cabaf493c772b18c045886d"
-
-"@types/lodash@^4.14.77":
-  version "4.14.106"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.106.tgz#6093e9a02aa567ddecfe9afadca89e53e5dce4dd"
 
 "@types/mime@*":
   version "2.0.0"
@@ -771,12 +746,6 @@ circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
 
-clarify@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/clarify/-/clarify-2.1.0.tgz#8dd48539e202e4e009d2c7fa7fe1b69cdf262527"
-  dependencies:
-    stack-chain "^2.0.0"
-
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -1327,14 +1296,6 @@ end-of-stream@^1.0.0:
 entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
-
-env-var-helpers@^3.0.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.2.0.tgz#15e69e2f85bf590c8c58c6f48925385391e733f7"
-  dependencies:
-    detect-node "^2.0.3"
-    mad-logs "^9.1.1"
-    string.prototype.padend "^3.0.0"
 
 env-var-helpers@^3.4.1:
   version "3.4.1"
@@ -2994,18 +2955,6 @@ mad-logs@^10.3.3:
     global "^4.3.1"
     string.prototype.padend "^3.0.0"
 
-mad-logs@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-9.1.1.tgz#7422596eb1b0444378a21b08d100f2ed03637079"
-  dependencies:
-    "@types/lodash" "^4.14.77"
-    colors "^1.1.2"
-    detect-node "^2.0.3"
-    env-var-helpers "^3.0.0"
-    global "^4.3.1"
-    lodash.isfunction "^3.0.8"
-    string.prototype.padend "^3.0.0"
-
 mad-logs@^9.1.2:
   version "9.1.2"
   resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-9.1.2.tgz#2c7fb30e86972b9ba05be1ae73ca1266e3ffa73e"
@@ -3017,60 +2966,6 @@ mad-logs@^9.1.2:
     global "^4.3.1"
     lodash.isfunction "^3.0.8"
     string.prototype.padend "^3.0.0"
-
-mad-utils@^0.61.0:
-  version "0.61.0"
-  resolved "https://registry.yarnpkg.com/mad-utils/-/mad-utils-0.61.0.tgz#64d171b7c289e56508522db08ab6152ac39f1dd8"
-  dependencies:
-    "@ottawamhealth/errorsmith" "^0.3.1"
-    "@types/chai" "^4.1.4"
-    "@types/connect" "^3.4.30"
-    "@types/deep-freeze-strict" "^1.1.0"
-    "@types/express" "^4.0.35"
-    "@types/history" "^4.6.0"
-    "@types/node-polyglot" "^0.4.30"
-    "@types/react" "^16.3.8"
-    "@types/react-dom" "^16.0.5"
-    "@types/ua-parser-js" "^0.7.31"
-    app-root-path "^2.0.1"
-    chai "^4.0.2"
-    common-constants "^4.1.0"
-    connect "^3.6.2"
-    deep-freeze-strict "^1.1.1"
-    detect-node "^2.0.3"
-    fs-extra-promise "^1.0.1"
-    handlebars-webpack-plugin "^1.2.0"
-    mad-logs "^10.2.0"
-    moment "^2.22.2"
-    reflect-metadata "^0.1.10"
-    ua-parser-js "^0.7.13"
-
-mad-utils@^0.65.1:
-  version "0.65.1"
-  resolved "https://registry.yarnpkg.com/mad-utils/-/mad-utils-0.65.1.tgz#914ad04ea79ca5df8b65d553a7c67fedbd072782"
-  dependencies:
-    "@ottawamhealth/errorsmith" "^0.3.1"
-    "@types/chai" "^4.1.4"
-    "@types/connect" "^3.4.30"
-    "@types/deep-freeze-strict" "^1.1.0"
-    "@types/express" "^4.0.35"
-    "@types/history" "^4.6.0"
-    "@types/node-polyglot" "^0.4.30"
-    "@types/react" "^16.3.8"
-    "@types/react-dom" "^16.0.5"
-    "@types/ua-parser-js" "^0.7.31"
-    app-root-path "^2.0.1"
-    chai "^4.0.2"
-    common-constants "^4.1.0"
-    connect "^3.6.2"
-    deep-freeze-strict "^1.1.1"
-    detect-node "^2.0.3"
-    fs-extra-promise "^1.0.1"
-    handlebars-webpack-plugin "^1.2.0"
-    mad-logs "^10.2.0"
-    mad-utils "^0.61.0"
-    reflect-metadata "^0.1.10"
-    ua-parser-js "^0.7.13"
 
 make-dir@^1.0.0:
   version "1.2.0"
@@ -3236,7 +3131,7 @@ mocha@^5.2.0:
     mkdirp "0.5.1"
     supports-color "5.4.0"
 
-moment@*, moment@^2.22.2:
+moment@*:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
@@ -4657,10 +4552,6 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-stack-chain@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/stack-chain/-/stack-chain-2.0.0.tgz#d73d1172af89565f07438b5bcc086831b6689b2d"
-
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -4949,10 +4840,6 @@ tr46@^1.0.0:
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-1.0.1.tgz#a8b13fd6bfd2489519674ccde55ba3693b706d09"
   dependencies:
     punycode "^2.1.0"
-
-traceback@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/traceback/-/traceback-0.3.1.tgz#64ef24a8168fcbe37ab17be3e99a40248b0bff85"
 
 trim-right@^1.0.1:
   version "1.0.1"
