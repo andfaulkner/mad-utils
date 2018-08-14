@@ -172,7 +172,7 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "replace-in-file": "^3.4.0",
-    "sinon": "^6.0.0",
+    "sinon": "^6.1.5",
     "snyk": "^1.90.2",
     "supertest": "^2.0.1",
     "test-console": "^1.0.0",
