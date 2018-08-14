@@ -207,6 +207,8 @@ export {isBoolean as isBool};
  * @return {boolean} True if value is date-like
  */
 export const isDateLike = (val: RealAny): boolean => {
+    if (typeof val === 'undefined' || val === null || typeof val === 'boolean') return false;
+
     if (val instanceof moment || val instanceof Date || moment.isMoment(val)) return true;
 
     if ((isNumber(val) && val < 0) || (isString(val) && parseInt(val, 10) < 0)) return false;
