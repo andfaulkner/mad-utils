@@ -1,4 +1,3 @@
-import * as Polyglot from 'node-polyglot';
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
     new (...args: any[]): {};
@@ -23,12 +22,6 @@ export declare type Injection<T> = T;
 export { Injection as OptionalInjection };
 export { Injection as RequiredInjection };
 export { Injection as MandatoryInjection };
-/**
- * Extend to (optionally) include Polyglot
- */
-export interface PolyglotProps {
-    polyglot?: Readonly<Polyglot>;
-}
 export declare type StringHash = Record<string, string>;
 export declare type StringNumHash = Record<string, number>;
 export declare type BoolOrError = boolean | Error;
