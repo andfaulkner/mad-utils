@@ -292,9 +292,9 @@ export declare function sample<K = any, V = any>(coll: Map<K, V>): [K, V] | unde
  */
 export declare function sample<K = any>(coll: Set<K>): K | undefined;
 /**
- * @export Flatten an array
+ * Deeply flatten an array ([arr]) - e.g. [1, [2, [3, 4]], 5] => [1, 2, 3, 4, 5]
  * @param {Array} arr Array (or set of nested arrays) to flatten
- * @return {Array} Flattened array - e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
+ * @return {Array} Flattened array
  */
 export declare const flatten: <T = any>(arr: T[]) => T[];
 /***************************************** BARREL EXPORT ******************************************/

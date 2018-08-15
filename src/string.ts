@@ -196,7 +196,7 @@ export const removeMatchingText = (str: string, matcherToRm: string | RegExp): s
 /**
  * Perform string deindenting for exported deindent function
  */
-const deindentFormat = (str: string) => {
+const deindentStr = (str: string) => {
     let size = -1;
     return (
         str
@@ -211,6 +211,7 @@ const deindentFormat = (str: string) => {
     );
 };
 
+// deindent inspired by https://github.com/deanlandolt/deindent
 /**
  * Remove extra indents from string
  * Changes indentation to start at lowest level of indent in the string
@@ -231,10 +232,10 @@ const deindentFormat = (str: string) => {
  *       |         Hello?
  *       | Sincerely, The Cookie Monster
  */
-export const deindent = (input, ...args: any[]): string | (() => string) => {
-    if (typeof input === `string`) return deindentFormat(input);
-    if (typeof input === `function`) return () => deindentFormat(input(...args));
-    return deindentFormat(
+export const deindent = (input: TemplateStringsArray | Function, ...args: any[]) => {
+    if (typeof input === `string`) return deindentStr(input);
+    if (typeof input === `function`) return () => deindentStr(input(...args));
+    return deindentStr(
         input
             .slice(0, args.length + 1)
             .map((text: string, idx: number) => `${idx === 0 ? `` : args[idx - 1]}${text}`)

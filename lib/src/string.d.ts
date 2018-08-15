@@ -135,7 +135,7 @@ export declare const removeMatchingText: (str: string, matcherToRm: string | Reg
  *       |         Hello?
  *       | Sincerely, The Cookie Monster
  */
-export declare const deindent: (input: any, ...args: any[]) => string | (() => string);
+export declare const deindent: (input: Function | TemplateStringsArray, ...args: any[]) => string | (() => string);
 /****************************************** REPEAT CHARS ******************************************/
 /**
  * Create string consisting of 'len' number of repeats of 'charToRepeat'

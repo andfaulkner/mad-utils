@@ -552,9 +552,9 @@ const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
     arr.reduce((acc, cur) => (isArray(cur) ? _flatWalker(acc, cur) : acc.concat(cur)), accIn);
 
 /**
- * @export Flatten an array
+ * Deeply flatten an array ([arr]) - e.g. [1, [2, [3, 4]], 5] => [1, 2, 3, 4, 5]
  * @param {Array} arr Array (or set of nested arrays) to flatten
- * @return {Array} Flattened array - e.g. [1, 2, [3, 4, [5]]] becomes [1, 2, 3, 4, 5]
+ * @return {Array} Flattened array
  */
 export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
 
