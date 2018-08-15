@@ -112,7 +112,26 @@ export declare const toCamelCase: (str: string) => string;
  * @return {string} str with all instances of matcherToRm removed
  */
 export declare const removeMatchingText: (str: string, matcherToRm: string | RegExp) => string;
-/************************************** STRING INTERPOLATION **************************************/
+/**
+ * Remove extra indents from string
+ * Changes indentation to start at lowest level of indent in the string
+ * Eliminate linebreak on first and last line (if present)
+ *
+ * Example:
+ * deindent`
+ *     Hello,
+ *         Is it biscotti I'm looking for?
+ *             Hello?
+ *     Sincerely, The Cookie Monster
+ * `
+ *
+ * Output:
+ * Hello,
+ *     Is it biscotti I'm looking for?
+ *         Hello?
+ * Sincerely, The Cookie Monster
+ */
+export declare const deindent: (input: any, ...args: any[]) => string | (() => string);
 /**
  * TODO MAKE IT WORK WITH INTERPOLATIONS
  * @export withLeftIndent
