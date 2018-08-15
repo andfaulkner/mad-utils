@@ -1,3 +1,12 @@
+0.69.0 [BREAKING]
+=================
+Add new `deindent` function in string module, for removing spaces before template strings
+
+Remove `withLeftIndent` function (string module)
+
+Remove entire webpack module
+- Eliminates function `handlebarsPluginFactory`
+
 0.68.0
 ======
 Working catch statement for modify class name in singleton function
