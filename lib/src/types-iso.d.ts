@@ -1,3 +1,5 @@
+/******************************************** IMPORTS *********************************************/
+import * as moment from 'moment';
 /************************************ COMMON TYPE DEFINITIONS *************************************/
 export interface ClassConstructor {
     new (...args: any[]): {};
@@ -42,6 +44,7 @@ export { CommonHTTPRequestType as CommonRequestType };
  */
 export declare type AnyHTTPReqType = CommonHTTPRequestType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
 export { AnyHTTPReqType as HTTPRequestType };
+export { AnyHTTPReqType as RequestType };
 /***************************************** TYPE HANDLERS ******************************************/
 /**
  *  Returns true if [val] is null, undefined, or a string
@@ -112,7 +115,7 @@ export { isBoolean as isBool };
  * @param {any} val Value to test for Date-like properties
  * @return {boolean} True if value is date-like
  */
-export declare const isDateLike: (val: any) => boolean;
+export declare const isDateLike: <T extends string | boolean | Object | moment.Moment>(val: any) => val is T;
 /**
  * True if given values is an array (robust, works across multiple JS envs)
  * @param {any} val Check if val is an array

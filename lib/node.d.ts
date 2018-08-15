@@ -1,3 +1,4 @@
+import { Moment } from 'moment';
 import { array, date, decorator, Enum, func, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
 export { array, date, decorator, Enum, func, locale, number, object, url, search, string, validation, stream, };
 export * from './src/array';
@@ -262,7 +263,7 @@ export declare const common: {
     isVoidOrString: (val: any) => val is string;
     isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
     isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
-    isDateLike: (val: any) => boolean;
+    isDateLike: <T extends string | boolean | Object | Moment>(val: any) => val is T;
     isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
     castToNum: (val: string | number, throwOnFail?: boolean) => number | Error;
     CharInputStream: typeof stream.CharInputStream;
