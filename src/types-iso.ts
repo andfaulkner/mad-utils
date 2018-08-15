@@ -339,7 +339,9 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
 
     try {
         Object.defineProperty(SingletonClass, 'name', {value: constructor.name});
-    } catch {}
+    } catch (error) {
+        if (isVerbose) console.warn(`mad-utils->@singleton :: Cannot modify class name`);
+    }
 
     return SingletonClass as SingletonInterface<any> & typeof constructor;
 };
