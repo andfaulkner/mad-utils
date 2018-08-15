@@ -142,6 +142,7 @@
     "handlebars-webpack-plugin": "^1.2.0",
     "mad-logs": "^10.3.3",
     "reflect-metadata": "^0.1.10",
+    "ts-node": "6.1",
     "ua-parser-js": "^0.7.13"
   },
   "devDependencies": {
@@ -176,7 +177,6 @@
     "snyk": "^1.90.2",
     "supertest": "^2.0.1",
     "test-console": "^1.0.0",
-    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^5.3.1",
     "tslint-microsoft-contrib": "^5.2.0",
