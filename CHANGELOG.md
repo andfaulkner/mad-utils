@@ -1,3 +1,15 @@
+0.68.0
+======
+Working catch statement for modify class name in singleton function
+- Should get transpiled singleton function working in Safari 9
+
+[BREAKING CHANGE] More robust isIntegerLike function
+- Removes edge case allowing '.0', which can't be parsed
+- Shorter, cleaner implementation
+- More unit tests
+
+Downgrade ts-node -> v6.1.* (needed to run tests)
+
 0.67.1
 ======
 Remove dev module fs-extra (there's fs-extra-promise already)
@@ -16,7 +28,7 @@ Upgrade dev modules
 Remove node-polyglot module
 Remove PolyglotProps type
 
-Gets singleton method (from types-iso) works in environments where both:
+Gets singleton method (from types-iso) to work in most environments where both:
 - running Object.defineProperty on a read-only value throws
 - all classes are read-only
 
