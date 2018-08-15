@@ -57,6 +57,7 @@ export {CommonHTTPRequestType as CommonRequestType};
  */
 export type AnyHTTPReqType = CommonHTTPRequestType | 'OPTIONS' | 'TRACE' | 'CONNECT' | 'HEAD';
 export {AnyHTTPReqType as HTTPRequestType};
+export {AnyHTTPReqType as RequestType};
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**
@@ -147,14 +148,24 @@ export {isInteger as isInt};
 export const isIntegerLike = <T extends number | Number | string | String = number>(
     val: RealAny
 ): val is T => {
+    // True if it's a numeric integer - all integer numbers return true by this point
     if (isInteger(val)) return true;
+    // False if it's not a number
     if (!isNumberLike(val)) return false;
 
     const vStr = val.toString();
-    if (!matches(/\./g)(vStr) || vStr.endsWith('.')) return true;
+
+    // If string parses to a valid integer with no dot present, return true
+    if (parseInt(vStr) === parseFloat(vStr)) return true;
 
     const strSplitOnDots = vStr.split('.');
-    if (strSplitOnDots.length === 2) return !!strSplitOnDots[1].match(/^0*$/g);
+
+    // If there's more than one dot, return false
+    if (strSplitOnDots.length !== 2) return false;
+
+    // If there are no numbers besides 0 after the 1st dot, return true
+    if (strSplitOnDots[1].match(/^0*$/g)) return true;
+
     return false;
 };
 
@@ -171,6 +182,7 @@ export const isString = <T extends string | String = string>(val: RealAny): val 
         typeof val === 'object' &&
         (Object.prototype.toString.call(val) === '[object String]' ||
             (val.constructor && Object.getPrototypeOf(val.constructor) === String)));
+
 /**
  * True if [val] is a string or a number
  * @param {any} val Value to test
@@ -206,7 +218,9 @@ export {isBoolean as isBool};
  * @param {any} val Value to test for Date-like properties
  * @return {boolean} True if value is date-like
  */
-export const isDateLike = (val: RealAny): boolean => {
+export const isDateLike = <T extends boolean | moment.Moment | string | Object>(
+    val: RealAny
+): val is T => {
     if (typeof val === 'undefined' || val === null || typeof val === 'boolean') return false;
 
     if (val instanceof moment || val instanceof Date || moment.isMoment(val)) return true;
