@@ -163,18 +163,29 @@ NodeJS
 
 ### Importing NodeJS sub-module
     // Import all namespaces, functions, types, etc. from node & isomorphic submodules
-    import { m_ } from 'mad-utils/lib/node';
+    import {m_} from 'mad-utils/lib/node';
 
     // Import node (and isomorphic) namespaces
-    import { file, test, middleware, webpackUtils, nodeError, date } from 'mad-utils/lib/node';
+    import {file, test, middleware, webpackUtils, nodeError, date} from 'mad-utils/lib/node';
 
     // Import individual node (and isomorphic) functions, types, classes, etc.
-    import { isDir, wasRunAsScript, replaceInFile, getJsFilesInDir,
-             globalActivateCleanStack, handlebarsPluginFactory, third,
-             useMiddlewareInProductionOnly, composeExpressMiddlewares,
-             isNonMinFile, eliminateWhitespace, thirdLast, splitLines } from 'mad-utils/lib/node';
+    import {
+        isDir,
+        wasRunAsScript,
+        replaceInFile,
+        getJsFilesInDir,
+        globalActivateCleanStack,
+        useMiddlewareInProductionOnly,
+        third,
+        thirdLast,
+        splitLines,
+        composeExpressMiddlewares,
+        isNonMinFile,
+        eliminateWhitespace
+    } from 'mad-utils/lib/node';
 
-### Node-specific namespaces
+
+## Node-specific namespaces
 *   file
 *   middleware
 *   nodeError
