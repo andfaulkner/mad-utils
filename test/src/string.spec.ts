@@ -35,6 +35,7 @@ const {
     endsWithExt,
     toSnakeCase,
     toCamelCase,
+    deindent,
     withLeftIndent,
     isWhitespaceChar,
     isAlphanumericChar,
@@ -544,6 +545,39 @@ describe(`string sub-module`, function() {
         it(`Removes match only at beginning or end of string if regexp requests it`, function() {
             const initStr = 'Hello old world';
             expect(removeMatchingText(initStr, /ld$/g)).to.eql('Hello old wor');
+        });
+    });
+
+    describe(`deindent -- special string template type`, function() {
+        it(`Leaves single-line strings as-is`, function() {
+            expect(deindent`Some test string`).to.eql(`Some test string`);
+            expect(deindent``).to.eql(``);
+        });
+        it(`Eliminates one linebreak at start of string`, function() {
+            expect(deindent`\nSome test string`).to.eql(`Some test string`);
+        });
+        it(`Eliminates one linebreak at end of string`, function() {
+            expect(deindent`Some test string\n`).to.eql(`Some test string`);
+        });
+        it(`Leaves all linebreaks after the 1st at start or end of string`, function() {
+            expect(deindent`Some test string\n\n`).to.eql(`Some test string\n`);
+            expect(deindent`\n\n\n\nSome test string`).to.eql(`\n\n\nSome test string`);
+            expect(deindent`\n\nSome test string\n\n`).to.eql(`\nSome test string\n`);
+        });
+        it(`Reduces indent down to the level of the smallest-indented row`, function() {
+            const outStr = deindent`
+                Hello,
+                    Is it biscotti I'm looking for?
+                        Hello?
+                Sincerely, The Cookie Monster
+            `;
+
+            expect(outStr).to.eql(
+                `Hello,\n` +
+                `    Is it biscotti I'm looking for?\n` +
+                `        Hello?\n` +
+                `Sincerely, The Cookie Monster`
+            );
         });
     });
 
