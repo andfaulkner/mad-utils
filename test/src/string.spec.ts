@@ -564,6 +564,9 @@ describe(`string sub-module`, function() {
             expect(deindent`\n\n\n\nSome test string`).to.eql(`\n\n\nSome test string`);
             expect(deindent`\n\nSome test string\n\n`).to.eql(`\nSome test string\n`);
         });
+        it(`Doesn't eliminate space preceding line for single-line strings`, function() {
+            expect(deindent`    Some test string`).to.eql(`    Some test string`);
+        });
         it(`Reduces indent down to the level of the smallest-indented row`, function() {
             const outStr = deindent`
                 Hello,
@@ -577,6 +580,25 @@ describe(`string sub-module`, function() {
                 `    Is it biscotti I'm looking for?\n` +
                 `        Hello?\n` +
                 `Sincerely, The Cookie Monster`
+            );
+        });
+        it(`Handles interpolations`, function() {
+            const cookieType = `biscotti`;
+            const name = `The Cookie Monster`;
+
+            const outStr = deindent`
+                Hello,
+                    Is it ${cookieType} I'm looking for?
+                        Hello?
+                Sincerely, ${name}
+
+            `;
+
+            expect(outStr).to.eql(
+                `Hello,\n` +
+                `    Is it biscotti I'm looking for?\n` +
+                `        Hello?\n` +
+                `Sincerely, The Cookie Monster\n`
             );
         });
     });
