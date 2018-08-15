@@ -106,6 +106,7 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isIntegerLike('-.123.2')).to.be.false;
                 expect(typesIso.isIntegerLike('-.0.')).to.be.false;
                 expect(typesIso.isIntegerLike('..1.0')).to.be.false;
+                expect(typesIso.isIntegerLike('.0')).to.be.false;
             });
         });
 
