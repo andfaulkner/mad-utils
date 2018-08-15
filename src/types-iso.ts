@@ -154,19 +154,11 @@ export const isIntegerLike = <T extends number | Number | string | String = numb
     if (!isNumberLike(val)) return false;
 
     const vStr = val.toString();
+    const parsedStr = parseInt(vStr);
 
-    // If string parses to a valid integer with no dot present, return true
-    if (parseInt(vStr) === parseFloat(vStr)) return true;
-
-    const strSplitOnDots = vStr.split('.');
-
-    // If there's more than one dot, return false
-    if (strSplitOnDots.length !== 2) return false;
-
-    // If there are no numbers besides 0 after the 1st dot, return true
-    if (strSplitOnDots[1].match(/^0*$/g)) return true;
-
-    return false;
+    // If string parses to valid integer w no decimal (i.e. it's not a float),
+    // and isn't NaN, return true; otherwise return false
+    return parsedStr === parseFloat(vStr) && !isNaN(parsedStr);
 };
 
 export {isIntegerLike as isIntLike};
