@@ -1,3 +1,5 @@
+import {Moment} from 'moment';
+
 /******************************************** IMPORTS *********************************************/
 import * as array from './src/array';
 export * from './src/array';

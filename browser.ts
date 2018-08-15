@@ -1,3 +1,5 @@
+import {Moment} from 'moment';
+
 // Import shared modules, and re-export them for top-level access
 import {
     array,
