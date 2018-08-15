@@ -207,27 +207,29 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): st
     const cleanStr = consecUppercaseToLowercase
         ? str.replace(/([a-z])([A-Z]+)([A-Z])([a-z])/g, '$1_$2_$3$4').toLowerCase()
         : str;
-    return cleanStr
-        .trim()
-        //Remove apostrophes, quotes, commas, |, ?, and !
-        .replace(/('|"|\!|\?|\`|,|\|)/g, '')
-        // Replace . with _
-        .replace(/(\.)/g, '_')
-        // Replace ' ' with '_'
-        .replace(/ /g, '_')
-        // From PascalCase or camelCase
-        .replace(/([A-Z])/g, '_$1')
-        // From dash-case, including "Dash-Title-Case" (dash-case with caps)
-        .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
-        // Replace slash (/ or \) with _
-        .replace(/[\/\\]/g, '_')
-        // Eliminate repeat, preceding, and trailing underscores, and stray dashes
-        .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
-        .replace(/_{1,}/g, '_')
-        .replace(/^(_|\-){1,}/, '')
-        .replace(/(_|\-){1,}$/, '')
-        // Remove caps (snake_case is always lowercase)
-        .toLowerCase();
+    return (
+        cleanStr
+            .trim()
+            //Remove apostrophes, quotes, commas, |, ?, and !
+            .replace(/('|"|\!|\?|\`|,|\|)/g, '')
+            // Replace . with _
+            .replace(/(\.)/g, '_')
+            // Replace ' ' with '_'
+            .replace(/ /g, '_')
+            // From PascalCase or camelCase
+            .replace(/([A-Z])/g, '_$1')
+            // From dash-case, including "Dash-Title-Case" (dash-case with caps)
+            .replace(/(\-)([a-zA-Z0-9])/g, '_$2')
+            // Replace slash (/ or \) with _
+            .replace(/[\/\\]/g, '_')
+            // Eliminate repeat, preceding, and trailing underscores, and stray dashes
+            .replace(/(_{1,})?\-{1,}(_{1,})?/g, '_')
+            .replace(/_{1,}/g, '_')
+            .replace(/^(_|\-){1,}/, '')
+            .replace(/(_|\-){1,}$/, '')
+            // Remove caps (snake_case is always lowercase)
+            .toLowerCase()
+    );
 };
 
 /**
@@ -258,6 +260,51 @@ export const removeMatchingText = (str: string, matcherToRm: string | RegExp): s
     replaceAll(str, matcherToRm, '');
 
 /************************************** STRING INTERPOLATION **************************************/
+const deindentFormat = (str: string) => {
+    let size = -1;
+    return (
+        str
+            // Fix indents
+            .replace(/\n([ \f\r\t\v]*)/g, (_, match) => {
+                if (size < 0) size = match.replace(/\t/g, '    ').length;
+                return '\n' + match.slice(Math.min(match.length, size));
+            })
+            // Remove 1 linebreak before the 1st line, & 1 after the last line
+            .replace(/^\n/g, ``)
+            .replace(/\n$/g, ``)
+    );
+};
+
+/**
+ * Remove extra indents from string
+ * Changes indentation to start at lowest level of indent in the string
+ * Eliminate linebreak on first and last line (if present)
+ *
+ * Example:
+ * deindent`
+ *     Hello,
+ *         Is it biscotti I'm looking for?
+ *             Hello?
+ *     Sincerely, The Cookie Monster
+ * `
+ *
+ * Output:
+ * Hello,
+ *     Is it biscotti I'm looking for?
+ *         Hello?
+ * Sincerely, The Cookie Monster
+ */
+export const deindent = (input, ...args: any[]): string | (() => string) => {
+    if (typeof input === 'string') return deindentFormat(input);
+    if (typeof input === 'function') return () => deindentFormat(input(...args));
+    return deindentFormat(
+        input
+            .slice(0, args.length + 1)
+            .map((text: string, idx: number) => `${idx === 0 ? `` : args[idx - 1]}${text}`)
+            .join(``)
+    );
+};
+
 /**
  * TODO MAKE IT WORK WITH INTERPOLATIONS
  * @export withLeftIndent
@@ -539,7 +586,7 @@ export const isAlphanumericChar = (matchChar: Char): boolean => /^[a-zA-Z0-9]$/.
  * @return {boolean} If given string is a operator character, return true
  */
 export const isOperatorChar = (matchChar: Char): boolean =>
-    !!matchChar && matchChar.length === 1 && (`+-*=|&<>?:/!%^~]`.indexOf(matchChar) >= 0);
+    !!matchChar && matchChar.length === 1 && `+-*=|&<>?:/!%^~]`.indexOf(matchChar) >= 0;
 
 /**************************************** STRING -> REGEX *****************************************/
 const RegExpFlags = 'yumig';
