@@ -43,10 +43,6 @@ export declare const types: typeof isoTypes & typeof dataTypes;
 export * from './src/node/types-node';
 export * from './src/types-iso';
 export * from './src/types-data-generic';
-import * as webpack from './src/node/webpack';
-export * from './src/node/webpack';
-export { webpack };
-export { webpack as webpackUtils };
 import * as expressRouting from './src/node/express-routing';
 export * from './src/node/express-routing';
 export { expressRouting };
@@ -90,8 +86,6 @@ export declare const mUtils: {
     types: typeof isoTypes & typeof dataTypes;
     typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
-    webpack: typeof webpack;
-    webpackUtils: typeof webpack;
 };
 export declare const __: {
     array: typeof array;
@@ -129,8 +123,6 @@ export declare const __: {
     types: typeof isoTypes & typeof dataTypes;
     typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
-    webpack: typeof webpack;
-    webpackUtils: typeof webpack;
 };
 export declare const m_: {
     array: typeof array;
@@ -168,8 +160,6 @@ export declare const m_: {
     types: typeof isoTypes & typeof dataTypes;
     typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
-    webpack: typeof webpack;
-    webpackUtils: typeof webpack;
 };
 export declare const madUtils: {
     array: typeof array;
@@ -207,8 +197,6 @@ export declare const madUtils: {
     types: typeof isoTypes & typeof dataTypes;
     typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
-    webpack: typeof webpack;
-    webpackUtils: typeof webpack;
 };
 import * as connect from 'connect';
 /**
@@ -243,6 +231,7 @@ export declare const common: {
     hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
     eachPair: <T extends Object>(func: (val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
+    /************************************ COMMON FUNCTION EXPORTS *************************************/
     deepFreeze: <T>(obj: T) => Readonly<T>;
     parseQueryParams: <T>(queryParamsStr?: string) => T;
     getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;

@@ -92,12 +92,6 @@ export * from './src/node/types-node';
 export * from './src/types-iso';
 export * from './src/types-data-generic';
 
-// Import Webpack utilities/helpers/plugins module
-import * as webpack from './src/node/webpack';
-export * from './src/node/webpack';
-export {webpack};
-export {webpack as webpackUtils};
-
 // Import ExpressJS routing helpers module
 import * as expressRouting from './src/node/express-routing';
 export * from './src/node/express-routing';
@@ -143,8 +137,6 @@ export const mUtils = {
     types,
     typing: types,
     validation,
-    webpack,
-    webpackUtils: webpack,
 };
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module
