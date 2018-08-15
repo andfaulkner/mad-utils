@@ -279,20 +279,21 @@ const deindentFormat = (str: string) => {
  * Remove extra indents from string
  * Changes indentation to start at lowest level of indent in the string
  * Eliminate linebreak on first and last line (if present)
+ * Leave pre-text indent for single-line strings
  *
  * Example:
- * deindent`
- *     Hello,
- *         Is it biscotti I'm looking for?
- *             Hello?
- *     Sincerely, The Cookie Monster
- * `
+ *       | deindent`
+ *       |     Hello,
+ *       |         Is it biscotti I'm looking for?
+ *       |             Hello?
+ *       |     Sincerely, The Cookie Monster
+ *       | `
  *
- * Output:
- * Hello,
- *     Is it biscotti I'm looking for?
- *         Hello?
- * Sincerely, The Cookie Monster
+ *     Output:
+ *       | Hello,
+ *       |     Is it biscotti I'm looking for?
+ *       |         Hello?
+ *       | Sincerely, The Cookie Monster
  */
 export const deindent = (input, ...args: any[]): string | (() => string) => {
     if (typeof input === 'string') return deindentFormat(input);
