@@ -166,7 +166,7 @@ export declare const singleton: <T extends ClassConstructor>(constructor: T) => 
  *                                    When false, return an Error if given type isn't a number
  * @return {number|Error|never} value converted to number, Error, or nothing if it threw error
  */
-export declare const castToNum: (val: string | number, throwOnFail?: boolean) => number | Error;
+export declare const castToNum: (val: StrOrNum, throwOnFail?: boolean) => number | Error;
 /**
  * Convert string representation of a boolean value to a boolean value
  * Throw error if conversion isn't possible

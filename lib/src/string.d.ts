@@ -1,3 +1,5 @@
+/******************************************** IMPORTS *********************************************/
+import { StrOrNum } from './types-iso';
 export declare type Char = string;
 export declare type Chars = string;
 export declare type Character = string;
@@ -35,7 +37,7 @@ export declare const replaceAll: (text: string, find: string | RegExp, replace: 
  * @return {boolean} true if a match is found
  * @example USAGE ::  ['gr', hello'].find(matches('hello')); // => true
  */
-export declare const matches: (valToFind: string | number | RegExp) => (valToSearchIn: string | number) => boolean;
+export declare const matches: (valToFind: string | number | RegExp) => (valToSearchIn: StrOrNum) => boolean;
 /**
  * Get first substring to match the given string or RegExp
  * @param {string} strToSearchIn String to search for the string or RegExp
@@ -133,43 +135,6 @@ export declare const removeMatchingText: (str: string, matcherToRm: string | Reg
  *       | Sincerely, The Cookie Monster
  */
 export declare const deindent: (input: any, ...args: any[]) => string | (() => string);
-/**
- * TODO MAKE IT WORK WITH INTERPOLATIONS
- * @export withLeftIndent
- *
- * WARNING: DOES NOT ALLOW INTERPOLATIONS
- *
- * Template string type that allows for properly-indented multiline strings
- *
- * Defines a template string type with the following behaviours:
- *     1. Eliminates all left-size indentation on each line;
- *     2. Can take a single interpolation variable to be placed directly after the start caret,
- *        which must contain an integer or string that can be parsed to an integer;
- *     3. Sets the final left-size indentation to equal the value of said interpolation variable
- *        - If interpolation variable is not given, the value defaults to 0
- *
- * Removes as much left-size whitespace as is present in the shortest indent, then adds the
- * requested number of spaces to the indent
- *
- *     @example  Input:
- *                   |                withLeftIndent`${4}
- *                   |                    def hello name do
- *                   |                        puts "Hello #{name}!"
- *                   |                        puts "Also, hello left indent!"
- *                   |                    end
- *                   |                `
- *
- *               Output:
- *                   |        def hello name do
- *                   |            puts "Hello #{name}!"
- *                   |            puts "Also, hello left indent!"
- *                   |        end
- *
- *               Note: ("|" is the left edge of the file)
- *
- * @return {string} Properly indented string
- */
-export declare function withLeftIndent(strings: any, leftPadSize?: number, xz?: any): string;
 /****************************************** REPEAT CHARS ******************************************/
 /**
  * Create string consisting of 'len' number of  repeats of 'charToRepeat'
