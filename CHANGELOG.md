@@ -1,3 +1,27 @@
+0.70.0 [BREAKING]
+=================
+Removed TitleCased SCSS util class aliases/names:
+* `.HelveticaNeue`
+* `.HelveticaNeue-serif`
+
+Removed all SCSS util class aliases/names preceded by `ff-` (uses util classes with raw font names instead):
+* `.ff-better-helvetica`
+    - instead use `.better-helvetica`
+* `.ff-helvetica-neue-medium`
+    - instead use `.helvetica-neue-medium`
+* `.ff-helvetica-neue`
+    - instead use `.helvetica-neue`
+* `.ff-helvetica-neue-serif`
+    - instead use `.helvetica-neue-serif`
+* `.ff-helvetica-neue-light`
+    - instead use `.helvetica-neue-light`
+* `.ff-helvetica-neue-light-serif`
+    - instead use `.helvetica-neue-light-serif`
+
+Add new `.helvetica-neue-medium` font-family SCSS util class
+
+
+----------------------------------------------------------------------------------------------------
 0.69.1
 ======
 Add more sizes for min-width, min-height, max-width, and max-height SCSS utils
