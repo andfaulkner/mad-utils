@@ -145,37 +145,42 @@
     .ls-3               {letter-spacing: 3px   }
 
     /****************************************** FONT FAMILY ******************************************/
-    div div .better-helvetica, .better-helvetica,
-    div div .ff-better-helvetica, .ff-better-helvetica {
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-                     Helvetica, Arial, "Lucida Grande", sans-serif;
+    .better-helvetica,
+    div .better-helvetica,
+    div div .better-helvetica {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,
+            Arial, "Lucida Grande", sans-serif;
     }
 
-    div div .helvetica-neue, .helvetica-neue,
-    div div .ff-helvetica-neue, .ff-helvetica-neue {
-        font-family: "Helvetica Neue", sans-serif
-    }
-    div div .ff-helvetica-neue-serif, .ff-helvetica-neue-serif,
-    div div .helvetica-neue-serif, .helvetica-neue-serif {
-        font-family: "Helvetica Neue"
+    .helvetica-neue-medium,
+    div .helvetica-neue-medium,
+    div div .helvetica-neue-medium {
+        font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica,
+            Arial, "Lucida Grande", sans-serif;
     }
 
-    div div .ff-HelveticaNeue, .ff-HelveticaNeue,
-    div div .HelveticaNeue, .HelveticaNeue {
-        font-family: HelveticaNeue, sans-serif
-    }
-    div div .ff-HelveticaNeue-serif, .ff-HelveticaNeue-serif,
-    div div .HelveticaNeue-serif, .HelveticaNeue-serif {
-        font-family: HelveticaNeue
+    .helvetica-neue,
+    div .helvetica-neue,
+    div div .helvetica-neue {
+        font-family: "Helvetica Neue", sans-serif;
     }
 
-    div div .ff-helvetica-neue-light, .ff-helvetica-neue-light,
-    div div .helvetica-neue-light, .helvetica-neue-light {
-        font-family: "Helvetica Neue Light", sans-serif
+    .helvetica-neue-serif,
+    div .helvetica-neue-serif,
+    div div .helvetica-neue-serif {
+        font-family: "Helvetica Neue";
     }
-    div div .ff-helvetica-neue-light-serif, .ff-helvetica-neue-light-serif,
-    div div .helvetica-neue-light-serif, .helvetica-neue-light-serif {
-        font-family: "Helvetica Neue Light"
+
+    .helvetica-neue-light,
+    div .helvetica-neue-light,
+    div div .helvetica-neue-light {
+        font-family: "Helvetica Neue Light", sans-serif;
+    }
+
+    .helvetica-neue-light-serif,
+    div .helvetica-neue-light-serif,
+    div div .helvetica-neue-light-serif {
+        font-family: "Helvetica Neue Light";
     }
 
     /******************************************** SHADOW *********************************************/
