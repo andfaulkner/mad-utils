@@ -12,6 +12,8 @@ Remove `withLeftIndent` function (string module)
 Remove entire webpack module
 - Eliminates function `handlebarsPluginFactory`
 
+
+----------------------------------------------------------------------------------------------------
 0.68.0
 ======
 Working catch statement for modify class name in singleton function
@@ -24,6 +26,8 @@ Working catch statement for modify class name in singleton function
 
 Downgrade ts-node -> v6.1.* (needed to run tests)
 
+
+----------------------------------------------------------------------------------------------------
 0.67.1
 ======
 Remove dev module fs-extra (there's fs-extra-promise already)
@@ -51,7 +55,7 @@ Makes isDateLike more robust:
 - Returns false immediately on receiving undefined, null, or false
 
 
-
+----------------------------------------------------------------------------------------------------
 0.66.3 [BREAKING]
 =================
 Upgrade env-var-helpers to v5.0.0 (a semi-breaking change)
@@ -60,6 +64,8 @@ Upgrade mad-logs to v10.3.3 (semi-breaking)
 
 Remove errorsmith
 
+
+----------------------------------------------------------------------------------------------------
 0.65.1
 ======
 throttle function:
@@ -67,7 +73,6 @@ throttle function:
 *   Can now handles arguments
 *   Transfers data keys on source function to throttled return function
 *   Leaves "this" binding alone in throttled return function
-
 
 0.65.0 [BREAKING CHANGES]
 =========================
@@ -77,6 +82,7 @@ Remove entire JSON module
 
 More missing tests (sortObject)
 
+
 0.64.4 (version jump due to release error)
 ==========================================
 dateStringWithMonthTextToMoment improvements:
@@ -84,6 +90,8 @@ dateStringWithMonthTextToMoment improvements:
 *   Handles text strings with dashes in them (returns null)
 *   Handles text 'phrases' - i.e. strings with spaces in them (returns null)
 
+
+----------------------------------------------------------------------------------------------------
 0.63.2
 ======
 dateStringWithMonthTextToMoment improvements:
@@ -104,6 +112,8 @@ Add dateStringWithMonthTextToMoment function
 *   Converts any date string containing a text-based month into a moment object
 *   Handles fallback strings if fallback given
 
+
+----------------------------------------------------------------------------------------------------
 0.62.1
 ======
 Add isAlphaChar alias for isAlphabeticChar
@@ -124,6 +134,8 @@ README.md changes:
 *   Remove merge function
 *   Update 'get' function description
 
+
+----------------------------------------------------------------------------------------------------
 0.61.0
 ======
 Add isStringOrNumber aliases isStringOrNum & isStrOrNum
@@ -137,6 +149,8 @@ Remove 'location' module - moved to storage in wip/old/browser--geocode.ts
 Remove unwanted log in node/test.ts module
 *   Previously, expectEmptyObject would log typeof testValue
 
+
+----------------------------------------------------------------------------------------------------
 0.60.0 [BREAKING CHANGES]
 =========================
 Remove confusing DecoratorError pseudo-class/function
@@ -155,6 +169,8 @@ Unit tests for:
     - runAll
     - getRandomInt
 
+
+----------------------------------------------------------------------------------------------------
 0.59.0 [BREAKING CHANGES]
 =========================
 New function 'runAll' - runs all functions in the given array & return results of each
@@ -167,6 +183,8 @@ Remove functions:
 nyc working (test-coverage)
 File cleanups (prettier, docs more consistent)
 
+
+----------------------------------------------------------------------------------------------------
 0.58.4
 ======
 Formatted CHANGELOG
