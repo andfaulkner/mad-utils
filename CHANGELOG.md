@@ -1,3 +1,8 @@
+0.69.1
+======
+Add more sizes for min-width, min-height, max-width, and max-height SCSS utils
+Reduce filesize of pasition.scss & size.scss util modules (remove spaces before & after block braces)
+
 0.69.0 [BREAKING]
 =================
 Add new `deindent` function in string module, for removing spaces before template strings
