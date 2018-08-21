@@ -30,6 +30,40 @@ describe(`types sub-modules`, function() {
         expectNonEmptyObjectExists(m_.types, 'types (from m_ top-level namespace)');
         expectNonEmptyObjectExists(typesModule, 'types (import all from types.ts file)');
 
+        describe(`isNullOrUndefined function`, function() {
+            it(`returns true given null`, function() {
+                expect(typesIso.isNullOrUndefined(null)).to.equal(true);
+            });
+            it(`returns true given undefined`, function() {
+                expect(typesIso.isNullOrUndefined(undefined)).to.equal(true);
+                expect((typesIso.isNullOrUndefined as any)()).to.equal(true);
+            });
+            it(`returns false given falsy values besides null and undefined`, function() {
+                expect(typesIso.isNullOrUndefined(0)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(``)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(NaN)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(false)).to.equal(false);
+            });
+            it(`returns false given any value besides null & undefined`, function() {
+                expect(typesIso.isNullOrUndefined(1)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(`OK`)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(Infinity)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(-1)).to.equal(false);
+                expect(typesIso.isNullOrUndefined({})).to.equal(false);
+                expect(typesIso.isNullOrUndefined([])).to.equal(false);
+                expect(typesIso.isNullOrUndefined([null, undefined])).to.equal(false);
+                expect(typesIso.isNullOrUndefined({'null': null})).to.equal(false);
+                expect(typesIso.isNullOrUndefined(Object)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(Object.prototype)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(0.00001)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(() => null)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(() => undefined)).to.equal(false);
+                expect(typesIso.isNullOrUndefined(class TestClass {})).to.equal(false);
+                expect(typesIso.isNullOrUndefined(Symbol())).to.equal(false);
+                expect(typesIso.isNullOrUndefined(Symbol('null'))).to.equal(false);
+            });
+        });
+
         describe(`isInteger function (and alias isInt)`, function() {
             expectFunctionExists(typesIso.isInt);
             numberDetectorFunctionTests(typesIso.isInteger);
