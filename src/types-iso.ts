@@ -221,7 +221,7 @@ export {isBoolean as isBool};
 export const isDateLike = <T extends boolean | moment.Moment | string | Object>(
     val: RealAny
 ): val is T => {
-    if (isNullOrUndefined(val) || typeof val === 'boolean') return false;
+    if (isNullOrUndefined(val) || isBoolean(val)) return false;
 
     if (val instanceof moment || val instanceof Date || moment.isMoment(val)) return true;
 
@@ -309,7 +309,7 @@ export const isFunction = <T extends Function = ((...args: any[]) => any)>(
  * Any class wrapped in this decorator becomes a singleton immediately
  * Throws if attempt is made to wrap a non-class
  *
- * @example
+ * Example:
  *       @singleton
  *       class SomeSingleton {
  *           someString: string;

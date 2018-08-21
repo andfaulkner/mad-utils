@@ -151,7 +151,7 @@ export declare const isFunction: <T extends Function = (...args: any[]) => any>(
  * Any class wrapped in this decorator becomes a singleton immediately
  * Throws if attempt is made to wrap a non-class
  *
- * @example
+ * Example:
  *       @singleton
  *       class SomeSingleton {
  *           someString: string;
