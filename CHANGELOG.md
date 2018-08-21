@@ -1,3 +1,8 @@
+0.70.1
+======
+Add isNullOrUndefined function
+Remove more spaces from SCSS files (shrink file size slightly)
+
 0.70.0 [BREAKING]
 =================
 Removed TitleCased SCSS util class aliases/names:
