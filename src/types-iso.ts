@@ -61,12 +61,20 @@ export {AnyHTTPReqType as RequestType};
 
 /***************************************** TYPE HANDLERS ******************************************/
 /**
+ *  Returns true if [val] is null or undefined
+ *  @param {void|RealAny} val Value to type check
+ *  @return {boolean} true if val is null or undefined
+ */
+export const isNullOrUndefined = (val: RealAny): val is undefined | null =>
+    typeof val === `undefined` || val === null;
+
+/**
  *  Returns true if [val] is null, undefined, or a string
  *  @param {StrOrVoid|RealAny} val Value to type check
  *  @return {boolean} true if val is null, undefined, or a string
  */
 export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | null | string =>
-    typeof val === 'undefined' || val === null || isString(val);
+    isNullOrUndefined(val) || isString(val);
 
 /**
  * Returns true if [val] is an alphabetic character
@@ -82,7 +90,7 @@ export {isAlphabeticChar as isAlphaChar};
  * @return {boolean} If given value is a number, return true; otherwise return false
  */
 export const isNumber = <T extends number | Number = number>(val: RealAny): val is T => {
-    if (typeof val === 'undefined' || val == null) return false;
+    if (isNullOrUndefined(val)) return false;
     if (typeof val === 'number' && !isNaN(val)) return true;
     if (Object.getPrototypeOf(val) === Number && !isNaN(val)) return true;
     if (val instanceof Number) return true;
@@ -101,7 +109,7 @@ export {isNumber as isNum};
 export const isNumberLike = <T extends number | Number | string | String = number>(
     val: RealAny
 ): val is T => {
-    if (typeof val === 'undefined' || val == null) return false;
+    if (isNullOrUndefined(val)) return false;
     if (isNumber(val)) return true;
 
     if (isString(val)) {
@@ -213,7 +221,7 @@ export {isBoolean as isBool};
 export const isDateLike = <T extends boolean | moment.Moment | string | Object>(
     val: RealAny
 ): val is T => {
-    if (typeof val === 'undefined' || val === null || typeof val === 'boolean') return false;
+    if (isNullOrUndefined(val) || typeof val === 'boolean') return false;
 
     if (val instanceof moment || val instanceof Date || moment.isMoment(val)) return true;
 
@@ -381,8 +389,7 @@ export const boolStringToBool = (
 ): boolean | null | never => {
     // Ensure not void, undefined, or NaN, and that toString doesn't return null
     if (
-        typeof val === 'undefined' ||
-        val === null ||
+        isNullOrUndefined(val) ||
         isNaN(null) ||
         typeof val.toString() === 'undefined' ||
         typeof val.toString() !== 'string'
