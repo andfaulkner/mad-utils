@@ -47,6 +47,12 @@ export { AnyHTTPReqType as HTTPRequestType };
 export { AnyHTTPReqType as RequestType };
 /***************************************** TYPE HANDLERS ******************************************/
 /**
+ *  Returns true if [val] is null or undefined
+ *  @param {void|RealAny} val Value to type check
+ *  @return {boolean} true if val is null or undefined
+ */
+export declare const isNullOrUndefined: (val: any) => val is null;
+/**
  *  Returns true if [val] is null, undefined, or a string
  *  @param {StrOrVoid|RealAny} val Value to type check
  *  @return {boolean} true if val is null, undefined, or a string
