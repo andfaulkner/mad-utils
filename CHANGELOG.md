@@ -1,3 +1,7 @@
+0.71.0
+======
+Remove isMultilangTextObj function (it's confusing and bad practice)
+
 0.70.1
 ======
 Add isNullOrUndefined function
