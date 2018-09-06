@@ -1,6 +1,10 @@
 0.71.0
 ======
 Remove isMultilangTextObj function (it's confusing and bad practice)
+Object module improvements:
+    - Reduced size (should be more performant)
+    - Eliminated unneeded imports
+    - Expanded and cleaned docs
 
 0.70.1
 ======
