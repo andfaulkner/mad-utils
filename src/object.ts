@@ -84,33 +84,6 @@ export const get = <
 };
 
 /**
- * Return true if val is (probably) a multilanguage string object (multi also includes '1 language')
- * Not foolproof: assumes one of the languages is either English or French. It won't work otherwise.
- *
- * @param {val} val - Value to type check.
- * @return {boolean} true if object's properties suggest it's a multilanguage string object.
- */
-export const isMultilangTextObj = (obj: RealAny): boolean => {
-    let matchingKey;
-    return !!(
-        typeof obj === 'object' &&
-        obj !== null &&
-        keys(obj).length > 0 &&
-        keys(obj).find(key => {
-            if (
-                englishVariants.find(matchesIgnoreCase(key)) ||
-                frenchVariants.find(matchesIgnoreCase(key))
-            ) {
-                matchingKey = key;
-                return true;
-            }
-        }) &&
-        (typeof matchingKey === 'string' || matchingKey == null || matchingKey == undefined) &&
-        isVoidOrString(obj[matchingKey])
-    );
-};
-
-/**
  * Run the given function on the given object. Iterator operates on the value and key of any
  * object provided, in the order "val", "key".
  *

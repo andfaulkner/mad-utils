@@ -105,7 +105,6 @@ export const {
     isNumberLike,
     isStringOrNumber,
     isDateLike,
-    isMultilangTextObj,
     isVoidOrString,
     isDataEnumItem,
     isIndexEnumItem,
