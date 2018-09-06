@@ -20,7 +20,7 @@ export const commonLangsObj = {
     ro: `Romanian`,         ru: `Russian`,           sr: `Serbian`,    sk: `Slovak`,
     sl: `Slovenian`,        so: `Somali`,            es: `Spanish`,    sw: `Swahili`,
     sv: `Swedish`,          gsw: `Swiss German`,     ta: `Tamil`,      th: `Thai`,
-    tr: `Turkish`,          uk: `Ukrainian` ,        ur: `Urdu `,      vi: `Vietnamese`,
+    tr: `Turkish`,          uk: `Ukrainian`,         ur: `Urdu `,      vi: `Vietnamese`,
     cy: `Welsh`,            zu: `Zulu`,
 };
 
