@@ -1,5 +1,6 @@
 // TODO Test sortObject
 // TODO Test inspectKeyTree
+// TODO Consider returning isObject, and make it a proper "is"-typed function
 
 /******************************************** IMPORTS *********************************************/
 import {isVoidOrString, RealAny, isArray, isFunction} from './types-iso';
