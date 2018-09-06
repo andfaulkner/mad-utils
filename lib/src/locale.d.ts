@@ -1,6 +1,6 @@
 /***************************************** ALL LANGUAGES ******************************************/
 /**
- * Object mapping the most common languages to their abbreviations.
+ * Object mapping the most common languages to their abbreviations
  */
 export declare const commonLangsObj: {
     af: string;
@@ -75,16 +75,16 @@ export declare const commonLangsObj: {
     zu: string;
 };
 /**
- * Array of the common abbreviations for the most common languages.
+ * Array of the common abbreviations for the most common languages
  */
 export declare const commonLangAbbrevs: string[];
 /**
- * Array of the names of the most common languages.
+ * Array of the names of the most common languages
  */
 export declare const commonLangNames: any[];
 /*************************************** CANADIAN LANGUAGES ***************************************/
 /**
- * Object mapping Canada's official languages to their abbreviations.
+ * Object mapping Canada's official languages to their abbreviations
  */
 export declare const canadaLangsObj: {
     en: string;
@@ -94,10 +94,9 @@ export declare const canadaLangsObj: {
  * Array of the abbreviations of Canada's official languages
  */
 export declare const canadaLangAbbrevs: string[];
-export declare const canadaLangCodes: string[];
+export { canadaLangAbbrevs as canadaLangCodes };
 /**
- * Array of the names of Canada's official languages.
+ * Array of the names of Canada's official languages
  */
 export declare const canadaLangNames: any[];
-export { isMultilangTextObj } from './object';
 export { englishVariants, frenchVariants } from './internal/lang-constants';
