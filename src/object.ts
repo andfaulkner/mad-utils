@@ -3,17 +3,12 @@
 // TODO Consider returning isObject, and make it a proper "is"-typed function
 
 /******************************************** IMPORTS *********************************************/
-import {isVoidOrString, RealAny, isArray, isFunction} from './types-iso';
-import {matchesIgnoreCase, replaceAll} from './string';
-import {englishVariants, frenchVariants} from './internal/lang-constants';
+import {RealAny, isArray, isFunction} from './types-iso';
 import {flatten, rmAllFalsy} from './array';
-
 import deepFreezeStrict = require('deep-freeze-strict');
-import {isVerbose} from 'env-var-helpers';
 
 /********************************************* CONFIG *********************************************/
 const {assign, keys} = Object;
-
 const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
 
 /********************************************* OBJECT *********************************************/
