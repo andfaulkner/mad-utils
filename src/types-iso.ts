@@ -13,13 +13,17 @@ export interface SingletonInterface<U> {
     new <Y>(...args: any[]): Y;
 }
 
-// For cases where something truly can be any value
+/**
+ * Properties that truly can be any value
+ * (In contrast to 'any', which often functions as a placeholder)
+ */
 export type RealAny = any;
 export {RealAny as Any};
 
-/**
+/*
  * Union aliases
  */
+
 export type StrOrNum = string | number;
 export type StrOrNever = string | never;
 export type StrOrVoid = string | void;
@@ -33,8 +37,14 @@ export {Injection as OptionalInjection};
 export {Injection as RequiredInjection};
 export {Injection as MandatoryInjection};
 
-// Record / Hash aliases
+/**
+ * Object containing only string values
+ */
 export type StringHash = Record<string, string>;
+
+/**
+ * Object containing only number values
+ */
 export type StringNumHash = Record<string, number>;
 
 export type BoolOrError = boolean | Error;
@@ -78,6 +88,7 @@ export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | nul
 
 /**
  * Returns true if [val] is an alphabetic character
+ * @param {string} val Value to check
  */
 export const isAlphabeticChar = <T extends string = string>(val: RealAny): val is T =>
     !!(val && val.match && val.match(/^[a-zA-Z]$/));
@@ -115,16 +126,16 @@ export const isNumberLike = <T extends number | Number | string | String = numbe
     if (isString(val)) {
         if (
             val
-                .replace('.', '')
-                .replace(/^\-/, '')
+                .replace(`.`, ``)
+                .replace(/^\-/, ``)
                 .match(/\D/)
         ) {
             return false;
         }
 
-        // Allow strings in e.g. '.123' and '-.123' format to pass
-        let cleanVal = val.match(/^\.\d/) ? '0' + val : val;
-        cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, '-0.') : cleanVal;
+        // Allow strings in e.g. `.123` and `-.123` format to pass
+        let cleanVal = val.match(/^\.\d/) ? `0` + val : val;
+        cleanVal = val.match(/^\-\.\d/) ? val.replace(/^-./, `-0.`) : cleanVal;
 
         return !isNaN(parseInt(cleanVal, 10));
     }
@@ -202,7 +213,7 @@ export {isStringOrNumber as isStrOrNum};
 export const isBoolean = <T extends boolean | Boolean = boolean>(val: any | boolean): val is T => {
     if (val === true || val === false) return true;
 
-    const hasValueOfFn = val && val.valueOf && typeof val.valueOf === 'function';
+    const hasValueOfFn = val && val.valueOf && typeof val.valueOf === `function`;
     if (hasValueOfFn && (val.valueOf() === true || val.valueOf() === false)) return true;
 
     return false;
@@ -214,7 +225,7 @@ export {isBoolean as isBool};
  * Returns true if [val] is a moment instance, Date instance, or any string,
  * number, or object that moment is able to parse
  * Excludes negative numbers and strings that parse to negative numbers, and
- * objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
+ * objects with date-irrelevant keys (e.g. {year: 1123, bear: `grizzly`})
  * @param {any} val Value to test for Date-like properties
  * @return {boolean} True if value is date-like
  */
@@ -376,9 +387,9 @@ const bstbErrMsg = `Must input true, false, t, f, y, n, yes, or no`;
  * Convert string representation of a boolean value to a boolean value
  * Throw error if conversion isn't possible
  * Passes boolean values through as-is
- * @example converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc.
- * @param {string|boolean} val Value to convert to string or boolean. Must be 'y', 'n', 't', 'f',
- *                             'yes', no', 'true', or 'false' (case-insensitive); or a boolean
+ * Example: converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc
+ * @param {string|boolean} val Value to convert to string or boolean; Must be 'y', 'n', 't', 'f',
+ *                             'yes', no', 'true', or 'false' (case-insensitive), or a boolean
  * @return {boolean|Error} true if val is y, t, yes, or true
  *                         false if it's n, f, no, or false
  *                         Otherwise throw
