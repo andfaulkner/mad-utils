@@ -8,11 +8,12 @@ export interface SingletonInterface<U> {
     new (...args: any[]): U;
     new <Y>(...args: any[]): Y;
 }
+/**
+ * Properties that truly can be any value
+ * (In contrast to 'any', which often functions as a placeholder)
+ */
 export declare type RealAny = any;
 export { RealAny as Any };
-/**
- * Union aliases
- */
 export declare type StrOrNum = string | number;
 export declare type StrOrNever = string | never;
 export declare type StrOrVoid = string | void;
@@ -24,7 +25,13 @@ export declare type Injection<T> = T;
 export { Injection as OptionalInjection };
 export { Injection as RequiredInjection };
 export { Injection as MandatoryInjection };
+/**
+ * Object containing only string values
+ */
 export declare type StringHash = Record<string, string>;
+/**
+ * Object containing only number values
+ */
 export declare type StringNumHash = Record<string, number>;
 export declare type BoolOrError = boolean | Error;
 export { BoolOrError as BoolOrErr };
@@ -60,6 +67,7 @@ export declare const isNullOrUndefined: (val: any) => val is null;
 export declare const isVoidOrString: (val: any) => val is string;
 /**
  * Returns true if [val] is an alphabetic character
+ * @param {string} val Value to check
  */
 export declare const isAlphabeticChar: <T extends string = string>(val: any) => val is T;
 export { isAlphabeticChar as isAlphaChar };
@@ -117,7 +125,7 @@ export { isBoolean as isBool };
  * Returns true if [val] is a moment instance, Date instance, or any string,
  * number, or object that moment is able to parse
  * Excludes negative numbers and strings that parse to negative numbers, and
- * objects with date-irrelevant keys (e.g. { year: 1123, bear: 'grizzly' })
+ * objects with date-irrelevant keys (e.g. {year: 1123, bear: `grizzly`})
  * @param {any} val Value to test for Date-like properties
  * @return {boolean} True if value is date-like
  */
@@ -177,9 +185,9 @@ export declare const castToNum: (val: StrOrNum, throwOnFail?: boolean) => number
  * Convert string representation of a boolean value to a boolean value
  * Throw error if conversion isn't possible
  * Passes boolean values through as-is
- * @example converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc.
- * @param {string|boolean} val Value to convert to string or boolean. Must be 'y', 'n', 't', 'f',
- *                             'yes', no', 'true', or 'false' (case-insensitive); or a boolean
+ * Example: converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc
+ * @param {string|boolean} val Value to convert to string or boolean; Must be 'y', 'n', 't', 'f',
+ *                             'yes', no', 'true', or 'false' (case-insensitive), or a boolean
  * @return {boolean|Error} true if val is y, t, yes, or true
  *                         false if it's n, f, no, or false
  *                         Otherwise throw

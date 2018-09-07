@@ -194,7 +194,8 @@ export declare function pushIfUniq<T = any>(arr: T[], newItem: T): T[];
 export { pushIfUniq as pushIfNew };
 export { pushIfUniq as pushUniq };
 /**
- * Split large multiline string into array where each line is an item. Also removes blank lines
+ * Split large multiline string into array where each line is an item
+ * Also removes blank lines
  *
  * @param {String} str Multiline string to split into array where each line is an array item
  *                       Splits on '\n' char
