@@ -33,12 +33,10 @@ export declare type StringHash = Record<string, string>;
  * Object containing only number values
  */
 export declare type StringNumHash = Record<string, number>;
+/**
+ * Boolean value or Error object
+ */
 export declare type BoolOrError = boolean | Error;
-export { BoolOrError as BoolOrErr };
-export { BoolOrError as ErrOrBool };
-export { BoolOrError as ErrorOrBool };
-export { BoolOrError as ErrorOrBoolean };
-export { BoolOrError as BooleanOrError };
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
  * Most commonly used HTTP Request types
@@ -80,7 +78,7 @@ export declare const isNumber: <T extends number | Number = number>(val: any) =>
 export { isNumber as isNum };
 /**
  * Returns true if [val] is a number, or a string that can be parsed into a number
- * Excludes NaN, accepts '.123' and '-.123' formatted numbers
+ * Excludes NaN, accepts `.123` and `-.123` formatted numbers
  * @param {RealAny} val Item being tested for number-like nature
  * @return {boolean} True if item is 'number-like', otherwise false
  */
@@ -137,16 +135,16 @@ export declare const isDateLike: <T extends string | boolean | Object | moment.M
  */
 export declare const isArray: <T = any>(val: any) => val is T[];
 /**
- * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true)
+ * True if the given value is any variant of true (`true`, `True`, `TRUE`, `T`, `t`, or true)
  * @param {any} val Check if this is a variant of true
- * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true
+ * @param {boolean} include1CharVal return true if given `t` or `T` when include1CharVal is true
  * @return {boolean} true if given value is a variant of true, otherwise false
  */
 export declare const isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
 /**
- * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false)
+ * True if the given value is any variant of false (`false`, `False`, `FALSE`, `F`, `f`, or false)
  * @param {any} val Check if this is a variant of false
- * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true
+ * @param {boolean} include1CharVal return true if given `f` or `F` when include1CharVal is true
  * @return {boolean} false if given value is a variant of false, otherwise false
  */
 export declare const isFalse: <T extends string | false | String = false>(val: any, include1CharVal?: boolean) => val is T;
@@ -185,9 +183,9 @@ export declare const castToNum: (val: StrOrNum, throwOnFail?: boolean) => number
  * Convert string representation of a boolean value to a boolean value
  * Throw error if conversion isn't possible
  * Passes boolean values through as-is
- * Example: converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc
- * @param {string|boolean} val Value to convert to string or boolean; Must be 'y', 'n', 't', 'f',
- *                             'yes', no', 'true', or 'false' (case-insensitive), or a boolean
+ * Example: converts `yes` to true, `f` to false, `true` to true, true to true, `n` to false, etc
+ * @param {string|boolean} val Value to convert to string or boolean; Must be `y`, `n`, `t`, `f`,
+ *                             `yes`, no`, `true`, or `false` (case-insensitive), or a boolean
  * @return {boolean|Error} true if val is y, t, yes, or true
  *                         false if it's n, f, no, or false
  *                         Otherwise throw

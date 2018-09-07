@@ -100,7 +100,7 @@ export {isAlphabeticChar as isAlphaChar};
  */
 export const isNumber = <T extends number | Number = number>(val: RealAny): val is T => {
     if (isNullOrUndefined(val)) return false;
-    if (typeof val === 'number' && !isNaN(val)) return true;
+    if (typeof val === `number` && !isNaN(val)) return true;
     if (Object.getPrototypeOf(val) === Number && !isNaN(val)) return true;
     if (val instanceof Number) return true;
 
@@ -111,7 +111,7 @@ export {isNumber as isNum};
 
 /**
  * Returns true if [val] is a number, or a string that can be parsed into a number
- * Excludes NaN, accepts '.123' and '-.123' formatted numbers
+ * Excludes NaN, accepts `.123` and `-.123` formatted numbers
  * @param {RealAny} val Item being tested for number-like nature
  * @return {boolean} True if item is 'number-like', otherwise false
  */
@@ -186,10 +186,10 @@ export {isIntegerLike as isIntLike};
  * @return {boolean} true if tested item is a string or String-inheriting object
  */
 export const isString = <T extends string | String = string>(val: RealAny): val is T =>
-    typeof val === 'string' ||
+    typeof val === `string` ||
     (val != null &&
-        typeof val === 'object' &&
-        (Object.prototype.toString.call(val) === '[object String]' ||
+        typeof val === `object` &&
+        (Object.prototype.toString.call(val) === `[object String]` ||
             (val.constructor && Object.getPrototypeOf(val.constructor) === String)));
 
 /**
@@ -237,7 +237,7 @@ export const isDateLike = <T extends boolean | moment.Moment | string | Object>(
     if ((isNumber(val) && val < 0) || (isString(val) && parseInt(val, 10) < 0)) return false;
 
     if (
-        typeof val === 'object' &&
+        typeof val === `object` &&
         Object.keys(val).find(
             key =>
                 !key.match(
@@ -263,21 +263,21 @@ export const isArray = <T = any>(val: RealAny): val is T[] => {
     return !!(
         val &&
         val.constructor &&
-        (val.constructor.name === 'Array' ||
+        (val.constructor.name === `Array` ||
             val instanceof Array ||
             // All ES5 and higher environments
             (Object.getPrototypeOf && Object.getPrototypeOf(val.constructor) === Array) ||
             // Pre-ES5 web browsers
-            (val.constructor.__proto__ && val.constructor.__proto__.name === 'Array') ||
+            (val.constructor.__proto__ && val.constructor.__proto__.name === `Array`) ||
             // Ultra-robust (but noticeably slow) last-resort that works everywhere.
-            Object.prototype.toString.call(val) === '[object Array]')
+            Object.prototype.toString.call(val) === `[object Array]`)
     );
 };
 
 /**
- * True if the given value is any variant of true ('true', 'True', 'TRUE', 'T', 't', or true)
+ * True if the given value is any variant of true (`true`, `True`, `TRUE`, `T`, `t`, or true)
  * @param {any} val Check if this is a variant of true
- * @param {boolean} include1CharVal return true if given 't' or 'T' when include1CharVal is true
+ * @param {boolean} include1CharVal return true if given `t` or `T` when include1CharVal is true
  * @return {boolean} true if given value is a variant of true, otherwise false
  */
 export const isTrue = <T extends true | string | String = true>(
@@ -286,12 +286,12 @@ export const isTrue = <T extends true | string | String = true>(
 ): val is T =>
     val === true ||
     (isString(val) &&
-        (val.toLowerCase() === 'true' || (include1CharVal && val.toLowerCase() === 't')));
+        (val.toLowerCase() === `true` || (include1CharVal && val.toLowerCase() === `t`)));
 
 /**
- * True if the given value is any variant of false ('false', 'False', 'FALSE', 'F', 'f', or false)
+ * True if the given value is any variant of false (`false`, `False`, `FALSE`, `F`, `f`, or false)
  * @param {any} val Check if this is a variant of false
- * @param {boolean} include1CharVal return true if given 'f' or 'F' when include1CharVal is true
+ * @param {boolean} include1CharVal return true if given `f` or `F` when include1CharVal is true
  * @return {boolean} false if given value is a variant of false, otherwise false
  */
 export const isFalse = <T extends false | string | String = false>(
@@ -300,7 +300,7 @@ export const isFalse = <T extends false | string | String = false>(
 ): val is T =>
     val === false ||
     (isString(val) &&
-        (val.toLowerCase() === 'false' || (include1CharVal && val.toLowerCase() === 'f')));
+        (val.toLowerCase() === `false` || (include1CharVal && val.toLowerCase() === `f`)));
 
 /**
  * @param {Any} val Return true if this value is a function
@@ -310,7 +310,7 @@ export const isFunction = <T extends Function = ((...args: any[]) => any)>(
     val: RealAny
 ): val is T => {
     const str = {}.toString.call(val);
-    return str === '[object Function]' || (typeof val === 'function' && str !== '[object RegExp]');
+    return str === `[object Function]` || (typeof val === `function` && str !== `[object RegExp]`);
 };
 
 // TODO improve singleton design-time behaviour - i.e. proper type hints + Intellisense
@@ -347,7 +347,7 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
     };
 
     try {
-        Object.defineProperty(SingletonClass, 'name', {value: constructor.name});
+        Object.defineProperty(SingletonClass, `name`, {value: constructor.name});
     } catch (error) {
         if (isVerbose) console.warn(`mad-utils->@singleton :: Cannot modify class name`);
     }
@@ -385,9 +385,9 @@ const bstbErrMsg = `Must input true, false, t, f, y, n, yes, or no`;
  * Convert string representation of a boolean value to a boolean value
  * Throw error if conversion isn't possible
  * Passes boolean values through as-is
- * Example: converts 'yes' to true, 'f' to false, 'true' to true, true to true, 'n' to false, etc
- * @param {string|boolean} val Value to convert to string or boolean; Must be 'y', 'n', 't', 'f',
- *                             'yes', no', 'true', or 'false' (case-insensitive), or a boolean
+ * Example: converts `yes` to true, `f` to false, `true` to true, true to true, `n` to false, etc
+ * @param {string|boolean} val Value to convert to string or boolean; Must be `y`, `n`, `t`, `f`,
+ *                             `yes`, no`, `true`, or `false` (case-insensitive), or a boolean
  * @return {boolean|Error} true if val is y, t, yes, or true
  *                         false if it's n, f, no, or false
  *                         Otherwise throw
@@ -396,21 +396,21 @@ export const boolStringToBool = (
     val: string | boolean,
     strict: boolean = true
 ): boolean | null | never => {
-    // Ensure not void, undefined, or NaN, and that toString doesn't return null
+    // Ensure not void, undefined, or NaN, and that toString doesn`t return null
     if (
         isNullOrUndefined(val) ||
         isNaN(null) ||
-        typeof val.toString() === 'undefined' ||
-        typeof val.toString() !== 'string'
+        typeof val.toString() === `undefined` ||
+        typeof val.toString() !== `string`
     ) {
         if (strict) throw new TypeError(bstbErrMsg);
         return null;
     }
 
     const lcVal = val.toString().toLowerCase();
-    if (lcVal === 'true' || lcVal === 't' || lcVal === 'y' || lcVal === 'yes') {
+    if (lcVal === `true` || lcVal === `t` || lcVal === `y` || lcVal === `yes`) {
         return true;
-    } else if (lcVal === 'false' || lcVal === 'f' || lcVal === 'n' || lcVal === 'no') {
+    } else if (lcVal === `false` || lcVal === `f` || lcVal === `n` || lcVal === `no`) {
         return false;
     }
     if (strict) throw new TypeError(bstbErrMsg);
