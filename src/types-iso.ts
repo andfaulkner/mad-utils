@@ -47,12 +47,10 @@ export type StringHash = Record<string, string>;
  */
 export type StringNumHash = Record<string, number>;
 
+/**
+ * Boolean value or Error object
+ */
 export type BoolOrError = boolean | Error;
-export {BoolOrError as BoolOrErr};
-export {BoolOrError as ErrOrBool};
-export {BoolOrError as ErrorOrBool};
-export {BoolOrError as ErrorOrBoolean};
-export {BoolOrError as BooleanOrError};
 
 /*************************************** HTTP REQUEST TYPES ***************************************/
 /**
