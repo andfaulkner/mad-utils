@@ -1,3 +1,7 @@
+0.71.1
+======
+Remove BoolOrErr aliases
+
 0.71.0
 ======
 Remove isMultilangTextObj function (it's confusing and bad practice)
