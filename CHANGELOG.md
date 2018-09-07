@@ -1,6 +1,13 @@
 0.71.1
 ======
-Remove BoolOrErr aliases
+Remove BoolOrError convenience type aliases:
+    - BoolOrErr
+    - ErrOrBool
+    - ErrorOrBool
+    - ErrorOrBoolean
+    - BooleanOrError
+
+Improve various comment docs to make more friendly to Typescript tooling (cross-IDE)
 
 0.71.0
 ======
