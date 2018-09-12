@@ -21,7 +21,7 @@ export type _NoMatcherCond = 'match_confirmation';
 
 export type _Matcher = RegExp | number | string;
 
-export type Condition =
+export type ValidationCondition =
     | {
           type: _RegCond;
           matcher: _Matcher;
@@ -33,7 +33,7 @@ export type Condition =
       };
 
 export type IsVStrOpt = {
-    conditions: Condition[];
+    conditions: ValidationCondition[];
     testStr: string;
     confirmStr?: string;
     errDisplayCb?: (message?: any) => void;

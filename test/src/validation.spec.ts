@@ -8,7 +8,7 @@ import {m_, validation} from '../../shared';
 import {validation as validationFromNode} from '../../node';
 import {validation as validationFromBrowser} from '../../browser';
 import * as validationModule from '../../src/validation';
-import {Condition} from '../../src/validation';
+import {ValidationCondition} from '../../src/validation';
 
 /********************************************* TESTS **********************************************/
 describe(`validation sub-module`, function() {

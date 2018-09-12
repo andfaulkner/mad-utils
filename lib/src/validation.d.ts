@@ -2,7 +2,7 @@
 export declare type _RegCond = 'min' | 'max' | 'gt' | 'min_length' | 'lt' | 'max_length' | 'match' | 'no_match' | 'len' | 'length' | 'exact_length' | 'length_equals';
 export declare type _NoMatcherCond = 'match_confirmation';
 export declare type _Matcher = RegExp | number | string;
-export declare type Condition = {
+export declare type ValidationCondition = {
     type: _RegCond;
     matcher: _Matcher;
     errMsg?: string;
@@ -11,7 +11,7 @@ export declare type Condition = {
     errMsg?: string;
 };
 export declare type IsVStrOpt = {
-    conditions: Condition[];
+    conditions: ValidationCondition[];
     testStr: string;
     confirmStr?: string;
     errDisplayCb?: (message?: any) => void;
