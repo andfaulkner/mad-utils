@@ -8,6 +8,10 @@ Add canadaPostalCodePartialRegex
 
 Remove isValidString function
 
+Condition type renamed to ValidationCondition (Condition -> ValidationCondition)
+
+Remove isEmailPotentiallyValid alias for isEmailValidBasic
+
 0.71.1
 ======
 Remove BoolOrError convenience type aliases:
