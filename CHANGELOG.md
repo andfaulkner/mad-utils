@@ -1,3 +1,13 @@
+0.72.0
+=====
+New validateCanadaPostalCode function
+- Remove invalid characters from Canadian postal code validations
+
+Add canadaPostalCodePartialRegex
+- Case-insensitive regular expression for matching full & partial Canadian postal codes
+
+Remove isValidString function
+
 0.71.1
 ======
 Remove BoolOrError convenience type aliases:
