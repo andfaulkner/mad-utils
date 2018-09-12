@@ -55,21 +55,18 @@ export type IsVStrOpt = {
  * @param {string} email Email address to check for validity
  * @return {boolean} true if email is probably valid
  */
-export const isEmailPotentiallyValid = (email: string): boolean => !!email.match(/^.+@.+\..+$/gi);
-export const isEmailValidBasic = isEmailPotentiallyValid;
-
-/******************************************** HELPERS *********************************************/
+export const isEmailValidBasic = (email: string): boolean => !!email.match(/^.+@.+\..+$/gi);
 
 /**
  * Return true if there are no lowercase letters in the give string
- * @param {string} str - String to check for lowercase characters
+ * @param {string} str String to check for lowercase characters
  * @return {boolean} False if string has any lowercase characters
  */
 export const noLowercase = (str: string): boolean => !str.match(/[a-z]/);
 
 /**
  * Return true if there are no uppercase letters in the give string
- * @param {string} str - String to check for uppercase characters
+ * @param {string} str String to check for uppercase characters
  * @return {boolean} False if string has any uppercase characters
  */
 export const noUppercase = (str: string): boolean => !str.match(/[A-Z]/);
