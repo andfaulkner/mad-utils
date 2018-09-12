@@ -1,40 +1,42 @@
 /******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers } from 'mad-logs';
+import {logFactory, logMarkers} from 'mad-logs';
 const log = logFactory()(`validation.ts`, logMarkers.swimmers);
 
-//*************************************** TYPE DEFINITIONS ****************************************/
-export type _RegCond = 'min'
-                    | 'max'
-                    | 'gt'
-                    | 'min_length'
-                    | 'lt'
-                    | 'max_length'
-                    | 'match'
-                    | 'no_match'
-                    | 'len'
-                    | 'length'
-                    | 'exact_length'
-                    | 'length_equals';
+/**************************************** TYPE DEFINITIONS ****************************************/
+export type _RegCond =
+    | 'min'
+    | 'max'
+    | 'gt'
+    | 'min_length'
+    | 'lt'
+    | 'max_length'
+    | 'match'
+    | 'no_match'
+    | 'len'
+    | 'length'
+    | 'exact_length'
+    | 'length_equals';
 export type _NoMatcherCond = 'match_confirmation';
 
 export type _Matcher = RegExp | number | string;
 
-export type Condition = {
-    type: _RegCond,
-    matcher: _Matcher,
-    errMsg?: string
-} | {
-    type: _NoMatcherCond,
-    errMsg?: string
-};
+export type Condition =
+    | {
+          type: _RegCond;
+          matcher: _Matcher;
+          errMsg?: string;
+      }
+    | {
+          type: _NoMatcherCond;
+          errMsg?: string;
+      };
 
 export type IsVStrOpt = {
-    conditions: Condition[],
-    testStr: string,
-    confirmStr?: string,
-    errDisplayCb?: (message?: any) => void,
+    conditions: Condition[];
+    testStr: string;
+    confirmStr?: string;
+    errDisplayCb?: (message?: any) => void;
 };
-
 
 /******************************************** HELPERS *********************************************/
 /**
@@ -51,7 +53,10 @@ function confirmValidation(testStr: string, confirmStr?: string, noConfirmErr?: 
  * Display given error message if validation fails.
  * @param {string} error - Error message to display
  */
-function handleValidationError(error: Error, errDisplayCb: ((message?: any) => void) = console.log): false {
+function handleValidationError(
+    error: Error,
+    errDisplayCb: ((message?: any) => void) = console.log
+): false {
     log.error(`validation error: validate:`, error);
     errDisplayCb(error.message);
     return false;
@@ -83,28 +88,36 @@ function handleValidationError(error: Error, errDisplayCb: ((message?: any) => v
 export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean {
     try {
         // Iterate through given conditions/constraints
-        conditions.forEach((props: Condition) => { // {type, matcher?, errMsg}
+        conditions.forEach((props: Condition) => {
+            // {type, matcher?, errMsg}
             const {type, errMsg} = props;
-            const matcher = (props.type !== 'match_confirmation') && props.matcher;
+            const matcher = props.type !== 'match_confirmation' && props.matcher;
 
             /* MATCHERS */
             switch (type) {
-                case "gt": case "min": case "min_length":
+                case 'gt':
+                case 'min':
+                case 'min_length':
                     if (testStr.length >= matcher) return;
                     break;
-                case "lt": case "max": case "max_length":
+                case 'lt':
+                case 'max':
+                case 'max_length':
                     if (testStr.length <= matcher) return;
                     break;
-                case "len": case "length": case "exact_length": case "length_equals":
+                case 'len':
+                case 'length':
+                case 'exact_length':
+                case 'length_equals':
                     if (testStr.length === matcher) return;
                     break;
-                case "match":
+                case 'match':
                     if (testStr.match(matcher as RegExp)) return;
                     break;
-                case "no_match":
+                case 'no_match':
                     if (!testStr.match(matcher as RegExp)) return;
                     break;
-                case "match_confirmation":
+                case 'match_confirmation':
                     return confirmValidation(testStr, confirmStr, errMsg);
                 default:
                     throw new Error(`Unknown validation condition type: ${type}`);
@@ -119,15 +132,16 @@ export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: I
             if (typeof confirmStr !== 'string') {
                 throw new Error(`Value: ${testStr}\n  Condition type: ${type}`);
             } else {
-                throw new Error(`Value: ${testStr}\n  Confirmation value: ${confirmStr}\n  ` +
-                                `Condition type: ${type}`);
+                throw new Error(
+                    `Value: ${testStr}\n  Confirmation value: ${confirmStr}\n  ` +
+                        `Condition type: ${type}`
+                );
             }
         });
 
         // Only reaches here if no conditions were violated. Ret true = string is valid.
         return true;
-
-    } catch(error) {
+    } catch (error) {
         return handleValidationError(error, errDisplayCb);
     }
 }
@@ -188,10 +202,12 @@ export const noSpecialChars = (str: string): boolean =>
  * @param  {boolean} threeCharAllowed if true, also return true if only 3 letters long (but valid)
  * @return {boolean}                  true if str is a valid postal code or 1st 1/2 of postal code
  */
-const validCanadaPostalCode = (str: string = ``, allow3Char = true): boolean => {
+export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): boolean => {
     const ucStr = str.toUpperCase();
     return allow3Char
-        ? !!ucStr.match(/^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY] ?([0-9][ABCEGHJKLMNPRSTVXY][0-9])?$/g)
+        ? !!ucStr.match(
+              /^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY] ?([0-9][ABCEGHJKLMNPRSTVXY][0-9])?$/g
+          )
         : !!ucStr.match(/^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY]$/g);
 };
 
@@ -205,19 +221,16 @@ export const canadaPostalCodePartialRegex = /^(([ABCEGHJKLMNPRSTVXY]?)|([ABCEGHJ
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages.
  */
-export const latinLangCharRegex =
-    /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! ]+$/i;
+export const latinLangCharRegex = /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! ]+$/i;
 
 /**
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages, plus slashes
  */
-export const latinLangCharWSlashesRegex =
-    /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! \/\\]+$/i;
+export const latinLangCharWSlashesRegex = /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! \/\\]+$/i;
 
 /**
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages, plus slashes, regular braces, and quotes (' and ")
  */
-export const latinLangCharWSlashesQuotesBracesRegex =
-    /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! \/\\'"\(\)]+$/i;
+export const latinLangCharWSlashesQuotesBracesRegex = /^[a-zàáâäãåąćčçèéêĕëēęìíîĭïłńñòóôðöõőo̧q̧ŗśšùúûüűýÿźžżæœßÞþøẞ! \/\\'"\(\)]+$/i;
