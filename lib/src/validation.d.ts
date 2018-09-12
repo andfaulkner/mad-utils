@@ -1,21 +1,3 @@
-/**************************************** TYPE DEFINITIONS ****************************************/
-export declare type _RegCond = 'min' | 'max' | 'gt' | 'min_length' | 'lt' | 'max_length' | 'match' | 'no_match' | 'len' | 'length' | 'exact_length' | 'length_equals';
-export declare type _NoMatcherCond = 'match_confirmation';
-export declare type _Matcher = RegExp | number | string;
-export declare type ValidationCondition = {
-    type: _RegCond;
-    matcher: _Matcher;
-    errMsg?: string;
-} | {
-    type: _NoMatcherCond;
-    errMsg?: string;
-};
-export declare type IsVStrOpt = {
-    conditions: ValidationCondition[];
-    testStr: string;
-    confirmStr?: string;
-    errDisplayCb?: (message?: any) => void;
-};
 /******************************************** EXPORTS *********************************************/
 /**
  * Returns true if email address is probably (but not definitely) correctly formatted
@@ -32,18 +14,16 @@ export declare type IsVStrOpt = {
  * @param {string} email Email address to check for validity
  * @return {boolean} true if email is probably valid
  */
-export declare const isEmailPotentiallyValid: (email: string) => boolean;
 export declare const isEmailValidBasic: (email: string) => boolean;
-/******************************************** HELPERS *********************************************/
 /**
  * Return true if there are no lowercase letters in the give string
- * @param {string} str - String to check for lowercase characters
+ * @param {string} str String to check for lowercase characters
  * @return {boolean} False if string has any lowercase characters
  */
 export declare const noLowercase: (str: string) => boolean;
 /**
  * Return true if there are no uppercase letters in the give string
- * @param {string} str - String to check for uppercase characters
+ * @param {string} str String to check for uppercase characters
  * @return {boolean} False if string has any uppercase characters
  */
 export declare const noUppercase: (str: string) => boolean;
