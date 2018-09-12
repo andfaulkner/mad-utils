@@ -188,12 +188,17 @@ export const noSpecialChars = (str: string): boolean =>
  * @param  {boolean} threeCharAllowed if true, also return true if only 3 letters long (but valid)
  * @return {boolean}                  true if str is a valid postal code or 1st 1/2 of postal code
  */
-const validCanadianPostalCode = (str: string = ``, allow3Char = true): boolean => {
+const validCanadaPostalCode = (str: string = ``, allow3Char = true): boolean => {
     const ucStr = str.toUpperCase();
     return allow3Char
         ? !!ucStr.match(/^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY] ?([0-9][ABCEGHJKLMNPRSTVXY][0-9])?$/g)
         : !!ucStr.match(/^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY]$/g);
-}
+};
+
+/**
+ * Match Canadian postal codes & partially inputted Canadian postal codes (including ``)
+ */
+export const canadaPostalCodePartialRegex = /^(([ABCEGHJKLMNPRSTVXY]?)|([ABCEGHJKLMNPRSTVXY]\d)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?\d)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?\d[ABCEGHJKLMNPRSTVXY]\d?))$/i;
 
 /******************************************** REGEXES *********************************************/
 /**
