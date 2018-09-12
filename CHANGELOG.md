@@ -1,14 +1,20 @@
 0.72.0
 =====
 New validateCanadaPostalCode function
-- Remove invalid characters from Canadian postal code validations
+*   Remove invalid characters from Canadian postal code validations
 
 Add canadaPostalCodePartialRegex
-- Case-insensitive regular expression for matching full & partial Canadian postal codes
+*   Case-insensitive regular expression for matching full & partial Canadian postal codes
 
 Remove isValidString function
 
-Condition type renamed to ValidationCondition (Condition -> ValidationCondition)
+Remove (validation-related) types:
+*   ValidationCondition
+*   \_RegCond
+*   \_NoMatcherCond
+*   \_Matcher
+*   ValidationCondition
+*   IsVStrOpt
 
 Remove isEmailPotentiallyValid alias for isEmailValidBasic
 
