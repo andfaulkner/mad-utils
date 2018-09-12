@@ -2,43 +2,6 @@
 import {logFactory, logMarkers} from 'mad-logs';
 const log = logFactory()(`validation.ts`, logMarkers.swimmers);
 
-/**************************************** TYPE DEFINITIONS ****************************************/
-export type _RegCond =
-    | 'min'
-    | 'max'
-    | 'gt'
-    | 'min_length'
-    | 'lt'
-    | 'max_length'
-    | 'match'
-    | 'no_match'
-    | 'len'
-    | 'length'
-    | 'exact_length'
-    | 'length_equals';
-
-export type _NoMatcherCond = 'match_confirmation';
-
-export type _Matcher = RegExp | number | string;
-
-export type ValidationCondition =
-    | {
-          type: _RegCond;
-          matcher: _Matcher;
-          errMsg?: string;
-      }
-    | {
-          type: _NoMatcherCond;
-          errMsg?: string;
-      };
-
-export type IsVStrOpt = {
-    conditions: ValidationCondition[];
-    testStr: string;
-    confirmStr?: string;
-    errDisplayCb?: (message?: any) => void;
-};
-
 /******************************************** EXPORTS *********************************************/
 /**
  * Returns true if email address is probably (but not definitely) correctly formatted
