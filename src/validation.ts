@@ -39,121 +39,7 @@ export type IsVStrOpt = {
     errDisplayCb?: (message?: any) => void;
 };
 
-/******************************************** HELPERS *********************************************/
-/**
- * Check that testStr matches confirmStr (if both exist)
- * Throw error with given message otherwise
- */
-function confirmValidation(testStr: string, confirmStr?: string, noConfirmErr?: string) {
-    if (testStr !== confirmStr) {
-        throw new Error(noConfirmErr || `${testStr} must be equal to ${confirmStr}`);
-    }
-}
-
-/**
- * Display given error message if validation fails
- * @param {string} error Error message to display
- */
-function handleValidationError(
-    error: Error,
-    errDisplayCb: ((message?: any) => void) = console.log
-): false {
-    log.error(`validation error: validate:`, error);
-    errDisplayCb(error.message);
-    return false;
-}
-
 /******************************************** EXPORTS *********************************************/
-/**
- * Test that given string meets all of the validation conditions
- *
- * Condition format: {type: string, matcher?: RegExp|number|string, errMsg: string}
- *     type - accepted values:
- *         min                     Specifies smallest allowed length
- *         max                     Specifies longest allowed length
- *         len|length|exact_length Specifies the exact length input must be
- *         match                   String must match given regular expression
- *         no_match                String must NOT match given regular expression
- *         match_confirmation      If present check that testStr matches confirmStr
- *     matcher:
- *         Comparison value
- *         e.g. for type 'len', val of matcher = exact required input length
- *     errMsg:
- *         String content of 'errMsg' should be displayed if conditon is not met
- *
- * Example: for array item in condition {type: 'min', matcher: 4, err: 'a'}:
- *          Check that testStr is a number that's >= 4
- *          Throw err w message 'a' if it's not
- *
- * @param {Condition[]} conditions Confirm that string meets all of these conditions.
- * @param {string} testStr String to check the conditions against
- * @param {string} confirmStr? [OPTIONAL] String to ensure testStr is equal to
- *                                        (if match_confirmation present)
- * @param {Function} errDisplayCb? [OPTIONAL] Function for displaying error message.
- *                                 Defaults to alert
- * @return {boolean} true if all validation conditions are passed, false if not
- */
-export function isValidString({conditions, testStr, confirmStr, errDisplayCb}: IsVStrOpt): boolean {
-    try {
-        // Iterate through given conditions/constraints
-        conditions.forEach((props: Condition) => {
-            // {type, matcher?, errMsg}
-            const {type, errMsg} = props;
-            const matcher = props.type !== 'match_confirmation' && props.matcher;
-
-            /* MATCHERS */
-            switch (type) {
-                case 'gt':
-                case 'min':
-                case 'min_length':
-                    if (testStr.length >= matcher) return;
-                    break;
-                case 'lt':
-                case 'max':
-                case 'max_length':
-                    if (testStr.length <= matcher) return;
-                    break;
-                case 'len':
-                case 'length':
-                case 'exact_length':
-                case 'length_equals':
-                    if (testStr.length === matcher) return;
-                    break;
-                case 'match':
-                    if (testStr.match(matcher as RegExp)) return;
-                    break;
-                case 'no_match':
-                    if (!testStr.match(matcher as RegExp)) return;
-                    break;
-                case 'match_confirmation':
-                    return confirmValidation(testStr, confirmStr, errMsg);
-                default:
-                    throw new Error(`Unknown validation condition type: ${type}`);
-            }
-
-            /* ERROR FACTORY (only reached if no matches above) */
-
-            // If error message arg given, throw error with it as the message
-            if (errMsg) throw new Error(errMsg);
-
-            // If no error message included, build & throw custom error
-            if (typeof confirmStr !== 'string') {
-                throw new Error(`Value: ${testStr}\n  Condition type: ${type}`);
-            } else {
-                throw new Error(
-                    `Value: ${testStr}\n  Confirmation value: ${confirmStr}\n  ` +
-                        `Condition type: ${type}`
-                );
-            }
-        });
-
-        // Only reaches here if no conditions were violated. Ret true = string is valid.
-        return true;
-    } catch (error) {
-        return handleValidationError(error, errDisplayCb);
-    }
-}
-
 /**
  * Returns true if email address is probably (but not definitely) correctly formatted
  *
@@ -221,13 +107,13 @@ export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): b
         : !!ucStr.match(/^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY]$/g);
 };
 
+/******************************************** REGEXES *********************************************/
 /**
  * Match Canadian postal codes & partially inputted Canadian postal codes (including ``)
  * Case-insensitive
  */
 export const canadaPostalCodePartialRegex = /^(([ABCEGHJKLMNPRSTVXY]?)|([ABCEGHJKLMNPRSTVXY]\d)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?\d)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?\d[ABCEGHJKLMNPRSTVXY]\d?))$/i;
 
-/******************************************** REGEXES *********************************************/
 /**
  * Matches all characters found in English amd French, & almost all in other
  * European/Latin-derived languages
