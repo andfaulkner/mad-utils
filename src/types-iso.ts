@@ -102,8 +102,9 @@ export const isAlphabeticChar = <T extends string = string>(
     val: RealAny,
     handleAccents: boolean = true
 ): val is T =>
-    (val && val.match && !!val.match(/^[a-zA-Z]$/)) ||
-    (handleAccents && val.match(/^(?![×Þß÷þø])[a-zá-žàấӑệởș]$/));
+    val &&
+    val.match &&
+    (!!val.match(/^[a-zA-Z]$/) || (handleAccents && val.match(/^(?![×Þß÷þø])[a-zá-žàấӑệởș]$/)));
 
 export {isAlphabeticChar as isAlphaChar};
 
