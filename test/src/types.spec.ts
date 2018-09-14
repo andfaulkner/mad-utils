@@ -9,7 +9,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 
 /******************************* IMPORT TYPES MODULES FOR TESTING *********************************/
-import {m_, types as typesIso, types, isBoolean, isString} from '../../shared';
+import {m_, types as typesIso, types, isBoolean, isString, isUndefined} from '../../shared';
 import {types as typesNode} from '../../node';
 import {types as typesBrowser} from '../../browser';
 import * as typesModule from '../../src/types-iso';
@@ -29,6 +29,42 @@ describe(`types sub-modules`, function() {
         expectNonEmptyObjectExists(typesIso, 'types (from shared/base export)');
         expectNonEmptyObjectExists(m_.types, 'types (from m_ top-level namespace)');
         expectNonEmptyObjectExists(typesModule, 'types (import all from types.ts file)');
+
+        describe(`isUndefined function`, function() {
+            it(`returns false given null`, function() {
+                expect(typesIso.isUndefined(null)).to.equal(false);
+            });
+            it(`returns true given undefined`, function() {
+                expect(typesIso.isUndefined(undefined)).to.equal(true);
+                expect((typesIso.isUndefined as any)()).to.equal(true);
+            });
+            it(`returns false given falsy values besides undefined`, function() {
+                expect(typesIso.isUndefined(0)).to.equal(false);
+                expect(typesIso.isUndefined(``)).to.equal(false);
+                expect(typesIso.isUndefined(NaN)).to.equal(false);
+                expect(typesIso.isUndefined(false)).to.equal(false);
+            });
+            it(`returns false given any "truthy" value`, function() {
+                expect(typesIso.isUndefined(`undefined`)).to.equal(false);
+                expect(typesIso.isUndefined(`null`)).to.equal(false);
+                expect(typesIso.isUndefined(1)).to.equal(false);
+                expect(typesIso.isUndefined(`OK`)).to.equal(false);
+                expect(typesIso.isUndefined(Infinity)).to.equal(false);
+                expect(typesIso.isUndefined(-1)).to.equal(false);
+                expect(typesIso.isUndefined({})).to.equal(false);
+                expect(typesIso.isUndefined([])).to.equal(false);
+                expect(typesIso.isUndefined([null, undefined])).to.equal(false);
+                expect(typesIso.isUndefined({'null': null})).to.equal(false);
+                expect(typesIso.isUndefined(Object)).to.equal(false);
+                expect(typesIso.isUndefined(Object.prototype)).to.equal(false);
+                expect(typesIso.isUndefined(0.00001)).to.equal(false);
+                expect(typesIso.isUndefined(() => null)).to.equal(false);
+                expect(typesIso.isUndefined(() => undefined)).to.equal(false);
+                expect(typesIso.isUndefined(class TestClass {})).to.equal(false);
+                expect(typesIso.isUndefined(Symbol())).to.equal(false);
+                expect(typesIso.isUndefined(Symbol('null'))).to.equal(false);
+            });
+        });
 
         describe(`isNullOrUndefined function`, function() {
             it(`returns true given null`, function() {
