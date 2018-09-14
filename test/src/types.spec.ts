@@ -722,6 +722,24 @@ describe(`types sub-modules`, function() {
             expect(typesIso.isAlphabeticChar(Symbol())).to.eql(false);
             expect(typesIso.isAlphabeticChar(Symbol('Q'))).to.eql(false);
         });
+        it(`By default returns true given accented characters / diacritics`, function() {
+            expect(typesIso.isAlphabeticChar(`à`)).to.eql(true);
+            expect(typesIso.isAlphabeticChar(`ç`)).to.eql(true);
+            expect(typesIso.isAlphabeticChar(`ë`)).to.eql(true);
+            expect(typesIso.isAlphabeticChar(`ħ`)).to.eql(true);
+            expect(typesIso.isAlphabeticChar(`Ï`)).to.eql(true);
+            expect(typesIso.isAlphabeticChar(`Û`)).to.eql(true);
+            expect(typesIso.isAlphabeticChar(`Ž`)).to.eql(true);
+        });
+        it(`If 2nd arg is false, returns false given accented characters / diacritics`, function() {
+            expect(typesIso.isAlphabeticChar(`à`, false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(`ç`, false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(`ë`, false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(`ħ`, false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(`Ï`, false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(`Û`, false)).to.eql(false);
+            expect(typesIso.isAlphabeticChar(`Ž`, false)).to.eql(false);
+        });
     });
 
     describe(`isNumber`, function() {
