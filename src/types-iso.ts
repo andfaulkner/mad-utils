@@ -92,11 +92,18 @@ export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | nul
     isNullOrUndefined(val) || isString(val);
 
 /**
- * Returns true if [val] is an alphabetic character
+ * Returns true if [val] is an alphabetic character,
+ * Includes diacritics (accented characters) if [handleAccents] is true
  * @param {string} val Value to check
+ * @param {boolean} handleAccents If true, return true for diacritics/accented
+ *                                letters (Default: true)
  */
-export const isAlphabeticChar = <T extends string = string>(val: RealAny): val is T =>
-    !!(val && val.match && val.match(/^[a-zA-Z]$/));
+export const isAlphabeticChar = <T extends string = string>(
+    val: RealAny,
+    handleAccents: boolean = true
+): val is T =>
+    (val && val.match && !!val.match(/^[a-zA-Z]$/)) ||
+    (handleAccents && val.match(/^(?![×Þß÷þø])[a-zá-žàấӑệởș]$/));
 
 export {isAlphabeticChar as isAlphaChar};
 
