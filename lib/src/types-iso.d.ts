@@ -70,10 +70,13 @@ export declare const isNullOrUndefined: (val: any) => val is null;
  */
 export declare const isVoidOrString: (val: any) => val is string;
 /**
- * Returns true if [val] is an alphabetic character
+ * Returns true if [val] is an alphabetic character,
+ * Includes diacritics (accented characters) if [handleAccents] is true
  * @param {string} val Value to check
+ * @param {boolean} handleAccents If true, return true for diacritics/accented
+ *                                letters (Default: true)
  */
-export declare const isAlphabeticChar: <T extends string = string>(val: any) => val is T;
+export declare const isAlphabeticChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
 export { isAlphabeticChar as isAlphaChar };
 /**
  * Detect whether [val] is a number (Note: NaN returns false here)
