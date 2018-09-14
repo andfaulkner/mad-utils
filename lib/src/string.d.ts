@@ -31,10 +31,11 @@ export declare const replaceAll: (text: string, find: string | RegExp, replace: 
  * The type of the item to find for & the item being searched must match, unless
  * valToFind is a RegExp
  *
+ * Example usage: [`gr`, `hello`].find(matches(`hello`)); // => true
+ *
  * @param {string|number|RegExp} valToFind Value to search for in valToSearchIn
  * @param {string|number} valToSearchIn string or number to match against
  * @return {boolean} true if a match is found
- * @example USAGE ::  [`gr`, `hello`].find(matches(`hello`)); // => true
  */
 export declare const matches: (valToFind: string | number | RegExp) => (valToSearchIn: StrOrNum) => boolean;
 /**
@@ -54,7 +55,8 @@ export declare const matchFirst: (haystack: string, needle: string | RegExp) => 
  * It essentially escapes special regex characters/metacharacters (e.g. *, ., +) in such a
  * way that the regex builder ignores their special and instead seeks them literally
  *
- * @example escapeRegExp(`*.js`); //=> `\\*\\.js`
+ * Example: escapeRegExp(`*.js`); //=> `\\*\\.js`
+ *
  * @param {string} regexStr String to escape for use in literal form in a regex builder
  * @return {string} escaped string
  */
@@ -64,7 +66,7 @@ export declare const escapeRegExp: (regexStr: string) => string;
  * @param {string} matchAgainst String to match against
  * @return {boolean} true if a match is found
  *
- * @example USAGE ::  [`gr`, `HeLLo`].find(matchesIgnoreCase(`hello`)); // => true
+ * Example usage: [`gr`, `HeLLo`].find(matchesIgnoreCase(`hello`)); // => true
  */
 export declare const matchesIgnoreCase: (matchOn: string) => (val: string) => boolean;
 /**
@@ -74,7 +76,7 @@ export declare const newlineStr = "\n";
 /**
  * Remove all spaces in the given string
  *
- * @example removeWhitespace(` my test  string   `); // => myteststring
+ * Example: removeWhitespace(` my test  string   `); // => myteststring
  *
  * @param {string} str String to remove spaces from
  * @return {string} input string with spaces removed
@@ -85,7 +87,8 @@ export declare const removeWhitespace: (str: string) => string;
  * Defaults to eliminating carriage return and newline characters
  *
  * @param {string} str String to chomp (from end)
- * @param {string} charsToChomp String (acting as array of chars) containing all chars to chomp
+ * @param {string} charsToChomp String (acting as array of chars) containing
+ *                              all chars to chomp
  * @return {string} str with all chars in charsToChomp removed from end of string
  */
 export declare const chomp: (str: string, charsToChomp?: string) => string;
@@ -101,15 +104,22 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
 export declare const toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
 /**
  * Converts any string (snake_case, PascalCase, dash-case) to camelCase
- * Consistently makes the 1st letter lowercase, capitalizes the 1st char after each
- * non-alphanumeric char, & eliminates all non-alphanumeric chars & whitespace
+ *
+ * Transforms:
+ * - Makes the 1st character lowercase
+ * - Capitalizes the 1st character after each non-alphanumeric char
+ * - Eliminates all non-alphanumeric characters and whitespace
+ *
  * @param {string} str String to convert to camelCase
  * @return {string} String converted to camelCase format
  */
 export declare const toCamelCase: (str: string) => string;
 /**
- * Return copy of string (str) with all instances of substring or regexp (matcherToRm) removed
- * @example removeMatchingText(`asdfqwertyasdfuiopasdf`, `asdf`); // => `qwertyuiop`
+ * Return string [str] with all instances of substring or regexp [matcherToRm]
+ * removed
+ *
+ * Example: removeMatchingText(`asdfqwertyasdfuiopasdf`, `asdf`); // => `qwertyuiop`
+ *
  * @param {string} str String to remove matches from
  * @param {string|RegExp} matcherToRm String to remove from str
  * @return {string} str with all instances of matcherToRm removed
@@ -138,7 +148,8 @@ export declare const removeMatchingText: (str: string, matcherToRm: string | Reg
 export declare const deindent: (input: Function | TemplateStringsArray, ...args: any[]) => string | (() => string);
 /****************************************** REPEAT CHARS ******************************************/
 /**
- * Create string consisting of 'len' number of repeats of 'charToRepeat'
+ * Create string consisting of [len] number of repeats of [charToRepeat] character
+ *
  * @param {number} len Number of repeats of charToRepeat in output string
  * @param {string} charToRepeat Character to repeat in the output string
  * @return {string} string consisting of len repeats of charToRepeat
@@ -149,11 +160,11 @@ export declare const repeatChars: (repStr: string, len: number) => string;
  * If given string ends in given substring preceded by a `.`, returns true
  * Note: only works for extensions with up to 4 parts e.g. .b.c.d.e
  *
- * @param {string} inode Any string, but it's intended for a file/directory path
- * @param {string} ext Any string, but it's meant to be a file extension (e.g. js)
- * @return {boolean} true if file ends in given extension
+ * Example: endsWithExt(`ok.tsx`, `tsx`) // => true
  *
- * @example endsWithExt(`ok.tsx`, `tsx`) // => true
+ * @param {string} inode Any string, but intended to be a file/directory path
+ * @param {string} ext Any string, but meant to be a file extension (e.g. js)
+ * @return {boolean} true if file ends in given extension
  */
 export declare const endsWithExt: (inode: string, ext: string) => boolean;
 /**
@@ -205,14 +216,18 @@ export declare const endsInDotCss: (inode: string) => boolean;
  */
 export declare const endsInDotScss: (inode: string) => boolean;
 /**
- * Return true if string doesn't have .min as a secondary extension (e.g. file.min.js, file.min.ts)
+ * Return true if string doesn't have .min as a secondary extension
+ * e.g. returns false for `file.min.js` and `file.min.ts`
+ *      returns true for `file.js` and `file.ts`
+ *
  * @param {string} inode Any string, but it's intended to be a file/directory path
- * @return {boolean} true if file doesn't end in .min.[anyExt] (e.g. a.min.json, b.min.css)
+ * @return {boolean} true if file doesn't end in .min.[anyExt]
+ *                        e.g. returns false for `a.min.json`, `b.min.css`
  */
 export declare const isNonMinFile: (inode: string) => boolean;
 /**
- * Get the base filename from the given path
- * @example getBaseFilenameFromPath(./src/translations/en.json); // => en.json
+ * Get the base filename from given path [filePath]
+ * Example: getBaseFilenameFromPath(./src/translations/en.json); // => en.json
  */
 export declare const getBaseFilenameFromPath: (filePath: string) => string;
 /***************************************** STRING PADDING *****************************************/
@@ -220,13 +235,16 @@ export declare type Sides = 'left' | 'right' | 'center';
 /**
  * Pad string to the given length, with additional characters added to the given
  * side - or split across both sides if side arg is `center`
- * If initial string is longer than the width to pad to, return initial string unmodified
+ * If initial string is longer than the width to pad to, return initial string
+ * unmodified
  *
  * @param {string} strToPad Initial string to pad to given length with given char
- * @param {number} outWidth Width to increase the string to (by adding padding char repeatedly)
+ * @param {number} outWidth Width to increase the string to (by adding padding char
+ *                          repeatedly)
  * @param {string} padChar Character to repeatedly add to left side of strToPad
  * @param {Sides} side Side to add padCharTo :: values: `left`, `right`, `center`
- *                     For center, adds char on each side, w the odd number extra added to the right
+ *                     For center, adds char on each side, w the odd number extra
+ *                     added to the right
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
@@ -281,9 +299,10 @@ export declare const isOperatorChar: (matchChar: string) => boolean;
 /**
  * If matching quotes found at left- & right-most positions of given string, remove them
  * If none found, returns string as-is
+ * Example: removeSurroundingQuotes(`"asdf"`); // => `asdf`
+ *
  * @param  {string} str String to check & remove from
  * @return {string} Input string with bookending quotes removed
- * @example removeSurroundingQuotes(`"asdf"`); // => `asdf`
  */
 export declare const removeSurroundingQuotes: (str: string) => string;
 /**
@@ -300,7 +319,7 @@ export declare const isRegexString: (str: string | RegExp) => boolean;
 export declare const getFlagsFromRegexString: (str: string) => string;
 /**
  * Remove left & right side `/`, and all right-side flags from given regex in string form
- * @example removeSlashesFlagsSurroundingRegexString(`/asdf/gi`) // => `asdf`
+ * Example: removeSlashesFlagsSurroundingRegexString(`/asdf/gi`) // => `asdf`
  *
  * @param {string} str Regex string to remove slashes from (e.g. `/find_this_value/gm`)
  * @return {string} Regex string with the flags and bookending `/` chars removed

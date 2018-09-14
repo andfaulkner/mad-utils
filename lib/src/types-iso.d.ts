@@ -72,6 +72,7 @@ export declare const isVoidOrString: (val: any) => val is string;
 /**
  * Returns true if [val] is an alphabetic character,
  * Includes diacritics (accented characters) if [handleAccents] is true
+ * See https://regex101.com/r/gY7rO4/265 to view matching characters
  * @param {string} val Value to check
  * @param {boolean} handleAccents If true, return true for diacritics/accented
  *                                letters (Default: true)
