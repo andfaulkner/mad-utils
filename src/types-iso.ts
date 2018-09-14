@@ -73,7 +73,7 @@ export {AnyHTTPReqType as RequestType};
  *  @param {void|RealAny} value Value to type check
  *  @return {boolean} true if val is undefined
  */
-export const isUndefined = (value?: RealAny): value is undefined => typeof value === `undefined`;
+export const isUndefined = (value: RealAny): value is undefined => typeof value === `undefined`;
 
 /**
  *  Returns true if [val] is null or undefined
