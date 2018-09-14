@@ -1,5 +1,10 @@
+0.72.1
+======
+Add diacritic handling to isAlphabeticChar
+Add isUndefined function
+
 0.72.0
-=====
+======
 New validateCanadaPostalCode function
 *   Remove invalid characters from Canadian postal code validations
 
