@@ -52,6 +52,12 @@ export { AnyHTTPReqType as HTTPRequestType };
 export { AnyHTTPReqType as RequestType };
 /***************************************** TYPE HANDLERS ******************************************/
 /**
+ *  Returns true if [value] is undefined
+ *  @param {void|RealAny} value Value to type check
+ *  @return {boolean} true if val is undefined
+ */
+export declare const isUndefined: (value: any) => value is undefined;
+/**
  *  Returns true if [val] is null or undefined
  *  @param {void|RealAny} val Value to type check
  *  @return {boolean} true if val is null or undefined
