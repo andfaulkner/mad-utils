@@ -46,7 +46,6 @@ test-shared-watch  text
 tir                     text
 ts-crossproject-upgrade text
 ts-update-to-version    text
-create-custom-lodash    text
 
 ## SETUP
 production-build-toolchain-setup text
