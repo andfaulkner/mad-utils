@@ -558,6 +558,7 @@ const _flatWalker = <T = any>(accIn: T[], arr: T[]): T[] =>
  * @return {Array} Flattened array
  */
 export const flatten = <T = any>(arr: T[]): T[] => _flatWalker([], arr);
+export {flatten as smoosh};
 
 /***************************************** BARREL EXPORT ******************************************/
 export {isArray} from './types-iso';

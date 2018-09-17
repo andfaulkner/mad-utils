@@ -1,3 +1,7 @@
+0.72.2 [WIP]
+============
+Add 'smoosh' alias for flatten 😈
+
 0.72.1
 ======
 Add diacritic handling to isAlphabeticChar
