@@ -3,8 +3,8 @@ import {Any, RealAny, isArray} from './types-iso';
 
 /******************************************** MATCHING ********************************************/
 /**
- * @curried
- * Returns true if array matchVals contains valToFind
+ * [Curried]
+ * Returns true if array matchVals contains [valToFind]
  * Uses simple JSON.stringify for array and object comparison
  * Sane behaviour for matching against null, undefined, NaN, etc. (e.g. NaN
  * matched against an array with NaN returns true)
@@ -27,16 +27,16 @@ export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
 };
 
 /**
- * Determine if an array contains a given value
+ * Determine if array [arr] contains [value]
  * @param {Array} arr Array to check for the given value
- * @param {string} val Value to search for in the array
+ * @param {string} value Value to search for in the array
  * @return {boolean} true if arr contains val
  */
-export const contains = (arr: any[], val: any): boolean =>
+export const contains = (arr: any[], value: any): boolean =>
     arr.some(
         item =>
-            item === val ||
-            (typeof item === 'number' && typeof val === 'number' && isNaN(item) && isNaN(val))
+            item === value ||
+            (typeof item === 'number' && typeof value === 'number' && isNaN(item) && isNaN(value))
     );
 
 export {contains as includes};
@@ -48,29 +48,29 @@ export {contains as includes};
 //
 
 /**
- * Return first character of a string
- * @param {T[]} str String to return first character from
- */
-export function first(str: string): string;
-/**
- * Return first item of an array
+ * Return first item in an array
  * @param {T[]} arr Array to return first item from
  */
 export function first<T>(arr: T[]): T;
+/**
+ * Return first character in a string
+ * @param {T[]} str String to return first character from
+ */
+export function first(str: string): string;
 export function first<T>(arrOrStr: T[] | string): T | string {
     return arrOrStr[0];
 }
 
 /**
- * Return 2nd character of a string
- * @param {T[]} str String to return 2nd character from
- */
-export function second<T>(str: string): string;
-/**
- * Return 2nd item of an array
+ * Return 2nd item in an array
  * @param {T[]} arr Array to return 2nd item from
  */
 export function second<T>(arr: T[]): T;
+/**
+ * Return 2nd character in a string
+ * @param {T[]} str String to return 2nd character from
+ */
+export function second<T>(str: string): string;
 export function second<T>(arrOrStr: T[] | string): T | string {
     return arrOrStr[1];
 }
@@ -455,8 +455,9 @@ export const splitLines = (
 ): string[] =>
     opts.preserveEmptyLines ? str.toString().split('\n') : rmAllFalsy(str.toString().split('\n'));
 
+// TODO Fix weird return behaviour of countOccurrences - it should never return a Map object
 /**
- * Count number of occurrences of matching value in the array
+ * Count number of occurrences in array [arr] of matching [value]
  *
  * @param {any[]} arr Array to search for the item
  * @param {any} value Item to search for in the array
@@ -465,7 +466,7 @@ export const splitLines = (
 export function countOccurrences<T = any>(arr: T[] | string, value: T): number;
 
 /**
- * Return map with number of occurrences of each value/char in given array/string
+ * Return map with number of occurrences of each value/char
  * { Map :: ItemType[] -> number }
  *
  * @param {any[]} arr Array to search for the item

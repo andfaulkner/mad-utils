@@ -2,6 +2,8 @@
 ============
 Add 'smoosh' alias for flatten 😈
 
+More IDE-friendly & extensive docs in array module
+
 0.72.1
 ======
 Add diacritic handling to isAlphabeticChar
