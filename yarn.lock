@@ -3099,9 +3099,9 @@ mad-logs@^10.2.0:
     global "^4.3.1"
     string.prototype.padend "^3.0.0"
 
-mad-logs@^10.3.4:
-  version "10.3.4"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.4.tgz#4cc4eb0010d85237bfa036c72fe261bf42bcd107"
+mad-logs@^10.3.5:
+  version "10.3.5"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.5.tgz#ba7081cfcf05a960cd14cf6d6dbfc60593706a68"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
