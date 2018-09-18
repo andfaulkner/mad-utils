@@ -15,6 +15,8 @@ More IDE-friendly & extensive docs in array module
 
 Logs no longer include trailing ' ;' after the file tag (e.g. "🍀🍀🍀[filename.ts]🍀🍀🍀 ;")
 
+
+----------------------------------------------------------------------------------------------------
 0.72.1
 ======
 Add diacritic handling to `isAlphabeticChar`
@@ -40,6 +42,8 @@ Remove (validation-related) types:
 
 Remove `isEmailPotentiallyValid` alias for `isEmailValidBasic`
 
+
+----------------------------------------------------------------------------------------------------
 0.71.1
 ======
 Remove BoolOrError convenience type aliases:
@@ -59,6 +63,8 @@ Object module improvements:
     - Eliminated unneeded imports
     - Expanded and cleaned docs
 
+
+----------------------------------------------------------------------------------------------------
 0.70.1
 ======
 Add isNullOrUndefined function
