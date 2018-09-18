@@ -1,4 +1,4 @@
-0.73.0 [BREAKING CHANGE]
+0.73.1 [BREAKING CHANGE]
 ========================
 Saner behaviour from `countOccurrences` function:
 *   It now only returns a number, never a map

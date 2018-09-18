@@ -471,8 +471,8 @@ const buildOccurrencesMap = <T>(haystack: string | T[]): Map<string | T, number>
 /**
  * Count number of occurrences of value [needle] in array [haystack]
  *
- * @param {any|string} needle Item/character to search for
- * @param {any[]|string} haystack Array/string to search for the item/character
+ * @param {any} needle Item/character to search for
+ * @param {any[]} haystack Array/string to search for the item/character
  * @return {Map<any, number>} Map of each item in the array vs its number of
  *                            occurences
  */
@@ -481,9 +481,9 @@ export function countOccurrences<T>(needle: T, haystack: T[]): number;
 /**
  * Count number of occurrences of character [char] in string [haystack]
  *
- * @param {any|string} needle Item/character to search for
- * @param {any[]|string} haystack Array/string to search for the item/character
- * @return {Map<any, number>} Map of each item in the array vs its number of
+ * @param {string} needle Item/character to search for
+ * @param {string} haystack Array/string to search for the item/character
+ * @return {Map<string, number>} Map of each item in the array vs its number of
  *                            occurences
  */
 export function countOccurrences<T>(needle: string, haystack: string): number;
