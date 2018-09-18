@@ -455,29 +455,49 @@ export const splitLines = (
 ): string[] =>
     opts.preserveEmptyLines ? str.toString().split('\n') : rmAllFalsy(str.toString().split('\n'));
 
-// TODO Fix weird return behaviour of countOccurrences - it should never return a Map object
 /**
- * Count number of occurrences in array [arr] of matching [value]
- *
- * @param {any[]} arr Array to search for the item
- * @param {any} value Item to search for in the array
- * @return {number} Number of occurrences of the item in the array
+ * Build map of how many times each char or item appears in given array or string
  */
-export function countOccurrences<T = any>(arr: T[] | string, value: T): number;
+const buildOccurrencesMap = <T>(haystack: string | T[]): Map<string | T, number> => {
+    if (!haystack || haystack.length === 0) return new Map();
+
+    const map = new Map<T | string, number>();
+    for (let curItem of haystack) {
+        map.set(curItem, (map.get(curItem) || 0) + 1);
+    }
+    return map;
+};
 
 /**
- * Return map with number of occurrences of each value/char
- * { Map :: ItemType[] -> number }
+ * Count number of occurrences of value [needle] in array [haystack]
  *
- * @param {any[]} arr Array to search for the item
+ * @param {any|string} needle Item/character to search for
+ * @param {any[]|string} haystack Array/string to search for the item/character
  * @return {Map<any, number>} Map of each item in the array vs its number of
  *                            occurences
  */
-export function countOccurrences<T = any>(arr: T[] | string): Map<T, number>;
-export function countOccurrences(arr: any[] | string, value?: any): Map<any, number> | number {
-    const map = new Map<any, number>();
-    for (let item of arr) map.set(item, (map.get(item) || 0) + 1);
-    return typeof value === 'undefined' ? map : map.get(value);
+export function countOccurrences<T>(needle: T, haystack: T[]): number;
+
+/**
+ * Count number of occurrences of character [char] in string [haystack]
+ *
+ * @param {any|string} needle Item/character to search for
+ * @param {any[]|string} haystack Array/string to search for the item/character
+ * @return {Map<any, number>} Map of each item in the array vs its number of
+ *                            occurences
+ */
+export function countOccurrences<T>(needle: string, haystack: string): number;
+
+/**
+ * Count number of occurrences of value [needle] in array/string [haystack]
+ *
+ * @param {any|string} needle Item/character to search for
+ * @param {any[]|string} haystack Array/string to search for the item/character
+ * @return {Map<any, number>} Map of each item in the array vs its number of
+ *                            occurences
+ */
+export function countOccurrences<T>(needle: T | string, haystack: string | T[]): number {
+    return buildOccurrencesMap(haystack).get(needle) || 0;
 }
 
 export {countOccurrences as count};
@@ -500,7 +520,7 @@ export function removeDuplicates(str: string): string;
 export function removeDuplicates<T = any>(coll: T[]): T[];
 
 export function removeDuplicates(coll: string | any[]): any[] | string {
-    const occurrences = countOccurrences(coll).keys();
+    const occurrences = buildOccurrencesMap(coll).keys();
     let out = [];
     let cur;
     while ((cur = occurrences.next().value)) out.push(cur);
