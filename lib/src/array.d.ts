@@ -2,8 +2,8 @@
 import { Any, RealAny } from './types-iso';
 /******************************************** MATCHING ********************************************/
 /**
- * @curried
- * Returns true if array matchVals contains valToFind
+ * [Curried]
+ * Returns true if array matchVals contains [valToFind]
  * Uses simple JSON.stringify for array and object comparison
  * Sane behaviour for matching against null, undefined, NaN, etc. (e.g. NaN
  * matched against an array with NaN returns true)
@@ -15,119 +15,166 @@ import { Any, RealAny } from './types-iso';
  */
 export declare const matchAny: (matchVals: any[]) => (valToFind: any) => boolean;
 /**
- * Determine if an array contains a given value
+ * Determine if array [arr] contains [value]
  * @param {Array} arr Array to check for the given value
- * @param {string} val Value to search for in the array
+ * @param {string} value Value to search for in the array
  * @return {boolean} true if arr contains val
  */
-export declare const contains: (arr: any[], val: any) => boolean;
+export declare const contains: (arr: any[], value: any) => boolean;
 export { contains as includes };
 /*********************************** ARRAY & COLLECTION HELPERS ***********************************/
 /**
- * Return first character of a string
- * @param {T[]} str String to return first character from
- */
-export declare function first(str: string): string;
-/**
- * Return first item of an array
+ * Return first item in an array
  * @param {T[]} arr Array to return first item from
  */
 export declare function first<T>(arr: T[]): T;
 /**
- * Return 2nd character of a string
+ * Return first character in a string
+ * @param {T[]} str String to return first character from
+ */
+export declare function first(str: string): string;
+/**
+ * Return 2nd item in an array
+ * @param {T[]} arr Array to return 2nd item from
+ */
+export declare function second<T>(arr: T[]): T;
+/**
+ * Return 2nd character in a string
  * @param {T[]} str String to return 2nd character from
  */
 export declare function second<T>(str: string): string;
 /**
- * Return 2nd item of an array
- * @param {T[]} arr Array to return 2nd item from
+ * Return third item in an array
  */
-export declare function second<T>(arr: T[]): T;
-/** Return third item in an array */
-export declare function third<T>(str: string): string;
 export declare function third<T>(arr: T[]): T;
-/** Return last item in an array or string */
-export declare function last(str: string): string;
+/**
+ * Return third character in a string
+ */
+export declare function third<T>(str: string): string;
+/**
+ * Return last item in an array
+ */
 export declare function last<T>(arr: T[]): T;
-/** Return second last item in an array or string */
-export declare function secondLast(str: string): string;
+/**
+ * Return last character in a string
+ */
+export declare function last(str: string): string;
+/**
+ * Return second last item in an array
+ */
 export declare function secondLast<T>(arr: T[]): T;
-/** Return third last item in an array */
-export declare function thirdLast(str: string): string;
+/**
+ * Return second last character in a string
+ */
+export declare function secondLast(str: string): string;
+/**
+ * Return third last item in an array
+ */
 export declare function thirdLast<T>(arr: T[]): T;
-/** Return first 2 items in an array */
-export declare function first2<T>(str: string): string;
+/**
+ * Return third last character in a string
+ */
+export declare function thirdLast(str: string): string;
+/**
+ * Return first 2 items in an array
+ */
 export declare function first2<T>(arr: T[]): T[];
-/** Return first 3 items in an array */
-export declare function first3<T>(str: string): string;
+/**
+ * Return first 2 characters in a string
+ */
+export declare function first2<T>(str: string): string;
+/**
+ * Return first 3 items in an array
+ */
 export declare function first3<T>(arr: T[]): T[];
-/** Return last 2 items in an array */
-export declare function last2(str: string): string;
+/**
+ * Return first 3 characters in a string
+ */
+export declare function first3<T>(str: string): string;
+/**
+ * Return last 2 items in an array
+ */
 export declare function last2<T>(arr: T[]): T[];
-/** Return last 3 items in an array */
-export declare function last3(str: string): string;
+/**
+ * Return last 2 characters in a string
+ */
+export declare function last2<T>(str: string): string;
+/**
+ * Return last 3 items in an array
+ */
 export declare function last3<T>(arr: T[]): T[];
 /**
- * @return 1st N items in an array or full array if you request more items than array contains
+ * Return the 1st [num] number of items in string [str]
+ * @param {string} str String to return items from
+ * @return 1st N items in string, or full string if more items than it contains
+ *         are requested
  */
-export declare function firstN(str: string, n: number): string;
-export declare function firstN<T>(arr: T[], n: number): T[];
+export declare function firstN(str: string, num: number): string;
+/**
+ * Return the 1st [num] number of items in array [arr]
+ * @param {string} arr Array to return items from
+ * @return 1st N items in an array, or full array if more items than array
+ *         contains are requested
+ */
+export declare function firstN<T>(arr: T[], num: number): T[];
 /** Return last N items in an array */
 export declare function lastN(str: string, n: number): string;
 export declare function lastN<T>(arr: T[], n: number): T[];
 /**
- * Create array of requested # of repeats of given fillVal, or undefined if no fillVal given
+ * Create array of [len] number of repeats of given [fillVal], or undefined
+ * if [fillVal] not given
  * @param {number} len Length of array to create
  * @param {RealAny} fillVal Item to repeat 'len' number of times {OPT}
- * @return {Array<void|typeof fillVal>} Array w 'len' # of fillVal arg (or undefined) repeats
+ * @return {Array<void|typeof fillVal>} Array w 'len' # of fillVal arg (or
+ *                                      undefined) repeats
  */
 export declare const arrayN: <T>(len: number, fillVal?: T) => T[];
 /************************ EXCLUDE ITEMS FROM START OR END OF ARRAY/STRING *************************/
 /**
  * Exclude first item from string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude first item from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude first item from
  * @return {Array<any>} Array with first item excluded
  */
 export declare function withoutFirst<T>(str: string): string;
 export declare function withoutFirst<T>(arr: T[]): T[];
 /**
  * Exclude last item from string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude last item from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude last item from
  * @return {Array<any>} Array with last item excluded
  */
 export declare function withoutLast<T>(str: string): string;
 export declare function withoutLast<T>(arr: T[]): T[];
 /**
  * Exclude first 2 items from string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude first 2 items from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude first 2 items from
  * @return {Array<any>} Array with first 2 items excluded
  */
 export declare function withoutFirst2<T>(str: string): string;
 export declare function withoutFirst2<T>(arr: T[]): T[];
 /**
  * Exclude first 3 items from string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude first 3 items from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude first 3 items from
  * @return {Array<any>} Array with first 3 items excluded
  */
 export declare function withoutFirst3<T>(str: string): string;
 export declare function withoutFirst3<T>(arr: T[]): T[];
 /**
  * Exclude last 2 items from string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude last 2 items from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude last 2 items from
  * @return {Array<any>} Array with last 2 items excluded
  */
 export declare function withoutLast2<T>(str: string): string;
 export declare function withoutLast2<T>(arr: T[]): T[];
 /**
  * Exclude last 3 items from string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude last 3 items from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude last 3 items from
  * @return {Array<any>} Array with last 3 items excluded
  */
 export declare function withoutLast3<T>(str: string): string;
 export declare function withoutLast3<T>(arr: T[]): T[];
 /**
  * Exclude given number of items from end of string or array
- * @param {Array<any>|string} arrOrStr Array or string to exclude last N items from
+ * @param {Array<any>|string} arrOrStr Array/string to exclude last N items from
  * @return {Array<any>} Array with last N items excluded
  */
 export declare function withoutLastN<T>(str: string, numToRm: number): string;
@@ -140,7 +187,7 @@ export declare function withoutLastN<T>(arr: T[], numToRm: number): T[];
 export declare function withoutFirstN<T>(str: string, numToRm: number): string;
 export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
 /**
- * @nonMutative
+ * [Non-mutative]
  *
  * Append all items in arr2 to the end of arr1 (non-mutatively) and return it
  *     If either arr1 or arr2 are undefined, it ignores it and just returns the other
@@ -156,11 +203,12 @@ export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
  */
 export declare function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: Any[]): Any[];
 /**
- * @nonMutative
- * @performanceIntensive
-
+ * [Non-mutative]
+ * [PERFORMANCE-INTENSIVE]
+ *
  * Return new array with all items in arr2OrItem removed from array1; or if
  * array2 is not an array, remove matching item from array1
+ *
  * @param {any[]} arr1 Array to remove items from
  * @param {any[]|any} arr2OrItem Remove all items in this array, or remove item if not an array
  * @return {any[]} arr1 with all items in arr2OrItem (or the item itself) removed
@@ -169,16 +217,17 @@ export declare function removeMatches(arr1: RealAny[], arr2: any): RealAny[];
 export declare function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny[];
 export declare type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
 /**
- * Remove falsy values from the given array
+ * Remove falsy values from given array [arr]
  * By default removes all falsy val types, but 2nd param can set it to only rm
- * certain falsy types
+ * certain falsy types ['allFalsy', 'keep0', 'keepStr', 'nullUndef']
  *
  * @param {Array} arr Array containing any values of any type
- * @param {string} falsyTypes: 'allFalsy'  [DEFAULT] Remove all falsy values
- *                             'nullUndef' Remove only null & undefined values
- *                             'keep0'     Remove all falsy values except 0
- *                             'keepStr'   Remove all falsy values except ''
- * @return {Array} arr param with falsy vals of set types removed (default: remove all falsy vals)
+ * @param {string} falsyTypes: `allFalsy`  [DEFAULT] Remove all falsy values
+ *                             `nullUndef` Remove only null & undefined values
+ *                             `keep0`     Remove all falsy values except 0
+ *                             `keepStr`   Remove all falsy values except ``
+ * @return {Array} arr Duplicate of initial array, with falsy values of set
+ *                     types removed {Default: remove all falsy values}
  */
 export declare const rmAllFalsy: <T = any>(arr: T[], falsyType?: _FalsyType) => T[];
 export { rmAllFalsy as compact };
@@ -187,7 +236,8 @@ export { rmAllFalsy as rmFalsyVals };
  * Add item to array if item not already present in array
  *
  * @param {Array} arr Array to potentially add item to
- * @param {any} newItem Item to potentially add to array (if array doesn't already contain it)
+ * @param {any} newItem Item to potentially add to array (if array doesn't
+ *                      already contain it)
  * @return {Array} Initially given array, with item potentially added
  */
 export declare function pushIfUniq<T = any>(arr: T[], newItem: T): T[];
@@ -197,44 +247,47 @@ export { pushIfUniq as pushUniq };
  * Split large multiline string into array where each line is an item
  * Also removes blank lines
  *
- * @param {String} str Multiline string to split into array where each line is an array item
- *                       Splits on '\n' char
+ * @param {String} str Multiline string to split into array, where each line is
+ *                     an array item (it splits on `\n` characters)
  * @param {Object} opts::
- *        @param {boolean} preserveEmptyLines If true, remove all blank lines. Off by default
- * @return {Array<string>} Array where each item is a line from the input string, with falsy
- *                         values removed
+ *                 @param {boolean} preserveEmptyLines If true, remove all blank lines
+ *                                                     Off by default
+ * @return {Array<string>} Array where each item is a line from the input
+ *                         string, with falsy values removed
  */
 export declare const splitLines: (str: string, opts?: {
     preserveEmptyLines: boolean;
 }) => string[];
 /**
- * Count number of occurrences of matching value in the array
+ * Count number of occurrences of value [needle] in array [haystack]
  *
- * @param {any[]} arr Array to search for the item
- * @param {any} value Item to search for in the array
- * @return {number} Number of occurrences of the item in the array
+ * @param {any|string} needle Item/character to search for
+ * @param {any[]|string} haystack Array/string to search for the item/character
+ * @return {Map<any, number>} Map of each item in the array vs its number of
+ *                            occurences
  */
-export declare function countOccurrences<T = any>(arr: T[] | string, value: T): number;
+export declare function countOccurrences<T>(needle: T, haystack: T[]): number;
 /**
- * Return map with number of occurrences of each value/char in the given array/string
- * { Map :: [ItemType] -> number }
+ * Count number of occurrences of character [char] in string [haystack]
  *
- * @param {any[]} arr Array to search for the item
- * @return {Map<any, number>} Map of each item in the array vs its number of occurences
+ * @param {any|string} needle Item/character to search for
+ * @param {any[]|string} haystack Array/string to search for the item/character
+ * @return {Map<any, number>} Map of each item in the array vs its number of
+ *                            occurences
  */
-export declare function countOccurrences<T = any>(arr: T[] | string): Map<T, number>;
+export declare function countOccurrences<T>(needle: string, haystack: string): number;
 export { countOccurrences as count };
 export { countOccurrences as countAll };
 export { countOccurrences as countItems };
 export { countOccurrences as countArrayItems };
 /**
- * Remove duplicate characters from the string
+ * Remove duplicate characters from given string [str]
  * @param {string|Array} coll String to remove duplicates from
  * @return {string} String with no duplicate characters (unique characters only)
  */
 export declare function removeDuplicates(str: string): string;
 /**
- * Remove duplicate values from the array
+ * Remove duplicate values from given array [coll]
  * @param {Array} coll Array to remove duplicates from
  * @return {Array} Array with no duplicates (unique values only)
  */
@@ -293,10 +346,13 @@ export declare function sample<K = any, V = any>(coll: Map<K, V>): [K, V] | unde
  */
 export declare function sample<K = any>(coll: Set<K>): K | undefined;
 /**
- * Deeply flatten an array ([arr]) - e.g. [1, [2, [3, 4]], 5] => [1, 2, 3, 4, 5]
+ * Deeply flatten an array ([arr])
+ * Example: flatten([1, [2, [3, 4]], 5]); // => [1, 2, 3, 4, 5]
+ *
  * @param {Array} arr Array (or set of nested arrays) to flatten
  * @return {Array} Flattened array
  */
 export declare const flatten: <T = any>(arr: T[]) => T[];
+export { flatten as smoosh };
 /***************************************** BARREL EXPORT ******************************************/
 export { isArray } from './types-iso';
