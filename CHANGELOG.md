@@ -1,33 +1,44 @@
-0.72.2 [WIP]
-============
-Add 'smoosh' alias for flatten 😈
+0.73.0 [BREAKING CHANGE]
+========================
+Saner behaviour from `countOccurrences` function:
+*   It now only returns a number, never a map
+*   'Value to search for' (needle) argument goes 1st & is no longer optional
+*   'Collection to search' (haystack) argument now goes 2nd
+*   New example usage:
+    ```
+    countOccurrences(`a`, [`a`, `z`, `a`]) // => 2
+    ```
+
+Add `smoosh` alias for flatten 😈
 
 More IDE-friendly & extensive docs in array module
 
+Logs no longer include trailing ' ;' after the file tag (e.g. "🍀🍀🍀[filename.ts]🍀🍀🍀 ;")
+
 0.72.1
 ======
-Add diacritic handling to isAlphabeticChar
-Add isUndefined function
+Add diacritic handling to `isAlphabeticChar`
+Add `isUndefined` function
 
 0.72.0
 ======
-New validateCanadaPostalCode function
+New `validateCanadaPostalCode` function
 *   Remove invalid characters from Canadian postal code validations
 
-Add canadaPostalCodePartialRegex
+Add `canadaPostalCodePartialRegex`
 *   Case-insensitive regular expression for matching full & partial Canadian postal codes
 
-Remove isValidString function
+Remove `isValidString` function
 
 Remove (validation-related) types:
-*   ValidationCondition
-*   \_RegCond
-*   \_NoMatcherCond
-*   \_Matcher
-*   ValidationCondition
-*   IsVStrOpt
+*   `ValidationCondition`
+*   `_RegCond`
+*   `_NoMatcherCond`
+*   `_Matcher`
+*   `ValidationCondition`
+*   `IsVStrOpt`
 
-Remove isEmailPotentiallyValid alias for isEmailValidBasic
+Remove `isEmailPotentiallyValid` alias for `isEmailValidBasic`
 
 0.71.1
 ======
