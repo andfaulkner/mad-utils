@@ -669,15 +669,23 @@ describe(`array sub-module`, function() {
     });
 
     describe(`countOccurrences`, function() {
-        it(`returns map of number of occurrences of each value in the array`, function() {
-            const map = new Map();
-            map.set(9, 3);
-            map.set('a', 1);
-            map.set('b', 1);
-            expect(countOccurrences([9, 9, 9, 'a', 'b'])).to.eql(map);
+        it(`returns number of occurrences of given value in array`, function() {
+            expect(countOccurrences(7, [7, 9, 7, 'asdf', 7, 1, 7, null, 7])).to.eql(5);
         });
-        it(`returns number of occurrences of given value in the array`, function() {
-            expect(countOccurrences([7, 9, 7, 'asdf', 7, 1, 7, null, 7], 7)).to.eql(5);
+        it(`returns number of occurrences of given character in string`, function() {
+            expect(countOccurrences(`a`, `asdf asdf`)).to.eql(2);
+        });
+        it(`returns number of null values in array of null values`, function() {
+            expect(countOccurrences(null, [null, null, null])).to.eql(3);
+        });
+        it(`returns 0 given an empty array`, function() {
+            expect(countOccurrences(7, [])).to.eql(0);
+            expect(countOccurrences(undefined, [])).to.eql(0);
+            expect(countOccurrences('asdf', [])).to.eql(0);
+        });
+        it(`returns 0 given an empty string`, function() {
+            expect(countOccurrences('', '')).to.eql(0);
+            expect(countOccurrences('a', '')).to.eql(0);
         });
     });
 
