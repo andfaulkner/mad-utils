@@ -1,8 +1,12 @@
+/************************************** THIRD-PARTY MODULES ***************************************/
 import * as moment from 'moment';
 import {dateTime} from 'common-constants';
+
+/**************************************** PROJECT MODULES *****************************************/
 import {rmFalsyVals} from './array';
 import {isDateLike, StrOrNum, isInt, isNumberLike, StrOrNever} from './types-iso';
 
+/********************************************* EXPORT *********************************************/
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
 export const defaultTimestampFormat = `YYYY/MM/DD : HH:mm:ss`;
@@ -24,17 +28,19 @@ export function isLeapYear(year: StrOrNum): boolean | never {
 }
 
 /**
- * Get the current date, formatted for display in the stream of Express logs to the CLI
+ * Get the current date, formatted for display in the stream of Express logs to
+ * the CLI
  *
- * @param {string} timeFormat [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
- *                            See https://momentjs.com/docs/#/parsing/string-format/
- * @return {string} Current date and time, formatted for use in a timestamp
- *
- * @example Return current date + time as default-formatted timestamp:
+ * Example: Return current date + time as default-formatted timestamp:
                 now(); // => 2017/05/28 : 02:51:39
  *
- * @example Return current date + time as timestamp without day or second:
+ * Example: Return current date + time as timestamp without day or second:
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
+ *
+ * @param {string} timeFormat momentJS timestamp format [OPTIONAL]
+ *                            e.g. `MM/DD::hh:mm:ss`
+ *                            See https://momentjs.com/docs/#/parsing/string-format/
+ * @return {string} Current date and time, formatted for use in a timestamp
  */
 export const now = (timeFormat: string = defaultTimestampFormat): string =>
     moment().format(timeFormat);
@@ -55,7 +61,8 @@ const allMonthStrs = (momentLib: typeof moment, locale: string) =>
 
 /********************************* CONVERSION TO moment.js OBJECT *********************************/
 /**
- * If dateStringWithMonthTextToMoment gets invalid [date] string, log warning & return null
+ * If dateStringWithMonthTextToMoment gets invalid [date] string, log warning
+ * and return null
  */
 const _invalidDateStringHandler = (date: string) => {
     console.warn(`[mad-utils] dateStringWithMonthTextToMoment: INVALID DATE STRING GIVEN: ${date}`);
@@ -81,9 +88,8 @@ const _dateStringWithMonthTextToMomentFallback = (
     }
 
     // Create month & date strings that can handle single digit inputs
-    const month = (dateParts[1].length === 1) ? `0${dateParts[1]}` : dateParts[1];
-    const dateOfMonth = (dateParts[2].length === 1) ? `0${dateParts[2]}` : dateParts[2];
-
+    const month = dateParts[1].length === 1 ? `0${dateParts[1]}` : dateParts[1];
+    const dateOfMonth = dateParts[2].length === 1 ? `0${dateParts[2]}` : dateParts[2];
 
     // If no fallbackFormat string given & it's not set to false, & the date matches ISO format
     if (
