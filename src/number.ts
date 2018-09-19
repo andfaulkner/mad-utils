@@ -132,7 +132,6 @@ const noDashes = (): string =>
  */
 export const uuid = Object.assign(uuidBase, {len6, len8, noDashes}) as UUIDNamespace;
 
-// TODO unit test uuidRegex
 /**
  * Regex for detecting UUID
  */
@@ -142,7 +141,7 @@ export const uuidRegex = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]
  * Return true if given value is a UUID (v4)
  */
 export const isUUID = (value: any): value is string =>
-    typeof value === `string` ? !!uuidRegex.exec(value) : false;
+    typeof value === `string` ? !!value.match(uuidRegex) : false;
 
 /********************************************* RANGE **********************************************/
 /**
