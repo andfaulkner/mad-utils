@@ -162,7 +162,6 @@ export const commonShared = {
     isBoolean: types.isBoolean,
     isDateLike: types.isDateLike,
     isTrue: types.isTrue,
-    castToNum: types.castToNum,
 
     CharInputStream: stream.CharInputStream,
     isNode,

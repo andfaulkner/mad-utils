@@ -374,30 +374,6 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
     return SingletonClass as SingletonInterface<any> & typeof constructor;
 };
 
-/**
- * Convert item to a number (if given item is of a type that can be converted as such)
- * If not, throw an error if this is specified
- * @param {StrOrNum} val Value to cast to a number
- * @param {boolean} throwOnFail (OPT) When true, throw if given type isn't a number
- *                                    When false, return an Error if given type isn't a number
- * @return {number|Error|never} value converted to number, Error, or nothing if it threw error
- */
-export const castToNum = (val: StrOrNum, throwOnFail = true): number | Error | never => {
-    if (isNumber(val)) return val;
-    if (isNumberLike(val)) return parseFloat(val as string);
-
-    const baseErrMsg =
-        `castToNum can only accept numbers, #s in string form e.g. "1", or ` +
-        `1-item arrays containing either type. Invalid value: ${val}`;
-
-    if (throwOnFail) {
-        throw new Error(baseErrMsg);
-    } else {
-        if (isVerbose) console.error(`WARNING: ${baseErrMsg}`);
-        return new Error(baseErrMsg);
-    }
-};
-
 const bstbErrMsg = `Must input true, false, t, f, y, n, yes, or no`;
 
 /**

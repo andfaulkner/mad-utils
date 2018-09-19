@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import {dateTime} from 'common-constants';
 import {rmFalsyVals} from './array';
-import {isDateLike, castToNum, StrOrNum, isInt, isNumberLike, StrOrNever} from './types-iso';
+import {isDateLike, StrOrNum, isInt, isNumberLike, StrOrNever} from './types-iso';
 
 export type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -15,9 +15,9 @@ export const defaultTimestampFormat = `YYYY/MM/DD : HH:mm:ss`;
  * @return {boolean|number} True if a leap year; false if not; throw if invalid year given
  */
 export function isLeapYear(year: StrOrNum): boolean | never {
-    const yearClean = castToNum(year);
-    if (yearClean instanceof Error || !isInt(yearClean)) {
-        throw new Error('mad-utils::isLeapYear must receive integer or value parsable to integer');
+    const yearClean = typeof year === 'string' ? parseInt(year) : year;
+    if (yearClean instanceof Error || !isInt(yearClean) || isNaN(yearClean)) {
+        throw new Error(`mad-utils::isLeapYear must receive integer or value parsable to integer`);
     }
     if (yearClean % 4 === 0 && (yearClean % 400 === 0 || yearClean % 100 !== 0)) return true;
     return false;

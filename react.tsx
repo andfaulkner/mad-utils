@@ -109,7 +109,6 @@ export const {
     isDataEnumItem,
     isIndexEnumItem,
     isNumericEnumItem,
-    castToNum,
     getFromStorage,
     uuid,
     eachPair,
