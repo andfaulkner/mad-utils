@@ -138,6 +138,12 @@ export const uuid = Object.assign(uuidBase, {len6, len8, noDashes}) as UUIDNames
  */
 export const uuidRegex = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/gi;
 
+/**
+ * Return true if given value is a UUID (v4)
+ */
+export const isUUID = (value: any): value is string =>
+    typeof value === `string` ? !!uuidRegex.exec(value) : false;
+
 /********************************************* RANGE **********************************************/
 /**
  * Create range between given numbers, with the provided interval.
