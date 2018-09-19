@@ -4,6 +4,11 @@ Remove castToNum function
 *   Reason: its behaviour is weird & confusing, and it provides little benefit
     over parseInt, in exchange for a large mental load
 
+Remove convertDayOfWeekNumToString function
+*   Reasons:
+    *   it's not internationalization-friendly (it only handles English)
+    *   it's confusing
+
 0.73.1 [BREAKING CHANGE]
 ========================
 Saner behaviour from `countOccurrences` function:
