@@ -1,3 +1,9 @@
+0.74.0 [BREAKING CHANGE] [WIP]
+==============================
+Remove castToNum function
+*   Reason: its behaviour is weird & confusing, and it provides little benefit
+    over parseInt, in exchange for a large mental load
+
 0.73.1 [BREAKING CHANGE]
 ========================
 Saner behaviour from `countOccurrences` function:
