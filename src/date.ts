@@ -16,7 +16,7 @@ export const defaultTimestampFormat = `YYYY/MM/DD : HH:mm:ss`;
  */
 export function isLeapYear(year: StrOrNum): boolean | never {
     const yearClean = typeof year === 'string' ? parseInt(year) : year;
-    if (yearClean instanceof Error || !isInt(yearClean) || isNaN(yearClean)) {
+    if (!isInt(yearClean) || isNaN(yearClean)) {
         throw new Error(`mad-utils::isLeapYear must receive integer or value parsable to integer`);
     }
     if (yearClean % 4 === 0 && (yearClean % 400 === 0 || yearClean % 100 !== 0)) return true;
