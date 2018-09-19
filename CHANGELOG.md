@@ -1,14 +1,20 @@
-0.74.0 [BREAKING CHANGE] [WIP]
-==============================
-Remove castToNum function
+0.74.0 [BREAKING CHANGE]
+========================
+Remove `castToNum` function
 *   Reason: its behaviour is weird & confusing, and it provides little benefit
-    over parseInt, in exchange for a large mental load
+    over `parseInt`, in exchange for a large mental load
 
-Remove convertDayOfWeekNumToString function
+Remove `convertDayOfWeekNumToString` function
 *   Reasons:
     *   it's not internationalization-friendly (it only handles English)
     *   it's confusing
 
+Fix `uuidRegex` to correctly detect UUIDs
+
+Add new `isUUID` function for detecting if a value is a v4 UUID
+
+
+----------------------------------------------------------------------------------------------------
 0.73.1 [BREAKING CHANGE]
 ========================
 Saner behaviour from `countOccurrences` function:
