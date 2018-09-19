@@ -24,44 +24,6 @@ export function isLeapYear(year: StrOrNum): boolean | never {
 }
 
 /**
- * WARNING: Only works for English
- *
- * Convert numeric day of the week to string day of the week
- * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Monday', 6 becomes 'Saturday')
- * Given day must be a number between 0 and 6
- *
- * @param {NumRange0To6} day Number from 0 to 6
- * @param {boolean} abbreviate If true, return the shorthand day names (e.g. 'Mon' vs 'Monday')
- * @return {string} given day of the week in string form - Throws if invalid input given
- */
-export const convertDayOfWeekNumToString = (day: NumRange0To6, abbreviate = false): StrOrNever => {
-    const fnErrStr =
-        `mad-utils :: convertDayOfWeekNumToString :: Invalid day of week given. Must` +
-        `be number from 0 to 6 (or 0-6 in string form e.g. '0'). Received: ${day}`;
-    if (typeof day === 'undefined' || day == null) {
-        throw new Error(fnErrStr);
-    }
-    switch (day.toString()) {
-        case '0':
-            return abbreviate ? 'Sun' : 'Sunday';
-        case '1':
-            return abbreviate ? 'Mon' : 'Monday';
-        case '2':
-            return abbreviate ? 'Tues' : 'Tuesday';
-        case '3':
-            return abbreviate ? 'Wed' : 'Wednesday';
-        case '4':
-            return abbreviate ? 'Thurs' : 'Thursday';
-        case '5':
-            return abbreviate ? 'Fri' : 'Friday';
-        case '6':
-            return abbreviate ? 'Sat' : 'Saturday';
-        default:
-            throw new Error(fnErrStr);
-    }
-};
-
-/**
  * Get the current date, formatted for display in the stream of Express logs to the CLI
  *
  * @param {string} timeFormat [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
