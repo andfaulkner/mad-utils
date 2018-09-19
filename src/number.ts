@@ -104,24 +104,37 @@ export const getRandomInt = (min: Int, max: Int): Int => {
 /********************************************** UUID **********************************************/
 const uuidBase = (): string => uuidImport();
 
-/** @return {string} Randomly generated sequence 6 characters long e.g. AB790517 */
+/**
+ * Generate 6-char UUID e.g. `AB790517`
+ * @return {string} Randomly generated sequence 6 characters long
+ */
 const len6 = (): string => len8().slice(0, -2);
 
-/** @return {string} Randomly generated sequence 8 characters long e.g. 0E8526 */
+/**
+ * Generate 8-char UUID e.g. `0E8526`
+ * @return {string} Randomly generated sequence 8 characters long
+ */
 const len8 = (): string => uuidBase().split('-')[0];
 
-/** @return {string} Generate a UUID without any dashes (e.g. 505BB6B57D684C2488DD1522B34CF539) */
+/**
+ * Generate full UUID with no dashes e.g. `505BB6B57D684C2488DD1522B34CF539`
+ * @return {string} Generate a UUID without any dashes
+ */
 const noDashes = (): string =>
     uuidBase()
         .split('-')
         .join('');
 
 /**
- * Export UUID. If uuid itself is run as a function, it generates a UUID. uuid object contains
- * child functions uuid.len6, uuid.len8, and uuid.noDashes
+ * Export UUID
+ * If uuid itself is run as a function, it generates a UUID
+ * uuid object contains child functions uuid.len6, uuid.len8, & uuid.noDashes
  */
 export const uuid = Object.assign(uuidBase, {len6, len8, noDashes}) as UUIDNamespace;
 
+/**
+ * Detect UUID
+ */
 export const uuidRegex = /[a-zA-Z0-9]{8}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{4}-EE75FDD0{12}/g;
 
 /********************************************* RANGE **********************************************/
