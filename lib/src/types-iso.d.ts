@@ -181,15 +181,6 @@ export declare const isFunction: <T extends Function = (...args: any[]) => any>(
  */
 export declare const singleton: <T extends ClassConstructor>(constructor: T) => SingletonInterface<any> & T;
 /**
- * Convert item to a number (if given item is of a type that can be converted as such)
- * If not, throw an error if this is specified
- * @param {StrOrNum} val Value to cast to a number
- * @param {boolean} throwOnFail (OPT) When true, throw if given type isn't a number
- *                                    When false, return an Error if given type isn't a number
- * @return {number|Error|never} value converted to number, Error, or nothing if it threw error
- */
-export declare const castToNum: (val: StrOrNum, throwOnFail?: boolean) => number | Error;
-/**
  * Convert string representation of a boolean value to a boolean value
  * Throw error if conversion isn't possible
  * Passes boolean values through as-is

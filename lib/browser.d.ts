@@ -236,7 +236,6 @@ export declare const common: {
     isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
     isDateLike: <T extends string | boolean | Object | Moment>(val: any) => val is T;
     isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
-    castToNum: (val: isoTypes.StrOrNum, throwOnFail?: boolean) => number | Error;
     CharInputStream: typeof stream.CharInputStream;
     isNode: any;
 } & {
