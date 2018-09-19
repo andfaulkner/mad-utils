@@ -11,7 +11,7 @@ import {m_, number} from '../../shared';
 import {number as numberFromNode} from '../../node';
 import {number as numberFromBrowser, uuid, loopN} from '../../browser';
 import * as numberModule from '../../src/number';
-import {createRangeArray, coinFlip, diceRoll6Sided, getRandomInt} from '../../src/number';
+import {createRangeArray, coinFlip, diceRoll6Sided, getRandomInt, isUUID} from '../../src/number';
 
 /********************************************* TESTS **********************************************/
 describe(`number sub-module`, function() {
@@ -56,6 +56,35 @@ describe(`number sub-module`, function() {
             expect(uuid.noDashes()).not.to.contain('-');
         });
     });
+
+    describe(`isUUID`, function() {
+        it(`returns true if given an uppercase v4 UUID`, function() {
+            expect(isUUID(`AF2461E9-231F-4D6D-91AC-CD5FD6B9C00F`)).to.equal(true);
+            expect(isUUID(`EB3DBB20-EF5F-4954-B8BB-6F95DDDD4023`)).to.equal(true);
+        });
+        it(`returns true if given a lowercase v4 UUID`, function() {
+            expect(isUUID(`af2461e9-231f-4d6d-91ac-cd5fd6b9c00f`)).to.equal(true);
+            expect(isUUID(`eb3dbb20-ef5f-4954-b8bb-6f95dddd4023`)).to.equal(true);
+        });
+        it(`returns false if not given a string`, function() {
+            expect(isUUID(null)).to.equal(false);
+            expect(isUUID(undefined)).to.equal(false);
+            expect(isUUID([])).to.equal(false);
+            expect(isUUID(123)).to.equal(false);
+            expect(isUUID({})).to.equal(false);
+            expect(isUUID(true)).to.equal(false);
+            expect(isUUID(false)).to.equal(false);
+        });
+        it(`returns false if given a string that isn't a UUID`, function() {
+            expect(isUUID(`Should return false`)).to.equal(false);
+            expect(isUUID(`NOT A UUID`)).to.equal(false);
+            expect(isUUID(``)).to.equal(false);
+        });
+        it(`returns false if given an invalid UUID`, function() {
+            expect(isUUID(`INVALID-UUID-THIS-ISNT-ALLOWED9C00F`)).to.equal(false);
+        });
+    });
+
     describe('createRangeArray', function() {
         it(`should create an array of numbers incrementing by 1, by default`, function() {
             expect(createRangeArray(0, 10)).to.eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
