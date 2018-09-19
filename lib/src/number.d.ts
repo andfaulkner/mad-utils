@@ -76,11 +76,19 @@ export declare const diceRoll6Sided: () => 1 | 2 | 3 | 4 | 5 | 6;
  */
 export declare const getRandomInt: (min: number, max: number) => number;
 /**
- * Export UUID. If uuid itself is run as a function, it generates a UUID. uuid object contains
- * child functions uuid.len6, uuid.len8, and uuid.noDashes
+ * Export UUID
+ * If uuid itself is run as a function, it generates a UUID
+ * uuid object contains child functions uuid.len6, uuid.len8, & uuid.noDashes
  */
 export declare const uuid: UUIDNamespace;
+/**
+ * Regex for detecting UUID
+ */
 export declare const uuidRegex: RegExp;
+/**
+ * Return true if given value is a UUID (v4)
+ */
+export declare const isUUID: (value: any) => value is string;
 /********************************************* RANGE **********************************************/
 /**
  * Create range between given numbers, with the provided interval.

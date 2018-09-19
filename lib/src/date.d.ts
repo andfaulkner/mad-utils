@@ -1,5 +1,7 @@
+/************************************** THIRD-PARTY MODULES ***************************************/
 import * as moment from 'moment';
 import { StrOrNum } from './types-iso';
+/********************************************* EXPORT *********************************************/
 export declare type NumRange0To6 = 0 | 1 | 2 | 3 | 4 | 5 | 6 | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
 /**
@@ -11,17 +13,19 @@ export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
  */
 export declare function isLeapYear(year: StrOrNum): boolean | never;
 /**
- * Get the current date, formatted for display in the stream of Express logs to the CLI
+ * Get the current date, formatted for display in the stream of Express logs to
+ * the CLI
  *
- * @param {string} timeFormat [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
- *                            See https://momentjs.com/docs/#/parsing/string-format/
- * @return {string} Current date and time, formatted for use in a timestamp
- *
- * @example Return current date + time as default-formatted timestamp:
+ * Example: Return current date + time as default-formatted timestamp:
                 now(); // => 2017/05/28 : 02:51:39
  *
- * @example Return current date + time as timestamp without day or second:
+ * Example: Return current date + time as timestamp without day or second:
  *              now(`YYYY/MM hh:mm`); // => 2017/02 12:53
+ *
+ * @param {string} timeFormat momentJS timestamp format [OPTIONAL]
+ *                            e.g. `MM/DD::hh:mm:ss`
+ *                            See https://momentjs.com/docs/#/parsing/string-format/
+ * @return {string} Current date and time, formatted for use in a timestamp
  */
 export declare const now: (timeFormat?: string) => string;
 /**
