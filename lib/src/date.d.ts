@@ -11,18 +11,6 @@ export declare const defaultTimestampFormat = "YYYY/MM/DD : HH:mm:ss";
  */
 export declare function isLeapYear(year: StrOrNum): boolean | never;
 /**
- * WARNING: Only works for English
- *
- * Convert numeric day of the week to string day of the week
- * Sunday is the 1st day (0 becomes 'Sunday', 1 becomes 'Monday', 6 becomes 'Saturday')
- * Given day must be a number between 0 and 6
- *
- * @param {NumRange0To6} day Number from 0 to 6
- * @param {boolean} abbreviate If true, return the shorthand day names (e.g. 'Mon' vs 'Monday')
- * @return {string} given day of the week in string form - Throws if invalid input given
- */
-export declare const convertDayOfWeekNumToString: (day: NumRange0To6, abbreviate?: boolean) => string;
-/**
  * Get the current date, formatted for display in the stream of Express logs to the CLI
  *
  * @param {string} timeFormat [OPTIONAL] momentJS timestamp format e.g. `MM/DD::hh:mm:ss`
