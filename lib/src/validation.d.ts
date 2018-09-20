@@ -48,6 +48,7 @@ export declare const noSpecialChars: (str: string) => boolean;
  * @return {boolean}                  true if str is a valid postal code or 1st 1/2 of postal code
  */
 export declare const validateCanadaPostalCode: (str?: string, allow3Char?: boolean) => boolean;
+export { validateCanadaPostalCode as isCanadaPostalCode };
 /******************************************** REGEXES *********************************************/
 /**
  * Match Canadian postal codes & partially inputted Canadian postal codes (including ``)
