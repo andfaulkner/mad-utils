@@ -34,5 +34,16 @@ describe(`validation sub-module`, function() {
             expect(validateCanadaPostalCode(`j8t 7r3`)).to.equal(true);
             expect(validateCanadaPostalCode(`w4q 6a6`)).to.equal(true);
         });
+        it(`Returns false given empty string or null`, function() {
+            expect(validateCanadaPostalCode(``)).to.equal(false);
+            expect(validateCanadaPostalCode(null)).to.equal(false);
+        });
+        it(`Returns false given invalid postal codes`, function() {
+            expect(validateCanadaPostalCode(`12345`)).to.equal(false);
+            expect(validateCanadaPostalCode(`9J8H7D`)).to.equal(false);
+            expect(validateCanadaPostalCode(`9j8h7d`)).to.equal(false);
+            expect(validateCanadaPostalCode(`IWEJFOIWEJGFOIJEGOIJERG`)).to.equal(false);
+            expect(validateCanadaPostalCode(`010101010101010`)).to.equal(false);
+        });
     });
 });
