@@ -54,7 +54,7 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isUndefined({})).to.equal(false);
                 expect(typesIso.isUndefined([])).to.equal(false);
                 expect(typesIso.isUndefined([null, undefined])).to.equal(false);
-                expect(typesIso.isUndefined({'null': null})).to.equal(false);
+                expect(typesIso.isUndefined({null: null})).to.equal(false);
                 expect(typesIso.isUndefined(Object)).to.equal(false);
                 expect(typesIso.isUndefined(Object.prototype)).to.equal(false);
                 expect(typesIso.isUndefined(0.00001)).to.equal(false);
@@ -88,7 +88,7 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isNullOrUndefined({})).to.equal(false);
                 expect(typesIso.isNullOrUndefined([])).to.equal(false);
                 expect(typesIso.isNullOrUndefined([null, undefined])).to.equal(false);
-                expect(typesIso.isNullOrUndefined({'null': null})).to.equal(false);
+                expect(typesIso.isNullOrUndefined({null: null})).to.equal(false);
                 expect(typesIso.isNullOrUndefined(Object)).to.equal(false);
                 expect(typesIso.isNullOrUndefined(Object.prototype)).to.equal(false);
                 expect(typesIso.isNullOrUndefined(0.00001)).to.equal(false);
