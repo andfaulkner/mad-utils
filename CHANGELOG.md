@@ -1,3 +1,11 @@
+0.74.1
+======
+Fix Canadian postal code validation
+- no longer rejects some valid postal codes
+- doesn't crash when given null
+
+Add `isCanadaPostalCode` alias for `validateCanadaPostalCode`
+
 0.74.0 [BREAKING CHANGE]
 ========================
 Remove `castToNum` function
