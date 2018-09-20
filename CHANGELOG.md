@@ -3,6 +3,7 @@
 Fix Canadian postal code validation
 - no longer rejects some valid postal codes
 - doesn't crash when given null
+- handles 3 character case correctly
 
 Add `isCanadaPostalCode` alias for `validateCanadaPostalCode`
 
