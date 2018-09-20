@@ -34,6 +34,14 @@ describe(`validation sub-module`, function() {
             expect(validateCanadaPostalCode(`j8t 7r3`)).to.equal(true);
             expect(validateCanadaPostalCode(`w4q 6a6`)).to.equal(true);
         });
+        it(`Returns true given 3 character half-postal codes by default`, function() {
+            expect(validateCanadaPostalCode(`K1H`)).to.equal(true);
+            expect(validateCanadaPostalCode(`a7n`)).to.equal(true);
+        });
+        it(`Returns false given 3 character half-postal codes if false passed as 2nd param`, function() {
+            expect(validateCanadaPostalCode(`K1H`, false)).to.equal(false);
+            expect(validateCanadaPostalCode(`a7n`, false)).to.equal(false);
+        });
         it(`Returns false given empty string or null`, function() {
             expect(validateCanadaPostalCode(``)).to.equal(false);
             expect(validateCanadaPostalCode(null)).to.equal(false);
@@ -44,6 +52,12 @@ describe(`validation sub-module`, function() {
             expect(validateCanadaPostalCode(`9j8h7d`)).to.equal(false);
             expect(validateCanadaPostalCode(`IWEJFOIWEJGFOIJEGOIJERG`)).to.equal(false);
             expect(validateCanadaPostalCode(`010101010101010`)).to.equal(false);
+        });
+        it(`Returns false given partial postal codes`, function() {
+            expect(validateCanadaPostalCode(`V1`)).to.equal(false);
+            expect(validateCanadaPostalCode(`V1`, false)).to.equal(false);
+            expect(validateCanadaPostalCode(`K1H8E`)).to.equal(false);
+            expect(validateCanadaPostalCode(`M7U A2`)).to.equal(false);
         });
     });
 });
