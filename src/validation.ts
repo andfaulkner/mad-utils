@@ -61,10 +61,8 @@ export const noSpecialChars = (str: string): boolean =>
 export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): boolean => {
     const ucStr = str.toUpperCase();
     return allow3Char
-        ? !!ucStr.match(
-              /^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY] ?([0-9][ABCEGHJKLMNPRSTVXY][0-9])?$/g
-          )
-        : !!ucStr.match(/^[ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVXY]$/g);
+        ? !!ucStr.match(/^[a-z][0-9][a-z] ?([0-9][a-z][0-9])?$/gi)
+        : !!ucStr.match(/^[a-z][0-9][a-z]$/gi);
 };
 
 /******************************************** REGEXES *********************************************/
@@ -72,7 +70,7 @@ export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): b
  * Match Canadian postal codes & partially inputted Canadian postal codes (including ``)
  * Case-insensitive
  */
-export const canadaPostalCodePartialRegex = /^(([ABCEGHJKLMNPRSTVXY]?)|([ABCEGHJKLMNPRSTVXY]\d)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?\d)|([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVXY] ?\d[ABCEGHJKLMNPRSTVXY]\d?))$/i;
+export const canadaPostalCodePartialRegex = /^(([a-z]?)|([a-z]\d)|([a-z]\d[a-z] ?)|([a-z]\d[a-z] ?\d)|([a-z]\d[a-z] ?\d[a-z]\d?))$/i;
 
 /**
  * Matches all characters found in English amd French, & almost all in other
