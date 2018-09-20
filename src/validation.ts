@@ -59,6 +59,7 @@ export const noSpecialChars = (str: string): boolean =>
  * @return {boolean}                  true if str is a valid postal code or 1st 1/2 of postal code
  */
 export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): boolean => {
+    if (typeof str !== `string`) return false;
     const ucStr = str.toUpperCase();
     return allow3Char
         ? !!ucStr.match(/^[a-z][0-9][a-z] ?([0-9][a-z][0-9])?$/gi)
