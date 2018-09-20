@@ -63,7 +63,7 @@ export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): b
     const ucStr = str.toUpperCase();
     return allow3Char
         ? !!ucStr.match(/^[a-z][0-9][a-z] ?([0-9][a-z][0-9])?$/gi)
-        : !!ucStr.match(/^[a-z][0-9][a-z]$/gi);
+        : !!ucStr.match(/^[a-z][0-9][a-z] ?[0-9][a-z][0-9]$/gi);
 };
 
 export {validateCanadaPostalCode as isCanadaPostalCode}
