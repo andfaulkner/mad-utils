@@ -97,10 +97,6 @@
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
 
-"@types/lodash@^4.14.108":
-  version "4.14.108"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.108.tgz#02656af3add2e5b3174f830862c47421c00ef817"
-
 "@types/lodash@^4.14.109":
   version "4.14.109"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.109.tgz#b1c4442239730bf35cabaf493c772b18c045886d"
@@ -1352,25 +1348,13 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-env-var-helpers@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-3.4.1.tgz#c4595627e63d677f6529160e7b69b6140a8b67aa"
-
-env-var-helpers@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-4.0.1.tgz#a37929c924c5a530982f60e367cefccfa3793139"
-  dependencies:
-    mad-logs "^9.1.2"
-
-env-var-helpers@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-5.0.0.tgz#9339aafd8f7f7cdce946291d0d7e8a0a55cc0038"
-  dependencies:
-    mad-logs "^10.2.0"
-
 env-var-helpers@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-5.0.1.tgz#e02762d57e7e998051c04fd76a4582c41e6a8bce"
+
+env-var-helpers@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/env-var-helpers/-/env-var-helpers-5.1.0.tgz#1726bcaad142eb2ca70fc2e08b9ac9326cc97bf4"
 
 enzyme-adapter-react-16@^1.1.1:
   version "1.1.1"
@@ -3033,10 +3017,6 @@ lodash.get@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
 
-lodash.isfunction@^3.0.8:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
-
 lodash.set@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
@@ -3089,16 +3069,6 @@ macos-release@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-1.1.0.tgz#831945e29365b470aa8724b0ab36c8f8959d10fb"
 
-mad-logs@^10.2.0:
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.2.0.tgz#b31ce3bc08ef1e7e6213c01e7d8a941464a49b8a"
-  dependencies:
-    colors "^1.1.2"
-    detect-node "^2.0.3"
-    env-var-helpers "^4.0.1"
-    global "^4.3.1"
-    string.prototype.padend "^3.0.0"
-
 mad-logs@^10.3.6:
   version "10.3.6"
   resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-10.3.6.tgz#d693ffe053395f4040946731ded4adf8cb768258"
@@ -3107,18 +3077,6 @@ mad-logs@^10.3.6:
     detect-node "^2.0.3"
     env-var-helpers "^5.0.1"
     global "^4.3.1"
-    string.prototype.padend "^3.0.0"
-
-mad-logs@^9.1.2:
-  version "9.1.2"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-9.1.2.tgz#2c7fb30e86972b9ba05be1ae73ca1266e3ffa73e"
-  dependencies:
-    "@types/lodash" "^4.14.108"
-    colors "^1.1.2"
-    detect-node "^2.0.3"
-    env-var-helpers "^3.4.1"
-    global "^4.3.1"
-    lodash.isfunction "^3.0.8"
     string.prototype.padend "^3.0.0"
 
 make-dir@^1.0.0:
