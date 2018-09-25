@@ -286,7 +286,7 @@ describe(`url sub-module`, function() {
         });
     });
 
-    describe(`normalizeURLPathname`, function(){
+    describe(`normalizeURLPathname`, function() {
         it(`returns empty string if given empty string`, function() {
             expect(normalizeURLPathname(``)).to.eql(``);
         });
@@ -306,7 +306,74 @@ describe(`url sub-module`, function() {
         });
         it(`remove / before query params`, function() {
             expect(normalizeURLPathname(`/a/?dog=meeka`)).to.eql(`/a?dog=meeka`);
-            expect(normalizeURLPathname(`/asdf/qwerty/?dog=meeka`)).to.eql(`/asdf/qwerty?dog=meeka`);
+            expect(normalizeURLPathname(`/asdf/qwerty/?dog=meeka`)).to.eql(
+                `/asdf/qwerty?dog=meeka`
+            );
+            expect(normalizeURLPathname(`/asdf/qwerty/123/?dog=meeka`)).to.eql(
+                `/asdf/qwerty/123?dog=meeka`
+            );
+            expect(normalizeURLPathname(`/asdf/qwerty/123/okok/?dog=meeka`)).to.eql(
+                `/asdf/qwerty/123/okok?dog=meeka`
+            );
+        });
+        it(`remove strings of only spaces`, function() {
+            expect(normalizeURLPathname(` `)).to.eql(``);
+            expect(normalizeURLPathname(`    `)).to.eql(``);
+        });
+        it(`remove preceding spaces`, function() {
+            expect(normalizeURLPathname(` /`)).to.eql(`/`);
+            expect(normalizeURLPathname(`  /`)).to.eql(`/`);
+            expect(normalizeURLPathname(`   /`)).to.eql(`/`);
+            expect(normalizeURLPathname(` /asdf`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`   /asdf`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` /asdf/`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`   /asdf/`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` /asdf/qwerty`)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`   /asdf/qwerty`)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(` /asdf/qwerty/`)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`   /asdf/qwerty/`)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`    /asdf/qwerty/`)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(` asdf`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`    asdf`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` asdf/qwerty`)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`      asdf/qwerty`)).to.eql(`/asdf/qwerty`);
+        });
+        it(`remove trailing spaces`, function() {
+            expect(normalizeURLPathname(`/ `)).to.eql(`/`);
+            expect(normalizeURLPathname(`/  `)).to.eql(`/`);
+            expect(normalizeURLPathname(`/   `)).to.eql(`/`);
+            expect(normalizeURLPathname(`/asdf `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`/asdf   `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`/asdf/ `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`/asdf/   `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`/asdf/qwerty `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`/asdf/qwerty   `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`/asdf/qwerty/ `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`/asdf/qwerty/   `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`/asdf/qwerty/    `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`asdf `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`asdf   `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`asdf/qwerty `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`asdf/qwerty      `)).to.eql(`/asdf/qwerty`);
+        });
+        it(`remove trailing & preceding spaces`, function() {
+            expect(normalizeURLPathname(` / `)).to.eql(`/`);
+            expect(normalizeURLPathname(`  / `)).to.eql(`/`);
+            expect(normalizeURLPathname(`  /  `)).to.eql(`/`);
+            expect(normalizeURLPathname(`   /   `)).to.eql(`/`);
+            expect(normalizeURLPathname(` /asdf `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`   /asdf   `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` /asdf/ `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`    /asdf/   `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` /asdf/qwerty `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`  /asdf/qwerty   `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`     /asdf/qwerty/ `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`  /asdf/qwerty/   `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`     /asdf/qwerty/    `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`   asdf `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` asdf   `)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(` asdf/qwerty `)).to.eql(`/asdf/qwerty`);
+            expect(normalizeURLPathname(`  asdf/qwerty      `)).to.eql(`/asdf/qwerty`);
         });
     });
 });
