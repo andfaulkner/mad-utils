@@ -7,6 +7,9 @@ Add normalizeURLPathname function
     *   Replace `?/` with `?`
     *   Ensure a single `/` at beginning
 
+Large changes to README
+IDE-friendlier docs in url module
+
 0.74.1
 ======
 Fix Canadian postal code validation
