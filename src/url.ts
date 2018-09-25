@@ -346,14 +346,15 @@ export {swapMatchingURLPaths as urlReplaceMatchingPaths};
 /**
  * Output URL pathname in this format: `/main/en/home`
  */
-export const normalizeURLPathname = (url) => {
+export const normalizeURLPathname = (url: string) => {
     if (!url) return ``;
     if (url.match(/^( +)?\/+( +)?$/g)) return `/`;
 
+    // Remove preceding & trailing spaces
+    const noSpaceURL = url.replace(/^ +/g, ``).replace(/ +$/g, ``);
+
     // Insert / before start
-    return `/${url}`
-        // Remove spaces
-        .replace(/ /g, ``)
+    return `/${noSpaceURL}`
         // Remove double slashes
         .replace(/\/\/+/g, `/`)
         // Remove trailing slash
