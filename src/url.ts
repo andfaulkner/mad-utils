@@ -70,7 +70,7 @@ export const parseQueryParams = <T>(queryParamsStr?: string): T => {
  *
  * @return {string} current language, in 2-letter form (Often either 'en' or 'fr')
  */
-export const getLangFromUrlPathname = (
+export const getLangFromURLPathname = (
     urlPath?: string,
     supportedLangs = defaultSupportedLangs,
     defaultLang: string = 'en'
@@ -81,13 +81,13 @@ export const getLangFromUrlPathname = (
     return supportedLangs.find(getLangMatch) || defaultLang;
 };
 
-export {getLangFromUrlPathname as langFromUrlPathname};
-export {getLangFromUrlPathname as getLangFromURLPathname};
-export {getLangFromUrlPathname as langFromURLPathname};
-export {getLangFromUrlPathname as getLangFromUrl};
-export {getLangFromUrlPathname as getLangFromURL};
-export {getLangFromUrlPathname as langFromUrl};
-export {getLangFromUrlPathname as langFromURL};
+export {getLangFromURLPathname as langFromUrlPathname};
+export {getLangFromURLPathname as getLangFromUrlPathname};
+export {getLangFromURLPathname as langFromURLPathname};
+export {getLangFromURLPathname as getLangFromUrl};
+export {getLangFromURLPathname as getLangFromURL};
+export {getLangFromURLPathname as langFromUrl};
+export {getLangFromURLPathname as langFromURL};
 
 export type UrlPathsLangProps = {
     url?: string;

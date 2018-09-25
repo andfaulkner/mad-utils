@@ -1,39 +1,40 @@
+----------------------------------------------------------------------------------------------------
 # mad-utils
 
-*   Utilities I keep repeatedly rewriting across projects.
-
-----
+Collection of utilities I keep repeatedly rewriting across projects.
 
 ![mad-utils](https://i.giphy.com/media/rQOT9sBxBtkSk/giphy.webp)
 
-----
-
+----------------------------------------------------------------------------------------------------
 Examples - most useful methods
 ==============================
 (see full docs in lower sections for more details)
 
-#### cap1LowerRest :: (string) => string
+### cap1LowerRest :: (string) => string
 
     cap1LowerRest('aSdF'); // => 'Asdf'
 
-#### capitalize :: (string) => string
+### capitalize :: (string) => string
 
     capitalize('asdf'); // => 'Asdf'
     
-#### eliminateWhitespace :: (string) => string
+### eliminateWhitespace :: (string) => string
 
     eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
 
-#### getLangFromUrlPathname ::
+### getLangFromURLPathname ::
 (urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
 
     // With URL http://example.com/auth/fr/ok:
-    getLangFromUrlPathName(); // => 'fr'
+    getLangFromURLPathname(); // => 'fr'
 
     // With URL http://example.com/en/auth/ok:
-    getLangFromUrlPathName(); // => 'en'
+    getLangFromURLPathname(); // => 'en'
 
-#### condSwitch :: ((cond: any, valueToReturnIfCondTruthy: V)*, defaultValue?: W) => V | W | never;
+    // With URL given as param:
+    getLangFromURLPathname(`http://example.com/auth/sp/ok`, [`en`, `fr`, `sp`]); // => 'sp'
+
+### condSwitch :: ((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
 *   Function-based switch statement. Takes 2 or more args.
 *   Args 1, 3, 5, 7, etc. are the conditions, and 2, 4, 6, etc. their corresponding return values.
     *   On hitting a truthy odd-numbered arg, condSwitch returns the next (even-numbered) arg, then exits.
@@ -42,27 +43,33 @@ Examples - most useful methods
 
 Examples:
 
-    condSwitch(true, 'val1'); // => 'val1'
-    condSwitch(false, 'val1', 'defaultVal'); // => 'defaultVal'
-    condSwitch(false, 'v1',
-               null, 'v2',
-               'defaultReturnVal'); // => 'v2'
-    condSwitch(undefined, 'v1', '', 'v2'); // => Throws Error
+```
+condSwitch(true, 'val1');                // Output: 'val1'
 
-#### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
+condSwitch(false, 'val1', 'defaultVal'); // Output: 'defaultVal'
+
+condSwitch(
+    false, 'v1',
+    true, 'v2',
+    'defaultReturnVal');                 // Output: 'v2'
+
+condSwitch(undefined, 'v1', '', 'v2');   // Throws Error
+```
+
+### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
 
     // With URL http://example.com/home?hello=everyone&gr=argh:
     parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
 
-#### last :: (Array<T|any>) => T|any;
+### last :: (Array<T|any>) => T|any;
 
     last([1,2,3]); => 3
 
-#### first :: (Array<T|any>) => T|any;
+### first :: (Array<T|any>) => T|any;
 
     first([1,2,3]); => 1
 
-#### matchAny :: (any[]) => (any) => boolean
+### matchAny :: (any[]) => (any) => boolean
 Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
 
     matchAny([1, 2, 3])(2);
@@ -71,30 +78,32 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
     // => true
 
-#### uuid : (any[]) => string
+### uuid :: () => string
 
     uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
     uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
 ### get : (Object, string, any?) => any
 Safely get the item at the given object path.
-
-    const obj = {a: {b: {c: 'value'}}};
-    get(obj, 'a.b.c');                    // => 'value'
-    get(obj, 'a.b.zzz', 'default value'); // => 'default value'
+```
+const obj = {a: {b: {c: 'value'}}};
+get(obj, 'a.b.c');                    // => 'value'
+get(obj, 'a.b.zzz', 'default value'); // => 'default value'
+```
 
 Installation
 ============
 *   npm:
-
-    npm install --save mad-utils
+```
+npm install --save mad-utils
+```
 
 *   yarn:
+```
+yarn add mad-utils
+```
 
-    yarn add mad-utils
-
-
-----
+----------------------------------------------------------------------------------------------------
 
 *   NOTE: the documentation is an extreme work-in-progress.
 *   Recent versions have considerably changed the design, API, and even structure from earlier ones.
@@ -109,7 +118,9 @@ Installation
         *   Mostly due to irrelevance (items were taken from my own projects)
     *   (The docs still remain mostly up to date)
 
-----
+
+
+----------------------------------------------------------------------------------------------------
 Sub-modules
 ===========
 *   Broken into 3 sub-modules: node, browser, and isomorphic.
@@ -162,28 +173,29 @@ NodeJS
 *   Will generally crash your application if imported into the browser
 
 ### Importing NodeJS sub-module
-    // Import all namespaces, functions, types, etc. from node & isomorphic submodules
-    import {m_} from 'mad-utils/lib/node';
+```
+// Import all namespaces, functions, types, etc. from node & isomorphic submodules
+import {m_} from 'mad-utils/lib/node';
 
-    // Import node (and isomorphic) namespaces
-    import {file, test, middleware, webpackUtils, nodeError, date} from 'mad-utils/lib/node';
+// Import node (and isomorphic) namespaces
+import {file, test, middleware, webpackUtils, nodeError, date} from 'mad-utils/lib/node';
 
-    // Import individual node (and isomorphic) functions, types, classes, etc.
-    import {
-        isDir,
-        wasRunAsScript,
-        replaceInFile,
-        getJsFilesInDir,
-        globalActivateCleanStack,
-        useMiddlewareInProductionOnly,
-        third,
-        thirdLast,
-        splitLines,
-        composeExpressMiddlewares,
-        isNonMinFile,
-        eliminateWhitespace
-    } from 'mad-utils/lib/node';
-
+// Import individual node (and isomorphic) functions, types, classes, etc.
+import {
+    isDir,
+    wasRunAsScript,
+    replaceInFile,
+    getJsFilesInDir,
+    globalActivateCleanStack,
+    useMiddlewareInProductionOnly,
+    third,
+    thirdLast,
+    splitLines,
+    composeExpressMiddlewares,
+    isNonMinFile,
+    eliminateWhitespace
+} from 'mad-utils/lib/node';
+```
 
 ## Node-specific namespaces
 *   file
@@ -201,18 +213,20 @@ Browser
     *   e.g. JSDom, or inclusion of various window mocks/polyfills
 
 ### Importing Browser sub-module
+```
+// Import all namespaces, functions, types, etc. from browser submodule
+import {m_} from 'mad-utils/lib/browser';
 
-    // Import all namespaces, functions, types, etc. from browser submodule
-    import { m_ } from 'mad-utils/lib/browser';
+// Import namespaces from browser (and isomorphic) submodules
+import {dom, event, localStorageUtils, types} from 'mad-utils/lib/node';
 
-    // Import namespaces from browser (and isomorphic) submodules
-    import { dom, event, localStorageUtils, types } from 'mad-utils/lib/node';
-
-    // Import individual browser (and isomorphic) functions, types, classes, etc.
-    import { mouseEventFactory, removeClickEventFromId,
-             addClickEventToId, getFunctionSrcAsArray,
-             methodNotForWebUse, getFromStorage, commonLangsObj,
-             jsonStringifyWFuncs, canadaLangNames, assignFrozenClone } from 'mad-utils/lib/node';
+// Import individual browser (and isomorphic) functions, types, classes, etc.
+import {
+    removeClickEventFromId,
+    addClickEventToId,
+    assignFrozenClone
+} from 'mad-utils/lib/node';
+```
 
 ### Browser namespaces
 *   dom
@@ -225,22 +239,26 @@ Functions, by namespace
 =======================
 More import notes
 -----------------
-If using a high-level import (mUtils, m_, __), you can access functions either via their namespaces or directory. E.g.
+If using a high-level import (mUtils, m_, \_\_), you can access functions either via their namespaces or directory. E.g.
+```
+mUtils.search.replaceAll
+mUtils.replaceAll
+__.number.isInt
+__.isInt
+m_.date.isLeapYear
+m_.isLeapYear
+m_.array.secondLast
+m_.secondLast
+...etc...
+```
 
-    mUtils.search.replaceAll
-    mUtils.replaceAll
-    __.number.isInt
-    __.isInt
-    m_.date.isLeapYear
-    m_.isLeapYear
-    m_.array.secondLast
-    m_.secondLast
-    ...etc...
+`mUtils`, `__`, and `m_` are 'full collection' exports
 
-mUtils, __, and m_ are 'full collection' exports. You can also get it them like this if you hate named imports:
-
-    import * as madUtils from 'mad-utils';
-    const h = madUtils.m_;
+You can also get them like this if you hate named imports:
+```
+import * as madUtils from 'mad-utils';
+const h = madUtils.m_;
+```
 
 Namespace strategy
 ------------------
@@ -255,22 +273,22 @@ The main philosophy behind this API design is to make common functions maximally
 *   I opted for a compromise, where everything was included in a giant namespace, while also including smaller "sub-namespaces".
     *   This also has import advantages, since you can opt to pull in as much or as little as you need on each reference to mad-utils, without having to import whole namespaces and pluck individual functions off.
 
-Common types
-------------
+Common types [WIP]
+------------------
 ### NumLike
-*   Numbers, strings that can be parsed to numbers (floats), and arrays with a single item where said item is a number or string parseable to a number
+Either a number, or a string that can be parsed to a number
 
 ### StrOrNever
-*   Either a string or 'Never' (indicating a thrown error)
+Either a string, or 'Never' (indicating an error threw in the function)
 
 
 
-----
+----------------------------------------------------------------------------------------------------
 Namespace contents
 ==================
-----
+----------------------------------------------------------------------------------------------------
 
-
+----------------------------------------------------------------------------------------------------
 Namespace: array (isomorphic)
 =============================
 Get items from array by position
@@ -580,6 +598,8 @@ Examples:
     // => true
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: date (isomorphic)
 ============================
 ### [TYPE] NumRange0To6
@@ -633,6 +653,8 @@ Examples:
 ### [FUNCTION] isDateLike (exported from types-iso - see below)
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: decorator (isomorphic)
 =================================
 ### DecoratorError
@@ -645,6 +667,8 @@ Namespace: decorator (isomorphic)
 *   WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: dom (browser)
 ========================
 ### [FUNCTION] parseUserAgent
@@ -731,6 +755,8 @@ Example:
     browserEngineVersion(); // => "530.12"
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: enum (isomorphic)
 ============================
 ### enumToStringArray
@@ -752,6 +778,8 @@ Namespace: enum (isomorphic)
 *   WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: error (isomorphic)
 =============================
 ### DecoratorError
@@ -761,6 +789,8 @@ Namespace: error (isomorphic)
 *   WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: error (node)
 =======================
 ### globalActivateCleanStack
@@ -776,6 +806,8 @@ Examples:
     // /\-- This is literally the only way to use it.
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: event (browser)
 ==========================
 ### mouseEventFactory
@@ -788,6 +820,8 @@ WIP documentation
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: file (node)
 ======================
 ### isDir
@@ -810,7 +844,7 @@ Namespace: file (node)
 
 Example
     // To determine if the current file was run as a script:
-    wasRunAsScript(path.basename(__filename));
+    wasRunAsScript(path.basename(\_\_filename));
     // => true if e.g. current file is named some-file.js, the process was launched via `node some-file.js`
 
 ### pathFromRoot
@@ -839,10 +873,13 @@ WIP documentation
 ### getBaseFilenameFromPath
 WIP documentation
 
+
+
+----------------------------------------------------------------------------------------------------
 Namespace: function (isomorphic)
 ================================
 ### [FUNCTION] condSwitch
-((cond: any, valueToReturnIfCondTruthy: V)*, defaultValue?: W) => V | W | never;
+((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
 
 *   Function-based switch statement.
 *   For each pair of args:
@@ -936,6 +973,8 @@ Examples:
     //      '}']
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: json (isomorphic)
 ============================
 ### [FUNCTION] jsonStringifyWFuncs
@@ -950,6 +989,8 @@ Examples:
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: localStore (browser)
 ===============================
 ### getFromStorage
@@ -976,6 +1017,8 @@ Namespace: localStore (browser)
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: locale (isomorphic)
 ==============================
 ### commonLangsObj
@@ -1003,6 +1046,8 @@ WIP documentation
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: middleware (node)
 ============================
 ### useMiddlewareInProdOnly
@@ -1012,6 +1057,8 @@ WIP documentation
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: number (isomorphic)
 ==============================
 ### [FUNCTION] isInteger (Alias: isInt)
@@ -1054,7 +1101,7 @@ Examples:
     isNumberLike('asdf'); // => false
     isNumberLike(true); // => false
 
-### [FUNCTION] uuid
+### uuid [FUNCTION]
 () => string
 *   Generate a UUID, in format e.g. 3A0BF2C7-3077-45A0-97ED-EC5F13F127F1
 
@@ -1064,6 +1111,8 @@ Examples:
     // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: object (isomorphic)
 ==============================
 ### [FUNCTION] get
@@ -1183,9 +1232,11 @@ Examples:
     // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'seeeee'}
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: url (isomorphic)
 =============================
-#### [FUNCTION] getLangFromUrlPathname:
+#### [FUNCTION] getLangFromURLPathname:
 (string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
 *   Get the currently selected language out of the current URL
 *   Note: this is a 'rough' method not intended to work in all circumstances.
@@ -1195,23 +1246,23 @@ Namespace: url (isomorphic)
 Examples:
 
     // Assuming we're at URL 'http://example.com/auth/fr/ok':
-    getLangFromUrlPathName();
+    getLangFromURLPathname();
     // => 'fr'
 
     // Assuming we're at URL 'http://example.com/auth/fr/ok':
-    getLangFromUrlPathName(window.location.pathname);
+    getLangFromURLPathname(window.location.pathname);
     // => 'fr'
 
-    getLangFromUrlPathName('/asdf/123asdfawzu/en/eiuherg/awzp1');
+    getLangFromURLPathname('/asdf/123asdfawzu/en/eiuherg/awzp1');
     // => 'en'
 
-    getLangFromUrlPathName('/asdf/123asdfawzu/sp/eiuherg/awzp1', ['en', 'sp']);
+    getLangFromURLPathname('/asdf/123asdfawzu/sp/eiuherg/awzp1', ['en', 'sp']);
     // => 'sp'
 
-    getLangFromUrlPathName('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp']);
+    getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp']);
     // => 'en'
 
-    getLangFromUrlPathName('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp'], 'fr');
+    getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp'], 'fr');
     // => 'fr'
     
 #### [FUNCTION] parseQueryParams:
@@ -1278,6 +1329,9 @@ normalizeURLPathname(`/asdf/?key=val`);           // Output: `/asdf?key=val`
 normalizeURLPathname(` ab//cd/ef///?key=val/  `); // Output: `/ab/cd/ef?key=val`
 ```
 
+
+
+----------------------------------------------------------------------------------------------------
 Namespace: search (isomorphic)
 ==============================
 ### escapeRegExp
@@ -1293,6 +1347,8 @@ Namespace: search (isomorphic)
 *   WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: string ((Alias: str)) (isomorphic)
 =============================================
 ### [FUNCTION] cap1LowerRest
@@ -1372,6 +1428,8 @@ Examples:
 *   WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: test (node)
 ======================
 ### [FUNCTION] expectNonEmptyObjectExists
@@ -1401,6 +1459,8 @@ Examples:
     expectFunctionExists(inc); // << will pass
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: types (Alias: type) (isomorphic)
 ===========================================
 ### [FUNCTION] isDateLike
@@ -1466,6 +1526,8 @@ Examples:
 *   (see "number" section above)
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: type (node)
 ======================
 ### MWare
@@ -1484,11 +1546,15 @@ WIP documentation
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: type (browser)
 =========================
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: validation (isomorphic)
 ==================================
 ### isValidString
@@ -1513,6 +1579,8 @@ WIP documentation
 WIP documentation
 
 
+
+----------------------------------------------------------------------------------------------------
 Namespace: webpack (node)
 =========================
 WIP documentation
