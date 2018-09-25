@@ -25,6 +25,7 @@ import {
     urlWithoutProtocol,
     urlProtocolString,
     swapMatchingURLPaths,
+    normalizeURLPathname,
 } from '../../shared';
 
 import {url as urlFromNode} from '../../node';
@@ -282,6 +283,30 @@ describe(`url sub-module`, function() {
             expect(swapMatchingURLPaths(/.+/, 'MATCH', testUrl)).to.eql(
                 `${testHost}/MATCH/MATCH/MATCH?${testQuery}`
             );
+        });
+    });
+
+    describe(`normalizeURLPathname`, function(){
+        it(`returns empty string if given empty string`, function() {
+            expect(normalizeURLPathname(``)).to.eql(``);
+        });
+        it(`add / before paths`, function() {
+            expect(normalizeURLPathname(`asdf`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`asdf/123`)).to.eql(`/asdf/123`);
+        });
+        it(`replace // with /`, function() {
+            expect(normalizeURLPathname(`//`)).to.eql(`/`);
+            expect(normalizeURLPathname(`//asdf`)).to.eql(`/asdf`);
+            expect(normalizeURLPathname(`//asdf//123/qwerty`)).to.eql(`/asdf/123/qwerty`);
+            expect(normalizeURLPathname(`//asdf/123//qwerty`)).to.eql(`/asdf/123/qwerty`);
+        });
+        it(`remove trailing /`, function() {
+            expect(normalizeURLPathname(`/a/`)).to.eql(`/a`);
+            expect(normalizeURLPathname(`/asdf/qwerty/`)).to.eql(`/asdf/qwerty`);
+        });
+        it(`remove / before query params`, function() {
+            expect(normalizeURLPathname(`/a/?dog=meeka`)).to.eql(`/a?dog=meeka`);
+            expect(normalizeURLPathname(`/asdf/qwerty/?dog=meeka`)).to.eql(`/asdf/qwerty?dog=meeka`);
         });
     });
 });
