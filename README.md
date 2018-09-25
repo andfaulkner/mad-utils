@@ -1183,7 +1183,7 @@ Examples:
     // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'seeeee'}
 
 
-Namespace: query (isomorphic)
+Namespace: url (isomorphic)
 =============================
 #### [FUNCTION] getLangFromUrlPathname:
 (string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
@@ -1253,6 +1253,30 @@ Examples:
     lastUrlPath('http://example.com/asdf'); // => 'asdf'
     lastUrlPath('http://example.com/asdf/'); // => ''
     lastUrlPath('http://example.com/asdf/', false); // => 'asdf'
+
+
+#### normalizeURLPathname [FUNCTION]
+(url: string) => string
+*   Normalize given [url] {string}, converting to this format:
+        `/main/en/home`
+        `/main/en/home?key=value`
+*   Does the following actions:
+    *   Remove leading & trailing whitespace, and trailing `/`
+    *   Precedes URL with single `/`
+    *   Removes all repeat slashes (e.g. `//` -> `/`; `///` -> `/`)
+    *   Replace `/?` with `?`
+
+Examples:
+```
+normalizeURLPathname(``);                         // Output: ``
+normalizeURLPathname(`/asdf/123`);                // Output: `/asdf/123`
+normalizeURLPathname(`  /  `);                    // Output: `/`
+normalizeURLPathname(`/////`);                    // Output: `/`
+normalizeURLPathname(`/asdf//123`);               // Output: `/asdf/123`
+normalizeURLPathname(`asdf`);                     // Output: `/asdf`
+normalizeURLPathname(`/asdf/?key=val`);           // Output: `/asdf?key=val`
+normalizeURLPathname(` ab//cd/ef///?key=val/  `); // Output: `/ab/cd/ef?key=val`
+```
 
 Namespace: search (isomorphic)
 ==============================
