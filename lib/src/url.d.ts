@@ -23,10 +23,12 @@ import { StrOrErr } from './types-iso';
  *
  * Careful: this can be unexpected - to play it safe, explicitly pass
  * global.location.search in every time
+ *
+ * Example: parseQueryParams(`http://example.com/home?hello=everyone&gr=argh`);
+ *          // => {hello: `everyone`, gr: `argh`}
+ *
  * @param {string} queryParamsString: source to parse for query params {Default: query in URL}
  * @return {Object} Query params as object
- * @example parseQueryParams(`http://example.com/home?hello=everyone&gr=argh`)
- *          // => {hello: `everyone`, gr: `argh`}
  */
 export declare const parseQueryParams: <T>(queryParamsStr?: string) => T;
 /******************************************** LANGUAGE ********************************************/
@@ -40,14 +42,14 @@ export declare const parseQueryParams: <T>(queryParamsStr?: string) => T;
  *
  * @return {string} current language, in 2-letter form (Often either 'en' or 'fr')
  */
-export declare const getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
-export { getLangFromUrlPathname as langFromUrlPathname };
-export { getLangFromUrlPathname as getLangFromURLPathname };
-export { getLangFromUrlPathname as langFromURLPathname };
-export { getLangFromUrlPathname as getLangFromUrl };
-export { getLangFromUrlPathname as getLangFromURL };
-export { getLangFromUrlPathname as langFromUrl };
-export { getLangFromUrlPathname as langFromURL };
+export declare const getLangFromURLPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
+export { getLangFromURLPathname as langFromUrlPathname };
+export { getLangFromURLPathname as getLangFromUrlPathname };
+export { getLangFromURLPathname as langFromURLPathname };
+export { getLangFromURLPathname as getLangFromUrl };
+export { getLangFromURLPathname as getLangFromURL };
+export { getLangFromURLPathname as langFromUrl };
+export { getLangFromURLPathname as langFromURL };
 export declare type UrlPathsLangProps = {
     url?: string;
     curLang?: string;
@@ -58,7 +60,8 @@ export declare type UrlPathsLangProps = {
  * If getStrBeforeLang property is given and is true, get the string before the language match
  * Otherwise get the string after the language match
  *
- * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * Example: urlPathsAfterLang('/asdf/en/one/two');
+ *          // => 'one/two'
  *
  * @param {string} url URL to search {Default: global.location.pathname}
  * @param {string} curLang Default language, if none detected {Default: 'en'}
@@ -72,7 +75,8 @@ export { getUrlPathAroundLang as getPreOrPostLangUrlPaths };
 /**
  * Get all paths in the URL following the first appearance of /:curLang/
  *
- * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * Example: urlPathsAfterLang('/asdf/en/one/two');
+ *          // => 'one/two'
  *
  * @param {string} url URL to search {Default: global.location.pathname}
  * @param {string} curLang Default language, if none detected {Default: 'en'}
@@ -83,7 +87,8 @@ export { getUrlPathAfterLang as postLangUrlPaths };
 /**
  * Get all paths in the URL prior to the first appearance of /:curLang/
  *
- * @example urlPathsAfterLang('/asdf/en/one/two') // => '/asdf'
+ * Example: urlPathsAfterLang('/asdf/en/one/two');
+ *          // => '/asdf'
  *
  * @param {string} url URL to search {Default: global.location.pathname}
  * @param {string} curLang Default language, if none detected {Default: 'en'}
@@ -132,7 +137,9 @@ export { urlGetQuery as urlGetQueryParamString };
 /**
  * Return the URL with the protocol string ('http://', 'https://') removed
  *
- * @example urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1') // => www.exmpl.ca/1/2?k1=v1
+ * Example: urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1');
+ *          // => www.exmpl.ca/1/2?k1=v1
+ *
  * @param {string} url URL to remove protocol string from
  * @return {string} url with protocol string removed
  */

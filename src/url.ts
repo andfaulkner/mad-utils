@@ -29,10 +29,12 @@ import {StrOrErr} from './types-iso';
  *
  * Careful: this can be unexpected - to play it safe, explicitly pass
  * global.location.search in every time
+ *
+ * Example: parseQueryParams(`http://example.com/home?hello=everyone&gr=argh`);
+ *          // => {hello: `everyone`, gr: `argh`}
+ *
  * @param {string} queryParamsString: source to parse for query params {Default: query in URL}
  * @return {Object} Query params as object
- * @example parseQueryParams(`http://example.com/home?hello=everyone&gr=argh`)
- *          // => {hello: `everyone`, gr: `argh`}
  */
 export const parseQueryParams = <T>(queryParamsStr?: string): T => {
     const queryParamsString = queryParamsStr || global.location.search;
@@ -100,7 +102,8 @@ export type UrlPathsLangProps = {
  * If getStrBeforeLang property is given and is true, get the string before the language match
  * Otherwise get the string after the language match
  *
- * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * Example: urlPathsAfterLang('/asdf/en/one/two');
+ *          // => 'one/two'
  *
  * @param {string} url URL to search {Default: global.location.pathname}
  * @param {string} curLang Default language, if none detected {Default: 'en'}
@@ -123,7 +126,7 @@ export const getUrlPathAroundLang = (
     const curLang =
         typeof props === 'object' && props.curLang
             ? props.curLang
-            : getLangFromUrlPathname(url, supportedLangs);
+            : getLangFromURLPathname(url, supportedLangs);
 
     const urlSplitOnLangPath = url.split(`/${curLang}/`);
     if (urlSplitOnLangPath.length < 1) {
@@ -140,7 +143,8 @@ export {getUrlPathAroundLang as getPreOrPostLangUrlPaths};
 /**
  * Get all paths in the URL following the first appearance of /:curLang/
  *
- * @example urlPathsAfterLang('/asdf/en/one/two') // => 'one/two'
+ * Example: urlPathsAfterLang('/asdf/en/one/two');
+ *          // => 'one/two'
  *
  * @param {string} url URL to search {Default: global.location.pathname}
  * @param {string} curLang Default language, if none detected {Default: 'en'}
@@ -159,7 +163,8 @@ export {getUrlPathAfterLang as postLangUrlPaths};
 /**
  * Get all paths in the URL prior to the first appearance of /:curLang/
  *
- * @example urlPathsAfterLang('/asdf/en/one/two') // => '/asdf'
+ * Example: urlPathsAfterLang('/asdf/en/one/two');
+ *          // => '/asdf'
  *
  * @param {string} url URL to search {Default: global.location.pathname}
  * @param {string} curLang Default language, if none detected {Default: 'en'}
@@ -238,7 +243,9 @@ export {urlGetQuery as urlGetQueryParamString};
 /**
  * Return the URL with the protocol string ('http://', 'https://') removed
  *
- * @example urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1') // => www.exmpl.ca/1/2?k1=v1
+ * Example: urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1');
+ *          // => www.exmpl.ca/1/2?k1=v1
+ *
  * @param {string} url URL to remove protocol string from
  * @return {string} url with protocol string removed
  */
