@@ -1,3 +1,12 @@
+0.74.2
+======
+Add normalizeURLPathname function
+*   Perform cleanups on a given pathname string:
+    *   Remove preceding & trailing whitespace, and trailing /
+    *   Replace `//` with `/`, `///` with `/`, etc.
+    *   Replace `?/` with `?`
+    *   Ensure a single `/` at beginning
+
 0.74.1
 ======
 Fix Canadian postal code validation
