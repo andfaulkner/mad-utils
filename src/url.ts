@@ -344,9 +344,22 @@ export {swapMatchingURLPaths as urlReplacePathMatches};
 export {swapMatchingURLPaths as urlReplaceMatchingPaths};
 
 /**
- * Output URL pathname in this format: `/main/en/home`
+ * Normalize given [url] {string}, converting to this format:
+ *     `/main/en/home`
+ *     `/main/en/home?key=value`
+ *
+ * Remove leading & trailing whitespace
+ * Precede with /
+ * Remove trailing /
+ * Replace // with /
+ * Replace /? with ?
+ *
+ * Empty strings return ``
+ *
+ * @param {string} url URL to normalize
+ * @return {string} Normalized URL
  */
-export const normalizeURLPathname = (url: string) => {
+export const normalizeURLPathname = (url: string): string => {
     if (!url) return ``;
     if (url.match(/^( +)?\/+( +)?$/g)) return `/`;
 
