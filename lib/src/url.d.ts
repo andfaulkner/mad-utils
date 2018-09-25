@@ -189,7 +189,7 @@ export { swapMatchingURLPaths as urlReplaceMatchingPaths };
  *     `/main/en/home?key=value`
  *
  * Remove leading & trailing whitespace
- * Precede with /
+ * Ensures a single / at beginning
  * Remove trailing /
  * Replace // with /
  * Replace /? with ?
