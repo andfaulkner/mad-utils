@@ -183,3 +183,20 @@ export { swapMatchingURLPaths as replaceUrlPaths };
 export { swapMatchingURLPaths as replaceURLPaths };
 export { swapMatchingURLPaths as urlReplacePathMatches };
 export { swapMatchingURLPaths as urlReplaceMatchingPaths };
+/**
+ * Normalize given [url] {string}, converting to this format:
+ *     `/main/en/home`
+ *     `/main/en/home?key=value`
+ *
+ * Remove leading & trailing whitespace
+ * Precede with /
+ * Remove trailing /
+ * Replace // with /
+ * Replace /? with ?
+ *
+ * Empty strings return ``
+ *
+ * @param {string} url URL to normalize
+ * @return {string} Normalized URL
+ */
+export declare const normalizeURLPathname: (url: string) => string;
