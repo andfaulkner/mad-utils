@@ -21,6 +21,42 @@ import {last, first, matchAny, without} from './array';
 import {removeMatchingText, chomp} from './string';
 import {StrOrErr} from './types-iso';
 
+/******************************************* NORMALIZE ********************************************/
+/**
+ * Normalize given [url] {string}, converting to this format:
+ *     `/main/en/home`
+ *     `/main/en/home?key=value`
+ *
+ * Remove leading & trailing whitespace
+ * Ensures a single / at beginning
+ * Remove trailing /
+ * Replace // with /
+ * Replace /? with ?
+ *
+ * Empty strings return ``
+ *
+ * @param {string} url URL to normalize
+ * @return {string} Normalized URL
+ */
+export const normalizeURLPathname = (url: string): string => {
+    if (!url) return ``;
+    if (url.match(/^( +)?\/+( +)?$/g)) return `/`;
+
+    // Remove preceding & trailing spaces
+    const noSpaceURL = url.replace(/^ +/g, ``).replace(/ +$/g, ``);
+
+    // Insert / before start
+    return (
+        `/${noSpaceURL}`
+            // Remove double slashes
+            .replace(/\/\/+/g, `/`)
+            // Remove trailing slash
+            .replace(/\/$/g, ``)
+            // Remove slash before query param start character
+            .replace(/\/\?/, `?`)
+    );
+};
+
 /****************************************** QUERY PARAMS ******************************************/
 /**
  * Turn query params into JS obj - splits on , & =
@@ -230,20 +266,22 @@ export const lastUrlPath = (url?: string, strict: boolean = true): string => {
 /**
  * Get query string from the given URL (or the global URL), excluding "?"
  */
-export const urlGetQuery = (url?: string): string => {
+export const urlQuery = (url?: string): string => {
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
     return without.first(cleanUrl.split('?')).join('');
 };
 
-export {urlGetQuery as getQueryString};
-export {urlGetQuery as getQueryParamString};
-export {urlGetQuery as urlGetQueryString};
-export {urlGetQuery as urlGetQueryParamString};
+export {urlQuery as urlGetQuery};
+export {urlQuery as getQueryString};
+export {urlQuery as getQueryParamString};
+export {urlQuery as urlQueryString};
+export {urlQuery as urlGetQueryString};
+export {urlQuery as urlGetQueryParamString};
 
 /**
  * Extract URL pathname and query from given URL string (or current URL)
  *
- * Preserves trailing slash
+ * Preserves preceding slash & normalizes outputted string
  *
  * Example: urlPathnameWithQuery(`http://example.com/a/b/c?key=val`);
  *          // => `/a/b/c?key=val`
@@ -254,7 +292,7 @@ export {urlGetQuery as urlGetQueryParamString};
 export const urlPathnameWithQuery = (url?: string) => {
     const cleanUrl = url || global.location.href;
     if (!url) return ``;
-    return urlWithoutProtocol(cleanUrl).replace(/^[^\/]+(?=\/)/, ``);
+    return normalizeURLPathname(urlWithoutProtocol(cleanUrl).replace(/^[^\/]+(?=\/)/, ``));
 };
 
 /**
@@ -319,7 +357,7 @@ export {urlProtocolString as getProtocolStringFromURL};
 export const urlMinusLastPath = (url?: string, excludeQuery = true): string => {
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
     const httpStr = urlProtocolString(cleanUrl);
-    const queryStr = urlGetQuery(cleanUrl);
+    const queryStr = urlQuery(cleanUrl);
 
     // If there are no paths, set to the URL base; otherwise lop off the last item after a '/'
     const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
@@ -342,7 +380,7 @@ export {urlMinusLastPath as getUrlMinusLastPath};
  */
 export const swapLastURLPath = (newPathVal: string, url?: string): string => {
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
-    const queryStr = urlGetQuery(cleanUrl);
+    const queryStr = urlQuery(cleanUrl);
     return `${urlMinusLastPath(cleanUrl)}/${newPathVal}${queryStr ? '?' + queryStr : ''}`;
 };
 
@@ -362,7 +400,7 @@ export const swapMatchingURLPaths = (
     const cleanUrl: string = typeof url === 'string' ? url : global.location.href;
 
     const httpStr = urlProtocolString(cleanUrl);
-    const queryStr = urlGetQuery(cleanUrl);
+    const queryStr = urlQuery(cleanUrl);
     const urlParts = urlWithoutProtocol(urlMinusQueryParams(cleanUrl)).split('/');
 
     const urlPartsSwapped = urlParts.map((urlPt: string, idx: number) => {
@@ -387,36 +425,3 @@ export {swapMatchingURLPaths as replaceUrlPaths};
 export {swapMatchingURLPaths as replaceURLPaths};
 export {swapMatchingURLPaths as urlReplacePathMatches};
 export {swapMatchingURLPaths as urlReplaceMatchingPaths};
-
-/**
- * Normalize given [url] {string}, converting to this format:
- *     `/main/en/home`
- *     `/main/en/home?key=value`
- *
- * Remove leading & trailing whitespace
- * Ensures a single / at beginning
- * Remove trailing /
- * Replace // with /
- * Replace /? with ?
- *
- * Empty strings return ``
- *
- * @param {string} url URL to normalize
- * @return {string} Normalized URL
- */
-export const normalizeURLPathname = (url: string): string => {
-    if (!url) return ``;
-    if (url.match(/^( +)?\/+( +)?$/g)) return `/`;
-
-    // Remove preceding & trailing spaces
-    const noSpaceURL = url.replace(/^ +/g, ``).replace(/ +$/g, ``);
-
-    // Insert / before start
-    return `/${noSpaceURL}`
-        // Remove double slashes
-        .replace(/\/\/+/g, `/`)
-        // Remove trailing slash
-        .replace(/\/$/g, ``)
-        // Remove slash before query param start character
-        .replace(/\/\?/, `?`);
-};
