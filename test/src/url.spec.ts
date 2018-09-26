@@ -412,5 +412,39 @@ describe(`url sub-module`, function() {
                 `?key=val&b=2`
             );
         });
+
+        it(`returns protocol (including ://) if 'protocol' given as urlParts arg`, function() {
+            expect(extractFromUrl(`protocol`, `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)).to.eql(
+                `http://`
+            );
+            expect(
+                extractFromUrl([`protocol`], `https://www.exmpl.ca:8080/a/b/c?key=val&b=2`)
+            ).to.eql(`https://`);
+        });
+
+        it(`returns hostname if 'hostname' given as urlParts arg`, function() {
+            expect(extractFromUrl(`hostname`, `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)).to.eql(
+                `www.exmpl.ca`
+            );
+            expect(
+                extractFromUrl([`hostname`], `https://www.exmpl2.ca:8080/a/b/c?key=val&b=2`)
+            ).to.eql(`www.exmpl2.ca`);
+        });
+
+        it(`returns port (including ':') if 'port' given as urlParts arg`, function() {
+            expect(extractFromUrl(`port`, `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)).to.eql(
+                `:8080`
+            );
+            expect(extractFromUrl([`port`], `https://www.exmpl2.ca:9000/a/b/c?key=val&b=2`)).to.eql(
+                `:9000`
+            );
+        });
+
+        it(`returns empty string if 'port' given as urlParts arg but URL has no port`, function() {
+            expect(
+                extractFromUrl(`port`, `https://www.secondexample.com/a/b/c?key=val&b=2`)
+            ).to.eql(``);
+            expect(extractFromUrl([`port`], `https://www.exmpl2.ca/a/b/c?key=val&b=2`)).to.eql(``);
+        });
     });
 });
