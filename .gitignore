@@ -80,3 +80,6 @@ redis-backup/**.rdb
 # Code coverage report
 .nyc_output/
 coverage/
+
+# REPL history
+.node_history
