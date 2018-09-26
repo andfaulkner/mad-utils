@@ -442,7 +442,7 @@ type URLParts = 'protocol' | 'hostname' | 'host' | 'port' | 'pathname' | 'path' 
  *   pathname - e.g. `/asdf/qwerty/ok`
  *   path     - e.g. `/asdf/qwerty/ok`  [alias of pathname]
  *   query    - e.g. `?key=val&b=2`
- *   host     - e.g. `https://www.example.ca`
+ *   host     - e.g. `www.example.ca:8080`
  *
  * WARNING: don't include non-consecutive URL parts in urlParts array
  *
