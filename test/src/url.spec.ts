@@ -469,5 +469,20 @@ describe(`url sub-module`, function() {
                 extractFromUrl([`host`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
             ).to.eql(`www.example2.ca`);
         });
+
+        it(`returns combinations of values in a conglomerate string`, function() {
+            expect(
+                extractFromUrl([`protocol`, `host`], `https://www.example.com:8080/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`https://www.example.com:8080`);
+            expect(
+                extractFromUrl([`host`, `pathname`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`www.example2.ca/asdf/qwer/last`);
+            expect(
+                extractFromUrl([`pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`/asdf/qwer/last?key=val&b=2`);
+            expect(
+                extractFromUrl([`host`, `pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`www.example2.ca/asdf/qwer/last?key=val&b=2`);
+        });
     });
 });
