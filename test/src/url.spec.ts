@@ -484,5 +484,14 @@ describe(`url sub-module`, function() {
                 extractFromUrl([`host`, `pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
             ).to.eql(`www.example2.ca/asdf/qwer/last?key=val&b=2`);
         });
+
+        it(`handles duplicate (overlapping) sections gracefully without duplications in returned string`, function() {
+            expect(
+                extractFromUrl([`host`, `hostname`], `http://www.example2.ca:8080/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`www.example2.ca:8080`);
+            expect(
+                extractFromUrl([`host`, `hostname`, `pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`www.example2.ca/asdf/qwer/last?key=val&b=2`);
+        });
     });
 });
