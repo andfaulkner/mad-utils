@@ -26,7 +26,7 @@ import {
     urlProtocolString,
     swapMatchingURLPaths,
     normalizeURLPathname,
-    extractURLPathnameWithQuery,
+    urlPathnameWithQuery,
 } from '../../shared';
 
 import {url as urlFromNode} from '../../node';
@@ -377,27 +377,27 @@ describe(`url sub-module`, function() {
             expect(normalizeURLPathname(`  asdf/qwerty      `)).to.eql(`/asdf/qwerty`);
         });
     });
-    describe(`extractURLPathnameWithQuery`, function() {
+    describe(`urlPathnameWithQuery`, function() {
         it(`should return pathname from given URL with protocol and no query`, function() {
-            expect(extractURLPathnameWithQuery(`https://www.example.com/a/b/c`)).to.eql(`/a/b/c`);
-            expect(extractURLPathnameWithQuery(`https://example.com/asdf`)).to.eql(`/asdf`);
+            expect(urlPathnameWithQuery(`https://www.example.com/a/b/c`)).to.eql(`/a/b/c`);
+            expect(urlPathnameWithQuery(`https://example.com/asdf`)).to.eql(`/asdf`);
         });
         it(`should return pathname from given URL with no protocol and no query`, function() {
-            expect(extractURLPathnameWithQuery(`www.example.com/a/b/c`)).to.eql(`/a/b/c`);
-            expect(extractURLPathnameWithQuery(`example.com/asdf`)).to.eql(`/asdf`);
+            expect(urlPathnameWithQuery(`www.example.com/a/b/c`)).to.eql(`/a/b/c`);
+            expect(urlPathnameWithQuery(`example.com/asdf`)).to.eql(`/asdf`);
         });
         it(`should return pathname & query from given URL with no protocol`, function() {
-            expect(extractURLPathnameWithQuery(`www.example.com/a/b/c?k=v`)).to.eql(`/a/b/c?k=v`);
-            expect(extractURLPathnameWithQuery(`example.com/asdf?key=val&key2=val2`)).to.eql(
+            expect(urlPathnameWithQuery(`www.example.com/a/b/c?k=v`)).to.eql(`/a/b/c?k=v`);
+            expect(urlPathnameWithQuery(`example.com/asdf?key=val&key2=val2`)).to.eql(
                 `/asdf?key=val&key2=val2`
             );
         });
         it(`should return pathname & query from given URL with protocol`, function() {
-            expect(extractURLPathnameWithQuery(`https://www.example.com/a/b/c?k=v`)).to.eql(
+            expect(urlPathnameWithQuery(`https://www.example.com/a/b/c?k=v`)).to.eql(
                 `/a/b/c?k=v`
             );
             expect(
-                extractURLPathnameWithQuery(`https://example.com/asdf?key=val&key2=val2`)
+                urlPathnameWithQuery(`https://example.com/asdf?key=val&key2=val2`)
             ).to.eql(`/asdf?key=val&key2=val2`);
         });
     });
