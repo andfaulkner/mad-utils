@@ -235,12 +235,21 @@ export { swapMatchingURLPaths as replaceURLPaths };
 export { swapMatchingURLPaths as urlReplacePathMatches };
 export { swapMatchingURLPaths as urlReplaceMatchingPaths };
 /*************************************** EXTRACTION HELPER ****************************************/
-declare type URLParts = 'protocol' | 'hostname' | 'host' | 'port' | 'host' | 'pathname' | 'path' | 'query';
+declare type URLParts = 'protocol' | 'hostname' | 'host' | 'port' | 'pathname' | 'path' | 'query';
 /**
  * Extract given part or parts [urlParts] from given URL [url] (or current URL)
  * and return as a conglomerate string
  *
- * Warning: don't include non-consecutive URL parts in urlParts array
+ * URL parts:
+ *   protocol - e.g. `https://`
+ *   hostname - e.g. `www.example.ca`
+ *   port     - e.g. `:8080`
+ *   pathname - e.g. `/asdf/qwerty/ok`
+ *   path     - e.g. `/asdf/qwerty/ok`  [alias of pathname]
+ *   query    - e.g. `?key=val&b=2`
+ *   host     - e.g. `www.example.ca:8080`
+ *
+ * WARNING: don't include non-consecutive URL parts in urlParts array
  *
  * Example: extractFromUrl([`hostname`, `port`], `http://www.exmpl.ca:8080/a/b/c?k=v`)
  *          // => `www.exmpl.ca:8080`
