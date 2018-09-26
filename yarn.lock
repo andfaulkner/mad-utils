@@ -4245,6 +4245,10 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
+repl.history@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/repl.history/-/repl.history-0.1.4.tgz#80367171f3781d6e4299c71758c253097f5d5832"
+
 replace-in-file@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/replace-in-file/-/replace-in-file-3.4.0.tgz#b48c94567bbf4f44a2bc6fabdf21ab443e806851"

@@ -172,6 +172,7 @@
     "prettier": "^1.14.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "repl.history": "^0.1.4",
     "replace-in-file": "^3.4.0",
     "sinon": "^6.1.5",
     "snyk": "^1.90.2",
