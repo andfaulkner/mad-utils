@@ -27,6 +27,7 @@ import {
     swapMatchingURLPaths,
     normalizeURLPathname,
     urlPathnameWithQuery,
+    extractFromUrl,
 } from '../../shared';
 
 import {url as urlFromNode} from '../../node';
@@ -377,6 +378,7 @@ describe(`url sub-module`, function() {
             expect(normalizeURLPathname(`  asdf/qwerty      `)).to.eql(`/asdf/qwerty`);
         });
     });
+
     describe(`urlPathnameWithQuery`, function() {
         it(`should return pathname from given URL with protocol and no query`, function() {
             expect(urlPathnameWithQuery(`https://www.example.com/a/b/c`)).to.eql(`/a/b/c`);
@@ -393,12 +395,22 @@ describe(`url sub-module`, function() {
             );
         });
         it(`should return pathname & query from given URL with protocol`, function() {
-            expect(urlPathnameWithQuery(`https://www.example.com/a/b/c?k=v`)).to.eql(
-                `/a/b/c?k=v`
+            expect(urlPathnameWithQuery(`https://www.example.com/a/b/c?k=v`)).to.eql(`/a/b/c?k=v`);
+            expect(urlPathnameWithQuery(`https://example.com/asdf?key=val&key2=val2`)).to.eql(
+                `/asdf?key=val&key2=val2`
             );
-            expect(
-                urlPathnameWithQuery(`https://example.com/asdf?key=val&key2=val2`)
-            ).to.eql(`/asdf?key=val&key2=val2`);
+        });
+    });
+
+    // TODO more extractFromUrl tests
+    describe(`extractFromUrl`, function() {
+        it(`returns query string at end if 'query' given as urlParts arg`, function() {
+            expect(extractFromUrl(`query`, `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)).to.eql(
+                `?key=val&b=2`
+            );
+            expect(extractFromUrl([`query`], `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)).to.eql(
+                `?key=val&b=2`
+            );
         });
     });
 });
