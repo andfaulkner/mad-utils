@@ -240,6 +240,12 @@ export {urlGetQuery as getQueryParamString};
 export {urlGetQuery as urlGetQueryString};
 export {urlGetQuery as urlGetQueryParamString};
 
+export const extractURLPathnameWithQuery = (url?: string) => {
+    const cleanUrl = url || global.location.href;
+    if (!url) return ``;
+    return urlWithoutProtocol(cleanUrl).replace(/^[^\/]+(?=\/)/, ``);
+};
+
 /**
  * Return the URL with the protocol string ('http://', 'https://') removed
  *
