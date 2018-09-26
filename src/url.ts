@@ -437,8 +437,19 @@ type URLParts =
 | 'path'
 | 'query';
 
+// TODO test extractFromUrl
+// TODO Better docs for extractFromUrl
 /**
- * Extract given parts from URL
+ * Extract given part or parts [urlParts] from given URL [url] (or current URL)
+ * and return as a conglomerate string
+ *
+ * Warning: don't include non-consecutive URL parts in urlParts array
+ *
+ * Example: extractFromUrl([`hostname`, `port`], `http://www.exmpl.ca:8080/a/b/c?k=v`)
+ *          // => `www.exmpl.ca:8080`
+ *
+ * Example: extractFromUrl(`query`, `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)
+ *          // => `?key=val&b=2`
  */
 export const extractFromUrl = (
     urlParts: URLParts[] | URLParts,
