@@ -437,34 +437,42 @@ type URLParts =
 | 'path'
 | 'query';
 
-export const extractFromUrl = (parts: URLParts[], url: string = global.location.href) => {
+/**
+ * Extract given parts from URL
+ */
+export const extractFromUrl = (
+    urlParts: URLParts[] | URLParts,
+    url: string = global.location.href
+) => {
     let outUrl = ``;
 
     const noProtocolUrl = urlWithoutProtocol(url);
     const host = noProtocolUrl.split(`/`)[0];
     const port = (host.match(/:[0-9]+/g) || [``])[0];
 
-    if (parts.some(part => part === `protocol`)) {
+    const cleanParts = typeof urlParts === `string` ? [urlParts] : urlParts;
+
+    if (cleanParts.some(part => part === `protocol`)) {
         outUrl += urlProtocolString(url);
     }
 
-    if (parts.some(part => part === `host`)) {
+    if (cleanParts.some(part => part === `host`)) {
         outUrl += host;
     } else {
-        if (parts.some(part => part === `hostname`)) {
+        if (cleanParts.some(part => part === `hostname`)) {
             const hostname = host.replace(port, ``);
             outUrl += hostname;
         }
-        if (parts.some(part => part === `port`)) {
+        if (cleanParts.some(part => part === `port`)) {
             outUrl += port;
         }
     }
 
-    if (parts.some(part => part === `pathname` || part === `path`)) {
+    if (cleanParts.some(part => part === `pathname` || part === `path`)) {
         outUrl += urlPathname(noProtocolUrl);
     }
 
-    if (parts.some(part => part === `query`)) {
+    if (cleanParts.some(part => part === `query`)) {
         let query = urlQuery(url);
         outUrl += query ? `?` + query : ``;
     }
