@@ -439,12 +439,35 @@ describe(`url sub-module`, function() {
                 `:9000`
             );
         });
-
         it(`returns empty string if 'port' given as urlParts arg but URL has no port`, function() {
             expect(
                 extractFromUrl(`port`, `https://www.secondexample.com/a/b/c?key=val&b=2`)
             ).to.eql(``);
             expect(extractFromUrl([`port`], `https://www.exmpl2.ca/a/b/c?key=val&b=2`)).to.eql(``);
+        });
+
+        it(`returns pathname (e.g. /a/b/c) if urlParts arg is 'pathname' or 'path'`, function() {
+            expect(
+                extractFromUrl(`path`, `https://www.example.com/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`/asdf/qwer/last`);
+            expect(
+                extractFromUrl(`pathname`, `https://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`/asdf/qwer/last`);
+            expect(
+                extractFromUrl([`path`], `https://www.example.com/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`/asdf/qwer/last`);
+            expect(
+                extractFromUrl([`pathname`], `https://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`/asdf/qwer/last`);
+        });
+
+        it(`returns full host (e.g. www.example.ca:8080) if urlParts arg is 'host'`, function() {
+            expect(
+                extractFromUrl(`host`, `https://www.example.com:8080/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`www.example.com:8080`);
+            expect(
+                extractFromUrl([`host`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+            ).to.eql(`www.example2.ca`);
         });
     });
 });
