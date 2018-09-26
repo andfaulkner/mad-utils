@@ -427,15 +427,7 @@ export {swapMatchingURLPaths as urlReplacePathMatches};
 export {swapMatchingURLPaths as urlReplaceMatchingPaths};
 
 /*************************************** EXTRACTION HELPER ****************************************/
-type URLParts =
-| 'protocol'
-| 'hostname'
-| 'host'
-| 'port'
-| 'host'
-| 'pathname'
-| 'path'
-| 'query';
+type URLParts = 'protocol' | 'hostname' | 'host' | 'port' | 'host' | 'pathname' | 'path' | 'query';
 
 // TODO test extractFromUrl
 // TODO Better docs for extractFromUrl
