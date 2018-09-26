@@ -626,20 +626,38 @@ describe(`array sub-module`, function() {
         const testArr2 = ['a', 'b', 'c', 'd', 'b', 'e', 'b', 'b'];
         let testArr1Return;
         let testArr2Return;
+
         before(function() {
             testArr1Return = arrayRemove(testArr1, 'c');
             testArr2Return = arrayRemove(testArr2, 'b');
-
         });
+
         it(`Removes all matches of given item (needle) from array (haystack) mutatively`, function() {
             expect(testArr1).to.eql(['a', 'b', 'd', 'e']);
             expect(testArr2).to.eql(['a', 'c', 'd', 'e']);
         });
+
         it(`Returns new array - with all items removed`, function() {
             expect(testArr1Return).to.eql(['a', 'b', 'd', 'e']);
             expect(testArr2Return).to.eql(['a', 'c', 'd', 'e']);
             expect(testArr1Return).to.eql(testArr1);
             expect(testArr2Return).to.eql(testArr2);
+        });
+
+        it(`Returns original array and leaves it untouched if no match found`, function() {
+            const testArr3 = [1, 2, 3, 4];
+            const testArr3Ret = arrayRemove(testArr3, 6);
+
+            expect(testArr3).to.eql([1, 2, 3, 4]);
+            expect(testArr3Ret).to.eql([1, 2, 3, 4]);
+        });
+
+        it(`Handles empty arrays`, function() {
+            const testArr4 = [];
+            const testArr4Ret = arrayRemove([], 'asdf');
+
+            expect(testArr4).to.eql([]);
+            expect(testArr4Ret).to.eql([]);
         });
     });
 
