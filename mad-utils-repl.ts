@@ -21,7 +21,7 @@ util.inspect.defaultOptions.showHidden = true;
 import {logFactory, Styles} from 'mad-logs/lib/shared';
 const log = logFactory('mad-utils-repl.ts', Styles.angryBird);
 
-import * as m_ from './shared';
+import * as m_ from './node';
 
 /****************************************** CONFIG REPL *******************************************/
 const packageJson = require('./package.json');
@@ -123,7 +123,21 @@ const ctxProps = {
 
     // Import mad-utils
     m_,
-    madUtils: m_
+    madUtils: m_,
+
+    // Import mad-utils submodules
+    array: m_.array,
+    date: m_.date,
+    file: m_.file,
+    func: m_.func,
+    locale: m_.locale,
+    number: m_.number,
+    object: m_.object,
+    search: m_.search,
+    string: m_.string,
+    types: m_.types,
+    url: m_.url,
+    validation: m_.validation,
 };
 
 /**
