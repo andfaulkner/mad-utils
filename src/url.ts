@@ -258,6 +258,27 @@ export const urlPathnameWithQuery = (url?: string) => {
 };
 
 /**
+ * Extract URL pathname from given URL string (or current URL)
+ *
+ * Preserves preceding slash & normalizes outputted string
+ *
+ * Example: urlPathname(`http://example.com/a/b/c?key=val`);
+ *          // => `/a/b/c`
+ *
+ * @param {string} url Optional URL string to extract from
+ * @return {string} Pathname and query from given URL (or current URL)
+ */
+export const urlPathname = (url?: string) => {
+    const cleanUrl = url || global.location.href;
+    if (!url) return ``;
+    return normalizeURLPathname(
+        urlWithoutProtocol(cleanUrl)
+            .replace(/^[^\/]+(?=\/)/, ``)
+            .replace(/\?.+$/, ``)
+    );
+};
+
+/**
  * Return the URL with the protocol string ('http://', 'https://') removed
  *
  * Example: urlWithoutProtocol('https://www.exmpl.ca/1/2?k1=v1');
