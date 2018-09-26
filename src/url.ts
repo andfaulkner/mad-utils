@@ -17,7 +17,7 @@ if (isNode) global.location = global.location || ({href: '', pathname: '', searc
 
 /**************************************** PROJECT MODULES *****************************************/
 import {defaultSupportedLangs} from './internal/lang-constants';
-import {last, first, matchAny, without} from './array';
+import {last, first, matchAny, without, arrayRemove} from './array';
 import {removeMatchingText, chomp} from './string';
 import {StrOrErr} from './types-iso';
 
@@ -425,3 +425,49 @@ export {swapMatchingURLPaths as replaceUrlPaths};
 export {swapMatchingURLPaths as replaceURLPaths};
 export {swapMatchingURLPaths as urlReplacePathMatches};
 export {swapMatchingURLPaths as urlReplaceMatchingPaths};
+
+/*************************************** EXTRACTION HELPER ****************************************/
+type URLParts =
+| 'protocol'
+| 'hostname'
+| 'host'
+| 'port'
+| 'host'
+| 'pathname'
+| 'path'
+| 'query';
+
+export const extractFromUrl = (parts: URLParts[], url: string = global.location.href) => {
+    let outUrl = ``;
+
+    const noProtocolUrl = urlWithoutProtocol(url);
+    const host = noProtocolUrl.split(`/`)[0];
+    const port = (host.match(/:[0-9]+/g) || [``])[0];
+
+    if (parts.some(part => part === `protocol`)) {
+        outUrl += urlProtocolString(url);
+    }
+
+    if (parts.some(part => part === `host`)) {
+        outUrl += host;
+    } else {
+        if (parts.some(part => part === `hostname`)) {
+            const hostname = host.replace(port, ``);
+            outUrl += hostname;
+        }
+        if (parts.some(part => part === `port`)) {
+            outUrl += port;
+        }
+    }
+
+    if (parts.some(part => part === `pathname` || part === `path`)) {
+        outUrl += urlPathname(noProtocolUrl);
+    }
+
+    if (parts.some(part => part === `query`)) {
+        let query = urlQuery(url);
+        outUrl += query ? `?` + query : ``;
+    }
+
+    return outUrl;
+};
