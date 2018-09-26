@@ -15,6 +15,24 @@ declare global {
     }
 }
 import { StrOrErr } from './types-iso';
+/******************************************* NORMALIZE ********************************************/
+/**
+ * Normalize given [url] {string}, converting to this format:
+ *     `/main/en/home`
+ *     `/main/en/home?key=value`
+ *
+ * Remove leading & trailing whitespace
+ * Ensures a single / at beginning
+ * Remove trailing /
+ * Replace // with /
+ * Replace /? with ?
+ *
+ * Empty strings return ``
+ *
+ * @param {string} url URL to normalize
+ * @return {string} Normalized URL
+ */
+export declare const normalizeURLPathname: (url: string) => string;
 /****************************************** QUERY PARAMS ******************************************/
 /**
  * Turn query params into JS obj - splits on , & =
@@ -129,12 +147,37 @@ export declare const lastUrlPath: (url?: string, strict?: boolean) => string;
 /**
  * Get query string from the given URL (or the global URL), excluding "?"
  */
-export declare const urlGetQuery: (url?: string) => string;
-export { urlGetQuery as getQueryString };
-export { urlGetQuery as getQueryParamString };
-export { urlGetQuery as urlGetQueryString };
-export { urlGetQuery as urlGetQueryParamString };
-export declare const extractURLPathnameWithQuery: (url?: string) => string;
+export declare const urlQuery: (url?: string) => string;
+export { urlQuery as urlGetQuery };
+export { urlQuery as getQueryString };
+export { urlQuery as getQueryParamString };
+export { urlQuery as urlQueryString };
+export { urlQuery as urlGetQueryString };
+export { urlQuery as urlGetQueryParamString };
+/**
+ * Extract URL pathname and query from given URL string (or current URL)
+ *
+ * Preserves preceding slash & normalizes outputted string
+ *
+ * Example: urlPathnameWithQuery(`http://example.com/a/b/c?key=val`);
+ *          // => `/a/b/c?key=val`
+ *
+ * @param {string} url Optional URL string to extract from
+ * @return {string} Pathname and query from given URL (or current URL)
+ */
+export declare const urlPathnameWithQuery: (url?: string) => string;
+/**
+ * Extract URL pathname from given URL string (or current URL)
+ *
+ * Preserves preceding slash & normalizes outputted string
+ *
+ * Example: urlPathname(`http://example.com/a/b/c?key=val`);
+ *          // => `/a/b/c`
+ *
+ * @param {string} url Optional URL string to extract from
+ * @return {string} Pathname and query from given URL (or current URL)
+ */
+export declare const urlPathname: (url?: string) => string;
 /**
  * Return the URL with the protocol string ('http://', 'https://') removed
  *
@@ -191,20 +234,18 @@ export { swapMatchingURLPaths as replaceUrlPaths };
 export { swapMatchingURLPaths as replaceURLPaths };
 export { swapMatchingURLPaths as urlReplacePathMatches };
 export { swapMatchingURLPaths as urlReplaceMatchingPaths };
+/*************************************** EXTRACTION HELPER ****************************************/
+declare type URLParts = 'protocol' | 'hostname' | 'host' | 'port' | 'host' | 'pathname' | 'path' | 'query';
 /**
- * Normalize given [url] {string}, converting to this format:
- *     `/main/en/home`
- *     `/main/en/home?key=value`
+ * Extract given part or parts [urlParts] from given URL [url] (or current URL)
+ * and return as a conglomerate string
  *
- * Remove leading & trailing whitespace
- * Ensures a single / at beginning
- * Remove trailing /
- * Replace // with /
- * Replace /? with ?
+ * Warning: don't include non-consecutive URL parts in urlParts array
  *
- * Empty strings return ``
+ * Example: extractFromUrl([`hostname`, `port`], `http://www.exmpl.ca:8080/a/b/c?k=v`)
+ *          // => `www.exmpl.ca:8080`
  *
- * @param {string} url URL to normalize
- * @return {string} Normalized URL
+ * Example: extractFromUrl(`query`, `http://www.exmpl.ca:8080/a/b/c?key=val&b=2`)
+ *          // => `?key=val&b=2`
  */
-export declare const normalizeURLPathname: (url: string) => string;
+export declare const extractFromUrl: (urlParts: "protocol" | "hostname" | "host" | "port" | "pathname" | "path" | "query" | URLParts[], url?: string) => string;

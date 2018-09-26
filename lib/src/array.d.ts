@@ -217,6 +217,19 @@ export declare function removeMatches(arr1: RealAny[], arr2: any): RealAny[];
 export declare function removeMatches(arr1: RealAny[], arr2: RealAny[]): RealAny[];
 export declare type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
 /**
+ * [MUTATIVE]
+ * Mutatively removes all matches of given value from array
+ * Return new array
+ *
+ * Example: arrayRemove(['a', 'b', 'c', 'd', 'b'], 'b');
+ *          // => ['a', 'c', 'd']
+ *
+ * @param {Array} haystack Array to remove items from
+ * @param {any} needle Item to remove from array (remove ALL matches)
+ * @return {Array} array from haystack property with all "needle"s removed
+ */
+export declare const arrayRemove: <T = any>(haystack: T[], needle: T) => T[];
+/**
  * Remove falsy values from given array [arr]
  * By default removes all falsy val types, but 2nd param can set it to only rm
  * certain falsy types ['allFalsy', 'keep0', 'keepStr', 'nullUndef']
