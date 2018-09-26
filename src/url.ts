@@ -245,13 +245,13 @@ export {urlGetQuery as urlGetQueryParamString};
  *
  * Preserves trailing slash
  *
- * Example: extractURLPathnameWithQuery(`http://example.com/a/b/c?key=val`);
+ * Example: urlPathnameWithQuery(`http://example.com/a/b/c?key=val`);
  *          // => `/a/b/c?key=val`
  *
  * @param {string} url Optional URL string to extract from
  * @return {string} Pathname and query from given URL (or current URL)
  */
-export const extractURLPathnameWithQuery = (url?: string) => {
+export const urlPathnameWithQuery = (url?: string) => {
     const cleanUrl = url || global.location.href;
     if (!url) return ``;
     return urlWithoutProtocol(cleanUrl).replace(/^[^\/]+(?=\/)/, ``);
