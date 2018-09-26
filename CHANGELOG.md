@@ -1,3 +1,19 @@
+0.75.0
+======
+Add new functions to url submodule:
+    *   `extractFromUrl`
+    *   `normalizeURLPathname`
+    *   `urlPathnameWithQuery`
+    *   `urlPathname`
+
+Add `urlGetQuery` alias `urlQuery` in URL module
+
+Add new function `arrayRemove` to array submodule
+
+Add mad-utils REPL for experiments
+
+
+----------------------------------------------------------------------------------------------------
 0.74.2
 ======
 Add normalizeURLPathname function
