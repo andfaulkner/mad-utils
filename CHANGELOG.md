@@ -1,3 +1,8 @@
+0.75.1
+======
+Fix & expand docs for extractFromUrl
+Fully unit test extractFromUrl
+
 0.75.0
 ======
 Add new functions to url submodule:
