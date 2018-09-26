@@ -134,6 +134,7 @@ export { urlGetQuery as getQueryString };
 export { urlGetQuery as getQueryParamString };
 export { urlGetQuery as urlGetQueryString };
 export { urlGetQuery as urlGetQueryParamString };
+export declare const extractURLPathnameWithQuery: (url?: string) => string;
 /**
  * Return the URL with the protocol string ('http://', 'https://') removed
  *
