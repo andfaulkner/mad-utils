@@ -398,7 +398,7 @@ export type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
  * @param {any} needle Item to remove from array (remove ALL matches)
  * @return {Array} array from haystack property with all "needle"s removed
  */
-export const arrayRemove = <T = RealAny>(haystack: T[], needle: T): (T[] | null) => {
+export const arrayRemove = <T = RealAny>(haystack: T[], needle: T): T[] => {
     const matchingIdxes = [];
 
     haystack.forEach((item, idx) => {
