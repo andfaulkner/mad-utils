@@ -1,3 +1,8 @@
+0.75.2
+======
+Fill in max-/min-width & max-/min-height SCSS utils for 27px, 28px, 27%, 28%
+- They existed for width & height, so the oversight is confusing
+
 0.75.1
 ======
 Fix & expand docs for extractFromUrl
