@@ -96,14 +96,13 @@ export {mUtils as m_};
 export {mUtils as madUtils};
 
 /************************************ COMMON FUNCTION EXPORTS *************************************/
-import {commonShared} from './shared';
 import {useMiddlewareInProdOnly} from './src/node/middleware';
 import * as connect from 'connect';
 
 /**
  * Most common functions from mad-utils used in Node
  */
-export const common = Object.assign({}, commonShared, {
+export const common = Object.assign({}, {
     isDir: file.isDir,
     pathFromRoot: file.pathFromRoot,
     replaceInFile: file.replaceInFile,
