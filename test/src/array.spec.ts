@@ -9,7 +9,6 @@ import {inspect} from 'util';
 
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import {
-    m_,
     array,
     append,
     first,
@@ -49,6 +48,8 @@ import {
 
 import {array as arrayFromNode} from '../../node';
 import {array as arrayFromBrowser} from '../../browser';
+import {m_} from '../../browser';
+
 import * as arrayModule from '../../src/array';
 
 /********************************************* TESTS **********************************************/
@@ -621,7 +622,7 @@ describe(`array sub-module`, function() {
         });
     });
 
-    describe(`-- arrayRemove`, function(){
+    describe(`-- arrayRemove`, function() {
         const testArr1 = ['a', 'b', 'c', 'd', 'e'];
         const testArr2 = ['a', 'b', 'c', 'd', 'b', 'e', 'b', 'b'];
         let testArr1Return;
@@ -791,7 +792,6 @@ describe(`array sub-module`, function() {
             const mySet = new Set();
             expect(sample(mySet)).to.eql([]);
         });
-
     });
 
     describe(`flatten`, function() {
