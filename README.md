@@ -1022,28 +1022,36 @@ WIP documentation
 Namespace: locale (isomorphic)
 ==============================
 ### commonLangsObj
-WIP documentation
+*   Object containing a set of common languages and their common ID codes
+*   e.g. `{af: 'Afrikaans', en: 'English', ...}`
 
 ### commonLangAbbrevs
-WIP documentation
+*   Array of common abbreviations for the most common languages
+*   e.g. `['af', 'en', ...]`
 
 ### commonLangNames
-WIP documentation
+*   Array of the names of the most common languages
+*   e.g. `['Afrikaans', 'English', ...]`
 
 ### canadaLangsObj
-WIP documentation
+*   Object mapping Canada's official languages to their abbreviations
+*   `{en: `English`, fr: `French`}`
 
 ### canadaLangAbbrevs
-WIP documentation
+*   Array of the abbreviations of Canada's official languages
+*   `['en', 'fr']`
 
 ### canadaLangNames
-WIP documentation
+*   Array of the names of Canada's official languages
+*   `['English', 'French']`
 
 ### englishVariants
-WIP documentation
+*   Array of variants of English, by locale (codes)
+*   `['english', 'en', 'en_ca', 'en_us', ...]`
 
 ### frenchVariants
-WIP documentation
+*   Array of variants of French, by locale (codes)
+*   `['french', 'fr', 'fr_fr', 'fr_ca', ...]`
 
 
 
