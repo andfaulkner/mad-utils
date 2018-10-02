@@ -1,6 +1,10 @@
 import {Moment} from 'moment';
 
 // Import shared modules, and re-export them for top-level access
+import {m_} from './shared';
+export * from './shared';
+
+// Import shared modules for usage in typings
 import {
     array,
     date,
@@ -25,7 +29,7 @@ import * as nodeError from './src/node/node-error';
 export * from './src/node/node-error';
 export {nodeError};
 
-import * as errorShared from './shared';
+import {error as errorShared} from './shared';
 export {error as errorShared} from './shared';
 
 const err = {...errorShared, ...nodeError};
@@ -60,6 +64,8 @@ export {expressRouting};
 // Build final NodeJS types object by merging isomorphic types with Node-specific types
 // Export all, including merged-in types from types-iso
 import * as nodeTypes from './src/node/types-node';
+import * as typesIso from './src/types-iso';
+
 export * from './src/node/types-node';
 export const types = Object.assign(isoTypes, nodeTypes, dataTypes);
 
@@ -68,47 +74,24 @@ export const types = Object.assign(isoTypes, nodeTypes, dataTypes);
  * @export mUtils - module
  */
 export const mUtils = {
-    array,
-    commonDataTypes: dataTypes,
-    dataTypes,
-    date,
-    decorator,
-    decorators: decorator,
-    enum: Enum,
-    Enum,
-    error: err,
-    err,
-    errorShared,
+    ...m_,
     expressRouting,
     file,
-    func,
-    function: func,
-    functionUtils: func,
-    genericDataTypes: dataTypes,
-    isNode,
-    locale,
     middleware,
     nodeErr: nodeError,
     nodeError,
-    number,
-    object,
-    url,
     search,
-    stacktrace: err,
     stream,
-    str: string,
-    string,
     test,
     type: types,
     types,
     typing: types,
-    validation,
 };
 
-// Easier to access the 'pseudo-namespaced' mUtils/madUtils module
-export const __ = mUtils;
-export const m_ = mUtils;
-export const madUtils = mUtils;
+// Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
+export {mUtils as __};
+export {mUtils as m_};
+export {mUtils as madUtils};
 
 /************************************ COMMON FUNCTION EXPORTS *************************************/
 import {commonShared} from './shared';
