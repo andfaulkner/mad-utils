@@ -20,14 +20,7 @@ import {
     stream,
 } from './shared';
 
-// Import middleware (and middleware-handling) module
-import * as middleware from './src/node/middleware';
-export * from './src/node/middleware';
-export {middleware};
-export {middleware as middlewares};
-export {middleware as mware};
-export {middleware as MW};
-
+/***** Merge shared & Node error handling and export *****/
 import * as nodeError from './src/node/node-error';
 export * from './src/node/node-error';
 export {nodeError};
@@ -38,6 +31,15 @@ export {error as errorShared} from './shared';
 const err = {...errorShared, ...nodeError};
 export {err};
 export {err as error};
+
+/***** Export Node-specific modules/namespaces *****/
+// Import & export middleware (and middleware-handling) module/namespace
+import * as middleware from './src/node/middleware';
+export * from './src/node/middleware';
+export {middleware};
+export {middleware as middlewares};
+export {middleware as mware};
+export {middleware as MW};
 
 // Import & export test module/namespace
 import * as test from './src/node/test';
