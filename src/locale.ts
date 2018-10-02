@@ -32,7 +32,9 @@ export const commonLangAbbrevs = Object.keys(commonLangsObj);
 /**
  * Array of the names of the most common languages
  */
-export const commonLangNames = Object.keys(commonLangsObj).map(abbr => commonLangsObj[abbr]);
+export const commonLangNames: string[] = Object.keys(commonLangsObj).map(
+    abbr => commonLangsObj[abbr]
+);
 
 /*************************************** CANADIAN LANGUAGES ***************************************/
 /**
@@ -49,6 +51,8 @@ export {canadaLangAbbrevs as canadaLangCodes};
 /**
  * Array of the names of Canada's official languages
  */
-export const canadaLangNames = Object.keys(canadaLangsObj).map(abbr => canadaLangsObj[abbr]);
+export const canadaLangNames: string[] = Object.keys(canadaLangsObj).map(
+    abbr => canadaLangsObj[abbr]
+);
 
 export {englishVariants, frenchVariants} from './internal/lang-constants';

@@ -29,5 +29,6 @@ export const frenchVariants = ['french', 'fr', 'fr_fr', 'fr_ca', 'fr_lu', 'fr_ch
  * Note: being from Canada, these are my defaults
  * This may not make sense if you're from somewhere elsewhere
  * You can override them in any function where they're used
+ * These are not accessible outside mad-utils
  */
 export const defaultSupportedLangs = ['en', 'fr'];
