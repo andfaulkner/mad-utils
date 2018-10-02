@@ -1,3 +1,26 @@
+0.76.0 [MAJOR REFACTOR]
+=======================
+Include all shared namespaces in browser module export
+
+Namespaces export changes:
+*   Shared module export:
+    *   Add `err` namespace alias (for error namespace)
+    *   Add `stream` namespace
+*   Browser module export:
+    *   Add `srch` and `find` namespace aliases (for search namespace)
+    *   Add `numeric` & `num` namespace aliases (for number namespace)
+    *   Remove browser `types` namespace export
+*   Node module export:
+    *   Add `srch` and `find` namespace aliases (for search namespace)
+    *   Add `numeric` & `num` namespace aliases (for number namespace)
+    *   Remove Node `errorShared` namespace export
+
+Node type changes:
+*   Remove Colors type export from types-node (Node export)
+*   More restrictive ApplyMiddlewareFn type: only allow Object & Function values
+
+
+----------------------------------------------------------------------------------------------------
 0.75.2
 ======
 Fill in max-/min-width & max-/min-height SCSS utils for 27px, 28px, 27%, 28%
