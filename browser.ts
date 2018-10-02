@@ -49,7 +49,8 @@ export * from './src/types-data-generic';
 
 /********************************************* EXPORT *********************************************/
 /**
- * @export mUtils - module
+ * Top-level mad-utils namespace, containing all child namespaces
+ * Includes all contents of shared module plus browser-specific namespaces
  */
 export const mUtils = {
     ...m_,
@@ -61,7 +62,7 @@ export const mUtils = {
     localStorageUtils: localStore,
 };
 
-// Easier to access the 'pseudo-namespaced' mUtils/madUtils module
+// Export top-level namespace aliases
 export {mUtils as __};
 export {mUtils as m_};
 export {mUtils as madUtils};

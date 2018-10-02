@@ -75,7 +75,8 @@ export const types = {...typesIso, ...dataTypes};
 
 /********************************************* EXPORT *********************************************/
 /**
- * @export mUtils - module
+ * Top-level mad-utils namespace, containing all child namespaces
+ * Includes all contents of shared module plus browser-specific namespaces
  */
 export const mUtils = {
     array,
@@ -113,9 +114,9 @@ export const mUtils = {
 };
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module.
-export const __ = mUtils;
-export const m_ = mUtils;
-export const madUtils = mUtils;
+export {mUtils as __};
+export {mUtils as m_};
+export {mUtils as madUtils};
 
 /************************************ EXPORT COMMON FUNCTIONS *************************************/
 export const commonShared = {
