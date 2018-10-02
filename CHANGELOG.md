@@ -1,23 +1,27 @@
-0.76.0 [MAJOR REFACTOR]
-=======================
+0.76.0 [MAJOR REFACTOR] [BREAKING CHANGES]
+==========================================
 Include all shared namespaces in browser module export
 
 Namespaces export changes:
 *   Shared module export:
-    *   Add `err` namespace alias (for error namespace)
+    *   Add `err` namespace alias (for `error` namespace)
     *   Add `stream` namespace
 *   Browser module export:
-    *   Add `srch` and `find` namespace aliases (for search namespace)
-    *   Add `numeric` & `num` namespace aliases (for number namespace)
+    *   Add `srch` and `find` namespace aliases (for `search` namespace)
+    *   Add `numeric` & `num` namespace aliases (for `number` namespace)
     *   Remove browser `types` namespace export
 *   Node module export:
-    *   Add `srch` and `find` namespace aliases (for search namespace)
-    *   Add `numeric` & `num` namespace aliases (for number namespace)
+    *   Add `srch` and `find` namespace aliases (for `search` namespace)
+    *   Add `numeric` & `num` namespace aliases (for `number` namespace)
     *   Remove Node `errorShared` namespace export
 
+Remove `common` namespace exports:
+*   Remove `common`, `commonIso` & `commonShared` exports from `./mad-utils/lib/shared`
+*   Remove `common` export from `./mad-utils/lib/browser` & `./mad-utils/lib/node`
+
 Node type changes:
-*   Remove Colors type export from types-node (Node export)
-*   More restrictive ApplyMiddlewareFn type: only allow Object & Function values
+*   Remove `Colors` type export from types-node (Node export)
+*   More restrictive `ApplyMiddlewareFn` type: only allow `Object` & `Function` values
 
 
 ----------------------------------------------------------------------------------------------------
