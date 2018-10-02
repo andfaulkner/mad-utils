@@ -81,7 +81,7 @@ export declare const commonLangAbbrevs: string[];
 /**
  * Array of the names of the most common languages
  */
-export declare const commonLangNames: any[];
+export declare const commonLangNames: string[];
 /*************************************** CANADIAN LANGUAGES ***************************************/
 /**
  * Object mapping Canada's official languages to their abbreviations
@@ -98,5 +98,5 @@ export { canadaLangAbbrevs as canadaLangCodes };
 /**
  * Array of the names of Canada's official languages
  */
-export declare const canadaLangNames: any[];
+export declare const canadaLangNames: string[];
 export { englishVariants, frenchVariants } from './internal/lang-constants';
