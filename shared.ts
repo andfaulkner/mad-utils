@@ -69,6 +69,10 @@ export {stream};
 import * as isNode from 'detect-node';
 export {isNode};
 
+// Build final types object by merging isomorphic types with data types
+// Note that this excludes straight types (it only includes type utils)
+export const types = {...typesIso, ...dataTypes};
+
 /********************************************* EXPORT *********************************************/
 /**
  * @export mUtils - module
@@ -82,6 +86,7 @@ export const mUtils = {
     decorators: decorator,
     enum: Enum,
     Enum,
+    err: error,
     error,
     find: search,
     func: func,

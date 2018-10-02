@@ -1,6 +1,10 @@
 import {Moment} from 'moment';
 
 // Import shared modules, and re-export them for top-level access
+import {m_} from './shared';
+export * from './shared';
+
+// Import shared modules for usage in typings
 import {
     array,
     date,
@@ -14,46 +18,12 @@ import {
     url,
     search,
     string,
-    types as isoTypes,
+    types,
+    typesIso,
     validation,
     dataTypes,
     stream,
 } from './shared';
-
-export {
-    array,
-    date,
-    decorator,
-    Enum,
-    error,
-    func,
-    locale,
-    number,
-    object,
-    url,
-    search,
-    string,
-    validation,
-    stream,
-};
-
-export * from './src/array';
-export * from './src/date';
-export * from './src/decorator';
-export * from './src/enum';
-export * from './src/error';
-export * from './src/function';
-export * from './src/locale';
-export * from './src/number';
-export * from './src/object';
-export * from './src/url';
-export * from './src/search';
-export * from './src/stream';
-export * from './src/string';
-export * from './src/validation';
-
-import {isNode} from 'detect-node';
-export {isNode};
 
 // Import DOM module
 import * as dom from './src/browser/dom';
@@ -76,57 +46,25 @@ export {localStore as localStorageUtils};
 // Import browser-types (including merged-in types from types-iso)
 import * as browserTypes from './src/browser/types-browser';
 export * from './src/browser/types-browser';
-export * from './src/types-iso';
-export * from './src/types-data-generic';
-
-// Build final browser types object by merging isomorphic types with browser-specific types
-export const types = Object.assign(isoTypes, browserTypes, dataTypes);
 
 /********************************************* EXPORT *********************************************/
 /**
- * @export mUtils - module (namespace)
+ * @export mUtils - module
  */
 export const mUtils = {
-    array,
-    commonDataTypes: dataTypes,
-    dataTypes,
-    date,
-    decorator,
-    decorators: decorator,
+    ...m_,
     dom,
-    enum: Enum,
-    Enum,
-    err: error,
-    error,
     event,
-    func,
-    function: func,
-    functionUtils: func,
-    genericDataTypes: dataTypes,
-    isNode,
-    locale,
     localStore,
     localStoreUtils: localStore,
     localStorage: localStore,
     localStorageUtils: localStore,
-    number,
-    object,
-    url,
-    search,
-    stacktrace: error,
-    stream,
-    str: string,
-    string,
-    type: types,
-    types,
-    typing: types,
-    validation,
 };
 
 // Easier to access the 'pseudo-namespaced' mUtils/madUtils module
-export const __ = mUtils;
-export const m_ = mUtils;
-export const madUtils = mUtils;
+export {mUtils as __};
+export {mUtils as m_};
+export {mUtils as madUtils};
 
 /************************************ COMMON FUNCTION EXPORTS *************************************/
 import {commonShared} from './shared';
