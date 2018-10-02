@@ -1,3 +1,4 @@
+// Needed for exports to work correctly
 import {Moment} from 'moment';
 
 // Import shared modules, and re-export them for top-level access
@@ -71,7 +72,8 @@ export const types = Object.assign(isoTypes, nodeTypes, dataTypes);
 
 /********************************************* EXPORT *********************************************/
 /**
- * @export mUtils - module
+ * Top-level mad-utils namespace, containing all child namespaces
+ * Includes all contents of shared module plus node-specific namespaces
  */
 export const mUtils = {
     ...m_,

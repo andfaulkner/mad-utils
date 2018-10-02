@@ -1,3 +1,4 @@
+// Needed for exports to work correctly
 import {Moment} from 'moment';
 
 // Import shared modules, and re-export them for top-level access

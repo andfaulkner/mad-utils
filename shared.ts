@@ -1,3 +1,4 @@
+// Needed for exports to work correctly
 import {Moment} from 'moment';
 
 /******************************************** IMPORTS *********************************************/
