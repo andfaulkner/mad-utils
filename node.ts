@@ -51,18 +51,17 @@ import * as file from './src/node/file';
 export * from './src/node/file';
 export {file};
 
-// Build final NodeJS types object by merging isomorphic types with Node-specific types
-// Export all, including merged-in types from types-iso
-import * as nodeTypes from './src/node/types-node';
-export const types = Object.assign(isoTypes, nodeTypes, dataTypes);
-export * from './src/node/types-node';
-export * from './src/types-iso';
-export * from './src/types-data-generic';
-
 // Import ExpressJS routing helpers module
 import * as expressRouting from './src/node/express-routing';
 export * from './src/node/express-routing';
 export {expressRouting};
+
+/***** Build & export Node-specific types *****/
+// Build final NodeJS types object by merging isomorphic types with Node-specific types
+// Export all, including merged-in types from types-iso
+import * as nodeTypes from './src/node/types-node';
+export * from './src/node/types-node';
+export const types = Object.assign(isoTypes, nodeTypes, dataTypes);
 
 /********************************************* EXPORT *********************************************/
 /**
