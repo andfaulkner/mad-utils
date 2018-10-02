@@ -49,9 +49,9 @@ import * as string from './src/string';
 export * from './src/string';
 export {string};
 
-import * as types from './src/types-iso';
+import * as typesIso from './src/types-iso';
 export * from './src/types-iso';
-export {types};
+export {typesIso};
 
 import * as dataTypes from './src/types-data-generic';
 export * from './src/types-data-generic';
