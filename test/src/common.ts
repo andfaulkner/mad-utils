@@ -7,7 +7,6 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import {common as nodeCommon} from '../../node';
-import {common as browserCommon} from '../../browser';
 import {commonShared as sharedCommon} from '../../shared';
 
 /********************************************* TESTS **********************************************/
@@ -15,10 +14,6 @@ describe(`common exports sub-module`, function() {
     expectNonEmptyObjectExists(
         nodeCommon,
         'Object with functions most commonly used in Node exported'
-    );
-    expectNonEmptyObjectExists(
-        browserCommon,
-        'Object with functions most commonly used in browser exported'
     );
     expectNonEmptyObjectExists(
         sharedCommon,

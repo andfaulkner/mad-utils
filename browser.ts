@@ -63,14 +63,3 @@ export const mUtils = {
 export {mUtils as __};
 export {mUtils as m_};
 export {mUtils as madUtils};
-
-/************************************ COMMON FUNCTION EXPORTS *************************************/
-import {commonShared} from './shared';
-
-/**
- * Most common functions from mad-utils used in browser
- */
-export const common = Object.assign({}, commonShared, {
-    parseUserAgent: dom.parseUserAgent,
-    getFromStorage: localStore.getFromStorage,
-});
