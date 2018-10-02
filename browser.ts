@@ -43,10 +43,6 @@ export {localStore as localStorage};
 export {localStore as localStoreUtils};
 export {localStore as localStorageUtils};
 
-// Import types (including merged-in types from types-iso)
-export * from './src/types-iso';
-export * from './src/types-data-generic';
-
 /********************************************* EXPORT *********************************************/
 /**
  * Top-level mad-utils namespace, containing all child namespaces
