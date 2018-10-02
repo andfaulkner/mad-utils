@@ -100,6 +100,7 @@ export const mUtils = {
     num: number,
     number,
     numeric: number,
+    stream,
     object,
     url,
     search,
