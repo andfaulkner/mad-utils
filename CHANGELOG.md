@@ -1,3 +1,7 @@
+0.76.1 [WIP]
+============
+Fix typings in `locale` module
+
 0.76.0 [MAJOR REFACTOR] [BREAKING CHANGES]
 ==========================================
 Include all shared namespaces in browser module export
