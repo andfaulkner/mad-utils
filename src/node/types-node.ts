@@ -1,23 +1,35 @@
 /// <reference types="express" />
 
-import * as connect from 'connect';
+import {HandleFunction} from 'connect';
+import {colors} from 'mad-logs/lib/node';
 
-import { colors } from 'mad-logs/lib/node';
-
-// Not a true import. Gets around it by importing the type defs.
-import { Application, Router } from 'express';
+/**
+ * Not a true import
+ * Just imports the type defs
+ */
+import {Application, Router} from 'express';
 
 /**
  * Generic signature for Express (slash Connect) middlewares
  */
-export type MWare<T> = (T: T) => connect.HandleFunction;
+export type MWare<T> = (T: T) => HandleFunction;
 /**
- * @alias for MWare<T>
+ * Generic signature for Express (slash Connect) middlewares
+ * Alias for MWare type
  */
 export type Middleware<T> = MWare<T>;
 
-export type ApplyMiddlewareFn = <T>(app: T) => T;
+/**
+ * Function for applying a middleware to a given object
+ */
+export type ApplyMiddlewareFn = <T extends Object | object | Function>(app: T) => T;
+
+/**
+ * Express application types
+ */
 export type ExpressApp = Application | Router;
 
-// Note: hack to get the private "Color" from from the colors module.
+/**
+ * Hack to get the private "Color" type from from the colors module
+ */
 export type Color = typeof colors.reset;
