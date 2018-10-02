@@ -1,203 +1,902 @@
 import { Moment } from 'moment';
-import { array, date, decorator, Enum, func, locale, number, object, url, search, string, types as isoTypes, validation, dataTypes, stream } from './shared';
-export { array, date, decorator, Enum, func, locale, number, object, url, search, string, validation, stream, };
-export * from './src/array';
-export * from './src/date';
-export * from './src/decorator';
-export * from './src/enum';
-export * from './src/error';
-export * from './src/function';
-export * from './src/locale';
-export * from './src/number';
+export * from './shared';
+import { array, date, decorator, Enum, error, func, locale, number, object, url, search, string, validation, dataTypes, stream } from './shared';
+/***** Merge shared & Node error handling and export *****/
+import * as nodeError from './src/node/node-error';
 export * from './src/node/node-error';
-export * from './src/object';
-export * from './src/url';
-export * from './src/search';
-export * from './src/stream';
-export * from './src/string';
-export * from './src/validation';
-import { isNode } from 'detect-node';
-export { isNode };
+export { nodeError };
+export { error as errorShared } from './shared';
+declare const err: {
+    globalActivateCleanStack: () => void;
+    scrubStackTrace(stack: string, srcFn?: string): string;
+    removeFromStack(stack: string, libsToRm?: string[]): string;
+    getFirstStackItem(stack: string): string;
+    getFirstStackItem<T extends Error>(error: T): string;
+    getSecondStackItem(stack: string): string;
+    getSecondStackItem<T extends Error>(error: T): string;
+    getThirdStackItem(stack: string): string;
+    getThirdStackItem<T extends Error>(error: T): string;
+};
+export { err };
+export { err as error };
+/***** Export Node-specific modules/namespaces *****/
 import * as middleware from './src/node/middleware';
 export * from './src/node/middleware';
 export { middleware };
 export { middleware as middlewares };
 export { middleware as mware };
 export { middleware as MW };
-import * as nodeError from './src/node/node-error';
-export * from './src/node/node-error';
-export { nodeError };
-import * as errorShared from './shared';
-export { error as errorShared } from './shared';
-declare const err: typeof errorShared & typeof nodeError;
-export { err };
-export { err as error };
 import * as test from './src/node/test';
 export * from './src/node/test';
 export { test };
 import * as file from './src/node/file';
 export * from './src/node/file';
 export { file };
-import * as nodeTypes from './src/node/types-node';
-export declare const types: typeof isoTypes & typeof dataTypes;
-export * from './src/node/types-node';
-export * from './src/types-iso';
-export * from './src/types-data-generic';
 import * as expressRouting from './src/node/express-routing';
 export * from './src/node/express-routing';
 export { expressRouting };
+/***** Build & export Node-specific types *****/
+import * as nodeTypes from './src/node/types-node';
+import * as typesIso from './src/types-iso';
+export * from './src/node/types-node';
+export declare const types: {
+    biologicalSexes: Readonly<{
+        male: "male";
+        female: "female";
+    }>;
+    commonBiologicalSexes: Readonly<{
+        male: "male";
+        female: "female";
+    }>;
+    sexes: Readonly<{
+        male: "male";
+        female: "female";
+    }>;
+    commonSexes: Readonly<{
+        male: "male";
+        female: "female";
+    }>;
+    biologicalSexesWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    commonBiologicalSexesWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    sexesWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    commonSexesWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    sexWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    biologicalSexesWithOther: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }>;
+    sexesWithOther: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }>;
+    commonSexesWithOther: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }>;
+    commonBiologicalSexesWithOther: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }>;
+    gender: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }>;
+    genderCommon: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }>;
+    genderWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    genderCommonWithBoth: Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        both: "both";
+    }>;
+    genderFull: Readonly<Readonly<Readonly<{
+        male: "male";
+        female: "female";
+    }> & {
+        other: "other";
+    }> & {
+        transMale: "trans male";
+        transFemale: "trans female";
+        genderqueer: "genderqueer";
+        genderfluid: "genderfluid";
+        intersex: "intersex";
+        agender: "agender";
+        bigender: "bigender";
+        nonBinary: "nonBinary";
+        none: "none";
+    }>;
+    CANProvinces: Readonly<{
+        on: "Ontario";
+        qc: "Quebec";
+        nb: "New Brunswick";
+        ns: "Nova Scotia";
+        pe: "Prince Edward Island";
+        mb: "Manitoba";
+        sk: "Saskatchewan";
+        bc: "British Columbia";
+        nt: "Northwest Territories";
+        nu: "Nunavut";
+        yt: "Yukon Territory";
+        ab: "Alberta";
+        nl: "Newfoundland and Labrador";
+    }>;
+    CANProvincesOrNone: Readonly<Readonly<{
+        on: "Ontario";
+        qc: "Quebec";
+        nb: "New Brunswick";
+        ns: "Nova Scotia";
+        pe: "Prince Edward Island";
+        mb: "Manitoba";
+        sk: "Saskatchewan";
+        bc: "British Columbia";
+        nt: "Northwest Territories";
+        nu: "Nunavut";
+        yt: "Yukon Territory";
+        ab: "Alberta";
+        nl: "Newfoundland and Labrador";
+    }> & {
+        none: "none";
+    }>;
+    canadianProvinces: Readonly<{
+        on: "Ontario";
+        qc: "Quebec";
+        nb: "New Brunswick";
+        ns: "Nova Scotia";
+        pe: "Prince Edward Island";
+        mb: "Manitoba";
+        sk: "Saskatchewan";
+        bc: "British Columbia";
+        nt: "Northwest Territories";
+        nu: "Nunavut";
+        yt: "Yukon Territory";
+        ab: "Alberta";
+        nl: "Newfoundland and Labrador";
+    }>;
+    canadianProvincesOrNone: Readonly<Readonly<{
+        on: "Ontario";
+        qc: "Quebec";
+        nb: "New Brunswick";
+        ns: "Nova Scotia";
+        pe: "Prince Edward Island";
+        mb: "Manitoba";
+        sk: "Saskatchewan";
+        bc: "British Columbia";
+        nt: "Northwest Territories";
+        nu: "Nunavut";
+        yt: "Yukon Territory";
+        ab: "Alberta";
+        nl: "Newfoundland and Labrador";
+    }> & {
+        none: "none";
+    }>;
+    isUndefined: (value: any) => value is undefined;
+    isNullOrUndefined: (val: any) => val is null;
+    isVoidOrString: (val: any) => val is string;
+    isAlphabeticChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+    isAlphaChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+    isNumber: <T extends number | Number = number>(val: any) => val is T;
+    isNum: <T extends number | Number = number>(val: any) => val is T;
+    isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+    isNumLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+    isInteger: <T extends string | number | String | Number = number>(val: any) => val is T;
+    isInt: <T extends string | number | String | Number = number>(val: any) => val is T;
+    isIntegerLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+    isIntLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+    isString: <T extends string | String = string>(val: any) => val is T;
+    isStringOrNumber: (val: any) => val is string | number | String | Number;
+    isStringOrNum: (val: any) => val is string | number | String | Number;
+    isStrOrNum: (val: any) => val is string | number | String | Number;
+    isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+    isBool: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+    isDateLike: <T extends string | boolean | Object | Moment>(val: any) => val is T;
+    isArray: <T = any>(val: any) => val is T[];
+    isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
+    isFalse: <T extends string | false | String = false>(val: any, include1CharVal?: boolean) => val is T;
+    isFunction: <T extends Function = (...args: any[]) => any>(val: any) => val is T;
+    singleton: <T extends typesIso.ClassConstructor>(constructor: T) => typesIso.SingletonInterface<any> & T;
+    boolStringToBool: (val: string | boolean, strict?: boolean) => boolean;
+    toBoolFromBoolString: (val: string | boolean, strict?: boolean) => boolean;
+} & typeof dataTypes;
 /********************************************* EXPORT *********************************************/
 /**
- * @export mUtils - module
+ * Top-level mad-utils namespace, containing all child namespaces
+ * Includes all contents of shared module plus node-specific namespaces
  */
 export declare const mUtils: {
+    expressRouting: typeof expressRouting;
+    file: typeof file;
+    middleware: typeof middleware;
+    nodeErr: typeof nodeError;
+    nodeError: typeof nodeError;
+    search: typeof search;
+    stream: typeof stream;
+    test: typeof test;
+    type: {
+        biologicalSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        commonBiologicalSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        sexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        commonSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        biologicalSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        commonBiologicalSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        sexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        commonSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        sexWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        biologicalSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        sexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        commonSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        commonBiologicalSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        gender: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        genderCommon: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        genderWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        genderCommonWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        genderFull: Readonly<Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }> & {
+            transMale: "trans male";
+            transFemale: "trans female";
+            genderqueer: "genderqueer";
+            genderfluid: "genderfluid";
+            intersex: "intersex";
+            agender: "agender";
+            bigender: "bigender";
+            nonBinary: "nonBinary";
+            none: "none";
+        }>;
+        CANProvinces: Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }>;
+        CANProvincesOrNone: Readonly<Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }> & {
+            none: "none";
+        }>;
+        canadianProvinces: Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }>;
+        canadianProvincesOrNone: Readonly<Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }> & {
+            none: "none";
+        }>;
+        isUndefined: (value: any) => value is undefined;
+        isNullOrUndefined: (val: any) => val is null;
+        isVoidOrString: (val: any) => val is string;
+        isAlphabeticChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+        isAlphaChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+        isNumber: <T extends number | Number = number>(val: any) => val is T;
+        isNum: <T extends number | Number = number>(val: any) => val is T;
+        isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isNumLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isInteger: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isInt: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isIntegerLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isIntLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isString: <T extends string | String = string>(val: any) => val is T;
+        isStringOrNumber: (val: any) => val is string | number | String | Number;
+        isStringOrNum: (val: any) => val is string | number | String | Number;
+        isStrOrNum: (val: any) => val is string | number | String | Number;
+        isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+        isBool: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+        isDateLike: <T extends string | boolean | Object | Moment>(val: any) => val is T;
+        isArray: <T = any>(val: any) => val is T[];
+        isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
+        isFalse: <T extends string | false | String = false>(val: any, include1CharVal?: boolean) => val is T;
+        isFunction: <T extends Function = (...args: any[]) => any>(val: any) => val is T;
+        singleton: <T extends typesIso.ClassConstructor>(constructor: T) => typesIso.SingletonInterface<any> & T;
+        boolStringToBool: (val: string | boolean, strict?: boolean) => boolean;
+        toBoolFromBoolString: (val: string | boolean, strict?: boolean) => boolean;
+    } & typeof dataTypes;
+    types: {
+        biologicalSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        commonBiologicalSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        sexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        commonSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        biologicalSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        commonBiologicalSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        sexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        commonSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        sexWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        biologicalSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        sexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        commonSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        commonBiologicalSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        gender: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        genderCommon: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        genderWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        genderCommonWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        genderFull: Readonly<Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }> & {
+            transMale: "trans male";
+            transFemale: "trans female";
+            genderqueer: "genderqueer";
+            genderfluid: "genderfluid";
+            intersex: "intersex";
+            agender: "agender";
+            bigender: "bigender";
+            nonBinary: "nonBinary";
+            none: "none";
+        }>;
+        CANProvinces: Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }>;
+        CANProvincesOrNone: Readonly<Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }> & {
+            none: "none";
+        }>;
+        canadianProvinces: Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }>;
+        canadianProvincesOrNone: Readonly<Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }> & {
+            none: "none";
+        }>;
+        isUndefined: (value: any) => value is undefined;
+        isNullOrUndefined: (val: any) => val is null;
+        isVoidOrString: (val: any) => val is string;
+        isAlphabeticChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+        isAlphaChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+        isNumber: <T extends number | Number = number>(val: any) => val is T;
+        isNum: <T extends number | Number = number>(val: any) => val is T;
+        isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isNumLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isInteger: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isInt: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isIntegerLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isIntLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isString: <T extends string | String = string>(val: any) => val is T;
+        isStringOrNumber: (val: any) => val is string | number | String | Number;
+        isStringOrNum: (val: any) => val is string | number | String | Number;
+        isStrOrNum: (val: any) => val is string | number | String | Number;
+        isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+        isBool: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+        isDateLike: <T extends string | boolean | Object | Moment>(val: any) => val is T;
+        isArray: <T = any>(val: any) => val is T[];
+        isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
+        isFalse: <T extends string | false | String = false>(val: any, include1CharVal?: boolean) => val is T;
+        isFunction: <T extends Function = (...args: any[]) => any>(val: any) => val is T;
+        singleton: <T extends typesIso.ClassConstructor>(constructor: T) => typesIso.SingletonInterface<any> & T;
+        boolStringToBool: (val: string | boolean, strict?: boolean) => boolean;
+        toBoolFromBoolString: (val: string | boolean, strict?: boolean) => boolean;
+    } & typeof dataTypes;
+    typing: {
+        biologicalSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        commonBiologicalSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        sexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        commonSexes: Readonly<{
+            male: "male";
+            female: "female";
+        }>;
+        biologicalSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        commonBiologicalSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        sexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        commonSexesWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        sexWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        biologicalSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        sexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        commonSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        commonBiologicalSexesWithOther: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        gender: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        genderCommon: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }>;
+        genderWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        genderCommonWithBoth: Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            both: "both";
+        }>;
+        genderFull: Readonly<Readonly<Readonly<{
+            male: "male";
+            female: "female";
+        }> & {
+            other: "other";
+        }> & {
+            transMale: "trans male";
+            transFemale: "trans female";
+            genderqueer: "genderqueer";
+            genderfluid: "genderfluid";
+            intersex: "intersex";
+            agender: "agender";
+            bigender: "bigender";
+            nonBinary: "nonBinary";
+            none: "none";
+        }>;
+        CANProvinces: Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }>;
+        CANProvincesOrNone: Readonly<Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }> & {
+            none: "none";
+        }>;
+        canadianProvinces: Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }>;
+        canadianProvincesOrNone: Readonly<Readonly<{
+            on: "Ontario";
+            qc: "Quebec";
+            nb: "New Brunswick";
+            ns: "Nova Scotia";
+            pe: "Prince Edward Island";
+            mb: "Manitoba";
+            sk: "Saskatchewan";
+            bc: "British Columbia";
+            nt: "Northwest Territories";
+            nu: "Nunavut";
+            yt: "Yukon Territory";
+            ab: "Alberta";
+            nl: "Newfoundland and Labrador";
+        }> & {
+            none: "none";
+        }>;
+        isUndefined: (value: any) => value is undefined;
+        isNullOrUndefined: (val: any) => val is null;
+        isVoidOrString: (val: any) => val is string;
+        isAlphabeticChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+        isAlphaChar: <T extends string = string>(val: any, handleAccents?: boolean) => val is T;
+        isNumber: <T extends number | Number = number>(val: any) => val is T;
+        isNum: <T extends number | Number = number>(val: any) => val is T;
+        isNumberLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isNumLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isInteger: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isInt: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isIntegerLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isIntLike: <T extends string | number | String | Number = number>(val: any) => val is T;
+        isString: <T extends string | String = string>(val: any) => val is T;
+        isStringOrNumber: (val: any) => val is string | number | String | Number;
+        isStringOrNum: (val: any) => val is string | number | String | Number;
+        isStrOrNum: (val: any) => val is string | number | String | Number;
+        isBoolean: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+        isBool: <T extends boolean | Boolean = boolean>(val: any) => val is T;
+        isDateLike: <T extends string | boolean | Object | Moment>(val: any) => val is T;
+        isArray: <T = any>(val: any) => val is T[];
+        isTrue: <T extends string | true | String = true>(val: any, include1CharVal?: boolean) => val is T;
+        isFalse: <T extends string | false | String = false>(val: any, include1CharVal?: boolean) => val is T;
+        isFunction: <T extends Function = (...args: any[]) => any>(val: any) => val is T;
+        singleton: <T extends typesIso.ClassConstructor>(constructor: T) => typesIso.SingletonInterface<any> & T;
+        boolStringToBool: (val: string | boolean, strict?: boolean) => boolean;
+        toBoolFromBoolString: (val: string | boolean, strict?: boolean) => boolean;
+    } & typeof dataTypes;
     array: typeof array;
+    date: typeof date;
     commonDataTypes: typeof dataTypes;
     dataTypes: typeof dataTypes;
-    date: typeof date;
     decorator: typeof decorator;
     decorators: typeof decorator;
     enum: typeof Enum;
     Enum: typeof Enum;
-    error: typeof errorShared & typeof nodeError;
-    err: typeof errorShared & typeof nodeError;
-    errorShared: typeof errorShared;
-    expressRouting: typeof expressRouting;
-    file: typeof file;
+    err: typeof error;
+    error: typeof error;
+    find: typeof search;
     func: typeof func;
     function: typeof func;
     functionUtils: typeof func;
     genericDataTypes: typeof dataTypes;
     isNode: any;
     locale: typeof locale;
-    middleware: typeof middleware;
-    nodeErr: typeof nodeError;
-    nodeError: typeof nodeError;
+    math: typeof number;
+    num: typeof number;
     number: typeof number;
+    numeric: typeof number;
     object: typeof object;
     url: typeof url;
-    search: typeof search;
-    stacktrace: typeof errorShared & typeof nodeError;
-    stream: typeof stream;
+    srch: typeof search;
+    stacktrace: typeof error;
     str: typeof string;
     string: typeof string;
-    test: typeof test;
-    type: typeof isoTypes & typeof dataTypes;
-    types: typeof isoTypes & typeof dataTypes;
-    typing: typeof isoTypes & typeof dataTypes;
     validation: typeof validation;
 };
-export declare const __: {
-    array: typeof array;
-    commonDataTypes: typeof dataTypes;
-    dataTypes: typeof dataTypes;
-    date: typeof date;
-    decorator: typeof decorator;
-    decorators: typeof decorator;
-    enum: typeof Enum;
-    Enum: typeof Enum;
-    error: typeof errorShared & typeof nodeError;
-    err: typeof errorShared & typeof nodeError;
-    errorShared: typeof errorShared;
-    expressRouting: typeof expressRouting;
-    file: typeof file;
-    func: typeof func;
-    function: typeof func;
-    functionUtils: typeof func;
-    genericDataTypes: typeof dataTypes;
-    isNode: any;
-    locale: typeof locale;
-    middleware: typeof middleware;
-    nodeErr: typeof nodeError;
-    nodeError: typeof nodeError;
-    number: typeof number;
-    object: typeof object;
-    url: typeof url;
-    search: typeof search;
-    stacktrace: typeof errorShared & typeof nodeError;
-    stream: typeof stream;
-    str: typeof string;
-    string: typeof string;
-    test: typeof test;
-    type: typeof isoTypes & typeof dataTypes;
-    types: typeof isoTypes & typeof dataTypes;
-    typing: typeof isoTypes & typeof dataTypes;
-    validation: typeof validation;
-};
-export declare const m_: {
-    array: typeof array;
-    commonDataTypes: typeof dataTypes;
-    dataTypes: typeof dataTypes;
-    date: typeof date;
-    decorator: typeof decorator;
-    decorators: typeof decorator;
-    enum: typeof Enum;
-    Enum: typeof Enum;
-    error: typeof errorShared & typeof nodeError;
-    err: typeof errorShared & typeof nodeError;
-    errorShared: typeof errorShared;
-    expressRouting: typeof expressRouting;
-    file: typeof file;
-    func: typeof func;
-    function: typeof func;
-    functionUtils: typeof func;
-    genericDataTypes: typeof dataTypes;
-    isNode: any;
-    locale: typeof locale;
-    middleware: typeof middleware;
-    nodeErr: typeof nodeError;
-    nodeError: typeof nodeError;
-    number: typeof number;
-    object: typeof object;
-    url: typeof url;
-    search: typeof search;
-    stacktrace: typeof errorShared & typeof nodeError;
-    stream: typeof stream;
-    str: typeof string;
-    string: typeof string;
-    test: typeof test;
-    type: typeof isoTypes & typeof dataTypes;
-    types: typeof isoTypes & typeof dataTypes;
-    typing: typeof isoTypes & typeof dataTypes;
-    validation: typeof validation;
-};
-export declare const madUtils: {
-    array: typeof array;
-    commonDataTypes: typeof dataTypes;
-    dataTypes: typeof dataTypes;
-    date: typeof date;
-    decorator: typeof decorator;
-    decorators: typeof decorator;
-    enum: typeof Enum;
-    Enum: typeof Enum;
-    error: typeof errorShared & typeof nodeError;
-    err: typeof errorShared & typeof nodeError;
-    errorShared: typeof errorShared;
-    expressRouting: typeof expressRouting;
-    file: typeof file;
-    func: typeof func;
-    function: typeof func;
-    functionUtils: typeof func;
-    genericDataTypes: typeof dataTypes;
-    isNode: any;
-    locale: typeof locale;
-    middleware: typeof middleware;
-    nodeErr: typeof nodeError;
-    nodeError: typeof nodeError;
-    number: typeof number;
-    object: typeof object;
-    url: typeof url;
-    search: typeof search;
-    stacktrace: typeof errorShared & typeof nodeError;
-    stream: typeof stream;
-    str: typeof string;
-    string: typeof string;
-    test: typeof test;
-    type: typeof isoTypes & typeof dataTypes;
-    types: typeof isoTypes & typeof dataTypes;
-    typing: typeof isoTypes & typeof dataTypes;
-    validation: typeof validation;
-};
+export { mUtils as __ };
+export { mUtils as m_ };
+export { mUtils as madUtils };
 import * as connect from 'connect';
 /**
  * Most common functions from mad-utils used in Node
@@ -231,7 +930,6 @@ export declare const common: {
     hasKey: <T extends Object>(obj: T, matchKey: string) => boolean;
     eachPair: <T extends Object>(func: (val: T[Extract<keyof T, string>], key?: Extract<keyof T, string>) => any) => (obj: T) => T;
     assignFrozenClone: <T>(...args: {}[]) => Readonly<T>;
-    /************************************ COMMON FUNCTION EXPORTS *************************************/
     deepFreeze: <T>(obj: T) => Readonly<T>;
     parseQueryParams: <T>(queryParamsStr?: string) => T;
     getLangFromUrlPathname: (urlPath?: string, supportedLangs?: string[], defaultLang?: string) => string;
