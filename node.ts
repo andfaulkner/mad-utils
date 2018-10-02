@@ -20,41 +20,6 @@ import {
     stream,
 } from './shared';
 
-export {
-    array,
-    date,
-    decorator,
-    Enum,
-    func,
-    locale,
-    number,
-    object,
-    url,
-    search,
-    string,
-    validation,
-    stream,
-};
-
-export * from './src/array';
-export * from './src/date';
-export * from './src/decorator';
-export * from './src/enum';
-export * from './src/error';
-export * from './src/function';
-export * from './src/locale';
-export * from './src/number';
-export * from './src/node/node-error';
-export * from './src/object';
-export * from './src/url';
-export * from './src/search';
-export * from './src/stream';
-export * from './src/string';
-export * from './src/validation';
-
-import {isNode} from 'detect-node';
-export {isNode};
-
 // Import middleware (and middleware-handling) module
 import * as middleware from './src/node/middleware';
 export * from './src/node/middleware';
@@ -70,16 +35,16 @@ export {nodeError};
 import * as errorShared from './shared';
 export {error as errorShared} from './shared';
 
-const err = Object.assign({}, errorShared, nodeError);
+const err = {...errorShared, ...nodeError};
 export {err};
 export {err as error};
 
-// Import test module
+// Import & export test module/namespace
 import * as test from './src/node/test';
 export * from './src/node/test';
 export {test};
 
-// Import file & file-handling module
+// Import & export file & file-handling module/namespace
 import * as file from './src/node/file';
 export * from './src/node/file';
 export {file};
