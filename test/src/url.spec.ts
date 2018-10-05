@@ -473,57 +473,79 @@ describe(`url sub-module`, function() {
 
         it(`returns combinations of values in a conglomerate string`, function() {
             expect(
-                extractFromUrl([`protocol`, `host`], `https://www.example.com:8080/asdf/qwer/last?key=val&b=2`)
+                extractFromUrl(
+                    [`protocol`, `host`],
+                    `https://www.example.com:8080/asdf/qwer/last?key=val&b=2`
+                )
             ).to.eql(`https://www.example.com:8080`);
             expect(
-                extractFromUrl([`host`, `pathname`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+                extractFromUrl(
+                    [`host`, `pathname`],
+                    `http://www.example2.ca/asdf/qwer/last?key=val&b=2`
+                )
             ).to.eql(`www.example2.ca/asdf/qwer/last`);
             expect(
-                extractFromUrl([`pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+                extractFromUrl(
+                    [`pathname`, `query`],
+                    `http://www.example2.ca/asdf/qwer/last?key=val&b=2`
+                )
             ).to.eql(`/asdf/qwer/last?key=val&b=2`);
             expect(
-                extractFromUrl([`host`, `pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+                extractFromUrl(
+                    [`host`, `pathname`, `query`],
+                    `http://www.example2.ca/asdf/qwer/last?key=val&b=2`
+                )
             ).to.eql(`www.example2.ca/asdf/qwer/last?key=val&b=2`);
         });
 
         it(`handles duplicate (overlapping) sections gracefully without duplications in returned string`, function() {
             expect(
-                extractFromUrl([`host`, `hostname`], `http://www.example2.ca:8080/asdf/qwer/last?key=val&b=2`)
+                extractFromUrl(
+                    [`host`, `hostname`],
+                    `http://www.example2.ca:8080/asdf/qwer/last?key=val&b=2`
+                )
             ).to.eql(`www.example2.ca:8080`);
             expect(
-                extractFromUrl([`host`, `hostname`, `pathname`, `query`], `http://www.example2.ca/asdf/qwer/last?key=val&b=2`)
+                extractFromUrl(
+                    [`host`, `hostname`, `pathname`, `query`],
+                    `http://www.example2.ca/asdf/qwer/last?key=val&b=2`
+                )
             ).to.eql(`www.example2.ca/asdf/qwer/last?key=val&b=2`);
         });
     });
 
-describe(`isAbsoluteURL`, function(){
-    it(`returns true for absolute HTTP URLs (http, https protocol) with domain`, function() {
-        expect(isAbsoluteURL(`https://example.com`)).to.be.true;
-        expect(isAbsoluteURL(`http://example.com/asdf`)).to.be.true;
-        expect(isAbsoluteURL(`https://example.com/asdf/123`)).to.be.true;
-        expect(isAbsoluteURL(`http://example.com/asdf/123?key=val`)).to.be.true;
-        expect(isAbsoluteURL(`https://example.com/asdf/123#asdf`)).to.be.true;
-        expect(isAbsoluteURL(`http://www.example.com/asdf/123#asdf`)).to.be.true;
+    describe(`isAbsoluteURL`, function() {
+        it(`returns true for absolute HTTP URLs (http, https protocol) with domain`, function() {
+            expect(isAbsoluteURL(`https://example.com`)).to.be.true;
+            expect(isAbsoluteURL(`http://example.com/asdf`)).to.be.true;
+            expect(isAbsoluteURL(`https://example.com/asdf/123`)).to.be.true;
+            expect(isAbsoluteURL(`http://example.com/asdf/123?key=val`)).to.be.true;
+            expect(isAbsoluteURL(`https://example.com/asdf/123#asdf`)).to.be.true;
+            expect(isAbsoluteURL(`http://www.example.com/asdf/123#asdf`)).to.be.true;
+        });
+        it(`returns true for absolute non-http protocols (e.g. mailto, gopher) with domain`, function() {
+            expect(isAbsoluteURL(`gopher://asdf.gopher`)).to.be.true;
+            expect(isAbsoluteURL(`mailto://wat@example.com`)).to.be.true;
+            expect(isAbsoluteURL(`ftp://gr.argh`)).to.be.true;
+        });
+        it(`returns false for relative URLs`, function() {
+            expect(isAbsoluteURL(`example.com`)).to.be.false;
+            expect(isAbsoluteURL(`example.com/asdf`)).to.be.false;
+            expect(isAbsoluteURL(`example.com/asdf/123`)).to.be.false;
+            expect(isAbsoluteURL(`example.com/asdf/123?key=val`)).to.be.false;
+            expect(isAbsoluteURL(`example.com/asdf/123#asdf`)).to.be.false;
+            expect(isAbsoluteURL(`www.example.com/asdf/123#asdf`)).to.be.false;
+        });
+        it(`returns false if only the protocol is present`, function() {
+            expect(isAbsoluteURL(`http://`)).to.be.false;
+            expect(isAbsoluteURL(`https://`)).to.be.false;
+            expect(isAbsoluteURL(`gopher://`)).to.be.false;
+            expect(isAbsoluteURL(`mailto://`)).to.be.false;
+            expect(isAbsoluteURL(`ftp://`)).to.be.false;
+        });
+        it(`returns false if given null or undefined`, function() {
+            expect(isAbsoluteURL(null)).to.be.false;
+            expect((isAbsoluteURL as any)()).to.be.false;
+        });
     });
-    it(`returns true for absolute non-http protocols (e.g. mailto, gopher) with domain`, function() {
-        expect(isAbsoluteURL(`gopher://asdf.gopher`)).to.be.true;
-        expect(isAbsoluteURL(`mailto://wat@example.com`)).to.be.true;
-        expect(isAbsoluteURL(`ftp://gr.argh`)).to.be.true;
-    });
-    it(`returns false for relative URLs`, function() {
-        expect(isAbsoluteURL(`example.com`)).to.be.false;
-        expect(isAbsoluteURL(`example.com/asdf`)).to.be.false;
-        expect(isAbsoluteURL(`example.com/asdf/123`)).to.be.false;
-        expect(isAbsoluteURL(`example.com/asdf/123?key=val`)).to.be.false;
-        expect(isAbsoluteURL(`example.com/asdf/123#asdf`)).to.be.false;
-        expect(isAbsoluteURL(`www.example.com/asdf/123#asdf`)).to.be.false;
-    });
-    it(`returns false if only the protocol is present`, function() {
-        expect(isAbsoluteURL(`http://`)).to.be.false;
-        expect(isAbsoluteURL(`https://`)).to.be.false;
-        expect(isAbsoluteURL(`gopher://`)).to.be.false;
-        expect(isAbsoluteURL(`mailto://`)).to.be.false;
-        expect(isAbsoluteURL(`ftp://`)).to.be.false;
-    });
-});
 });
