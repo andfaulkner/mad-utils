@@ -28,6 +28,7 @@ import {
     normalizeURLPathname,
     urlPathnameWithQuery,
     extractFromUrl,
+    isAbsoluteURL,
 } from '../../shared';
 
 import {url as urlFromNode} from '../../node';
@@ -494,4 +495,35 @@ describe(`url sub-module`, function() {
             ).to.eql(`www.example2.ca/asdf/qwer/last?key=val&b=2`);
         });
     });
+
+describe(`isAbsoluteURL`, function(){
+    it(`returns true for absolute HTTP URLs (http, https protocol) with domain`, function() {
+        expect(isAbsoluteURL(`https://example.com`)).to.be.true;
+        expect(isAbsoluteURL(`http://example.com/asdf`)).to.be.true;
+        expect(isAbsoluteURL(`https://example.com/asdf/123`)).to.be.true;
+        expect(isAbsoluteURL(`http://example.com/asdf/123?key=val`)).to.be.true;
+        expect(isAbsoluteURL(`https://example.com/asdf/123#asdf`)).to.be.true;
+        expect(isAbsoluteURL(`http://www.example.com/asdf/123#asdf`)).to.be.true;
+    });
+    it(`returns true for absolute non-http protocols (e.g. mailto, gopher) with domain`, function() {
+        expect(isAbsoluteURL(`gopher://asdf.gopher`)).to.be.true;
+        expect(isAbsoluteURL(`mailto://wat@example.com`)).to.be.true;
+        expect(isAbsoluteURL(`ftp://gr.argh`)).to.be.true;
+    });
+    it(`returns false for relative URLs`, function() {
+        expect(isAbsoluteURL(`example.com`)).to.be.false;
+        expect(isAbsoluteURL(`example.com/asdf`)).to.be.false;
+        expect(isAbsoluteURL(`example.com/asdf/123`)).to.be.false;
+        expect(isAbsoluteURL(`example.com/asdf/123?key=val`)).to.be.false;
+        expect(isAbsoluteURL(`example.com/asdf/123#asdf`)).to.be.false;
+        expect(isAbsoluteURL(`www.example.com/asdf/123#asdf`)).to.be.false;
+    });
+    it(`returns false if only the protocol is present`, function() {
+        expect(isAbsoluteURL(`http://`)).to.be.false;
+        expect(isAbsoluteURL(`https://`)).to.be.false;
+        expect(isAbsoluteURL(`gopher://`)).to.be.false;
+        expect(isAbsoluteURL(`mailto://`)).to.be.false;
+        expect(isAbsoluteURL(`ftp://`)).to.be.false;
+    });
+});
 });
