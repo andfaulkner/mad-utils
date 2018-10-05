@@ -506,5 +506,5 @@ export const isAbsoluteURL = (url: string): boolean =>
     !!(
         url &&
         (url.match(/^https?:\/\/[a-zA-Z0-9_]+/i) ||
-            (!url.match(/^http/gi) && url.match(/^[a-z][a-z0-9+.-]*:\/\/[a-zA-Z0-9_]+/i)))
+            (!url.match(/^http/gi) && url.match(/^[a-z][a-z0-9+.-]*:(\/\/)?[a-zA-Z0-9_]+/i)))
     );

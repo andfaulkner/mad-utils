@@ -1,3 +1,7 @@
+0.76.3
+======
+isAbsoluteURL now handles missing // for all protocols but http & https
+
 0.76.2
 ======
 Make isAbsoluteURL handle null & undefined without crashing (it returns false)

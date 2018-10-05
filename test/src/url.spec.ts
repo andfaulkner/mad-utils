@@ -547,5 +547,13 @@ describe(`url sub-module`, function() {
             expect(isAbsoluteURL(null)).to.be.false;
             expect((isAbsoluteURL as any)()).to.be.false;
         });
+        it(`returns false if // omitted for http, https protocol URLs`, function() {
+            expect(isAbsoluteURL(`http:example.com`)).to.be.false;
+            expect(isAbsoluteURL(`https:example.com/asdf/rer`)).to.be.false;
+        });
+        it(`returns true if // omitted from URLs using protocols besides http, https`, function() {
+            expect(isAbsoluteURL(`mailto:asdf@example.com`)).to.be.true;
+            expect(isAbsoluteURL(`gopher:1234asdf.example`)).to.be.true;
+        });
     });
 });
