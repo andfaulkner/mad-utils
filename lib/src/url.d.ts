@@ -265,5 +265,7 @@ export declare const extractFromUrl: (urlParts: "protocol" | "hostname" | "host"
  * Example: mailto:// fails, but mailto://a succeeds
  *
  * Can handle null (returns false)
+ *
+ * Requires // for http and https, but can be omitted for all others
  */
 export declare const isAbsoluteURL: (url: string) => boolean;

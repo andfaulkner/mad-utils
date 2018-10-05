@@ -499,6 +499,12 @@ export const extractFromUrl = (
  * Example: mailto:// fails, but mailto://a succeeds
  *
  * Can handle null (returns false)
+ *
+ * Requires // for http and https, but can be omitted for all others
  */
 export const isAbsoluteURL = (url: string): boolean =>
-    !!url && !!url.match(/^[a-z][a-z0-9+.-]*:\/\/[a-zA-Z0-9_]+/i);
+    !!(
+        url &&
+        (url.match(/^https?:\/\/[a-zA-Z0-9_]+/i) ||
+            (!url.match(/^http/gi) && url.match(/^[a-z][a-z0-9+.-]*:\/\/[a-zA-Z0-9_]+/i)))
+    );
