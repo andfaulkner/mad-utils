@@ -2,6 +2,9 @@
 ============
 Fix typings in `locale` module
 
+Add isAbsoluteURL function
+*   returns true if given string is an absolute URL (e.g. https://example.com)
+
 0.76.0 [MAJOR REFACTOR] [BREAKING CHANGES]
 ==========================================
 Include all shared namespaces in browser module export
