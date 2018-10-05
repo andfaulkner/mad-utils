@@ -1,5 +1,9 @@
-0.76.1 [WIP]
-============
+0.76.2
+======
+Make isAbsoluteURL handle null & undefined without crashing (it returns false)
+
+0.76.1
+======
 Fix typings in `locale` module
 
 Add isAbsoluteURL function
