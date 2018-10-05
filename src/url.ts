@@ -498,4 +498,4 @@ export const extractFromUrl = (
  * Example: mailto:// fails, but mailto://a succeeds
  */
 export const isAbsoluteURL = (url: string): boolean =>
-    !!url.match(/^[a-z][a-z0-9+.-]*:\/\/[a-zA-Z0-9_]+/i);
+    !!url && !!url.match(/^[a-z][a-z0-9+.-]*:\/\/[a-zA-Z0-9_]+/i);
