@@ -261,6 +261,9 @@ export declare const extractFromUrl: (urlParts: "protocol" | "hostname" | "host"
 /**
  * Return true if given [url] is absolute (i.e. URL starts with the protocol)
  * It must also have more than just the protocol
+ *
  * Example: mailto:// fails, but mailto://a succeeds
+ *
+ * Can handle null (returns false)
  */
 export declare const isAbsoluteURL: (url: string) => boolean;
