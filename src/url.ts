@@ -495,7 +495,10 @@ export const extractFromUrl = (
 /**
  * Return true if given [url] is absolute (i.e. URL starts with the protocol)
  * It must also have more than just the protocol
+ *
  * Example: mailto:// fails, but mailto://a succeeds
+ *
+ * Can handle null (returns false)
  */
 export const isAbsoluteURL = (url: string): boolean =>
     !!url && !!url.match(/^[a-z][a-z0-9+.-]*:\/\/[a-zA-Z0-9_]+/i);
