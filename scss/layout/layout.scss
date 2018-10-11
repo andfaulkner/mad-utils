@@ -1,3 +1,6 @@
+// TODO Add display: flex to all utils prefixed by `flex-` e.g. `flex-as-center`
+//  Example:  .flex-as-center {display: flex; align-self: center}
+
 @import './margin.scss';
 @import './padding.scss';
 @import './border.scss';
@@ -148,16 +151,16 @@
     .flex-align-items-flexstart, .flex.align-items-flexstart { align-items: flex-start }
 
     /************ flex :: align-self ************/
-    .flex-as-mid,
-    .flex-as-middle,
-    .flex-as-center  { align-self: center     }
-    .flex-as-fs,
-    .flex-as-fstart,
-    .flex-as-start   { align-self: flex-start }
-    .flex-as-fe,
-    .flex-as-fend,
-    .flex-as-end     { align-self: flex-end   }
-    .flex-as-stretch { align-self: stretch    }
+    .flex-as-mid,     .flex.as-mid,
+    .flex-as-middle,  .flex.as-middle,
+    .flex-as-center,  .flex.as-center  { align-self: center     }
+    .flex-as-fs,      .flex.as-fs,
+    .flex-as-fstart,  .flex.as-fstart,
+    .flex-as-start,   .flex.as-start   { align-self: flex-start }
+    .flex-as-fe,      .flex.as-fe,
+    .flex-as-fend,    .flex.as-fend,
+    .flex-as-end,     .flex.as-end     { align-self: flex-end   }
+    .flex-as-stretch, .flex.as-stretch { align-self: stretch    }
 
     .flex-alignself-mid,     .alignself-mid,
     .flex-alignself-middle,  .alignself-middle,
