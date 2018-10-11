@@ -196,8 +196,7 @@
     .flex-direction-row,    .flex.direction-row    { flex-direction: row    }
 
     /************ flex :: flex-wrap *****************/
-    .flex-wrap,         .flex.wrap,
-    .flex-wrap-wrap,    .flex.wrap-wrap    { flex-wrap: wrap         }
+    .flex-wrap,         .flex.wrap,        { flex-wrap: wrap         }
     .flex-no-wrap,      .flex.no-wrap      { flex-wrap: nowrap       }
     .flex-wrap-rev,     .flex.wrap-rev,
     .flex-wrap-reverse, .flex.wrap-reverse { flex-wrap: wrap-reverse }
