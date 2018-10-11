@@ -1,3 +1,14 @@
+0.77.0
+======
+Remove ".wrap-wrap" SCSS util
+
+Add flex.as-* SCSS util collection
+*   e.g. .flex.as-mid, .flex.as-start
+*   Shorthands for .flex-as-* series
+
+Add SCSS utils: .table-cell, .table-row, .table-col, .table-column
+*   Aliases for .display-table-cell, .display-table-row, etc
+
 0.76.3
 ======
 isAbsoluteURL now handles missing // for all protocols but http & https
