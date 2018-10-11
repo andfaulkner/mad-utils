@@ -24,15 +24,19 @@
     .table,
     .display-table        {display: table       }
 
+    .table-col,
+    .table-column,
     .display-col,
     .display-td,
     .display-table-col,
     .display-table-column {display: table-column}
 
+    .table-row,
     .display-row,
     .display-tr,
     .display-table-row    {display: table-row   }
 
+    .table-cell,
     .display-cell,
     .display-table-cell   {display: table-cell  }
 
