@@ -138,10 +138,13 @@ export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
  *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
  * @return {string} given string converted to snake_case
  */
-export const toSnakeCase = (str: string, consecUppercaseToLowercase = false): string => {
+export const toSnakeCase = (str: string, consecUppercaseToLowercase = true): string => {
     // Conditionally deal with consecutive capital letters
     const cleanStr = consecUppercaseToLowercase
-        ? str.replace(/([a-z])([A-Z]+)([A-Z])([a-z])/g, `$1_$2_$3$4`).toLowerCase()
+        ? str
+              .replace(/([a-z])([A-Z]+)([A-Z])([^a-zA-Z])/g, `$1_$2$3_$4`)
+              .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
+              .toLowerCase()
         : str;
     return (
         cleanStr
