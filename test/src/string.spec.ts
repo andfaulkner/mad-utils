@@ -204,6 +204,18 @@ describe(`string sub-module`, function() {
     describe('toSnakeCase', function() {
         expectFunctionExists(matchesIgnoreCase);
         expectFunctionExists(toSnakeCase);
+
+        it(`returns empty string given null`, function() {
+            expect(toSnakeCase(null)).to.eql('');
+        })
+        it(`returns empty string given empty string or null`, function() {
+            expect(toSnakeCase('')).to.eql('');
+        })
+        it(`returns empty string given just -, _, or space`, function() {
+            expect(toSnakeCase(' ')).to.eql('');
+            expect(toSnakeCase('_')).to.eql('');
+            expect(toSnakeCase('-')).to.eql('');
+        });
         it(`returns snake_case form of camelCase string`, function() {
             expect(toSnakeCase('someTestString')).to.eql('some_test_string');
         });
@@ -263,7 +275,6 @@ describe(`string sub-module`, function() {
             expect(toSnakeCase('SOME TEST STRING')).to.eql('some_test_string');
             expect(toSnakeCase('some TEST STRING')).to.eql('some_test_string');
         });
-
         it(`Handles multiple uppercase at end of string`, function() {
             expect(toSnakeCase('SomeTestSTRING')).to.eql('some_test_string');
             expect(toSnakeCase('SomeTest STRING')).to.eql('some_test_string');
@@ -274,6 +285,17 @@ describe(`string sub-module`, function() {
     describe('toDashCase', function() {
         expectFunctionExists(matchesIgnoreCase);
         expectFunctionExists(toDashCase);
+        it(`returns empty string given null`, function() {
+            expect(toDashCase(null)).to.eql('');
+        })
+        it(`returns empty string given empty string or null`, function() {
+            expect(toDashCase('')).to.eql('');
+        })
+        it(`returns empty string given just -, _, or space`, function() {
+            expect(toDashCase(' ')).to.eql('');
+            expect(toDashCase('_')).to.eql('');
+            expect(toDashCase('-')).to.eql('');
+        });
         it(`returns dash-case form of camelCase string`, function() {
             expect(toDashCase('someTestString')).to.eql('some-test-string');
         });
