@@ -147,13 +147,14 @@ export const toSnakeCase = (str: string): string =>
         // Remove quotes
         .replace(/['"`]/g, ``)
 
-        /**** Deal with consecutive capital letters ****/
-        // Handle 1st set of chars are caps e.g. `Mac_OS` -> `Mac__os`
+        /************** Handle consecutive capital letters **************/
+        // Handle last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
         .replace(/([^A-Z])([A-Z]{2,})$/g, (str, m1, m2) => str.replace(m2, `_` + m2.toLowerCase()))
 
-        // Handle when 1st set of chars are caps & next is a letter e.g. `URLToPath` -> `url_ToPath`
+        // Handle 1st set of chars are caps & next is a letter e.g. `URLToPath` -> `url_ToPath`
         .replace(/^([A-Z]+)[^a-zA-Z]/g, (str, m1) => str.replace(m1, m1.toLowerCase() + `_`))
-        // Handle if 1st char group is caps & next isn't a letter e.g. `URL_ToPath` -> `url_ToPath`
+
+        // Handle 1st char group is caps & next isn't a letter e.g. `URL_ToPath` -> `url_ToPath`
         .replace(/^([A-Z]+)([A-Z])([^A-Z])/g, (str, m1) => str.replace(m1, m1.toLowerCase() + `_`))
 
         // Handle cap change after section of caps e.g. `getURLPath` -> `get_URL_Path`
@@ -161,6 +162,7 @@ export const toSnakeCase = (str: string): string =>
 
         // Handle islands of caps e.g. `Some_TEST_String` -> `Some_test_String`
         .replace(/[^A-Za-z]([A-Z]+)[^A-Za-z]/g, (str, m1) => str.replace(m1, m1.toLowerCase()))
+        /*******************************************************************/
 
         // From PascalCase or camelCase
         .replace(/([A-Z])/g, `_$1`)
