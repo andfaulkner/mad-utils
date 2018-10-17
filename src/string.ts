@@ -148,8 +148,6 @@ export const toSnakeCase = (str: string): string => {
             // Deal with consecutive capital letters
             .replace(/([a-z])([A-Z]+)([A-Z])([^a-zA-Z])/g, `$1_$2$3_$4`)
             .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
-            // Make entire string lowercase
-            .toLowerCase()
             //Remove apostrophes, quotes, commas, |, ?, and !
             .replace(/('|"|\!|\?|\`|,|\|)/g, ``)
             // Replace . with _
