@@ -34,6 +34,7 @@ const {
     endsInDotTsx,
     endsWithExt,
     toSnakeCase,
+    toDashCase,
     toCamelCase,
     deindent,
     isWhitespaceChar,
@@ -235,7 +236,7 @@ describe(`string sub-module`, function() {
             expect(toSnakeCase("SomeTest'String")).to.eql('some_test_string');
             expect(toSnakeCase('SomeTest"String')).to.eql('some_test_string');
             expect(toSnakeCase('SomeTest`String')).to.eql('some_test_string');
-            expect(toSnakeCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('some_test_string');
+            expect(toSnakeCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('some_te_st_str_in_g');
         });
         it(`returns snake_case form of string preceded or followed by spaces`, function() {
             expect(toSnakeCase(' SomeTestString')).to.eql('some_test_string');
@@ -244,6 +245,100 @@ describe(`string sub-module`, function() {
             expect(toSnakeCase('   someTestString      ')).to.eql('some_test_string');
             expect(toSnakeCase('        Some test string.')).to.eql('some_test_string');
         });
+        it(`Handles multiple uppercase at start of string`, function() {
+            expect(toSnakeCase('SOMETestString')).to.eql('some_test_string');
+            expect(toSnakeCase('SOME testString')).to.eql('some_test_string');
+            expect(toSnakeCase('SOME TestString')).to.eql('some_test_string');
+            expect(toSnakeCase('SOME TESTString')).to.eql('some_test_string');
+        });
+        it(`Handles multiple uppercase in middle of string`, function() {
+            expect(toSnakeCase('SomeTESTString')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTEST String')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTEST string')).to.eql('some_test_string');
+            expect(toSnakeCase('Some TESTString')).to.eql('some_test_string');
+            expect(toSnakeCase('Some TEST String')).to.eql('some_test_string');
+            expect(toSnakeCase('Some TEST string')).to.eql('some_test_string');
+            expect(toSnakeCase('SOME TEST String')).to.eql('some_test_string');
+            expect(toSnakeCase('SOME TEST string')).to.eql('some_test_string');
+            expect(toSnakeCase('SOME TEST STRING')).to.eql('some_test_string');
+            expect(toSnakeCase('some TEST STRING')).to.eql('some_test_string');
+        });
+
+        it(`Handles multiple uppercase at end of string`, function() {
+            expect(toSnakeCase('SomeTestSTRING')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTest STRING')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTEST STRING')).to.eql('some_test_string');
+        });
+    });
+
+    describe('toDashCase', function() {
+        expectFunctionExists(matchesIgnoreCase);
+        expectFunctionExists(toDashCase);
+        it(`returns dash-case form of camelCase string`, function() {
+            expect(toDashCase('someTestString')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of PascalCase string`, function() {
+            expect(toDashCase('SomeTestString')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of dash-case string`, function() {
+            expect(toDashCase('some-test-string')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of dash-case string with caps`, function() {
+            expect(toDashCase('Some-Test-String')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of "sentences"`, function() {
+            expect(toDashCase('Some test string')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of dot.separated.strings (with .s replaced by _s)`, function() {
+            expect(toDashCase('Some.test.string')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of string preceded by underscores`, function() {
+            expect(toDashCase('_____SomeTestString')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of string preceded by dashes`, function() {
+            expect(toDashCase('-----SomeTestString')).to.eql('some-test-string');
+        });
+        it(`returns dash-case form of string preceded by dashes & underscores`, function() {
+            expect(toDashCase('-___-SomeTestString')).to.eql('some-test-string');
+        });
+        it(`eliminates apostrophes, quotes, ?, !, |, and ,`, function() {
+            expect(toDashCase('Some,TestString?!?')).to.eql('some-test-string');
+            expect(toDashCase("SomeTest'String")).to.eql('some-test-string');
+            expect(toDashCase('SomeTest"String')).to.eql('some-test-string');
+            expect(toDashCase('SomeTest`String')).to.eql('some-test-string');
+            expect(toDashCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('some-te-st-str-in-g');
+        });
+        it(`returns dash-case form of string preceded or followed by spaces`, function() {
+            expect(toDashCase(' SomeTestString')).to.eql('some-test-string');
+            expect(toDashCase('some-test-string ')).to.eql('some-test-string');
+            expect(toDashCase(' Some-Test-String ')).to.eql('some-test-string');
+            expect(toDashCase('   someTestString      ')).to.eql('some-test-string');
+            expect(toDashCase('        Some test string.')).to.eql('some-test-string');
+        });
+        it(`Handles multiple uppercase at start of string`, function() {
+            expect(toDashCase('SOMETestString')).to.eql('some-test-string');
+            expect(toDashCase('SOME testString')).to.eql('some-test-string');
+            expect(toDashCase('SOME TestString')).to.eql('some-test-string');
+            expect(toDashCase('SOME TESTString')).to.eql('some-test-string');
+        });
+        it(`Handles multiple uppercase in middle of string`, function() {
+            expect(toDashCase('SomeTESTString')).to.eql('some-test-string');
+            expect(toDashCase('SomeTEST String')).to.eql('some-test-string');
+            expect(toDashCase('SomeTEST string')).to.eql('some-test-string');
+            expect(toDashCase('Some TESTString')).to.eql('some-test-string');
+            expect(toDashCase('Some TEST String')).to.eql('some-test-string');
+            expect(toDashCase('Some TEST string')).to.eql('some-test-string');
+            expect(toDashCase('SOME TEST String')).to.eql('some-test-string');
+            expect(toDashCase('SOME TEST string')).to.eql('some-test-string');
+            expect(toDashCase('SOME TEST STRING')).to.eql('some-test-string');
+            expect(toDashCase('some TEST STRING')).to.eql('some-test-string');
+        });
+        it(`Handles multiple uppercase at end of string`, function() {
+            expect(toDashCase('SomeTestSTRING')).to.eql('some-test-string');
+            expect(toDashCase('SomeTest STRING')).to.eql('some-test-string');
+            expect(toDashCase('SomeTEST STRING')).to.eql('some-test-string');
+        });
+
     });
 
     describe('toCamelCase', function() {
