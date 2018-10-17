@@ -101,7 +101,13 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
  *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
  * @return {string} given string converted to snake_case
  */
-export declare const toSnakeCase: (str: string, consecUppercaseToLowercase?: boolean) => string;
+export declare const toSnakeCase: (str: string) => string;
+/**
+ * Converts any string (in snake_case, PascalCase, Title Case, etc) to dash-case
+ * @param {string} str Input string to convert to dash-case
+ * @return {string} input string in dash-case
+ */
+export declare const toDashCase: (str: string) => string;
 /**
  * Converts any string (snake_case, PascalCase, dash-case) to camelCase
  *
