@@ -1,3 +1,20 @@
+0.78.0
+======
+Saner toSnakeCase behaviour:
+*   Consistently handles consecutive caps correctly e.g.:
+        goToHomeURLPath -> go_to_home_url_path
+        goToHomeURL!Path -> go_to_home_url_path
+        goToHOME URL!Path -> go_to_home_url_path
+        etc...
+*   Defaults to having special consecutive cap handling on
+    *   Remove option to shut it off
+*   Punctuation treated the same as a word break
+*   Handles null & empty strings
+
+New toDashCase function
+
+
+----------------------------------------------------------------------------------------------------
 0.77.0
 ======
 Remove ".wrap-wrap" SCSS util
@@ -9,6 +26,8 @@ Add flex.as-* SCSS util collection
 Add SCSS utils: .table-cell, .table-row, .table-col, .table-column
 *   Aliases for .display-table-cell, .display-table-row, etc
 
+
+----------------------------------------------------------------------------------------------------
 0.76.3
 ======
 isAbsoluteURL now handles missing // for all protocols but http & https
