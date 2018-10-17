@@ -42,7 +42,7 @@ export const osName = () => userAgent.os.name;
 /**
  * @return {string} Name of current OS, in snake_case. E.g. "mac_os" or "windows_nt"
  */
-export const osNameSnakeCase = () => toSnakeCase(osName(), true);
+export const osNameSnakeCase = () => toSnakeCase(osName());
 
 /**
 * @return {string} Name of the browser. E.g. "Chrome" (using example above), or "Firefox"
@@ -53,7 +53,7 @@ export const browserName = () => userAgent.browser.name;
 * @return {string} Name of browser's rendering engine.
 * @example browserEngineName(); // => "Webkit" (Chrome output. See getUserAgentString example above)
 * @example browserEngineName(); // => "Gecko" (Firefox output);
-* 
+*
  */
 export const browserEngineName = () => userAgent.engine.name;
 
