@@ -138,37 +138,41 @@ export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
  *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
  * @return {string} given string converted to snake_case
  */
-export const toSnakeCase = (str: string): string => {
-    const cleanStr = str;
+export const toSnakeCase = (str: string): string =>
+    str
+        // Remove trailing & leading whitespace
+        .trim()
+        // Replace ! ? , | \ . - / \ + ( ) [ ] { } and space with `_`
+        .replace(/[!?,| \.-/\\+()[\]{}]/g, `_`)
+        // Remove quotes
+        .replace(/['"`]/g, ``)
 
-    return (
-        cleanStr
-            // Remove trailing & leading whitespace
-            .trim()
-            // Deal with consecutive capital letters
-            .replace(/([a-z])([A-Z]+)([A-Z])([^a-zA-Z])/g, `$1_$2$3_$4`)
-            .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
-            //Remove apostrophes, quotes, commas, |, ?, and !
-            .replace(/('|"|\!|\?|\`|,|\|)/g, ``)
-            // Replace . with _
-            .replace(/(\.)/g, `_`)
-            // Replace ` ` with `_`
-            .replace(/ /g, `_`)
-            // From PascalCase or camelCase
-            .replace(/([A-Z])/g, `_$1`)
-            // From dash-case, including "Dash-Title-Case" (dash-case with caps)
-            .replace(/(\-)([a-zA-Z0-9])/g, `_$2`)
-            // Replace slash (/ or \) with _
-            .replace(/[\/\\]/g, `_`)
-            // Eliminate repeat, preceding, & trailing underscores; & stray dashes
-            .replace(/(_{1,})?\-{1,}(_{1,})?/g, `_`)
-            .replace(/_{1,}/g, `_`)
-            .replace(/^(_|\-){1,}/, ``)
-            .replace(/(_|\-){1,}$/, ``)
-            // Remove caps (snake_case is always lowercase)
-            .toLowerCase()
-    );
-};
+        /**** Deal with consecutive capital letters ****/
+        // Handle 1st set of chars are caps e.g. `Mac_OS` -> `Mac__os`
+        .replace(/([^A-Z])([A-Z]{2,})$/g, (str, m1, m2) => str.replace(m2, `_` + m2.toLowerCase()))
+
+        // Handle when 1st set of chars are caps & next is a letter e.g. `URLToPath` -> `url_ToPath`
+        .replace(/^([A-Z]+)[^a-zA-Z]/g, (str, m1) => str.replace(m1, m1.toLowerCase() + `_`))
+        // Handle if 1st char group is caps & next isn't a letter e.g. `URL_ToPath` -> `url_ToPath`
+        .replace(/^([A-Z]+)([A-Z])([^A-Z])/g, (str, m1) => str.replace(m1, m1.toLowerCase() + `_`))
+
+        // Handle cap change after section of caps e.g. `getURLPath` -> `get_URL_Path`
+        .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
+
+        // Handle islands of caps e.g. `Some_TEST_String` -> `Some_test_String`
+        .replace(/[^A-Za-z]([A-Z]+)[^A-Za-z]/g, (str, m1) => str.replace(m1, m1.toLowerCase()))
+
+        // From PascalCase or camelCase
+        .replace(/([A-Z])/g, `_$1`)
+        // From dash-case, including "Dash-Title-Case" (dash-case with caps)
+        .replace(/(\-)([a-zA-Z0-9])/g, `_$2`)
+        // Eliminate repeat, preceding, & trailing underscores; & stray dashes
+        .replace(/(_{1,})?\-{1,}(_{1,})?/g, `_`)
+        .replace(/_{1,}/g, `_`)
+        .replace(/^(_|\-){1,}/, ``)
+        .replace(/(_|\-){1,}$/, ``)
+        // Remove caps (snake_case is always lowercase)
+        .toLowerCase();
 
 /**
  * Converts any string (in snake_case, PascalCase, Title Case, etc) to dash-case
