@@ -138,17 +138,18 @@ export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
  *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
  * @return {string} given string converted to snake_case
  */
-export const toSnakeCase = (str: string, consecUppercaseToLowercase = true): string => {
-    // Conditionally deal with consecutive capital letters
-    const cleanStr = consecUppercaseToLowercase
-        ? str
-              .replace(/([a-z])([A-Z]+)([A-Z])([^a-zA-Z])/g, `$1_$2$3_$4`)
-              .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
-              .toLowerCase()
-        : str;
+export const toSnakeCase = (str: string): string => {
+    const cleanStr = str;
+
     return (
         cleanStr
+            // Remove trailing & leading whitespace
             .trim()
+            // Deal with consecutive capital letters
+            .replace(/([a-z])([A-Z]+)([A-Z])([^a-zA-Z])/g, `$1_$2$3_$4`)
+            .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
+            // Make entire string lowercase
+            .toLowerCase()
             //Remove apostrophes, quotes, commas, |, ?, and !
             .replace(/('|"|\!|\?|\`|,|\|)/g, ``)
             // Replace . with _
@@ -161,7 +162,7 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = true): str
             .replace(/(\-)([a-zA-Z0-9])/g, `_$2`)
             // Replace slash (/ or \) with _
             .replace(/[\/\\]/g, `_`)
-            // Eliminate repeat, preceding, and trailing underscores, and stray dashes
+            // Eliminate repeat, preceding, & trailing underscores; & stray dashes
             .replace(/(_{1,})?\-{1,}(_{1,})?/g, `_`)
             .replace(/_{1,}/g, `_`)
             .replace(/^(_|\-){1,}/, ``)
@@ -176,8 +177,7 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = true): str
  * @param {string} str Input string to convert to dash-case
  * @return {string} input string in dash-case
  */
-export const toDashCase = (str: string, consecUppercaseToLowercase = true): string =>
-    str && toSnakeCase(str, consecUppercaseToLowercase).replace(/_/g, `-`);
+export const toDashCase = (str: string): string => str && toSnakeCase(str).replace(/_/g, `-`);
 
 /**
  * Converts any string (snake_case, PascalCase, dash-case) to camelCase
