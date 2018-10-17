@@ -129,6 +129,7 @@ export const removeWhitespace = (str: string): string => str.replace(/ /g, ``);
 export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
     str.replace(new RegExp(`(${charsToChomp.split(``).join(`|`)})+$`, `g`), ``);
 
+// TODO remove bad toSnakeCase steps (it's a big mess right now)
 /**
  * Convert camelCase, PascalCase, or dash-case to snake_case
  *
@@ -151,14 +152,24 @@ export const toSnakeCase = (str: string): string =>
         // Handle last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
         .replace(/([^A-Z])([A-Z]{2,})$/g, (str, m1, m2) => str.replace(m2, `_` + m2.toLowerCase()))
 
-        // Handle 1st set of chars are caps & next is a letter e.g. `URLToPath` -> `url_ToPath`
-        .replace(/^([A-Z]+)[^a-zA-Z]/g, (str, m1) => str.replace(m1, m1.toLowerCase() + `_`))
+        // Handle char group is caps & next isn't a letter e.g.: `URL_ToPath` -> `Url__ToPath`
+        //                                                       `MyURL_ToPath` -> `MyUrl_ToPath`
+        .replace(/([A-Z]+)[^a-zA-Z]/g, (str, m1) =>
+            str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+        )
 
-        // Handle 1st char group is caps & next isn't a letter e.g. `URL_ToPath` -> `url_ToPath`
-        .replace(/^([A-Z]+)([A-Z])([^A-Z])/g, (str, m1) => str.replace(m1, m1.toLowerCase() + `_`))
+        // Handle char group is caps & next word starts w caps e.g. `MyURLToPath` -> `MyUrl_ToPath`
+        .replace(/([A-Z]+)([A-Z])([a-z])/g, (str, m1) =>
+            str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+        )
+
+        // Handle 1st char group is caps & next isn't a letter e.g. `myURL_Test` -> `myUrl__Test`
+        .replace(/([A-Z]{2,})([^a-zA-Z])/g, (str, m1) =>
+            str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+        )
 
         // Handle cap change after section of caps e.g. `getURLPath` -> `get_URL_Path`
-        .replace(/([a-z])([A-Z]+)([A-Z])([A-Z])/g, `$1_$2$3_$4`)
+        .replace(/([a-z])([A-Z]+)([A-Z])([^A-Z])/g, `$1_$2_$3$4`)
 
         // Handle islands of caps e.g. `Some_TEST_String` -> `Some_test_String`
         .replace(/[^A-Za-z]([A-Z]+)[^A-Za-z]/g, (str, m1) => str.replace(m1, m1.toLowerCase()))
