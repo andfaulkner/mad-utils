@@ -172,6 +172,14 @@ export const toSnakeCase = (str: string, consecUppercaseToLowercase = true): str
 };
 
 /**
+ * Converts any string (in snake_case, PascalCase, Title Case, etc) to dash-case
+ * @param {string} str Input string to convert to dash-case
+ * @return {string} input string in dash-case
+ */
+export const toDashCase = (str: string, consecUppercaseToLowercase = true): string =>
+    str && toSnakeCase(str, consecUppercaseToLowercase).replace(/_/g, `-`);
+
+/**
  * Converts any string (snake_case, PascalCase, dash-case) to camelCase
  *
  * Transforms:
