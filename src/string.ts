@@ -140,59 +140,64 @@ export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
  * @return {string} given string converted to snake_case
  */
 export const toSnakeCase = (str: string): string =>
-    str
-        // Remove trailing & leading whitespace
-        .trim()
-        // Replace ! ? , | \ . - / \ + ( ) [ ] { } and space with `_`
-        .replace(/[!?,| \.-/\\+()[\]{}]/g, `_`)
-        // Remove quotes
-        .replace(/['"`]/g, ``)
+    !str
+        ? ``
+        : str
+              // Remove trailing & leading whitespace
+              .trim()
+              // Replace ! ? , | \ . - / \ + ( ) [ ] { } and space with `_`
+              .replace(/[!?,| \.\-/\\+()[\]{}]/g, `_`)
+              // Remove quotes
+              .replace(/['"`]/g, ``)
 
-        /************** Handle consecutive capital letters **************/
-        // Handle last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
-        .replace(/([^A-Z])([A-Z]{2,})$/g, (str, m1, m2) => str.replace(m2, `_` + m2.toLowerCase()))
+              /************** Handle consecutive capital letters **************/
+              // Last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
+              .replace(/([^A-Z])([A-Z]{2,})$/g, (str, m1, m2) =>
+                  str.replace(m2, `_` + m2.toLowerCase())
+              )
 
-        // Handle char group is caps & next isn't a letter e.g.: `URL_ToPath` -> `Url__ToPath`
-        //                                                       `MyURL_ToPath` -> `MyUrl_ToPath`
-        .replace(/([A-Z]+)[^a-zA-Z]/g, (str, m1) =>
-            str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
-        )
+              // Char group is caps & next isn't a letter e.g.: `URL_ToPath` -> `Url__ToPath`
+              //                                                `MyURL_ToPath` -> `MyUrl_ToPath`
+              .replace(/([A-Z]+)[^a-zA-Z]/g, (str, m1) =>
+                  str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+              )
 
-        // Handle char group is caps & next word starts w caps e.g. `MyURLToPath` -> `MyUrl_ToPath`
-        .replace(/([A-Z]+)([A-Z])([a-z])/g, (str, m1) =>
-            str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
-        )
+              // Char group is caps & next word starts w caps e.g. `MyURLToPath` -> `MyUrl_ToPath`
+              .replace(/([A-Z]+)([A-Z])([a-z])/g, (str, m1) =>
+                  str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+              )
 
-        // Handle 1st char group is caps & next isn't a letter e.g. `myURL_Test` -> `myUrl__Test`
-        .replace(/([A-Z]{2,})([^a-zA-Z])/g, (str, m1) =>
-            str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
-        )
+              // 1st char group is caps & next isn't a letter e.g. `myURL_Test` -> `myUrl__Test`
+              .replace(/([A-Z]{2,})([^a-zA-Z])/g, (str, m1) =>
+                  str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+              )
 
-        // Handle cap change after section of caps e.g. `getURLPath` -> `get_URL_Path`
-        .replace(/([a-z])([A-Z]+)([A-Z])([^A-Z])/g, `$1_$2_$3$4`)
+              // Cap change after section of caps e.g. `getURLPath` -> `get_URL_Path`
+              .replace(/([a-z])([A-Z]+)([A-Z])([^A-Z])/g, `$1_$2_$3$4`)
 
-        // Handle islands of caps e.g. `Some_TEST_String` -> `Some_test_String`
-        .replace(/[^A-Za-z]([A-Z]+)[^A-Za-z]/g, (str, m1) => str.replace(m1, m1.toLowerCase()))
-        /*******************************************************************/
+              // Handle islands of caps e.g. `Some_TEST_String` -> `Some_test_String`
+              .replace(/[^A-Za-z]([A-Z]+)[^A-Za-z]/g, (str, m1) =>
+                  str.replace(m1, m1.toLowerCase())
+              )
+              /*******************************************************************/
 
-        // From PascalCase or camelCase
-        .replace(/([A-Z])/g, `_$1`)
-        // From dash-case, including "Dash-Title-Case" (dash-case with caps)
-        .replace(/(\-)([a-zA-Z0-9])/g, `_$2`)
-        // Eliminate repeat, preceding, & trailing underscores; & stray dashes
-        .replace(/(_{1,})?\-{1,}(_{1,})?/g, `_`)
-        .replace(/_{1,}/g, `_`)
-        .replace(/^(_|\-){1,}/, ``)
-        .replace(/(_|\-){1,}$/, ``)
-        // Remove caps (snake_case is always lowercase)
-        .toLowerCase();
+              // From PascalCase or camelCase
+              .replace(/([A-Z])/g, `_$1`)
+              // Eliminate repeat, preceding, & trailing underscores
+              .replace(/_+/g, `_`)
+              .replace(/^_+/, ``)
+              .replace(/_+$/, ``)
+              // Replace all _ with empty string
+              .replace(/^_+$/g, ``)
+              // Remove caps (snake_case is always lowercase)
+              .toLowerCase();
 
 /**
  * Converts any string (in snake_case, PascalCase, Title Case, etc) to dash-case
  * @param {string} str Input string to convert to dash-case
  * @return {string} input string in dash-case
  */
-export const toDashCase = (str: string): string => str && toSnakeCase(str).replace(/_/g, `-`);
+export const toDashCase = (str: string): string => toSnakeCase(str).replace(/_/g, `-`);
 
 /**
  * Converts any string (snake_case, PascalCase, dash-case) to camelCase
