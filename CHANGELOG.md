@@ -1,3 +1,13 @@
+0.78.1
+======
+toSnakeCase and toDashCase now:
+*   Replace most special characters with _ (or -)
+*   Replace quotes with _ (or -)
+    *   Previously they were just eliminated
+*   Handle accented characters (e.g. é)
+*   Surround Þ þ ø µ and ß with _ (or -)
+    *   e.g. `toDashCase('someµOf') // => some-µ-of`
+
 0.78.0
 ======
 Saner toSnakeCase behaviour:
