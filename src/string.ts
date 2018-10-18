@@ -145,10 +145,15 @@ export const toSnakeCase = (str: string): string =>
         : str
               // Remove trailing & leading whitespace
               .trim()
-              // Replace ! ? , | \ . - / \ + ( ) [ ] { } and space with `_`
-              .replace(/[!?,| \.\-/\\+()[\]{}]/g, `_`)
-              // Remove quotes
-              .replace(/['"`]/g, ``)
+
+              // Replace any of the following with `_`:
+              //   ! " # $ % & ' ( ) * , - . / ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬ ® ¯ °
+              //   ± ² ³ ´ ¶ · ¸ ¹ º » ¼ ½ ¾ or ¿
+              .replace(/[\u0020-\u002F\u00A0-\u00AF\u00B0-\u00B4\u00B6-\u00BF]/gu, `_`)
+              // Replace : ; < = > ? @ [ \] \\ ^ _ ` { | } ~ × ÷ with `_`
+              .replace(/[:;<=>?@[\]\\^_`{|}~×÷]/gu, `_`)
+              // Insert `_`s around Þ þ ø µ ß
+              .replace(/([Þþøµß])/g, `_$1_`)
 
               /************** Handle consecutive capital letters **************/
               // Last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
