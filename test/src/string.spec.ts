@@ -216,6 +216,11 @@ describe(`string sub-module`, function() {
             expect(toSnakeCase('_')).to.eql('');
             expect(toSnakeCase('-')).to.eql('');
         });
+        it(`replaces spaces with _`, function() {
+            expect(toSnakeCase('some test string')).to.eql('some_test_string');
+            expect(toSnakeCase('  some test string  ')).to.eql('some_test_string');
+            expect(toSnakeCase('  so  me test stri    ng  ')).to.eql('so_me_test_stri_ng');
+        });
         it(`returns snake_case form of camelCase string`, function() {
             expect(toSnakeCase('someTestString')).to.eql('some_test_string');
         });
@@ -320,6 +325,11 @@ describe(`string sub-module`, function() {
             expect(toDashCase(' ')).to.eql('');
             expect(toDashCase('_')).to.eql('');
             expect(toDashCase('-')).to.eql('');
+        });
+        it(`replaces spaces with -`, function() {
+            expect(toDashCase('some test string')).to.eql('some-test-string');
+            expect(toDashCase('  some test string  ')).to.eql('some-test-string');
+            expect(toDashCase('  so  me test stri    ng  ')).to.eql('so-me-test-stri-ng');
         });
         it(`returns dash-case form of camelCase string`, function() {
             expect(toDashCase('someTestString')).to.eql('some-test-string');

@@ -7,6 +7,7 @@ toSnakeCase and toDashCase now:
 *   Handle accented characters (e.g. é)
 *   Surround Þ þ ø µ and ß with _ (or -)
     *   e.g. `toDashCase('someµOf') // => some-µ-of`
+*   Handle spaces correctly
 
 0.78.0
 ======
