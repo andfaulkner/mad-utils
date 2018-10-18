@@ -156,38 +156,51 @@ export const toSnakeCase = (str: string): string =>
               .replace(/([Þþøµß])/g, `_$1_`)
 
               /************** Handle consecutive capital letters **************/
+              // Capital accents: \u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ
+              // Lowercase accents: \u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť
+              // All uppercase: A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ
+              // All lowercase: a-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť
+
               // Last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
-              .replace(/([^A-Z])([A-Z]{2,})$/g, (str, m1, m2) =>
-                  str.replace(m2, `_` + m2.toLowerCase())
+              .replace(
+                  /([^A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]{2,})$/g,
+                  (str, m1, m2) => str.replace(m2, `_` + m2.toLowerCase())
               )
 
               // Char group is caps & next isn't a letter e.g.: `URL_ToPath` -> `Url__ToPath`
               //                                                `MyURL_ToPath` -> `MyUrl_ToPath`
-              .replace(/([A-Z]+)[^a-zA-Z]/g, (str, m1) =>
-                  str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+              .replace(
+                  /([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]+)[^a-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōťA-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]/g,
+                  (str, m1) => str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
               )
 
               // Char group is caps & next word starts w caps e.g. `MyURLToPath` -> `MyUrl_ToPath`
-              .replace(/([A-Z]+)([A-Z])([a-z])/g, (str, m1) =>
-                  str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+              .replace(
+                  /([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]+)([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])([a-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť])/g,
+                  (str, m1) => str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
               )
 
               // 1st char group is caps & next isn't a letter e.g. `myURL_Test` -> `myUrl__Test`
-              .replace(/([A-Z]{2,})([^a-zA-Z])/g, (str, m1) =>
-                  str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
+              .replace(
+                  /([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]{2,})([^a-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōťA-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])/g,
+                  (str, m1) => str.replace(m1, capitalize(m1.toLowerCase()) + `_`)
               )
 
               // Cap change after section of caps e.g. `getURLPath` -> `get_URL_Path`
-              .replace(/([a-z])([A-Z]+)([A-Z])([^A-Z])/g, `$1_$2_$3$4`)
+              .replace(
+                  /([a-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť])([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]+)([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])([^A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])/g,
+                  `$1_$2_$3$4`
+              )
 
               // Handle islands of caps e.g. `Some_TEST_String` -> `Some_test_String`
-              .replace(/[^A-Za-z]([A-Z]+)[^A-Za-z]/g, (str, m1) =>
-                  str.replace(m1, m1.toLowerCase())
+              .replace(
+                  /[^A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤa-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť]([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]+)[^A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤa-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť]/g,
+                  (str, m1) => str.replace(m1, m1.toLowerCase())
               )
               /*******************************************************************/
 
               // From PascalCase or camelCase
-              .replace(/([A-Z])/g, `_$1`)
+              .replace(/([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])/g, `_$1`)
               // Eliminate repeat, preceding, & trailing underscores
               .replace(/_+/g, `_`)
               .replace(/^_+/, ``)
