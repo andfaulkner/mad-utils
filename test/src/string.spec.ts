@@ -57,7 +57,7 @@ import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite));
 
 /********************************************* TESTS **********************************************/
-describe(`string sub-module`, function() {
+describe.only(`string sub-module`, function() {
     expectNonEmptyObjectExists(string, 'string (from shared/base export)');
     expectNonEmptyObjectExists(m_.string, 'string (from m_ top-level namespace)');
     expectNonEmptyObjectExists(stringModule, 'string (import all from string.ts file)');
@@ -243,12 +243,31 @@ describe(`string sub-module`, function() {
         it(`returns snake_case form of string preceded by dashes & underscores`, function() {
             expect(toSnakeCase('-___-SomeTestString')).to.eql('some_test_string');
         });
-        it(`eliminates apostrophes, quotes, ?, !, |, and ,`, function() {
+        it(`Replaces apostrophes, quotes, ?, !, |, and , with '_'`, function() {
             expect(toSnakeCase('Some,TestString?!?')).to.eql('some_test_string');
             expect(toSnakeCase("SomeTest'String")).to.eql('some_test_string');
-            expect(toSnakeCase('SomeTest"String')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTest"St`ring')).to.eql('some_test_st_ring');
             expect(toSnakeCase('SomeTest`String')).to.eql('some_test_string');
-            expect(toSnakeCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('some_te_st_str_in_g');
+            expect(toSnakeCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('s_o_me_te_st_str_in_g');
+        });
+        it(`replaces ! " # $ % & ' ( ) * + , - . / ¡ ¢ £ ¤ ¥ ¦ § ¨ © and ª with '_'`, function() {
+            expect(toSnakeCase(`a!b"c#d$e%f&g'h(i)j*k+l,m-n.o/p¡q¢r£s¤t¥u¦v§w¨x©yªz`)).to.eql(
+                `a_b_c_d_e_f_g_h_i_j_k_l_m_n_o_p_q_r_s_t_u_v_w_x_y_z`
+            );
+        });
+        it(`replaces « ¬ ® ¯ ° ± ² ³ ´ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ with '_'`, function() {
+            expect(toSnakeCase(`a«b¬c®d¯e°f±g²h³i´j¶k·l¸m¹nºo»p¼q½r¾s¿t`)).to.eql(
+                `a_b_c_d_e_f_g_h_i_j_k_l_m_n_o_p_q_r_s_t`
+            );
+        });
+        it(`replaces : ; < = > ? @ [ \] \\ ^ _ \` { | } ~ × ÷ with '_'`, function() {
+            expect(toSnakeCase(`a:b;c<d=e>f?g@h[i\]j\\k^l_m\`n{o|p}q~r×s÷t`)).to.eql(
+                `a_b_c_d_e_f_g_h_i_j_k_l_m_n_o_p_q_r_s_t`
+            );
+        });
+        it(`surrounds Þ þ ø µ ß with '_', converting Þ to þ in the process`, function() {
+            expect(toSnakeCase(`aÞbþcødµeßf`)).to.eql(`a_þ_b_þ_c_ø_d_µ_e_ß_f`);
+            expect(toSnakeCase(` aÞ bþc ødµ  eßf `)).to.eql(`a_þ_b_þ_c_ø_d_µ_e_ß_f`);
         });
         it(`returns snake_case form of string preceded or followed by spaces`, function() {
             expect(toSnakeCase(' SomeTestString')).to.eql('some_test_string');
@@ -281,9 +300,9 @@ describe(`string sub-module`, function() {
             expect(toSnakeCase('SomeTEST STRING')).to.eql('some_test_string');
         });
         it(`Handles foreign characters`, function() {
-            expect(toSnakeCase('SomeTestȘtring')).to.eql('some_test_string');
-            expect(toSnakeCase('ȘōmëŤèsťȘtrîn̈g')).to.eql('some_test_string');
-            expect(toSnakeCase('ȘōmëTèsťȘtrîn̈g')).to.eql('some_test_string');
+            expect(toSnakeCase('SomeTestȘtring')).to.eql('some_test_ștring');
+            expect(toSnakeCase('ȘōmëŤèsťȘtrîn̈g')).to.eql('șōmë_ťèsť_ștrîn̈g');
+            expect(toSnakeCase('Șōmë tèsť ștrîn̈ g')).to.eql('șōmë_tèsť_ștrîn̈_g');
         });
     });
 
@@ -330,7 +349,7 @@ describe(`string sub-module`, function() {
         });
         it(`Replaces apostrophes, quotes, ?, !, |, and , with '-'`, function() {
             expect(toDashCase('Some,TestString?!?')).to.eql('some-test-string');
-            expect(toDashCase("SomeTest'String")).to.eql('some-test-string');
+            expect(toDashCase("SomeTest'St`ring")).to.eql('some-test-st-ring');
             expect(toDashCase('SomeTest"String')).to.eql('some-test-string');
             expect(toDashCase('SomeTest`String')).to.eql('some-test-string');
             expect(toDashCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('s-o-me-te-st-str-in-g');
@@ -384,7 +403,11 @@ describe(`string sub-module`, function() {
             expect(toDashCase('SomeTest STRING')).to.eql('some-test-string');
             expect(toDashCase('SomeTEST STRING')).to.eql('some-test-string');
         });
-
+        it(`Handles foreign characters`, function() {
+            expect(toSnakeCase('SomeTestȘtring')).to.eql('some-test-ștring');
+            expect(toSnakeCase('ȘōmëŤèsťȘtrîn̈g')).to.eql('șōmë-ťèsť-ștrîn̈g');
+            expect(toSnakeCase('Șōmë tèsť ștrîn̈ g')).to.eql('șōmë-tèsť-ștrîn̈-g');
+        });
     });
 
     describe('toCamelCase', function() {
