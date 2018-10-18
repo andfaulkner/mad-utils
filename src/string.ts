@@ -129,16 +129,22 @@ export const removeWhitespace = (str: string): string => str.replace(/ /g, ``);
 export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
     str.replace(new RegExp(`(${charsToChomp.split(``).join(`|`)})+$`, `g`), ``);
 
-// TODO remove bad toSnakeCase steps (it's a big mess right now)
-// TODO find good abstraction to avoid repetitions in the regexes
+// TODO toSnakeCase: Replace weird characters with _ (see unicode-table.com)
+// TODO toSnakeCase: Remove bad replacement steps (it's a big mess right now)
+// TODO toSnakeCase: Find good abstraction to avoid repetitions in the regexes
+
 /**
- * Convert camelCase, PascalCase, or dash-case to snake_case
+ * Convert camelCase, PascalCase, Title Case, Sentence case, or dash-case to snake_case
+ * Also able to convert most other strings
+ *
+ * Handles all common diacritics (accents), and a few (but not all) rare ones
+ *     - Note: all French and English diacritics work
+ *
+ * Replaces most symbols with _
+ *     - Exception: surrounds Þ þ ø µ and ß with _ instead
  *
  * @param {string} str String to convert to snake_case
- * @param {boolean} consecUppercaseToLowercase If true, converts consecutive uppercase chars to
- *                  lowercase, rather than putting _ between them (the default behaviour)
- *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
- * @return {string} given string converted to snake_case
+ * @return {string} given string (str) converted to snake_case
  */
 export const toSnakeCase = (str: string): string =>
     // Ranges used in replacements:
@@ -213,9 +219,17 @@ export const toSnakeCase = (str: string): string =>
               .toLowerCase();
 
 /**
- * Converts any string (in snake_case, PascalCase, Title Case, etc) to dash-case
- * @param {string} str Input string to convert to dash-case
- * @return {string} input string in dash-case
+ * Convert camelCase, PascalCase, Title Case, Sentence case, or snake_case to dash-case
+ * Also able to convert most other strings
+ *
+ * Handles all common diacritics (accents), and a few (but not all) rare ones
+ *     - Note: all French and English diacritics work
+ *
+ * Replaces most symbols with _
+ *     - Exception: surrounds Þ þ ø µ and ß with _ instead
+ *
+ * @param {string} str String to convert to dash-case
+ * @return {string} given string (str) converted to dash-case
  */
 export const toDashCase = (str: string): string => toSnakeCase(str).replace(/_/g, `-`);
 

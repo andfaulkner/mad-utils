@@ -93,19 +93,31 @@ export declare const removeWhitespace: (str: string) => string;
  */
 export declare const chomp: (str: string, charsToChomp?: string) => string;
 /**
- * Convert camelCase, PascalCase, or dash-case to snake_case
+ * Convert camelCase, PascalCase, Title Case, Sentence case, or dash-case to snake_case
+ * Also able to convert most other strings
+ *
+ * Handles all common diacritics (accents), and a few (but not all) rare ones
+ *     - Note: all French and English diacritics work
+ *
+ * Replaces most symbols with _
+ *     - Exception: surrounds Þ þ ø µ and ß with _ instead
  *
  * @param {string} str String to convert to snake_case
- * @param {boolean} consecUppercaseToLowercase If true, converts consecutive uppercase chars to
- *                  lowercase, rather than putting _ between them (the default behaviour)
- *                  e.g. newOSName -> new_os_name, instead of new_o_s_name
- * @return {string} given string converted to snake_case
+ * @return {string} given string (str) converted to snake_case
  */
 export declare const toSnakeCase: (str: string) => string;
 /**
- * Converts any string (in snake_case, PascalCase, Title Case, etc) to dash-case
- * @param {string} str Input string to convert to dash-case
- * @return {string} input string in dash-case
+ * Convert camelCase, PascalCase, Title Case, Sentence case, or snake_case to dash-case
+ * Also able to convert most other strings
+ *
+ * Handles all common diacritics (accents), and a few (but not all) rare ones
+ *     - Note: all French and English diacritics work
+ *
+ * Replaces most symbols with _
+ *     - Exception: surrounds Þ þ ø µ and ß with _ instead
+ *
+ * @param {string} str String to convert to dash-case
+ * @return {string} given string (str) converted to dash-case
  */
 export declare const toDashCase: (str: string) => string;
 /**
