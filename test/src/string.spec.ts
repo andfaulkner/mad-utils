@@ -328,27 +328,31 @@ describe(`string sub-module`, function() {
         it(`returns dash-case form of string preceded by dashes & underscores`, function() {
             expect(toDashCase('-___-SomeTestString')).to.eql('some-test-string');
         });
-        it(`Replaces apostrophes, quotes, ?, !, |, and , with _`, function() {
+        it(`Replaces apostrophes, quotes, ?, !, |, and , with '-'`, function() {
             expect(toDashCase('Some,TestString?!?')).to.eql('some-test-string');
             expect(toDashCase("SomeTest'String")).to.eql('some-test-string');
             expect(toDashCase('SomeTest"String')).to.eql('some-test-string');
             expect(toDashCase('SomeTest`String')).to.eql('some-test-string');
             expect(toDashCase('S"o\'me,Te|st|.Str!!,in?g!?!?,')).to.eql('s-o-me-te-st-str-in-g');
         });
-        it(`replaces ! " # $ % & ' ( ) * + , - . / ¡ ¢ £ ¤ ¥ ¦ § ¨ © and ª with '_'`, function() {
+        it(`replaces ! " # $ % & ' ( ) * + , - . / ¡ ¢ £ ¤ ¥ ¦ § ¨ © and ª with '-'`, function() {
             expect(toDashCase(`a!b"c#d$e%f&g'h(i)j*k+l,m-n.o/p¡q¢r£s¤t¥u¦v§w¨x©yªz`)).to.eql(
                 `a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t-u-v-w-x-y-z`
             );
         });
-        it(`replaces « ¬ ® ¯ ° ± ² ³ ´ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ with '_'`, function() {
+        it(`replaces « ¬ ® ¯ ° ± ² ³ ´ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ with '-'`, function() {
             expect(toDashCase(`a«b¬c®d¯e°f±g²h³i´j¶k·l¸m¹nºo»p¼q½r¾s¿t`)).to.eql(
                 `a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t`
             );
         });
-        it(`replaces : ; < = > ? @ [ \] \\ ^ _ \` { | } ~ × ÷ with '_'`, function() {
+        it(`replaces : ; < = > ? @ [ \] \\ ^ _ \` { | } ~ × ÷ with '-'`, function() {
             expect(toDashCase(`a:b;c<d=e>f?g@h[i\]j\\k^l_m\`n{o|p}q~r×s÷t`)).to.eql(
                 `a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t`
             );
+        });
+        it(`surrounds Þ þ ø µ ß with '-', converting Þ to þ in the process`, function() {
+            expect(toDashCase(`aÞbþcødµeßf`)).to.eql(`a-þ-b-þ-c-ø-d-µ-e-ß-f`);
+            expect(toDashCase(` aÞ bþc ødµ  eßf `)).to.eql(`a-þ-b-þ-c-ø-d-µ-e-ß-f`);
         });
         it(`returns dash-case form of string preceded or followed by spaces`, function() {
             expect(toDashCase(' SomeTestString')).to.eql('some-test-string');
