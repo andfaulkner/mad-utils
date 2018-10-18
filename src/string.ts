@@ -130,6 +130,7 @@ export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
     str.replace(new RegExp(`(${charsToChomp.split(``).join(`|`)})+$`, `g`), ``);
 
 // TODO remove bad toSnakeCase steps (it's a big mess right now)
+// TODO find good abstraction to avoid repetitions in the regexes
 /**
  * Convert camelCase, PascalCase, or dash-case to snake_case
  *
@@ -140,6 +141,9 @@ export const chomp = (str: string, charsToChomp: string = `\n\r`): string =>
  * @return {string} given string converted to snake_case
  */
 export const toSnakeCase = (str: string): string =>
+    // Ranges used in replacements:
+    //     Lowercase accented chars: \u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť
+    //     Uppercase accented chars: \u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ
     !str
         ? ``
         : str
@@ -156,11 +160,6 @@ export const toSnakeCase = (str: string): string =>
               .replace(/([Þþøµß])/g, `_$1_`)
 
               /************** Handle consecutive capital letters **************/
-              // Capital accents: \u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ
-              // Lowercase accents: \u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť
-              // All uppercase: A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ
-              // All lowercase: a-z\u00E0-\u00EF\u00F0-\u00F6\u00F8-\u00FDșōť
-
               // Last set of chars are caps e.g. `Mac_OS` -> `Mac__os`
               .replace(
                   /([^A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ]{2,})$/g,
@@ -201,12 +200,15 @@ export const toSnakeCase = (str: string): string =>
 
               // From PascalCase or camelCase
               .replace(/([A-Z\u00C0-\u00CF\u00D0-\u00D6\u00D8-\u00DDȘŌŤ])/g, `_$1`)
+
               // Eliminate repeat, preceding, & trailing underscores
               .replace(/_+/g, `_`)
               .replace(/^_+/, ``)
               .replace(/_+$/, ``)
+
               // Replace all _ with empty string
               .replace(/^_+$/g, ``)
+
               // Remove caps (snake_case is always lowercase)
               .toLowerCase();
 
