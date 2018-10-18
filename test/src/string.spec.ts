@@ -57,7 +57,7 @@ import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
 const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite));
 
 /********************************************* TESTS **********************************************/
-describe.only(`string sub-module`, function() {
+describe(`string sub-module`, function() {
     expectNonEmptyObjectExists(string, 'string (from shared/base export)');
     expectNonEmptyObjectExists(m_.string, 'string (from m_ top-level namespace)');
     expectNonEmptyObjectExists(stringModule, 'string (import all from string.ts file)');
@@ -265,9 +265,10 @@ describe.only(`string sub-module`, function() {
                 `a_b_c_d_e_f_g_h_i_j_k_l_m_n_o_p_q_r_s_t`
             );
         });
-        it(`surrounds Þ þ ø µ ß with '_', converting Þ to þ in the process`, function() {
+        it(`surrounds Þ þ ø µ ß with '-', converting Þ to þ in the process`, function() {
             expect(toSnakeCase(`aÞbþcødµeßf`)).to.eql(`a_þ_b_þ_c_ø_d_µ_e_ß_f`);
             expect(toSnakeCase(` aÞ bþc ødµ  eßf `)).to.eql(`a_þ_b_þ_c_ø_d_µ_e_ß_f`);
+            expect(toSnakeCase(`someµOf`)).to.eql(`some_µ_of`);
         });
         it(`returns snake_case form of string preceded or followed by spaces`, function() {
             expect(toSnakeCase(' SomeTestString')).to.eql('some_test_string');
@@ -372,6 +373,7 @@ describe.only(`string sub-module`, function() {
         it(`surrounds Þ þ ø µ ß with '-', converting Þ to þ in the process`, function() {
             expect(toDashCase(`aÞbþcødµeßf`)).to.eql(`a-þ-b-þ-c-ø-d-µ-e-ß-f`);
             expect(toDashCase(` aÞ bþc ødµ  eßf `)).to.eql(`a-þ-b-þ-c-ø-d-µ-e-ß-f`);
+            expect(toDashCase(`someµOf`)).to.eql(`some-µ-of`);
         });
         it(`returns dash-case form of string preceded or followed by spaces`, function() {
             expect(toDashCase(' SomeTestString')).to.eql('some-test-string');
@@ -404,9 +406,9 @@ describe.only(`string sub-module`, function() {
             expect(toDashCase('SomeTEST STRING')).to.eql('some-test-string');
         });
         it(`Handles foreign characters`, function() {
-            expect(toSnakeCase('SomeTestȘtring')).to.eql('some-test-ștring');
-            expect(toSnakeCase('ȘōmëŤèsťȘtrîn̈g')).to.eql('șōmë-ťèsť-ștrîn̈g');
-            expect(toSnakeCase('Șōmë tèsť ștrîn̈ g')).to.eql('șōmë-tèsť-ștrîn̈-g');
+            expect(toDashCase('SomeTestȘtring')).to.eql('some-test-ștring');
+            expect(toDashCase('ȘōmëŤèsťȘtrîn̈g')).to.eql('șōmë-ťèsť-ștrîn̈g');
+            expect(toDashCase('Șōmë tèsť ștrîn̈ g')).to.eql('șōmë-tèsť-ștrîn̈-g');
         });
     });
 
