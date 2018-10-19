@@ -66,7 +66,7 @@ export const validateCanadaPostalCode = (str: string = ``, allow3Char = true): b
         : !!ucStr.match(/^[a-z][0-9][a-z] ?[0-9][a-z][0-9]$/gi);
 };
 
-export {validateCanadaPostalCode as isCanadaPostalCode}
+export {validateCanadaPostalCode as isCanadaPostalCode};
 
 /******************************************** REGEXES *********************************************/
 /**
