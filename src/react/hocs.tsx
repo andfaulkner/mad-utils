@@ -1,8 +1,7 @@
 /******************************************** IMPORTS *********************************************/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
-import {Newable, NamedSFC} from './types-react';
+import {Newable} from './types-react';
 
 /******************************************** LOGGING *********************************************/
 import {logFactory, Styles, Log} from 'mad-logs/lib/shared';
@@ -25,8 +24,6 @@ export function logOnRender(
         WrappedComponent: T
     ): T {
         class Enhancer extends WrappedComponent {
-            state = this.state || {};
-            events = this.events || {};
             render() {
                 const parentName = Object.getPrototypeOf(this.constructor).name;
                 logger[verbosity](`Rendering ${parentName} with this.props:`, this.props);
