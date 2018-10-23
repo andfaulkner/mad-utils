@@ -98,7 +98,7 @@ isInt(1.6); // => false
 isInt('okok'); // => false
 ```
 
-### pushIfNew :: (T[], T): =>  T[]
+### pushIfNew :: (T[], T) => T[]
 ```
 const arr = [1, 2, 3]
 
@@ -106,6 +106,12 @@ pushIfNew(3); // => [1, 2, 3]
 pushIfNew(4); // => [1, 2, 3, 4]
 
 console.log(arr); // => [1, 2, 3, 4]
+```
+
+### repeatChars :: (string, number) => string
+```
+repeatChars('a', 5); // => 'aaaaa'
+repeatChars('aa', 5); // => 'aaaaaaaaaa'
 ```
 
 ### getLangFromURLPathname ::
