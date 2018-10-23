@@ -1,6 +1,6 @@
 /******************************************** LOGGING *********************************************/
-import {logFactory, logMarkers} from 'mad-logs';
-const log = logFactory()(`validation.ts`, logMarkers.swimmers);
+import {logFactory, Styles} from 'mad-logs';
+const log = logFactory(`validation.ts`, Styles.swimmers);
 
 /******************************************** EXPORTS *********************************************/
 /**
