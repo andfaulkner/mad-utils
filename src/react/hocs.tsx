@@ -2,28 +2,32 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Newable, NamedSFC } from './types-react';
+import {Newable, NamedSFC} from './types-react';
 
 /******************************************** LOGGING *********************************************/
-import { logFactory, logMarkers, MadLog } from 'mad-logs';
-const log = logFactory()(`hocs`, logMarkers.angryBird);
+import {logFactory, Styles, Log} from 'mad-logs/lib/shared';
+const log = logFactory(`hocs`, Styles.angryBird);
 
 /********************************************* EXPORT *********************************************/
 /**
- * Log a React class component's name and props directly before rendering.
- * @param {MadLog} logger - MadLogs instance to use for logging the component data.
- * @param {string} verbosity - verbosity level to log at. Defaults to 'verbose'.
- * @example @logOnRender(log) class MyClass { ... }
+ * Log a React class component's name and props directly before rendering
+ *
+ * Example: @logOnRender(log) class MyClass { ... }
+ *
+ * @param {Log} logger MadLogs instance to use for logging the component data
+ * @param {string} verbosity verbosity level to log at {Default: 'verbose'}
  */
 export function logOnRender(
     logger = log,
     verbosity: 'silly' | 'verbose' | 'debug' | 'info' | 'warn' | 'error' | 'wtf' = 'verbose'
 ) {
-    return function logOnRenderHOC<T extends Newable<React.Component<any, any>>>(WrappedComponent: T): T {
+    return function logOnRenderHOC<T extends Newable<React.Component<any, any>>>(
+        WrappedComponent: T
+    ): T {
         class Enhancer extends WrappedComponent {
-            state = this.state || {}
-            events = this.events || {}
-            render(){
+            state = this.state || {};
+            events = this.events || {};
+            render() {
                 const parentName = Object.getPrototypeOf(this.constructor).name;
                 logger[verbosity](`Rendering ${parentName} with this.props:`, this.props);
                 return super.render();
@@ -31,5 +35,5 @@ export function logOnRender(
         }
         (Enhancer as any).displayName = `${(WrappedComponent as any).name}_logger`;
         return Enhancer;
-    }
+    };
 }
