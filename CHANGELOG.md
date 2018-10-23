@@ -1,3 +1,9 @@
+0.70.2
+======
+Upgrade mad-logs to isomorphic variant
+
+Fix docs in hocs module
+
 0.78.1
 ======
 toSnakeCase and toDashCase now:
