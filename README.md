@@ -17,22 +17,11 @@ Examples - most useful methods
 ### capitalize :: (string) => string
 
     capitalize('asdf'); // => 'Asdf'
+    capitalize('asDf'); // => 'AsDf'
     
 ### eliminateWhitespace :: (string) => string
 
     eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
-
-### getLangFromURLPathname ::
-(urlPath? = location.pathname, supportedLangs?: string[] = 'en'|'fr', defLang? = 'en') => string
-
-    // With URL http://example.com/auth/fr/ok:
-    getLangFromURLPathname(); // => 'fr'
-
-    // With URL http://example.com/en/auth/ok:
-    getLangFromURLPathname(); // => 'en'
-
-    // With URL given as param:
-    getLangFromURLPathname(`http://example.com/auth/sp/ok`, [`en`, `fr`, `sp`]); // => 'sp'
 
 ### condSwitch :: ((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
 *   Function-based switch statement. Takes 2 or more args.
@@ -42,7 +31,6 @@ Examples - most useful methods
         *   If no default value is present after all conditions returned false, throws an error.
 
 Examples:
-
 ```
 condSwitch(true, 'val1');                // Output: 'val1'
 
@@ -56,18 +44,15 @@ condSwitch(
 condSwitch(undefined, 'v1', '', 'v2');   // Throws Error
 ```
 
-### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
-
-    // With URL http://example.com/home?hello=everyone&gr=argh:
-    parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
+### first :: (Array<T|any>) => T|any;
+```
+first([1,2,3]); => 1
+```
 
 ### last :: (Array<T|any>) => T|any;
-
-    last([1,2,3]); => 3
-
-### first :: (Array<T|any>) => T|any;
-
-    first([1,2,3]); => 1
+```
+last([1,2,3]); => 3
+```
 
 ### matchAny :: (any[]) => (any) => boolean
 Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
@@ -83,12 +68,69 @@ Search array for value. Returns true if array contains value. Uses simple JSON.s
     uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
     uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
 
-### get : (Object, string, any?) => any
+### get :: (Object, string, any?) => any
 Safely get the item at the given object path.
 ```
 const obj = {a: {b: {c: 'value'}}};
 get(obj, 'a.b.c');                    // => 'value'
 get(obj, 'a.b.zzz', 'default value'); // => 'default value'
+```
+
+### isBoolean :: (any) => boolean
+```
+isBoolean(true); // => true
+isBoolean(false); // => true
+isBoolean({}); // => false
+```
+
+### isFalse :: (any) => boolean
+```
+isFalse(true); // => false
+isFalse(false); // => true
+isFalse('ok'); // => false
+```
+
+### isInt :: (any) => boolean
+```
+isInt(5); // => true
+isInt(-10); // => true
+isInt(1.6); // => false
+isInt('okok'); // => false
+```
+
+### pushIfNew :: (T[], T): =>  T[]
+```
+const arr = [1, 2, 3]
+
+pushIfNew(3); // => [1, 2, 3]
+pushIfNew(4); // => [1, 2, 3, 4]
+
+console.log(arr); // => [1, 2, 3, 4]
+```
+
+### getLangFromURLPathname ::
+Signature:
+```
+<T = ('en' | 'fr')>(
+    string? = location.pathname,
+    T[]?    = ['en', 'fr']
+    T?      = 'en'
+) => string
+```
+
+    // With URL http://example.com/auth/fr/ok:
+    getLangFromURLPathname(); // => 'fr'
+
+    // With URL http://example.com/en/auth/ok:
+    getLangFromURLPathname(); // => 'en'
+
+    // With URL given as param:
+    getLangFromURLPathname(`http://example.com/auth/sp/ok`, [`en`, `fr`, `sp`]); // => 'sp'
+
+### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
+```
+    // With URL http://example.com/home?hello=everyone&gr=argh:
+    parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
 ```
 
 Installation
