@@ -99,8 +99,8 @@ export declare const chomp: (str: string, charsToChomp?: string) => string;
  * Handles all common diacritics (accents), and a few (but not all) rare ones
  *     - Note: all French and English diacritics work
  *
- * Replaces most symbols with _
- *     - Exception: surrounds Þ þ ø µ and ß with _ instead
+ * Replaces most symbols with `_`
+ *     - Exception: surrounds Þ þ ø µ and ß with `_` instead
  *
  * @param {string} str String to convert to snake_case
  * @return {string} given string (str) converted to snake_case
@@ -113,8 +113,8 @@ export declare const toSnakeCase: (str: string) => string;
  * Handles all common diacritics (accents), and a few (but not all) rare ones
  *     - Note: all French and English diacritics work
  *
- * Replaces most symbols with _
- *     - Exception: surrounds Þ þ ø µ and ß with _ instead
+ * Replaces most symbols with `-`
+ *     - Exception: surrounds Þ þ ø µ and ß with `-` instead
  *
  * @param {string} str String to convert to dash-case
  * @return {string} given string (str) converted to dash-case
