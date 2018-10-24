@@ -16,7 +16,7 @@ export type ParsedUserAgent = IUAParser.IResult & {raw: string};
 /**
  * Memoized parsed browser user agent
  */
-export var userAgent = userAgent || parseUserAgent();
+export var userAgent: ParsedUserAgent = userAgent || parseUserAgent();
 
 /**
  * Parse browser's user agent & return an object with all user agent properties
@@ -43,19 +43,20 @@ export function parseUserAgent(userAgent = window.navigator.userAgent): ParsedUs
  *     "Mozilla/5.0 (Macintosh; Intel Mac OS X 17_14_2) AppleWebKit/530.12 " +
  *     "(KHTML, like Gecko) Chrome/51.0.3272.211 Safari/530.12"
  */
-export const getUserAgentString = (mWindow?: Window) => (mWindow || window).navigator.userAgent;
+export const getUserAgentString = (mWindow?: Window): string =>
+    (mWindow || window).navigator.userAgent;
 
 /**
  * Get name of current computer's operating system e.g. "Mac OS", "Windows NT"
  * @return {string} Name of current computer's OS
  */
-export const osName = () => userAgent.os.name;
+export const osName = (): string => userAgent.os.name;
 
 /**
  * Get name of browser, e.g. "Chrome" or "Firefox"
  * @return {string} Name of browser
  */
-export const browserName = () => userAgent.browser.name;
+export const browserName = (): string => userAgent.browser.name;
 
 /**
  * @return {string} Name of browser's rendering engine.
@@ -63,22 +64,22 @@ export const browserName = () => userAgent.browser.name;
  * @example browserEngineName(); // => "Gecko" (Firefox output);
  *
  */
-export const browserEngineName = () => userAgent.engine.name;
+export const browserEngineName = (): string => userAgent.engine.name;
 
 /**
  * @return {string} OS version. E.g. "17.14.2"
  */
-export const osVersion = () => userAgent.os.version;
+export const osVersion = (): string => userAgent.os.version;
 
 /**
  * @return {string} Browser version. E.g. "51.0.3272.211"
  */
-export const browserVersion = () => userAgent.browser.version;
+export const browserVersion = (): string => userAgent.browser.version;
 
 /**
  * @return {string} Version of the browser's rendering engine. E.g. "530.12"
  */
-export const browserEngineVersion = () => userAgent.engine.version;
+export const browserEngineVersion = (): string => userAgent.engine.version;
 
 /******************************************** HELPERS *********************************************/
 /**
