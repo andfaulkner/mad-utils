@@ -17,7 +17,7 @@ export type ParsedUserAgent = IUAParser.IResult & {raw: string};
 /**
  * Memoized parsed browser user agent
  */
-var userAgent: ParsedUserAgent = userAgent || parseUserAgent();
+export var userAgentParsed: ParsedUserAgent = userAgentParsed || parseUserAgent();
 
 /**
  * Parse browser's user agent & return an object with all user agent properties
@@ -49,13 +49,13 @@ export const getUserAgentString = (mWindow?: Window): string =>
  * Get name of current computer's operating system e.g. "Mac OS", "Windows NT"
  * @return {string} Name of current computer's OS
  */
-export const osName = (): string => userAgent.os.name;
+export const osName = (): string => userAgentParsed.os.name;
 
 /**
  * Get name of browser, e.g. "Chrome" or "Firefox"
  * @return {string} Name of browser
  */
-export const browserName = (): string => userAgent.browser.name;
+export const browserName = (): string => userAgentParsed.browser.name;
 
 /**
  * Get name of browser's rendering engine
@@ -65,22 +65,22 @@ export const browserName = (): string => userAgent.browser.name;
  *
  * @return {string} Name of browser's rendering engine
  */
-export const browserEngineName = (): string => userAgent.engine.name;
+export const browserEngineName = (): string => userAgentParsed.engine.name;
 
 /**
  * Get machine's OS semver version number (as a string), e.g. "17.14.2"
  * @return {string} numeric OS version (in string form)
  */
-export const osVersion = (): string => userAgent.os.version;
+export const osVersion = (): string => userAgentParsed.os.version;
 
 /**
  * Get browser version number (as a string), e.g. "51.0.3272.211"
  * @return {string} Browser version number string
  */
-export const browserVersion = (): string => userAgent.browser.version;
+export const browserVersion = (): string => userAgentParsed.browser.version;
 
 /**
  * Get version number string of the browser's rendering engine, e.g. "530.12"
  * @return {string} Browser rendering engine version number (string)
  */
-export const browserEngineVersion = (): string => userAgent.engine.version;
+export const browserEngineVersion = (): string => userAgentParsed.engine.version;
