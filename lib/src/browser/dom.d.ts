@@ -1,4 +1,5 @@
 /// <reference path="../../../node_modules/@types/ua-parser-js/index.d.ts" />
+/// <reference path="../../../node_modules/typescript/lib/lib.dom.d.ts" />
 /// <reference types="ua-parser-js" />
 export declare type ParsedUserAgent = IUAParser.IResult & {
     raw: string;
@@ -18,13 +19,13 @@ export declare var userAgent: any;
  *          browser: { name: string, version: string }
  *          engine:  { name: string, version: string }}
  */
-export declare function parseUserAgent(userAgent?: string): ParsedUserAgent;
+export declare function parseUserAgent(userAgent?: any): ParsedUserAgent;
 /**
  * Return raw (unparsed) browser user agent string. e.g.
  * "Mozilla/5.0 (Macintosh; Intel Mac OS X 17_14_2) AppleWebKit/530.12 " +
  * "(KHTML, like Gecko) Chrome/51.0.3272.211 Safari/530.12"
  */
-export declare const getUserAgentString: (mWindow?: Window) => string;
+export declare const getUserAgentString: (mWindow?: Window) => any;
 /**
  * @return {string} Name of the current computer's operating system. E.g. "Mac OS" or "Windows NT"
  */
