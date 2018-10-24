@@ -10,7 +10,6 @@ import {inspect} from 'util';
 /******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
 import {
     array,
-    append,
     first,
     second,
     third,
@@ -59,18 +58,6 @@ describe(`array sub-module`, function() {
     expectNonEmptyObjectExists(arrayModule, 'array (import all from array.ts file)');
     expectNonEmptyObjectExists(arrayFromNode, 'array (from node export)');
     expectNonEmptyObjectExists(arrayFromBrowser, 'array (from browser export)');
-
-    describe(`-- #append`, function() {
-        it(`-- exists : #append`, function() {
-            expect(m_.array.append).to.exist;
-            expect(append).to.exist;
-        });
-        it(`.append : merges all given arrays into 1`, function() {
-            expect(append([1, 2], [3, 4])).to.eql([1, 2, 3, 4]);
-            expect(append([1, 2], [3, 4], [5, 6])).to.eql([1, 2, 3, 4, 5, 6]);
-            expect(append([1, 2], null, [5, 6])).to.eql([1, 2, 5, 6]);
-        });
-    });
 
     describe(`-- #first`, function() {
         it(`exists`, function() {
