@@ -1,4 +1,14 @@
-0.70.2
+0.79.0
+======
+Remove append function
+
+Major improvements to README
+
+Simplify logger higher-order-component
+
+
+----------------------------------------------------------------------------------------------------
+0.78.2
 ======
 Upgrade mad-logs to isomorphic variant
 
