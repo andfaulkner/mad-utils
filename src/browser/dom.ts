@@ -1,4 +1,9 @@
 /// <reference path="../../node_modules/@types/ua-parser-js/index.d.ts" />
+/// <reference path="../../node_modules/typescript/lib/lib.dom.d.ts" />
+
+// Ensure window object exists & is accessible
+// tslint:disable-next-line:no-var-keyword
+var window = window || (global && (global as any).window) || {navigator: {}};
 
 import { toSnakeCase } from '../string';
 
