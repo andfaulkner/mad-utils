@@ -1325,7 +1325,7 @@ Get the last path in the given URL, with no / prepended, & query params excluded
 Returns '' if no paths in url.
 
 Sets 'strict mode' to true by default, meaning trailing slashes aren't ignored.
-*   if one is present, return value becomes ''.
+*   If one is present, return value becomes ''.
 
 If first param is null or undefined, uses the current page's URL as the url value.
 
@@ -1391,66 +1391,69 @@ Namespace: search (isomorphic)
 ----------------------------------------------------------------------------------------------------
 Namespace: string ((Alias: str)) (isomorphic)
 =============================================
-### cap1LowerRest
-(string) => string
-*   Make the first letter uppercase, and the rest lowercase.
+### cap1LowerRest :: (string) => string
+Make the first letter uppercase and the rest lowercase.
 
 Examples:
+```
+cap1LowerRest('asdf'); // => 'Asdf'
+cap1LowerRest('aSdF'); // => 'Asdf'
+cap1LowerRest('This was already cap.'); // => 'This was already cap.'
+cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
+cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
+```
 
-    cap1LowerRest('asdf'); // => 'Asdf'
-    cap1LowerRest('aSdF'); // => 'Asdf'
-    cap1LowerRest('This was already cap.'); // => 'This was already cap.'
-    cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
-    cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
-
-### capitalize
-(string) => string
-*   Make the first letter uppercase, and leave the rest as-is.
-
-Examples:
-
-    capitalize('asdf'); // => 'Asdf'
-    capitalize('aSdF'); // => 'ASdF'
-    capitalize('This was already cap.'); // => 'This was already cap.'
-    capitalize('This Was Already Cap.'); // => 'This Was Already Cap.'
-    capitalize('not Already Cap.'); // => 'Not Already Cap.'
-
-### removeMatchingText
-(initStr: string, matcherToRm: string|RegExp) => string
-*   Return copy of string (initStr) with all instances of substring or regexp (matcherToRm) removed.
+### capitalize :: (string) => string
+Make the first letter uppercase, and leave the rest as-is.
 
 Examples:
+```
+capitalize('asdf'); // => 'Asdf'
+capitalize('aSdF'); // => 'ASdF'
+capitalize('This was already cap.'); // => 'This was already cap.'
+capitalize('not Already Cap.'); // => 'Not Already Cap.'
+```
 
-    removeMatchingText('asdfqwertyasdfuiopasdf', 'asdf'); // => 'qwertyuiop'
-    removeMatchingText('HeREMlloREM woREMrldREM!', 'REM'); // => 'Hello world!'
-    removeMatchingText('Hello world!', 'ASDFasdfewer'); // => 'Hello world!'
-    removeMatchingText('Hello world!', 'ASDFasdfewer'); // => 'Hello world!'
-
-### replaceAll
-(text: string, match: string|RegExp, replacement: string) => string
-*   Replace all matching strings or regexes in a text segment with given replacement string.
-*   Main benefit: *ALL* matching strings get replaced.
-
-Examples:
-
-    replaceAll('The duck here is the best Jerry! The best!', 'best', 'bees-knees');
-    // => 'The duck here is the bees-knees Jerry! The bees-knees!'
-
-    replaceAll('The duck here is the best Jerry! The best!', /[tT]he best/g, 'OK');
-    // => 'The duck here is OK Jerry! OK!'
-
-### chomp
-(str: string, charsToChomp: string = '\n\r') => string
-*   Remove all chars in charsToChomp string from end of given string str.
-*   Defaults to eliminating carriage return and newline (\n\r)
+### removeMatchingText :: (string, string|RegExp) => string
+Return copy of string with all instances of substring or regexp (matcherToRm) removed.
 
 Examples:
+```
+removeMatchingText('HeRMlloRM woRMrldRM', 'RM');     // => 'Hello world'
+removeMatchingText('RMqwertyRM uioprm',   /rm ?/ig); // => 'qwertyuiop'
+removeMatchingText('Hello world',         'ASafer'); // => 'Hello world'
+```
 
-    chomp('asdf\n\r\n\r');                        // => 'asdf'
-    chomp('asdf\n \r  \n\r', '\n\r ');            // => 'asdf'
-    chomp('\n  \ras\ndf\n \r  \n\r   ', '\n\r '); // => '\n  \ras\ndf'
-    chomp('asdf\r \n', ' \n');                    // => 'asdf\r'
+### replaceAll :: (string, match: string|RegExp, replace: string) => string
+Replace all matching strings or regexes in a text segment with given replacement string.
+All matching strings get replaced.
 
+Args:
+*   1st arg: string to replace text in
+*   match:   string(s) to replace (replace all matches)
+*   replace: string to replace matches with
+
+Examples:
+```
+replaceAll('The duck here is the best Jerry! The best!', 'best', 'bees-knees');
+// => 'The duck here is the bees-knees Jerry! The bees-knees!'
+
+replaceAll('The duck here is the best Jerry! The best!', /[tT]he best/g, 'OK');
+// => 'The duck here is OK Jerry! OK!'
+```
+
+### chomp :: (string, charsToChomp: string = '\n\r') => string
+Remove all chars in charsToChomp string from end of given string (1st arg).
+
+Defaults to eliminating carriage return and newline (\n\r).
+
+Examples:
+```
+chomp('asdf\n\r\n\r');                        // => 'asdf'
+chomp('asdf\n \r  \n\r', '\n\r ');            // => 'asdf'
+chomp('\n  \ras\ndf\n \r  \n\r   ', '\n\r '); // => '\n  \ras\ndf'
+chomp('asdf\r \n', ' \n');                    // => 'asdf\r'
+```
 
 ### escapeRegExp
 *   WIP documentation
@@ -1473,67 +1476,69 @@ Examples:
 Namespace: test (node)
 ======================
 ### expectNonEmptyObjectExists
-*   Create Mocha test that passes if given object exists and is not empty
+Create Mocha test that passes if given object exists and is not empty
 
 Examples:
-
-    expectEmptyObject({}); // << will not pass
-    expectEmptyObject({ a: 1 }); // << will pass
+```
+expectEmptyObject({}); // << will not pass
+expectEmptyObject({ a: 1 }); // << will pass
+```
 
 ### expectEmptyObject
-*   Create Mocha test that passes if given object is empty
+Create Mocha test that passes if given object is empty
 
 Examples:
-
-    expectEmptyObject({}); // << will pass
-    expectEmptyObject({ a: 1 }); // << will not pass
+```
+expectEmptyObject({}); // << will pass
+expectEmptyObject({ a: 1 }); // << will not pass
+```
 
 ### expectFunctionExists (ALIAS: expectFuncExists)
-*   Create Mocha test that passes if given function exists
+Create Mocha test that passes if given function exists
 
 Examples:
-
-    const inc = (a: number) => a + 1;
-    expectFunctionExists({}); // << will not pass
-    expectFunctionExists(() => null); // << will pass
-    expectFunctionExists(inc); // << will pass
+```
+const inc = (a: number) => a + 1;
+expectFunctionExists({}); // << will not pass
+expectFunctionExists(() => null); // << will pass
+expectFunctionExists(inc); // << will pass
+```
 
 
 
 ----------------------------------------------------------------------------------------------------
 Namespace: types (Alias: type) (isomorphic)
 ===========================================
-### isDateLike
-(arg: RealAny) => boolean
-*   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
-    *   Excludes:
-        *   negative numbers
-        *   strings that parse to negative numbers
-        *   objects with date-irrelevant keys e.g. { year: 1123, bear: 'grizzly' }
+### isDateLike :: (any) => boolean
+Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
+
+Excludes:
+*   negative numbers
+*   strings that parse to negative numbers
+*   objects with date-irrelevant keys e.g. {year: 1123, bear: 'grizzly'}
 
 Examples:
+```
+isDateLike('1990-12-10'); // => true
+isDateLike(moment());     // => true
+isDateLike(new Date());   // => true
+isDateLike('asdf');       // => false
+isDateLike(false);        // => false
+```
 
-    isDateLike('1990-12-10'); // => true
-    isDateLike(moment());     // => true
-    isDateLike(new Date());   // => true
-    isDateLike('asdf');       // => false
-    isDateLike(false);        // => false
-
-### isBoolean
-(val: RealAny) => boolean
-*   Return true if arg is a boolean value (either true or false)
+### isBoolean :: (any) => boolean
+Return true if arg is a boolean value (either true or false)
 
 Examples:
-
-    isBoolean(false);         // => true
-    isBoolean(true);          // => true
-    isBoolean(Boolean(true)); // => true
-    isBoolean('');            // => false
-    isBoolean(0);             // => false
-    isBoolean('true');        // => false
-    isBoolean(NaN);           // => false
-    isBoolean(10000);         // => false
-    isBoolean(() => true);    // => false
+```
+isBoolean(false);         // => true
+isBoolean(true);          // => true
+isBoolean(Boolean(true)); // => true
+isBoolean('');            // => false
+isBoolean(0);             // => false
+isBoolean('true');        // => false
+isBoolean(() => true);    // => false
+```
 
 ### isArray
 *   (see array section above)
