@@ -31,25 +31,23 @@ import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/t
 
 /********************************************* TESTS **********************************************/
 describe(`dom sub-module`, function() {
-    expectNonEmptyObjectExists(dom, 'dom (from shared/base export)');
-    expectNonEmptyObjectExists(m_.dom, 'dom (from m_ top-level namespace)');
-    expectNonEmptyObjectExists(domModule, 'dom (import all from dom.ts file)');
-    expectNonEmptyObjectExists(domFromBrowser, 'dom (from Browser export)');
+    expectNonEmptyObjectExists(dom, `dom (from shared/base export)`);
+    expectNonEmptyObjectExists(m_.dom, `dom (from m_ top-level namespace)`);
+    expectNonEmptyObjectExists(domModule, `dom (import all from dom.ts file)`);
+    expectNonEmptyObjectExists(domFromBrowser, `dom (from Browser export)`);
     expectNonEmptyObjectExists(userAgentParsed, `dom->userAgentParsed`);
-
-    const commonSrc = 'as stored in user agent string on window';
 
     describe(`UserAgent functions`, function() {
         const userAgent =
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36' +
-            ' (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36';
-        const mockOSName = 'Mac OS';
-        const mockOSSnakeCase = 'mac_os';
-        const mockOSVersion = '10.11.6';
-        const mockBrowserName = 'Chrome';
-        const mockBrowserVersion = '59.0.3071.115';
-        const mockEngineName = 'WebKit';
-        const mockEngineVersion = '537.36';
+            `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36` +
+            ` (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36`;
+        const mockOSName = `Mac OS`;
+        const mockOSSnakeCase = `mac_os`;
+        const mockOSVersion = `10.11.6`;
+        const mockBrowserName = `Chrome`;
+        const mockBrowserVersion = `59.0.3071.115`;
+        const mockEngineName = `WebKit`;
+        const mockEngineVersion = `537.36`;
 
         describe(`-- #parseUserAgent`, function() {
             let uaMockParsed: ParsedUserAgent;
@@ -58,8 +56,8 @@ describe(`dom sub-module`, function() {
                 uaMockParsed = parseUserAgent(userAgent);
             });
 
-            it('given a string, should return obj w raw UserAgent plus browser & OS info:', function() {
-                expect(uaMockParsed.browser.major).to.eql('59');
+            it(`given a string, should return obj w raw UserAgent plus browser & OS info:`, function() {
+                expect(uaMockParsed.browser.major).to.eql(`59`);
                 expect(uaMockParsed.browser.version).to.eql(mockBrowserVersion);
                 expect(uaMockParsed.os.version).to.eql(mockOSVersion);
                 expect(uaMockParsed.engine.version).to.eql(mockEngineVersion);
@@ -71,6 +69,8 @@ describe(`dom sub-module`, function() {
         it(`-- #getUserAgentString: returns raw user agent str from window.navigator object`, function() {
             expect(getUserAgentString()).to.equal(mockUserAgent);
         });
+
+        const commonSrc = `as stored in user agent string on window`;
 
         it(`-- #osName: returns name of OS running on current computer, ${commonSrc}`, function() {
             expect(osName()).to.equal(mockOSName);
