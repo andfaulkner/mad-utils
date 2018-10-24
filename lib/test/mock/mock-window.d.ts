@@ -1,12 +1,19 @@
+/***************************************************************************************************
+ *
+ *       @file ./mock_window.ts
+ *
+ *       Mocks the bare minimum amount of the window object to run unit tests
+ *       on 'browser' modules
+ *
+ */
 /// <reference path="../../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../../node_modules/@types/node/index.d.ts" />
 export declare const userAgent: string;
 /********************************************* EXPORT *********************************************/
 /**
- * @export
- * Pieces of window required to run tests.
+ * Pieces of window required to run tests
  */
-declare const window: {
+export declare const window: {
     navigator: {
         userAgent: string;
     };
@@ -25,4 +32,3 @@ declare const window: {
     sessionStorage: Storage;
     localStorage: Storage;
 };
-export { window };
