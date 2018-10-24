@@ -1,10 +1,13 @@
-0.79.1
+0.79.2
 ======
 Remove append function
 Remove osNameSnakeCase function (just use osName, and run a snake_case function on it)
 
-Rename userAgent to userAgentParsed
-*   Purpose: make it clearer that it returns parsed userAgent *object*, not a string
+Rename userAgent to getUserAgentParsed, make it an exported function
+*   Purposes:
+    *   Make it clearer that it returns parsed userAgent *object*, not a string
+    *   Ensure memoization and calculation doesn't occur until function is called, rather than
+        having it happen greedily when the module is loaded (for performance and safety)
 
 Add return types to DOM module
 
