@@ -533,24 +533,6 @@ isArray(new CustomArray()); // => true
 
 Add to or subtract from array
 -----------------------------
-### append :: (any[] | any, ...arrN: any[] | any) => any[]
-Append all items in each array in arrN to the end of arr1 (non-mutatively) and return it.
-*   i.e. 2nd array gets appended to the 1st, after which 3rd array gets appended, & so on.
-If any argument is undefined or null, it ignores it.
-If all arguments are undefined or null, it returns [].
-If a non-array value besides null is given, it wraps the item in an array before performing the concatenation.
-
-Non-mutative: returns a new array.
-
-
-```
-append([1, 2, 3], [4, 5, 6]); // => [1, 2, 3, 4, 5, 6]
-
-append([1, 2, 3], 'a', [4, 5, 6]); // => [1, 2, 3, 'a', 4, 5, 6]
-
-append([1, 2, 3], 'a', null, [4, 5, 6]); // => [1, 2, 3, 'a', 4, 5, 6]
-```
-
 ### removeMatches :: (any[], any[] | any) => any[]
 NON-MUTATIVE. PERFORMANCE-INTENSIVE.
 
