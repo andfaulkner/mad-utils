@@ -13,23 +13,22 @@ const UserAgentParser = require('ua-parser-js');
 export type ParsedUserAgent = IUAParser.IResult & {raw: string};
 
 /******************************************* USER AGENT *******************************************/
+// tslint:disable-next-line:no-var-keyword
 /**
  * Memoized parsed browser user agent
  */
-export var userAgent: ParsedUserAgent = userAgent || parseUserAgent();
+var userAgent: ParsedUserAgent = userAgent || parseUserAgent();
 
 /**
  * Parse browser's user agent & return an object with all user agent properties
  *
  * @param {string} userAgent Browser's userAgent string
- * @return {ParsedUserAgent} Data obj w all parsed attributes of user agent string:
- *                           {
- *                               raw:     string
- *                               ua:      string
- *                               os:      {name: string, version: string}
- *                               browser: {name: string, version: string}
- *                               engine:  {name: string, version: string}
- *                           }
+ * @return {ParsedUserAgent} Data obj w parsed attributes of user agent string:
+ *                           {raw:     string
+ *                            ua:      string
+ *                            os:      {name: string, version: string}
+ *                            browser: {name: string, version: string}
+ *                            engine:  {name: string, version: string}}
  */
 export function parseUserAgent(userAgent = window.navigator.userAgent): ParsedUserAgent {
     const ua = UserAgentParser(userAgent) as ParsedUserAgent;
@@ -59,43 +58,29 @@ export const osName = (): string => userAgent.os.name;
 export const browserName = (): string => userAgent.browser.name;
 
 /**
- * @return {string} Name of browser's rendering engine.
- * @example browserEngineName(); // => "Webkit" (Chrome output. See getUserAgentString example above)
- * @example browserEngineName(); // => "Gecko" (Firefox output);
+ * Get name of browser's rendering engine
  *
+ * Example (Chrome):  browserEngineName(); // => "Webkit"
+ * Example (Firefox): browserEngineName(); // => "Gecko"
+ *
+ * @return {string} Name of browser's rendering engine
  */
 export const browserEngineName = (): string => userAgent.engine.name;
 
 /**
- * @return {string} OS version. E.g. "17.14.2"
+ * Get machine's OS semver version number (as a string), e.g. "17.14.2"
+ * @return {string} numeric OS version (in string form)
  */
 export const osVersion = (): string => userAgent.os.version;
 
 /**
- * @return {string} Browser version. E.g. "51.0.3272.211"
+ * Get browser version number (as a string), e.g. "51.0.3272.211"
+ * @return {string} Browser version number string
  */
 export const browserVersion = (): string => userAgent.browser.version;
 
 /**
- * @return {string} Version of the browser's rendering engine. E.g. "530.12"
+ * Get version number string of the browser's rendering engine, e.g. "530.12"
+ * @return {string} Browser rendering engine version number (string)
  */
 export const browserEngineVersion = (): string => userAgent.engine.version;
-
-/******************************************** HELPERS *********************************************/
-/**
- * Get element by ID. TODO: allow getting by class, tag, etc.
- */
-// export const $ = (sel: string): HTMLElement/* | HTMLElement[]*/ => {
-//     // get by id
-//     if (sel.split('#').length > 1) {
-//         return document.getElementById.call(document, sel.split('#')[1]) as HTMLElement;
-//     }
-// no # possible past here.
-// else if (sel[0] !== '.') {
-//     // if no classes defined
-//     if (sel.split('.').length === 1) {
-//         return document.getElementsByTagName(sel);
-//     }
-//     return document.getElementsByClassName.call(document, sel) as HTMLElement[];
-// }
-// };
