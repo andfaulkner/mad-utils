@@ -341,278 +341,230 @@ Namespace: array (isomorphic)
 =============================
 Get items from array by position
 --------------------------------
-### [FUNCTION] first
-(arr: T[]) => T
-*   Return first item in given array
+### first :: (T[]) => T
+Return first item in given array
 
-Examples:
+```
+first(['a', 'b', 'c', 'd']);  // => 'a'
+```
 
-    first(['a', 'b', 'c', 'd']);
-    // => 'a'
+### second :: (T[]) => T
+Return second item in given array
 
-### [FUNCTION] second
-(arr: T[]) => T
-*   Return second item in given array
+```
+second(['a', 'b', 'c', 'd']);  // => 'b'
+```
 
-Examples:
+### third :: (T[]) => T
+Return third item in given array
 
-    second(['a', 'b', 'c', 'd']);
-    // => 'b'
+```
+third(['a', 'b', 'c', 'd']);  // => 'c'
+```
 
-### [FUNCTION] third
-(arr: T[]) => T
-*   Return third item in given array
+### last :: (T[]) => T
+Return last item in given array
 
-Examples:
+```
+last(['a', 'b', 'c', 'd']);  // => 'd'
+```
 
-    third(['a', 'b', 'c', 'd']);
-    // => 'c'
+### secondLast :: (T[]) => T
+Return secondLast item in given array
 
-### [FUNCTION] last
-(arr: T[]) => T
-*   Return last item in given array
+```
+secondLast(['a', 'b', 'c', 'd']);  // => 'c'
+```
 
-Examples:
+### thirdLast :: (T[]) => T
+Return thirdLast item in given array
 
-    last(['a', 'b', 'c', 'd']);
-    // => 'd'
+```
+thirdLast(['a', 'b', 'c', 'd']);  // => 'b'
+```
 
-### [FUNCTION] secondLast
-(arr: T[]) => T
-*   Return secondLast item in given array
+### first2 :: (T[]) => T[]
+Return first 2 items in given array
 
-Examples:
+```
+first2(['a', 'b', 'c', 'd']);  // => ['a', 'b']
+```
 
-    secondLast(['a', 'b', 'c', 'd']);
-    // => 'c'
+### first3 :: (T[]) => T[]
+Return first 3 items in given array
 
-### [FUNCTION] thirdLast
-(arr: T[]) => T
-*   Return thirdLast item in given array
+```
+first3(['a', 'b', 'c', 'd']);  // => ['a', 'b', 'c']
+```
 
-Examples:
+### last2 :: (T[]) => T[]
+Return last 2 items in given array
 
-    thirdLast(['a', 'b', 'c', 'd']);
-    // => 'b'
+```
+last2(['a', 'b', 'c', 'd']);  // => ['c', 'd']
+```
 
-### [FUNCTION] first2
-(arr: T[]) => T[]
-*   Return first 2 items in given array
+### last3 :: (T[]) => T[]
+Return last 3 items in given array
 
-Examples:
+```
+last3(['a', 'b', 'c', 'd']);  // => ['b', 'c', 'd']
+```
 
-    first2(['a', 'b', 'c', 'd']);
-    // => ['a', 'b']
+### firstN :: (T[], number) => T[]
+Return first 'n' number of items from given array
 
-### [FUNCTION] first3
-(arr: T[]) => T[]
-*   Return first 3 items in given array
+```
+firstN(['a', 'b', 'c', 'd'], 2);  // => ['a', 'b']
+```
 
-Examples:
+### lastN :: (T[], Int) => T[]
+Return last 'n' items from given array.
+Return full array if too many items requested.
 
-    first3(['a', 'b', 'c', 'd']);
-    // => ['a', 'b', 'c']
-
-### [FUNCTION] last2
-(arr: T[]) => T[]
-*   Return last 2 items in given array
-
-Examples:
-
-    last2(['a', 'b', 'c', 'd']);
-    // => ['c', 'd']
-
-### [FUNCTION] last3
-(arr: T[]) => T[]
-*   Return last 3 items in given array
-
-Examples:
-
-    last3(['a', 'b', 'c', 'd']);
-    // => ['b', 'c', 'd']
-
-### [FUNCTION] firstN
-(arr: T[], n: number) => T[]
-*   Return first 'n' number of items from given array
-
-Examples:
-
-    firstN(['a', 'b', 'c', 'd'], 2);
-    // => ['a', 'b']
-
-### [FUNCTION] lastN
-(arr: T[], n: number) => T[]
-*   Return last 'n' items from given array. Return full array if too many items requested.
-
-Examples:
-
-    lastN(['a', 'b', 'c', 'd'], 2)
-    // => ['c', 'd']
+```
+lastN(['a', 'b', 'c', 'd'], 2);  // => ['c', 'd']
+```
 
 Create array
 ------------
-### [FUNCTION] arrayN
-(len: number) => undefined[]
-*   Create empty array of given length.
+### arrayN :: (length: Int) => undefined[]
+Create empty array of given length (integer).
 
-Examples:
+```
+arrayN(3);  // => [undefined, undefined, undefined]
+```
 
-    arrayN(6)
-    // => [ undefined, undefined, undefined, undefined, undefined, undefined ]
+### splitLines :: (string, {preserveEmptyLines: false}) => string[]
+Split large multiline string into array where each line is an item.
+Removes blank lines by default, unless preserveEmptyLines option is set to true.
 
-### [FUNCTION] splitLines
-(str: string, opts: { preserveEmptyLines: false }) => string[]
-*   Split large multiline string into array where each line is an item
-*   Removes blank lines by default, unless preserveEmptyLines option is set to true.
+```
+splitLines(
+    'first line' +
+    '\n ' +
+    'third line' +
+    '\n',
+    'fourth line'
+);
+// => ['first line', ' ', 'third line', 'fourth line']
 
-Examples:
+splitLines(`
+    first line
 
-    splitLines(`
-        first line
-
-        third line`);
-    // => ['first line',
-           'third line']
-
-    splitLines(`
-        first line
-
-        third line`,
-        { preserveEmptyLines: true });
-    // => ['',
-           'first line',
-           '',
-           'third line']
+    second line`,
+    {preserveEmptyLines: true}
+);
+// => ['', 'first line', '', 'second line']
+```
 
 Exclude items from array by position
 ------------------------------------
-### [FUNCTION] withoutFirst
-(arr|str) => any[]|str
-*   Remove first character or array item.
+### withoutFirst :: (T[] | string) => T[] | string
+Remove first character or array item.
 
-Examples:
+```
+withoutFirst([1, 2, 3, 4, 5]) // => [2, 3, 4, 5]
+withoutFirst('hello');  // => 'ello'
+```
 
-    withoutFirst([1, 2, 3, 4, 5])
-    // => [2, 3, 4, 5]
+### withoutFirst2 :: (T[] | str) => T[] | str
+Remove first 2 characters or array items.
 
-    withoutFirst('hello')
-    // => 'ello'
+```
+withoutFirst2([1, 2, 3, 4, 5]); // => [3, 4, 5]
+withoutFirst2('abcdef'); // => 'cdef'
+```
 
-### [FUNCTION] withoutFirst2
-(arr|str) => any[]|str
-*   Remove first 2 characters or array items.
+### withoutFirst3 :: (T[] | string) => T[] | string
+Remove first 3 characters or array items.
 
-Examples:
+```
+withoutFirst3([1, 2, 3, 4, 5]); // => [4, 5]
+```
 
-    withoutFirst2([1, 2, 3, 4, 5])
-    // => [3, 4, 5]
+### withoutLast :: (T[] | string) => T[] | string
+Remove last character or array item.
 
-### [FUNCTION] withoutFirst3
-(arr|str) => any[]|str
-*   Remove first 3 characters or array items.
+```
+withoutLast([1, 2, 3, 4, 5]); // => [1, 2, 3, 4]
+```
 
-Examples:
+### withoutLast2 :: (T[] | string) => T[] | string
+Remove last 2 characters or array items.
 
-    withoutFirst3([1, 2, 3, 4, 5])
-    // => [4, 5]
+```
+withoutLast2([1, 2, 3, 4, 5]); // => [1, 2, 3]
+```
 
-### [FUNCTION] withoutLast
-(arr|str) => any[]|str
-*   Remove last character or array item.
+### withoutLast3 :: (T[] | string) => T[] | string
+Remove last 3 characters or array items.
 
-Examples:
+```
+withoutLast3([1, 2, 3, 4, 5]); // => [1, 2]
+```
 
-    withoutLast([1, 2, 3, 4, 5])
-    // => [1, 2, 3, 4]
+### withoutFirstN :: (T[]|str, number) => T[] | string
+Remove first N characters or array items.
 
-### [FUNCTION] withoutLast2
-(arr|str) => any[]|str
-*   Remove last 2 characters or array items.
+```
+withoutFirstN([1, 2, 3, 4, 5], 3); // => [4, 5]
+```
 
-Examples:
+### withoutLastN :: (T[] | string, number) => T[] | string
+Remove last N characters or array items.
 
-    withoutLast2([1, 2, 3, 4, 5])
-    // => [1, 2, 3]
-
-### [FUNCTION] withoutLast3
-(arr|str) => any[]|str
-*   Remove last 3 characters or array items.
-
-Examples:
-
-    withoutLast3([1, 2, 3, 4, 5])
-    // => [1, 2]
-
-### [FUNCTION] withoutFirstN
-(arr|str, number) => any[]|str
-*   Remove first N characters or array items.
-
-Examples:
-
-    withoutFirstN([1, 2, 3, 4, 5], 4)
-    // => [5]
-
-### [FUNCTION] withoutLastN
-(arr|str, number) => any[]|str
-*   Remove last N characters or array items.
-
-Examples:
-
-    withoutLastN([1, 2, 3, 4, 5, 6, 7], 5)
-    // => [1, 2]
+```
+withoutLastN([1, 2, 3, 4, 5], 3); // => [1, 2]
+```
 
 Array typechecking
 ------------------
-### [FUNCTION] isArray
-(arr1: any[] | any) => boolean
-*   True if item is an array
+### isArray :: (T[] | T) => boolean
+True if item is an array
 
-Examples:
+```
+isArray([]); // => true
 
-    isArray([]);
-    // => true
+class CustomArray extends Array { }
 
-    class CustomArray extends Array { }
-    isArray(new CustomArray());
-    // => true
+isArray(new CustomArray()); // => true
+```
 
 Add to or subtract from array
 -----------------------------
-### [FUNCTION] append
-(arr1: any[] | any | void, ...arrN: any[] | any | void) => any[]
-*   Append all items in each array in arrN to the end of arr1 (non-mutatively) and return it.
-    *   i.e. 2nd array gets appended to the 1st, after which 3rd array gets appended, & so on.
-*   If any argument is undefined, it ignores it.
-*   If all arguments are undefined, it returns [].
-*   If a non-array value besides null is given, it wraps the item in an array before performing the concatenation.
-*   Non-mutative: returns a new array.
+### append :: (any[] | any, ...arrN: any[] | any) => any[]
+Append all items in each array in arrN to the end of arr1 (non-mutatively) and return it.
+*   i.e. 2nd array gets appended to the 1st, after which 3rd array gets appended, & so on.
+If any argument is undefined or null, it ignores it.
+If all arguments are undefined or null, it returns [].
+If a non-array value besides null is given, it wraps the item in an array before performing the concatenation.
 
-Examples:
+Non-mutative: returns a new array.
 
-    append([1, 2, 3], [4, 5, 6]);
-    // => [1, 2, 3, 4, 5, 6]
 
-    append([1, 2, 3], 'a', [4, 5, 6]);
-    // => [1, 2, 3, 'a', 4, 5, 6]
+```
+append([1, 2, 3], [4, 5, 6]); // => [1, 2, 3, 4, 5, 6]
 
-    append([1, 2, 3], 'a', null, [4, 5, 6]);
-    // => [1, 2, 3, 'a', 4, 5, 6]
+append([1, 2, 3], 'a', [4, 5, 6]); // => [1, 2, 3, 'a', 4, 5, 6]
 
-### [FUNCTION] removeMatches
-(arr: any[], arr2: any[] | any) => any[]
-*   Return new array with all items in arr2OrItem removed from array1.
-*   If array2 is not an array, remove matching item from array1.
-*   NON-MUTATIVE. PERFORMANCE-INTENSIVE.
+append([1, 2, 3], 'a', null, [4, 5, 6]); // => [1, 2, 3, 'a', 4, 5, 6]
+```
 
-Examples:
+### removeMatches :: (any[], any[] | any) => any[]
+NON-MUTATIVE. PERFORMANCE-INTENSIVE.
 
-    removeMatches([1, 2, 3], 2);
-    // => [1, 3]
+Return new array with all items in arr2OrItem removed from array1.
+If array2 is not an array, remove matching item from array1.
 
-    removeMatches([1, 2, 3, 4, 5], [1, 4]);
-    // => [2, 3, 5]
 
-### [FUNCTION] rmAllFalsy
+```
+removeMatches([1, 2, 3], 2); // => [1, 3]
+
+removeMatches([1, 2, 3, 4, 5], [1, 4]); // => [2, 3, 5]
+```
+
+### rmAllFalsy
 (arr: any[]) => arr[]
 *   Return new array with all falsy values in the given array eliminated.
 *   NON-MUTATIVE
@@ -624,7 +576,7 @@ Examples:
 
 Array searching
 ---------------
-### [FUNCTION] matchAny
+### matchAny
 (matchVals: any[]) => (valToFind: any) => boolean
 *   Search an array for a value.
 *   Returns true if array matchVals contains valToFind.
@@ -662,7 +614,7 @@ Examples:
     console.log(defaultTimestampFormat);
     // => `YYYY/MM/DD : HH:mm:ss`;
 
-### [FUNCTION] isLeapYear
+### isLeapYear
 (year: NumLike) => boolean
 *   Returns true if given year is a leap year
 *   Accepts integers, strings that can be converted to integers, and arrays with a single item, where said item is an integer or string convertable to an integer.
@@ -673,7 +625,7 @@ Examples:
     isLeapYear(2004); // => true
     isLeapYear(2003); // => false
 
-### [FUNCTION] convertDayOfWeekNumToString
+### convertDayOfWeekNumToString
 (day: NumRange0To6, abbreviate: boolean) => StrOrNever
 
 *   Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
@@ -686,7 +638,7 @@ Examples:
     convertDayOfWeekNumToString(5); // => 'Friday'
     convertDayOfWeekNumToString(2, true); // => 'Tues'
 
-### [FUNCTION] now
+### now
 (timeFormat?: string) => string
 *   Get the current date, formatted for display in the stream of Express logs to the CLI.
 *   Args:
@@ -698,7 +650,7 @@ Examples:
     now(); // => 2017/05/28 : 02:51:39
     now(`YYYY/MM hh:mm`); // => 2017/02 02:51
 
-### [FUNCTION] isDateLike (exported from types-iso - see below)
+### isDateLike (exported from types-iso - see below)
 
 
 
@@ -719,13 +671,13 @@ Namespace: decorator (isomorphic)
 ----------------------------------------------------------------------------------------------------
 Namespace: dom (browser)
 ========================
-### [FUNCTION] parseUserAgent
+### parseUserAgent
 () => { raw: string, ua: string, os: NameAndVersion, browser: NameAndVersion, engine: NameAndVersion }
     (NameAndVersion :: {name: string, version: string})
 
 *   Parse the browser's user agent and return an object containing the most useful user agent properties.
 
-### [FUNCTION] getUserAgentString
+### getUserAgentString
 () => string
 *   Return raw and unparsed browser user agent string (convenience function)
 
@@ -734,7 +686,7 @@ Example:
     getUserAgentString();
     // => "Mozilla/4.0 (Macintosh; Intel Mac OS X 7_12_6) AppleWebKit/501.16 (KHTML, like Gecko) Chrome/50.0.1010.99 Safari/210.22"
 
-### [FUNCTION] osName
+### osName
 () => string
 
 *   Extract name of current user's OS (operating system) from browser user agent string.
@@ -744,7 +696,7 @@ Example:
     
     osName(); // => "Mac OS"
 
-### [FUNCTION] osNameSnakeCase
+### osNameSnakeCase
 () => string
 
 *   Extract name of OS from browser user agent string, & convert it to snake_case.
@@ -754,7 +706,7 @@ Example:
     
     osNameSnakeCase(); // => "mac_os"
 
-### [FUNCTION] browserName
+### browserName
 () => string
 
 *   Extract name of current browser from browser user agent string.
@@ -764,7 +716,7 @@ Example:
     
     browserName(); // => "Firefox"
 
-### [FUNCTION] browserEngineName
+### browserEngineName
 () => string
 
 *   Extract name of current browser's rendering engine from browser user agent string.
@@ -774,7 +726,7 @@ Example:
 
     browserEngineName(); // => "Webkit"
 
-### [FUNCTION] osVersion
+### osVersion
 *   Extract version of current OS from browser user agent string.
 *   (Note: memoizes result)
 
@@ -782,7 +734,7 @@ Example:
 
     osVersion(); // => "15.9.1"
 
-### [FUNCTION] browserVersion
+### browserVersion
 () => string
 
 *   Extract version of current browser from browser user agent string.
@@ -792,7 +744,7 @@ Example:
 
     browserVersion(); // => "64.1.5284.259"
 
-### [FUNCTION] browserEngineVersion
+### browserEngineVersion
 () => string
 
 *   Extract version of current browser's rendering engine from browser's user agent string.
@@ -926,7 +878,7 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: function (isomorphic)
 ================================
-### [FUNCTION] condSwitch
+### condSwitch
 ((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
 
 *   Function-based switch statement.
@@ -966,7 +918,7 @@ General syntax:
     )
 
 
-### [FUNCTION] loopN
+### loopN
 (number, (...args) => T) => T[]
 *   Run given function the given number of times
 *   Return results of all runs of the function as an array containing all N return vals.
@@ -979,7 +931,7 @@ Examples:
     loopN(10, () => i++); // => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     console.log(i)        // => 10
 
-### [FUNCTION] loop2
+### loop2
 ((...args) => T) => T[]
 *   Run given function twice, and return results of both runs of the function as an array.
 
@@ -987,7 +939,7 @@ Examples:
 
     loop2(() => 'return_value'); // => ['return_value', 'return_value']
 
-### [FUNCTION]s loop3, loop4, loop5
+###  loop3, loop4, loop5
 *   See loop2 above, but run the associated number of times
     *   e.g. loop4 runs 4 the function 4X instead of twice
 
@@ -1001,7 +953,7 @@ Examples:
     loop5(() => i++); // => [0, 1, 2, 3, 4]
     console.log(i)        // => 5
 
-### [FUNCTION] getFnAsArr
+### getFnAsArr
 (Function): string[]
 *   Return a function's source code in nicely spaced array format
 
@@ -1025,7 +977,7 @@ Examples:
 ----------------------------------------------------------------------------------------------------
 Namespace: json (isomorphic)
 ============================
-### [FUNCTION] jsonStringifyWFuncs
+### jsonStringifyWFuncs
 (obj: Object) => string
 *   Stringify, while keeping the functions in position by pre-converting them to strings.
 
@@ -1117,7 +1069,7 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: number (isomorphic)
 ==============================
-### [FUNCTION] isInteger (Alias: isInt)
+### isInteger (Alias: isInt)
 (any) => boolean
 *   Returns true if given value is an integer
 
@@ -1129,7 +1081,7 @@ Examples:
     isInteger('232'); // => false
     isInteger('asdf'); // => false
 
-### [FUNCTION] isIntegerLike
+### isIntegerLike
 (any) => boolean
 *   Returns true if given value is an integer-like string or integer.
 
@@ -1140,7 +1092,7 @@ Examples:
     isIntegerLike('asdf'); // => false
     isInteger(82.12); // => false
 
-### [FUNCTION] isNumberLike (Alias: isNumLike)
+### isNumberLike (Alias: isNumLike)
 (any) => boolean
 *   Returns true if given value is a number-like string or number
 
@@ -1157,8 +1109,7 @@ Examples:
     isNumberLike('asdf'); // => false
     isNumberLike(true); // => false
 
-### uuid [FUNCTION]
-() => string
+### uuid () => string
 *   Generate a UUID, in format e.g. 3A0BF2C7-3077-45A0-97ED-EC5F13F127F1
 
 Examples:
@@ -1171,7 +1122,7 @@ Examples:
 ----------------------------------------------------------------------------------------------------
 Namespace: object (isomorphic)
 ==============================
-### [FUNCTION] get
+### get
 (Object, string, any?) => any
 *   Safely get the item at the given object path.
 *   1st arg = object to get from
@@ -1199,7 +1150,7 @@ Examples:
     obj.a // => 1
     //          /\\--- note that it didn't change
 
-### [FUNCTION] deepFreeze
+### deepFreeze
 (Object) => Readonly<Object>
 *   deep-freeze given object
 *   MUTATIVE! (But still returns original)
@@ -1219,7 +1170,7 @@ Examples:
     obj.a
     // => 1
 
-### [FUNCTION] eachPair
+### eachPair
 (Function(val, key)) => (Object) => Object (of original value)
 *   Run given function on each pair in given object
 *   CURRIED, NON-MUTATIVE
@@ -1232,7 +1183,7 @@ Examples:
     console.log(arr);
     // => ['a1', 'b2']
 
-### [FUNCTION] numKeys
+### numKeys
 (Object) => number
 *   Return number of keys in given object.
 
@@ -1241,7 +1192,7 @@ Examples:
     numKeys({ a: 1, b: 2 });
     // => 2
 
-### [FUNCTION] hasKey
+### hasKey
 (Object, string) => boolean
 *   Return true if given object has given key.
 
@@ -1253,7 +1204,7 @@ Examples:
     hasKey({ a: 1, b: 2 }, 'c');
     // => false
 
-### [FUNCTION] defineProps
+### defineProps
 <N extends Object = {}, I extends Object>(obj: I, key: string, val: Any, isMutable?: bool) => I & N
 *   Add {key} with value {val} to {obj}. If {isMutable} true, make new prop mutable.
 
@@ -1292,7 +1243,7 @@ Examples:
 ----------------------------------------------------------------------------------------------------
 Namespace: url (isomorphic)
 =============================
-#### [FUNCTION] getLangFromURLPathname:
+#### getLangFromURLPathname:
 (string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
 *   Get the currently selected language out of the current URL
 *   Note: this is a 'rough' method not intended to work in all circumstances.
@@ -1321,7 +1272,7 @@ Examples:
     getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp'], 'fr');
     // => 'fr'
     
-#### [FUNCTION] parseQueryParams:
+#### parseQueryParams:
 (queryParamsString?: string = window.location.search) => Object
 *   Convert the current query params into an object
 *   Note that running it without explicitly passing the queryParamsString works, but can give stale results.
@@ -1337,7 +1288,7 @@ Examples:
     parseQueryParams();
     // => { hello: 'everyone', gr: 'argh' }
 
-#### [FUNCTION] lastUrlPath:
+#### lastUrlPath:
 (url: string = hrefDef, strict: boolean = true) => string
 *   Get the last path in the given URL, with no / prepended, & query params excluded.
 *   Returns '' if no paths in url.
@@ -1362,8 +1313,7 @@ Examples:
     lastUrlPath('http://example.com/asdf/', false); // => 'asdf'
 
 
-#### normalizeURLPathname [FUNCTION]
-(url: string) => string
+#### normalizeURLPathname (url: string) => string
 *   Normalize given [url] {string}, converting to this format:
         `/main/en/home`
         `/main/en/home?key=value`
@@ -1407,7 +1357,7 @@ Namespace: search (isomorphic)
 ----------------------------------------------------------------------------------------------------
 Namespace: string ((Alias: str)) (isomorphic)
 =============================================
-### [FUNCTION] cap1LowerRest
+### cap1LowerRest
 (string) => string
 *   Make the first letter uppercase, and the rest lowercase.
 
@@ -1419,7 +1369,7 @@ Examples:
     cap1LowerRest('This Was Already Cap.'); // => 'This was already cap.'
     cap1LowerRest('not Already Cap.'); // => 'Not already cap.'
 
-### [FUNCTION] capitalize
+### capitalize
 (string) => string
 *   Make the first letter uppercase, and leave the rest as-is.
 
@@ -1431,7 +1381,7 @@ Examples:
     capitalize('This Was Already Cap.'); // => 'This Was Already Cap.'
     capitalize('not Already Cap.'); // => 'Not Already Cap.'
 
-### [FUNCTION] removeMatchingText
+### removeMatchingText
 (initStr: string, matcherToRm: string|RegExp) => string
 *   Return copy of string (initStr) with all instances of substring or regexp (matcherToRm) removed.
 
@@ -1442,7 +1392,7 @@ Examples:
     removeMatchingText('Hello world!', 'ASDFasdfewer'); // => 'Hello world!'
     removeMatchingText('Hello world!', 'ASDFasdfewer'); // => 'Hello world!'
 
-### [FUNCTION] replaceAll
+### replaceAll
 (text: string, match: string|RegExp, replacement: string) => string
 *   Replace all matching strings or regexes in a text segment with given replacement string.
 *   Main benefit: *ALL* matching strings get replaced.
@@ -1455,7 +1405,7 @@ Examples:
     replaceAll('The duck here is the best Jerry! The best!', /[tT]he best/g, 'OK');
     // => 'The duck here is OK Jerry! OK!'
 
-### [FUNCTION] chomp
+### chomp
 (str: string, charsToChomp: string = '\n\r') => string
 *   Remove all chars in charsToChomp string from end of given string str.
 *   Defaults to eliminating carriage return and newline (\n\r)
@@ -1488,7 +1438,7 @@ Examples:
 ----------------------------------------------------------------------------------------------------
 Namespace: test (node)
 ======================
-### [FUNCTION] expectNonEmptyObjectExists
+### expectNonEmptyObjectExists
 *   Create Mocha test that passes if given object exists and is not empty
 
 Examples:
@@ -1496,7 +1446,7 @@ Examples:
     expectEmptyObject({}); // << will not pass
     expectEmptyObject({ a: 1 }); // << will pass
 
-### [FUNCTION] expectEmptyObject
+### expectEmptyObject
 *   Create Mocha test that passes if given object is empty
 
 Examples:
@@ -1504,7 +1454,7 @@ Examples:
     expectEmptyObject({}); // << will pass
     expectEmptyObject({ a: 1 }); // << will not pass
 
-### [FUNCTION] expectFunctionExists (ALIAS: expectFuncExists)
+### expectFunctionExists (ALIAS: expectFuncExists)
 *   Create Mocha test that passes if given function exists
 
 Examples:
@@ -1519,7 +1469,7 @@ Examples:
 ----------------------------------------------------------------------------------------------------
 Namespace: types (Alias: type) (isomorphic)
 ===========================================
-### [FUNCTION] isDateLike
+### isDateLike
 (arg: RealAny) => boolean
 *   Return true if arg is a moment or Date instance; or a string, object, or number that moment can parse.
     *   Excludes:
@@ -1535,7 +1485,7 @@ Examples:
     isDateLike('asdf');       // => false
     isDateLike(false);        // => false
 
-### [FUNCTION] isBoolean
+### isBoolean
 (val: RealAny) => boolean
 *   Return true if arg is a boolean value (either true or false)
 
@@ -1551,33 +1501,33 @@ Examples:
     isBoolean(10000);         // => false
     isBoolean(() => true);    // => false
 
-### [FUNCTION] isArray
+### isArray
 *   (see array section above)
 
-### [FUNCTION] isNumberLike
+### isNumberLike
 *   True if given item is a number or a string that can be parsed into a number
 *   WIP documentation
 
-### [FUNCTION] isMultilangTextObj
+### isMultilangTextObj
 *   (see locale section above)
 
-### [FUNCTION] matches
+### matches
 *   curried, matcher-first match function
 *   WIP documentation
 
-### [FUNCTION] matchesIgnoreCase
+### matchesIgnoreCase
 *   True if 2 given strings' match, with casing ignored.
 *   WIP documentation
 
-### [FUNCTION] isVoidOrString
+### isVoidOrString
 *   True if given item doesn't exist, or is a string.
 *   WIP documentation
 
-### [FUNCTION] isInteger
+### isInteger
 *   True if given item is an integer
 *   (see "number" section above)
 
-### [FUNCTION] isIntegerLike
+### isIntegerLike
 *   True if given item is an integer or string containing an item that can be converted to an integer.
 *   (see "number" section above)
 
