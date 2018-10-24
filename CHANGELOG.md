@@ -1,6 +1,12 @@
-0.79.0
+0.79.1
 ======
 Remove append function
+Remove osNameSnakeCase function (just use osName, and run a snake_case function on it)
+
+Rename userAgent to userAgentParsed
+*   Purpose: make it clearer that it returns parsed userAgent *object*, not a string
+
+Add return types to DOM module
 
 Major improvements to README
 
