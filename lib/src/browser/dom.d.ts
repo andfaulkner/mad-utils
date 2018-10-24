@@ -7,10 +7,6 @@ export declare type ParsedUserAgent = IUAParser.IResult & {
 };
 /******************************************* USER AGENT *******************************************/
 /**
- * Memoized parsed browser user agent
- */
-export declare var userAgentParsed: ParsedUserAgent;
-/**
  * Parse browser's user agent & return an object with all user agent properties
  *
  * @param {string} userAgent Browser's userAgent string
@@ -21,7 +17,11 @@ export declare var userAgentParsed: ParsedUserAgent;
  *                            browser: {name: string, version: string}
  *                            engine:  {name: string, version: string}}
  */
-export declare function parseUserAgent(userAgent?: any): ParsedUserAgent;
+export declare const parseUserAgent: (userAgent?: any) => ParsedUserAgent;
+/**
+ * Return memoized parsed browser user agent
+ */
+export declare const getUserAgentParsed: () => ParsedUserAgent;
 /**
  * Return raw (unparsed) browser user agent string
  * Example:
