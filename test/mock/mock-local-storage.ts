@@ -5,29 +5,32 @@
 // Thanks letsrock-today!
 //
 
+const noopCallback = (...args: any[]) => {};
+
 /**
- * Construct a mock Storage (localStorage / sessionStorage) object. Should be
- * bound to a global, to act as a shim for browser localStorage or sessionStorage
- * in a NodeJS environment.
+ * Construct a mock Storage (localStorage / sessionStorage) object
+ * Should be bound to a global, to act as a shim for browser localStorage or
+ * sessionStorage in a NodeJS environment
+ *
+ * Example: window.localStorage = mockBrowserStorage();
  *
  * @return {Storage} New 'Storage' object
- * @example window.localStorage = mockBrowserStorage();
  */
 export const mockBrowserStorage = function mockBrowserStorage() {
     let store = {} as Storage;
-    const noopCallback = (...args: any[]) => {};
+
     let _itemInsertionCallback: Function = noopCallback;
 
     store.setItem = (k: string, val: string) => {
-        k = k + '';
+        k = k + ``;
         if (!store.hasOwnProperty(k)) {
             _itemInsertionCallback(store.length);
         }
-        store[k] = val + '';
+        store[k] = val + ``;
     };
 
     store.getItem = (k: string): string => {
-        k = k + '';
+        k = k + ``;
         if (store.hasOwnProperty(k)) {
             return store[k];
         } else {
@@ -36,7 +39,7 @@ export const mockBrowserStorage = function mockBrowserStorage() {
     };
 
     store.removeItem = (k: string): void => {
-        k = k + '';
+        k = k + ``;
         if (store.hasOwnProperty(k)) {
             delete store[k];
         }
@@ -50,52 +53,47 @@ export const mockBrowserStorage = function mockBrowserStorage() {
         }
     };
 
-    Object.defineProperty(store, 'length', {
+    Object.defineProperty(store, `length`, {
         enumerable: true,
         value: () => {
             return Object.keys(store).length;
         },
     });
 
-    Object.defineProperty(store, 'key', {
+    Object.defineProperty(store, `key`, {
         enumerable: true,
         value: (k: string) => {
             let key = Object.keys(store)[k];
-            return (!key) ? null : key;
+            return !key ? null : key;
         },
     });
 
-    Object.defineProperty(store, 'itemInsertionCallback', {
+    Object.defineProperty(store, `itemInsertionCallback`, {
         get: () => {
             return _itemInsertionCallback;
         },
         set: (val: Function) => {
-            if (!val || typeof val != 'function') {
+            if (!val || typeof val != `function`) {
                 val = noopCallback;
             }
             _itemInsertionCallback = val;
-        }
+        },
     });
 
     return store;
 };
 
-// NOTE: this is a bit evil - instantiating just to get typings. This is due to
-// a Typescript limitation, sadly.
-const baseMockBrowserStorage = mockBrowserStorage();
-type BrowserStorage = typeof baseMockBrowserStorage;
-
-// Typings to make bindBrowserStorageGlobally happy.
-declare const global: NodeJS.Global & {window: { localStorage: Storage, sessionStorage: Storage }};
+// Typings to make bindBrowserStorageGlobally happy
+declare const global: NodeJS.Global & {window: {localStorage: Storage; sessionStorage: Storage}};
 declare const window: Window;
 
 /**
- * Attempt to automatically bind localStorage and sessionStorage globally.
- * @return {boolean} true if it succeeds, false if it doesn't.
+ * Try to automatically bind localStorage & sessionStorage globally
+ * @return {boolean} true if it succeeds, false if it doesn't
  */
 export const bindBrowserStorageGlobally = () => {
-    if (typeof global !== 'undefined') {
-        if (typeof global.window === 'undefined') {
+    if (typeof global !== `undefined`) {
+        if (typeof global.window === `undefined`) {
             global.window = {
                 localStorage: mockBrowserStorage(),
                 sessionStorage: mockBrowserStorage(),
@@ -105,8 +103,7 @@ export const bindBrowserStorageGlobally = () => {
             global.window.sessionStorage = mockBrowserStorage();
         }
         return true;
-
-    } else if (typeof window !== 'undefined') {
+    } else if (typeof window !== `undefined`) {
         Object.assign(window, {
             localStorage: mockBrowserStorage(),
             sessionStorage: mockBrowserStorage(),
