@@ -329,41 +329,6 @@ export function withoutFirstN<T>(arrOrStr: T[] | string, numToRm: number): T[] |
 
 /**
  * [Non-mutative]
- *
- * Append all items in arr2 to the end of arr1 (non-mutatively) and return it
- *     If either arr1 or arr2 are undefined, it ignores it and just returns the other
- *     If both are undefined, it returns []
- *     If a non-array value besides null is given, it wraps the item in an array before
- *     performing the concatenation
- *
- * @param {Array<RealAny>|RealAny} arr1 If array, concatenate arr2 to the end
- *                                      If value, wrap in arr before concatenating
- *                                      (e.g. 3 is treated as [3]
- * @param {Array<RealAny>|RealAny} arr2 Array or value to concatenate to the end of arr1
- * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
- */
-export function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: Any[]): Any[] {
-    const isArr1Undefined = typeof arr1 === 'undefined' || arr1 === null;
-    const isArr2Undefined = typeof arr2 === 'undefined' || arr2 === null;
-
-    if (arrs.length > 0) {
-        arr1 = arr1 || [];
-        arr2 = arr2 || [];
-    } else if (isArr1Undefined && isArr2Undefined) {
-        return [];
-    } else if (isArr1Undefined) {
-        return arr2;
-    } else if (isArr2Undefined) {
-        return arr1;
-    }
-
-    const first2Arrs = _cleanArrForAppend(arr1).concat(_cleanArrForAppend(arr2));
-
-    return arrs.length > 0 ? arrs.reduce((acc, arr) => acc.concat(arr), first2Arrs) : first2Arrs;
-}
-
-/**
- * [Non-mutative]
  * [PERFORMANCE-INTENSIVE]
  *
  * Return new array with all items in arr2OrItem removed from array1; or if
@@ -670,11 +635,3 @@ export {flatten as smoosh};
 
 /***************************************** BARREL EXPORT ******************************************/
 export {isArray} from './types-iso';
-
-/**************************************** INTERNAL HELPERS ****************************************/
-/**
- * Ensures an array is an array
- */
-function _cleanArrForAppend(a: RealAny[]) {
-    return a.constructor.name !== 'Array' && a.constructor.constructor.name !== 'Array' ? [a] : a;
-}
