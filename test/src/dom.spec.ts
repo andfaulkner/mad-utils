@@ -23,8 +23,6 @@ import {
     ParsedUserAgent,
 } from '../../browser';
 
-console.log(`dom.spec.ts :: userAgentParsed:`, userAgentParsed);
-
 import {dom as domFromBrowser} from '../../browser';
 import * as domModule from '../../src/browser/dom';
 import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/test';
