@@ -37,6 +37,32 @@ describe(`dom sub-module`, function() {
     expectNonEmptyObjectExists(domFromBrowser, `dom (from Browser export)`);
     expectNonEmptyObjectExists(userAgentParsed, `dom->userAgentParsed`);
 
+    describe(`userAgentParsed`, function() {
+        it(`should contain keys ua, browser, engine, os, device, cpu, raw, ua`, function() {
+            expect(userAgentParsed).to.contain.keys([
+                `ua`,
+                `browser`,
+                `engine`,
+                `os`,
+                `device`,
+                `cpu`,
+                `raw`,
+                `ua`
+            ]);
+        });
+        it(`should have objects at all keys except raw & ua (which should be strings)`, function() {
+            Object.keys(userAgentParsed).forEach(key => {
+                if (key === `raw` || key === `ua`) {
+                    expect(userAgentParsed[key]).to.be.a(`string`);
+                } else {
+                    expect(userAgentParsed[key]).to.be.a(`object`);
+                    expect(userAgentParsed[key]).to.not.be.a(`string`);
+                    expect(Object.keys(userAgentParsed[key]).length).to.be.greaterThan(0);
+                }
+            });
+        });
+    });
+
     describe(`UserAgent functions`, function() {
         const userAgent =
             `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36` +
