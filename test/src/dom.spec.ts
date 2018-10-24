@@ -11,7 +11,7 @@ import {expect} from 'chai';
 import {
     m_,
     dom,
-    userAgentParsed,
+    getUserAgentParsed,
     parseUserAgent,
     getUserAgentString,
     osName,
@@ -33,11 +33,11 @@ describe(`dom sub-module`, function() {
     expectNonEmptyObjectExists(m_.dom, `dom (from m_ top-level namespace)`);
     expectNonEmptyObjectExists(domModule, `dom (import all from dom.ts file)`);
     expectNonEmptyObjectExists(domFromBrowser, `dom (from Browser export)`);
-    expectNonEmptyObjectExists(userAgentParsed, `dom->userAgentParsed`);
+    expectFunctionExists(getUserAgentParsed, `dom->getUserAgentParsed`);
 
-    describe(`userAgentParsed`, function() {
+    describe(`getUserAgentParsed`, function() {
         it(`should contain keys ua, browser, engine, os, device, cpu, raw, ua`, function() {
-            expect(userAgentParsed).to.contain.keys([
+            expect(getUserAgentParsed()).to.contain.keys([
                 `ua`,
                 `browser`,
                 `engine`,
@@ -49,13 +49,13 @@ describe(`dom sub-module`, function() {
             ]);
         });
         it(`should have objects at all keys except raw & ua (which should be strings)`, function() {
-            Object.keys(userAgentParsed).forEach(key => {
+            Object.keys(getUserAgentParsed()).forEach(key => {
                 if (key === `raw` || key === `ua`) {
-                    expect(userAgentParsed[key]).to.be.a(`string`);
+                    expect(getUserAgentParsed()[key]).to.be.a(`string`);
                 } else {
-                    expect(userAgentParsed[key]).to.be.a(`object`);
-                    expect(userAgentParsed[key]).to.not.be.a(`string`);
-                    expect(Object.keys(userAgentParsed[key]).length).to.be.greaterThan(0);
+                    expect(getUserAgentParsed()[key]).to.be.a(`object`);
+                    expect(getUserAgentParsed()[key]).to.not.be.a(`string`);
+                    expect(Object.keys(getUserAgentParsed()[key]).length).to.be.greaterThan(0);
                 }
             });
         });

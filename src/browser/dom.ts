@@ -13,12 +13,6 @@ const UserAgentParser = require('ua-parser-js');
 export type ParsedUserAgent = IUAParser.IResult & {raw: string};
 
 /******************************************* USER AGENT *******************************************/
-// tslint:disable-next-line:no-var-keyword
-/**
- * Memoized parsed browser user agent
- */
-export var userAgentParsed: ParsedUserAgent = userAgentParsed || parseUserAgent();
-
 /**
  * Parse browser's user agent & return an object with all user agent properties
  *
@@ -30,11 +24,24 @@ export var userAgentParsed: ParsedUserAgent = userAgentParsed || parseUserAgent(
  *                            browser: {name: string, version: string}
  *                            engine:  {name: string, version: string}}
  */
-export function parseUserAgent(userAgent = window.navigator.userAgent): ParsedUserAgent {
+export const parseUserAgent = (userAgent = window.navigator.userAgent): ParsedUserAgent => {
     const ua = UserAgentParser(userAgent) as ParsedUserAgent;
     ua.raw = ua.ua;
     return ua;
-}
+};
+
+/**
+ * Memoized parsed browser user agent
+ */
+let userAgentLocal: ParsedUserAgent;
+
+/**
+ * Return memoized parsed browser user agent
+ */
+export const getUserAgentParsed = (): ParsedUserAgent => {
+    userAgentLocal = userAgentLocal || parseUserAgent();
+    return userAgentLocal;
+};
 
 /**
  * Return raw (unparsed) browser user agent string
@@ -49,13 +56,13 @@ export const getUserAgentString = (mWindow?: Window): string =>
  * Get name of current computer's operating system e.g. "Mac OS", "Windows NT"
  * @return {string} Name of current computer's OS
  */
-export const osName = (): string => userAgentParsed.os.name;
+export const osName = (): string => getUserAgentParsed().os.name;
 
 /**
  * Get name of browser, e.g. "Chrome" or "Firefox"
  * @return {string} Name of browser
  */
-export const browserName = (): string => userAgentParsed.browser.name;
+export const browserName = (): string => getUserAgentParsed().browser.name;
 
 /**
  * Get name of browser's rendering engine
@@ -65,22 +72,22 @@ export const browserName = (): string => userAgentParsed.browser.name;
  *
  * @return {string} Name of browser's rendering engine
  */
-export const browserEngineName = (): string => userAgentParsed.engine.name;
+export const browserEngineName = (): string => getUserAgentParsed().engine.name;
 
 /**
  * Get machine's OS semver version number (as a string), e.g. "17.14.2"
  * @return {string} numeric OS version (in string form)
  */
-export const osVersion = (): string => userAgentParsed.os.version;
+export const osVersion = (): string => getUserAgentParsed().os.version;
 
 /**
  * Get browser version number (as a string), e.g. "51.0.3272.211"
  * @return {string} Browser version number string
  */
-export const browserVersion = (): string => userAgentParsed.browser.version;
+export const browserVersion = (): string => getUserAgentParsed().browser.version;
 
 /**
  * Get version number string of the browser's rendering engine, e.g. "530.12"
  * @return {string} Browser rendering engine version number (string)
  */
-export const browserEngineVersion = (): string => userAgentParsed.engine.version;
+export const browserEngineVersion = (): string => getUserAgentParsed().engine.version;
