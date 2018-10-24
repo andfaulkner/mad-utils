@@ -11,20 +11,25 @@ Examples - most useful methods
 (see full docs in lower sections for more details)
 
 ### cap1LowerRest :: (string) => string
-
-    cap1LowerRest('aSdF'); // => 'Asdf'
+Capitalize first letter, convert rest to lowercase.
+```
+cap1LowerRest('aSdF'); // => 'Asdf'
+```
 
 ### capitalize :: (string) => string
+Capitalize first letter. Leave the rest as-is.
+```
+capitalize('asdf'); // => 'Asdf'
+capitalize('asDf'); // => 'AsDf'
+```
 
-    capitalize('asdf'); // => 'Asdf'
-    capitalize('asDf'); // => 'AsDf'
-    
 ### eliminateWhitespace :: (string) => string
-
-    eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
+```
+eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
+```
 
 ### condSwitch :: ((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
-*   Function-based switch statement. Takes 2 or more args.
+Function-based switch statement. Takes 2 or more args.
 *   Args 1, 3, 5, 7, etc. are the conditions, and 2, 4, 6, etc. their corresponding return values.
     *   On hitting a truthy odd-numbered arg, condSwitch returns the next (even-numbered) arg, then exits.
     *   If none are truthy, the default value is returned (the last argument - which must be an odd-numbered arg).
@@ -55,18 +60,21 @@ last([1,2,3]); => 3
 ```
 
 ### matchAny :: (any[]) => (any) => boolean
-Search array for value. Returns true if array contains value. Uses simple JSON.stringify for comparison.
+Search array for value. Returns true if array contains value.
+Uses simple JSON.stringify for comparison.
+```
+matchAny([1, 2, 3])(2);
+// => true
 
-    matchAny([1, 2, 3])(2);
-    // => true
-
-    matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
-    // => true
+matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
+// => true
+```
 
 ### uuid :: () => string
-
-    uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
-    uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
+```
+uuid(); // => 5A42CCCF-6B10-488B-B957-4D1E5A113DA4
+uuid(); // => 38259F99-73D5-4EE1-B11F-5D33CE8AD2C6
+```
 
 ### get :: (Object, string, any?) => any
 Safely get the item at the given object path.
@@ -124,21 +132,29 @@ Signature:
 ) => string
 ```
 
-    // With URL http://example.com/auth/fr/ok:
-    getLangFromURLPathname(); // => 'fr'
+TODO confirm getLangFromURLPathname signature
 
-    // With URL http://example.com/en/auth/ok:
-    getLangFromURLPathname(); // => 'en'
+Example usage:
+```
+// With URL http://example.com/auth/fr/ok:
+getLangFromURLPathname(); // => 'fr'
 
-    // With URL given as param:
-    getLangFromURLPathname(`http://example.com/auth/sp/ok`, [`en`, `fr`, `sp`]); // => 'sp'
+// With URL http://example.com/en/auth/ok:
+getLangFromURLPathname(); // => 'en'
+
+// With URL given as param:
+getLangFromURLPathname(`http://example.com/auth/sp/ok`, [`en`, `fr`, `sp`]); // => 'sp'
+```
 
 ### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
 ```
-    // With URL http://example.com/home?hello=everyone&gr=argh:
-    parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
+// With URL http://example.com/home?hello=everyone&gr=argh:
+parseQueryParams(); // => { hello: 'everyone', gr: 'argh' }
 ```
 
+
+
+----------------------------------------------------------------------------------------------------
 Installation
 ============
 *   npm:
@@ -161,9 +177,9 @@ yarn add mad-utils
         *   node
         *   browser
         *   isomorphic/shared
-            *   consumed by default, and also used by both the node and browser sub-modules
+            *   consumed by default, and also used by both the node and browser submodules.
     *   A few exports have been deprecated (such as the parseDate function and ParsedDate type)
-        *   Mostly due to irrelevance (items were taken from my own projects)
+        *   Mostly due to irrelevance (items were taken from my own projects).
     *   (The docs still remain mostly up to date)
 
 
@@ -172,21 +188,21 @@ yarn add mad-utils
 Sub-modules
 ===========
 *   Broken into 3 sub-modules: node, browser, and isomorphic.
-*   The node and browser sub-modules each include the entirety of the isomorphic sub-module
+*   The node and browser sub-modules each include the entirety of the isomorphic sub-module.
 
 Isomorphic
 ----------
-### Importing isomorphic sub-module
+### Importing isomorphic (default) submodule
+```
+// Import all namespaces, functions, types, etc. from isomorphic submodule
+import {m_} from 'mad-utils';
 
-    // Import all namespaces, functions, types, etc. from isomorphic submodule
-    import { m_ } from 'mad-utils';
+// Import isomorphic namespaces
+import {array, json, enum, number, object, query, string, types, decorator} from 'mad-utils';
 
-    // Import isomorphic namespaces
-    import { array, json, enum, number, object, query, string, types, decorator } from 'mad-utils';
-
-    // Import isomorphic namespaces
-    // Import individual isomorphic functions, types, classes, etc.
-    import { first, isNumberLike, parseQueryParams, castToNum, stringToEnumVal } from 'mad-utils';
+// Import individual isomorphic functions, types, classes, etc.
+import {first, isNumberLike, parseQueryParams, castToNum, stringToEnumVal} from 'mad-utils';
+```
 
 *   All modules exported from mad-utils provide everything in the isomorphic module.
 
@@ -207,20 +223,20 @@ Isomorphic
 *   types
 *   validation
 
-All of the above namesapaces are also importable from the NodeJS and Browser modules
+All of the above namesapaces are also importable from the NodeJS and Browser modules.
 
-NodeJS
-------
-*   exports that will only work in a Node environment, such as:
-    *   Anything using the NodeJS core API
-    *   Anything requiring file handling
-    *   Anything based on DOM-free unit testing
-    *   Anything intended for use with (or relying on) on a browser-unfriendly library
-        *   e.g. Express, Mocha, Chai
+NodeJS submodule
+----------------
+*   Isomorphic exports, plus exports that will only work in a Node environment, such as:
+    *   Anything using the NodeJS core API.
+    *   Anything requiring file handling.
+    *   Anything based on DOM-free unit testing.
+    *   Anything intended for use with (or relying on) on a browser-unfriendly library:
+        *   e.g. Express, Mocha, Chai.
 
-*   Will generally crash your application if imported into the browser
+*   Will generally crash your application if imported into the browser.
 
-### Importing NodeJS sub-module
+### Importing node sub-module
 ```
 // Import all namespaces, functions, types, etc. from node & isomorphic submodules
 import {m_} from 'mad-utils/lib/node';
@@ -245,7 +261,7 @@ import {
 } from 'mad-utils/lib/node';
 ```
 
-## Node-specific namespaces
+### Node-specific namespaces
 *   file
 *   middleware
 *   nodeError
@@ -254,13 +270,13 @@ import {
 *   types (expanded to include both isomorphic and Node-specific types)
 
 
-Browser
--------
+Browser submodule
+-----------------
 *   Exports that will only work in a browser environment, or one with a mocked DOM (e.g. JSDom)
 *   Generally causes errors to throw if used in Node without a special environment set up
     *   e.g. JSDom, or inclusion of various window mocks/polyfills
 
-### Importing Browser sub-module
+### Importing browser submodule
 ```
 // Import all namespaces, functions, types, etc. from browser submodule
 import {m_} from 'mad-utils/lib/browser';
@@ -283,6 +299,8 @@ import {
 *   types (expanded to include both isomorphic and Browser-specific types)
 
 
+
+----------------------------------------------------------------------------------------------------
 Functions, by namespace
 =======================
 More import notes
@@ -332,10 +350,11 @@ Either a string, or 'Never' (indicating an error threw in the function)
 
 
 ----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 Namespace contents
 ==================
 ----------------------------------------------------------------------------------------------------
-
 ----------------------------------------------------------------------------------------------------
 Namespace: array (isomorphic)
 =============================
@@ -558,26 +577,29 @@ Examples:
 
 Array searching
 ---------------
-### matchAny
-(matchVals: any[]) => (valToFind: any) => boolean
-*   Search an array for a value.
-*   Returns true if array matchVals contains valToFind.
-*   Note that it uses simple JSON.stringify for array and object comparison
-    *   use something else if deep comparisons are required.
-*   Curried
-*   Sane behaviour for matching against null, undefined, NaN, etc.
-    *   e.g. NaN matched against an array with NaN returns true
+### matchAny: (haystack: T[]) => (needle: T) => boolean
+Search an array for a value.
+*   Returns true if array haystack contains needle.
+
+Note that it uses simple JSON.stringify for array and object comparison
+*   use something else if deep comparisons are required.
+
+Sane behaviour for matching against null, undefined, NaN, etc.
+*   e.g. NaN matched against an array with NaN returns true
+
+Curried.
 
 Examples:
+```
+matchAny([1, 2, 3])(2);
+// => true
 
-    matchAny([1, 2, 3])(2);
-    // => true
+matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
+// => true
 
-    matchAny(['a', 6, [1, 2, 3], 'gr'])([1, 2, 3]);
-    // => true
-
-    matchAny(['a', 6, null, 'last'])(null);
-    // => true
+matchAny(['a', 6, null, 'last'])(null);
+// => true
+```
 
 
 
@@ -585,40 +607,41 @@ Examples:
 Namespace: date (isomorphic)
 ============================
 ### [TYPE] NumRange0To6
-*   Shorthand for any number between 0 and 6
+Shorthand for any number between 0 and 6
 
-### [CONSTANT] defaultTimestampFormat
-*   string that creates a timestamp in a nice, human-readable format when passed to MomentJS.
+### [CONSTANT] defaultTimestampFormat :: string
+String that creates a timestamp in a nice, human-readable format when passed to MomentJS.
 `YYYY/MM/DD : hh:mm:ss`
 
 Examples:
+```
+console.log(defaultTimestampFormat);
+// => `YYYY/MM/DD : HH:mm:ss`;
+```
 
-    console.log(defaultTimestampFormat);
-    // => `YYYY/MM/DD : HH:mm:ss`;
-
-### isLeapYear
-(year: NumLike) => boolean
-*   Returns true if given year is a leap year
-*   Accepts integers, strings that can be converted to integers, and arrays with a single item, where said item is an integer or string convertable to an integer.
-*   Any other input will throw.
-
-Examples:
-
-    isLeapYear(2004); // => true
-    isLeapYear(2003); // => false
-
-### convertDayOfWeekNumToString
-(day: NumRange0To6, abbreviate: boolean) => StrOrNever
-
-*   Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
-*   Args:
-    *   day: number from 0 to 6 for conversion
-    *   abbreviate: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Defaults to false.
+### isLeapYear :: (year: NumLike) => boolean
+Returns true if given year is a leap year.
+Accepts integers, strings that can be converted to integers, and arrays with a
+single item, where said item is an integer or string convertable to an integer.
+Any other input will throw.
 
 Examples:
+```
+isLeapYear(2004); // => true
+isLeapYear(2003); // => false
+```
 
-    convertDayOfWeekNumToString(5); // => 'Friday'
-    convertDayOfWeekNumToString(2, true); // => 'Tues'
+### convertDayOfWeekNumToString :: (day: 0..6, abbrev: boolean) => string | never
+Converts numeric day of the week to string day of the week. e.g. 0 -> 'Sunday', 6 -> 'Saturday'
+Args:
+*   day: number from 0 to 6 for conversion
+*   abbrev: If true, return the shorthand day names (e.g. 'Mon' vs. 'Monday'). Default: false.
+
+Examples:
+```
+convertDayOfWeekNumToString(5); // => 'Friday'
+convertDayOfWeekNumToString(2, true); // => 'Tues'
+```
 
 ### now
 (timeFormat?: string) => string
@@ -628,9 +651,10 @@ Examples:
         *   More info at https://momentjs.com/docs/#/parsing/string-format/
 
 Examples:
-
-    now(); // => 2017/05/28 : 02:51:39
-    now(`YYYY/MM hh:mm`); // => 2017/02 02:51
+```
+now(); // => 2017/05/28 : 02:51:39
+now(`YYYY/MM hh:mm`); // => 2017/02 02:51
+```
 
 ### isDateLike (exported from types-iso - see below)
 
@@ -653,88 +677,91 @@ Namespace: decorator (isomorphic)
 ----------------------------------------------------------------------------------------------------
 Namespace: dom (browser)
 ========================
-### parseUserAgent
-() => { raw: string, ua: string, os: NameAndVersion, browser: NameAndVersion, engine: NameAndVersion }
-    (NameAndVersion :: {name: string, version: string})
+### parseUserAgent :: () => {ParsedUserAgent object}
+Parse the browser's user agent and return an object containing the most useful user agent properties.
 
-*   Parse the browser's user agent and return an object containing the most useful user agent properties.
+ParsedUserAgent object shape:
+```
+{
+    raw:     string
+    ua:      string
+    os:      {name: string, version: string}
+    browser: {name: string, version: string}
+    engine:  {name: string, version: string}
+}
+```
 
-### getUserAgentString
-() => string
-*   Return raw and unparsed browser user agent string (convenience function)
-
-Example:
-    
-    getUserAgentString();
-    // => "Mozilla/4.0 (Macintosh; Intel Mac OS X 7_12_6) AppleWebKit/501.16 (KHTML, like Gecko) Chrome/50.0.1010.99 Safari/210.22"
-
-### osName
-() => string
-
-*   Extract name of current user's OS (operating system) from browser user agent string.
-*   (Note: Memoizes result - i.e. 1st call to function stores result; all future calls reference stored result).
+### getUserAgentString :: () => string
+Return raw and unparsed browser user agent string (convenience function)
 
 Example:
-    
-    osName(); // => "Mac OS"
+```
+getUserAgentString();
+// => "Mozilla/4.0 (Macintosh; Intel Mac OS X 7_12_6) AppleWebKit/501.16 (KHTML, like Gecko) Chrome/50.0.1010.99 Safari/210.22"
+```
 
-### osNameSnakeCase
-() => string
-
-*   Extract name of OS from browser user agent string, & convert it to snake_case.
-*   (Note: memoizes result)
-
-Example:
-    
-    osNameSnakeCase(); // => "mac_os"
-
-### browserName
-() => string
-
-*   Extract name of current browser from browser user agent string.
-*   (Note: memoizes result)
+### osName :: () => string
+Extract name of current user's OS (operating system) from browser user agent string.
+(Note: Memoizes result - i.e. 1st call to function stores result; all future calls reference stored result).
 
 Example:
-    
-    browserName(); // => "Firefox"
+```
+osName(); // => "Mac OS"
+```
 
-### browserEngineName
-() => string
-
-*   Extract name of current browser's rendering engine from browser user agent string.
-*   (Note: memoizes result)
+### osNameSnakeCase :: () => string
+Extract name of OS from browser user agent string, & convert it to snake_case.
+(Note: memoizes result)
 
 Example:
+```    
+osNameSnakeCase(); // => "mac_os"
+```
 
-    browserEngineName(); // => "Webkit"
+### browserName :: () => string
+Extract name of current browser from browser user agent string.
+(Note: memoizes result)
+
+Example:
+```
+browserName(); // => "Firefox"
+```
+
+### browserEngineName :: () => string
+Extract name of current browser's rendering engine from browser user agent string.
+(Note: memoizes result)
+
+Example:
+```
+browserEngineName(); // => "Webkit"
+```
 
 ### osVersion
-*   Extract version of current OS from browser user agent string.
-*   (Note: memoizes result)
+Extract version of current OS from browser user agent string.
+(Note: memoizes result)
 
 Example:
+```
+osVersion(); // => "15.9.1"
+```
 
-    osVersion(); // => "15.9.1"
-
-### browserVersion
-() => string
-
-*   Extract version of current browser from browser user agent string.
-*   (Note: memoizes result)
-
-Example:
-
-    browserVersion(); // => "64.1.5284.259"
-
-### browserEngineVersion
-() => string
-
-*   Extract version of current browser's rendering engine from browser's user agent string.
-*   (Note: memoizes result)
+### browserVersion :: () => string
+Extract version of current browser from browser user agent string.
+(Note: memoizes result)
 
 Example:
+```
+browserVersion(); // => "64.1.5284.259"
+```
 
-    browserEngineVersion(); // => "530.12"
+### browserEngineVersion :: () => string
+Extract version of current browser's rendering engine from browser's user agent string.
+(Note: memoizes result)
+
+Example:
+```
+browserEngineVersion(); // => "530.12"
+```
 
 
 
@@ -775,17 +802,17 @@ Namespace: error (isomorphic)
 ----------------------------------------------------------------------------------------------------
 Namespace: error (node)
 =======================
-### globalActivateCleanStack
-() => void
-*   Remove pointless stacktrace items (node core)
-*   Modify the stacktrace length to be unlimited.
-*   Effects get applied globally immediately on running the function.
-    *   Affects error handling behaviour for the entire life of the Node process this was run in.
+### globalActivateCleanStack :: () => void
+Remove pointless stacktrace items (node core).
+Modify the stacktrace length to be unlimited.
+Effects get applied globally immediately on running the function.
+*   Affects error handling behaviour for the entire life of the Node process this was run in.
 
 Examples:
-
-    globalActivateCleanStack();
-    // /\-- This is literally the only way to use it.
+```
+globalActivateCleanStack();
+// /\-- This is literally the only way to use it.
+```
 
 
 
@@ -806,28 +833,25 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: file (node)
 ======================
-### isDir
-(fileOrDirPath: string) => boolean
+### isDir :: (fileOrDirPath: string) => boolean
+Returns true if inode (aka file, directory, socket, etc.) at absolute path is a directory.
 
-*   Returns true if inode (aka file, directory, socket, etc.) at absolute path is a directory.
+```
+isDir(path.join(rootPath, 'node_modules'));
+// => isTrue
+```
 
-    isDir(path.join(rootPath, 'node_modules'));
-    // => isTrue
+### wasRunAsScript :: () => boolean
+Must always be called like this: `wasRunAsScript(path.basename(__filename))`.
+WARNING: has some edge cases (Fixing them is a WIP TODO):
+*   Will (incorrectly) return true if the current file has the same name as the file that launched the process.
+    *   e.g. if process was launched by [project root]/server/index.js, and wasRunAsScript is run in [project root]/server/api/index.js, it will return true.
+*   Will not work for filenames with certain characters, such as (, ), [, ], and certain other special regex chars (. and - are OK).
 
-### wasRunAsScript
-()
-
-    *   for example, if the current process was started via node some-file.js, and this function is called in some-file.js
-*   Must always be called like this: `wasRunAsScript(path.basename(__filename))`.
-*   WARNING: has some edge cases (Fixing them is a WIP TODO):
-    *   Will (incorrectly) return true if the current file has the same name as the file that launched the process
-        *   e.g. if process was launched by [project root]/server/index.js, and wasRunAsScript is run in [project root]/server/api/index.js, it will return true.
-    *   Will not work for filenames with certain characters, such as (, ), [, ], and certain other special regex chars (. and - are OK).
-
-Example
-    // To determine if the current file was run as a script:
-    wasRunAsScript(path.basename(\_\_filename));
-    // => true if e.g. current file is named some-file.js, the process was launched via `node some-file.js`
+Example (in some-file.js, with process launched via `node some-file.js`):
+```
+wasRunAsScript(path.basename(__filename)); // => true
+```
 
 ### pathFromRoot
 WIP documentation
@@ -844,13 +868,14 @@ WIP documentation
 ### isNonMinFile
 WIP documentation
 
-### endsInDotJs
-(str: string) => boolean;
+### endsInDotJs :: (string) => boolean
+True if the given string (generally a path) ends in `.js`.
 
-*   True if the given string (generally a path) ends in .js
-
-    endsInDotJs('asdf.js');
-    // => true
+Example:
+```
+endsInDotJs(`asdf.js`);
+// => true
+```
 
 ### getBaseFilenameFromPath
 WIP documentation
@@ -860,113 +885,121 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: function (isomorphic)
 ================================
-### condSwitch
-((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
+### condSwitch :: ((cond: any, valToRetIfCondTruthy: V)+, default?: W) => V | W | never;
+Function-based switch statement.
 
-*   Function-based switch statement.
-*   For each pair of args:
-    *   the 1st arg is a condition that passes if truthy
-    *   the 2nd arg is the value returned if the condition passes
-*   If no conditions pass, and there was:
-    *   ...an odd number of arguments given, then the final arg given to the function is returned.
-    *   ...an even number of arguments given, an error is thrown.
+For each pair of args:
+*   the 1st arg is a condition that passes if truthy.
+*   the 2nd arg is the value returned if the condition passes.
+
+If no conditions pass, and there was:
+*   ...an odd number of arguments given, then the final arg given to the function is returned.
+*   ...an even number of arguments given, an error is thrown.
 
 Examples:
+```
+condSwitch(true, 'val1');                                // => 'val1'
+condSwitch(true, 'val1', 'defaultVal');                  // => 'val1'
+condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
+condSwitch(false, 'v1', 'condition1', 'v2');             // => 'v2'
+condSwitch(false, 'v1', null, 'v2', 'defaultReturnVal'); // => 'v2'
+condSwitch(false, 'v1', null, 'v2');                     // => [throws error]
+condSwitch(false, 'v1');                                 // => [throws error]
 
-    condSwitch(true, 'val1');                                // => 'val1'
-    condSwitch(true, 'val1', 'defaultVal');                  // => 'val1'
-    condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
-    condSwitch(false, 'v1', 'condition1', 'v2');             // => 'v2'
-    condSwitch(false, 'v1', null, 'v2', 'defaultReturnVal'); // => 'v2'
-    condSwitch(false, 'v1', null, 'v2');                     // => [throws error]
-    condSwitch(false, 'v1');                                 // => [throws error]
+let size = 'large';
 
-    let size = 'large';
-    condSwitch(size === 'tiny',   8,
-               size === 'small',  10,
-               size === 'medium', 12,
-               size === 'large',  16,
-               size === 'huge',   20,
-                                  12);
-    // => 16
+condSwitch(
+    size === 'tiny',   8,
+    size === 'small',  10,
+    size === 'medium', 12,
+    size === 'large',  16,
+    size === 'huge',   20,
+                       12
+);
+// => 16
+```
 
 General syntax:
+```
+condSwitch(
+    COND1, val_returned_if_COND1_truthy,
+    COND2, val_returned_if_COND2_truthy,
+    ...,
+    defaultReturnVal
+)
+```
 
-    condSwitch(
-        COND1, val_returned_if_COND1_truthy,
-        COND2, val_returned_if_COND2_truthy,
-        ...,
-        defaultReturnVal
-    )
 
+### loopN :: (number, (...args) => T) => T[]
+Run given function the given number of times.
 
-### loopN
-(number, (...args) => T) => T[]
-*   Run given function the given number of times
-*   Return results of all runs of the function as an array containing all N return vals.
-
-Examples:
-
-    loopN(2, () => 'return_value'); // => ['return_value', 'return_value']
-
-    let i = 0;
-    loopN(10, () => i++); // => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    console.log(i)        // => 10
-
-### loop2
-((...args) => T) => T[]
-*   Run given function twice, and return results of both runs of the function as an array.
+Return results of all runs of the function as an array containing all N return vals.
 
 Examples:
+```
+loopN(2, () => 'return_value'); // => ['return_value', 'return_value']
 
-    loop2(() => 'return_value'); // => ['return_value', 'return_value']
+let i = 0;
+loopN(10, () => i++); // => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(i)        // => 10
+```
+
+### loop2 :: ((...args) => T) => T[]
+Run given function twice, and return results of both runs of the function as an array.
+
+Example:
+```
+loop2(() => 'return_value'); // => ['return_value', 'return_value']
+```
 
 ###  loop3, loop4, loop5
-*   See loop2 above, but run the associated number of times
-    *   e.g. loop4 runs 4 the function 4X instead of twice
+See loop2 above, but run the associated number of times
+*   e.g. loop4 runs 4 the function 4X instead of twice
 
 Examples:
+```
+loop3(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val']
+loop4(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val', 'ret_val']
+loop5(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val', 'ret_val', 'ret_val']
 
-    loop3(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val']
-    loop4(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val', 'ret_val']
-    loop5(() => 'ret_val'); // => ['ret_val', 'ret_val', 'ret_val', 'ret_val', 'ret_val']
+let i = 0;
+loop5(() => i++); // => [0, 1, 2, 3, 4]
+console.log(i)    // => 5
+```
 
-    let i = 0;
-    loop5(() => i++); // => [0, 1, 2, 3, 4]
-    console.log(i)        // => 5
-
-### getFnAsArr
-(Function): string[]
-*   Return a function's source code in nicely spaced array format
+### getFnAsArr :: (Function): string[]
+Return a function's source code in nicely spaced array format.
 
 Examples:
+```
+getFnAsArr(() => 'ok')
+// => [ 'function () { return \'ok\'; }' ]
 
-    getFnAsArr(() => 'ok')
-    // => [ 'function () { return \'ok\'; }' ]
-
-    function testFn() {
-        console.log('log 1');
-        return 'output';
-    }
-    getFnAsArr(testFn);
-    // => [ 'function testFn() {',
-    //      '    console.log(\'log 1\');',
-    //      '    return \'output\';',
-    //      '}']
+function testFn() {
+    console.log('log 1');
+    return 'output';
+}
+getFnAsArr(testFn);
+// => [ 'function testFn() {',
+//      '    console.log(\'log 1\');',
+//      '    return \'output\';',
+//      '}']
+```
 
 
 
 ----------------------------------------------------------------------------------------------------
 Namespace: json (isomorphic)
 ============================
-### jsonStringifyWFuncs
-(obj: Object) => string
-*   Stringify, while keeping the functions in position by pre-converting them to strings.
+### jsonStringifyWFuncs :: (Object) => string
+Stringify, while keeping the functions in position by pre-converting them to strings.
 
-Examples:
-
-    jsonStringifyWFuncs({ a: 123, b: 'asdf', c: () => 'asdf' })
-    // => '{"a":123,"b":"asdf","c":"function () { return \'asdf\'; }"}'
+Example:
+```
+jsonStringifyWFuncs({a: 123, b: 'asdf', c: () => 'asdf'})
+// =>
+    '{"a":123,"b":"asdf","c":"function () { return \'asdf\'; }"}'
+```
 
 WIP documentation
 
@@ -975,25 +1008,27 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: localStore (browser)
 ===============================
-### getFromStorage
-(string, store?: Object) => string
-*   Get value associated with given key in any of the storage locations, in the following priority:
-    1. Given store object
-    2. 'this' value the function getFromStorage function has access to (only relevant if call, apply, or bind are used to call it)
-    3. local or session store
-*   Returns null if value not found
+### getFromStorage :: (string, store?: Object) => string
+Get value associated with given key in any of the storage locations, in the following priority:
+1. Given store object.
+2. 'this' value the function getFromStorage function has access to (only relevant if call, apply, or bind are used to call it).
+3. local or session store.
 
-    window.localStorage.setItem('key1', "value_of_key_1");
-    getFromStorage('key1'); // => 'value_of_key_1'
+Returns null if value not found.
 
-    class Store {
-        public keyOne = 'value_of_key_one'
-    }
-    const store = new Store();
-    getFromStorage('keyOne', store);      // => value_of_key_one
+Examples:
+```
+window.localStorage.setItem('key1', "value_of_key_1");
+getFromStorage('key1'); // => 'value_of_key_1'
 
-    getFromStorage.call(store, 'keyOne'); // => value_of_key_one
+class Store {
+    public keyOne = 'value_of_key_one'
+}
+const store = new Store();
+getFromStorage('keyOne', store);      // => value_of_key_one
 
+getFromStorage.call(store, 'keyOne'); // => value_of_key_one
+```
 
 ### isAuthenticated
 WIP documentation
@@ -1051,140 +1086,144 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: number (isomorphic)
 ==============================
-### isInteger (Alias: isInt)
-(any) => boolean
-*   Returns true if given value is an integer
+### isInteger :: (any) => boolean
+Returns true if given value is an integer.
 
 Examples:
+```
+isInteger(1);      // => true
+isInteger(232);    // => true
+isInteger(82.12);  // => false
+isInteger('232');  // => false
+isInteger('asdf'); // => false
+```
 
-    isInteger(1); // => true
-    isInteger(232); // => true
-    isInteger(82.12); // => false
-    isInteger('232'); // => false
-    isInteger('asdf'); // => false
+(Alias: isInt)
 
-### isIntegerLike
-(any) => boolean
-*   Returns true if given value is an integer-like string or integer.
-
-Examples:
-
-    isIntegerLike(232); // => true
-    isIntegerLike('232'); // => true
-    isIntegerLike('asdf'); // => false
-    isInteger(82.12); // => false
-
-### isNumberLike (Alias: isNumLike)
-(any) => boolean
-*   Returns true if given value is a number-like string or number
+### isIntegerLike :: (any) => boolean
+Returns true if given value is an integer-like string or integer.
 
 Examples:
+```
+isIntegerLike(232);    // => true
+isIntegerLike('232');  // => true
+isIntegerLike('asdf'); // => false
+isInteger(82.12);      // => false
+```
 
-    isNumberLike(1); // => true
-    isNumberLike(9267.84); // => true
-    isNumberLike('1'); // => true
-    isNumberLike('9267.84'); // => true
-    isNumberLike('1.2'); // => true
-    isNumberLike('.2'); // => true
+### isNumberLike :: (any) => boolean
+Returns true if given value is a number-like string or number.
 
-    isNumberLike('1.2.2'); // => false
-    isNumberLike('asdf'); // => false
-    isNumberLike(true); // => false
+Examples:
+```
+isNumberLike(1);         // => true
+isNumberLike(9267.84);   // => true
+isNumberLike('1');       // => true
+isNumberLike('9267.84'); // => true
+isNumberLike('1.2');     // => true
+isNumberLike('.2');      // => true
+
+isNumberLike('1.2.2');   // => false
+isNumberLike('asdf');    // => false
+isNumberLike(true);      // => false
+```
+
+(Alias: isNumLike) 
 
 ### uuid () => string
-*   Generate a UUID, in format e.g. 3A0BF2C7-3077-45A0-97ED-EC5F13F127F1
+Generate a UUID, in format e.g. `3A0BF2C7-3077-45A0-97ED-EC5F13F127F1`.
 
 Examples:
-
-    uuid();
-    // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
+```
+uuid(); // => 'F6779B17-8CD1-409B-A2AA-1FE80CB86654'
+uuid(); // => 'B574571F-097A-4ADB-837C-DCE8472C3314'
+```
 
 
 
 ----------------------------------------------------------------------------------------------------
 Namespace: object (isomorphic)
 ==============================
-### get
-(Object, string, any?) => any
-*   Safely get the item at the given object path.
-*   1st arg = object to get from
-*   2nd arg = object path to get value from
-*   3rd arg = default value (if no value found at given path)
+### get :: (obj: Object, path: string, default: any?) => any
+Safely get the item at the given object path.
+
+Arguments:
+*   1st: object to get from.
+*   2nd: object path to get value from.
+*   3rd: default value (if no value found at given path).
 
 Examples:
+```
+const obj = {a: {b: {c: 'value'}}};
 
-    const obj = {a: {b: {c: 'value'}}};
-    get(obj, 'a.b.c');
-    // => 'value'
+get(obj, 'a.b.c'); // => 'value'
 
-    get(obj, 'a.b.zzz', 'default value');
-    // => 'default value'
+get(obj, 'a.b.zzz', 'default value'); // => 'default value'
+```
 
-### assignFrozenClone
-(Object, ...Object[]) => Readonly<Object>
-*   Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result
-
-Examples:
-
-    const obj = assignFrozenClone({ a: 1, b: 2}, { c: 3, d: 4 });
-    // => { a: 1, b: 2, c: 3, d: 4 }
-    obj.a = 6;
-    obj.a // => 1
-    //          /\\--- note that it didn't change
-
-### deepFreeze
-(Object) => Readonly<Object>
-*   deep-freeze given object
-*   MUTATIVE! (But still returns original)
+### assignFrozenClone :: (Object, ...Object[]) => Readonly<Object>
+Non-mutatively merge all given objects together (like Object.assign) & deep-freeze the result.
 
 Examples:
+```
+const obj = assignFrozenClone({a: 1, b: 2}, {c: 3, d: 4});
+// => {a: 1, b: 2, c: 3, d: 4}
 
-    const obj = deepFreeze({ a: 1, b: 2, c: 3, d: 4 });
-    // obj = { a: 1, b: 2, c: 3, d: 4 }
-    obj.a = 6;
-    obj.a
-    // => 1
-    //   /\\--- note that it didn't change
+obj.a = 6;
+obj.a // => 1
+            /\\--- note that it didn't change
+```
 
-    const obj = { a: 1, b: 2, c: 3, d: 4 };
-    deepFreeze(obj);
-    obj.a = 6;
-    obj.a
-    // => 1
-
-### eachPair
-(Function(val, key)) => (Object) => Object (of original value)
-*   Run given function on each pair in given object
-*   CURRIED, NON-MUTATIVE
+### deepFreeze :: (Object) => Readonly<Object>
+Deep freeze given object
+MUTATIVE! (But still returns original)
 
 Examples:
+```
+const obj = deepFreeze({ a: 1, b: 2, c: 3, d: 4 });
+// obj = { a: 1, b: 2, c: 3, d: 4 }
+obj.a = 6;
+obj.a
+// => 1
+//   /\\--- note that it didn't change
 
-    const arr = [];
-    const putKeyValPairInArr = eachPair((v, k) => arr.push(k + v));
-    putKeyValPairInArr({ a: 1, b: 2 });
-    console.log(arr);
-    // => ['a1', 'b2']
+const obj = { a: 1, b: 2, c: 3, d: 4 };
+deepFreeze(obj);
+obj.a = 6;
+obj.a
+// => 1
+```
 
-### numKeys
-(Object) => number
-*   Return number of keys in given object.
+### eachPair :: (Function(val, key)) => (Object) => Object (of orig value)
+Run given function on each pair in given object.
+CURRIED, NON-MUTATIVE.
 
 Examples:
+```
+const arr = [];
+const putKeyValPairInArr = eachPair((v, k) => arr.push(k + v));
+putKeyValPairInArr({ a: 1, b: 2 });
 
-    numKeys({ a: 1, b: 2 });
-    // => 2
+console.log(arr); // => ['a1', 'b2']
+```
 
-### hasKey
-(Object, string) => boolean
+### numKeys :: (Object) => number
+Return number of keys in given object.
+
+Examples:
+```
+numKeys({a: 1, b: 2}); // => 2
+```
+
+### hasKey :: (Object, string) => boolean
 *   Return true if given object has given key.
 
 Examples:
+```
+hasKey({a: 1, b: 2}, 'a');  // => true
 
-    hasKey({ a: 1, b: 2 }, 'a');
-    // => true
-
-    hasKey({ a: 1, b: 2 }, 'c');
-    // => false
+hasKey({a: 1, b: 2}, 'c');  // => false
+```
 
 ### defineProps
 <N extends Object = {}, I extends Object>(obj: I, key: string, val: Any, isMutable?: bool) => I & N
@@ -1205,105 +1244,118 @@ Return value: (InputObject & NewKVPair)
 *   Note that it also mutates the original value
 
 Examples:
+```
+const obj = {a: 'eh', b: 'bee'}
+defineProps(obj, 'c', 'sea');
+// returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'sea'}
 
-    const obj = {a: 'eh', b: 'bee'}
-    defineProps(obj, 'c', 'sea');
-    // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'sea'}
+const obj = {a: 'eh', b: 'bee'}
+defineProps(obj, 'c', 'sea');
+defineProps(obj, 'c', 'seeeee');
+// returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'sea'}
 
-    const obj = {a: 'eh', b: 'bee'}
-    defineProps(obj, 'c', 'sea');
-    defineProps(obj, 'c', 'seeeee');
-    // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'sea'}
-
-    const obj = {a: 'eh', b: 'bee'}
-    defineProps(obj, 'c', 'sea', true);
-    defineProps(obj, 'c', 'seeeee', true);
-    // returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'seeeee'}
-
+const obj = {a: 'eh', b: 'bee'}
+defineProps(obj, 'c', 'sea', true);
+defineProps(obj, 'c', 'seeeee', true);
+// returns (and new value of obj) :: {a: 'eh', b: 'bee', c: 'seeeee'}
+```
 
 
 ----------------------------------------------------------------------------------------------------
 Namespace: url (isomorphic)
 =============================
-#### getLangFromURLPathname:
-(string? = window.location.pathname, string[]? = ['en','fr'], string? = 'en') => string
-*   Get the currently selected language out of the current URL
-*   Note: this is a 'rough' method not intended to work in all circumstances.
-    *   You need to be storing the language in the URL for this to work
-*   In Node, default value window.location.pathname gets set to '' if it doesn't exist.
+#### getLangFromURLPathname
+Signature:
+```
+(
+    string? = window.location.pathname,
+    string[]? = ['en','fr'],
+    string? = 'en'
+) => string
+```
+Get the currently selected language out of the current URL.
+
+Note: this is a 'rough' method not intended to work in all circumstances.
+*   You need to be storing the language in the URL for this to work
+
+In Node, default value window.location.pathname gets set to '' if it doesn't exist.
 
 Examples:
+```
+// Assuming we're at URL 'http://example.com/auth/fr/ok':
+getLangFromURLPathname();
+// => 'fr'
 
-    // Assuming we're at URL 'http://example.com/auth/fr/ok':
-    getLangFromURLPathname();
-    // => 'fr'
+// Assuming we're at URL 'http://example.com/auth/fr/ok':
+getLangFromURLPathname(window.location.pathname);
+// => 'fr'
 
-    // Assuming we're at URL 'http://example.com/auth/fr/ok':
-    getLangFromURLPathname(window.location.pathname);
-    // => 'fr'
+getLangFromURLPathname('/asdf/123asdfawzu/en/eiuherg/awzp1');
+// => 'en'
 
-    getLangFromURLPathname('/asdf/123asdfawzu/en/eiuherg/awzp1');
-    // => 'en'
+getLangFromURLPathname('/asdf/123asdfawzu/sp/eiuherg/awzp1', ['en', 'sp']);
+// => 'sp'
 
-    getLangFromURLPathname('/asdf/123asdfawzu/sp/eiuherg/awzp1', ['en', 'sp']);
-    // => 'sp'
+getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp']);
+// => 'en'
 
-    getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp']);
-    // => 'en'
+getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp'], 'fr');
+// => 'fr'
+```
 
-    getLangFromURLPathname('/asdf/123asdfawzu/au/eiuherg/awzp1', ['en', 'fr', 'sp'], 'fr');
-    // => 'fr'
-    
-#### parseQueryParams:
-(queryParamsString?: string = window.location.search) => Object
-*   Convert the current query params into an object
-*   Note that running it without explicitly passing the queryParamsString works, but can give stale results.
-    *   It will still point to the query params present on initial page load if window.location.search not explicitly passed.
-    *   Not a problem unless something changes the query params after page load.
+#### parseQueryParams :: (queryParamsString?: string = window.location.search) => Object
+Convert the current query params into an object.
+
+Note that running it without explicitly passing the queryParamsString works, but can give stale results.
+*   It will still point to the query params present on initial page load if window.location.search not explicitly passed.
+*   Not a problem unless something changes the query params after page load.
+
+Examples (at URL `'http://example.com/home?hello=everyone&gr=argh'`):
+```
+parseQueryParams(window.location.search);
+// => {hello: 'everyone', gr: 'argh'}
+
+parseQueryParams();
+// => {hello: 'everyone', gr: 'argh'}
+```
+
+#### lastUrlPath :: (url: string = hrefDef, strict: boolean = true) => string
+Get the last path in the given URL, with no / prepended, & query params excluded.
+
+Returns '' if no paths in url.
+
+Sets 'strict mode' to true by default, meaning trailing slashes aren't ignored.
+*   if one is present, return value becomes ''.
+
+If first param is null or undefined, uses the current page's URL as the url value.
 
 Examples:
+```
+// Assuming we're at URL 'http://example.com/home?hello=everyone&gr=argh'
+lastUrlPath(); // => 'home'
 
-    // Assuming we're at URL 'http://example.com/home?hello=everyone&gr=argh'
-    parseQueryParams(window.location.search);
-    // => { hello: 'everyone', gr: 'argh' }
+// Assuming we're at URL 'http://example.com/asdf/?hello=everyone&gr=argh'
+lastUrlPath(); // => ''
+lastUrlPath(null, false); // => 'asdf'
 
-    parseQueryParams();
-    // => { hello: 'everyone', gr: 'argh' }
-
-#### lastUrlPath:
-(url: string = hrefDef, strict: boolean = true) => string
-*   Get the last path in the given URL, with no / prepended, & query params excluded.
-*   Returns '' if no paths in url.
-*   Sets 'strict mode' to true by default, meaning trailing slashes aren't ignored
-    *   if one is present, return value becomes ''.
-*   If first param is null or undefined, uses the current page's URL as the url value.
-
-Examples:
-
-    // Assuming we're at URL 'http://example.com/home?hello=everyone&gr=argh'
-    lastUrlPath(); // => 'home'
-
-    // Assuming we're at URL 'http://example.com/asdf/?hello=everyone&gr=argh'
-    lastUrlPath(); // => ''
-    lastUrlPath(null, false); // => 'asdf'
-
-    lastUrlPath('http://example.com'); // => ''
-    lastUrlPath('http://example.com/'); // => ''
-    lastUrlPath('http://example.com/', false); // => ''
-    lastUrlPath('http://example.com/asdf'); // => 'asdf'
-    lastUrlPath('http://example.com/asdf/'); // => ''
-    lastUrlPath('http://example.com/asdf/', false); // => 'asdf'
-
+lastUrlPath('http://example.com'); // => ''
+lastUrlPath('http://example.com/'); // => ''
+lastUrlPath('http://example.com/', false); // => ''
+lastUrlPath('http://example.com/asdf'); // => 'asdf'
+lastUrlPath('http://example.com/asdf/'); // => ''
+lastUrlPath('http://example.com/asdf/', false); // => 'asdf'
+```
 
 #### normalizeURLPathname (url: string) => string
-*   Normalize given [url] {string}, converting to this format:
-        `/main/en/home`
-        `/main/en/home?key=value`
-*   Does the following actions:
-    *   Remove leading & trailing whitespace, and trailing `/`
-    *   Precedes URL with single `/`
-    *   Removes all repeat slashes (e.g. `//` -> `/`; `///` -> `/`)
-    *   Replace `/?` with `?`
+Normalize given [url] {string}, converting to this format:
+*   `/main/en/home`
+*   `/main/en/home?key=value`
+
+Does the following actions:
+*   Remove leading & trailing whitespace, and trailing `/`
+*   Precedes URL with single `/`
+*   Removes all repeat slashes (e.g. `//` -> `/`; `///` -> `/`)
+*   Replace `/?` with `?`
 
 Examples:
 ```
