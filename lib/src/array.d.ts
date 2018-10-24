@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import { Any, RealAny } from './types-iso';
+import { RealAny } from './types-iso';
 /******************************************** MATCHING ********************************************/
 /**
  * [Curried]
@@ -186,22 +186,6 @@ export declare function withoutLastN<T>(arr: T[], numToRm: number): T[];
  */
 export declare function withoutFirstN<T>(str: string, numToRm: number): string;
 export declare function withoutFirstN<T>(arr: T[], numToRm: number): T[];
-/**
- * [Non-mutative]
- *
- * Append all items in arr2 to the end of arr1 (non-mutatively) and return it
- *     If either arr1 or arr2 are undefined, it ignores it and just returns the other
- *     If both are undefined, it returns []
- *     If a non-array value besides null is given, it wraps the item in an array before
- *     performing the concatenation
- *
- * @param {Array<RealAny>|RealAny} arr1 If array, concatenate arr2 to the end
- *                                      If value, wrap in arr before concatenating
- *                                      (e.g. 3 is treated as [3]
- * @param {Array<RealAny>|RealAny} arr2 Array or value to concatenate to the end of arr1
- * @return {Array<RealAny>} Result of attaching arr2 to the end of arr1
- */
-export declare function append(arr1: Any[] | Any, arr2: Any[] | Any, ...arrs: Any[]): Any[];
 /**
  * [Non-mutative]
  * [PERFORMANCE-INTENSIVE]

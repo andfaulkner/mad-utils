@@ -123,7 +123,6 @@ export const {
     isLeapYear,
     now,
     hasKey,
-    append,
 } = browserUtils;
 
 export const genLen6UUID = uuid.len6;
