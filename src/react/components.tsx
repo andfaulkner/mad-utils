@@ -16,7 +16,7 @@ const switchErrMsg = `<Switch> components only allow <Case> & <Default> componen
  */
 export const IfTruthy = (props: {test: RealAny; children?: any}) => {
     if (!!props.test) {
-        if (typeof props.children === `string`) return <span>props.children</span>;
+        if (typeof props.children === `string`) return <span>{props.children}</span>;
         return React.Children.only(props.children) as JSX.Element;
     }
     return null;
@@ -32,7 +32,7 @@ export const IfTruthy = (props: {test: RealAny; children?: any}) => {
  */
 export const IfFalsy = (props: {test: RealAny; children?: any}) => {
     if (!props.test) {
-        if (typeof props.children === `string`) return <span>props.children</span>;
+        if (typeof props.children === `string`) return <span>{props.children}</span>;
         return React.Children.only(props.children) as JSX.Element;
     }
     return null;
