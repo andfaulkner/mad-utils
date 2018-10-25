@@ -837,8 +837,7 @@ Namespace: file (node)
 Returns true if inode (aka file, directory, socket, etc.) at absolute path is a directory.
 
 ```
-isDir(path.join(rootPath, 'node_modules'));
-// => isTrue
+isDir(path.join(rootPath, 'node_modules')); // => isTrue
 ```
 
 ### wasRunAsScript :: () => boolean
@@ -873,8 +872,7 @@ True if the given string (generally a path) ends in `.js`.
 
 Example:
 ```
-endsInDotJs(`asdf.js`);
-// => true
+endsInDotJs(`asdf.js`); // => true
 ```
 
 ### getBaseFilenameFromPath
@@ -885,7 +883,7 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: function (isomorphic)
 ================================
-### condSwitch :: ((cond: any, valToRetIfCondTruthy: V)+, default?: W) => V | W | never;
+### condSwitch :: (...(cond: any, retValIfCondTru: V), def?: W) => V | W | never;
 Function-based switch statement.
 
 For each pair of args:
@@ -967,7 +965,7 @@ loop5(() => i++); // => [0, 1, 2, 3, 4]
 console.log(i)    // => 5
 ```
 
-### getFnAsArr :: (Function): string[]
+### getFnAsArr :: (fn: Function) => string[]
 Return a function's source code in nicely spaced array format.
 
 Examples:
@@ -1038,27 +1036,27 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: locale (isomorphic)
 ==============================
-### commonLangsObj
+### commonLangsObj :: Record<string, string>
 *   Object containing a set of common languages and their common ID codes
 *   e.g. `{af: 'Afrikaans', en: 'English', ...}`
 
-### commonLangAbbrevs
+### commonLangAbbrevs :: string[]
 *   Array of common abbreviations for the most common languages
 *   e.g. `['af', 'en', ...]`
 
-### commonLangNames
+### commonLangNames :: string[]
 *   Array of the names of the most common languages
 *   e.g. `['Afrikaans', 'English', ...]`
 
-### canadaLangsObj
+### canadaLangsObj :: Record<string, string>
 *   Object mapping Canada's official languages to their abbreviations
 *   `{en: `English`, fr: `French`}`
 
-### canadaLangAbbrevs
+### canadaLangAbbrevs :: string[]
 *   Array of the abbreviations of Canada's official languages
 *   `['en', 'fr']`
 
-### canadaLangNames
+### canadaLangNames :: string[]
 *   Array of the names of Canada's official languages
 *   `['English', 'French']`
 
@@ -1066,7 +1064,7 @@ Namespace: locale (isomorphic)
 *   Array of variants of English, by locale (codes)
 *   `['english', 'en', 'en_ca', 'en_us', ...]`
 
-### frenchVariants
+### frenchVariants :: string[]
 *   Array of variants of French, by locale (codes)
 *   `['french', 'fr', 'fr_fr', 'fr_ca', ...]`
 
@@ -1171,7 +1169,7 @@ const obj = assignFrozenClone({a: 1, b: 2}, {c: 3, d: 4});
 
 obj.a = 6;
 obj.a // => 1
-            /\\--- note that it didn't change
+            ^--- note that it didn't change
 ```
 
 ### deepFreeze :: (Object) => Readonly<Object>
@@ -1180,21 +1178,21 @@ MUTATIVE! (But still returns original)
 
 Examples:
 ```
-const obj = deepFreeze({ a: 1, b: 2, c: 3, d: 4 });
-// obj = { a: 1, b: 2, c: 3, d: 4 }
-obj.a = 6;
-obj.a
-// => 1
-//   /\\--- note that it didn't change
+const obj = deepFreeze({a: 1, b: 2, c: 3, d: 4});
+// obj = {a: 1, b: 2, c: 3, d: 4}
 
-const obj = { a: 1, b: 2, c: 3, d: 4 };
+obj.a = 6;
+console.log(obj.a); // => 1
+                    //    ^--- note that it didn't change
+
+// Note that it also mutates the object:
+const obj = {a: 1, b: 2, c: 3, d: 4};
 deepFreeze(obj);
 obj.a = 6;
-obj.a
-// => 1
+console.log(obj.a); // => 1
 ```
 
-### eachPair :: (Function(val, key)) => (Object) => Object (of orig value)
+### eachPair :: <T extends object>(data: T, fn: (val, key) => any) => T
 Run given function on each pair in given object.
 CURRIED, NON-MUTATIVE.
 
@@ -1202,7 +1200,7 @@ Examples:
 ```
 const arr = [];
 const putKeyValPairInArr = eachPair((v, k) => arr.push(k + v));
-putKeyValPairInArr({ a: 1, b: 2 });
+putKeyValPairInArr({a: 1, b: 2});
 
 console.log(arr); // => ['a1', 'b2']
 ```
@@ -1216,32 +1214,32 @@ numKeys({a: 1, b: 2}); // => 2
 ```
 
 ### hasKey :: (Object, string) => boolean
-*   Return true if given object has given key.
+Return true if given object has given key.
 
 Examples:
 ```
 hasKey({a: 1, b: 2}, 'a');  // => true
-
 hasKey({a: 1, b: 2}, 'c');  // => false
 ```
 
-### defineProps
-<N extends Object = {}, I extends Object>(obj: I, key: string, val: Any, isMutable?: bool) => I & N
-*   Add {key} with value {val} to {obj}. If {isMutable} true, make new prop mutable.
+### defineProps :: (obj: I, string, val: any, mutable?: bool) => N & I {Object}
+Add {key} with value {val} to {obj}. If {mutable} true, make new prop mutable.
 
 Generics:
-*   1 :: N (NewKVPair) extends Object = {}   -- New key-value pair to add to object
-*   2 :: I (InputObject) extends Object = {} -- Original input object to mutate (and return)
+1.  N (NewKVPair) extends Object = {}
+    *   New key-value pair to add to object.
+2.  I (InputObject) extends Object = {}
+    *   Original input object to mutate (and return).
 
 Arguments:
-*   obj: InputObject - object to mutate
-*   key: string - new key to add to given object (at arg 'obj')
-*   val: Any - value to assign to new key
+*   obj: InputObject - object to mutate.
+*   key: string - new key to add to given object (at arg 'obj').
+*   val: Any - value to assign to new key.
 *   isMutable: boolean? - if true, make new property mutable. Default: false.
 
 Return value: (InputObject & NewKVPair)
 *   InputObject with new key-value pair properties merged in.
-*   Note that it also mutates the original value
+*   Note that it also mutates the original value.
 
 Examples:
 ```
