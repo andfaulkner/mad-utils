@@ -9,32 +9,44 @@ const switchErrMsg = `<Switch> components only allow <Case> & <Default> componen
 
 /*************************************** BASIC CONDITIONALS ***************************************/
 /**
- * Render the child if 'test' is truthy. Can only accept React components
+ * Render the child if 'test' is truthy
+ * Can only accept React components
  * If given a string, wraps it in a span before returning it
+ *
  * @param {any} test If truthy, render children
  * @return {JSX.Element|null} If test is truthy, return JSX element child; otherwise null
  */
 export const IfTruthy = (props: {test: RealAny; children?: any}) => {
+    // If test prop has falsy val, return given children
     if (!!props.test) {
-        if (typeof props.children === `string`) return <span>{props.children}</span>;
+        if (typeof props.children === `string`) {
+            return <span>{props.children}</span>;
+        }
         return React.Children.only(props.children) as JSX.Element;
     }
+
     return null;
 };
 
 (IfTruthy as any).displayName = `IfTruthy`;
 
 /**
- * Render the child if `test` is falsy. Can only accept React components
+ * Render the child if `test` is falsy
+ * Can only accept React components
  * If given a string, wraps it in a span before returning it
+ *
  * @param {any} test If falsy, render children
  * @return {JSX.Element|null} If test is falsy, return JSX element child; otherwise null
  */
 export const IfFalsy = (props: {test: RealAny; children?: any}) => {
+    // If test prop has falsy val, return given children
     if (!props.test) {
-        if (typeof props.children === `string`) return <span>{props.children}</span>;
+        if (typeof props.children === `string`) {
+            return <span>{props.children}</span>;
+        }
         return React.Children.only(props.children) as JSX.Element;
     }
+
     return null;
 };
 
@@ -42,13 +54,23 @@ export const IfFalsy = (props: {test: RealAny; children?: any}) => {
 
 /***************************** COMPONENT-BASED SWITCH-CASE STRUCTURE ******************************/
 /**
- * If no val props of any of the (sibling) <Case> components match the test prop
- * of the current parent (<Switch>), render this component's children
- * @return {null|JSX.Element} children if no Switch.test & Case.val props match, otherwise null
+ * If no val props of any of the (sibling) <Case> components match the test
+ * prop of the current parent (<Switch>), render this component's children
+ *
+ * Example:
+ *     <Default>
+ *         <span className={cn(`pt-5`, `center`)}>Result</span>
+ *     </Default>
+ *
+ * @return {null|JSX.Element} children if no Switch.test & Case.val props match,
+ *                            otherwise null
  */
-export const Default = Object.assign((props: {children?: any}) => props.children, {
-    __IS_DEFAULT_CONDITION__: true,
-}) as (props: {children?: any}) => JSX.Element | null;
+export const Default = Object.assign(
+    (props: {children?: ReactChildren}) => props.children,
+    {
+        __IS_DEFAULT_CONDITION__: true,
+    }
+) as (props: {children?: any}) => JSX.Element | null;
 
 (Default as any).displayName = `Default_(Conditional)`;
 
@@ -116,13 +138,17 @@ export const Case = Object.assign((props: {children?: any; val: any}) => props.c
 export const Switch = ({children, test}: {children?: any; test: any}): JSX.Element | null => {
     let renderOutput;
     let defaultContent;
+
     React.Children.forEach(children, (child, idx) => {
+        // Ensure it finishes on 1st match (keep ret once renderOutput defined)
         if (renderOutput) return;
 
+        // Throw if a string or number is given as a child
         if (typeof child === `string` || typeof child === `number`) {
             throw new TypeError(switchErrMsg);
         }
 
+        // If the current child is a
         if ((child.type as any).__IS_CASE_CONDITION__ === true) {
             if (child.props.val === test) {
                 renderOutput = child.props.children;
@@ -137,7 +163,9 @@ export const Switch = ({children, test}: {children?: any; test: any}): JSX.Eleme
 
         throw new TypeError(switchErrMsg);
     });
+
     const returnData = renderOutput || defaultContent || null;
+
     return typeof returnData === `string` || typeof returnData === `number` ? (
         <span>{returnData}</span>
     ) : (
