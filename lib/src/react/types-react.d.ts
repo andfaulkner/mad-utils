@@ -17,22 +17,15 @@ export interface ReactChildString {
 }
 export { ReactChildString as ChildString };
 /**
- * Should match any type of React component: Class, ClassicClass, or stateless functional component
+ * Type of a children prop in a React SFC (for most cases)
+ *
+ * Similar to ReactNode, but without type errors in some TS versions, and
+ * doesn't accept undefined or number
+ *
+ * Example:
+ *     const MySFC = ({children}: {children: ReactChildren}) => (...)
  */
-export declare type AnyComponent<T> = React.StatelessComponent<T> | React.ComponentClass<T> | React.ClassicComponentClass<T>;
-/**
- * Named stateless functional components / JSX elements.
- * Normally Typescript does not allow you to assign them display names, resulting in:
- *     <Unknown></Unknown>
- */
-export declare type NamedSFC<P extends {}> = ((props: P) => JSX.Element) & {
-    displayName: string;
-};
-export { NamedSFC as NamedReactSFC };
-/**
- * Basic React stateless functional component signature.
- */
-export declare type ReactSFC<P extends {}> = (props: P) => JSX.Element;
+export declare type ReactChildren<T = any> = JSX.Element | React.ReactElement<T> | React.ReactFragment | React.ReactPortal | string | null;
 /**
  * Use with stateless functional components passing children through.
  */
@@ -40,27 +33,31 @@ export interface ChildrenPassthruProps {
     children?: any;
 }
 /**
- * Use on function params expecting an unconstructed React component class.
- * Mainly for creation of higher-order components.
- * @example function wrap(WrappedComponent: Newable<React.Component<any, any>>) { ... }
+ * Use on function params expecting an unconstructed React component class
+ * Mainly for creation of higher-order components
  *
- * @example Full example including context:
+ * Example:
+ *     function wrap(WrappedComponent: Newable<React.Component<any, any>>) {...}
+ *
+ * Example (Full including context):
  *     function logBeforeRender(WrappedComponent: Newable<React.Component<any, any>>) {
  *         return class Enhancer extends WrappedComponent {
- *             events = this.events || {}
  *             render() {
- *                 log.info(`Rendering ${WrappedComponent.name} with props: ${this.props}`);
+ *                 log.info(
+ *                     `Rendering ${WrappedComponent.name} w props: ${this.props}`
+ *                 );
  *                 super.render();
  *             }
  *         }
  *     }
  *
- *     // Then to use it ::
+ *     // Then to use it:
  *     @logBeforeRender
  *     class SomeComponent extends React.Component<any, any> { ...etc... }
  */
 export interface Newable<T> {
     new (...args: any[]): T;
+    displayName?: string;
 }
 /************************************* ROUTING-RELATED TYPES **************************************/
 /**
