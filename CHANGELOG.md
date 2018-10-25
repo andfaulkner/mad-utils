@@ -1,3 +1,14 @@
+0.80.0
+======
+Fixed bug in throttle where values from prototype weren't propagating to returned function
+
+Remove exported React types:
+*   AnyComponent
+*   NamedSFC
+*   ReactSFC
+
+Allow displayName in Newable React types
+
 0.79.2
 ======
 Remove append function
