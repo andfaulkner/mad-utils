@@ -66,12 +66,9 @@ export const IfFalsy = (props: {test: RealAny; children?: any}) => {
  * @return {null|JSX.Element} children if no Switch.test & Case.val props match,
  *                            otherwise null
  */
-export const Default = Object.assign(
-    (props: {children?: ReactChildren}) => props.children,
-    {
-        __IS_DEFAULT_CONDITION__: true,
-    }
-) as (props: {children?: any}) => JSX.Element | null;
+export const Default = Object.assign((props: {children?: ReactChildren}) => props.children, {
+    __IS_DEFAULT_CONDITION__: true,
+}) as (props: {children?: any}) => JSX.Element | null;
 
 (Default as any).displayName = `Default_(Conditional)`;
 
@@ -136,7 +133,13 @@ export const Case = Object.assign((props: {children?: any; val: any}) => props.c
  *     // Renders `<span>3rd child case! Contains text</span>`
  *     - Why a <span>? React can't just render text without an element around it
  */
-export const Switch = ({children, test}: {children?: any; test: any}): JSX.Element | null => {
+export const Switch = ({
+    children,
+    test,
+}: {
+    children: JSX.Element | JSX.Element[];
+    test: any;
+}): JSX.Element | null => {
     let renderOutput;
     let defaultContent;
 
@@ -179,5 +182,3 @@ export const Switch = ({children, test}: {children?: any; test: any}): JSX.Eleme
 };
 
 (Switch as any).displayName = `Switch_(Conditional)`;
-
-// TODO Create SwitchMatch (?)
