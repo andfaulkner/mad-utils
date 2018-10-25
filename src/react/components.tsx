@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import {RealAny} from '../types-iso';
+import {ReactChildren} from './types-react';
 
 /********************************************* CONFIG *********************************************/
 const switchErrMsg = `<Switch> components only allow <Case> & <Default> components as direct children`;
@@ -143,12 +144,13 @@ export const Switch = ({children, test}: {children?: any; test: any}): JSX.Eleme
         // Ensure it finishes on 1st match (keep ret once renderOutput defined)
         if (renderOutput) return;
 
-        // Throw if a string or number is given as a child
+        // Throw if a string or number is given as a child of Switch
         if (typeof child === `string` || typeof child === `number`) {
             throw new TypeError(switchErrMsg);
         }
 
-        // If the current child is a
+        // If the current child is a <Case> component, and 'val' prop equals
+        // this component's 'test' prop, render children of <Case>
         if ((child.type as any).__IS_CASE_CONDITION__ === true) {
             if (child.props.val === test) {
                 renderOutput = child.props.children;
@@ -156,6 +158,9 @@ export const Switch = ({children, test}: {children?: any; test: any}): JSX.Eleme
             return;
         }
 
+        // If the current child is a <Default> component, and no <Case> has
+        // been triggered, store children of <Default> as defaultContent, to
+        // render if no Cases get triggered
         if ((child.type as any).__IS_DEFAULT_CONDITION__ === true) {
             defaultContent = child.props.children;
             return;
