@@ -117,11 +117,10 @@ export function condSwitch(
 
 /************************************* RUN TIMING / LIMITING **************************************/
 /**
- * TODO perform key transfer using Reflect & Object
- *
  * Throttle function [cb] such that it only runs 1X within given interval ([wait] arg - in ms)
  * Called at beginning of interval if [immediate] is true (default), otherwise run at end
- * Transfers keys from source function to created throttled function
+ *
+ * Transfers prototype & keys from [cb] to newly created returned function
  *
  * @param {Function} cb Call max 1X/[wait]ms & call at wait start if [immediate]=true {default}
  * @param {number} wait Time to wait before next call of function allowed
@@ -172,7 +171,7 @@ export function throttle<A>(
     immediate = true
 ): (...fnArgs: A[]) => void {
     let blocked = false;
-    const retVal = function throttledFn(...fnArgs: A[]) {
+    const retFn = function throttledFn(...fnArgs: A[]) {
         if (!blocked) {
             blocked = true;
             setTimeout(() => {
@@ -182,8 +181,14 @@ export function throttle<A>(
             if (immediate) cb(...fnArgs);
         }
     };
-    Object.keys(cb).forEach(k => (retVal[k] = cb[k]));
-    return retVal;
+
+    // Assign cb's prototype to retFn
+    retFn.prototype = Object.create(cb.prototype);
+
+    // Hoist keys from cb onto retFn
+    Object.keys(cb).forEach(k => (retFn[k] = cb[k]));
+
+    return retFn;
 }
 
 /**
