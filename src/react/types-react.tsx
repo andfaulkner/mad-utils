@@ -24,25 +24,19 @@ export interface ReactChildString {
 export {ReactChildString as ChildString};
 
 /**
- * Should match any type of React component: Class, ClassicClass, or stateless functional component
+ * Type of a children prop in a React SFC
+ * Similar to ReactNode, but without type errors in some TS versions
+ *
+ * Example:
+ *     const MyWrapperSFC = ({children}: {children: ReactChildren}) => (...)
  */
-export type AnyComponent<T> =
-    | React.StatelessComponent<T>
-    | React.ComponentClass<T>
-    | React.ClassicComponentClass<T>;
-
-/**
- * Named stateless functional components / JSX elements.
- * Normally Typescript does not allow you to assign them display names, resulting in:
- *     <Unknown></Unknown>
- */
-export type NamedSFC<P extends {}> = ((props: P) => JSX.Element) & {displayName: string};
-export {NamedSFC as NamedReactSFC};
-
-/**
- * Basic React stateless functional component signature.
- */
-export type ReactSFC<P extends {}> = (props: P) => JSX.Element;
+declare type ReactChildren<T = any> =
+    | JSX.Element
+    | React.ReactElement<T>
+    | React.ReactFragment
+    | React.ReactPortal
+    | null
+    | string;
 
 /**
  * Use with stateless functional components passing children through.
