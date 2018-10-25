@@ -70,6 +70,7 @@ export interface ChildrenPassthruProps {
  */
 export interface Newable<T> {
     new (...args: any[]): T;
+    displayName?: string;
 }
 
 /************************************* ROUTING-RELATED TYPES **************************************/
