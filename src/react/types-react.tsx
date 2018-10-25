@@ -24,28 +24,21 @@ export interface ReactChildString {
 export {ReactChildString as ChildString};
 
 /**
- * Type of a children prop in a React SFC, with no null or string allowed
+ * Type of a children prop in a React SFC (for most cases)
  *
- * Example:
- *     const MySFC = ({children}: {children: ReactComponentChildren}) => (...)
- */
-export type ReactComponentChildren<T = any> =
-    | JSX.Element
-    | React.ReactElement<T>
-    | React.ReactFragment
-    | React.ReactPortal;
-
-/**
- * Type of a children prop in a React SFC
- * Similar to ReactNode, but without type errors in some TS versions
+ * Similar to ReactNode, but without type errors in some TS versions, and
+ * doesn't accept undefined or number
  *
  * Example:
  *     const MySFC = ({children}: {children: ReactChildren}) => (...)
  */
 export type ReactChildren<T = any> =
-    | ReactComponentChildren<T>
-    | null
-    | string;
+    | JSX.Element
+    | React.ReactElement<T>
+    | React.ReactFragment
+    | React.ReactPortal
+    | string
+    | null;
 
 /**
  * Use with stateless functional components passing children through.
