@@ -30,7 +30,7 @@ export function logOnRender(
                 return super.render();
             }
         }
-        (Enhancer as any).displayName = `${(WrappedComponent as any).name}_logger`;
+        Enhancer.displayName = `${(WrappedComponent as any).name}_logger`;
         return Enhancer;
     };
 }
