@@ -46,22 +46,25 @@ export interface ChildrenPassthruProps {
 }
 
 /**
- * Use on function params expecting an unconstructed React component class.
- * Mainly for creation of higher-order components.
- * @example function wrap(WrappedComponent: Newable<React.Component<any, any>>) { ... }
+ * Use on function params expecting an unconstructed React component class
+ * Mainly for creation of higher-order components
  *
- * @example Full example including context:
+ * Example:
+ *     function wrap(WrappedComponent: Newable<React.Component<any, any>>) {...}
+ *
+ * Example (Full including context):
  *     function logBeforeRender(WrappedComponent: Newable<React.Component<any, any>>) {
  *         return class Enhancer extends WrappedComponent {
- *             events = this.events || {}
  *             render() {
- *                 log.info(`Rendering ${WrappedComponent.name} with props: ${this.props}`);
+ *                 log.info(
+ *                     `Rendering ${WrappedComponent.name} w props: ${this.props}`
+ *                 );
  *                 super.render();
  *             }
  *         }
  *     }
  *
- *     // Then to use it ::
+ *     // Then to use it:
  *     @logBeforeRender
  *     class SomeComponent extends React.Component<any, any> { ...etc... }
  */
