@@ -1,35 +1,23 @@
 :global {
     /*************************************** INHERITED SIZE ***************************************/
-    div div .w-inherit, div span .w-inherit span div .w-inherit,
-    span span .w-inherit, span.w-inherit, div.w-inherit, .w-inherit {width: inherit}
-    div div .h-inherit, div span .h-inherit span div .h-inherit,
-    span span .h-inherit, span.h-inherit, div.h-inherit, .h-inherit {height: inherit}
+    div div .w-inherit, div .w-inherit, .w-inherit {width: inherit}
+    div div .h-inherit, div .h-inherit, .h-inherit {height: inherit}
 
-    div div .minw-inherit, div span .minw-inherit span div .minw-inherit,
-    span span .minw-inherit, span.minw-inherit, div.minw-inherit, .minw-inherit {min-width: inherit}
-    div div .minh-inherit, div span .minh-inherit span div .minh-inherit,
-    span span .minh-inherit, span.minh-inherit, div.minh-inherit, .minh-inherit {min-height: inherit}
+    div div .minw-inherit, div .minw-inherit, .minw-inherit {min-width: inherit}
+    div div .minh-inherit, div .minh-inherit, .minh-inherit {min-height: inherit}
 
-    div div .maxw-inherit, div span .maxw-inherit span div .maxw-inherit,
-    span span .maxw-inherit, span.maxw-inherit, div.maxw-inherit, .maxw-inherit {max-width: inherit}
-    div div .maxh-inherit, div span .maxh-inherit span div .maxh-inherit,
-    span span .maxh-inherit, span.maxh-inherit, div.maxh-inherit, .maxh-inherit {max-height: inherit}
+    div div .maxw-inherit, div .maxw-inherit, .maxw-inherit {max-width: inherit}
+    div div .maxh-inherit, div .maxh-inherit, .maxh-inherit {max-height: inherit}
 
     /************************************** "FIT CONTENT" SIZE ************************************/
-    div div .w-fit-content, div span .w-fit-content span div .w-fit-content,
-    span span .w-fit-content, span.w-fit-content, div.w-fit-content, .w-fit-content {width: fit-content}
-    div div .h-fit-content, div span .h-fit-content span div .h-fit-content,
-    span span .h-fit-content, span.h-fit-content, div.h-fit-content, .h-fit-content {height: fit-content}
+    div div .w-fit-content, div .w-fit-content, .w-fit-content {width: fit-content}
+    div div .h-fit-content, div .h-fit-content, .h-fit-content {height: fit-content}
 
-    div div .minw-fit-content, div span .minw-fit-content span div .minw-fit-content,
-    span span .minw-fit-content, span.minw-fit-content, div.minw-fit-content, .minw-fit-content {min-width: fit-content}
-    div div .minh-fit-content, div span .minh-fit-content span div .minh-fit-content,
-    span span .minh-fit-content, span.minh-fit-content, div.minh-fit-content, .minh-fit-content {min-height: fit-content}
+    div div .minw-fit-content, div .minw-fit-content, .minw-fit-content {min-width: fit-content}
+    div div .minh-fit-content, div .minh-fit-content, .minh-fit-content {min-height: fit-content}
 
-    div div .maxw-fit-content, div span .maxw-fit-content span div .maxw-fit-content,
-    span span .maxw-fit-content, span.maxw-fit-content, div.maxw-fit-content, .maxw-fit-content {max-width: fit-content}
-    div div .maxh-fit-content, div span .maxh-fit-content span div .maxh-fit-content,
-    span span .maxh-fit-content, span.maxh-fit-content, div.maxh-fit-content, .maxh-fit-content {max-height: fit-content}
+    div div .maxw-fit-content, div .maxw-fit-content, .maxw-fit-content {max-width: fit-content}
+    div div .maxh-fit-content, div .maxh-fit-content, .maxh-fit-content {max-height: fit-content}
 
     /******************************* MAX CONTENT & MIN CONTENT SIZE *******************************/
     /** WIDTH: MIN-CONTENT **/
