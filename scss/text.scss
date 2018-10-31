@@ -32,7 +32,7 @@
     div div div .fs-45, div div .fs-45, div .fs-45, .fs-45 {font-size: 45px}
     div div div .fs-50, div div .fs-50, div .fs-50, .fs-50 {font-size: 50px}
 
-    //****************************************** FONT WEIGHT ******************************************/
+    /**************************************** FONT WEIGHT *****************************************/
     div.fw-300, div input.fw-300, input.fw-300, .fw-300              {font-weight: 300}
     div.fw-400, div input.fw-400, input.fw-400, .fw-400              {font-weight: 400}
     div.fw-500, div input.fw-500, input.fw-500, .fw-500              {font-weight: 500}
@@ -45,14 +45,14 @@
     div.fw-bold, div input.fw-bold, input.fw-bold, .fw-bold,
     div.bold, div input.bold, input.bold, .bold                      {font-weight: bold}
 
-    //**************************************** FONT DECORATION ****************************************/
+    /************************************** FONT DECORATION ***************************************/
     .underline                {text-decoration: underline}
     .no-underline             {text-decoration: none     }
     .no-hover-underline:hover {text-decoration: none     }
     .italic                   {font-style: italic        }
     .italics                  {font-style: italic        }
 
-    //************************************** FONT CAPITALIZATION **************************************/
+    /************************************ FONT CAPITALIZATION *************************************/
     .uppercase  {text-transform: uppercase }
     .lowercase  {text-transform: lowercase }
     .capitalize {text-transform: capitalize}
@@ -64,7 +64,7 @@
         text-align: left;
     }
 
-    //****************************************** LINE HEGHT *******************************************/
+    /**************************************** LINE HEIGHT *****************************************/
     .lh-5   {line-height: 5px  }
     .lh-6   {line-height: 6px  }
     .lh-7   {line-height: 7px  }
@@ -95,7 +95,7 @@
     .lh-75  {line-height: 75px }
     .lh-100 {line-height: 100px}
 
-    /**************************************** LETTER-SPACING *****************************************/
+    /*************************************** LETTER-SPACING ***************************************/
     .ls-normal {letter-spacing: normal}
     .ls-n3     {letter-spacing: -3px  }
     .ls-n2.5   {letter-spacing: -2.5px}
@@ -133,7 +133,7 @@
     .ls-2p5, .ls-2pt5   {letter-spacing: 2.5px }
     .ls-3               {letter-spacing: 3px   }
 
-    /****************************************** FONT FAMILY ******************************************/
+    /**************************************** FONT FAMILY *****************************************/
     .better-helvetica,
     div .better-helvetica,
     div div .better-helvetica {
@@ -172,11 +172,10 @@
         font-family: "Helvetica Neue Light";
     }
 
-    /******************************************** SHADOW *********************************************/
+    /****************************************** SHADOW ********************************************/
     .ts-none {text-shadow: none}
 
-    /******************************************* ALIGNMENT *******************************************/
-    div input.ta-left, input.ta-left, div.ta-left, .ta-left         {text-align: left  }
+    /***************************************** ALIGNMENT ******************************************/
     div input.ta-left, input.ta-left, div.ta-left, .ta-left         {text-align: left  }
     div input.ta-center, input.ta-center, div.ta-center, .ta-center {text-align: center}
     div input.ta-right, input.ta-right, div.ta-right, .ta-right     {text-align: right }
@@ -194,7 +193,7 @@
         -webkit-tap-highlight-color: transparent;
     }
 
-    /***************************************** WORD WRAPPING ******************************************/
+    /*************************************** WORD WRAPPING ****************************************/
     .whitespace-no-wrap, .whitespace-nowrap, .whitespace-nw, .ws-no-wrap, .ws-nowrap, .ws-nw {white-space: nowrap}
     .whitespace-normal, .whitespace-norm, .whitespace-nw, .ws-normal, .ws-norm, .ws-n {white-space: normal}
     .whitespace-pre, .ws-pre {white-space: pre}
