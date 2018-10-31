@@ -21,32 +21,16 @@
 
     /******************************* MAX CONTENT & MIN CONTENT SIZE *******************************/
     /** WIDTH: MIN-CONTENT **/
-    div div .w-min-content, div div .w-mincontent, div div .w-mincont, div div .w-mincon, div div .w-minc, div div .w-min-c,
-    div .w-min-content, div .w-mincontent, div .w-mincont, div .w-mincon, div .w-minc, div .w-min-c,
-    .w-mincontent, .w-mincont, .w-mincon, .w-minc, .w-min-c {
-        width: min-content
-    }
+    .w-min-content, div .w-min-content {width: min-content}
 
     /** WIDTH: MAX-CONTENT **/
-    div div .w-max-content, div div .w-maxcontent, div div .w-maxcont, div div .w-maxcon, div div .w-maxc, div div .w-max-c,
-    div .w-max-content, div .w-maxcontent, div .w-maxcont, div .w-maxcon, div .w-maxc, div .w-max-c,
-    .w-maxcontent, .w-maxcont, .w-maxcon, .w-maxc, .w-max-c {
-        width: max-content
-    }
+    .w-max-content, div .w-max-content {width: max-content}
 
     /** HEIGHT: MIN-CONTENT **/
-    div div .h-min-content, div div .h-mincontent, div div .h-mincont, div div .h-mincon, div div .h-minc, div div .h-min-c,
-    div .h-min-content, div .h-mincontent, div .h-mincont, div .h-mincon, div .h-minc, div .h-min-c,
-    .h-mincontent, .h-mincont, .h-mincon, .h-minc, .h-min-c {
-        height: min-content
-    }
+    .h-min-content, div .h-min-content {height: min-content}
 
     /** HEIGHT: MAX-CONTENT **/
-    div div .h-max-content, div div .h-maxcontent, div div .h-maxcont, div div .h-maxcon, div div .h-maxc, div div .h-max-c,
-    div .h-max-content, div .h-maxcontent, div .h-maxcont, div .h-maxcon, div .h-maxc, div .h-max-c,
-    .h-maxcontent, .h-maxcont, .h-maxcon, .h-maxc, .h-max-c {
-        height: max-content
-    }
+    .h-max-content, div .h-max-content {height: max-content}
 
     /******************************************* WIDTH ********************************************/
     div .w-a, .w-a {width: auto}
