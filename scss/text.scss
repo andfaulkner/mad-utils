@@ -1,6 +1,6 @@
 :global {
     /********************************************* TEXT **********************************************/
-    div div div .fs-9,  div div .fs-9,  div .fs-9, .fs-9   {font-size: 9px }
+    div div div .fs-9,  div div .fs-9,  div .fs-9,  .fs-9  {font-size: 9px }
     div div div .fs-10, div div .fs-10, div .fs-10, .fs-10 {font-size: 10px}
     div div div .fs-11, div div .fs-11, div .fs-11, .fs-11 {font-size: 11px}
     div div div .fs-12, div div .fs-12, div .fs-12, .fs-12 {font-size: 12px}
@@ -27,14 +27,14 @@
     div div div .fs-50, div div .fs-50, div .fs-50, .fs-50 {font-size: 50px}
 
     /**************************************** FONT WEIGHT *****************************************/
-    div.fw-300, div input.fw-300, input.fw-300, .fw-300              {font-weight: 300}
-    div.fw-400, div input.fw-400, input.fw-400, .fw-400              {font-weight: 400}
-    div.fw-500, div input.fw-500, input.fw-500, .fw-500              {font-weight: 500}
-    div.fw-600, div input.fw-600, input.fw-600, .fw-600              {font-weight: 600}
-    div.fw-700, div input.fw-700, input.fw-700, .fw-700              {font-weight: 700}
+    div div .fw-300, div .fw-300, .fw-300 {font-weight: 300}
+    div div .fw-400, div .fw-400, .fw-400 {font-weight: 400}
+    div div .fw-500, div .fw-500, .fw-500 {font-weight: 500}
+    div div .fw-600, div .fw-600, .fw-600 {font-weight: 600}
+    div div .fw-700, div .fw-700, .fw-700 {font-weight: 700}
 
-    div.fw-normal, div input.fw-normal, input.fw-normal, .fw-normal  {font-weight: normal}
-    div.bold, div input.bold, input.bold, .bold                      {font-weight: bold}
+    div div .fw-normal, div .fw-normal, .fw-normal {font-weight: normal}
+    div div .bold,      div .bold,      .bold      {font-weight: bold}
 
     /************************************** FONT DECORATION ***************************************/
     .underline                {text-decoration: underline}
@@ -167,9 +167,9 @@
     .ts-none {text-shadow: none}
 
     /***************************************** ALIGNMENT ******************************************/
-    div input.ta-left, input.ta-left, div.ta-left, .ta-left         {text-align: left  }
-    div input.ta-center, input.ta-center, div.ta-center, .ta-center {text-align: center}
-    div input.ta-right, input.ta-right, div.ta-right, .ta-right     {text-align: right }
+    div div .ta-left,   div .ta-left,   .ta-left   {text-align: left  }
+    div div .ta-center, div .ta-center, .ta-center {text-align: center}
+    div div .ta-right,  div .ta-right,  .ta-right  {text-align: right }
 
     /* Utilities */
     .ellipsize {
@@ -185,11 +185,10 @@
     }
 
     /*************************************** WORD WRAPPING ****************************************/
-    .ws-no-wrap, .ws-nowrap, .ws-nw {white-space: nowrap}
-    .ws-normal, .ws-norm, .ws-n {white-space: normal}
-    .ws-pre {white-space: pre}
+    .ws-no-wrap,  .ws-nowrap,  .ws-nw {white-space: nowrap}
+    .ws-normal,   .ws-norm,    .ws-n  {white-space: normal}
+    .ws-pre                           {white-space: pre}
     .ws-pre-line, .ws-preline, .ws-pl {white-space: pre-line}
     .ws-pre-wrap, .ws-prewrap, .ws-pw {white-space: pre-wrap}
-    .ws-unset, .ws-us {white-space: unset}
-
+    .ws-unset,    .ws-us              {white-space: unset}
 }
