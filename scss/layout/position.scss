@@ -1,16 +1,9 @@
 :global {
     /******************************************* POSITION ********************************************/
-    .pos-relative {position: relative}
-    .pos-rel      {position: relative}
-    .pos-absolute {position: absolute}
-    .pos-abs      {position: absolute}
-    .pos-static   {position: static  }
-    .pos-fixed    {position: fixed   }
-
-    .absolute     {position: absolute}
-    .relative     {position: relative}
-    .static       {position: static  }
-    .fixed        {position: fixed   }
+    .pos-relative, .pos-rel, .relative {position: relative}
+    .pos-absolute, .pos-abs, .absolute {position: absolute}
+    .pos-static, .static {position: static}
+    .pos-fixed, .fixed {position: fixed}
 
     /************************************** RELATIVE POSITIONAL **************************************/
     .top-0 {top: 0px}
