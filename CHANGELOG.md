@@ -1,4 +1,4 @@
-0.80.1 [BREAKING CHANGES]
+0.81.0 [BREAKING CHANGES]
 =========================
 Add SCSS utils:
 *   `fw-400`, `fw-600`, & `fw-700` - font-weights 400, 600, 700
@@ -21,8 +21,17 @@ Remove SCSS utils:
     -   e.g. `ov-hidden`, `ov-auto`
 -   `m*-32`, 34, 45, 57, 90, 125, 150, 175, 225, 275, 300, 400, 600, 700, 750, 800, 900, 1000
     -   e.g. `m-32`, `mb-n34p`, `mt-57`, `mt-n57`, `mr-n1000`
+-   `float-r`, `f-right`, `float-l`, `f-left`
+    -   Unneeded, use `float-right`, `float-left`
+-   `w-mincont`, `w-mincontent`, `w-maxcont`, `w-maxcontent`, `w-maxc`, `w-max-c`, `w-minc`, `w-min-c`
+-   `h-mincont`, `h-mincontent`, `h-maxcont`, `h-maxcontent`, `h-maxc`, `h-max-c`, `h-minc`, `h-min-c`
 
-Clean selectivity in `margin-auto` / `m-auto`
+Clean specificity for all SCSS utils in:
+*   margin.scss (e.g. `margin-auto` / `m-auto`)
+*   padding.scss
+*   size.scss
+*   text.scss
+
 
 ----------------------------------------------------------------------------------------------------
 0.80.0
