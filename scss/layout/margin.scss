@@ -1,32 +1,21 @@
 :global {
     /****************************************** MARGIN: ALL *******************************************/
-    div nav button.m-auto, nav button.m-auto, button.m-auto,div div.m-auto, div span.m-auto, span.m-auto, div.m-auto, .m-auto,
-    div nav button.margin-auto, nav button.margin-auto, button.margin-auto,div div.margin-auto, div span.margin-auto,
-    span.margin-auto, div.margin-auto, .margin-auto { margin: auto }
+    div .m-auto, div div .m-auto, div div div.m-auto,
+    div .margin-auto, div div .margin-auto, div div div.margin-auto {margin: auto}
 
     /************** Margin - all: + px **************/
-    div nav button.m-300, nav button.m-300, button.m-300,div div.m-300, div span.m-300, span.m-300, div.m-300, .m-300 { margin: 300px }
-    div nav button.m-275, nav button.m-275, button.m-275,div div.m-275, div span.m-275, span.m-275, div.m-275, .m-275 { margin: 275px }
     div nav button.m-250, nav button.m-250, button.m-250,div div.m-250, div span.m-250, span.m-250, div.m-250, .m-250 { margin: 250px }
-    div nav button.m-225, nav button.m-225, button.m-225,div div.m-225, div span.m-225, span.m-225, div.m-225, .m-225 { margin: 225px }
     div nav button.m-200, nav button.m-200, button.m-200,div div.m-200, div span.m-200, span.m-200, div.m-200, .m-200 { margin: 200px }
-    div nav button.m-175, nav button.m-175, button.m-175,div div.m-175, div span.m-175, span.m-175, div.m-175, .m-175 { margin: 175px }
-    div nav button.m-150, nav button.m-150, button.m-150,div div.m-150, div span.m-150, span.m-150, div.m-150, .m-150 { margin: 150px }
-    div nav button.m-125, nav button.m-125, button.m-125,div div.m-125, div span.m-125, span.m-125, div.m-125, .m-125 { margin: 125px }
     div nav button.m-100, nav button.m-100, button.m-100,div div.m-100, div span.m-100, span.m-100, div.m-100, .m-100 { margin: 100px }
-    div nav button.m-90, nav button.m-90, button.m-90,div div.m-90, div span.m-90, span.m-90, div.m-90, .m-90 { margin: 90px }
     div nav button.m-80, nav button.m-80, button.m-80,div div.m-80, div span.m-80, span.m-80, div.m-80, .m-80 { margin: 80px }
     div nav button.m-75, nav button.m-75, button.m-75,div div.m-75, div span.m-75, span.m-75, div.m-75, .m-75 { margin: 75px }
     div nav button.m-70, nav button.m-70, button.m-70,div div.m-70, div span.m-70, span.m-70, div.m-70, .m-70 { margin: 70px }
     div nav button.m-65, nav button.m-65, button.m-65,div div.m-65, div span.m-65, span.m-65, div.m-65, .m-65 { margin: 65px }
     div nav button.m-60, nav button.m-60, button.m-60,div div.m-60, div span.m-60, span.m-60, div.m-60, .m-60 { margin: 60px }
-    div nav button.m-57, nav button.m-57, button.m-57,div div.m-57, div span.m-57, span.m-57, div.m-57, .m-57 { margin: 57px }
     div nav button.m-55, nav button.m-55, button.m-55,div div.m-55, div span.m-55, span.m-55, div.m-55, .m-55 { margin: 55px }
     div nav button.m-50, nav button.m-50, button.m-50,div div.m-50, div span.m-50, span.m-50, div.m-50, .m-50 { margin: 50px }
     div nav button.m-40, nav button.m-40, button.m-40,div div.m-40, div span.m-40, span.m-40, div.m-40, .m-40 { margin: 40px }
     div nav button.m-35, nav button.m-35, button.m-35,div div.m-35, div span.m-35, span.m-35, div.m-35, .m-35 { margin: 35px }
-    div nav button.m-34, nav button.m-34, button.m-34,div div.m-34, div span.m-34, span.m-34, div.m-34, .m-34 { margin: 34px }
-    div nav button.m-32, nav button.m-32, button.m-32,div div.m-32, div span.m-32, span.m-32, div.m-32, .m-32 { margin: 32px }
     div nav button.m-30, nav button.m-30, button.m-30,div div.m-30, div span.m-30, span.m-30, div.m-30, .m-30 { margin: 30px }
     div nav button.m-27, nav button.m-27, button.m-27,div div.m-27, div span.m-27, span.m-27, div.m-27, .m-27 { margin: 27px }
     div nav button.m-25, nav button.m-25, button.m-25,div div.m-25, div span.m-25, span.m-25, div.m-25, .m-25 { margin: 25px }
@@ -56,11 +45,8 @@
     div nav button.m-100p, nav button.m-100p, button.m-100p,div div.m-100p, div span.m-100p, span.m-100p, div.m-100p, .m-100p { margin: 100% }
     div nav button.m-75p, nav button.m-75p, button.m-75p,div div.m-75p, div span.m-75p, span.m-75p, div.m-75p, .m-75p { margin: 75% }
     div nav button.m-50p, nav button.m-50p, button.m-50p,div div.m-50p, div span.m-50p, span.m-50p, div.m-50p, .m-50p { margin: 50% }
-    div nav button.m-45p, nav button.m-45p, button.m-45p,div div.m-45p, div span.m-45p, span.m-45p, div.m-45p, .m-45p { margin: 45% }
     div nav button.m-40p, nav button.m-40p, button.m-40p,div div.m-40p, div span.m-40p, span.m-40p, div.m-40p, .m-40p { margin: 40% }
     div nav button.m-35p, nav button.m-35p, button.m-35p,div div.m-35p, div span.m-35p, span.m-35p, div.m-35p, .m-35p { margin: 35% }
-    div nav button.m-34p, nav button.m-34p, button.m-34p,div div.m-34p, div span.m-34p, span.m-34p, div.m-34p, .m-34p { margin: 34% }
-    div nav button.m-32p, nav button.m-32p, button.m-32p,div div.m-32p, div span.m-32p, span.m-32p, div.m-32p, .m-32p { margin: 32% }
     div nav button.m-30p, nav button.m-30p, button.m-30p,div div.m-30p, div span.m-30p, span.m-30p, div.m-30p, .m-30p { margin: 30% }
     div nav button.m-25p, nav button.m-25p, button.m-25p,div div.m-25p, div span.m-25p, span.m-25p, div.m-25p, .m-25p { margin: 25% }
     div nav button.m-20p, nav button.m-20p, button.m-20p,div div.m-20p, div span.m-20p, span.m-20p, div.m-20p, .m-20p { margin: 20% }
@@ -84,28 +70,18 @@
 
     /******************************************* MARGIN-TOP *******************************************/
     /****** Margin-top: + px ******/
-    div nav button.mt-300, nav button.mt-300, button.mt-300,div div.mt-300, div span.mt-300, span.mt-300, div.mt-300, .mt-300 { margin-top: 300px }
-    div nav button.mt-275, nav button.mt-275, button.mt-275,div div.mt-275, div span.mt-275, span.mt-275, div.mt-275, .mt-275 { margin-top: 275px }
     div nav button.mt-250, nav button.mt-250, button.mt-250,div div.mt-250, div span.mt-250, span.mt-250, div.mt-250, .mt-250 { margin-top: 250px }
-    div nav button.mt-225, nav button.mt-225, button.mt-225,div div.mt-225, div span.mt-225, span.mt-225, div.mt-225, .mt-225 { margin-top: 225px }
     div nav button.mt-200, nav button.mt-200, button.mt-200,div div.mt-200, div span.mt-200, span.mt-200, div.mt-200, .mt-200 { margin-top: 200px }
-    div nav button.mt-175, nav button.mt-175, button.mt-175,div div.mt-175, div span.mt-175, span.mt-175, div.mt-175, .mt-175 { margin-top: 175px }
-    div nav button.mt-150, nav button.mt-150, button.mt-150,div div.mt-150, div span.mt-150, span.mt-150, div.mt-150, .mt-150 { margin-top: 150px }
-    div nav button.mt-125, nav button.mt-125, button.mt-125,div div.mt-125, div span.mt-125, span.mt-125, div.mt-125, .mt-125 { margin-top: 125px }
     div nav button.mt-100, nav button.mt-100, button.mt-100,div div.mt-100, div span.mt-100, span.mt-100, div.mt-100, .mt-100 { margin-top: 100px }
-    div nav button.mt-90, nav button.mt-90, button.mt-90,div div.mt-90, div span.mt-90, span.mt-90, div.mt-90, .mt-90 { margin-top: 90px }
     div nav button.mt-80, nav button.mt-80, button.mt-80,div div.mt-80, div span.mt-80, span.mt-80, div.mt-80, .mt-80 { margin-top: 80px }
     div nav button.mt-75, nav button.mt-75, button.mt-75,div div.mt-75, div span.mt-75, span.mt-75, div.mt-75, .mt-75 { margin-top: 75px }
     div nav button.mt-70, nav button.mt-70, button.mt-70,div div.mt-70, div span.mt-70, span.mt-70, div.mt-70, .mt-70 { margin-top: 70px }
     div nav button.mt-65, nav button.mt-65, button.mt-65,div div.mt-65, div span.mt-65, span.mt-65, div.mt-65, .mt-65 { margin-top: 65px }
     div nav button.mt-60, nav button.mt-60, button.mt-60,div div.mt-60, div span.mt-60, span.mt-60, div.mt-60, .mt-60 { margin-top: 60px }
-    div nav button.mt-57, nav button.mt-57, button.mt-57,div div.mt-57, div span.mt-57, span.mt-57, div.mt-57, .mt-57 { margin-top: 57px }
     div nav button.mt-55, nav button.mt-55, button.mt-55,div div.mt-55, div span.mt-55, span.mt-55, div.mt-55, .mt-55 { margin-top: 55px }
     div nav button.mt-50, nav button.mt-50, button.mt-50,div div.mt-50, div span.mt-50, span.mt-50, div.mt-50, .mt-50 { margin-top: 50px }
     div nav button.mt-40, nav button.mt-40, button.mt-40,div div.mt-40, div span.mt-40, span.mt-40, div.mt-40, .mt-40 { margin-top: 40px }
     div nav button.mt-35, nav button.mt-35, button.mt-35,div div.mt-35, div span.mt-35, span.mt-35, div.mt-35, .mt-35 { margin-top: 35px }
-    div nav button.mt-34, nav button.mt-34, button.mt-34,div div.mt-34, div span.mt-34, span.mt-34, div.mt-34, .mt-34 { margin-top: 34px }
-    div nav button.mt-32, nav button.mt-32, button.mt-32,div div.mt-32, div span.mt-32, span.mt-32, div.mt-32, .mt-32 { margin-top: 32px }
     div nav button.mt-30, nav button.mt-30, button.mt-30,div div.mt-30, div span.mt-30, span.mt-30, div.mt-30, .mt-30 { margin-top: 30px }
     div nav button.mt-27, nav button.mt-27, button.mt-27,div div.mt-27, div span.mt-27, span.mt-27, div.mt-27, .mt-27 { margin-top: 27px }
     div nav button.mt-25, nav button.mt-25, button.mt-25,div div.mt-25, div span.mt-25, span.mt-25, div.mt-25, .mt-25 { margin-top: 25px }
@@ -134,29 +110,19 @@
 
     /****** MARGIN: TOP: - px ******/
     div nav button.mt-n1000, nav button.mt-n1000, button.mt-n1000,div div.mt-n1000, div span.mt-n1000, span.mt-n1000, div.mt-n1000, .mt-n1000 { margin-top: -1000px }
-    div nav button.mt-n900, nav button.mt-n900, button.mt-n900,div div.mt-n900, div span.mt-n900, span.mt-n900, div.mt-n900, .mt-n900 { margin-top: -900px }
-    div nav button.mt-n800, nav button.mt-n800, button.mt-n800,div div.mt-n800, div span.mt-n800, span.mt-n800, div.mt-n800, .mt-n800 { margin-top: -800px }
     div nav button.mt-n750, nav button.mt-n750, button.mt-n750,div div.mt-n750, div span.mt-n750, span.mt-n750, div.mt-n750, .mt-n750 { margin-top: -750px }
-    div nav button.mt-n700, nav button.mt-n700, button.mt-n700,div div.mt-n700, div span.mt-n700, span.mt-n700, div.mt-n700, .mt-n700 { margin-top: -700px }
-    div nav button.mt-n600, nav button.mt-n600, button.mt-n600,div div.mt-n600, div span.mt-n600, span.mt-n600, div.mt-n600, .mt-n600 { margin-top: -600px }
     div nav button.mt-n500, nav button.mt-n500, button.mt-n500,div div.mt-n500, div span.mt-n500, span.mt-n500, div.mt-n500, .mt-n500 { margin-top: -500px }
-    div nav button.mt-n400, nav button.mt-n400, button.mt-n400,div div.mt-n400, div span.mt-n400, span.mt-n400, div.mt-n400, .mt-n400 { margin-top: -400px }
-    div nav button.mt-n300, nav button.mt-n300, button.mt-n300,div div.mt-n300, div span.mt-n300, span.mt-n300, div.mt-n300, .mt-n300 { margin-top: -300px }
     div nav button.mt-n250, nav button.mt-n250, button.mt-n250,div div.mt-n250, div span.mt-n250, span.mt-n250, div.mt-n250, .mt-n250 { margin-top: -250px }
     div nav button.mt-n200, nav button.mt-n200, button.mt-n200,div div.mt-n200, div span.mt-n200, span.mt-n200, div.mt-n200, .mt-n200 { margin-top: -200px }
     div nav button.mt-n100, nav button.mt-n100, button.mt-n100,div div.mt-n100, div span.mt-n100, span.mt-n100, div.mt-n100, .mt-n100 { margin-top: -100px }
-    div nav button.mt-n90, nav button.mt-n90, button.mt-n90,div div.mt-n90, div span.mt-n90, span.mt-n90, div.mt-n90, .mt-n90 { margin-top: -90px }
     div nav button.mt-n80, nav button.mt-n80, button.mt-n80,div div.mt-n80, div span.mt-n80, span.mt-n80, div.mt-n80, .mt-n80 { margin-top: -80px }
     div nav button.mt-n75, nav button.mt-n75, button.mt-n75,div div.mt-n75, div span.mt-n75, span.mt-n75, div.mt-n75, .mt-n75 { margin-top: -75px }
     div nav button.mt-n70, nav button.mt-n70, button.mt-n70,div div.mt-n70, div span.mt-n70, span.mt-n70, div.mt-n70, .mt-n70 { margin-top: -70px }
     div nav button.mt-n60, nav button.mt-n60, button.mt-n60,div div.mt-n60, div span.mt-n60, span.mt-n60, div.mt-n60, .mt-n60 { margin-top: -60px }
-    div nav button.mt-n57, nav button.mt-n57, button.mt-n57,div div.mt-n57, div span.mt-n57, span.mt-n57, div.mt-n57, .mt-n57 { margin-top: -57px }
     div nav button.mt-n55, nav button.mt-n55, button.mt-n55,div div.mt-n55, div span.mt-n55, span.mt-n55, div.mt-n55, .mt-n55 { margin-top: -55px }
     div nav button.mt-n50, nav button.mt-n50, button.mt-n50,div div.mt-n50, div span.mt-n50, span.mt-n50, div.mt-n50, .mt-n50 { margin-top: -50px }
     div nav button.mt-n40, nav button.mt-n40, button.mt-n40,div div.mt-n40, div span.mt-n40, span.mt-n40, div.mt-n40, .mt-n40 { margin-top: -40px }
     div nav button.mt-n35, nav button.mt-n35, button.mt-n35,div div.mt-n35, div span.mt-n35, span.mt-n35, div.mt-n35, .mt-n35 { margin-top: -35px }
-    div nav button.mt-n34, nav button.mt-n34, button.mt-n34,div div.mt-n34, div span.mt-n34, span.mt-n34, div.mt-n34, .mt-n34 { margin-top: -34px }
-    div nav button.mt-n32, nav button.mt-n32, button.mt-n32,div div.mt-n32, div span.mt-n32, span.mt-n32, div.mt-n32, .mt-n32 { margin-top: -32px }
     div nav button.mt-n30, nav button.mt-n30, button.mt-n30,div div.mt-n30, div span.mt-n30, span.mt-n30, div.mt-n30, .mt-n30 { margin-top: -30px }
     div nav button.mt-n27, nav button.mt-n27, button.mt-n27,div div.mt-n27, div span.mt-n27, span.mt-n27, div.mt-n27, .mt-n27 { margin-top: -27px }
     div nav button.mt-n25, nav button.mt-n25, button.mt-n25,div div.mt-n25, div span.mt-n25, span.mt-n25, div.mt-n25, .mt-n25 { margin-top: -25px }
@@ -187,11 +153,8 @@
     div nav button.mt-100p, nav button.mt-100p, button.mt-100p,div div.mt-100p, div span.mt-100p, span.mt-100p, div.mt-100p, .mt-100p { margin-top: 100% }
     div nav button.mt-75p, nav button.mt-75p, button.mt-75p,div div.mt-75p, div span.mt-75p, span.mt-75p, div.mt-75p, .mt-75p { margin-top: 75% }
     div nav button.mt-50p, nav button.mt-50p, button.mt-50p,div div.mt-50p, div span.mt-50p, span.mt-50p, div.mt-50p, .mt-50p { margin-top: 50% }
-    div nav button.mt-45p, nav button.mt-45p, button.mt-45p,div div.mt-45p, div span.mt-45p, span.mt-45p, div.mt-45p, .mt-45p { margin-top: 45% }
     div nav button.mt-40p, nav button.mt-40p, button.mt-40p,div div.mt-40p, div span.mt-40p, span.mt-40p, div.mt-40p, .mt-40p { margin-top: 40% }
     div nav button.mt-35p, nav button.mt-35p, button.mt-35p,div div.mt-35p, div span.mt-35p, span.mt-35p, div.mt-35p, .mt-35p { margin-top: 35% }
-    div nav button.mt-34p, nav button.mt-34p, button.mt-34p,div div.mt-34p, div span.mt-34p, span.mt-34p, div.mt-34p, .mt-34p { margin-top: 34% }
-    div nav button.mt-35p, nav button.mt-32p, button.mt-32p,div div.mt-32p, div span.mt-32p, span.mt-32p, div.mt-32p, .mt-32p { margin-top: 32% }
     div nav button.mt-30p, nav button.mt-30p, button.mt-30p,div div.mt-30p, div span.mt-30p, span.mt-30p, div.mt-30p, .mt-30p { margin-top: 30% }
     div nav button.mt-25p, nav button.mt-25p, button.mt-25p,div div.mt-25p, div span.mt-25p, span.mt-25p, div.mt-25p, .mt-25p { margin-top: 25% }
     div nav button.mt-20p, nav button.mt-20p, button.mt-20p,div div.mt-20p, div span.mt-20p, span.mt-20p, div.mt-20p, .mt-20p { margin-top: 20% }
@@ -215,28 +178,18 @@
 
     /***************************************** MARGIN-BOTTOM ******************************************/
     /****** Margin-bottom: + px ******/
-    div nav button.mb-300, nav button.mb-300, button.mb-300,div div.mb-300, div span.mb-300, span.mb-300, div.mb-300, .mb-300 { margin-bottom: 300px }
-    div nav button.mb-275, nav button.mb-275, button.mb-275,div div.mb-275, div span.mb-275, span.mb-275, div.mb-275, .mb-275 { margin-bottom: 275px }
     div nav button.mb-250, nav button.mb-250, button.mb-250,div div.mb-250, div span.mb-250, span.mb-250, div.mb-250, .mb-250 { margin-bottom: 250px }
-    div nav button.mb-225, nav button.mb-225, button.mb-225,div div.mb-225, div span.mb-225, span.mb-225, div.mb-225, .mb-225 { margin-bottom: 225px }
     div nav button.mb-200, nav button.mb-200, button.mb-200,div div.mb-200, div span.mb-200, span.mb-200, div.mb-200, .mb-200 { margin-bottom: 200px }
-    div nav button.mb-175, nav button.mb-175, button.mb-175,div div.mb-175, div span.mb-175, span.mb-175, div.mb-175, .mb-175 { margin-bottom: 175px }
-    div nav button.mb-150, nav button.mb-150, button.mb-150,div div.mb-150, div span.mb-150, span.mb-150, div.mb-150, .mb-150 { margin-bottom: 150px }
-    div nav button.mb-125, nav button.mb-125, button.mb-125,div div.mb-125, div span.mb-125, span.mb-125, div.mb-125, .mb-125 { margin-bottom: 125px }
     div nav button.mb-100, nav button.mb-100, button.mb-100,div div.mb-100, div span.mb-100, span.mb-100, div.mb-100, .mb-100 { margin-bottom: 100px }
-    div nav button.mb-90, nav button.mb-90, button.mb-90,div div.mb-90, div span.mb-90, span.mb-90, div.mb-90, .mb-90 { margin-bottom: 90px }
     div nav button.mb-80, nav button.mb-80, button.mb-80,div div.mb-80, div span.mb-80, span.mb-80, div.mb-80, .mb-80 { margin-bottom: 80px }
     div nav button.mb-75, nav button.mb-75, button.mb-75,div div.mb-75, div span.mb-75, span.mb-75, div.mb-75, .mb-75 { margin-bottom: 75px }
     div nav button.mb-70, nav button.mb-70, button.mb-70,div div.mb-70, div span.mb-70, span.mb-70, div.mb-70, .mb-70 { margin-bottom: 70px }
     div nav button.mb-65, nav button.mb-65, button.mb-65,div div.mb-65, div span.mb-65, span.mb-65, div.mb-65, .mb-65 { margin-bottom: 65px }
     div nav button.mb-60, nav button.mb-60, button.mb-60,div div.mb-60, div span.mb-60, span.mb-60, div.mb-60, .mb-60 { margin-bottom: 60px }
-    div nav button.mb-57, nav button.mb-57, button.mb-57,div div.mb-57, div span.mb-57, span.mb-57, div.mb-57, .mb-57 { margin-bottom: 57px }
     div nav button.mb-55, nav button.mb-55, button.mb-55,div div.mb-55, div span.mb-55, span.mb-55, div.mb-55, .mb-55 { margin-bottom: 55px }
     div nav button.mb-50, nav button.mb-50, button.mb-50,div div.mb-50, div span.mb-50, span.mb-50, div.mb-50, .mb-50 { margin-bottom: 50px }
     div nav button.mb-40, nav button.mb-40, button.mb-40,div div.mb-40, div span.mb-40, span.mb-40, div.mb-40, .mb-40 { margin-bottom: 40px }
     div nav button.mb-35, nav button.mb-35, button.mb-35,div div.mb-35, div span.mb-35, span.mb-35, div.mb-35, .mb-35 { margin-bottom: 35px }
-    div nav button.mb-34, nav button.mb-34, button.mb-34,div div.mb-34, div span.mb-34, span.mb-34, div.mb-34, .mb-34 { margin-bottom: 34px }
-    div nav button.mb-32, nav button.mb-32, button.mb-32,div div.mb-32, div span.mb-32, span.mb-32, div.mb-32, .mb-32 { margin-bottom: 32px }
     div nav button.mb-30, nav button.mb-30, button.mb-30,div div.mb-30, div span.mb-30, span.mb-30, div.mb-30, .mb-30 { margin-bottom: 30px }
     div nav button.mb-27, nav button.mb-27, button.mb-27,div div.mb-27, div span.mb-27, span.mb-27, div.mb-27, .mb-27 { margin-bottom: 27px }
     div nav button.mb-25, nav button.mb-25, button.mb-25,div div.mb-25, div span.mb-25, span.mb-25, div.mb-25, .mb-25 { margin-bottom: 25px }
@@ -265,30 +218,20 @@
 
     /****** Margin-bottom: - px ******/
     div nav button.mb-n1000, nav button.mb-n1000, button.mb-n1000,div div.mb-n1000, div span.mb-n1000, span.mb-n1000, div.mb-n1000, .mb-n1000 { margin-bottom: -1000px }
-    div nav button.mb-n900, nav button.mb-n900, button.mb-n900,div div.mb-n900, div span.mb-n900, span.mb-n900, div.mb-n900, .mb-n900 { margin-bottom: -900px }
-    div nav button.mb-n800, nav button.mb-n800, button.mb-n800,div div.mb-n800, div span.mb-n800, span.mb-n800, div.mb-n800, .mb-n800 { margin-bottom: -800px }
     div nav button.mb-n750, nav button.mb-n750, button.mb-n750,div div.mb-n750, div span.mb-n750, span.mb-n750, div.mb-n750, .mb-n750 { margin-bottom: -750px }
-    div nav button.mb-n700, nav button.mb-n700, button.mb-n700,div div.mb-n700, div span.mb-n700, span.mb-n700, div.mb-n700, .mb-n700 { margin-bottom: -700px }
-    div nav button.mb-n600, nav button.mb-n600, button.mb-n600,div div.mb-n600, div span.mb-n600, span.mb-n600, div.mb-n600, .mb-n600 { margin-bottom: -600px }
     div nav button.mb-n500, nav button.mb-n500, button.mb-n500,div div.mb-n500, div span.mb-n500, span.mb-n500, div.mb-n500, .mb-n500 { margin-bottom: -500px }
-    div nav button.mb-n400, nav button.mb-n400, button.mb-n400,div div.mb-n400, div span.mb-n400, span.mb-n400, div.mb-n400, .mb-n400 { margin-bottom: -400px }
-    div nav button.mb-n300, nav button.mb-n300, button.mb-n300,div div.mb-n300, div span.mb-n300, span.mb-n300, div.mb-n300, .mb-n300 { margin-bottom: -300px }
     div nav button.mb-n250, nav button.mb-n250, button.mb-n250,div div.mb-n250, div span.mb-n250, span.mb-n250, div.mb-n250, .mb-n250 { margin-bottom: -250px }
     div nav button.mb-n200, nav button.mb-n200, button.mb-n200,div div.mb-n200, div span.mb-n200, span.mb-n200, div.mb-n200, .mb-n200 { margin-bottom: -200px }
     div nav button.mb-n100, nav button.mb-n100, button.mb-n100,div div.mb-n100, div span.mb-n100, span.mb-n100, div.mb-n100, .mb-n100 { margin-bottom: -100px }
-    div nav button.mb-n90, nav button.mb-n90, button.mb-n90,div div.mb-n90, div span.mb-n90, span.mb-n90, div.mb-n90, .mb-n90 { margin-bottom: -90px }
     div nav button.mb-n80, nav button.mb-n80, button.mb-n80,div div.mb-n80, div span.mb-n80, span.mb-n80, div.mb-n80, .mb-n80 { margin-bottom: -80px }
     div nav button.mb-n75, nav button.mb-n75, button.mb-n75,div div.mb-n75, div span.mb-n75, span.mb-n75, div.mb-n75, .mb-n75 { margin-bottom: -75px }
     div nav button.mb-n70, nav button.mb-n70, button.mb-n70,div div.mb-n70, div span.mb-n70, span.mb-n70, div.mb-n70, .mb-n70 { margin-bottom: -70px }
     div nav button.mb-n65, nav button.mb-n65, button.mb-n65,div div.mb-n65, div span.mb-n65, span.mb-n65, div.mb-n65, .mb-n65 { margin-bottom: -65px }
     div nav button.mb-n60, nav button.mb-n60, button.mb-n60,div div.mb-n60, div span.mb-n60, span.mb-n60, div.mb-n60, .mb-n60 { margin-bottom: -60px }
-    div nav button.mb-n57, nav button.mb-n57, button.mb-n57,div div.mb-n57, div span.mb-n57, span.mb-n57, div.mb-n57, .mb-n57 { margin-bottom: -57px }
     div nav button.mb-n55, nav button.mb-n55, button.mb-n55,div div.mb-n55, div span.mb-n55, span.mb-n55, div.mb-n55, .mb-n55 { margin-bottom: -55px }
     div nav button.mb-n50, nav button.mb-n50, button.mb-n50,div div.mb-n50, div span.mb-n50, span.mb-n50, div.mb-n50, .mb-n50 { margin-bottom: -50px }
     div nav button.mb-n40, nav button.mb-n40, button.mb-n40,div div.mb-n40, div span.mb-n40, span.mb-n40, div.mb-n40, .mb-n40 { margin-bottom: -40px }
     div nav button.mb-n35, nav button.mb-n35, button.mb-n35,div div.mb-n35, div span.mb-n35, span.mb-n35, div.mb-n35, .mb-n35 { margin-bottom: -35px }
-    div nav button.mb-n34, nav button.mb-n34, button.mb-n34,div div.mb-n34, div span.mb-n34, span.mb-n34, div.mb-n34, .mb-n34 { margin-bottom: -34px }
-    div nav button.mb-n35, nav button.mb-n32, button.mb-n32,div div.mb-n32, div span.mb-n32, span.mb-n32, div.mb-n32, .mb-n32 { margin-bottom: -32px }
     div nav button.mb-n30, nav button.mb-n30, button.mb-n30,div div.mb-n30, div span.mb-n30, span.mb-n30, div.mb-n30, .mb-n30 { margin-bottom: -30px }
     div nav button.mb-n27, nav button.mb-n27, button.mb-n27,div div.mb-n27, div span.mb-n27, span.mb-n27, div.mb-n27, .mb-n27 { margin-bottom: -27px }
     div nav button.mb-n25, nav button.mb-n25, button.mb-n25,div div.mb-n25, div span.mb-n25, span.mb-n25, div.mb-n25, .mb-n25 { margin-bottom: -25px }
@@ -319,11 +262,8 @@
     div nav button.mb-100p, nav button.mb-100p, button.mb-100p,div div.mb-100p, div span.mb-100p, span.mb-100p, div.mb-100p, .mb-100p { margin-bottom: 100% }
     div nav button.mb-75p, nav button.mb-75p, button.mb-75p,div div.mb-75p, div span.mb-75p, span.mb-75p, div.mb-75p, .mb-75p { margin-bottom: 75% }
     div nav button.mb-50p, nav button.mb-50p, button.mb-50p,div div.mb-50p, div span.mb-50p, span.mb-50p, div.mb-50p, .mb-50p { margin-bottom: 50% }
-    div nav button.mb-45p, nav button.mb-45p, button.mb-45p,div div.mb-45p, div span.mb-45p, span.mb-45p, div.mb-45p, .mb-45p { margin-bottom: 45% }
     div nav button.mb-40p, nav button.mb-40p, button.mb-40p,div div.mb-40p, div span.mb-40p, span.mb-40p, div.mb-40p, .mb-40p { margin-bottom: 40% }
     div nav button.mb-35p, nav button.mb-35p, button.mb-35p,div div.mb-35p, div span.mb-35p, span.mb-35p, div.mb-35p, .mb-35p { margin-bottom: 35% }
-    div nav button.mb-34p, nav button.mb-34p, button.mb-34p,div div.mb-34p, div span.mb-34p, span.mb-34p, div.mb-34p, .mb-34p { margin-bottom: 34% }
-    div nav button.mb-32p, nav button.mb-32p, button.mb-32p,div div.mb-32p, div span.mb-32p, span.mb-32p, div.mb-32p, .mb-32p { margin-bottom: 32% }
     div nav button.mb-30p, nav button.mb-30p, button.mb-30p,div div.mb-30p, div span.mb-30p, span.mb-30p, div.mb-30p, .mb-30p { margin-bottom: 30% }
     div nav button.mb-25p, nav button.mb-25p, button.mb-25p,div div.mb-25p, div span.mb-25p, span.mb-25p, div.mb-25p, .mb-25p { margin-bottom: 25% }
     div nav button.mb-20p, nav button.mb-20p, button.mb-20p,div div.mb-20p, div span.mb-20p, span.mb-20p, div.mb-20p, .mb-20p { margin-bottom: 20% }
@@ -347,28 +287,18 @@
 
     /****************************************** MARGIN-LEFT *******************************************/
     /************** Margin-left: + px **************/
-    div nav button.ml-300, nav button.ml-300, button.ml-300,div div.ml-300, div span.ml-300, span.ml-300, div.ml-300, .ml-300 { margin-left: 300px }
-    div nav button.ml-275, nav button.ml-275, button.ml-275,div div.ml-275, div span.ml-275, span.ml-275, div.ml-275, .ml-275 { margin-left: 275px }
     div nav button.ml-250, nav button.ml-250, button.ml-250,div div.ml-250, div span.ml-250, span.ml-250, div.ml-250, .ml-250 { margin-left: 250px }
-    div nav button.ml-225, nav button.ml-225, button.ml-225,div div.ml-225, div span.ml-225, span.ml-225, div.ml-225, .ml-225 { margin-left: 225px }
     div nav button.ml-200, nav button.ml-200, button.ml-200,div div.ml-200, div span.ml-200, span.ml-200, div.ml-200, .ml-200 { margin-left: 200px }
-    div nav button.ml-175, nav button.ml-175, button.ml-175,div div.ml-175, div span.ml-175, span.ml-175, div.ml-175, .ml-175 { margin-left: 175px }
-    div nav button.ml-150, nav button.ml-150, button.ml-150,div div.ml-150, div span.ml-150, span.ml-150, div.ml-150, .ml-150 { margin-left: 150px }
-    div nav button.ml-125, nav button.ml-125, button.ml-125,div div.ml-125, div span.ml-125, span.ml-125, div.ml-125, .ml-125 { margin-left: 125px }
     div nav button.ml-100, nav button.ml-100, button.ml-100,div div.ml-100, div span.ml-100, span.ml-100, div.ml-100, .ml-100 { margin-left: 100px }
-    div nav button.ml-90, nav button.ml-90, button.ml-90,div div.ml-90, div span.ml-90, span.ml-90, div.ml-90, .ml-90 { margin-left: 90px }
     div nav button.ml-80, nav button.ml-80, button.ml-80,div div.ml-80, div span.ml-80, span.ml-80, div.ml-80, .ml-80 { margin-left: 80px }
     div nav button.ml-75, nav button.ml-75, button.ml-75,div div.ml-75, div span.ml-75, span.ml-75, div.ml-75, .ml-75 { margin-left: 75px }
     div nav button.ml-70, nav button.ml-70, button.ml-70,div div.ml-70, div span.ml-70, span.ml-70, div.ml-70, .ml-70 { margin-left: 70px }
     div nav button.ml-65, nav button.ml-65, button.ml-65,div div.ml-65, div span.ml-65, span.ml-65, div.ml-65, .ml-65 { margin-left: 65px }
     div nav button.ml-60, nav button.ml-60, button.ml-60,div div.ml-60, div span.ml-60, span.ml-60, div.ml-60, .ml-60 { margin-left: 60px }
-    div nav button.ml-57, nav button.ml-57, button.ml-57,div div.ml-57, div span.ml-57, span.ml-57, div.ml-57, .ml-57 { margin-left: 57px }
     div nav button.ml-55, nav button.ml-55, button.ml-55,div div.ml-55, div span.ml-55, span.ml-55, div.ml-55, .ml-55 { margin-left: 55px }
     div nav button.ml-50, nav button.ml-50, button.ml-50,div div.ml-50, div span.ml-50, span.ml-50, div.ml-50, .ml-50 { margin-left: 50px }
     div nav button.ml-40, nav button.ml-40, button.ml-40,div div.ml-40, div span.ml-40, span.ml-40, div.ml-40, .ml-40 { margin-left: 40px }
     div nav button.ml-35, nav button.ml-35, button.ml-35,div div.ml-35, div span.ml-35, span.ml-35, div.ml-35, .ml-35 { margin-left: 35px }
-    div nav button.ml-34, nav button.ml-34, button.ml-34,div div.ml-34, div span.ml-34, span.ml-34, div.ml-34, .ml-34 { margin-left: 34px }
-    div nav button.ml-32, nav button.ml-32, button.ml-32,div div.ml-32, div span.ml-32, span.ml-32, div.ml-32, .ml-32 { margin-left: 32px }
     div nav button.ml-30, nav button.ml-30, button.ml-30,div div.ml-30, div span.ml-30, span.ml-30, div.ml-30, .ml-30 { margin-left: 30px }
     div nav button.ml-27, nav button.ml-27, button.ml-27,div div.ml-27, div span.ml-27, span.ml-27, div.ml-27, .ml-27 { margin-left: 27px }
     div nav button.ml-25, nav button.ml-25, button.ml-25,div div.ml-25, div span.ml-25, span.ml-25, div.ml-25, .ml-25 { margin-left: 25px }
@@ -399,30 +329,19 @@
 
     /************** Margin-left: - px **************/
     div nav button.ml-n1000, nav button.ml-n1000, button.ml-n1000,div div.ml-n1000, div span.ml-n1000, span.ml-n1000, div.ml-n1000, .ml-n1000 { margin-left: -1000px }
-    div nav button.ml-n900, nav button.ml-n900, button.ml-n900,div div.ml-n900, div span.ml-n900, span.ml-n900, div.ml-n900, .ml-n900 { margin-left: -900px }
-    div nav button.ml-n800, nav button.ml-n800, button.ml-n800,div div.ml-n800, div span.ml-n800, span.ml-n800, div.ml-n800, .ml-n800 { margin-left: -800px }
     div nav button.ml-n750, nav button.ml-n750, button.ml-n750,div div.ml-n750, div span.ml-n750, span.ml-n750, div.ml-n750, .ml-n750 { margin-left: -750px }
-    div nav button.ml-n700, nav button.ml-n700, button.ml-n700,div div.ml-n700, div span.ml-n700, span.ml-n700, div.ml-n700, .ml-n700 { margin-left: -700px }
-    div nav button.ml-n600, nav button.ml-n600, button.ml-n600,div div.ml-n600, div span.ml-n600, span.ml-n600, div.ml-n600, .ml-n600 { margin-left: -600px }
     div nav button.ml-n500, nav button.ml-n500, button.ml-n500,div div.ml-n500, div span.ml-n500, span.ml-n500, div.ml-n500, .ml-n500 { margin-left: -500px }
-    div nav button.ml-n400, nav button.ml-n400, button.ml-n400,div div.ml-n400, div span.ml-n400, span.ml-n400, div.ml-n400, .ml-n400 { margin-left: -400px }
-    div nav button.ml-n300, nav button.ml-n300, button.ml-n300,div div.ml-n300, div span.ml-n300, span.ml-n300, div.ml-n300, .ml-n300 { margin-left: -300px }
     div nav button.ml-n250, nav button.ml-n250, button.ml-n250,div div.ml-n250, div span.ml-n250, span.ml-n250, div.ml-n250, .ml-n250 { margin-left: -250px }
     div nav button.ml-n200, nav button.ml-n200, button.ml-n200,div div.ml-n200, div span.ml-n200, span.ml-n200, div.ml-n200, .ml-n200 { margin-left: -200px }
     div nav button.ml-n100, nav button.ml-n100, button.ml-n100,div div.ml-n100, div span.ml-n100, span.ml-n100, div.ml-n100, .ml-n100 { margin-left: -100px }
-    div nav button.ml-n90, nav button.ml-n90, button.ml-n90,div div.ml-n90, div span.ml-n90, span.ml-n90, div.ml-n90, .ml-n90 { margin-left: -90px }
     div nav button.ml-n80, nav button.ml-n80, button.ml-n80,div div.ml-n80, div span.ml-n80, span.ml-n80, div.ml-n80, .ml-n80 { margin-left: -80px }
     div nav button.ml-n75, nav button.ml-n75, button.ml-n75,div div.ml-n75, div span.ml-n75, span.ml-n75, div.ml-n75, .ml-n75 { margin-left: -75px }
     div nav button.ml-n70, nav button.ml-n70, button.ml-n70,div div.ml-n70, div span.ml-n70, span.ml-n70, div.ml-n70, .ml-n70 { margin-left: -70px }
     div nav button.ml-n65, nav button.ml-n65, button.ml-n65,div div.ml-n65, div span.ml-n65, span.ml-n65, div.ml-n65, .ml-n65 { margin-left: -65px }
-    div nav button.ml-n60, nav button.ml-n60, button.ml-n60,div div.ml-n60, div span.ml-n60, span.ml-n60, div.ml-n57, .ml-n60 { margin-left: -60px }
-    div nav button.ml-n57, nav button.ml-n57, button.ml-n57,div div.ml-n57, div span.ml-n57, span.ml-n57, div.ml-n57, .ml-n57 { margin-left: -57px }
     div nav button.ml-n55, nav button.ml-n55, button.ml-n55,div div.ml-n55, div span.ml-n55, span.ml-n55, div.ml-n55, .ml-n55 { margin-left: -55px }
     div nav button.ml-n50, nav button.ml-n50, button.ml-n50,div div.ml-n50, div span.ml-n50, span.ml-n50, div.ml-n50, .ml-n50 { margin-left: -50px }
     div nav button.ml-n40, nav button.ml-n40, button.ml-n40,div div.ml-n40, div span.ml-n40, span.ml-n40, div.ml-n40, .ml-n40 { margin-left: -40px }
     div nav button.ml-n35, nav button.ml-n35, button.ml-n35,div div.ml-n35, div span.ml-n35, span.ml-n35, div.ml-n35, .ml-n35 { margin-left: -35px }
-    div nav button.ml-n34, nav button.ml-n34, button.ml-n34,div div.ml-n34, div span.ml-n34, span.ml-n34, div.ml-n34, .ml-n34 { margin-left: -34px }
-    div nav button.ml-n35, nav button.ml-n32, button.ml-n32,div div.ml-n32, div span.ml-n32, span.ml-n32, div.ml-n32, .ml-n32 { margin-left: -32px }
     div nav button.ml-n30, nav button.ml-n30, button.ml-n30,div div.ml-n30, div span.ml-n30, span.ml-n30, div.ml-n30, .ml-n30 { margin-left: -30px }
     div nav button.ml-n27, nav button.ml-n27, button.ml-n27,div div.ml-n27, div span.ml-n27, span.ml-n27, div.ml-n27, .ml-n27 { margin-left: -27px }
     div nav button.ml-n25, nav button.ml-n25, button.ml-n25,div div.ml-n25, div span.ml-n25, span.ml-n25, div.ml-n25, .ml-n25 { margin-left: -25px }
@@ -453,11 +372,8 @@
     div nav button.ml-100p, nav button.ml-100p, button.ml-100p,div div.ml-100p, div span.ml-100p, span.ml-100p, div.ml-100p, .ml-100p { margin-left: 100% }
     div nav button.ml-75p, nav button.ml-75p, button.ml-75p,div div.ml-75p, div span.ml-75p, span.ml-75p, div.ml-75p, .ml-75p { margin-left: 75% }
     div nav button.ml-50p, nav button.ml-50p, button.ml-50p,div div.ml-50p, div span.ml-50p, span.ml-50p, div.ml-50p, .ml-50p { margin-left: 50% }
-    div nav button.ml-45p, nav button.ml-45p, button.ml-45p,div div.ml-45p, div span.ml-45p, span.ml-45p, div.ml-45p, .ml-45p { margin-left: 45% }
     div nav button.ml-40p, nav button.ml-40p, button.ml-40p,div div.ml-40p, div span.ml-40p, span.ml-40p, div.ml-40p, .ml-40p { margin-left: 40% }
     div nav button.ml-35p, nav button.ml-35p, button.ml-35p,div div.ml-35p, div span.ml-35p, span.ml-35p, div.ml-35p, .ml-35p { margin-left: 35% }
-    div nav button.ml-34p, nav button.ml-34p, button.ml-34p,div div.ml-34p, div span.ml-34p, span.ml-34p, div.ml-34p, .ml-34p { margin-left: 34% }
-    div nav button.ml-32p, nav button.ml-32p, button.ml-32p,div div.ml-32p, div span.ml-32p, span.ml-32p, div.ml-32p, .ml-32p { margin-left: 32% }
     div nav button.ml-30p, nav button.ml-30p, button.ml-30p,div div.ml-30p, div span.ml-30p, span.ml-30p, div.ml-30p, .ml-30p { margin-left: 30% }
     div nav button.ml-25p, nav button.ml-25p, button.ml-25p,div div.ml-25p, div span.ml-25p, span.ml-25p, div.ml-25p, .ml-25p { margin-left: 25% }
     div nav button.ml-20p, nav button.ml-20p, button.ml-20p,div div.ml-20p, div span.ml-20p, span.ml-20p, div.ml-20p, .ml-20p { margin-left: 20% }
@@ -481,28 +397,18 @@
 
     /****************************************** MARGIN-RIGHT ******************************************/
     /************** Margin-right: + px **************/
-    div nav button.mr-300, nav button.mr-300, button.mr-300,div div.mr-300, div span.mr-300, span.mr-300, div.mr-300, .mr-300 { margin-right: 300px }
-    div nav button.mr-275, nav button.mr-275, button.mr-275,div div.mr-275, div span.mr-275, span.mr-275, div.mr-275, .mr-275 { margin-right: 275px }
     div nav button.mr-250, nav button.mr-250, button.mr-250,div div.mr-250, div span.mr-250, span.mr-250, div.mr-250, .mr-250 { margin-right: 250px }
-    div nav button.mr-225, nav button.mr-225, button.mr-225,div div.mr-225, div span.mr-225, span.mr-225, div.mr-225, .mr-225 { margin-right: 225px }
     div nav button.mr-200, nav button.mr-200, button.mr-200,div div.mr-200, div span.mr-200, span.mr-200, div.mr-200, .mr-200 { margin-right: 200px }
-    div nav button.mr-175, nav button.mr-175, button.mr-175,div div.mr-175, div span.mr-175, span.mr-175, div.mr-175, .mr-175 { margin-right: 175px }
-    div nav button.mr-150, nav button.mr-150, button.mr-150,div div.mr-150, div span.mr-150, span.mr-150, div.mr-150, .mr-150 { margin-right: 150px }
-    div nav button.mr-125, nav button.mr-125, button.mr-125,div div.mr-125, div span.mr-125, span.mr-125, div.mr-125, .mr-125 { margin-right: 125px }
     div nav button.mr-100, nav button.mr-100, button.mr-100,div div.mr-100, div span.mr-100, span.mr-100, div.mr-100, .mr-100 { margin-right: 100px }
-    div nav button.mr-90, nav button.mr-90, button.mr-90,div div.mr-90, div span.mr-90, span.mr-90, div.mr-90, .mr-90 { margin-right: 90px }
     div nav button.mr-80, nav button.mr-80, button.mr-80,div div.mr-80, div span.mr-80, span.mr-80, div.mr-80, .mr-80 { margin-right: 80px }
     div nav button.mr-75, nav button.mr-75, button.mr-75,div div.mr-75, div span.mr-75, span.mr-75, div.mr-75, .mr-75 { margin-right: 75px }
     div nav button.mr-70, nav button.mr-70, button.mr-70,div div.mr-70, div span.mr-70, span.mr-70, div.mr-70, .mr-70 { margin-right: 70px }
     div nav button.mr-65, nav button.mr-65, button.mr-65,div div.mr-65, div span.mr-65, span.mr-65, div.mr-65, .mr-65 { margin-right: 65px }
     div nav button.mr-60, nav button.mr-60, button.mr-60,div div.mr-60, div span.mr-60, span.mr-60, div.mr-60, .mr-60 { margin-right: 60px }
-    div nav button.mr-57, nav button.mr-57, button.mr-57,div div.mr-57, div span.mr-57, span.mr-57, div.mr-57, .mr-57 { margin-right: 57px }
     div nav button.mr-55, nav button.mr-55, button.mr-55,div div.mr-55, div span.mr-55, span.mr-55, div.mr-55, .mr-55 { margin-right: 55px }
     div nav button.mr-50, nav button.mr-50, button.mr-50,div div.mr-50, div span.mr-50, span.mr-50, div.mr-50, .mr-50 { margin-right: 50px }
     div nav button.mr-40, nav button.mr-40, button.mr-40,div div.mr-40, div span.mr-40, span.mr-40, div.mr-40, .mr-40 { margin-right: 40px }
     div nav button.mr-35, nav button.mr-35, button.mr-35,div div.mr-35, div span.mr-35, span.mr-35, div.mr-35, .mr-35 { margin-right: 35px }
-    div nav button.mr-34, nav button.mr-34, button.mr-34,div div.mr-34, div span.mr-34, span.mr-34, div.mr-34, .mr-34 { margin-right: 34px }
-    div nav button.mr-32, nav button.mr-32, button.mr-32,div div.mr-32, div span.mr-32, span.mr-32, div.mr-32, .mr-32 { margin-right: 32px }
     div nav button.mr-30, nav button.mr-30, button.mr-30,div div.mr-30, div span.mr-30, span.mr-30, div.mr-30, .mr-30 { margin-right: 30px }
     div nav button.mr-27, nav button.mr-27, button.mr-27,div div.mr-27, div span.mr-27, span.mr-27, div.mr-27, .mr-27 { margin-right: 27px }
     div nav button.mr-25, nav button.mr-25, button.mr-25,div div.mr-25, div span.mr-25, span.mr-25, div.mr-25, .mr-25 { margin-right: 25px }
@@ -531,30 +437,20 @@
 
     /************** Margin-right: - px **************/
     div nav button.mr-n1000, nav button.mr-n1000, button.mr-n1000,div div.mr-n1000, div span.mr-n1000, span.mr-n1000, div.mr-n1000, .mr-n1000 { margin-right: -1000px }
-    div nav button.mr-n900, nav button.mr-n900, button.mr-n900,div div.mr-n900, div span.mr-n900, span.mr-n900, div.mr-n900, .mr-n900 { margin-right: -900px }
-    div nav button.mr-n800, nav button.mr-n800, button.mr-n800,div div.mr-n800, div span.mr-n800, span.mr-n800, div.mr-n800, .mr-n800 { margin-right: -800px }
     div nav button.mr-n750, nav button.mr-n750, button.mr-n750,div div.mr-n750, div span.mr-n750, span.mr-n750, div.mr-n750, .mr-n750 { margin-right: -750px }
-    div nav button.mr-n700, nav button.mr-n700, button.mr-n700,div div.mr-n700, div span.mr-n700, span.mr-n700, div.mr-n700, .mr-n700 { margin-right: -700px }
-    div nav button.mr-n600, nav button.mr-n600, button.mr-n600,div div.mr-n600, div span.mr-n600, span.mr-n600, div.mr-n600, .mr-n600 { margin-right: -600px }
     div nav button.mr-n500, nav button.mr-n500, button.mr-n500,div div.mr-n500, div span.mr-n500, span.mr-n500, div.mr-n500, .mr-n500 { margin-right: -500px }
-    div nav button.mr-n400, nav button.mr-n400, button.mr-n400,div div.mr-n400, div span.mr-n400, span.mr-n400, div.mr-n400, .mr-n400 { margin-right: -400px }
-    div nav button.mr-n300, nav button.mr-n300, button.mr-n300,div div.mr-n300, div span.mr-n300, span.mr-n300, div.mr-n300, .mr-n300 { margin-right: -300px }
     div nav button.mr-n250, nav button.mr-n250, button.mr-n250,div div.mr-n250, div span.mr-n250, span.mr-n250, div.mr-n250, .mr-n250 { margin-right: -250px }
     div nav button.mr-n200, nav button.mr-n200, button.mr-n200,div div.mr-n200, div span.mr-n200, span.mr-n200, div.mr-n200, .mr-n200 { margin-right: -200px }
     div nav button.mr-n100, nav button.mr-n100, button.mr-n100,div div.mr-n100, div span.mr-n100, span.mr-n100, div.mr-n100, .mr-n100 { margin-right: -100px }
-    div nav button.mr-n90, nav button.mr-n90, button.mr-n90,div div.mr-n90, div span.mr-n90, span.mr-n90, div.mr-n90, .mr-n90 { margin-right: -90px }
     div nav button.mr-n80, nav button.mr-n80, button.mr-n80,div div.mr-n80, div span.mr-n80, span.mr-n80, div.mr-n80, .mr-n80 { margin-right: -80px }
     div nav button.mr-n75, nav button.mr-n75, button.mr-n75,div div.mr-n75, div span.mr-n75, span.mr-n75, div.mr-n75, .mr-n75 { margin-right: -75px }
     div nav button.mr-n70, nav button.mr-n70, button.mr-n70,div div.mr-n70, div span.mr-n70, span.mr-n70, div.mr-n70, .mr-n70 { margin-right: -70px }
     div nav button.mr-n65, nav button.mr-n65, button.mr-n65,div div.mr-n65, div span.mr-n65, span.mr-n65, div.mr-n65, .mr-n65 { margin-right: -65px }
     div nav button.mr-n60, nav button.mr-n60, button.mr-n60,div div.mr-n60, div span.mr-n60, span.mr-n60, div.mr-n60, .mr-n60 { margin-right: -60px }
-    div nav button.mr-n57, nav button.mr-n57, button.mr-n57,div div.mr-n57, div span.mr-n57, span.mr-n57, div.mr-n57, .mr-n57 { margin-right: -57px }
     div nav button.mr-n55, nav button.mr-n55, button.mr-n55,div div.mr-n55, div span.mr-n55, span.mr-n55, div.mr-n55, .mr-n55 { margin-right: -55px }
     div nav button.mr-n50, nav button.mr-n50, button.mr-n50,div div.mr-n50, div span.mr-n50, span.mr-n50, div.mr-n50, .mr-n50 { margin-right: -50px }
     div nav button.mr-n40, nav button.mr-n40, button.mr-n40,div div.mr-n40, div span.mr-n40, span.mr-n40, div.mr-n40, .mr-n40 { margin-right: -40px }
     div nav button.mr-n35, nav button.mr-n35, button.mr-n35,div div.mr-n35, div span.mr-n35, span.mr-n35, div.mr-n35, .mr-n35 { margin-right: -35px }
-    div nav button.mr-n34, nav button.mr-n34, button.mr-n34,div div.mr-n34, div span.mr-n34, span.mr-n34, div.mr-n34, .mr-n34 { margin-right: -34px }
-    div nav button.mr-n32, nav button.mr-n32, button.mr-n32,div div.mr-n32, div span.mr-n32, span.mr-n32, div.mr-n32, .mr-n32 { margin-right: -32px }
     div nav button.mr-n30, nav button.mr-n30, button.mr-n30,div div.mr-n30, div span.mr-n30, span.mr-n30, div.mr-n30, .mr-n30 { margin-right: -30px }
     div nav button.mr-n27, nav button.mr-n27, button.mr-n27,div div.mr-n27, div span.mr-n27, span.mr-n27, div.mr-n27, .mr-n27 { margin-right: -27px }
     div nav button.mr-n25, nav button.mr-n25, button.mr-n25,div div.mr-n25, div span.mr-n25, span.mr-n25, div.mr-n25, .mr-n25 { margin-right: -25px }
@@ -585,11 +481,8 @@
     div nav button.mr-100p, nav button.mr-100p, button.mr-100p,div div.mr-100p, div span.mr-100p, span.mr-100p, div.mr-100p, .mr-100p { margin-right: 100% }
     div nav button.mr-75p, nav button.mr-75p, button.mr-75p,div div.mr-75p, div span.mr-75p, span.mr-75p, div.mr-75p, .mr-75p { margin-right: 75% }
     div nav button.mr-50p, nav button.mr-50p, button.mr-50p,div div.mr-50p, div span.mr-50p, span.mr-50p, div.mr-50p, .mr-50p { margin-right: 50% }
-    div nav button.mr-45p, nav button.mr-45p, button.mr-45p,div div.mr-45p, div span.mr-45p, span.mr-45p, div.mr-45p, .mr-45p { margin-right: 45% }
     div nav button.mr-40p, nav button.mr-40p, button.mr-40p,div div.mr-40p, div span.mr-40p, span.mr-40p, div.mr-40p, .mr-40p { margin-right: 40% }
     div nav button.mr-35p, nav button.mr-35p, button.mr-35p,div div.mr-35p, div span.mr-35p, span.mr-35p, div.mr-35p, .mr-35p { margin-right: 35% }
-    div nav button.mr-34p, nav button.mr-34p, button.mr-34p,div div.mr-34p, div span.mr-34p, span.mr-34p, div.mr-34p, .mr-34p { margin-right: 34% }
-    div nav button.mr-32p, nav button.mr-32p, button.mr-32p,div div.mr-32p, div span.mr-32p, span.mr-32p, div.mr-32p, .mr-32p { margin-right: 32% }
     div nav button.mr-30p, nav button.mr-30p, button.mr-30p,div div.mr-30p, div span.mr-30p, span.mr-30p, div.mr-30p, .mr-30p { margin-right: 30% }
     div nav button.mr-25p, nav button.mr-25p, button.mr-25p,div div.mr-25p, div span.mr-25p, span.mr-25p, div.mr-25p, .mr-25p { margin-right: 25% }
     div nav button.mr-20p, nav button.mr-20p, button.mr-20p,div div.mr-20p, div span.mr-20p, span.mr-20p, div.mr-20p, .mr-20p { margin-right: 20% }
