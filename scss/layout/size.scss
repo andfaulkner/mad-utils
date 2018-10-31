@@ -1504,10 +1504,8 @@
     div .minw-1, .minw-1 {min-width: 1px}
     div .minw-0, .minw-0 {min-width: 0px}
 
-    @media (min-height : 460px) {
-        div .dh-25--sh-21, button.dh-25--sh-21, .dh-25--sh-21 {height: 25px;}
-    }
-    @media (max-height : 460px) {
-        div .dh-25--sh-21, button.dh-25--sh-21, .dh-25--sh-21 {height: 21px;}
+    .dh-25--sh-21, div .dh-25--sh-21 {
+        height: 25px;
+        @media (max-height : 460px) {height: 21px}
     }
 }
