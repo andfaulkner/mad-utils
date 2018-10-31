@@ -1,3 +1,30 @@
+0.80.1 [BREAKING CHANGES]
+=========================
+Add SCSS utils:
+*   `fw-400`, `fw-600`, & `fw-700` - font-weights 400, 600, 700
+*   `fs-9` - font-size 9
+
+Remove SCSS utils:
+-   `no-bold` (it's confusing)
+-   `fw-bold` (redundant - covered by `bold` util)
+-   `fs-31`, `fs-32`, `fs-33`, `fs-34`, `fs-36`, `fs-38`, `fs-45`
+    -   That level of precision unneeded at those sizes
+-   all text-indent SCSS utils - `ti-*`
+-   -   e.g. `ti-1`
+-   Remove `whitespace-*` prefixed aliases for white-space SCSS utils
+    -   e.g. `ws-no-wrap`
+    -   Leaves `ws-` prefixed forms in place
+-   `p*-55`, `p*-57`, `p*-60`, `p*-65`, `p*-70`
+    -   e.g. `pt-55`, `p-55`
+    -   That level of precision unneeded
+-   `ov-*`
+    -   e.g. `ov-hidden`, `ov-auto`
+-   `m*-32`, 34, 45, 57, 90, 125, 150, 175, 225, 275, 300, 400, 600, 700, 750, 800, 900, 1000
+    -   e.g. `m-32`, `mb-n34p`, `mt-57`, `mt-n57`, `mr-n1000`
+
+Clean selectivity in `margin-auto` / `m-auto`
+
+----------------------------------------------------------------------------------------------------
 0.80.0
 ======
 Fixed bug in throttle where values from prototype weren't propagating to returned function
