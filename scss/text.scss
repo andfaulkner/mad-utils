@@ -49,12 +49,16 @@
     div div div .fs-50, div div .fs-50, div .fs-50, .fs-50 {font-size: 50px}
 
     //****************************************** FONT WEIGHT ******************************************/
-    div.fw-300, div input.fw-300, input.fw-300, .fw-300             {font-weight: 300   }
-    div.fw-500, div input.fw-500, input.fw-500, .fw-500             {font-weight: 500   }
-    div.fw-normal, div input.fw-normal, input.fw-normal, .fw-normal {font-weight: normal}
-    div.no-bold, div input.no-bold, input.no-bold, .no-bold         {font-weight: normal}
-    div.fw-bold, div input.fw-bold, input.fw-bold, .fw-bold         {font-weight: bold  }
-    div.bold, div input.bold, input.bold, .bold                     {font-weight: bold  }
+    div.fw-300, div input.fw-300, input.fw-300, .fw-300              {font-weight: 300   }
+    div.fw-400, div input.fw-400, input.fw-400, .fw-400              {font-weight: 400   }
+    div.fw-500, div input.fw-500, input.fw-500, .fw-500              {font-weight: 500   }
+    div.fw-700, div input.fw-700, input.fw-700, .fw-700              {font-weight: 700   }
+
+    div.fw-normal, div input.fw-normal, input.fw-normal, .fw-normal,
+    div.no-bold, div input.no-bold, input.no-bold, .no-bold          {font-weight: normal}
+
+    div.fw-bold, div input.fw-bold, input.fw-bold, .fw-bold,
+    div.bold, div input.bold, input.bold, .bold                      {font-weight: bold}
 
     //**************************************** FONT DECORATION ****************************************/
     .underline                {text-decoration: underline}
