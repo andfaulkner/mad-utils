@@ -26,7 +26,6 @@ export {RealAny as Any};
 
 export type StrOrNum = string | number;
 export type StrOrNever = string | never;
-export type StrOrVoid = string | void;
 export type StrOrErr = string | Error;
 
 /**
@@ -85,10 +84,10 @@ export const isNullOrUndefined = (val: RealAny): val is undefined | null =>
 
 /**
  *  Returns true if [val] is null, undefined, or a string
- *  @param {StrOrVoid|RealAny} val Value to type check
+ *  @param {string|void|RealAny} val Value to type check
  *  @return {boolean} true if val is null, undefined, or a string
  */
-export const isVoidOrString = (val: StrOrVoid | RealAny): val is undefined | null | string =>
+export const isVoidOrString = (val: string | void | RealAny): val is undefined | null | string =>
     isNullOrUndefined(val) || isString(val);
 
 /**
