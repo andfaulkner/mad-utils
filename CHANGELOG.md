@@ -1,3 +1,7 @@
+0.82.1
+======
+Remove StrOrVoid type (it's causing build errors)
+
 0.82.0 [BREAKING CHANGES]
 =========================
 Remove numerous SCSS position utils (top-*, bottom-*, left-*, right-* e.g. `top-450`):
