@@ -1,3 +1,14 @@
+0.82.0 [BREAKING CHANGES]
+=========================
+Remove numerous SCSS position utils (top-*, bottom-*, left-*, right-* e.g. `top-450`):
+*   55p                                          (e.g. `top-55p`)
+*   n6, n7, n8, n9, n11, n12, n13, n14           (e.g. `bottom-n14`)
+*   11, 12, 13, 14, 55, 65, 85, 95               (e.g. `left-11`)
+*   225, 275, 325, 350, 375, 425, 450, 475, 525  (e.g. `right-225`)
+*   550, 575, 600, 650, 700, 800, 850, 900, 950  (e.g. `top-550`)
+
+
+----------------------------------------------------------------------------------------------------
 0.81.0 [BREAKING CHANGES]
 =========================
 Add SCSS utils:
@@ -5,26 +16,26 @@ Add SCSS utils:
 *   `fs-9` - font-size 9
 
 Remove SCSS utils:
--   `no-bold` (it's confusing)
--   `fw-bold` (redundant - covered by `bold` util)
--   `fs-31`, `fs-32`, `fs-33`, `fs-34`, `fs-36`, `fs-38`, `fs-45`
+*   `no-bold` (it's confusing)
+*   `fw-bold` (redundant - covered by `bold` util)
+*   `fs-31`, `fs-32`, `fs-33`, `fs-34`, `fs-36`, `fs-38`, `fs-45`
     -   That level of precision unneeded at those sizes
--   all text-indent SCSS utils - `ti-*`
--   -   e.g. `ti-1`
--   Remove `whitespace-*` prefixed aliases for white-space SCSS utils
+*   all text-indent SCSS utils - `ti-*`
+*   -   e.g. `ti-1`
+*   Remove `whitespace-*` prefixed aliases for white-space SCSS utils
     -   e.g. `ws-no-wrap`
     -   Leaves `ws-` prefixed forms in place
--   `p*-55`, `p*-57`, `p*-60`, `p*-65`, `p*-70`
+*   `p*-55`, `p*-57`, `p*-60`, `p*-65`, `p*-70`
     -   e.g. `pt-55`, `p-55`
     -   That level of precision unneeded
--   `ov-*`
+*   `ov-*`
     -   e.g. `ov-hidden`, `ov-auto`
--   `m*-32`, 34, 45, 57, 90, 125, 150, 175, 225, 275, 300, 400, 600, 700, 750, 800, 900, 1000
+*   `m*-32`, 34, 45, 57, 90, 125, 150, 175, 225, 275, 300, 400, 600, 700, 750, 800, 900, 1000
     -   e.g. `m-32`, `mb-n34p`, `mt-57`, `mt-n57`, `mr-n1000`
--   `float-r`, `f-right`, `float-l`, `f-left`
+*   `float-r`, `f-right`, `float-l`, `f-left`
     -   Unneeded, use `float-right`, `float-left`
--   `w-mincont`, `w-mincontent`, `w-maxcont`, `w-maxcontent`, `w-maxc`, `w-max-c`, `w-minc`, `w-min-c`
--   `h-mincont`, `h-mincontent`, `h-maxcont`, `h-maxcontent`, `h-maxc`, `h-max-c`, `h-minc`, `h-min-c`
+*   `w-mincont`, `w-mincontent`, `w-maxcont`, `w-maxcontent`, `w-maxc`, `w-max-c`, `w-minc`, `w-min-c`
+*   `h-mincont`, `h-mincontent`, `h-maxcont`, `h-maxcontent`, `h-maxc`, `h-max-c`, `h-minc`, `h-min-c`
 
 Clean specificity for all SCSS utils in:
 *   margin.scss (e.g. `margin-auto` / `m-auto`)
