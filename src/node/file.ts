@@ -8,7 +8,7 @@ import {isVerbose} from 'env-var-helpers';
 
 import {readdirSync, lstatSync, readFileSync, writeFileSync} from 'fs-extra-promise';
 
-import {isNonMinFile, endsInDotJs, getBaseFilenameFromPath} from '../string';
+import {isNonMinFile, endsInDotJs} from '../string';
 
 /******************************************** LOGGING *********************************************/
 import {logFactory, Styles} from 'mad-logs/lib/shared';
@@ -57,7 +57,7 @@ export const pathFromRoot = (filePathFromRoot: string = '') => {
  * @return {boolean} true if file with given name was run as a script.
  */
 export const wasRunAsScript = (filePathOrName: string, argv = process.argv, TAG = ''): boolean => {
-    const findFilename = new RegExp(getBaseFilenameFromPath(filePathOrName).replace('.', '.'));
+    const findFilename = new RegExp(path.basename(filePathOrName).replace('.', '.'));
     const wasScript = !!findFilename.exec(argv[1]);
     if (wasScript && isVerbose) {
         console.log(`${TAG ? TAG + ' ' : ''}Running ${__filename} as a standalone script...`);
@@ -117,4 +117,4 @@ export const isFileInDir = (dir: string, filename: string): boolean =>
     !!readdirSync(dir).find(file => file === filename);
 
 /***************** RE-EXPORT FILE-RELEVANT FUNCTIONS IMPORTED FROM OTHER MODULES ******************/
-export {isNonMinFile, endsInDotJs, getBaseFilenameFromPath};
+export {isNonMinFile, endsInDotJs};
