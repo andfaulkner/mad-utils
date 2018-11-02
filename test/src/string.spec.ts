@@ -23,7 +23,6 @@ const {
     removeMatchingText,
     chomp,
     removeWhitespace,
-    getBaseFilenameFromPath,
     endsInDotJs,
     endsInDotTs,
     endsInDotCss,
@@ -529,14 +528,6 @@ describe(`string sub-module`, function() {
                 expect(['one', 'two', '3'].find(matchesIgnoreCase('TWO'))).to.eql('two');
             }
         );
-    });
-
-    describe(`getBaseFilenameFromPath`, function() {
-        it(`should return just the filename given an absolute or relative file path`, function() {
-            expect(getBaseFilenameFromPath('file.ts')).to.eql('file.ts');
-            expect(getBaseFilenameFromPath('/file.ts')).to.eql('file.ts');
-            expect(getBaseFilenameFromPath('./src/somewhere/file.ts')).to.eql('file.ts');
-        });
     });
 
     testMatchFilenameWithExtensionFunction('endsInDotJs', endsInDotJs, 'js', 'ts');

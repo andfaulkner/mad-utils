@@ -424,12 +424,6 @@ export const endsInDotScss = (inode: string) => endsWithExt(inode, `scss`);
  */
 export const isNonMinFile = (inode: string) => inode.split(/\./g).reverse()[1] !== `min`;
 
-/**
- * Get the base filename from given path [filePath]
- * Example: getBaseFilenameFromPath(./src/translations/en.json); // => en.json
- */
-export const getBaseFilenameFromPath = (filePath: string) => filePath.split(`/`).slice(-1)[0];
-
 /***************************************** STRING PADDING *****************************************/
 export type Sides = 'left' | 'right' | 'center';
 
