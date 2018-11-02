@@ -1,3 +1,7 @@
+0.83.0 [WIP]
+============
+Remove getBaseFilenameFromPath function (it's already in Node as path.basename)
+
 0.82.1
 ======
 Remove StrOrVoid type (it's causing build errors)
