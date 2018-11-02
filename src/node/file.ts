@@ -16,7 +16,9 @@ const log = logFactory(`mad-utils::node -- file`, Styles.cult);
 
 /******************************************** EXPORTS *********************************************/
 /**
+ * [SYNCHRONOUS]
  * Determine if inode (aka file, directory, socket, etc.) at absolute path is a directory.
+ *
  * @param {string} fileOrDirPath - file system object being checked.
  * @return {boolean} true if given file system object is a directory (if false it's a file)
  */
@@ -66,6 +68,7 @@ export const wasRunAsScript = (filePathOrName: string, argv = process.argv, TAG 
 export type StrOrRegexp = string | RegExp;
 
 /**
+ * [SYNCHRONOUS]
  * Replace matching location in given file.
  * Text in given file that matches the provided regex or string gets replaced with the
  * provided replacement text.
@@ -90,7 +93,8 @@ export function replaceInFile(filePath: string, findStrOrRE: StrOrRegexp, replac
 }
 
 /**
- * Traverse given folder & return list of all .js inodes it contains.
+ * [SYNCHRONOUS]
+ * Traverse given folder & return list of all .js inodes it contains
  *
  * @param {string} dir - absolute path to directory.
  * @param {boolean} excludeMin - If true, exclude all .min.js files.
@@ -102,6 +106,7 @@ export const getJsFilesInDir = (dir: string, excludeMin = true): string[] =>
         .filter(excludeMin ? isNonMinFile : () => true);
 
 /**
+ * [SYNCHRONOUS]
  * Search a given directory for an inode (file or folder) with the given name.
  *
  * @param {string} dir - Absolute path to directory to check for file of given name.
