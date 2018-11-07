@@ -91,9 +91,11 @@ export const isVoidOrString = (val: string | void | RealAny): val is undefined |
     isNullOrUndefined(val) || isString(val);
 
 /**
- * Returns true if [val] is an alphabetic character,
+ * Returns true if [val] is an alphabetic character
  * Includes diacritics (accented characters) if [handleAccents] is true
+ *
  * See https://regex101.com/r/gY7rO4/265 to view matching characters
+ *
  * @param {string} val Value to check
  * @param {boolean} handleAccents If true, return true for diacritics/accented
  *                                letters (Default: true)
@@ -112,7 +114,9 @@ export const isAlphabeticChar = <T extends string = string>(
 export {isAlphabeticChar as isAlphaChar};
 
 /**
- * Detect whether [val] is a number (Note: NaN returns false here)
+ * Detect whether [val] is a number
+ * Note: NaN returns false here
+ *
  * @param {any} val Test if val is a number
  * @return {boolean} If given value is a number, return true; otherwise return false
  */
@@ -128,8 +132,11 @@ export const isNumber = <T extends number | Number = number>(val: RealAny): val 
 export {isNumber as isNum};
 
 /**
- * Returns true if [val] is a number, or a string that can be parsed into a number
+ * Returns true if [val] is a number, or a string that can be parsed into a
+ * number
+ *
  * Excludes NaN, accepts `.123` and `-.123` formatted numbers
+ *
  * @param {RealAny} val Item being tested for number-like nature
  * @return {boolean} True if item is 'number-like', otherwise false
  */
@@ -176,7 +183,8 @@ export const isInteger = <T extends number | Number | string | String = number>(
 export {isInteger as isInt};
 
 /**
- * Returns true if [val] is an integer, or a string that can be converted to an integer
+ * Returns true if [val] is an integer, or a string that can be converted to an
+ * integer
  * @param {any} val Item to test
  * @return {boolean} true if tested item is integer-like (or an integer)
  */
@@ -240,8 +248,10 @@ export {isBoolean as isBool};
 /**
  * Returns true if [val] is a moment instance, Date instance, or any string,
  * number, or object that moment is able to parse
+ *
  * Excludes negative numbers and strings that parse to negative numbers, and
  * objects with date-irrelevant keys (e.g. {year: 1123, bear: `grizzly`})
+ *
  * @param {any} val Value to test for Date-like properties
  * @return {boolean} True if value is date-like
  */
@@ -293,7 +303,8 @@ export const isArray = <T = any>(val: RealAny): val is T[] => {
 };
 
 /**
- * True if the given value is any variant of true (`true`, `True`, `TRUE`, `T`, `t`, or true)
+ * True if the given value is any variant of true:
+ *     `true`, `True`, `TRUE`, `T`, `t`, or true
  * @param {any} val Check if this is a variant of true
  * @param {boolean} include1CharVal return true if given `t` or `T` when include1CharVal is true
  * @return {boolean} true if given value is a variant of true, otherwise false
@@ -307,7 +318,8 @@ export const isTrue = <T extends true | string | String = true>(
         (val.toLowerCase() === `true` || (include1CharVal && val.toLowerCase() === `t`)));
 
 /**
- * True if the given value is any variant of false (`false`, `False`, `FALSE`, `F`, `f`, or false)
+ * True if the given value is any variant of false:
+ *     `false`, `False`, `FALSE`, `F`, `f`, or false
  * @param {any} val Check if this is a variant of false
  * @param {boolean} include1CharVal return true if given `f` or `F` when include1CharVal is true
  * @return {boolean} false if given value is a variant of false, otherwise false
