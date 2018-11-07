@@ -1,6 +1,8 @@
-0.83.0 [WIP]
-============
+0.83.0
+======
 Remove getBaseFilenameFromPath function (it's already in Node as path.basename)
+
+Fix SCSS error in text.scss causing newer SCSS build tools (Webpack plugins) to crash
 
 0.82.1
 ======
