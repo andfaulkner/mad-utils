@@ -79,17 +79,20 @@ export {getArgNames as getArgs};
  *
  * If using prettier, it's useful to place prettier-ignore directive above usage, for readability
  *
+ * Example: If size is 'tiny', returns 12; if size is 'small', returns 14; otherwise, returns 20:
+ *     // prettier-ignore
+ *     switchExpr(size === 'tiny',  12,
+ *                size === 'small', 14,
+ *                                  20);
+ *
  * Each pair of arguments:
  *     @param {boolean|any} cond Condition to check for truthiness
  *     @param {any} val Value returned if the test condition is truthy
  * Final argument:
  *     @param {any} defVal Value returned if no test conditions are met
  *
- * @example If size is 'tiny', returns 12; if size is 'small', returns 14; otherwise, returns 20:
- *     // prettier-ignore
- *     switchExpr(size === 'tiny',  12,
- *                size === 'small', 14,
- *                                  20);
+ * @return {any} 2nd item in a pair if the 1st item was truthy, or default
+ *               value if none match
  */
 export function switchExpr(
     cond: boolean | RealAny,
@@ -114,6 +117,21 @@ export function switchExpr(
 
     return condValPairsAndOrDefVal[0];
 }
+
+/**
+ * DEPRECATED
+ * Deprecated form of switchExpr - use switchExpr instead
+ */
+function condSwitch(
+    cond: boolean | RealAny,
+    val: RealAny,
+    ...condValPairsAndOrDefVal: RealAny[]
+) {
+    console.warn(`WARNING: condSwitch is deprecated, use switchExpr instead`);
+    return switchExpr(cond, val, ...condValPairsAndOrDefVal);
+}
+
+export {switchExpr as condSwitch}
 
 /************************************* RUN TIMING / LIMITING **************************************/
 /**
