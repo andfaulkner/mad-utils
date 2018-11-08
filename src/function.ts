@@ -87,11 +87,11 @@ export {getArgNames as getArgs};
  *
  * @example If size is 'tiny', returns 12; if size is 'small', returns 14; otherwise, returns 20:
  *     // prettier-ignore
- *     condSwitch(size === 'tiny',  12,
+ *     switchExpr(size === 'tiny',  12,
  *                size === 'small', 14,
  *                                  20);
  */
-export function condSwitch(
+export function switchExpr(
     cond: boolean | RealAny,
     val: RealAny,
     ...condValPairsAndOrDefVal: RealAny[]

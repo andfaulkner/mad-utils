@@ -26,11 +26,11 @@ export function once(fn: Function): Function {
  *     @param {any} defVal - value returned if no test conditions are met.
  *
  * @example If size is 'tiny', returns 12. If size is 'small', returns 14. Otherwise, returns 20:
- *     condSwitch(size === 'tiny',  12,
+ *     switchExpr(size === 'tiny',  12,
  *                size === 'small', 14,
  *                                  20);
  */
-export function condSwitch(
+export function switchExpr(
     cond: boolean | RealAny,
     val: RealAny,
     ...condValPairsAndOrDefVal: RealAny[]
@@ -107,7 +107,7 @@ export function cond(...conds: [any, any][]): any {
 // export type _DefaultVal<T = any> = {default: T};
 // export type _CaseValPair = [boolean | RealAny, RealAny];
 
-// export function condSwitch2<T>(
+// export function switchExpr2<T>(
 //     caseValPair: _CaseValPair,
 //     ...caseValPairsOrFinalDefVal: (_CaseValPair | _DefaultVal<T>)[]
 // ): RealAny | never {
@@ -136,28 +136,28 @@ export function cond(...conds: [any, any][]): any {
 // export type DefCase = DefaultCase;
 // export type Def = DefaultCase;
 
-// export function condSwitch2(caseReturnValPair: CaseReturnValPair): AnyNev;
-// export function condSwitch2(caseReturnValPair: CaseReturnValPair, defaultCase: DefaultCase): AnyNev;
+// export function switchExpr2(caseReturnValPair: CaseReturnValPair): AnyNev;
+// export function switchExpr2(caseReturnValPair: CaseReturnValPair, defaultCase: DefaultCase): AnyNev;
 
-// export function condSwitch2(caseRetPair1: CaseRetPair, caseRetPair2: CaseRetPair): AnyNev;
-// export function condSwitch2(caseRetPair1: CaseRetPair, caseRetPair2: CaseRetPair, def: Def): AnyNev;
+// export function switchExpr2(caseRetPair1: CaseRetPair, caseRetPair2: CaseRetPair): AnyNev;
+// export function switchExpr2(caseRetPair1: CaseRetPair, caseRetPair2: CaseRetPair, def: Def): AnyNev;
 
-// export function condSwitch2(casePair1: CasePair, casePair2: CasePair, casePair3: CasePair): AnyNev;
-// export function condSwitch2(casePair1: Case, casePair2: Case, casePair3: Case, def: Def): AnyNev;
+// export function switchExpr2(casePair1: CasePair, casePair2: CasePair, casePair3: CasePair): AnyNev;
+// export function switchExpr2(casePair1: Case, casePair2: Case, casePair3: Case, def: Def): AnyNev;
 
-// export function condSwitch2(casePr1: Case, casePr2: Case, casePr3: Case, casePr4: Case): AnyNev;
-// export function condSwitch2(case1: Case, case2: Case, case3: Case, case4: Case, def: Def): AnyNev;
+// export function switchExpr2(casePr1: Case, casePr2: Case, casePr3: Case, casePr4: Case): AnyNev;
+// export function switchExpr2(case1: Case, case2: Case, case3: Case, case4: Case, def: Def): AnyNev;
 
-// export function condSwitch2(cp1: Case, cp2: Case, cp3: Case, cp4: Case, cp5: Case): AnyNev;
-// export function condSwitch2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, def: Def): AnyNev;
+// export function switchExpr2(cp1: Case, cp2: Case, cp3: Case, cp4: Case, cp5: Case): AnyNev;
+// export function switchExpr2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, def: Def): AnyNev;
 
-// export function condSwitch2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, cp6: CP): AnyNev;
-// export function condSwitch2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, cp6: CP, def: Def): AnyNev;
+// export function switchExpr2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, cp6: CP): AnyNev;
+// export function switchExpr2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, cp6: CP, def: Def): AnyNev;
 
-// export function condSwitch2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, cp6: CP, cp7: CP): AnyNev;
-// export function condSwitch2(c: CP, c2: CP, c3: CP, c4: CP, c5: CP, c6: CP, c7: CP, df: Def): AnyNev;
+// export function switchExpr2(cp1: CP, cp2: CP, cp3: CP, cp4: CP, cp5: CP, cp6: CP, cp7: CP): AnyNev;
+// export function switchExpr2(c: CP, c2: CP, c3: CP, c4: CP, c5: CP, c6: CP, c7: CP, df: Def): AnyNev;
 
-// export function condSwitch2<R>(...condPairs: (CaseReturnValPair | Def)[]): AnyNev {
+// export function switchExpr2<R>(...condPairs: (CaseReturnValPair | Def)[]): AnyNev {
 //     const finalArg = condPairs[condPairs.length - 1];
 //     if (finalArg)
 

@@ -28,25 +28,25 @@ capitalize('asDf'); // => 'AsDf'
 eliminateWhitespace('    asdf 123    ff    '); // => 'asdf123ff'
 ```
 
-### condSwitch :: ((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
+### switchExpr :: ((cond: any, valueToReturnIfCondTruthy: V)\*, defaultValue?: W) => V | W | never;
 Function-based switch statement. Takes 2 or more args.
 *   Args 1, 3, 5, 7, etc. are the conditions, and 2, 4, 6, etc. their corresponding return values.
-    *   On hitting a truthy odd-numbered arg, condSwitch returns the next (even-numbered) arg, then exits.
+    *   On hitting a truthy odd-numbered arg, switchExpr returns the next (even-numbered) arg, then exits.
     *   If none are truthy, the default value is returned (the last argument - which must be an odd-numbered arg).
         *   If no default value is present after all conditions returned false, throws an error.
 
 Examples:
 ```
-condSwitch(true, 'val1');                // Output: 'val1'
+switchExpr(true, 'val1');                // Output: 'val1'
 
-condSwitch(false, 'val1', 'defaultVal'); // Output: 'defaultVal'
+switchExpr(false, 'val1', 'defaultVal'); // Output: 'defaultVal'
 
-condSwitch(
+switchExpr(
     false, 'v1',
     true, 'v2',
     'defaultReturnVal');                 // Output: 'v2'
 
-condSwitch(undefined, 'v1', '', 'v2');   // Throws Error
+switchExpr(undefined, 'v1', '', 'v2');   // Throws Error
 ```
 
 ### first :: (Array<T|any>) => T|any;
@@ -883,7 +883,7 @@ WIP documentation
 ----------------------------------------------------------------------------------------------------
 Namespace: function (isomorphic)
 ================================
-### condSwitch :: (...(cond: any, retValIfCondTru: V), def?: W) => V | W | never;
+### switchExpr :: (...(cond: any, retValIfCondTru: V), def?: W) => V | W | never;
 Function-based switch statement.
 
 For each pair of args:
@@ -896,17 +896,17 @@ If no conditions pass, and there was:
 
 Examples:
 ```
-condSwitch(true, 'val1');                                // => 'val1'
-condSwitch(true, 'val1', 'defaultVal');                  // => 'val1'
-condSwitch(false, 'val1', 'defaultVal');                 // => 'defaultVal'
-condSwitch(false, 'v1', 'condition1', 'v2');             // => 'v2'
-condSwitch(false, 'v1', null, 'v2', 'defaultReturnVal'); // => 'v2'
-condSwitch(false, 'v1', null, 'v2');                     // => [throws error]
-condSwitch(false, 'v1');                                 // => [throws error]
+switchExpr(true, 'val1');                                // => 'val1'
+switchExpr(true, 'val1', 'defaultVal');                  // => 'val1'
+switchExpr(false, 'val1', 'defaultVal');                 // => 'defaultVal'
+switchExpr(false, 'v1', 'condition1', 'v2');             // => 'v2'
+switchExpr(false, 'v1', null, 'v2', 'defaultReturnVal'); // => 'v2'
+switchExpr(false, 'v1', null, 'v2');                     // => [throws error]
+switchExpr(false, 'v1');                                 // => [throws error]
 
 let size = 'large';
 
-condSwitch(
+switchExpr(
     size === 'tiny',   8,
     size === 'small',  10,
     size === 'medium', 12,
@@ -919,7 +919,7 @@ condSwitch(
 
 General syntax:
 ```
-condSwitch(
+switchExpr(
     COND1, val_returned_if_COND1_truthy,
     COND2, val_returned_if_COND2_truthy,
     ...,

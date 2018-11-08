@@ -118,7 +118,7 @@ export const {
     capitalize,
     cap1LowerRest,
     repeatChars,
-    condSwitch,
+    switchExpr,
     singleton,
     isLeapYear,
     now,

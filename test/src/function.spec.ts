@@ -11,7 +11,7 @@ import {
     m_,
     func,
     getFnAsArr,
-    condSwitch,
+    switchExpr,
     loopN,
     loop2,
     loop3,
@@ -50,26 +50,26 @@ describe(`function sub-module`, function() {
         });
     });
 
-    describe(`condSwitch function`, function() {
-        expectFunctionExists(condSwitch);
+    describe(`switchExpr function`, function() {
+        expectFunctionExists(switchExpr);
         it(`Returns the 2nd arg if the 1st arg is truthy`, function() {
-            expect(condSwitch(true, 'val1', 'elseVal')).to.eql('val1');
-            expect(condSwitch(true, 'val1', true, 'arg2', true, 'arg3', 'elseVal')).to.eql('val1');
-            expect(condSwitch('cond1', 'val1', 'cond2', 'val2', 'cond3', 'val3', 'elseVal')).to.eql(
+            expect(switchExpr(true, 'val1', 'elseVal')).to.eql('val1');
+            expect(switchExpr(true, 'val1', true, 'arg2', true, 'arg3', 'elseVal')).to.eql('val1');
+            expect(switchExpr('cond1', 'val1', 'cond2', 'val2', 'cond3', 'val3', 'elseVal')).to.eql(
                 'val1'
             );
         });
         it(`Returns the 3rd arg if the 1st arg is falsy and only 3 args were given`, function() {
-            expect(condSwitch(false, 'val1', 'elseVal')).to.eql('elseVal');
+            expect(switchExpr(false, 'val1', 'elseVal')).to.eql('elseVal');
         });
         it(`Returns the last arg if all other 'condition' args are falsy`, function() {
-            expect(condSwitch(false, 'val1', undefined, 'val2', 'elseVal')).to.eql('elseVal');
-            expect(condSwitch(0, 'v1', null, 'v2', NaN, 'v3', 'elseVal')).to.eql('elseVal');
-            expect(condSwitch('', 'v1', false, 'v2', null, 'v3', 'elseVal')).to.eql('elseVal');
+            expect(switchExpr(false, 'val1', undefined, 'val2', 'elseVal')).to.eql('elseVal');
+            expect(switchExpr(0, 'v1', null, 'v2', NaN, 'v3', 'elseVal')).to.eql('elseVal');
+            expect(switchExpr('', 'v1', false, 'v2', null, 'v3', 'elseVal')).to.eql('elseVal');
         });
         it(`Allows any odd number of conditions`, function() {
             expect(
-                condSwitch(
+                switchExpr(
                     '' + '',
                     'val1',
                     undefined,
@@ -91,7 +91,7 @@ describe(`function sub-module`, function() {
             ).to.eql('elseVal');
             const nan = ('' as any) / 0;
             expect(
-                condSwitch(
+                switchExpr(
                     '' + '',
                     'val1',
                     undefined,
@@ -124,7 +124,7 @@ describe(`function sub-module`, function() {
                 )
             ).to.eql('elseVal');
             expect(
-                condSwitch(
+                switchExpr(
                     '' + '',
                     'val1',
                     undefined,
@@ -158,14 +158,14 @@ describe(`function sub-module`, function() {
             ).to.eql('val11');
         });
         it(`allows an even number of conditions as long as at least one condition returns truthy`, function() {
-            expect(condSwitch(true, 'v1', false, 'v2')).to.eql('v1');
-            expect(condSwitch(false, 'v1', true, 'v2', 'c3', 'v3')).to.eql('v2');
-            expect(condSwitch(false, 'v1', null, 'v2', 0, 'v3', 'c4', 'v4')).to.eql('v4');
+            expect(switchExpr(true, 'v1', false, 'v2')).to.eql('v1');
+            expect(switchExpr(false, 'v1', true, 'v2', 'c3', 'v3')).to.eql('v2');
+            expect(switchExpr(false, 'v1', null, 'v2', 0, 'v3', 'c4', 'v4')).to.eql('v4');
         });
         it(`throws if given an even number of conditions and no conditions are truthy`, function() {
-            expect(() => condSwitch(0, 'v1', false, 'v2')).to.throw(Error);
-            expect(() => condSwitch(null, 'v1', false, 'v2', '', 'v3')).to.throw(Error);
-            expect(() => condSwitch(false, 'v1', null, 'v2', '', 'v3', 0, 'v4')).to.throw(Error);
+            expect(() => switchExpr(0, 'v1', false, 'v2')).to.throw(Error);
+            expect(() => switchExpr(null, 'v1', false, 'v2', '', 'v3')).to.throw(Error);
+            expect(() => switchExpr(false, 'v1', null, 'v2', '', 'v3', 0, 'v4')).to.throw(Error);
         });
     });
 
