@@ -1,3 +1,8 @@
+0.84.0
+======
+Renamed `condSwitch` to `switchExpr`
+*   Deprecated `condSwitch`
+
 0.83.0
 ======
 Remove getBaseFilenameFromPath function (it's already in Node as path.basename)
