@@ -26,7 +26,7 @@ import {
 } from './shared';
 
 /***** Merge shared & Node error handling and export *****/
-import nodeError from './src/node/node-error';
+import * as nodeError from './src/node/node-error';
 export * from './src/node/node-error';
 export {nodeError};
 
@@ -39,7 +39,7 @@ export {err as error};
 
 /***** Export Node-specific modules/namespaces *****/
 // Import & export middleware (and middleware-handling) module/namespace
-import middleware from './src/node/middleware';
+import * as middleware from './src/node/middleware';
 export * from './src/node/middleware';
 export {middleware};
 export {middleware as middlewares};
@@ -47,25 +47,25 @@ export {middleware as mware};
 export {middleware as MW};
 
 // Import & export test module/namespace
-import test from './src/node/test';
+import * as test from './src/node/test';
 export * from './src/node/test';
 export {test};
 
 // Import & export file & file-handling module/namespace
-import file from './src/node/file';
+import * as file from './src/node/file';
 export * from './src/node/file';
 export {file};
 
 // Import ExpressJS routing helpers module
-import expressRouting from './src/node/express-routing';
+import * as expressRouting from './src/node/express-routing';
 export * from './src/node/express-routing';
 export {expressRouting};
 
 /***** Build & export Node-specific types *****/
 // Build final NodeJS types object by merging isomorphic types with Node-specific types
 // Export all, including merged-in types from types-iso
-import nodeTypes from './src/node/types-node';
-import typesIso from './src/types-iso';
+import * as nodeTypes from './src/node/types-node';
+import * as typesIso from './src/types-iso';
 
 export * from './src/node/types-node';
 export const types = Object.assign(isoTypes, nodeTypes, dataTypes);

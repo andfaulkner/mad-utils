@@ -12,7 +12,7 @@ import _ from 'lodash';
 import {m_, types as typesIso, types, isBoolean, isString, isUndefined} from '../../shared';
 import {types as typesNode} from '../../node';
 import {types as typesBrowser} from '../../browser';
-import typesModule from '../../src/types-iso';
+import * as typesModule from '../../src/types-iso';
 
 const {boolStringToBool} = typesModule;
 

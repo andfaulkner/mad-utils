@@ -10,7 +10,7 @@ import {m_, string} from '../../shared';
 
 import {string as stringFromNode} from '../../node';
 import {string as stringFromBrowser} from '../../browser';
-import stringModule from '../../src/string';
+import * as stringModule from '../../src/string';
 
 const str = m_.string;
 const {

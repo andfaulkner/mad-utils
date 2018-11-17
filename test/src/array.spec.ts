@@ -49,7 +49,7 @@ import {array as arrayFromNode} from '../../node';
 import {array as arrayFromBrowser} from '../../browser';
 import {m_} from '../../browser';
 
-import arrayModule from '../../src/array';
+import * as arrayModule from '../../src/array';
 
 /********************************************* TESTS **********************************************/
 describe(`array sub-module`, function() {

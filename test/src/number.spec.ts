@@ -10,7 +10,7 @@ import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/t
 import {m_, number} from '../../shared';
 import {number as numberFromNode} from '../../node';
 import {number as numberFromBrowser, uuid, loopN} from '../../browser';
-import numberModule from '../../src/number';
+import * as numberModule from '../../src/number';
 import {createRangeArray, coinFlip, diceRoll6Sided, getRandomInt, isUUID} from '../../src/number';
 
 /********************************************* TESTS **********************************************/

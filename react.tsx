@@ -48,18 +48,18 @@ export const logSyntheticEventValue = (
 export * from './browser';
 
 // Imported to appease exports below
-import browserUtils from './browser';
-import arrayUtils from './src/array';
-import objUtils from './src/object';
-import urlUtils from './src/url';
-import domUtils from './src/browser/dom';
-import localStoreUtils from './src/browser/local-store';
-import numberUtils from './src/number';
-import functionUtils from './src/function';
-import dateUtils from './src/date';
-import decoratorUtils from './src/decorator';
-import stringUtils from './src/string';
-import isoTypesUtils from './src/types-iso';
+import * as browserUtils from './browser';
+import * as arrayUtils from './src/array';
+import * as objUtils from './src/object';
+import * as urlUtils from './src/url';
+import * as domUtils from './src/browser/dom';
+import * as localStoreUtils from './src/browser/local-store';
+import * as numberUtils from './src/number';
+import * as functionUtils from './src/function';
+import * as dateUtils from './src/date';
+import * as decoratorUtils from './src/decorator';
+import * as stringUtils from './src/string';
+import * as isoTypesUtils from './src/types-iso';
 
 // Export types
 export {Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer} from './src/number';

@@ -13,7 +13,7 @@ import 'moment/locale/fr-ca';
 import {m_, date, isLeapYear, isDateLike, dateStringWithMonthTextToMoment} from '../../shared';
 import {date as dateFromNode} from '../../node';
 import {date as dateFromBrowser} from '../../browser';
-import dateModule from '../../src/date';
+import * as dateModule from '../../src/date';
 
 import {expectNonEmptyObjectExists} from '../../src/node/test';
 import {expectFunctionExists, now} from '../../node';

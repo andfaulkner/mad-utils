@@ -6,7 +6,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 /****************************** IMPORT DECORATOR MODULE FOR TESTING *******************************/
 import {m_, error, nodeError} from '../../node';
 import {error as nodeErrorFromNode} from '../../node';
-import nodeErrorModule from '../../src/node/node-error';
+import * as nodeErrorModule from '../../src/node/node-error';
 
 /********************************************* TESTS **********************************************/
 describe(`error sub-module`, function() {

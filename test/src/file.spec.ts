@@ -10,7 +10,7 @@ import { expect } from 'chai';
 
 import { m_, file } from '../../node';
 import { file as fileFromNode } from '../../node';
-import fileModule from '../../src/node/file';
+import * as fileModule from '../../src/node/file';
 
 const docObjModel = m_.file;
 

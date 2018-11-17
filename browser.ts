@@ -27,17 +27,17 @@ import {
 } from './shared';
 
 // Import DOM module
-import dom from './src/browser/dom';
+import * as dom from './src/browser/dom';
 export * from './src/browser/dom';
 export {dom};
 
 // Import event module
-import event from './src/browser/event';
+import * as event from './src/browser/event';
 export * from './src/browser/event';
 export {event};
 
 // Import local-store module
-import localStore from './src/browser/local-store';
+import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
 export {localStore};
 export {localStore as localStorage};

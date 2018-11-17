@@ -13,7 +13,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 import {m_, Enum} from '../../shared';
 import {Enum as EnumFromNode} from '../../node';
 import {Enum as EnumFromBrowser} from '../../browser';
-import EnumModule from '../../src/enum';
+import * as EnumModule from '../../src/enum';
 
 const en = m_.enum;
 

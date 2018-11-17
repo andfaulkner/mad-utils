@@ -2,72 +2,72 @@
 import {Moment} from 'moment';
 
 /******************************************** IMPORTS *********************************************/
-import array from './src/array';
+import * as array from './src/array';
 export * from './src/array';
 export {array};
 
-import date from './src/date';
+import * as date from './src/date';
 export * from './src/date';
 export {date};
 
-import decorator from './src/decorator';
+import * as decorator from './src/decorator';
 export * from './src/decorator';
 export {decorator};
 
-import Enum from './src/enum';
+import * as Enum from './src/enum';
 export * from './src/enum';
 export {Enum};
 
-import error from './src/error';
+import * as error from './src/error';
 export * from './src/error';
 export {error};
 
-import func from './src/function';
+import * as func from './src/function';
 export * from './src/function';
 export {func};
 
-import locale from './src/locale';
+import * as locale from './src/locale';
 export * from './src/locale';
 export {locale};
 
-import number from './src/number';
+import * as number from './src/number';
 export * from './src/number';
 export {number};
 
-import object from './src/object';
+import * as object from './src/object';
 export * from './src/object';
 export {object};
 
-import url from './src/url';
+import * as url from './src/url';
 export * from './src/url';
 export {url};
 
-import search from './src/search';
+import * as search from './src/search';
 export * from './src/search';
 export {search};
 
-import string from './src/string';
+import * as string from './src/string';
 export * from './src/string';
 export {string};
 
-import typesIso from './src/types-iso';
+import * as typesIso from './src/types-iso';
 export * from './src/types-iso';
 export {typesIso};
 
-import dataTypes from './src/types-data-generic';
+import * as dataTypes from './src/types-data-generic';
 export * from './src/types-data-generic';
 export {dataTypes};
 
-import validation from './src/validation';
+import * as validation from './src/validation';
 export * from './src/validation';
 export {validation};
 
-import stream from './src/stream';
+import * as stream from './src/stream';
 export * from './src/stream';
 export {stream};
 
 // Import isNode (detect node vs browser)
-import isNode from 'detect-node';
+import * as isNode from 'detect-node';
 export {isNode};
 
 // Build final types object by merging isomorphic types with data types
