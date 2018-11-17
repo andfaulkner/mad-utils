@@ -1,13 +1,13 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
 /******************************************* TEST SETUP *******************************************/
-import * as Enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 (Enzyme as any).configure({adapter: new Adapter()});
 
 /*************************************** IMPORT TEST UTILS ****************************************/
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import {expect} from 'chai';
 import {mount, shallow, ShallowWrapper, ReactWrapper} from 'enzyme';

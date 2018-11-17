@@ -1,6 +1,6 @@
 /******************************************** IMPORTS *********************************************/
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import {RealAny} from '../types-iso';
 import {ReactChildren} from './types-react';

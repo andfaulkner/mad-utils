@@ -16,7 +16,7 @@ import {
     isSupportedLang,
 } from '../../node';
 
-import * as nodeExpressRouting from '../../src/node/express-routing';
+import nodeExpressRouting from '../../src/node/express-routing';
 
 /********************************************* TESTS **********************************************/
 describe(`error sub-module`, function() {

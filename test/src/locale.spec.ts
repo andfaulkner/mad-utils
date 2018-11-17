@@ -7,7 +7,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 import {m_, locale} from '../../shared';
 import {locale as localeFromNode} from '../../node';
 import {locale as localeFromBrowser} from '../../browser';
-import * as localeModule from '../../src/locale';
+import localeModule from '../../src/locale';
 
 /********************************************* TESTS **********************************************/
 describe(`locale sub-module`, function() {

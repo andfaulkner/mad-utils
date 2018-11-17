@@ -1,6 +1,6 @@
 import { ApplyMiddlewareFn, ExpressApp, MWare } from './types-node';
 
-import * as connect from 'connect';
+import connect from 'connect';
 
 /**
  * Returns an Express-consumable middleware if NODE_ENV is 'production'.

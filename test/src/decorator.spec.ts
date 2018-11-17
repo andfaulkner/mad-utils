@@ -10,7 +10,7 @@ import {m_, decorator} from '../../shared';
 
 import {decorator as decoratorFromNode} from '../../node';
 import {decorator as decoratorFromBrowser} from '../../browser';
-import * as decoratorModule from '../../src/decorator';
+import decoratorModule from '../../src/decorator';
 import {getDecoratorType} from '../../src/decorator';
 
 const dec = m_.decorator;

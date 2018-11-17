@@ -33,7 +33,7 @@ import {
 
 import {url as urlFromNode} from '../../node';
 import {url as urlFromBrowser} from '../../browser';
-import * as urlModule from '../../src/url';
+import urlModule from '../../src/url';
 
 /********************************************* TESTS **********************************************/
 describe(`url sub-module`, function() {

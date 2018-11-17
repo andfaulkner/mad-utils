@@ -7,7 +7,7 @@ import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/t
 import {m_, validation} from '../../shared';
 import {validation as validationFromNode} from '../../node';
 import {validation as validationFromBrowser} from '../../browser';
-import * as validationModule from '../../src/validation';
+import validationModule from '../../src/validation';
 import {validateCanadaPostalCode} from '../../src/validation';
 
 /********************************************* TESTS **********************************************/

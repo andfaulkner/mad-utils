@@ -1,6 +1,6 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-import * as path from 'path';
+import path from 'path';
 import { path as rootPath } from 'app-root-path';
 import { writeFileSync, readFileSync, unlinkSync } from 'fs-extra-promise';
 import { expectFunctionExists, expectNonEmptyObjectExists } from '../../node';
@@ -10,7 +10,7 @@ import { expect } from 'chai';
 
 import { m_, file } from '../../node';
 import { file as fileFromNode } from '../../node';
-import * as fileModule from '../../src/node/file';
+import fileModule from '../../src/node/file';
 
 const docObjModel = m_.file;
 

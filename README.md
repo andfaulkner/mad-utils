@@ -322,7 +322,7 @@ m_.secondLast
 
 You can also get them like this if you hate named imports:
 ```
-import * as madUtils from 'mad-utils';
+import madUtils from 'mad-utils';
 const h = madUtils.m_;
 ```
 

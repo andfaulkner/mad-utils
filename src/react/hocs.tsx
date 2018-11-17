@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import * as React from 'react';
+import React from 'react';
 
 import {Newable} from './types-react';
 

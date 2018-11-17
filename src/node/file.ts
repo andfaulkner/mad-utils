@@ -2,7 +2,7 @@
 // NodeJS-only helpers / utils - for file & filesystem handling
 
 /******************************************** IMPORTS *********************************************/
-import * as path from 'path';
+import path from 'path';
 import {path as rootPath} from 'app-root-path';
 import {isVerbose} from 'env-var-helpers';
 

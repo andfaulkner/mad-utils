@@ -8,7 +8,7 @@ import {expectNonEmptyObjectExists} from '../../src/node/test';
 /******************************** IMPORT EVENT MODULE FOR TESTING *********************************/
 import {m_, event, addClickEventToId, removeClickEventFromId} from '../../browser';
 import {event as eventFromBrowser} from '../../browser';
-import * as eventModule from '../../src/browser/event';
+import eventModule from '../../src/browser/event';
 
 /********************************************* TESTS **********************************************/
 describe(`event sub-module`, function() {

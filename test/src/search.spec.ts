@@ -10,7 +10,7 @@ import { escapeRegExp, matches, matchesIgnoreCase, replaceAll } from '../../src/
 
 import { search as searchFromNode } from '../../node';
 import { search as searchFromBrowser } from '../../browser';
-import * as searchModule from '../../src/search';
+import searchModule from '../../src/search';
 
 /********************************************* TESTS **********************************************/
 describe(`search sub-module`, function() {

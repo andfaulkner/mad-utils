@@ -26,7 +26,7 @@ import {
 } from '../../browser';
 
 import {localStore as localStoreFromBrowser} from '../../browser';
-import * as localStoreModule from '../../src/browser/local-store';
+import localStoreModule from '../../src/browser/local-store';
 
 /********************************************* MOCKS **********************************************/
 const mockStore = {

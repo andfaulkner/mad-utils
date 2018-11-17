@@ -29,7 +29,7 @@ import {expectFunctionExists} from '../../node';
 
 import {object as objectFromNode} from '../../node';
 import {object as objectFromBrowser} from '../../browser';
-import * as objectModule from '../../src/object';
+import objectModule from '../../src/object';
 
 /********************************************* TESTS **********************************************/
 describe(`object sub-module`, function() {

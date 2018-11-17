@@ -10,7 +10,7 @@ import {m_, error} from '../../shared';
 
 import {error as errorFromNode} from '../../node';
 import {error as errorFromBrowser} from '../../browser';
-import * as errorModule from '../../src/error';
+import errorModule from '../../src/error';
 
 const err = m_.error;
 

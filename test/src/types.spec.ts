@@ -5,14 +5,14 @@
 /*************************************** IMPORT TEST UTILS ****************************************/
 import {expect} from 'chai';
 import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
-import * as moment from 'moment';
-import * as _ from 'lodash';
+import moment from 'moment';
+import _ from 'lodash';
 
 /******************************* IMPORT TYPES MODULES FOR TESTING *********************************/
 import {m_, types as typesIso, types, isBoolean, isString, isUndefined} from '../../shared';
 import {types as typesNode} from '../../node';
 import {types as typesBrowser} from '../../browser';
-import * as typesModule from '../../src/types-iso';
+import typesModule from '../../src/types-iso';
 
 const {boolStringToBool} = typesModule;
 

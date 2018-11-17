@@ -1,5 +1,5 @@
 /************************************** THIRD-PARTY MODULES ***************************************/
-import * as moment from 'moment';
+import moment from 'moment';
 import {dateTime} from 'common-constants';
 
 /**************************************** PROJECT MODULES *****************************************/

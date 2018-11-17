@@ -6,7 +6,7 @@ import {expectFunctionExists, expectNonEmptyObjectExists} from '../../node';
 /******************************* IMPORT FUNCTION MODULE FOR TESTING *******************************/
 import {func as functionFromNode} from '../../node';
 import {func as functionFromBrowser} from '../../browser';
-import * as functionModule from '../../src/function';
+import functionModule from '../../src/function';
 import {
     m_,
     func,

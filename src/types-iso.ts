@@ -1,5 +1,5 @@
 /******************************************** IMPORTS *********************************************/
-import * as moment from 'moment';
+import moment from 'moment';
 import {isVerbose} from 'env-var-helpers';
 import {matches} from './string';
 

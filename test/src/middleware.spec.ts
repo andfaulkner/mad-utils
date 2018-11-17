@@ -5,7 +5,7 @@ import {expect} from 'chai';
 
 import {m_, middleware} from '../../node';
 import {middleware as middlewareFromNode} from '../../node';
-import * as middlewareModule from '../../src/node/middleware';
+import middlewareModule from '../../src/node/middleware';
 
 import {expectNonEmptyObjectExists} from '../../src/node/test';
 const mw = m_.middleware;

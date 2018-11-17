@@ -7,13 +7,13 @@
 /********************************* IMPORT DATE MODULE FOR TESTING *********************************/
 import {expect} from 'chai';
 import {isVerbose} from 'env-var-helpers';
-import * as moment from 'moment';
+import moment from 'moment';
 import 'moment/locale/fr-ca';
 
 import {m_, date, isLeapYear, isDateLike, dateStringWithMonthTextToMoment} from '../../shared';
 import {date as dateFromNode} from '../../node';
 import {date as dateFromBrowser} from '../../browser';
-import * as dateModule from '../../src/date';
+import dateModule from '../../src/date';
 
 import {expectNonEmptyObjectExists} from '../../src/node/test';
 import {expectFunctionExists, now} from '../../node';

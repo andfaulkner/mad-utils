@@ -4,7 +4,7 @@
 var window = window || {}; // tslint:disable-line:no-var-keyword
 
 /******************************************** IMPORTS *********************************************/
-import * as isNode from 'detect-node';
+import isNode from 'detect-node';
 import { isMocha, isVerbose } from 'env-var-helpers';
 
 /**************************************** PROJECT IMPORTS *****************************************/

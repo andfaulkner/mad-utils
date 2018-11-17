@@ -24,7 +24,7 @@ import {
 } from '../../browser';
 
 import {dom as domFromBrowser} from '../../browser';
-import * as domModule from '../../src/browser/dom';
+import domModule from '../../src/browser/dom';
 import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/test';
 
 /********************************************* TESTS **********************************************/
