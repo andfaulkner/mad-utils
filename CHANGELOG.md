@@ -1,3 +1,7 @@
+0.85.0
+======
+Migrate to use esModuleInterop=true in TS config 
+
 0.84.0
 ======
 Renamed `condSwitch` to `switchExpr`
