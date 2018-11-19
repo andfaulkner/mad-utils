@@ -1,3 +1,8 @@
+0.85.1
+======
+Add colour darkerRed to SCSS, including utils:
+- dark-red, bg-dark-red, bg-dark-red-hover, bg-dark-red-active, border-dark-red
+
 0.85.0
 ======
 Migrate to use esModuleInterop=true in TS config 
