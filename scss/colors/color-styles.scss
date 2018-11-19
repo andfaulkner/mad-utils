@@ -188,6 +188,13 @@
     .bg-dark-red-active:active { background-color: $darkRed }
     .border-dark-red { border-color: $darkRed }
 
+    // #99101a
+    .darker-red { color: $darkerRed }
+    .bg-darker-red { background-color: $darkerRed }
+    .bg-darker-red-hover:hover { background-color: $darkerRed }
+    .bg-darker-red-active:active { background-color: $darkerRed }
+    .border-darker-red { border-color: $darkerRed }
+
     /************** YELLOWS **************/
     // #ffff00
     .yellow { color: $yellow }
