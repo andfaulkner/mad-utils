@@ -3075,9 +3075,9 @@ macos-release@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/macos-release/-/macos-release-1.1.0.tgz#831945e29365b470aa8724b0ab36c8f8959d10fb"
 
-mad-logs@^11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-11.1.0.tgz#e11578ad848337c4ae5dc279423b76ecb856d458"
+mad-logs@^11.1.1:
+  version "11.1.1"
+  resolved "https://registry.yarnpkg.com/mad-logs/-/mad-logs-11.1.1.tgz#349e410a3174d70c24a800dabaf81124ace6dc3f"
   dependencies:
     colors "^1.1.2"
     detect-node "^2.0.3"
