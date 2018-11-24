@@ -1,7 +1,12 @@
+0.85.2
+======
+Add missing uuid module
+*   Large issue - this caused mad-utils to break in projects that didn't install uuid module separately
+
 0.85.1
 ======
 Add colour darkerRed to SCSS, including utils:
-- dark-red, bg-dark-red, bg-dark-red-hover, bg-dark-red-active, border-dark-red
+*   dark-red, bg-dark-red, bg-dark-red-hover, bg-dark-red-active, border-dark-red
 
 0.85.0
 ======

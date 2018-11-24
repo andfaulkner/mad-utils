@@ -144,7 +144,8 @@
     "mad-logs": "^11.1.1",
     "reflect-metadata": "^0.1.10",
     "ts-node": "6.1",
-    "ua-parser-js": "^0.7.13"
+    "ua-parser-js": "^0.7.13",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.2",
