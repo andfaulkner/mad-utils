@@ -1,9 +1,9 @@
-0.85.2 [WIP]
-============
+0.86.0
+======
 Rename ReactChildString & ChildString types.
 *   Reason: They're useless. It's easier to just write {children?: string}.
 
-margin.scss
+In margin.scss, padding.scss, size.scss, position.scss:
 *   Replace use of `div`s to increase selectivity in SCSS utils with use of `*`s.
 *   Remove redundant selectors.
 
