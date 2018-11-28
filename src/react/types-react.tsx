@@ -18,11 +18,6 @@ export {InputChangeHandler as InputChangeType};
 export {FormSubmitHandler as FormSubmitType};
 export {AnyEventHandler as AnyEventType};
 
-export interface ReactChildString {
-    children?: string;
-}
-export {ReactChildString as ChildString};
-
 /**
  * Type of a children prop in a React SFC (for most cases)
  *
