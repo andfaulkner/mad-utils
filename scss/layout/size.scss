@@ -1,244 +1,244 @@
 :global {
     /*************************************** INHERITED SIZE ***************************************/
-    div div .w-inherit, div .w-inherit, .w-inherit {width: inherit}
-    div div .h-inherit, div .h-inherit, .h-inherit {height: inherit}
+    * * *.w-inherit {width: inherit}
+    * * *.h-inherit {height: inherit}
 
-    div div .minw-inherit, div .minw-inherit, .minw-inherit {min-width: inherit}
-    div div .minh-inherit, div .minh-inherit, .minh-inherit {min-height: inherit}
+    * * *.minw-inherit {min-width: inherit}
+    * * *.minh-inherit {min-height: inherit}
 
-    div div .maxw-inherit, div .maxw-inherit, .maxw-inherit {max-width: inherit}
-    div div .maxh-inherit, div .maxh-inherit, .maxh-inherit {max-height: inherit}
+    * * *.maxw-inherit {max-width: inherit}
+    * * *.maxh-inherit {max-height: inherit}
 
     /************************************** "FIT CONTENT" SIZE ************************************/
-    div div .w-fit-content, div .w-fit-content, .w-fit-content {width: fit-content}
-    div div .h-fit-content, div .h-fit-content, .h-fit-content {height: fit-content}
+    * * *.w-fit-content {width: fit-content}
+    * * *.h-fit-content {height: fit-content}
 
-    div div .minw-fit-content, div .minw-fit-content, .minw-fit-content {min-width: fit-content}
-    div div .minh-fit-content, div .minh-fit-content, .minh-fit-content {min-height: fit-content}
+    * * *.minw-fit-content {min-width: fit-content}
+    * * *.minh-fit-content {min-height: fit-content}
 
-    div div .maxw-fit-content, div .maxw-fit-content, .maxw-fit-content {max-width: fit-content}
-    div div .maxh-fit-content, div .maxh-fit-content, .maxh-fit-content {max-height: fit-content}
+    * * *.maxw-fit-content {max-width: fit-content}
+    * * *.maxh-fit-content {max-height: fit-content}
 
     /******************************* MAX CONTENT & MIN CONTENT SIZE *******************************/
     /** WIDTH: MIN-CONTENT **/
-    .w-min-content, div .w-min-content {width: min-content}
+    .w-min-content {width: min-content}
 
     /** WIDTH: MAX-CONTENT **/
-    .w-max-content, div .w-max-content {width: max-content}
+    .w-max-content {width: max-content}
 
     /** HEIGHT: MIN-CONTENT **/
-    .h-min-content, div .h-min-content {height: min-content}
+    .h-min-content {height: min-content}
 
     /** HEIGHT: MAX-CONTENT **/
-    .h-max-content, div .h-max-content {height: max-content}
+    .h-max-content {height: max-content}
 
     /******************************************* WIDTH ********************************************/
-    div .w-a, .w-a {width: auto}
+    * *.w-a {width: auto}
 
     /*** WIDTH: px ***/
-    div .w-2000, .w-2000 {width: 2000px}
-    div .w-1750, .w-1750 {width: 1750px}
-    div .w-1500, .w-1500 {width: 1500px}
-    div .w-1250, .w-1250 {width: 1250px}
-    div .w-1000, .w-1000 {width: 1000px}
-    div .w-950, .w-950 {width: 950px}
-    div .w-900, .w-900 {width: 900px}
-    div .w-850, .w-850 {width: 850px}
-    div .w-800, .w-800 {width: 800px}
-    div .w-750, .w-750 {width: 750px}
-    div .w-700, .w-700 {width: 700px}
-    div .w-650, .w-650 {width: 650px}
-    div .w-600, .w-600 {width: 600px}
-    div .w-575, .w-575 {width: 575px}
-    div .w-550, .w-550 {width: 550px}
-    div .w-525, .w-525 {width: 525px}
-    div .w-500, .w-500 {width: 500px}
-    div .w-475, .w-475 {width: 475px}
-    div .w-450, .w-450 {width: 450px}
-    div .w-425, .w-425 {width: 425px}
-    div .w-400, .w-400 {width: 400px}
-    div .w-390, .w-390 {width: 390px}
-    div .w-380, .w-380 {width: 380px}
-    div .w-375, .w-375 {width: 375px}
-    div .w-370, .w-370 {width: 370px}
-    div .w-360, .w-360 {width: 360px}
-    div .w-350, .w-350 {width: 350px}
-    div .w-340, .w-340 {width: 340px}
-    div .w-330, .w-330 {width: 330px}
-    div .w-325, .w-325 {width: 325px}
-    div .w-320, .w-320 {width: 320px}
-    div .w-310, .w-310 {width: 310px}
-    div .w-300, .w-300 {width: 300px}
-    div .w-290, .w-290 {width: 290px}
-    div .w-280, .w-280 {width: 280px}
-    div .w-270, .w-270 {width: 270px}
-    div .w-260, .w-260 {width: 260px}
-    div .w-250, .w-250 {width: 250px}
-    div .w-245, .w-245 {width: 245px}
-    div .w-240, .w-240 {width: 240px}
-    div .w-235, .w-235 {width: 235px}
-    div .w-230, .w-230 {width: 230px}
-    div .w-225, .w-225 {width: 225px}
-    div .w-220, .w-220 {width: 220px}
-    div .w-215, .w-215 {width: 215px}
-    div .w-210, .w-210 {width: 210px}
-    div .w-205, .w-205 {width: 205px}
-    div .w-200, .w-200 {width: 200px}
-    div .w-195, .w-195 {width: 195px}
-    div .w-190, .w-190 {width: 190px}
-    div .w-185, .w-185 {width: 185px}
-    div .w-180, .w-180 {width: 180px}
-    div .w-175, .w-175 {width: 175px}
-    div .w-165, .w-165 {width: 165px}
-    div .w-160, .w-160 {width: 160px}
-    div .w-155, .w-155 {width: 155px}
-    div .w-150, .w-150 {width: 150px}
-    div .w-145, .w-145 {width: 145px}
-    div .w-140, .w-140 {width: 140px}
-    div .w-135, .w-135 {width: 135px}
-    div .w-130, .w-130 {width: 130px}
-    div .w-125, .w-125 {width: 125px}
-    div .w-120, .w-120 {width: 120px}
-    div .w-115, .w-115 {width: 115px}
-    div .w-110, .w-110 {width: 110px}
-    div .w-105, .w-105 {width: 105px}
-    div .w-100, .w-100 {width: 100px}
-    div .w-95, .w-95 {width: 95px}
-    div .w-90, .w-90 {width: 90px}
-    div .w-85, .w-85 {width: 85px}
-    div .w-80, .w-80 {width: 80px}
-    div .w-76, .w-76 {width: 76px}
-    div .w-75, .w-75 {width: 75px}
-    div .w-70, .w-70 {width: 70px}
-    div .w-65, .w-65 {width: 65px}
-    div .w-60, .w-60 {width: 60px}
-    div .w-55, .w-55 {width: 55px}
-    div .w-50, .w-50 {width: 50px}
-    div .w-45, .w-45 {width: 45px}
-    div .w-40, .w-40 {width: 40px}
-    div .w-38, .w-38 {width: 38px}
-    div .w-35, .w-35 {width: 35px}
-    div .w-34, .w-34 {width: 34px}
-    div .w-32, .w-32 {width: 32px}
-    div .w-30, .w-30 {width: 30px}
-    div .w-29, .w-29 {width: 29px}
-    div .w-28, .w-28 {width: 28px}
-    div .w-27, .w-27 {width: 27px}
-    div .w-26, .w-26 {width: 26px}
-    div .w-25, .w-25 {width: 25px}
-    div .w-24, .w-24 {width: 24px}
-    div .w-23, .w-23 {width: 23px}
-    div .w-22, .w-22 {width: 22px}
-    div .w-21, .w-21 {width: 21px}
-    div .w-20, .w-20 {width: 20px}
-    div .w-19, .w-19 {width: 19px}
-    div .w-18, .w-18 {width: 18px}
-    div .w-17, .w-17 {width: 17px}
-    div .w-16, .w-16 {width: 16px}
-    div .w-15, .w-15 {width: 15px}
-    div .w-14, .w-14 {width: 14px}
-    div .w-13, .w-13 {width: 13px}
-    div .w-12, .w-12 {width: 12px}
-    div .w-11, .w-11 {width: 11px}
-    div .w-10, .w-10 {width: 10px}
-    div .w-9, .w-9 {width: 9px}
-    div .w-8, .w-8 {width: 8px}
-    div .w-7, .w-7 {width: 7px}
-    div .w-6, .w-6 {width: 6px}
-    div .w-5, .w-5 {width: 5px}
-    div .w-4, .w-4 {width: 4px}
-    div .w-3, .w-3 {width: 3px}
-    div .w-2, .w-2 {width: 2px}
-    div .w-1, .w-1 {width: 1px}
-    div .w-0, .w-0 {width: 0px}
+    * *.w-2000 {width: 2000px}
+    * *.w-1750 {width: 1750px}
+    * *.w-1500 {width: 1500px}
+    * *.w-1250 {width: 1250px}
+    * *.w-1000 {width: 1000px}
+    * *.w-950 {width: 950px}
+    * *.w-900 {width: 900px}
+    * *.w-850 {width: 850px}
+    * *.w-800 {width: 800px}
+    * *.w-750 {width: 750px}
+    * *.w-700 {width: 700px}
+    * *.w-650 {width: 650px}
+    * *.w-600 {width: 600px}
+    * *.w-575 {width: 575px}
+    * *.w-550 {width: 550px}
+    * *.w-525 {width: 525px}
+    * *.w-500 {width: 500px}
+    * *.w-475 {width: 475px}
+    * *.w-450 {width: 450px}
+    * *.w-425 {width: 425px}
+    * *.w-400 {width: 400px}
+    * *.w-390 {width: 390px}
+    * *.w-380 {width: 380px}
+    * *.w-375 {width: 375px}
+    * *.w-370 {width: 370px}
+    * *.w-360 {width: 360px}
+    * *.w-350 {width: 350px}
+    * *.w-340 {width: 340px}
+    * *.w-330 {width: 330px}
+    * *.w-325 {width: 325px}
+    * *.w-320 {width: 320px}
+    * *.w-310 {width: 310px}
+    * *.w-300 {width: 300px}
+    * *.w-290 {width: 290px}
+    * *.w-280 {width: 280px}
+    * *.w-270 {width: 270px}
+    * *.w-260 {width: 260px}
+    * *.w-250 {width: 250px}
+    * *.w-245 {width: 245px}
+    * *.w-240 {width: 240px}
+    * *.w-235 {width: 235px}
+    * *.w-230 {width: 230px}
+    * *.w-225 {width: 225px}
+    * *.w-220 {width: 220px}
+    * *.w-215 {width: 215px}
+    * *.w-210 {width: 210px}
+    * *.w-205 {width: 205px}
+    * *.w-200 {width: 200px}
+    * *.w-195 {width: 195px}
+    * *.w-190 {width: 190px}
+    * *.w-185 {width: 185px}
+    * *.w-180 {width: 180px}
+    * *.w-175 {width: 175px}
+    * *.w-165 {width: 165px}
+    * *.w-160 {width: 160px}
+    * *.w-155 {width: 155px}
+    * *.w-150 {width: 150px}
+    * *.w-145 {width: 145px}
+    * *.w-140 {width: 140px}
+    * *.w-135 {width: 135px}
+    * *.w-130 {width: 130px}
+    * *.w-125 {width: 125px}
+    * *.w-120 {width: 120px}
+    * *.w-115 {width: 115px}
+    * *.w-110 {width: 110px}
+    * *.w-105 {width: 105px}
+    * *.w-100 {width: 100px}
+    * *.w-95 {width: 95px}
+    * *.w-90 {width: 90px}
+    * *.w-85 {width: 85px}
+    * *.w-80 {width: 80px}
+    * *.w-76 {width: 76px}
+    * *.w-75 {width: 75px}
+    * *.w-70 {width: 70px}
+    * *.w-65 {width: 65px}
+    * *.w-60 {width: 60px}
+    * *.w-55 {width: 55px}
+    * *.w-50 {width: 50px}
+    * *.w-45 {width: 45px}
+    * *.w-40 {width: 40px}
+    * *.w-38 {width: 38px}
+    * *.w-35 {width: 35px}
+    * *.w-34 {width: 34px}
+    * *.w-32 {width: 32px}
+    * *.w-30 {width: 30px}
+    * *.w-29 {width: 29px}
+    * *.w-28 {width: 28px}
+    * *.w-27 {width: 27px}
+    * *.w-26 {width: 26px}
+    * *.w-25 {width: 25px}
+    * *.w-24 {width: 24px}
+    * *.w-23 {width: 23px}
+    * *.w-22 {width: 22px}
+    * *.w-21 {width: 21px}
+    * *.w-20 {width: 20px}
+    * *.w-19 {width: 19px}
+    * *.w-18 {width: 18px}
+    * *.w-17 {width: 17px}
+    * *.w-16 {width: 16px}
+    * *.w-15 {width: 15px}
+    * *.w-14 {width: 14px}
+    * *.w-13 {width: 13px}
+    * *.w-12 {width: 12px}
+    * *.w-11 {width: 11px}
+    * *.w-10 {width: 10px}
+    * *.w-9 {width: 9px}
+    * *.w-8 {width: 8px}
+    * *.w-7 {width: 7px}
+    * *.w-6 {width: 6px}
+    * *.w-5 {width: 5px}
+    * *.w-4 {width: 4px}
+    * *.w-3 {width: 3px}
+    * *.w-2 {width: 2px}
+    * *.w-1 {width: 1px}
+    * *.w-0 {width: 0px}
 
     /*** WIDTH: % ***/
-    div .w-100p, .w-100p {width: 100%}
-    div .w-99p, .w-99p {width: 99%}
-    div .w-98p, .w-98p {width: 98%}
-    div .w-97p, .w-97p {width: 97%}
-    div .w-96p, .w-96p {width: 96%}
-    div .w-95p, .w-95p {width: 95%}
-    div .w-94p, .w-94p {width: 94%}
-    div .w-93p, .w-93p {width: 93%}
-    div .w-92p, .w-92p {width: 92%}
-    div .w-91p, .w-91p {width: 91%}
-    div .w-90p, .w-90p {width: 90%}
-    div .w-89p, .w-89p {width: 89%}
-    div .w-88p, .w-88p {width: 88%}
-    div .w-87p, .w-87p {width: 87%}
-    div .w-86p, .w-86p {width: 86%}
-    div .w-85p, .w-85p {width: 85%}
-    div .w-84p, .w-84p {width: 84%}
-    div .w-83p, .w-83p {width: 83%}
-    div .w-82p, .w-82p {width: 82%}
-    div .w-81p, .w-81p {width: 81%}
-    div .w-80p, .w-80p {width: 80%}
-    div .w-79p, .w-79p {width: 79%}
-    div .w-78p, .w-78p {width: 78%}
-    div .w-77p, .w-77p {width: 77%}
-    div .w-76p, .w-76p {width: 76%}
-    div .w-75p, .w-75p {width: 75%}
-    div .w-74p, .w-74p {width: 74%}
-    div .w-73p, .w-73p {width: 73%}
-    div .w-72p, .w-72p {width: 72%}
-    div .w-71p, .w-71p {width: 71%}
-    div .w-70p, .w-70p {width: 70%}
-    div .w-68p, .w-68p {width: 68%}
-    div .w-67p, .w-67p {width: 67%}
-    div .w-65p, .w-65p {width: 65%}
-    div .w-63p, .w-63p {width: 63%}
-    div .w-62p, .w-62p {width: 62%}
-    div .w-60p, .w-60p {width: 60%}
-    div .w-58p, .w-58p {width: 58%}
-    div .w-57p, .w-77p {width: 55%}
-    div .w-55p, .w-55p {width: 55%}
-    div .w-53p, .w-53p {width: 53%}
-    div .w-52p, .w-52p {width: 52%}
-    div .w-50p, .w-50p {width: 50%}
-    div .w-48p, .w-48p {width: 48%}
-    div .w-47p, .w-47p {width: 47%}
-    div .w-45p, .w-45p {width: 45%}
-    div .w-43p, .w-43p {width: 43%}
-    div .w-42p, .w-42p {width: 42%}
-    div .w-40p, .w-40p {width: 40%}
-    div .w-38p, .w-38p {width: 38%}
-    div .w-37p, .w-37p {width: 37%}
-    div .w-35p, .w-35p {width: 35%}
-    div .w-34p, .w-34p {width: 34%}
-    div .w-33p, .w-33p {width: 33%}
-    div .w-32p, .w-32p {width: 32%}
-    div .w-30p, .w-30p {width: 30%}
-    div .w-29p, .w-29p {width: 29%}
-    div .w-28p, .w-28p {width: 28%}
-    div .w-27p, .w-27p {width: 27%}
-    div .w-26p, .w-26p {width: 26%}
-    div .w-25p, .w-25p {width: 25%}
-    div .w-24p, .w-24p {width: 24%}
-    div .w-23p, .w-23p {width: 23%}
-    div .w-22p, .w-22p {width: 22%}
-    div .w-21p, .w-21p {width: 21%}
-    div .w-20p, .w-20p {width: 20%}
-    div .w-19p, .w-19p {width: 19%}
-    div .w-18p, .w-18p {width: 18%}
-    div .w-17p, .w-17p {width: 17%}
-    div .w-16p, .w-16p {width: 16%}
-    div .w-15p, .w-15p {width: 15%}
-    div .w-14p, .w-14p {width: 14%}
-    div .w-13p, .w-13p {width: 13%}
-    div .w-12p, .w-12p {width: 12%}
-    div .w-11p, .w-11p {width: 11%}
-    div .w-10p, .w-10p {width: 10%}
-    div .w-9p, .w-9p {width: 9%}
-    div .w-8p, .w-8p {width: 8%}
-    div .w-7p, .w-7p {width: 7%}
-    div .w-6p, .w-6p {width: 6%}
-    div .w-5p, .w-5p {width: 5%}
-    div .w-4p, .w-4p {width: 4%}
-    div .w-3p, .w-3p {width: 3%}
-    div .w-2p, .w-2p {width: 2%}
-    div .w-1p, .w-1p {width: 1%}
-    div .w-0p, .w-0p {width: 0%}
+    * *.w-100p {width: 100%}
+    * *.w-99p {width: 99%}
+    * *.w-98p {width: 98%}
+    * *.w-97p {width: 97%}
+    * *.w-96p {width: 96%}
+    * *.w-95p {width: 95%}
+    * *.w-94p {width: 94%}
+    * *.w-93p {width: 93%}
+    * *.w-92p {width: 92%}
+    * *.w-91p {width: 91%}
+    * *.w-90p {width: 90%}
+    * *.w-89p {width: 89%}
+    * *.w-88p {width: 88%}
+    * *.w-87p {width: 87%}
+    * *.w-86p {width: 86%}
+    * *.w-85p {width: 85%}
+    * *.w-84p {width: 84%}
+    * *.w-83p {width: 83%}
+    * *.w-82p {width: 82%}
+    * *.w-81p {width: 81%}
+    * *.w-80p {width: 80%}
+    * *.w-79p {width: 79%}
+    * *.w-78p {width: 78%}
+    * *.w-77p {width: 77%}
+    * *.w-76p {width: 76%}
+    * *.w-75p {width: 75%}
+    * *.w-74p {width: 74%}
+    * *.w-73p {width: 73%}
+    * *.w-72p {width: 72%}
+    * *.w-71p {width: 71%}
+    * *.w-70p {width: 70%}
+    * *.w-68p {width: 68%}
+    * *.w-67p {width: 67%}
+    * *.w-65p {width: 65%}
+    * *.w-63p {width: 63%}
+    * *.w-62p {width: 62%}
+    * *.w-60p {width: 60%}
+    * *.w-58p {width: 58%}
+    * *.w-57p {width: 55%}
+    * *.w-55p {width: 55%}
+    * *.w-53p {width: 53%}
+    * *.w-52p {width: 52%}
+    * *.w-50p {width: 50%}
+    * *.w-48p {width: 48%}
+    * *.w-47p {width: 47%}
+    * *.w-45p {width: 45%}
+    * *.w-43p {width: 43%}
+    * *.w-42p {width: 42%}
+    * *.w-40p {width: 40%}
+    * *.w-38p {width: 38%}
+    * *.w-37p {width: 37%}
+    * *.w-35p {width: 35%}
+    * *.w-34p {width: 34%}
+    * *.w-33p {width: 33%}
+    * *.w-32p {width: 32%}
+    * *.w-30p {width: 30%}
+    * *.w-29p {width: 29%}
+    * *.w-28p {width: 28%}
+    * *.w-27p {width: 27%}
+    * *.w-26p {width: 26%}
+    * *.w-25p {width: 25%}
+    * *.w-24p {width: 24%}
+    * *.w-23p {width: 23%}
+    * *.w-22p {width: 22%}
+    * *.w-21p {width: 21%}
+    * *.w-20p {width: 20%}
+    * *.w-19p {width: 19%}
+    * *.w-18p {width: 18%}
+    * *.w-17p {width: 17%}
+    * *.w-16p {width: 16%}
+    * *.w-15p {width: 15%}
+    * *.w-14p {width: 14%}
+    * *.w-13p {width: 13%}
+    * *.w-12p {width: 12%}
+    * *.w-11p {width: 11%}
+    * *.w-10p {width: 10%}
+    * *.w-9p {width: 9%}
+    * *.w-8p {width: 8%}
+    * *.w-7p {width: 7%}
+    * *.w-6p {width: 6%}
+    * *.w-5p {width: 5%}
+    * *.w-4p {width: 4%}
+    * *.w-3p {width: 3%}
+    * *.w-2p {width: 2%}
+    * *.w-1p {width: 1%}
+    * *.w-0p {width: 0%}
 
     /*** WIDTH: all: px ***/
     .w-all-2000 {max-width: 2000px; min-width: 2000px; width: 2000px;}
@@ -359,301 +359,301 @@
 
 
     /*** WIDTH: all: % ***/
-    div .w-all-100p, .w-all-100p {width: 100%; min-width: 100%; max-width: 100%;}
-    div .w-all-99p, .w-all-99p {width: 99%; min-width: 99%; max-width: 99%;}
-    div .w-all-98p, .w-all-98p {width: 98%; min-width: 98%; max-width: 98%;}
-    div .w-all-97p, .w-all-97p {width: 97%; min-width: 97%; max-width: 97%;}
-    div .w-all-96p, .w-all-96p {width: 96%; min-width: 96%; max-width: 96%;}
-    div .w-all-95p, .w-all-95p {width: 95%; min-width: 95%; max-width: 95%;}
-    div .w-all-94p, .w-all-94p {width: 94%; min-width: 94%; max-width: 94%;}
-    div .w-all-93p, .w-all-93p {width: 93%; min-width: 93%; max-width: 93%;}
-    div .w-all-92p, .w-all-92p {width: 92%; min-width: 92%; max-width: 92%;}
-    div .w-all-91p, .w-all-91p {width: 91%; min-width: 91%; max-width: 91%;}
-    div .w-all-90p, .w-all-90p {width: 90%; min-width: 90%; max-width: 90%;}
-    div .w-all-89p, .w-all-89p {width: 89%; min-width: 89%; max-width: 89%;}
-    div .w-all-88p, .w-all-88p {width: 88%; min-width: 88%; max-width: 88%;}
-    div .w-all-87p, .w-all-87p {width: 87%; min-width: 87%; max-width: 87%;}
-    div .w-all-86p, .w-all-86p {width: 86%; min-width: 86%; max-width: 86%;}
-    div .w-all-85p, .w-all-85p {width: 85%; min-width: 85%; max-width: 85%;}
-    div .w-all-84p, .w-all-84p {width: 84%; min-width: 84%; max-width: 84%;}
-    div .w-all-83p, .w-all-83p {width: 83%; min-width: 83%; max-width: 83%;}
-    div .w-all-82p, .w-all-82p {width: 82%; min-width: 82%; max-width: 82%;}
-    div .w-all-81p, .w-all-81p {width: 81%; min-width: 81%; max-width: 81%;}
-    div .w-all-80p, .w-all-80p {width: 80%; min-width: 80%; max-width: 80%;}
-    div .w-all-79p, .w-all-79p {width: 79%; min-width: 79%; max-width: 79%;}
-    div .w-all-78p, .w-all-78p {width: 78%; min-width: 78%; max-width: 78%;}
-    div .w-all-77p, .w-all-77p {width: 77%; min-width: 77%; max-width: 77%;}
-    div .w-all-76p, .w-all-76p {width: 76%; min-width: 76%; max-width: 76%;}
-    div .w-all-75p, .w-all-75p {width: 75%; min-width: 75%; max-width: 75%;}
-    div .w-all-74p, .w-all-74p {width: 74%; min-width: 74%; max-width: 74%;}
-    div .w-all-73p, .w-all-73p {width: 73%; min-width: 73%; max-width: 73%;}
-    div .w-all-72p, .w-all-72p {width: 72%; min-width: 72%; max-width: 72%;}
-    div .w-all-71p, .w-all-71p {width: 71%; min-width: 71%; max-width: 71%;}
-    div .w-all-70p, .w-all-70p {width: 70%; min-width: 70%; max-width: 70%;}
-    div .w-all-68p, .w-all-68p {width: 68%; min-width: 68%; max-width: 68%;}
-    div .w-all-67p, .w-all-67p {width: 67%; min-width: 67%; max-width: 67%;}
-    div .w-all-65p, .w-all-65p {width: 65%; min-width: 65%; max-width: 65%;}
-    div .w-all-63p, .w-all-63p {width: 63%; min-width: 63%; max-width: 63%;}
-    div .w-all-62p, .w-all-62p {width: 62%; min-width: 62%; max-width: 62%;}
-    div .w-all-60p, .w-all-60p {width: 60%; min-width: 60%; max-width: 60%;}
-    div .w-all-58p, .w-all-58p {width: 58%; min-width: 58%; max-width: 58%;}
-    div .w-all-57p, .w-all-77p {width: 55%; min-width: 55%; max-width: 55%;}
-    div .w-all-55p, .w-all-55p {width: 55%; min-width: 55%; max-width: 55%;}
-    div .w-all-53p, .w-all-53p {width: 53%; min-width: 53%; max-width: 53%;}
-    div .w-all-52p, .w-all-52p {width: 52%; min-width: 52%; max-width: 52%;}
-    div .w-all-50p, .w-all-50p {width: 50%; min-width: 50%; max-width: 50%;}
-    div .w-all-48p, .w-all-48p {width: 48%; min-width: 48%; max-width: 48%;}
-    div .w-all-47p, .w-all-47p {width: 47%; min-width: 47%; max-width: 47%;}
-    div .w-all-45p, .w-all-45p {width: 45%; min-width: 45%; max-width: 45%;}
-    div .w-all-43p, .w-all-43p {width: 43%; min-width: 43%; max-width: 43%;}
-    div .w-all-42p, .w-all-42p {width: 42%; min-width: 42%; max-width: 42%;}
-    div .w-all-40p, .w-all-40p {width: 40%; min-width: 40%; max-width: 40%;}
-    div .w-all-38p, .w-all-38p {width: 38%; min-width: 38%; max-width: 38%;}
-    div .w-all-37p, .w-all-37p {width: 37%; min-width: 37%; max-width: 37%;}
-    div .w-all-35p, .w-all-35p {width: 35%; min-width: 35%; max-width: 35%;}
-    div .w-all-34p, .w-all-34p {width: 34%; min-width: 34%; max-width: 34%;}
-    div .w-all-33p, .w-all-33p {width: 33%; min-width: 33%; max-width: 33%;}
-    div .w-all-32p, .w-all-32p {width: 32%; min-width: 32%; max-width: 32%;}
-    div .w-all-30p, .w-all-30p {width: 30%; min-width: 30%; max-width: 30%;}
-    div .w-all-29p, .w-all-29p {width: 29%; min-width: 29%; max-width: 29%;}
-    div .w-all-28p, .w-all-28p {width: 28%; min-width: 28%; max-width: 28%;}
-    div .w-all-27p, .w-all-27p {width: 27%; min-width: 27%; max-width: 27%;}
-    div .w-all-26p, .w-all-26p {width: 26%; min-width: 26%; max-width: 26%;}
-    div .w-all-25p, .w-all-25p {width: 25%; min-width: 25%; max-width: 25%;}
-    div .w-all-24p, .w-all-24p {width: 24%; min-width: 24%; max-width: 24%;}
-    div .w-all-23p, .w-all-23p {width: 23%; min-width: 23%; max-width: 23%;}
-    div .w-all-22p, .w-all-22p {width: 22%; min-width: 22%; max-width: 22%;}
-    div .w-all-21p, .w-all-21p {width: 21%; min-width: 21%; max-width: 21%;}
-    div .w-all-20p, .w-all-20p {width: 20%; min-width: 20%; max-width: 20%;}
-    div .w-all-19p, .w-all-19p {width: 19%; min-width: 19%; max-width: 19%;}
-    div .w-all-18p, .w-all-18p {width: 18%; min-width: 18%; max-width: 18%;}
-    div .w-all-17p, .w-all-17p {width: 17%; min-width: 17%; max-width: 17%;}
-    div .w-all-16p, .w-all-16p {width: 16%; min-width: 16%; max-width: 16%;}
-    div .w-all-15p, .w-all-15p {width: 15%; min-width: 15%; max-width: 15%;}
-    div .w-all-14p, .w-all-14p {width: 14%; min-width: 14%; max-width: 14%;}
-    div .w-all-13p, .w-all-13p {width: 13%; min-width: 13%; max-width: 13%;}
-    div .w-all-12p, .w-all-12p {width: 12%; min-width: 12%; max-width: 12%;}
-    div .w-all-11p, .w-all-11p {width: 11%; min-width: 11%; max-width: 11%;}
-    div .w-all-10p, .w-all-10p {width: 10%; min-width: 10%; max-width: 10%;}
-    div .w-all-9p, .w-all-9p {width: 9%; min-width: 9%; max-width: 9%;}
-    div .w-all-8p, .w-all-8p {width: 8%; min-width: 8%; max-width: 8%;}
-    div .w-all-7p, .w-all-7p {width: 7%; min-width: 7%; max-width: 7%;}
-    div .w-all-6p, .w-all-6p {width: 6%; min-width: 6%; max-width: 6%;}
-    div .w-all-5p, .w-all-5p {width: 5%; min-width: 5%; max-width: 5%;}
-    div .w-all-4p, .w-all-4p {width: 4%; min-width: 4%; max-width: 4%;}
-    div .w-all-3p, .w-all-3p {width: 3%; min-width: 3%; max-width: 3%;}
-    div .w-all-2p, .w-all-2p {width: 2%; min-width: 2%; max-width: 2%;}
-    div .w-all-1p, .w-all-1p {width: 1%; min-width: 1%; max-width: 1%;}
-    div .w-all-0p, .w-all-0p {width: 0%; min-width: 0%; max-width: 0%;}
+    * *.w-all-100p {width: 100%; min-width: 100%; max-width: 100%;}
+    * *.w-all-99p {width: 99%; min-width: 99%; max-width: 99%;}
+    * *.w-all-98p {width: 98%; min-width: 98%; max-width: 98%;}
+    * *.w-all-97p {width: 97%; min-width: 97%; max-width: 97%;}
+    * *.w-all-96p {width: 96%; min-width: 96%; max-width: 96%;}
+    * *.w-all-95p {width: 95%; min-width: 95%; max-width: 95%;}
+    * *.w-all-94p {width: 94%; min-width: 94%; max-width: 94%;}
+    * *.w-all-93p {width: 93%; min-width: 93%; max-width: 93%;}
+    * *.w-all-92p {width: 92%; min-width: 92%; max-width: 92%;}
+    * *.w-all-91p {width: 91%; min-width: 91%; max-width: 91%;}
+    * *.w-all-90p {width: 90%; min-width: 90%; max-width: 90%;}
+    * *.w-all-89p {width: 89%; min-width: 89%; max-width: 89%;}
+    * *.w-all-88p {width: 88%; min-width: 88%; max-width: 88%;}
+    * *.w-all-87p {width: 87%; min-width: 87%; max-width: 87%;}
+    * *.w-all-86p {width: 86%; min-width: 86%; max-width: 86%;}
+    * *.w-all-85p {width: 85%; min-width: 85%; max-width: 85%;}
+    * *.w-all-84p {width: 84%; min-width: 84%; max-width: 84%;}
+    * *.w-all-83p {width: 83%; min-width: 83%; max-width: 83%;}
+    * *.w-all-82p {width: 82%; min-width: 82%; max-width: 82%;}
+    * *.w-all-81p {width: 81%; min-width: 81%; max-width: 81%;}
+    * *.w-all-80p {width: 80%; min-width: 80%; max-width: 80%;}
+    * *.w-all-79p {width: 79%; min-width: 79%; max-width: 79%;}
+    * *.w-all-78p {width: 78%; min-width: 78%; max-width: 78%;}
+    * *.w-all-77p {width: 77%; min-width: 77%; max-width: 77%;}
+    * *.w-all-76p {width: 76%; min-width: 76%; max-width: 76%;}
+    * *.w-all-75p {width: 75%; min-width: 75%; max-width: 75%;}
+    * *.w-all-74p {width: 74%; min-width: 74%; max-width: 74%;}
+    * *.w-all-73p {width: 73%; min-width: 73%; max-width: 73%;}
+    * *.w-all-72p {width: 72%; min-width: 72%; max-width: 72%;}
+    * *.w-all-71p {width: 71%; min-width: 71%; max-width: 71%;}
+    * *.w-all-70p {width: 70%; min-width: 70%; max-width: 70%;}
+    * *.w-all-68p {width: 68%; min-width: 68%; max-width: 68%;}
+    * *.w-all-67p {width: 67%; min-width: 67%; max-width: 67%;}
+    * *.w-all-65p {width: 65%; min-width: 65%; max-width: 65%;}
+    * *.w-all-63p {width: 63%; min-width: 63%; max-width: 63%;}
+    * *.w-all-62p {width: 62%; min-width: 62%; max-width: 62%;}
+    * *.w-all-60p {width: 60%; min-width: 60%; max-width: 60%;}
+    * *.w-all-58p {width: 58%; min-width: 58%; max-width: 58%;}
+    * *.w-all-57p {width: 55%; min-width: 55%; max-width: 55%;}
+    * *.w-all-55p {width: 55%; min-width: 55%; max-width: 55%;}
+    * *.w-all-53p {width: 53%; min-width: 53%; max-width: 53%;}
+    * *.w-all-52p {width: 52%; min-width: 52%; max-width: 52%;}
+    * *.w-all-50p {width: 50%; min-width: 50%; max-width: 50%;}
+    * *.w-all-48p {width: 48%; min-width: 48%; max-width: 48%;}
+    * *.w-all-47p {width: 47%; min-width: 47%; max-width: 47%;}
+    * *.w-all-45p {width: 45%; min-width: 45%; max-width: 45%;}
+    * *.w-all-43p {width: 43%; min-width: 43%; max-width: 43%;}
+    * *.w-all-42p {width: 42%; min-width: 42%; max-width: 42%;}
+    * *.w-all-40p {width: 40%; min-width: 40%; max-width: 40%;}
+    * *.w-all-38p {width: 38%; min-width: 38%; max-width: 38%;}
+    * *.w-all-37p {width: 37%; min-width: 37%; max-width: 37%;}
+    * *.w-all-35p {width: 35%; min-width: 35%; max-width: 35%;}
+    * *.w-all-34p {width: 34%; min-width: 34%; max-width: 34%;}
+    * *.w-all-33p {width: 33%; min-width: 33%; max-width: 33%;}
+    * *.w-all-32p {width: 32%; min-width: 32%; max-width: 32%;}
+    * *.w-all-30p {width: 30%; min-width: 30%; max-width: 30%;}
+    * *.w-all-29p {width: 29%; min-width: 29%; max-width: 29%;}
+    * *.w-all-28p {width: 28%; min-width: 28%; max-width: 28%;}
+    * *.w-all-27p {width: 27%; min-width: 27%; max-width: 27%;}
+    * *.w-all-26p {width: 26%; min-width: 26%; max-width: 26%;}
+    * *.w-all-25p {width: 25%; min-width: 25%; max-width: 25%;}
+    * *.w-all-24p {width: 24%; min-width: 24%; max-width: 24%;}
+    * *.w-all-23p {width: 23%; min-width: 23%; max-width: 23%;}
+    * *.w-all-22p {width: 22%; min-width: 22%; max-width: 22%;}
+    * *.w-all-21p {width: 21%; min-width: 21%; max-width: 21%;}
+    * *.w-all-20p {width: 20%; min-width: 20%; max-width: 20%;}
+    * *.w-all-19p {width: 19%; min-width: 19%; max-width: 19%;}
+    * *.w-all-18p {width: 18%; min-width: 18%; max-width: 18%;}
+    * *.w-all-17p {width: 17%; min-width: 17%; max-width: 17%;}
+    * *.w-all-16p {width: 16%; min-width: 16%; max-width: 16%;}
+    * *.w-all-15p {width: 15%; min-width: 15%; max-width: 15%;}
+    * *.w-all-14p {width: 14%; min-width: 14%; max-width: 14%;}
+    * *.w-all-13p {width: 13%; min-width: 13%; max-width: 13%;}
+    * *.w-all-12p {width: 12%; min-width: 12%; max-width: 12%;}
+    * *.w-all-11p {width: 11%; min-width: 11%; max-width: 11%;}
+    * *.w-all-10p {width: 10%; min-width: 10%; max-width: 10%;}
+    * *.w-all-9p {width: 9%; min-width: 9%; max-width: 9%;}
+    * *.w-all-8p {width: 8%; min-width: 8%; max-width: 8%;}
+    * *.w-all-7p {width: 7%; min-width: 7%; max-width: 7%;}
+    * *.w-all-6p {width: 6%; min-width: 6%; max-width: 6%;}
+    * *.w-all-5p {width: 5%; min-width: 5%; max-width: 5%;}
+    * *.w-all-4p {width: 4%; min-width: 4%; max-width: 4%;}
+    * *.w-all-3p {width: 3%; min-width: 3%; max-width: 3%;}
+    * *.w-all-2p {width: 2%; min-width: 2%; max-width: 2%;}
+    * *.w-all-1p {width: 1%; min-width: 1%; max-width: 1%;}
+    * *.w-all-0p {width: 0%; min-width: 0%; max-width: 0%;}
 
 
     /********************************************* HEIGHT *********************************************/
-    div .h-a, .h-a {height: auto}
+    * *.h-a {height: auto}
 
     /*** HEIGHT: px ***/
-    div .h-2000, .h-2000 {height: 2000px}
-    div .h-1750, .h-1750 {height: 1750px}
-    div .h-1500, .h-1500 {height: 1500px}
-    div .h-1250, .h-1250 {height: 1250px}
-    div .h-1000, .h-1000 {height: 1000px}
-    div .h-950, .h-950 {height: 950px}
-    div .h-900, .h-900 {height: 900px}
-    div .h-850, .h-850 {height: 850px}
-    div .h-800, .h-800 {height: 800px}
-    div .h-750, .h-750 {height: 750px}
-    div .h-700, .h-700 {height: 700px}
-    div .h-650, .h-650 {height: 650px}
-    div .h-600, .h-600 {height: 600px}
-    div .h-575, .h-575 {height: 575px}
-    div .h-550, .h-550 {height: 550px}
-    div .h-525, .h-525 {height: 525px}
-    div .h-500, .h-500 {height: 500px}
-    div .h-475, .h-475 {height: 475px}
-    div .h-450, .h-450 {height: 450px}
-    div .h-425, .h-425 {height: 425px}
-    div .h-400, .h-400 {height: 400px}
-    div .h-390, .h-390 {height: 390px}
-    div .h-380, .h-380 {height: 380px}
-    div .h-375, .h-375 {height: 375px}
-    div .h-370, .h-370 {height: 370px}
-    div .h-360, .h-360 {height: 360px}
-    div .h-350, .h-350 {height: 350px}
-    div .h-340, .h-340 {height: 340px}
-    div .h-330, .h-330 {height: 330px}
-    div .h-325, .h-325 {height: 325px}
-    div .h-320, .h-320 {height: 320px}
-    div .h-310, .h-310 {height: 310px}
-    div .h-300, .h-300 {height: 300px}
-    div .h-290, .h-290 {height: 290px}
-    div .h-280, .h-280 {height: 280px}
-    div .h-270, .h-270 {height: 270px}
-    div .h-260, .h-260 {height: 260px}
-    div .h-250, .h-250 {height: 250px}
-    div .h-245, .h-245 {height: 245px}
-    div .h-240, .h-240 {height: 240px}
-    div .h-235, .h-235 {height: 235px}
-    div .h-230, .h-230 {height: 230px}
-    div .h-225, .h-225 {height: 225px}
-    div .h-220, .h-220 {height: 220px}
-    div .h-215, .h-215 {height: 215px}
-    div .h-210, .h-210 {height: 210px}
-    div .h-205, .h-205 {height: 205px}
-    div .h-200, .h-200 {height: 200px}
-    div .h-195, .h-195 {height: 195px}
-    div .h-190, .h-190 {height: 190px}
-    div .h-185, .h-185 {height: 185px}
-    div .h-180, .h-180 {height: 180px}
-    div .h-175, .h-175 {height: 175px}
-    div .h-165, .h-165 {height: 165px}
-    div .h-160, .h-160 {height: 160px}
-    div .h-155, .h-155 {height: 155px}
-    div .h-150, .h-150 {height: 150px}
-    div .h-145, .h-145 {height: 145px}
-    div .h-140, .h-140 {height: 140px}
-    div .h-135, .h-135 {height: 135px}
-    div .h-130, .h-130 {height: 130px}
-    div .h-125, .h-125 {height: 125px}
-    div .h-120, .h-120 {height: 120px}
-    div .h-115, .h-115 {height: 115px}
-    div .h-110, .h-110 {height: 110px}
-    div .h-105, .h-105 {height: 105px}
-    div .h-100, .h-100 {height: 100px}
-    div .h-95, .h-95 {height: 95px}
-    div .h-90, .h-90 {height: 90px}
-    div .h-85, .h-85 {height: 85px}
-    div .h-80, .h-80 {height: 80px}
-    div .h-76, .h-76 {height: 76px}
-    div .h-75, .h-75 {height: 75px}
-    div .h-70, .h-70 {height: 70px}
-    div .h-65, .h-65 {height: 65px}
-    div .h-60, .h-60 {height: 60px}
-    div .h-55, .h-55 {height: 55px}
-    div .h-50, .h-50 {height: 50px}
-    div .h-45, .h-45 {height: 45px}
-    div .h-40, .h-40 {height: 40px}
-    div .h-38, .h-38 {height: 38px}
-    div .h-35, .h-35 {height: 35px}
-    div .h-34, .h-34 {height: 34px}
-    div .h-32, .h-32 {height: 32px}
-    div .h-30, .h-30 {height: 30px}
-    div .h-29, .h-29 {height: 29px}
-    div .h-28, .h-28 {height: 28px}
-    div .h-27, .h-27 {height: 27px}
-    div .h-26, .h-26 {height: 26px}
-    div .h-25, .h-25 {height: 25px}
-    div .h-24, .h-24 {height: 24px}
-    div .h-23, .h-23 {height: 23px}
-    div .h-22, .h-22 {height: 22px}
-    div .h-21, .h-21 {height: 21px}
-    div .h-20, .h-20 {height: 20px}
-    div .h-19, .h-19 {height: 19px}
-    div .h-18, .h-18 {height: 18px}
-    div .h-17, .h-17 {height: 17px}
-    div .h-16, .h-16 {height: 16px}
-    div .h-15, .h-15 {height: 15px}
-    div .h-14, .h-14 {height: 14px}
-    div .h-13, .h-13 {height: 13px}
-    div .h-12, .h-12 {height: 12px}
-    div .h-11, .h-11 {height: 11px}
-    div .h-10, .h-10 {height: 10px}
-    div .h-9, .h-9 {height: 9px}
-    div .h-8, .h-8 {height: 8px}
-    div .h-7, .h-7 {height: 7px}
-    div .h-6, .h-6 {height: 6px}
-    div .h-5, .h-5 {height: 5px}
-    div .h-4, .h-4 {height: 4px}
-    div .h-3, .h-3 {height: 3px}
-    div .h-2, .h-2 {height: 2px}
-    div .h-1, .h-1 {height: 1px}
-    div .h-0, .h-0 {height: 0px}
+    * *.h-2000 {height: 2000px}
+    * *.h-1750 {height: 1750px}
+    * *.h-1500 {height: 1500px}
+    * *.h-1250 {height: 1250px}
+    * *.h-1000 {height: 1000px}
+    * *.h-950 {height: 950px}
+    * *.h-900 {height: 900px}
+    * *.h-850 {height: 850px}
+    * *.h-800 {height: 800px}
+    * *.h-750 {height: 750px}
+    * *.h-700 {height: 700px}
+    * *.h-650 {height: 650px}
+    * *.h-600 {height: 600px}
+    * *.h-575 {height: 575px}
+    * *.h-550 {height: 550px}
+    * *.h-525 {height: 525px}
+    * *.h-500 {height: 500px}
+    * *.h-475 {height: 475px}
+    * *.h-450 {height: 450px}
+    * *.h-425 {height: 425px}
+    * *.h-400 {height: 400px}
+    * *.h-390 {height: 390px}
+    * *.h-380 {height: 380px}
+    * *.h-375 {height: 375px}
+    * *.h-370 {height: 370px}
+    * *.h-360 {height: 360px}
+    * *.h-350 {height: 350px}
+    * *.h-340 {height: 340px}
+    * *.h-330 {height: 330px}
+    * *.h-325 {height: 325px}
+    * *.h-320 {height: 320px}
+    * *.h-310 {height: 310px}
+    * *.h-300 {height: 300px}
+    * *.h-290 {height: 290px}
+    * *.h-280 {height: 280px}
+    * *.h-270 {height: 270px}
+    * *.h-260 {height: 260px}
+    * *.h-250 {height: 250px}
+    * *.h-245 {height: 245px}
+    * *.h-240 {height: 240px}
+    * *.h-235 {height: 235px}
+    * *.h-230 {height: 230px}
+    * *.h-225 {height: 225px}
+    * *.h-220 {height: 220px}
+    * *.h-215 {height: 215px}
+    * *.h-210 {height: 210px}
+    * *.h-205 {height: 205px}
+    * *.h-200 {height: 200px}
+    * *.h-195 {height: 195px}
+    * *.h-190 {height: 190px}
+    * *.h-185 {height: 185px}
+    * *.h-180 {height: 180px}
+    * *.h-175 {height: 175px}
+    * *.h-165 {height: 165px}
+    * *.h-160 {height: 160px}
+    * *.h-155 {height: 155px}
+    * *.h-150 {height: 150px}
+    * *.h-145 {height: 145px}
+    * *.h-140 {height: 140px}
+    * *.h-135 {height: 135px}
+    * *.h-130 {height: 130px}
+    * *.h-125 {height: 125px}
+    * *.h-120 {height: 120px}
+    * *.h-115 {height: 115px}
+    * *.h-110 {height: 110px}
+    * *.h-105 {height: 105px}
+    * *.h-100 {height: 100px}
+    * *.h-95 {height: 95px}
+    * *.h-90 {height: 90px}
+    * *.h-85 {height: 85px}
+    * *.h-80 {height: 80px}
+    * *.h-76 {height: 76px}
+    * *.h-75 {height: 75px}
+    * *.h-70 {height: 70px}
+    * *.h-65 {height: 65px}
+    * *.h-60 {height: 60px}
+    * *.h-55 {height: 55px}
+    * *.h-50 {height: 50px}
+    * *.h-45 {height: 45px}
+    * *.h-40 {height: 40px}
+    * *.h-38 {height: 38px}
+    * *.h-35 {height: 35px}
+    * *.h-34 {height: 34px}
+    * *.h-32 {height: 32px}
+    * *.h-30 {height: 30px}
+    * *.h-29 {height: 29px}
+    * *.h-28 {height: 28px}
+    * *.h-27 {height: 27px}
+    * *.h-26 {height: 26px}
+    * *.h-25 {height: 25px}
+    * *.h-24 {height: 24px}
+    * *.h-23 {height: 23px}
+    * *.h-22 {height: 22px}
+    * *.h-21 {height: 21px}
+    * *.h-20 {height: 20px}
+    * *.h-19 {height: 19px}
+    * *.h-18 {height: 18px}
+    * *.h-17 {height: 17px}
+    * *.h-16 {height: 16px}
+    * *.h-15 {height: 15px}
+    * *.h-14 {height: 14px}
+    * *.h-13 {height: 13px}
+    * *.h-12 {height: 12px}
+    * *.h-11 {height: 11px}
+    * *.h-10 {height: 10px}
+    * *.h-9 {height: 9px}
+    * *.h-8 {height: 8px}
+    * *.h-7 {height: 7px}
+    * *.h-6 {height: 6px}
+    * *.h-5 {height: 5px}
+    * *.h-4 {height: 4px}
+    * *.h-3 {height: 3px}
+    * *.h-2 {height: 2px}
+    * *.h-1 {height: 1px}
+    * *.h-0 {height: 0px}
 
     /*** HEIGHT: % ***/
-    div .h-100p, .h-100p {height: 100%}
-    div .h-99p, .h-99p {height: 99%}
-    div .h-98p, .h-98p {height: 98%}
-    div .h-97p, .h-97p {height: 97%}
-    div .h-96p, .h-96p {height: 96%}
-    div .h-95p, .h-95p {height: 95%}
-    div .h-94p, .h-94p {height: 94%}
-    div .h-93p, .h-93p {height: 93%}
-    div .h-92p, .h-92p {height: 92%}
-    div .h-91p, .h-91p {height: 91%}
-    div .h-90p, .h-90p {height: 90%}
-    div .h-89p, .h-89p {height: 89%}
-    div .h-88p, .h-88p {height: 88%}
-    div .h-87p, .h-85p {height: 85%}
-    div .h-86p, .h-86p {height: 86%}
-    div .h-85p, .h-85p {height: 85%}
-    div .h-84p, .h-84p {height: 84%}
-    div .h-83p, .h-83p {height: 83%}
-    div .h-82p, .h-82p {height: 82%}
-    div .h-81p, .h-81p {height: 81%}
-    div .h-80p, .h-80p {height: 80%}
-    div .h-79p, .h-79p {height: 79%}
-    div .h-78p, .h-78p {height: 78%}
-    div .h-77p, .h-77p {height: 77%}
-    div .h-76p, .h-76p {height: 76%}
-    div .h-75p, .h-75p {height: 75%}
-    div .h-74p, .h-74p {height: 74%}
-    div .h-73p, .h-73p {height: 73%}
-    div .h-72p, .h-72p {height: 72%}
-    div .h-71p, .h-71p {height: 71%}
-    div .h-70p, .h-70p {height: 70%}
-    div .h-68p, .h-68p {height: 68%}
-    div .h-67p, .h-67p {height: 67%}
-    div .h-65p, .h-65p {height: 65%}
-    div .h-63p, .h-63p {height: 63%}
-    div .h-62p, .h-62p {height: 62%}
-    div .h-60p, .h-60p {height: 60%}
-    div .h-58p, .h-88p {height: 55%}
-    div .h-57p, .h-77p {height: 55%}
-    div .h-55p, .h-55p {height: 55%}
-    div .h-53p, .h-53p {height: 53%}
-    div .h-52p, .h-52p {height: 52%}
-    div .h-50p, .h-50p {height: 50%}
-    div .h-48p, .h-48p {height: 48%}
-    div .h-47p, .h-47p {height: 47%}
-    div .h-45p, .h-45p {height: 45%}
-    div .h-43p, .h-43p {height: 43%}
-    div .h-42p, .h-42p {height: 42%}
-    div .h-40p, .h-40p {height: 40%}
-    div .h-38p, .h-38p {height: 38%}
-    div .h-37p, .h-37p {height: 37%}
-    div .h-35p, .h-35p {height: 35%}
-    div .h-34p, .h-34p {height: 34%}
-    div .h-33p, .h-33p {height: 33%}
-    div .h-32p, .h-32p {height: 32%}
-    div .h-30p, .h-30p {height: 30%}
-    div .h-29p, .h-29p {height: 29%}
-    div .h-28p, .h-28p {height: 28%}
-    div .h-27p, .h-27p {height: 27%}
-    div .h-26p, .h-26p {height: 26%}
-    div .h-25p, .h-25p {height: 25%}
-    div .h-24p, .h-24p {height: 24%}
-    div .h-23p, .h-23p {height: 23%}
-    div .h-22p, .h-22p {height: 22%}
-    div .h-21p, .h-21p {height: 21%}
-    div .h-20p, .h-20p {height: 20%}
-    div .h-19p, .h-19p {height: 19%}
-    div .h-18p, .h-18p {height: 18%}
-    div .h-17p, .h-17p {height: 17%}
-    div .h-16p, .h-16p {height: 16%}
-    div .h-15p, .h-15p {height: 15%}
-    div .h-14p, .h-14p {height: 14%}
-    div .h-13p, .h-13p {height: 13%}
-    div .h-12p, .h-12p {height: 12%}
-    div .h-11p, .h-11p {height: 11%}
-    div .h-10p, .h-10p {height: 10%}
-    div .h-9p, .h-9p {height: 9%}
-    div .h-8p, .h-8p {height: 8%}
-    div .h-7p, .h-7p {height: 7%}
-    div .h-6p, .h-6p {height: 6%}
-    div .h-5p, .h-5p {height: 5%}
-    div .h-4p, .h-4p {height: 4%}
-    div .h-3p, .h-3p {height: 3%}
-    div .h-2p, .h-2p {height: 2%}
-    div .h-1p, .h-1p {height: 1%}
-    div .h-0p, .h-0p {height: 0%}
+    * *.h-100p {height: 100%}
+    * *.h-99p {height: 99%}
+    * *.h-98p {height: 98%}
+    * *.h-97p {height: 97%}
+    * *.h-96p {height: 96%}
+    * *.h-95p {height: 95%}
+    * *.h-94p {height: 94%}
+    * *.h-93p {height: 93%}
+    * *.h-92p {height: 92%}
+    * *.h-91p {height: 91%}
+    * *.h-90p {height: 90%}
+    * *.h-89p {height: 89%}
+    * *.h-88p {height: 88%}
+    * *.h-87p {height: 85%}
+    * *.h-86p {height: 86%}
+    * *.h-85p {height: 85%}
+    * *.h-84p {height: 84%}
+    * *.h-83p {height: 83%}
+    * *.h-82p {height: 82%}
+    * *.h-81p {height: 81%}
+    * *.h-80p {height: 80%}
+    * *.h-79p {height: 79%}
+    * *.h-78p {height: 78%}
+    * *.h-77p {height: 77%}
+    * *.h-76p {height: 76%}
+    * *.h-75p {height: 75%}
+    * *.h-74p {height: 74%}
+    * *.h-73p {height: 73%}
+    * *.h-72p {height: 72%}
+    * *.h-71p {height: 71%}
+    * *.h-70p {height: 70%}
+    * *.h-68p {height: 68%}
+    * *.h-67p {height: 67%}
+    * *.h-65p {height: 65%}
+    * *.h-63p {height: 63%}
+    * *.h-62p {height: 62%}
+    * *.h-60p {height: 60%}
+    * *.h-58p {height: 55%}
+    * *.h-57p {height: 55%}
+    * *.h-55p {height: 55%}
+    * *.h-53p {height: 53%}
+    * *.h-52p {height: 52%}
+    * *.h-50p {height: 50%}
+    * *.h-48p {height: 48%}
+    * *.h-47p {height: 47%}
+    * *.h-45p {height: 45%}
+    * *.h-43p {height: 43%}
+    * *.h-42p {height: 42%}
+    * *.h-40p {height: 40%}
+    * *.h-38p {height: 38%}
+    * *.h-37p {height: 37%}
+    * *.h-35p {height: 35%}
+    * *.h-34p {height: 34%}
+    * *.h-33p {height: 33%}
+    * *.h-32p {height: 32%}
+    * *.h-30p {height: 30%}
+    * *.h-29p {height: 29%}
+    * *.h-28p {height: 28%}
+    * *.h-27p {height: 27%}
+    * *.h-26p {height: 26%}
+    * *.h-25p {height: 25%}
+    * *.h-24p {height: 24%}
+    * *.h-23p {height: 23%}
+    * *.h-22p {height: 22%}
+    * *.h-21p {height: 21%}
+    * *.h-20p {height: 20%}
+    * *.h-19p {height: 19%}
+    * *.h-18p {height: 18%}
+    * *.h-17p {height: 17%}
+    * *.h-16p {height: 16%}
+    * *.h-15p {height: 15%}
+    * *.h-14p {height: 14%}
+    * *.h-13p {height: 13%}
+    * *.h-12p {height: 12%}
+    * *.h-11p {height: 11%}
+    * *.h-10p {height: 10%}
+    * *.h-9p {height: 9%}
+    * *.h-8p {height: 8%}
+    * *.h-7p {height: 7%}
+    * *.h-6p {height: 6%}
+    * *.h-5p {height: 5%}
+    * *.h-4p {height: 4%}
+    * *.h-3p {height: 3%}
+    * *.h-2p {height: 2%}
+    * *.h-1p {height: 1%}
+    * *.h-0p {height: 0%}
 
 
     /*** HEIGHT: all: px ***/
@@ -893,92 +893,92 @@
 
 
     /*** HEIGHT: all: % ***/
-    div .h-all-100p, .h-all-100p {height: 100%; min-height: 100%; max-height: 100%;}
-    div .h-all-99p, .h-all-99p {height: 99%; min-height: 99%; max-height: 99%;}
-    div .h-all-98p, .h-all-98p {height: 98%; min-height: 98%; max-height: 98%;}
-    div .h-all-97p, .h-all-97p {height: 97%; min-height: 97%; max-height: 97%;}
-    div .h-all-96p, .h-all-96p {height: 96%; min-height: 96%; max-height: 96%;}
-    div .h-all-95p, .h-all-95p {height: 95%; min-height: 95%; max-height: 95%;}
-    div .h-all-94p, .h-all-94p {height: 94%; min-height: 94%; max-height: 94%;}
-    div .h-all-93p, .h-all-93p {height: 93%; min-height: 93%; max-height: 93%;}
-    div .h-all-92p, .h-all-92p {height: 92%; min-height: 92%; max-height: 92%;}
-    div .h-all-91p, .h-all-91p {height: 91%; min-height: 91%; max-height: 91%;}
-    div .h-all-90p, .h-all-90p {height: 90%; min-height: 90%; max-height: 90%;}
-    div .h-all-89p, .h-all-89p {height: 89%; min-height: 89%; max-height: 89%;}
-    div .h-all-88p, .h-all-88p {height: 88%; min-height: 88%; max-height: 88%;}
-    div .h-all-87p, .h-all-87p {height: 87%; min-height: 87%; max-height: 87%;}
-    div .h-all-86p, .h-all-86p {height: 86%; min-height: 86%; max-height: 86%;}
-    div .h-all-85p, .h-all-85p {height: 85%; min-height: 85%; max-height: 85%;}
-    div .h-all-84p, .h-all-84p {height: 84%; min-height: 84%; max-height: 84%;}
-    div .h-all-83p, .h-all-83p {height: 83%; min-height: 83%; max-height: 83%;}
-    div .h-all-82p, .h-all-82p {height: 82%; min-height: 82%; max-height: 82%;}
-    div .h-all-81p, .h-all-81p {height: 81%; min-height: 81%; max-height: 81%;}
-    div .h-all-80p, .h-all-80p {height: 80%; min-height: 80%; max-height: 80%;}
-    div .h-all-79p, .h-all-79p {height: 79%; min-height: 79%; max-height: 79%;}
-    div .h-all-78p, .h-all-78p {height: 78%; min-height: 78%; max-height: 78%;}
-    div .h-all-77p, .h-all-77p {height: 77%; min-height: 77%; max-height: 77%;}
-    div .h-all-76p, .h-all-76p {height: 76%; min-height: 76%; max-height: 76%;}
-    div .h-all-75p, .h-all-75p {height: 75%; min-height: 75%; max-height: 75%;}
-    div .h-all-74p, .h-all-74p {height: 74%; min-height: 74%; max-height: 74%;}
-    div .h-all-73p, .h-all-73p {height: 73%; min-height: 73%; max-height: 73%;}
-    div .h-all-72p, .h-all-72p {height: 72%; min-height: 72%; max-height: 72%;}
-    div .h-all-71p, .h-all-71p {height: 71%; min-height: 71%; max-height: 71%;}
-    div .h-all-70p, .h-all-70p {height: 70%; min-height: 70%; max-height: 70%;}
-    div .h-all-68p, .h-all-68p {height: 68%; min-height: 68%; max-height: 68%;}
-    div .h-all-67p, .h-all-67p {height: 67%; min-height: 67%; max-height: 67%;}
-    div .h-all-65p, .h-all-65p {height: 65%; min-height: 65%; max-height: 65%;}
-    div .h-all-63p, .h-all-63p {height: 63%; min-height: 63%; max-height: 63%;}
-    div .h-all-62p, .h-all-62p {height: 62%; min-height: 62%; max-height: 62%;}
-    div .h-all-60p, .h-all-60p {height: 60%; min-height: 60%; max-height: 60%;}
-    div .h-all-58p, .h-all-58p {height: 58%; min-height: 58%; max-height: 58%;}
-    div .h-all-57p, .h-all-77p {height: 55%; min-height: 55%; max-height: 55%;}
-    div .h-all-55p, .h-all-55p {height: 55%; min-height: 55%; max-height: 55%;}
-    div .h-all-53p, .h-all-53p {height: 53%; min-height: 53%; max-height: 53%;}
-    div .h-all-52p, .h-all-52p {height: 52%; min-height: 52%; max-height: 52%;}
-    div .h-all-50p, .h-all-50p {height: 50%; min-height: 50%; max-height: 50%;}
-    div .h-all-48p, .h-all-48p {height: 48%; min-height: 48%; max-height: 48%;}
-    div .h-all-47p, .h-all-47p {height: 47%; min-height: 47%; max-height: 47%;}
-    div .h-all-45p, .h-all-45p {height: 45%; min-height: 45%; max-height: 45%;}
-    div .h-all-43p, .h-all-43p {height: 43%; min-height: 43%; max-height: 43%;}
-    div .h-all-42p, .h-all-42p {height: 42%; min-height: 42%; max-height: 42%;}
-    div .h-all-40p, .h-all-40p {height: 40%; min-height: 40%; max-height: 40%;}
-    div .h-all-38p, .h-all-38p {height: 38%; min-height: 38%; max-height: 38%;}
-    div .h-all-37p, .h-all-37p {height: 37%; min-height: 37%; max-height: 37%;}
-    div .h-all-35p, .h-all-35p {height: 35%; min-height: 35%; max-height: 35%;}
-    div .h-all-34p, .h-all-34p {height: 34%; min-height: 34%; max-height: 34%;}
-    div .h-all-33p, .h-all-33p {height: 33%; min-height: 33%; max-height: 33%;}
-    div .h-all-32p, .h-all-32p {height: 32%; min-height: 32%; max-height: 32%;}
-    div .h-all-30p, .h-all-30p {height: 30%; min-height: 30%; max-height: 30%;}
-    div .h-all-29p, .h-all-29p {height: 29%; min-height: 29%; max-height: 29%;}
-    div .h-all-28p, .h-all-28p {height: 28%; min-height: 28%; max-height: 28%;}
-    div .h-all-27p, .h-all-27p {height: 27%; min-height: 27%; max-height: 27%;}
-    div .h-all-26p, .h-all-26p {height: 26%; min-height: 26%; max-height: 26%;}
-    div .h-all-25p, .h-all-25p {height: 25%; min-height: 25%; max-height: 25%;}
-    div .h-all-24p, .h-all-24p {height: 24%; min-height: 24%; max-height: 24%;}
-    div .h-all-23p, .h-all-23p {height: 23%; min-height: 23%; max-height: 23%;}
-    div .h-all-22p, .h-all-22p {height: 22%; min-height: 22%; max-height: 22%;}
-    div .h-all-21p, .h-all-21p {height: 21%; min-height: 21%; max-height: 21%;}
-    div .h-all-20p, .h-all-20p {height: 20%; min-height: 20%; max-height: 20%;}
-    div .h-all-19p, .h-all-19p {height: 19%; min-height: 19%; max-height: 19%;}
-    div .h-all-18p, .h-all-18p {height: 18%; min-height: 18%; max-height: 18%;}
-    div .h-all-17p, .h-all-17p {height: 17%; min-height: 17%; max-height: 17%;}
-    div .h-all-16p, .h-all-16p {height: 16%; min-height: 16%; max-height: 16%;}
-    div .h-all-15p, .h-all-15p {height: 15%; min-height: 15%; max-height: 15%;}
-    div .h-all-14p, .h-all-14p {height: 14%; min-height: 14%; max-height: 14%;}
-    div .h-all-13p, .h-all-13p {height: 13%; min-height: 13%; max-height: 13%;}
-    div .h-all-12p, .h-all-12p {height: 12%; min-height: 12%; max-height: 12%;}
-    div .h-all-11p, .h-all-11p {height: 11%; min-height: 11%; max-height: 11%;}
-    div .h-all-10p, .h-all-10p {height: 10%; min-height: 10%; max-height: 10%;}
-    div .h-all-9p, .h-all-9p {height: 9%; min-height: 9%; max-height: 9%;}
-    div .h-all-8p, .h-all-8p {height: 8%; min-height: 8%; max-height: 8%;}
-    div .h-all-7p, .h-all-7p {height: 7%; min-height: 7%; max-height: 7%;}
-    div .h-all-6p, .h-all-6p {height: 6%; min-height: 6%; max-height: 6%;}
-    div .h-all-5p, .h-all-5p {height: 5%; min-height: 5%; max-height: 5%;}
-    div .h-all-4p, .h-all-4p {height: 4%; min-height: 4%; max-height: 4%;}
-    div .h-all-3p, .h-all-3p {height: 3%; min-height: 3%; max-height: 3%;}
-    div .h-all-2p, .h-all-2p {height: 2%; min-height: 2%; max-height: 2%;}
-    div .h-all-1p, .h-all-1p {height: 1%; min-height: 1%; max-height: 1%;}
-    div .h-all-0p, .h-all-0p {height: 0%; min-height: 0%; max-height: 0%;}
+    * *.h-all-100p {height: 100%; min-height: 100%; max-height: 100%;}
+    * *.h-all-99p {height: 99%; min-height: 99%; max-height: 99%;}
+    * *.h-all-98p {height: 98%; min-height: 98%; max-height: 98%;}
+    * *.h-all-97p {height: 97%; min-height: 97%; max-height: 97%;}
+    * *.h-all-96p {height: 96%; min-height: 96%; max-height: 96%;}
+    * *.h-all-95p {height: 95%; min-height: 95%; max-height: 95%;}
+    * *.h-all-94p {height: 94%; min-height: 94%; max-height: 94%;}
+    * *.h-all-93p {height: 93%; min-height: 93%; max-height: 93%;}
+    * *.h-all-92p {height: 92%; min-height: 92%; max-height: 92%;}
+    * *.h-all-91p {height: 91%; min-height: 91%; max-height: 91%;}
+    * *.h-all-90p {height: 90%; min-height: 90%; max-height: 90%;}
+    * *.h-all-89p {height: 89%; min-height: 89%; max-height: 89%;}
+    * *.h-all-88p {height: 88%; min-height: 88%; max-height: 88%;}
+    * *.h-all-87p {height: 87%; min-height: 87%; max-height: 87%;}
+    * *.h-all-86p {height: 86%; min-height: 86%; max-height: 86%;}
+    * *.h-all-85p {height: 85%; min-height: 85%; max-height: 85%;}
+    * *.h-all-84p {height: 84%; min-height: 84%; max-height: 84%;}
+    * *.h-all-83p {height: 83%; min-height: 83%; max-height: 83%;}
+    * *.h-all-82p {height: 82%; min-height: 82%; max-height: 82%;}
+    * *.h-all-81p {height: 81%; min-height: 81%; max-height: 81%;}
+    * *.h-all-80p {height: 80%; min-height: 80%; max-height: 80%;}
+    * *.h-all-79p {height: 79%; min-height: 79%; max-height: 79%;}
+    * *.h-all-78p {height: 78%; min-height: 78%; max-height: 78%;}
+    * *.h-all-77p {height: 77%; min-height: 77%; max-height: 77%;}
+    * *.h-all-76p {height: 76%; min-height: 76%; max-height: 76%;}
+    * *.h-all-75p {height: 75%; min-height: 75%; max-height: 75%;}
+    * *.h-all-74p {height: 74%; min-height: 74%; max-height: 74%;}
+    * *.h-all-73p {height: 73%; min-height: 73%; max-height: 73%;}
+    * *.h-all-72p {height: 72%; min-height: 72%; max-height: 72%;}
+    * *.h-all-71p {height: 71%; min-height: 71%; max-height: 71%;}
+    * *.h-all-70p {height: 70%; min-height: 70%; max-height: 70%;}
+    * *.h-all-68p {height: 68%; min-height: 68%; max-height: 68%;}
+    * *.h-all-67p {height: 67%; min-height: 67%; max-height: 67%;}
+    * *.h-all-65p {height: 65%; min-height: 65%; max-height: 65%;}
+    * *.h-all-63p {height: 63%; min-height: 63%; max-height: 63%;}
+    * *.h-all-62p {height: 62%; min-height: 62%; max-height: 62%;}
+    * *.h-all-60p {height: 60%; min-height: 60%; max-height: 60%;}
+    * *.h-all-58p {height: 58%; min-height: 58%; max-height: 58%;}
+    * *.h-all-57p {height: 55%; min-height: 55%; max-height: 55%;}
+    * *.h-all-55p {height: 55%; min-height: 55%; max-height: 55%;}
+    * *.h-all-53p {height: 53%; min-height: 53%; max-height: 53%;}
+    * *.h-all-52p {height: 52%; min-height: 52%; max-height: 52%;}
+    * *.h-all-50p {height: 50%; min-height: 50%; max-height: 50%;}
+    * *.h-all-48p {height: 48%; min-height: 48%; max-height: 48%;}
+    * *.h-all-47p {height: 47%; min-height: 47%; max-height: 47%;}
+    * *.h-all-45p {height: 45%; min-height: 45%; max-height: 45%;}
+    * *.h-all-43p {height: 43%; min-height: 43%; max-height: 43%;}
+    * *.h-all-42p {height: 42%; min-height: 42%; max-height: 42%;}
+    * *.h-all-40p {height: 40%; min-height: 40%; max-height: 40%;}
+    * *.h-all-38p {height: 38%; min-height: 38%; max-height: 38%;}
+    * *.h-all-37p {height: 37%; min-height: 37%; max-height: 37%;}
+    * *.h-all-35p {height: 35%; min-height: 35%; max-height: 35%;}
+    * *.h-all-34p {height: 34%; min-height: 34%; max-height: 34%;}
+    * *.h-all-33p {height: 33%; min-height: 33%; max-height: 33%;}
+    * *.h-all-32p {height: 32%; min-height: 32%; max-height: 32%;}
+    * *.h-all-30p {height: 30%; min-height: 30%; max-height: 30%;}
+    * *.h-all-29p {height: 29%; min-height: 29%; max-height: 29%;}
+    * *.h-all-28p {height: 28%; min-height: 28%; max-height: 28%;}
+    * *.h-all-27p {height: 27%; min-height: 27%; max-height: 27%;}
+    * *.h-all-26p {height: 26%; min-height: 26%; max-height: 26%;}
+    * *.h-all-25p {height: 25%; min-height: 25%; max-height: 25%;}
+    * *.h-all-24p {height: 24%; min-height: 24%; max-height: 24%;}
+    * *.h-all-23p {height: 23%; min-height: 23%; max-height: 23%;}
+    * *.h-all-22p {height: 22%; min-height: 22%; max-height: 22%;}
+    * *.h-all-21p {height: 21%; min-height: 21%; max-height: 21%;}
+    * *.h-all-20p {height: 20%; min-height: 20%; max-height: 20%;}
+    * *.h-all-19p {height: 19%; min-height: 19%; max-height: 19%;}
+    * *.h-all-18p {height: 18%; min-height: 18%; max-height: 18%;}
+    * *.h-all-17p {height: 17%; min-height: 17%; max-height: 17%;}
+    * *.h-all-16p {height: 16%; min-height: 16%; max-height: 16%;}
+    * *.h-all-15p {height: 15%; min-height: 15%; max-height: 15%;}
+    * *.h-all-14p {height: 14%; min-height: 14%; max-height: 14%;}
+    * *.h-all-13p {height: 13%; min-height: 13%; max-height: 13%;}
+    * *.h-all-12p {height: 12%; min-height: 12%; max-height: 12%;}
+    * *.h-all-11p {height: 11%; min-height: 11%; max-height: 11%;}
+    * *.h-all-10p {height: 10%; min-height: 10%; max-height: 10%;}
+    * *.h-all-9p {height: 9%; min-height: 9%; max-height: 9%;}
+    * *.h-all-8p {height: 8%; min-height: 8%; max-height: 8%;}
+    * *.h-all-7p {height: 7%; min-height: 7%; max-height: 7%;}
+    * *.h-all-6p {height: 6%; min-height: 6%; max-height: 6%;}
+    * *.h-all-5p {height: 5%; min-height: 5%; max-height: 5%;}
+    * *.h-all-4p {height: 4%; min-height: 4%; max-height: 4%;}
+    * *.h-all-3p {height: 3%; min-height: 3%; max-height: 3%;}
+    * *.h-all-2p {height: 2%; min-height: 2%; max-height: 2%;}
+    * *.h-all-1p {height: 1%; min-height: 1%; max-height: 1%;}
+    * *.h-all-0p {height: 0%; min-height: 0%; max-height: 0%;}
 
 
     /**************************************************************************************************/
@@ -986,225 +986,225 @@
     /**************************************************************************************************/
     /*********************************** MAX-HEIGHT, MIN-HEIGHT % *************************************/
     /*** max-height: % ***/
-    div .maxh-100p, .maxh-100p {max-height: 100%}
-    div .maxh-95p, .maxh-95p {max-height: 95%}
-    div .maxh-90p, .maxh-90p {max-height: 90%}
-    div .maxh-85p, .maxh-85p {max-height: 85%}
-    div .maxh-83p, .maxh-83p {max-height: 83%}
-    div .maxh-82p, .maxh-82p {max-height: 82%}
-    div .maxh-80p, .maxh-80p {max-height: 80%}
-    div .maxh-79p, .maxh-79p {max-height: 79%}
-    div .maxh-78p, .maxh-78p {max-height: 78%}
-    div .maxh-77p, .maxh-77p {max-height: 77%}
-    div .maxh-76p, .maxh-76p {max-height: 76%}
-    div .maxh-75p, .maxh-75p {max-height: 75%}
-    div .maxh-73p, .maxh-73p {max-height: 73%}
-    div .maxh-72p, .maxh-72p {max-height: 72%}
-    div .maxh-70p, .maxh-70p {max-height: 70%}
-    div .maxh-65p, .maxh-65p {max-height: 65%}
-    div .maxh-60p, .maxh-60p {max-height: 60%}
-    div .maxh-55p, .maxh-55p {max-height: 55%}
-    div .maxh-53p, .maxh-53p {max-height: 53%}
-    div .maxh-52p, .maxh-52p {max-height: 52%}
-    div .maxh-50p, .maxh-50p {max-height: 50%}
-    div .maxh-45p, .maxh-45p {max-height: 45%}
-    div .maxh-40p, .maxh-40p {max-height: 40%}
-    div .maxh-35p, .maxh-35p {max-height: 35%}
-    div .maxh-34p, .maxh-34p {max-height: 34%}
-    div .maxh-32p, .maxh-32p {max-height: 32%}
-    div .maxh-30p, .maxh-30p {max-height: 30%}
-    div .maxh-28p, .maxh-28p {max-height: 28%}
-    div .maxh-27p, .maxh-27p {max-height: 27%}
-    div .maxh-25p, .maxh-25p {max-height: 25%}
-    div .maxh-23p, .maxh-23p {max-height: 23%}
-    div .maxh-22p, .maxh-22p {max-height: 22%}
-    div .maxh-20p, .maxh-20p {max-height: 20%}
-    div .maxh-19p, .maxh-19p {max-height: 19%}
-    div .maxh-18p, .maxh-18p {max-height: 18%}
-    div .maxh-17p, .maxh-17p {max-height: 17%}
-    div .maxh-16p, .maxh-16p {max-height: 16%}
-    div .maxh-15p, .maxh-15p {max-height: 15%}
-    div .maxh-14p, .maxh-14p {max-height: 14%}
-    div .maxh-13p, .maxh-13p {max-height: 13%}
-    div .maxh-12p, .maxh-12p {max-height: 12%}
-    div .maxh-11p, .maxh-11p {max-height: 11%}
-    div .maxh-10p, .maxh-10p {max-height: 10%}
-    div .maxh-9p, .maxh-9p {max-height: 9%}
-    div .maxh-8p, .maxh-8p {max-height: 8%}
-    div .maxh-7p, .maxh-7p {max-height: 7%}
-    div .maxh-6p, .maxh-6p {max-height: 6%}
-    div .maxh-5p, .maxh-5p {max-height: 5%}
-    div .maxh-4p, .maxh-4p {max-height: 4%}
-    div .maxh-3p, .maxh-3p {max-height: 3%}
-    div .maxh-2p, .maxh-2p {max-height: 2%}
-    div .maxh-1p, .maxh-1p {max-height: 1%}
-    div .maxh-0p, .maxh-0p {max-height: 0%}
+    * *.maxh-100p {max-height: 100%}
+    * *.maxh-95p {max-height: 95%}
+    * *.maxh-90p {max-height: 90%}
+    * *.maxh-85p {max-height: 85%}
+    * *.maxh-83p {max-height: 83%}
+    * *.maxh-82p {max-height: 82%}
+    * *.maxh-80p {max-height: 80%}
+    * *.maxh-79p {max-height: 79%}
+    * *.maxh-78p {max-height: 78%}
+    * *.maxh-77p {max-height: 77%}
+    * *.maxh-76p {max-height: 76%}
+    * *.maxh-75p {max-height: 75%}
+    * *.maxh-73p {max-height: 73%}
+    * *.maxh-72p {max-height: 72%}
+    * *.maxh-70p {max-height: 70%}
+    * *.maxh-65p {max-height: 65%}
+    * *.maxh-60p {max-height: 60%}
+    * *.maxh-55p {max-height: 55%}
+    * *.maxh-53p {max-height: 53%}
+    * *.maxh-52p {max-height: 52%}
+    * *.maxh-50p {max-height: 50%}
+    * *.maxh-45p {max-height: 45%}
+    * *.maxh-40p {max-height: 40%}
+    * *.maxh-35p {max-height: 35%}
+    * *.maxh-34p {max-height: 34%}
+    * *.maxh-32p {max-height: 32%}
+    * *.maxh-30p {max-height: 30%}
+    * *.maxh-28p {max-height: 28%}
+    * *.maxh-27p {max-height: 27%}
+    * *.maxh-25p {max-height: 25%}
+    * *.maxh-23p {max-height: 23%}
+    * *.maxh-22p {max-height: 22%}
+    * *.maxh-20p {max-height: 20%}
+    * *.maxh-19p {max-height: 19%}
+    * *.maxh-18p {max-height: 18%}
+    * *.maxh-17p {max-height: 17%}
+    * *.maxh-16p {max-height: 16%}
+    * *.maxh-15p {max-height: 15%}
+    * *.maxh-14p {max-height: 14%}
+    * *.maxh-13p {max-height: 13%}
+    * *.maxh-12p {max-height: 12%}
+    * *.maxh-11p {max-height: 11%}
+    * *.maxh-10p {max-height: 10%}
+    * *.maxh-9p {max-height: 9%}
+    * *.maxh-8p {max-height: 8%}
+    * *.maxh-7p {max-height: 7%}
+    * *.maxh-6p {max-height: 6%}
+    * *.maxh-5p {max-height: 5%}
+    * *.maxh-4p {max-height: 4%}
+    * *.maxh-3p {max-height: 3%}
+    * *.maxh-2p {max-height: 2%}
+    * *.maxh-1p {max-height: 1%}
+    * *.maxh-0p {max-height: 0%}
 
     /*** min-height: % ***/
-    div .minh-100p, .minh-100p {min-height: 100%}
-    div .minh-95p, .minh-95p {min-height: 95%}
-    div .minh-90p, .minh-90p {min-height: 90%}
-    div .minh-85p, .minh-85p {min-height: 85%}
-    div .minh-83p, .minh-83p {min-height: 83%}
-    div .minh-82p, .minh-82p {min-height: 82%}
-    div .minh-80p, .minh-80p {min-height: 80%}
-    div .minh-79p, .minh-79p {min-height: 79%}
-    div .minh-78p, .minh-78p {min-height: 78%}
-    div .minh-77p, .minh-77p {min-height: 77%}
-    div .minh-76p, .minh-76p {min-height: 76%}
-    div .minh-75p, .minh-75p {min-height: 75%}
-    div .minh-73p, .minh-73p {min-height: 73%}
-    div .minh-72p, .minh-72p {min-height: 72%}
-    div .minh-70p, .minh-70p {min-height: 70%}
-    div .minh-65p, .minh-65p {min-height: 65%}
-    div .minh-60p, .minh-60p {min-height: 60%}
-    div .minh-55p, .minh-55p {min-height: 55%}
-    div .minh-53p, .minh-53p {min-height: 53%}
-    div .minh-52p, .minh-52p {min-height: 52%}
-    div .minh-50p, .minh-50p {min-height: 50%}
-    div .minh-45p, .minh-45p {min-height: 45%}
-    div .minh-40p, .minh-40p {min-height: 40%}
-    div .minh-35p, .minh-35p {min-height: 35%}
-    div .minh-34p, .minh-34p {min-height: 34%}
-    div .minh-32p, .minh-32p {min-height: 32%}
-    div .minh-30p, .minh-30p {min-height: 30%}
-    div .minh-28p, .minh-28p {min-height: 28%}
-    div .minh-27p, .minh-27p {min-height: 27%}
-    div .minh-25p, .minh-25p {min-height: 25%}
-    div .minh-23p, .minh-23p {min-height: 23%}
-    div .minh-22p, .minh-22p {min-height: 22%}
-    div .minh-20p, .minh-20p {min-height: 20%}
-    div .minh-19p, .minh-19p {min-height: 19%}
-    div .minh-18p, .minh-18p {min-height: 18%}
-    div .minh-17p, .minh-17p {min-height: 17%}
-    div .minh-16p, .minh-16p {min-height: 16%}
-    div .minh-15p, .minh-15p {min-height: 15%}
-    div .minh-14p, .minh-14p {min-height: 14%}
-    div .minh-13p, .minh-13p {min-height: 13%}
-    div .minh-12p, .minh-12p {min-height: 12%}
-    div .minh-11p, .minh-11p {min-height: 11%}
-    div .minh-10p, .minh-10p {min-height: 10%}
-    div .minh-9p, .minh-9p {min-height: 9%}
-    div .minh-8p, .minh-8p {min-height: 8%}
-    div .minh-7p, .minh-7p {min-height: 7%}
-    div .minh-6p, .minh-6p {min-height: 6%}
-    div .minh-5p, .minh-5p {min-height: 5%}
-    div .minh-4p, .minh-4p {min-height: 4%}
-    div .minh-3p, .minh-3p {min-height: 3%}
-    div .minh-2p, .minh-2p {min-height: 2%}
-    div .minh-1p, .minh-1p {min-height: 1%}
-    div .minh-0p, .minh-0p {min-height: 0%}
+    * *.minh-100p {min-height: 100%}
+    * *.minh-95p {min-height: 95%}
+    * *.minh-90p {min-height: 90%}
+    * *.minh-85p {min-height: 85%}
+    * *.minh-83p {min-height: 83%}
+    * *.minh-82p {min-height: 82%}
+    * *.minh-80p {min-height: 80%}
+    * *.minh-79p {min-height: 79%}
+    * *.minh-78p {min-height: 78%}
+    * *.minh-77p {min-height: 77%}
+    * *.minh-76p {min-height: 76%}
+    * *.minh-75p {min-height: 75%}
+    * *.minh-73p {min-height: 73%}
+    * *.minh-72p {min-height: 72%}
+    * *.minh-70p {min-height: 70%}
+    * *.minh-65p {min-height: 65%}
+    * *.minh-60p {min-height: 60%}
+    * *.minh-55p {min-height: 55%}
+    * *.minh-53p {min-height: 53%}
+    * *.minh-52p {min-height: 52%}
+    * *.minh-50p {min-height: 50%}
+    * *.minh-45p {min-height: 45%}
+    * *.minh-40p {min-height: 40%}
+    * *.minh-35p {min-height: 35%}
+    * *.minh-34p {min-height: 34%}
+    * *.minh-32p {min-height: 32%}
+    * *.minh-30p {min-height: 30%}
+    * *.minh-28p {min-height: 28%}
+    * *.minh-27p {min-height: 27%}
+    * *.minh-25p {min-height: 25%}
+    * *.minh-23p {min-height: 23%}
+    * *.minh-22p {min-height: 22%}
+    * *.minh-20p {min-height: 20%}
+    * *.minh-19p {min-height: 19%}
+    * *.minh-18p {min-height: 18%}
+    * *.minh-17p {min-height: 17%}
+    * *.minh-16p {min-height: 16%}
+    * *.minh-15p {min-height: 15%}
+    * *.minh-14p {min-height: 14%}
+    * *.minh-13p {min-height: 13%}
+    * *.minh-12p {min-height: 12%}
+    * *.minh-11p {min-height: 11%}
+    * *.minh-10p {min-height: 10%}
+    * *.minh-9p {min-height: 9%}
+    * *.minh-8p {min-height: 8%}
+    * *.minh-7p {min-height: 7%}
+    * *.minh-6p {min-height: 6%}
+    * *.minh-5p {min-height: 5%}
+    * *.minh-4p {min-height: 4%}
+    * *.minh-3p {min-height: 3%}
+    * *.minh-2p {min-height: 2%}
+    * *.minh-1p {min-height: 1%}
+    * *.minh-0p {min-height: 0%}
 
 
     /************************************ MAX-WIDTH, MIN-WIDTH % **************************************/
     /*** max-width: w ***/
-    div .maxw-100p, .maxw-100p {max-width: 100%}
-    div .maxw-95p, .maxw-95p {max-width: 95%}
-    div .maxw-90p, .maxw-90p {max-width: 90%}
-    div .maxw-85p, .maxw-85p {max-width: 85%}
-    div .maxw-83p, .maxw-83p {max-width: 83%}
-    div .maxw-82p, .maxw-82p {max-width: 82%}
-    div .maxw-80p, .maxw-80p {max-width: 80%}
-    div .maxw-79p, .maxw-79p {max-width: 79%}
-    div .maxw-78p, .maxw-78p {max-width: 78%}
-    div .maxw-77p, .maxw-77p {max-width: 77%}
-    div .maxw-76p, .maxw-76p {max-width: 76%}
-    div .maxw-75p, .maxw-75p {max-width: 75%}
-    div .maxw-73p, .maxw-73p {max-width: 73%}
-    div .maxw-72p, .maxw-72p {max-width: 72%}
-    div .maxw-70p, .maxw-70p {max-width: 70%}
-    div .maxw-65p, .maxw-65p {max-width: 65%}
-    div .maxw-60p, .maxw-60p {max-width: 60%}
-    div .maxw-55p, .maxw-55p {max-width: 55%}
-    div .maxw-53p, .maxw-53p {max-width: 53%}
-    div .maxw-52p, .maxw-52p {max-width: 52%}
-    div .maxw-50p, .maxw-50p {max-width: 50%}
-    div .maxw-45p, .maxw-45p {max-width: 45%}
-    div .maxw-40p, .maxw-40p {max-width: 40%}
-    div .maxw-35p, .maxw-35p {max-width: 35%}
-    div .maxw-34p, .maxw-34p {max-width: 34%}
-    div .maxw-32p, .maxw-32p {max-width: 32%}
-    div .maxw-30p, .maxw-30p {max-width: 30%}
-    div .maxw-28p, .maxw-28p {max-width: 28%}
-    div .maxw-27p, .maxw-27p {max-width: 27%}
-    div .maxw-25p, .maxw-25p {max-width: 25%}
-    div .maxw-23p, .maxw-23p {max-width: 23%}
-    div .maxw-22p, .maxw-22p {max-width: 22%}
-    div .maxw-20p, .maxw-20p {max-width: 20%}
-    div .maxw-19p, .maxw-19p {max-width: 19%}
-    div .maxw-18p, .maxw-18p {max-width: 18%}
-    div .maxw-17p, .maxw-17p {max-width: 17%}
-    div .maxw-16p, .maxw-16p {max-width: 16%}
-    div .maxw-15p, .maxw-15p {max-width: 15%}
-    div .maxw-14p, .maxw-14p {max-width: 14%}
-    div .maxw-13p, .maxw-13p {max-width: 13%}
-    div .maxw-12p, .maxw-12p {max-width: 12%}
-    div .maxw-11p, .maxw-11p {max-width: 11%}
-    div .maxw-10p, .maxw-10p {max-width: 10%}
-    div .maxw-9p, .maxw-9p {max-width: 9%}
-    div .maxw-8p, .maxw-8p {max-width: 8%}
-    div .maxw-7p, .maxw-7p {max-width: 7%}
-    div .maxw-6p, .maxw-6p {max-width: 6%}
-    div .maxw-5p, .maxw-5p {max-width: 5%}
-    div .maxw-4p, .maxw-4p {max-width: 4%}
-    div .maxw-3p, .maxw-3p {max-width: 3%}
-    div .maxw-2p, .maxw-2p {max-width: 2%}
-    div .maxw-1p, .maxw-1p {max-width: 1%}
-    div .maxw-0p, .maxw-0p {max-width: 0%}
+    * *.maxw-100p {max-width: 100%}
+    * *.maxw-95p {max-width: 95%}
+    * *.maxw-90p {max-width: 90%}
+    * *.maxw-85p {max-width: 85%}
+    * *.maxw-83p {max-width: 83%}
+    * *.maxw-82p {max-width: 82%}
+    * *.maxw-80p {max-width: 80%}
+    * *.maxw-79p {max-width: 79%}
+    * *.maxw-78p {max-width: 78%}
+    * *.maxw-77p {max-width: 77%}
+    * *.maxw-76p {max-width: 76%}
+    * *.maxw-75p {max-width: 75%}
+    * *.maxw-73p {max-width: 73%}
+    * *.maxw-72p {max-width: 72%}
+    * *.maxw-70p {max-width: 70%}
+    * *.maxw-65p {max-width: 65%}
+    * *.maxw-60p {max-width: 60%}
+    * *.maxw-55p {max-width: 55%}
+    * *.maxw-53p {max-width: 53%}
+    * *.maxw-52p {max-width: 52%}
+    * *.maxw-50p {max-width: 50%}
+    * *.maxw-45p {max-width: 45%}
+    * *.maxw-40p {max-width: 40%}
+    * *.maxw-35p {max-width: 35%}
+    * *.maxw-34p {max-width: 34%}
+    * *.maxw-32p {max-width: 32%}
+    * *.maxw-30p {max-width: 30%}
+    * *.maxw-28p {max-width: 28%}
+    * *.maxw-27p {max-width: 27%}
+    * *.maxw-25p {max-width: 25%}
+    * *.maxw-23p {max-width: 23%}
+    * *.maxw-22p {max-width: 22%}
+    * *.maxw-20p {max-width: 20%}
+    * *.maxw-19p {max-width: 19%}
+    * *.maxw-18p {max-width: 18%}
+    * *.maxw-17p {max-width: 17%}
+    * *.maxw-16p {max-width: 16%}
+    * *.maxw-15p {max-width: 15%}
+    * *.maxw-14p {max-width: 14%}
+    * *.maxw-13p {max-width: 13%}
+    * *.maxw-12p {max-width: 12%}
+    * *.maxw-11p {max-width: 11%}
+    * *.maxw-10p {max-width: 10%}
+    * *.maxw-9p {max-width: 9%}
+    * *.maxw-8p {max-width: 8%}
+    * *.maxw-7p {max-width: 7%}
+    * *.maxw-6p {max-width: 6%}
+    * *.maxw-5p {max-width: 5%}
+    * *.maxw-4p {max-width: 4%}
+    * *.maxw-3p {max-width: 3%}
+    * *.maxw-2p {max-width: 2%}
+    * *.maxw-1p {max-width: 1%}
+    * *.maxw-0p {max-width: 0%}
 
     /*** miw-width: w ***/
-    div .minw-100p, .minw-100p {min-width: 100%}
-    div .minw-95p, .minw-95p {min-width: 95%}
-    div .minw-90p, .minw-90p {min-width: 90%}
-    div .minw-85p, .minw-85p {min-width: 85%}
-    div .minw-83p, .minw-83p {min-width: 83%}
-    div .minw-82p, .minw-82p {min-width: 82%}
-    div .minw-80p, .minw-80p {min-width: 80%}
-    div .minw-79p, .minw-79p {min-width: 79%}
-    div .minw-78p, .minw-78p {min-width: 78%}
-    div .minw-77p, .minw-77p {min-width: 77%}
-    div .minw-76p, .minw-76p {min-width: 76%}
-    div .minw-75p, .minw-75p {min-width: 75%}
-    div .minw-73p, .minw-73p {min-width: 73%}
-    div .minw-72p, .minw-72p {min-width: 72%}
-    div .minw-70p, .minw-70p {min-width: 70%}
-    div .minw-65p, .minw-65p {min-width: 65%}
-    div .minw-60p, .minw-60p {min-width: 60%}
-    div .minw-55p, .minw-55p {min-width: 55%}
-    div .minw-53p, .minw-53p {min-width: 53%}
-    div .minw-52p, .minw-52p {min-width: 52%}
-    div .minw-50p, .minw-50p {min-width: 50%}
-    div .minw-45p, .minw-45p {min-width: 45%}
-    div .minw-40p, .minw-40p {min-width: 40%}
-    div .minw-35p, .minw-35p {min-width: 35%}
-    div .minw-34p, .minw-34p {min-width: 34%}
-    div .minw-32p, .minw-32p {min-width: 32%}
-    div .minw-30p, .minw-30p {min-width: 30%}
-    div .minw-27p, .minw-27p {min-width: 27%}
-    div .minw-25p, .minw-25p {min-width: 25%}
-    div .minw-23p, .minw-23p {min-width: 23%}
-    div .minw-22p, .minw-22p {min-width: 22%}
-    div .minw-20p, .minw-20p {min-width: 20%}
-    div .minw-19p, .minw-19p {min-width: 19%}
-    div .minw-18p, .minw-18p {min-width: 18%}
-    div .minw-17p, .minw-17p {min-width: 17%}
-    div .minw-16p, .minw-16p {min-width: 16%}
-    div .minw-15p, .minw-15p {min-width: 15%}
-    div .minw-14p, .minw-14p {min-width: 14%}
-    div .minw-13p, .minw-13p {min-width: 13%}
-    div .minw-12p, .minw-12p {min-width: 12%}
-    div .minw-11p, .minw-11p {min-width: 11%}
-    div .minw-10p, .minw-10p {min-width: 10%}
-    div .minw-9p, .minw-9p {min-width: 9%}
-    div .minw-8p, .minw-8p {min-width: 8%}
-    div .minw-7p, .minw-7p {min-width: 7%}
-    div .minw-6p, .minw-6p {min-width: 6%}
-    div .minw-5p, .minw-5p {min-width: 5%}
-    div .minw-4p, .minw-4p {min-width: 4%}
-    div .minw-3p, .minw-3p {min-width: 3%}
-    div .minw-2p, .minw-2p {min-width: 2%}
-    div .minw-1p, .minw-1p {min-width: 1%}
-    div .minw-0p, .minw-0p {min-width: 0%}
+    * *.minw-100p {min-width: 100%}
+    * *.minw-95p {min-width: 95%}
+    * *.minw-90p {min-width: 90%}
+    * *.minw-85p {min-width: 85%}
+    * *.minw-83p {min-width: 83%}
+    * *.minw-82p {min-width: 82%}
+    * *.minw-80p {min-width: 80%}
+    * *.minw-79p {min-width: 79%}
+    * *.minw-78p {min-width: 78%}
+    * *.minw-77p {min-width: 77%}
+    * *.minw-76p {min-width: 76%}
+    * *.minw-75p {min-width: 75%}
+    * *.minw-73p {min-width: 73%}
+    * *.minw-72p {min-width: 72%}
+    * *.minw-70p {min-width: 70%}
+    * *.minw-65p {min-width: 65%}
+    * *.minw-60p {min-width: 60%}
+    * *.minw-55p {min-width: 55%}
+    * *.minw-53p {min-width: 53%}
+    * *.minw-52p {min-width: 52%}
+    * *.minw-50p {min-width: 50%}
+    * *.minw-45p {min-width: 45%}
+    * *.minw-40p {min-width: 40%}
+    * *.minw-35p {min-width: 35%}
+    * *.minw-34p {min-width: 34%}
+    * *.minw-32p {min-width: 32%}
+    * *.minw-30p {min-width: 30%}
+    * *.minw-27p {min-width: 27%}
+    * *.minw-25p {min-width: 25%}
+    * *.minw-23p {min-width: 23%}
+    * *.minw-22p {min-width: 22%}
+    * *.minw-20p {min-width: 20%}
+    * *.minw-19p {min-width: 19%}
+    * *.minw-18p {min-width: 18%}
+    * *.minw-17p {min-width: 17%}
+    * *.minw-16p {min-width: 16%}
+    * *.minw-15p {min-width: 15%}
+    * *.minw-14p {min-width: 14%}
+    * *.minw-13p {min-width: 13%}
+    * *.minw-12p {min-width: 12%}
+    * *.minw-11p {min-width: 11%}
+    * *.minw-10p {min-width: 10%}
+    * *.minw-9p {min-width: 9%}
+    * *.minw-8p {min-width: 8%}
+    * *.minw-7p {min-width: 7%}
+    * *.minw-6p {min-width: 6%}
+    * *.minw-5p {min-width: 5%}
+    * *.minw-4p {min-width: 4%}
+    * *.minw-3p {min-width: 3%}
+    * *.minw-2p {min-width: 2%}
+    * *.minw-1p {min-width: 1%}
+    * *.minw-0p {min-width: 0%}
 
 
     /**************************************************************************************************/
@@ -1212,299 +1212,299 @@
     /**************************************************************************************************/
     /*********************************** MAX-HEIGHT, MIN-HEIGHT px ************************************/
     /****** max-height: px ******/
-    div .maxh-1000, .maxh-1000 {max-height: 1000px}
-    div .maxh-950, .maxh-950 {max-height: 950px}
-    div .maxh-900, .maxh-900 {max-height: 900px}
-    div .maxh-850, .maxh-850 {max-height: 850px}
-    div .maxh-800, .maxh-800 {max-height: 800px}
-    div .maxh-750, .maxh-750 {max-height: 750px}
-    div .maxh-700, .maxh-700 {max-height: 700px}
-    div .maxh-650, .maxh-650 {max-height: 650px}
-    div .maxh-600, .maxh-600 {max-height: 600px}
-    div .maxh-650, .maxh-650 {max-height: 650px}
-    div .maxh-550, .maxh-550 {max-height: 550px}
-    div .maxh-500, .maxh-500 {max-height: 500px}
-    div .maxh-475, .maxh-475 {max-height: 475px}
-    div .maxh-450, .maxh-450 {max-height: 450px}
-    div .maxh-425, .maxh-425 {max-height: 425px}
-    div .maxh-400, .maxh-400 {max-height: 400px}
-    div .maxh-375, .maxh-375 {max-height: 375px}
-    div .maxh-350, .maxh-350 {max-height: 350px}
-    div .maxh-325, .maxh-325 {max-height: 325px}
-    div .maxh-300, .maxh-300 {max-height: 300px}
-    div .maxh-275, .maxh-275 {max-height: 275px}
-    div .maxh-250, .maxh-250 {max-height: 250px}
-    div .maxh-225, .maxh-225 {max-height: 225px}
-    div .maxh-200, .maxh-200 {max-height: 200px}
-    div .maxh-175, .maxh-175 {max-height: 175px}
-    div .maxh-150, .maxh-150 {max-height: 150px}
-    div .maxh-145, .maxh-145 {max-height: 145px}
-    div .maxh-140, .maxh-140 {max-height: 140px}
-    div .maxh-135, .maxh-135 {max-height: 135px}
-    div .maxh-130, .maxh-130 {max-height: 130px}
-    div .maxh-125, .maxh-125 {max-height: 125px}
-    div .maxh-120, .maxh-120 {max-height: 120px}
-    div .maxh-115, .maxh-115 {max-height: 115px}
-    div .maxh-110, .maxh-110 {max-height: 110px}
-    div .maxh-105, .maxh-105 {max-height: 105px}
-    div .maxh-100, .maxh-100 {max-height: 100px}
-    div .maxh-95, .maxh-95 {max-height: 95px}
-    div .maxh-90, .maxh-90 {max-height: 90px}
-    div .maxh-85, .maxh-85 {max-height: 85px}
-    div .maxh-80, .maxh-80 {max-height: 80px}
-    div .maxh-76, .maxh-76 {max-height: 76px}
-    div .maxh-75, .maxh-75 {max-height: 75px}
-    div .maxh-70, .maxh-70 {max-height: 70px}
-    div .maxh-65, .maxh-65 {max-height: 65px}
-    div .maxh-60, .maxh-60 {max-height: 60px}
-    div .maxh-55, .maxh-55 {max-height: 55px}
-    div .maxh-50, .maxh-50 {max-height: 50px}
-    div .maxh-45, .maxh-45 {max-height: 45px}
-    div .maxh-40, .maxh-40 {max-height: 40px}
-    div .maxh-38, .maxh-38 {max-height: 38px}
-    div .maxh-35, .maxh-35 {max-height: 35px}
-    div .maxh-34, .maxh-34 {max-height: 34px}
-    div .maxh-32, .maxh-32 {max-height: 32px}
-    div .maxh-30, .maxh-30 {max-height: 30px}
-    div .maxh-28, .maxh-28 {max-height: 28px}
-    div .maxh-27, .maxh-27 {max-height: 27px}
-    div .maxh-26, .maxh-26 {max-height: 26px}
-    div .maxh-25, .maxh-25 {max-height: 25px}
-    div .maxh-20, .maxh-20 {max-height: 20px}
-    div .maxh-15, .maxh-15 {max-height: 15px}
-    div .maxh-10, .maxh-10 {max-height: 10px}
-    div .maxh-9, .maxh-9 {max-height: 9px}
-    div .maxh-8, .maxh-8 {max-height: 8px}
-    div .maxh-7, .maxh-7 {max-height: 7px}
-    div .maxh-6, .maxh-6 {max-height: 6px}
-    div .maxh-5, .maxh-5 {max-height: 5px}
-    div .maxh-4, .maxh-4 {max-height: 4px}
-    div .maxh-3, .maxh-3 {max-height: 3px}
-    div .maxh-2, .maxh-2 {max-height: 2px}
-    div .maxh-1, .maxh-1 {max-height: 1px}
-    div .maxh-0, .maxh-0 {max-height: 0px}
+    * *.maxh-1000 {max-height: 1000px}
+    * *.maxh-950 {max-height: 950px}
+    * *.maxh-900 {max-height: 900px}
+    * *.maxh-850 {max-height: 850px}
+    * *.maxh-800 {max-height: 800px}
+    * *.maxh-750 {max-height: 750px}
+    * *.maxh-700 {max-height: 700px}
+    * *.maxh-650 {max-height: 650px}
+    * *.maxh-600 {max-height: 600px}
+    * *.maxh-650 {max-height: 650px}
+    * *.maxh-550 {max-height: 550px}
+    * *.maxh-500 {max-height: 500px}
+    * *.maxh-475 {max-height: 475px}
+    * *.maxh-450 {max-height: 450px}
+    * *.maxh-425 {max-height: 425px}
+    * *.maxh-400 {max-height: 400px}
+    * *.maxh-375 {max-height: 375px}
+    * *.maxh-350 {max-height: 350px}
+    * *.maxh-325 {max-height: 325px}
+    * *.maxh-300 {max-height: 300px}
+    * *.maxh-275 {max-height: 275px}
+    * *.maxh-250 {max-height: 250px}
+    * *.maxh-225 {max-height: 225px}
+    * *.maxh-200 {max-height: 200px}
+    * *.maxh-175 {max-height: 175px}
+    * *.maxh-150 {max-height: 150px}
+    * *.maxh-145 {max-height: 145px}
+    * *.maxh-140 {max-height: 140px}
+    * *.maxh-135 {max-height: 135px}
+    * *.maxh-130 {max-height: 130px}
+    * *.maxh-125 {max-height: 125px}
+    * *.maxh-120 {max-height: 120px}
+    * *.maxh-115 {max-height: 115px}
+    * *.maxh-110 {max-height: 110px}
+    * *.maxh-105 {max-height: 105px}
+    * *.maxh-100 {max-height: 100px}
+    * *.maxh-95 {max-height: 95px}
+    * *.maxh-90 {max-height: 90px}
+    * *.maxh-85 {max-height: 85px}
+    * *.maxh-80 {max-height: 80px}
+    * *.maxh-76 {max-height: 76px}
+    * *.maxh-75 {max-height: 75px}
+    * *.maxh-70 {max-height: 70px}
+    * *.maxh-65 {max-height: 65px}
+    * *.maxh-60 {max-height: 60px}
+    * *.maxh-55 {max-height: 55px}
+    * *.maxh-50 {max-height: 50px}
+    * *.maxh-45 {max-height: 45px}
+    * *.maxh-40 {max-height: 40px}
+    * *.maxh-38 {max-height: 38px}
+    * *.maxh-35 {max-height: 35px}
+    * *.maxh-34 {max-height: 34px}
+    * *.maxh-32 {max-height: 32px}
+    * *.maxh-30 {max-height: 30px}
+    * *.maxh-28 {max-height: 28px}
+    * *.maxh-27 {max-height: 27px}
+    * *.maxh-26 {max-height: 26px}
+    * *.maxh-25 {max-height: 25px}
+    * *.maxh-20 {max-height: 20px}
+    * *.maxh-15 {max-height: 15px}
+    * *.maxh-10 {max-height: 10px}
+    * *.maxh-9 {max-height: 9px}
+    * *.maxh-8 {max-height: 8px}
+    * *.maxh-7 {max-height: 7px}
+    * *.maxh-6 {max-height: 6px}
+    * *.maxh-5 {max-height: 5px}
+    * *.maxh-4 {max-height: 4px}
+    * *.maxh-3 {max-height: 3px}
+    * *.maxh-2 {max-height: 2px}
+    * *.maxh-1 {max-height: 1px}
+    * *.maxh-0 {max-height: 0px}
 
     /****** min-height: px ******/
-    div .minh-1000, .minh-1000 {min-height: 1000px}
-    div .minh-950, .minh-950 {min-height: 950px}
-    div .minh-900, .minh-900 {min-height: 900px}
-    div .minh-850, .minh-850 {min-height: 850px}
-    div .minh-800, .minh-800 {min-height: 800px}
-    div .minh-750, .minh-750 {min-height: 750px}
-    div .minh-700, .minh-700 {min-height: 700px}
-    div .minh-650, .minh-650 {min-height: 650px}
-    div .minh-600, .minh-600 {min-height: 600px}
-    div .minh-650, .minh-650 {min-height: 650px}
-    div .minh-550, .minh-550 {min-height: 550px}
-    div .minh-500, .minh-500 {min-height: 500px}
-    div .minh-475, .minh-475 {min-height: 475px}
-    div .minh-450, .minh-450 {min-height: 450px}
-    div .minh-425, .minh-425 {min-height: 425px}
-    div .minh-400, .minh-400 {min-height: 400px}
-    div .minh-375, .minh-375 {min-height: 375px}
-    div .minh-350, .minh-350 {min-height: 350px}
-    div .minh-325, .minh-325 {min-height: 325px}
-    div .minh-300, .minh-300 {min-height: 300px}
-    div .minh-275, .minh-275 {min-height: 275px}
-    div .minh-250, .minh-250 {min-height: 250px}
-    div .minh-225, .minh-225 {min-height: 225px}
-    div .minh-200, .minh-200 {min-height: 200px}
-    div .minh-175, .minh-175 {min-height: 175px}
-    div .minh-150, .minh-150 {min-height: 150px}
-    div .minh-145, .minh-145 {min-height: 145px}
-    div .minh-140, .minh-140 {min-height: 140px}
-    div .minh-135, .minh-135 {min-height: 135px}
-    div .minh-130, .minh-130 {min-height: 130px}
-    div .minh-125, .minh-125 {min-height: 125px}
-    div .minh-120, .minh-120 {min-height: 120px}
-    div .minh-115, .minh-115 {min-height: 115px}
-    div .minh-110, .minh-110 {min-height: 110px}
-    div .minh-105, .minh-105 {min-height: 105px}
-    div .minh-100, .minh-100 {min-height: 100px}
-    div .minh-95, .minh-95 {min-height: 95px}
-    div .minh-90, .minh-90 {min-height: 90px}
-    div .minh-85, .minh-85 {min-height: 85px}
-    div .minh-80, .minh-80 {min-height: 80px}
-    div .minh-76, .minh-76 {min-height: 76px}
-    div .minh-75, .minh-75 {min-height: 75px}
-    div .minh-70, .minh-70 {min-height: 70px}
-    div .minh-65, .minh-65 {min-height: 65px}
-    div .minh-60, .minh-60 {min-height: 60px}
-    div .minh-55, .minh-55 {min-height: 55px}
-    div .minh-50, .minh-50 {min-height: 50px}
-    div .minh-45, .minh-45 {min-height: 45px}
-    div .minh-40, .minh-40 {min-height: 40px}
-    div .minh-38, .minh-38 {min-height: 38px}
-    div .minh-35, .minh-35 {min-height: 35px}
-    div .minh-34, .minh-34 {min-height: 34px}
-    div .minh-32, .minh-32 {min-height: 32px}
-    div .minh-30, .minh-30 {min-height: 30px}
-    div .minh-28, .minh-28 {min-height: 28px}
-    div .minh-27, .minh-27 {min-height: 27px}
-    div .minh-26, .minh-26 {min-height: 26px}
-    div .minh-25, .minh-25 {min-height: 25px}
-    div .minh-20, .minh-20 {min-height: 20px}
-    div .minh-15, .minh-15 {min-height: 15px}
-    div .minh-10, .minh-10 {min-height: 10px}
-    div .minh-9, .minh-9 {min-height: 9px}
-    div .minh-8, .minh-8 {min-height: 8px}
-    div .minh-7, .minh-7 {min-height: 7px}
-    div .minh-6, .minh-6 {min-height: 6px}
-    div .minh-5, .minh-5 {min-height: 5px}
-    div .minh-4, .minh-4 {min-height: 4px}
-    div .minh-3, .minh-3 {min-height: 3px}
-    div .minh-2, .minh-2 {min-height: 2px}
-    div .minh-1, .minh-1 {min-height: 1px}
-    div .minh-0, .minh-0 {min-height: 0px}
+    * *.minh-1000 {min-height: 1000px}
+    * *.minh-950 {min-height: 950px}
+    * *.minh-900 {min-height: 900px}
+    * *.minh-850 {min-height: 850px}
+    * *.minh-800 {min-height: 800px}
+    * *.minh-750 {min-height: 750px}
+    * *.minh-700 {min-height: 700px}
+    * *.minh-650 {min-height: 650px}
+    * *.minh-600 {min-height: 600px}
+    * *.minh-650 {min-height: 650px}
+    * *.minh-550 {min-height: 550px}
+    * *.minh-500 {min-height: 500px}
+    * *.minh-475 {min-height: 475px}
+    * *.minh-450 {min-height: 450px}
+    * *.minh-425 {min-height: 425px}
+    * *.minh-400 {min-height: 400px}
+    * *.minh-375 {min-height: 375px}
+    * *.minh-350 {min-height: 350px}
+    * *.minh-325 {min-height: 325px}
+    * *.minh-300 {min-height: 300px}
+    * *.minh-275 {min-height: 275px}
+    * *.minh-250 {min-height: 250px}
+    * *.minh-225 {min-height: 225px}
+    * *.minh-200 {min-height: 200px}
+    * *.minh-175 {min-height: 175px}
+    * *.minh-150 {min-height: 150px}
+    * *.minh-145 {min-height: 145px}
+    * *.minh-140 {min-height: 140px}
+    * *.minh-135 {min-height: 135px}
+    * *.minh-130 {min-height: 130px}
+    * *.minh-125 {min-height: 125px}
+    * *.minh-120 {min-height: 120px}
+    * *.minh-115 {min-height: 115px}
+    * *.minh-110 {min-height: 110px}
+    * *.minh-105 {min-height: 105px}
+    * *.minh-100 {min-height: 100px}
+    * *.minh-95 {min-height: 95px}
+    * *.minh-90 {min-height: 90px}
+    * *.minh-85 {min-height: 85px}
+    * *.minh-80 {min-height: 80px}
+    * *.minh-76 {min-height: 76px}
+    * *.minh-75 {min-height: 75px}
+    * *.minh-70 {min-height: 70px}
+    * *.minh-65 {min-height: 65px}
+    * *.minh-60 {min-height: 60px}
+    * *.minh-55 {min-height: 55px}
+    * *.minh-50 {min-height: 50px}
+    * *.minh-45 {min-height: 45px}
+    * *.minh-40 {min-height: 40px}
+    * *.minh-38 {min-height: 38px}
+    * *.minh-35 {min-height: 35px}
+    * *.minh-34 {min-height: 34px}
+    * *.minh-32 {min-height: 32px}
+    * *.minh-30 {min-height: 30px}
+    * *.minh-28 {min-height: 28px}
+    * *.minh-27 {min-height: 27px}
+    * *.minh-26 {min-height: 26px}
+    * *.minh-25 {min-height: 25px}
+    * *.minh-20 {min-height: 20px}
+    * *.minh-15 {min-height: 15px}
+    * *.minh-10 {min-height: 10px}
+    * *.minh-9 {min-height: 9px}
+    * *.minh-8 {min-height: 8px}
+    * *.minh-7 {min-height: 7px}
+    * *.minh-6 {min-height: 6px}
+    * *.minh-5 {min-height: 5px}
+    * *.minh-4 {min-height: 4px}
+    * *.minh-3 {min-height: 3px}
+    * *.minh-2 {min-height: 2px}
+    * *.minh-1 {min-height: 1px}
+    * *.minh-0 {min-height: 0px}
 
     /************************************ MAX-WIDTH, MIN-WIDTH px *************************************/
     /****** max-width: px ******/
-    div .maxw-1000, .maxw-1000 {max-width: 1000px}
-    div .maxw-950, .maxw-950 {max-width: 950px}
-    div .maxw-900, .maxw-900 {max-width: 900px}
-    div .maxw-850, .maxw-850 {max-width: 850px}
-    div .maxw-800, .maxw-800 {max-width: 800px}
-    div .maxw-750, .maxw-750 {max-width: 750px}
-    div .maxw-700, .maxw-700 {max-width: 700px}
-    div .maxw-650, .maxw-650 {max-width: 650px}
-    div .maxw-600, .maxw-600 {max-width: 600px}
-    div .maxw-650, .maxw-650 {max-width: 650px}
-    div .maxw-550, .maxw-550 {max-width: 550px}
-    div .maxw-500, .maxw-500 {max-width: 500px}
-    div .maxw-475, .maxw-475 {max-width: 475px}
-    div .maxw-450, .maxw-450 {max-width: 450px}
-    div .maxw-425, .maxw-425 {max-width: 425px}
-    div .maxw-400, .maxw-400 {max-width: 400px}
-    div .maxw-375, .maxw-375 {max-width: 375px}
-    div .maxw-350, .maxw-350 {max-width: 350px}
-    div .maxw-325, .maxw-325 {max-width: 325px}
-    div .maxw-300, .maxw-300 {max-width: 300px}
-    div .maxw-275, .maxw-275 {max-width: 275px}
-    div .maxw-250, .maxw-250 {max-width: 250px}
-    div .maxw-225, .maxw-225 {max-width: 225px}
-    div .maxw-200, .maxw-200 {max-width: 200px}
-    div .maxw-175, .maxw-175 {max-width: 175px}
-    div .maxw-150, .maxw-150 {max-width: 150px}
-    div .maxw-145, .maxw-145 {max-width: 145px}
-    div .maxw-140, .maxw-140 {max-width: 140px}
-    div .maxw-135, .maxw-135 {max-width: 135px}
-    div .maxw-130, .maxw-130 {max-width: 130px}
-    div .maxw-125, .maxw-125 {max-width: 125px}
-    div .maxw-120, .maxw-120 {max-width: 120px}
-    div .maxw-115, .maxw-115 {max-width: 115px}
-    div .maxw-110, .maxw-110 {max-width: 110px}
-    div .maxw-105, .maxw-105 {max-width: 105px}
-    div .maxw-100, .maxw-100 {max-width: 100px}
-    div .maxw-95, .maxw-95 {max-width: 95px}
-    div .maxw-90, .maxw-90 {max-width: 90px}
-    div .maxw-85, .maxw-85 {max-width: 85px}
-    div .maxw-80, .maxw-80 {max-width: 80px}
-    div .maxw-76, .maxw-76 {max-width: 76px}
-    div .maxw-75, .maxw-75 {max-width: 75px}
-    div .maxw-70, .maxw-70 {max-width: 70px}
-    div .maxw-65, .maxw-65 {max-width: 65px}
-    div .maxw-60, .maxw-60 {max-width: 60px}
-    div .maxw-55, .maxw-55 {max-width: 55px}
-    div .maxw-50, .maxw-50 {max-width: 50px}
-    div .maxw-45, .maxw-45 {max-width: 45px}
-    div .maxw-40, .maxw-40 {max-width: 40px}
-    div .maxw-38, .maxw-38 {max-width: 38px}
-    div .maxw-35, .maxw-35 {max-width: 35px}
-    div .maxw-34, .maxw-34 {max-width: 34px}
-    div .maxw-32, .maxw-32 {max-width: 32px}
-    div .maxw-30, .maxw-30 {max-width: 30px}
-    div .maxw-28, .maxw-28 {max-width: 28px}
-    div .maxw-27, .maxw-27 {max-width: 27px}
-    div .maxw-26, .maxw-26 {max-width: 26px}
-    div .maxw-25, .maxw-25 {max-width: 25px}
-    div .maxw-20, .maxw-20 {max-width: 20px}
-    div .maxw-15, .maxw-15 {max-width: 15px}
-    div .maxw-10, .maxw-10 {max-width: 10px}
-    div .maxw-9, .maxw-9 {max-width: 9px}
-    div .maxw-8, .maxw-8 {max-width: 8px}
-    div .maxw-7, .maxw-7 {max-width: 7px}
-    div .maxw-6, .maxw-6 {max-width: 6px}
-    div .maxw-5, .maxw-5 {max-width: 5px}
-    div .maxw-4, .maxw-4 {max-width: 4px}
-    div .maxw-3, .maxw-3 {max-width: 3px}
-    div .maxw-2, .maxw-2 {max-width: 2px}
-    div .maxw-1, .maxw-1 {max-width: 1px}
-    div .maxw-0, .maxw-0 {max-width: 0px}
+    * *.maxw-1000 {max-width: 1000px}
+    * *.maxw-950 {max-width: 950px}
+    * *.maxw-900 {max-width: 900px}
+    * *.maxw-850 {max-width: 850px}
+    * *.maxw-800 {max-width: 800px}
+    * *.maxw-750 {max-width: 750px}
+    * *.maxw-700 {max-width: 700px}
+    * *.maxw-650 {max-width: 650px}
+    * *.maxw-600 {max-width: 600px}
+    * *.maxw-650 {max-width: 650px}
+    * *.maxw-550 {max-width: 550px}
+    * *.maxw-500 {max-width: 500px}
+    * *.maxw-475 {max-width: 475px}
+    * *.maxw-450 {max-width: 450px}
+    * *.maxw-425 {max-width: 425px}
+    * *.maxw-400 {max-width: 400px}
+    * *.maxw-375 {max-width: 375px}
+    * *.maxw-350 {max-width: 350px}
+    * *.maxw-325 {max-width: 325px}
+    * *.maxw-300 {max-width: 300px}
+    * *.maxw-275 {max-width: 275px}
+    * *.maxw-250 {max-width: 250px}
+    * *.maxw-225 {max-width: 225px}
+    * *.maxw-200 {max-width: 200px}
+    * *.maxw-175 {max-width: 175px}
+    * *.maxw-150 {max-width: 150px}
+    * *.maxw-145 {max-width: 145px}
+    * *.maxw-140 {max-width: 140px}
+    * *.maxw-135 {max-width: 135px}
+    * *.maxw-130 {max-width: 130px}
+    * *.maxw-125 {max-width: 125px}
+    * *.maxw-120 {max-width: 120px}
+    * *.maxw-115 {max-width: 115px}
+    * *.maxw-110 {max-width: 110px}
+    * *.maxw-105 {max-width: 105px}
+    * *.maxw-100 {max-width: 100px}
+    * *.maxw-95 {max-width: 95px}
+    * *.maxw-90 {max-width: 90px}
+    * *.maxw-85 {max-width: 85px}
+    * *.maxw-80 {max-width: 80px}
+    * *.maxw-76 {max-width: 76px}
+    * *.maxw-75 {max-width: 75px}
+    * *.maxw-70 {max-width: 70px}
+    * *.maxw-65 {max-width: 65px}
+    * *.maxw-60 {max-width: 60px}
+    * *.maxw-55 {max-width: 55px}
+    * *.maxw-50 {max-width: 50px}
+    * *.maxw-45 {max-width: 45px}
+    * *.maxw-40 {max-width: 40px}
+    * *.maxw-38 {max-width: 38px}
+    * *.maxw-35 {max-width: 35px}
+    * *.maxw-34 {max-width: 34px}
+    * *.maxw-32 {max-width: 32px}
+    * *.maxw-30 {max-width: 30px}
+    * *.maxw-28 {max-width: 28px}
+    * *.maxw-27 {max-width: 27px}
+    * *.maxw-26 {max-width: 26px}
+    * *.maxw-25 {max-width: 25px}
+    * *.maxw-20 {max-width: 20px}
+    * *.maxw-15 {max-width: 15px}
+    * *.maxw-10 {max-width: 10px}
+    * *.maxw-9 {max-width: 9px}
+    * *.maxw-8 {max-width: 8px}
+    * *.maxw-7 {max-width: 7px}
+    * *.maxw-6 {max-width: 6px}
+    * *.maxw-5 {max-width: 5px}
+    * *.maxw-4 {max-width: 4px}
+    * *.maxw-3 {max-width: 3px}
+    * *.maxw-2 {max-width: 2px}
+    * *.maxw-1 {max-width: 1px}
+    * *.maxw-0 {max-width: 0px}
 
     /****** min-width: px ******/
-    div .minw-1000, .minw-1000 {min-width: 1000px}
-    div .minw-950, .minw-950 {min-width: 950px}
-    div .minw-900, .minw-900 {min-width: 900px}
-    div .minw-850, .minw-850 {min-width: 850px}
-    div .minw-800, .minw-800 {min-width: 800px}
-    div .minw-750, .minw-750 {min-width: 750px}
-    div .minw-700, .minw-700 {min-width: 700px}
-    div .minw-650, .minw-650 {min-width: 650px}
-    div .minw-600, .minw-600 {min-width: 600px}
-    div .minw-650, .minw-650 {min-width: 650px}
-    div .minw-550, .minw-550 {min-width: 550px}
-    div .minw-500, .minw-500 {min-width: 500px}
-    div .minw-475, .minw-475 {min-width: 475px}
-    div .minw-450, .minw-450 {min-width: 450px}
-    div .minw-425, .minw-425 {min-width: 425px}
-    div .minw-400, .minw-400 {min-width: 400px}
-    div .minw-375, .minw-375 {min-width: 375px}
-    div .minw-350, .minw-350 {min-width: 350px}
-    div .minw-325, .minw-325 {min-width: 325px}
-    div .minw-300, .minw-300 {min-width: 300px}
-    div .minw-275, .minw-275 {min-width: 275px}
-    div .minw-250, .minw-250 {min-width: 250px}
-    div .minw-225, .minw-225 {min-width: 225px}
-    div .minw-200, .minw-200 {min-width: 200px}
-    div .minw-175, .minw-175 {min-width: 175px}
-    div .minw-150, .minw-150 {min-width: 150px}
-    div .minw-145, .minw-145 {min-width: 145px}
-    div .minw-140, .minw-140 {min-width: 140px}
-    div .minw-135, .minw-135 {min-width: 135px}
-    div .minw-130, .minw-130 {min-width: 130px}
-    div .minw-125, .minw-125 {min-width: 125px}
-    div .minw-120, .minw-120 {min-width: 120px}
-    div .minw-115, .minw-115 {min-width: 115px}
-    div .minw-110, .minw-110 {min-width: 110px}
-    div .minw-105, .minw-105 {min-width: 105px}
-    div .minw-100, .minw-100 {min-width: 100px}
-    div .minw-95, .minw-95 {min-width: 95px}
-    div .minw-90, .minw-90 {min-width: 90px}
-    div .minw-85, .minw-85 {min-width: 85px}
-    div .minw-80, .minw-80 {min-width: 80px}
-    div .minw-76, .minw-76 {min-width: 76px}
-    div .minw-75, .minw-75 {min-width: 75px}
-    div .minw-70, .minw-70 {min-width: 70px}
-    div .minw-65, .minw-65 {min-width: 65px}
-    div .minw-60, .minw-60 {min-width: 60px}
-    div .minw-55, .minw-55 {min-width: 55px}
-    div .minw-50, .minw-50 {min-width: 50px}
-    div .minw-45, .minw-45 {min-width: 45px}
-    div .minw-40, .minw-40 {min-width: 40px}
-    div .minw-38, .minw-38 {min-width: 38px}
-    div .minw-35, .minw-35 {min-width: 35px}
-    div .minw-34, .minw-34 {min-width: 34px}
-    div .minw-32, .minw-32 {min-width: 32px}
-    div .minw-30, .minw-30 {min-width: 30px}
-    div .minw-28, .minw-28 {min-width: 28px}
-    div .minw-27, .minw-27 {min-width: 27px}
-    div .minw-26, .minw-26 {min-width: 26px}
-    div .minw-25, .minw-25 {min-width: 25px}
-    div .minw-20, .minw-20 {min-width: 20px}
-    div .minw-15, .minw-15 {min-width: 15px}
-    div .minw-10, .minw-10 {min-width: 10px}
-    div .minw-9, .minw-9 {min-width: 9px}
-    div .minw-8, .minw-8 {min-width: 8px}
-    div .minw-7, .minw-7 {min-width: 7px}
-    div .minw-6, .minw-6 {min-width: 6px}
-    div .minw-5, .minw-5 {min-width: 5px}
-    div .minw-4, .minw-4 {min-width: 4px}
-    div .minw-3, .minw-3 {min-width: 3px}
-    div .minw-2, .minw-2 {min-width: 2px}
-    div .minw-1, .minw-1 {min-width: 1px}
-    div .minw-0, .minw-0 {min-width: 0px}
+    * *.minw-1000 {min-width: 1000px}
+    * *.minw-950 {min-width: 950px}
+    * *.minw-900 {min-width: 900px}
+    * *.minw-850 {min-width: 850px}
+    * *.minw-800 {min-width: 800px}
+    * *.minw-750 {min-width: 750px}
+    * *.minw-700 {min-width: 700px}
+    * *.minw-650 {min-width: 650px}
+    * *.minw-600 {min-width: 600px}
+    * *.minw-650 {min-width: 650px}
+    * *.minw-550 {min-width: 550px}
+    * *.minw-500 {min-width: 500px}
+    * *.minw-475 {min-width: 475px}
+    * *.minw-450 {min-width: 450px}
+    * *.minw-425 {min-width: 425px}
+    * *.minw-400 {min-width: 400px}
+    * *.minw-375 {min-width: 375px}
+    * *.minw-350 {min-width: 350px}
+    * *.minw-325 {min-width: 325px}
+    * *.minw-300 {min-width: 300px}
+    * *.minw-275 {min-width: 275px}
+    * *.minw-250 {min-width: 250px}
+    * *.minw-225 {min-width: 225px}
+    * *.minw-200 {min-width: 200px}
+    * *.minw-175 {min-width: 175px}
+    * *.minw-150 {min-width: 150px}
+    * *.minw-145 {min-width: 145px}
+    * *.minw-140 {min-width: 140px}
+    * *.minw-135 {min-width: 135px}
+    * *.minw-130 {min-width: 130px}
+    * *.minw-125 {min-width: 125px}
+    * *.minw-120 {min-width: 120px}
+    * *.minw-115 {min-width: 115px}
+    * *.minw-110 {min-width: 110px}
+    * *.minw-105 {min-width: 105px}
+    * *.minw-100 {min-width: 100px}
+    * *.minw-95 {min-width: 95px}
+    * *.minw-90 {min-width: 90px}
+    * *.minw-85 {min-width: 85px}
+    * *.minw-80 {min-width: 80px}
+    * *.minw-76 {min-width: 76px}
+    * *.minw-75 {min-width: 75px}
+    * *.minw-70 {min-width: 70px}
+    * *.minw-65 {min-width: 65px}
+    * *.minw-60 {min-width: 60px}
+    * *.minw-55 {min-width: 55px}
+    * *.minw-50 {min-width: 50px}
+    * *.minw-45 {min-width: 45px}
+    * *.minw-40 {min-width: 40px}
+    * *.minw-38 {min-width: 38px}
+    * *.minw-35 {min-width: 35px}
+    * *.minw-34 {min-width: 34px}
+    * *.minw-32 {min-width: 32px}
+    * *.minw-30 {min-width: 30px}
+    * *.minw-28 {min-width: 28px}
+    * *.minw-27 {min-width: 27px}
+    * *.minw-26 {min-width: 26px}
+    * *.minw-25 {min-width: 25px}
+    * *.minw-20 {min-width: 20px}
+    * *.minw-15 {min-width: 15px}
+    * *.minw-10 {min-width: 10px}
+    * *.minw-9 {min-width: 9px}
+    * *.minw-8 {min-width: 8px}
+    * *.minw-7 {min-width: 7px}
+    * *.minw-6 {min-width: 6px}
+    * *.minw-5 {min-width: 5px}
+    * *.minw-4 {min-width: 4px}
+    * *.minw-3 {min-width: 3px}
+    * *.minw-2 {min-width: 2px}
+    * *.minw-1 {min-width: 1px}
+    * *.minw-0 {min-width: 0px}
 
-    .dh-25--sh-21, div .dh-25--sh-21 {
+    * *.dh-25--sh-21 {
         height: 25px;
         @media (max-height : 460px) {height: 21px}
     }
