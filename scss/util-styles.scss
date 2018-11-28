@@ -18,7 +18,6 @@
 @import './mixins.scss';
 @import './text.scss';
 
-
 /**
  * ****************************************** REFERENCE ******************************************
  *
@@ -229,8 +228,8 @@
 
 :global {
     /******************************************* HOVERS *******************************************/
-    .states-lightergray-bg:hover { background-color: $lighterGray }
-    .states-lightergray-bg:active { background-color: $lightGray }
+    .states-lightergray-bg:hover {background-color: $lighterGray}
+    .states-lightergray-bg:active {background-color: $lightGray}
 
     .states-standard:hover {
         cursor: pointer;
@@ -243,8 +242,8 @@
         text-decoration: none;
     }
 
-    .states-faintblue-bg:hover { background-color: $fainterBlue }
-    .states-faintblue-bg:active { background-color: $palestBlue }
+    .states-faintblue-bg:hover {background-color: $fainterBlue}
+    .states-faintblue-bg:active {background-color: $palestBlue}
 
     .haf-no-underline:focus,
     .haf-no-underline:active,
@@ -257,6 +256,6 @@
         text-shadow: 0.1px 0.1px 0.1px $lightestGray;
     }
 
-    //************************************* BACKGROUND-IMAGE **************************************/
-    span.bg-img-none, div.bg-img-none, button.bg-img-none, .bg-img-none { background-image: none }
+    /************************************** BACKGROUND-IMAGE **************************************/
+    * * *.bg-img-none, {background-image: none}
 }
