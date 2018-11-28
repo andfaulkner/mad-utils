@@ -1,3 +1,8 @@
+0.86.1
+======
+Replace use of specific elements (`div`, `span`, etc) to increase selectivity in SCSS utils with use of `*`s.
+-   Done in all remaining SCSS util files.
+
 0.86.0
 ======
 Rename ReactChildString & ChildString types.
