@@ -1,3 +1,12 @@
+0.85.2 [WIP]
+============
+Rename ReactChildString & ChildString types.
+*   Reason: They're useless. It's easier to just write {children?: string}.
+
+margin.scss
+*   Replace use of `div`s to increase selectivity in SCSS utils with use of `*`s.
+*   Remove redundant selectors.
+
 0.85.1
 ======
 Add colour darkerRed to SCSS, including utils:
