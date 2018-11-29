@@ -107,15 +107,15 @@
     .align-self-stretch {align-self: stretch   }
 
     /************ flex :: flex-direction ************/
-    .flex-col,              .flex.col,
-    .flex-column,           .flex.column,
-    .flex-dir-col,          .flex.dir-col,
-    .flex-dir-column,       .flex.dir-column,
-    .flex-direction-col,    .flex.direction-col,
-    .flex-direction-column, .flex.direction-column {flex-direction: column}
-    .flex-row,              .flex.row,
-    .flex-dir-row,          .flex.dir-row,
-    .flex-direction-row,    .flex.direction-row    {flex-direction: row   }
+    .flex.col,
+    .flex.column,
+    .flex.dir-col,
+    .flex.dir-column,
+    .flex.direction-col,
+    .flex.direction-column {flex-direction: column}
+    .flex.row,
+    .flex.dir-row,
+    .flex.direction-row    {flex-direction: row   }
 
     /************ flex :: flex-wrap *****************/
     .flex-wrap,         .flex.wrap,        {flex-wrap: wrap        }
