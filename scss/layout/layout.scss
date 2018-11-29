@@ -40,17 +40,11 @@
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
-    .flex-start,         .flex.start         {justify-content: flex-start   }
-    .flex-end,           .flex.end           {justify-content: flex-end     }
-    .flex-center,        .flex.center,
-    .flex-middle,        .flex.middle,
-    .flex-mid,           .flex.mid           {justify-content: center       }
-    .flex-sa,            .flex.sa,
-    .flex-spacearound,   .flex.spacearound,
-    .flex-space-around,  .flex.space-around  {justify-content: space-around }
-    .flex-sb,            .flex.sb,
-    .flex-spacebetween,  .flex.spacebetween,
-    .flex-space-between, .flex.space-between {justify-content: space-between}
+    .flex.start         {justify-content: flex-start   }
+    .flex.end           {justify-content: flex-end     }
+    .flex.center        {justify-content: center       }
+    .flex.space-around  {justify-content: space-around }
+    .flex.space-between {justify-content: space-between}
 
 
     /************ flex :: flex-grow **************/
