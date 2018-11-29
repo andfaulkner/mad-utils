@@ -11,32 +11,20 @@
 
 :global {
     /***************************************** DISPLAYS *******************************************/
-    .inline              {display: inline      }
-    .block               {display: block       }
-    .inline-block        {display: inline-block}
-    .display-none, .none {display: none        }
+    .inline       {display: inline      }
+    .block        {display: block       }
+    .inline-block {display: inline-block}
+    .none         {display: none        }
 
     .flex {display: flex}
     .inline-flex {display: inline-flex }
 
     /************ table ************/
     .table        {display: table}
-
     .table-col,
-    .table-column,
-    .display-col,
-    .display-td,
-    .display-table-col,
-    .display-table-column {display: table-column}
-
-    .table-row,
-    .display-row,
-    .display-tr,
-    .display-table-row    {display: table-row   }
-
-    .table-cell,
-    .display-cell,
-    .display-table-cell   {display: table-cell  }
+    .table-column {display: table-column}
+    .table-row {display: table-row   }
+    .table-cell {display: table-cell  }
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
