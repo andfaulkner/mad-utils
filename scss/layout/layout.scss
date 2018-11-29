@@ -95,38 +95,16 @@
     .flex.align-items-flexstart {align-items: flex-start}
 
     /************ flex :: align-self ************/
-    .flex-as-mid,     .flex.as-mid,
-    .flex-as-middle,  .flex.as-middle,
-    .flex-as-center,  .flex.as-center  {align-self: center    }
-    .flex-as-fs,      .flex.as-fs,
-    .flex-as-fstart,  .flex.as-fstart,
-    .flex-as-start,   .flex.as-start   {align-self: flex-start}
-    .flex-as-fe,      .flex.as-fe,
-    .flex-as-fend,    .flex.as-fend,
-    .flex-as-end,     .flex.as-end     {align-self: flex-end  }
-    .flex-as-stretch, .flex.as-stretch {align-self: stretch   }
-
-    .flex-alignself-mid,     .alignself-mid,
-    .flex-alignself-middle,  .alignself-middle,
-    .flex-alignself-center,  .alignself-center  {align-self: center    }
-    .flex-alignself-fs,      .alignself-fs,
-    .flex-alignself-start,   .alignself-start,
-    .flex-alignself-fstart,  .alignself-fstart  {align-self: flex-start}
-    .flex-alignself-fe,      .alignself-fe,
-    .flex-alignself-end,     .alignself-end,
-    .flex-alignself-fend,    .alignself-fend    {align-self: flex-end  }
-    .flex-alignself-stretch, .alignself-stretch {align-self: stretch   }
-
-    .flex-align-self-mid,     .align-self-mid,
-    .flex-align-self-middle,  .align-self-middle,
-    .flex-align-self-center,  .align-self-center  {align-self: center    }
-    .flex-align-self-fs,      .align-self-fs,
-    .flex-align-self-fstart,  .align-self-fstart,
-    .flex-align-self-start,   .align-self-start   {align-self: flex-start}
-    .flex-align-self-fe,      .align-self-fe,
-    .flex-align-self-fend,    .align-self-fend,
-    .flex-align-self-end,     .align-self-end     {align-self: flex-end  }
-    .flex-align-self-stretch, .align-self-stretch {align-self: stretch   }
+    .align-self-mid,
+    .align-self-middle,
+    .align-self-center  {align-self: center    }
+    .align-self-fs,
+    .align-self-fstart,
+    .align-self-start   {align-self: flex-start}
+    .align-self-fe,
+    .align-self-fend,
+    .align-self-end     {align-self: flex-end  }
+    .align-self-stretch {align-self: stretch   }
 
     /************ flex :: flex-direction ************/
     .flex-col,              .flex.col,
