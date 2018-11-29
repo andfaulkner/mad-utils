@@ -62,29 +62,13 @@
     .flex-shrink-10 {flex-shrink: 10}
 
     /************ flex :: align-items ************/
-    .flex.ai-center    {align-items: center    }
-    .flex.ai-fe,
-    .flex.ai-end,
-    .flex.ai-flexend   {align-items: flex-end  }
-    .flex.ai-fs,
-    .flex.ai-start,
-    .flex.ai-flexstart {align-items: flex-start}
-
-    .flex.align-items-center    {align-items: center    }
-    .flex.align-items-fe,
-    .flex.align-items-end,
-    .flex.align-items-flexend   {align-items: flex-end  }
-    .flex.align-items-fs,
-    .flex.align-items-start,
-    .flex.align-items-flexstart {align-items: flex-start}
+    .flex.ai-center, .flex.align-items-center {align-items: center    }
+    .flex.ai-end,    .flex.align-items-end    {align-items: flex-end  }
+    .flex.ai-start,  .flex.align-items-start  {align-items: flex-start}
 
     /************ flex :: align-self ************/
     .align-self-center  {align-self: center    }
-    .align-self-fs,
-    .align-self-fstart,
     .align-self-start   {align-self: flex-start}
-    .align-self-fe,
-    .align-self-fend,
     .align-self-end     {align-self: flex-end  }
     .align-self-stretch {align-self: stretch   }
 
