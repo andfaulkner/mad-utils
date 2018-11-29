@@ -74,35 +74,35 @@
     .flex-shrink-10 {flex-shrink: 10}
 
     /************ flex :: align-items ************/
-    .flex-ai-mid,       .flex.ai-mid,
-    .flex-ai-middle,    .flex.ai-middle,
-    .flex-ai-center,    .flex.ai-center    {align-items: center    }
-    .flex-ai-fe,        .flex.ai-fe,
-    .flex-ai-end,       .flex.ai-end,
-    .flex-ai-flexend,   .flex.ai-flexend   {align-items: flex-end  }
-    .flex-ai-fs,        .flex.ai-fs,
-    .flex-ai-start,     .flex.ai-start,
-    .flex-ai-flexstart, .flex.ai-flexstart {align-items: flex-start}
+    .flex.ai-mid,
+    .flex.ai-middle,
+    .flex.ai-center    {align-items: center    }
+    .flex.ai-fe,
+    .flex.ai-end,
+    .flex.ai-flexend   {align-items: flex-end  }
+    .flex.ai-fs,
+    .flex.ai-start,
+    .flex.ai-flexstart {align-items: flex-start}
 
-    .flex-alignitems-mid,       .flex.alignitems-mid,
-    .flex-alignitems-middle,    .flex.alignitems-middle,
-    .flex-alignitems-center,    .flex.alignitems-center     {align-items: center     }
-    .flex-alignitems-fe,        .flex.alignitems-fe,
-    .flex-alignitems-end,       .flex.alignitems-end,
-    .flex-alignitems-flexend,   .flex.alignitems-flexend    {align-items: flex-end   }
-    .flex-alignitems-fs,        .flex.alignitems-fs,
-    .flex-alignitems-start,     .flex.alignitems-start,
-    .flex-alignitems-flexstart, .flex.alignitems-flexstart  {align-items: flex-start }
+    .flex.alignitems-mid,
+    .flex.alignitems-middle,
+    .flex.alignitems-center     {align-items: center     }
+    .flex.alignitems-fe,
+    .flex.alignitems-end,
+    .flex.alignitems-flexend    {align-items: flex-end   }
+    .flex.alignitems-fs,
+    .flex.alignitems-start,
+    .flex.alignitems-flexstart  {align-items: flex-start }
 
-    .flex-align-items-mid,       .flex.align-items-mid,
-    .flex-align-items-middle,    .flex.align-items-middle,
-    .flex-align-items-center,    .flex.align-items-center    {align-items: center    }
-    .flex-align-items-fe,        .flex.align-items-fe,
-    .flex-align-items-end,       .flex.align-items-end,
-    .flex-align-items-flexend,   .flex.align-items-flexend   {align-items: flex-end  }
-    .flex-align-items-fs,        .flex.align-items-fs,
-    .flex-align-items-start,     .flex.align-items-start,
-    .flex-align-items-flexstart, .flex.align-items-flexstart {align-items: flex-start}
+    .flex.align-items-mid,
+    .flex.align-items-middle,
+    .flex.align-items-center    {align-items: center    }
+    .flex.align-items-fe,
+    .flex.align-items-end,
+    .flex.align-items-flexend   {align-items: flex-end  }
+    .flex.align-items-fs,
+    .flex.align-items-start,
+    .flex.align-items-flexstart {align-items: flex-start}
 
     /************ flex :: align-self ************/
     .flex-as-mid,     .flex.as-mid,
