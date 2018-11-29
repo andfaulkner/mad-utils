@@ -1,3 +1,65 @@
+0.87.0
+======
+### Remove layout SCSS utils:
+-   display-col
+-   display-inline
+-   display-block
+-   display-inline-block
+-   display-flex
+-   display-table
+-   display-col
+-   display-td
+-   display-table-col
+-   display-table-column
+-   display-row
+-   display-tr
+-   display-table-row
+-   display-cell
+-   display-table-cell
+-   inflex & inlineflex (inline-flex instead)
+
+### Remove unneeded justify-content SCSS util aliases:
+-   All with prefixes:
+    -   "jc-" e.g. ".jc-start"
+    -   "flex-justifycontent-" e.g. ".flex-justifycontent-start"
+    -   "justify-content-" e.g. ".justify-content-start"
+-   flex-start, flex-center, flex-end
+-   flex-middle, middle, mid
+-   flex-sa, flex-spacearound, flex-space-around, sa, spacearound  [Use .space-around only]
+-   flex-sb, flex-spacebetween, flex-space-between, sb, spacebetween [Use .space-between only]
+
+### Remove unneeded align-items SCSS util aliases:
+-   All with prefixes:
+    -   flex-ai-
+    -   flex-alignitems-
+    -   flex-align-items-
+    -   alignitems-
+-   ai-mid, ai-middle, align-items-mid, align-items-middle
+-   ai-fs, ai-fe, ai-flexstart, ai-flexend
+-   align-items-fs, align-items-fe, align-items-flexstart, align-items-flexend
+-   align-items-fstart
+-   align-items-fend
+
+### Remove unneeded align-self SCSS util aliases:
+-   All with prefixes:
+    -   flex-align-self-
+    -   flex-alignself-
+    -   alignself-
+    -   flex-as-
+    -   as-
+-   align-self-mid, align-self-middle
+-   align-self-fs, align-self-fe, align-self-flexstart, align-self-flexend
+-   align-self-fstart
+-   align-self-fend
+
+### Remove unneeded align-self SCSS util aliases:
+-   flex-dir-*
+-   flex-direction-*
+
+### Remove "overflow-" prefixed SCSS util aliases (use `.ovx-*` and `.ovy-*` utils instead)
+
+----------------------------------------------------------------------------------------------------
+
 0.86.1
 ======
 Replace use of specific elements (`div`, `span`, etc) to increase selectivity in SCSS utils with use of `*`s.
@@ -12,6 +74,8 @@ In margin.scss, padding.scss, size.scss, position.scss:
 *   Replace use of `div`s to increase selectivity in SCSS utils with use of `*`s.
 *   Remove redundant selectors.
 
+----------------------------------------------------------------------------------------------------
+
 0.85.1
 ======
 Add colour darkerRed to SCSS, including utils:
@@ -21,16 +85,22 @@ Add colour darkerRed to SCSS, including utils:
 ======
 Migrate to use esModuleInterop=true in TS config 
 
+----------------------------------------------------------------------------------------------------
+
 0.84.0
 ======
 Renamed `condSwitch` to `switchExpr`
 *   Deprecated `condSwitch`
+
+----------------------------------------------------------------------------------------------------
 
 0.83.0
 ======
 Remove getBaseFilenameFromPath function (it's already in Node as path.basename)
 
 Fix SCSS error in text.scss causing newer SCSS build tools (Webpack plugins) to crash
+
+----------------------------------------------------------------------------------------------------
 
 0.82.1
 ======
