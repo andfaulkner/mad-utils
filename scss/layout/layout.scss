@@ -23,8 +23,8 @@
     .table        {display: table}
     .table-col,
     .table-column {display: table-column}
-    .table-row {display: table-row   }
-    .table-cell {display: table-cell  }
+    .table-row    {display: table-row   }
+    .table-cell   {display: table-cell  }
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
@@ -62,8 +62,6 @@
     .flex-shrink-10 {flex-shrink: 10}
 
     /************ flex :: align-items ************/
-    .flex.ai-mid,
-    .flex.ai-middle,
     .flex.ai-center    {align-items: center    }
     .flex.ai-fe,
     .flex.ai-end,
@@ -72,8 +70,6 @@
     .flex.ai-start,
     .flex.ai-flexstart {align-items: flex-start}
 
-    .flex.align-items-mid,
-    .flex.align-items-middle,
     .flex.align-items-center    {align-items: center    }
     .flex.align-items-fe,
     .flex.align-items-end,
@@ -83,8 +79,6 @@
     .flex.align-items-flexstart {align-items: flex-start}
 
     /************ flex :: align-self ************/
-    .align-self-mid,
-    .align-self-middle,
     .align-self-center  {align-self: center    }
     .align-self-fs,
     .align-self-fstart,
