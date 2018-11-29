@@ -1,6 +1,3 @@
-// TODO Add display: flex to all utils prefixed by `flex-` e.g. `flex-as-center`
-//  Example:  .flex-as-center {display: flex; align-self: center}
-
 @import './margin.scss';
 @import './padding.scss';
 @import './border.scss';
@@ -16,7 +13,7 @@
     .inline-block {display: inline-block}
     .none         {display: none        }
 
-    .flex {display: flex}
+    .flex        {display: flex}
     .inline-flex {display: inline-flex }
 
     /************ table ************/
@@ -127,14 +124,14 @@
     .rotate-315deg {transform: rotate(315deg)}
 
     /****************************************** OVERFLOW ******************************************/
-    .overflow-x-hidden,  .ovx-hidden  {overflow-x: hidden }
-    .overflow-y-hidden,  .ovy-hidden  {overflow-y: hidden }
-    .overflow-x-scroll,  .ovx-scroll  {overflow-x: scroll }
-    .overflow-y-scroll,  .ovy-scroll  {overflow-y: scroll }
-    .overflow-x-auto,    .ovx-auto    {overflow-x: auto   }
-    .overflow-y-auto,    .ovy-auto    {overflow-y: auto   }
-    .overflow-x-overlay, .ovx-overlay {overflow-x: overlay}
-    .overflow-y-overlay, .ovy-overlay {overflow-y: overlay}
-    .overflow-x-visible, .ovx-visible {overflow-x: visible}
-    .overflow-y-visible, .ovy-visible {overflow-y: visible}
+    .ovx-hidden  {overflow-x: hidden }
+    .ovy-hidden  {overflow-y: hidden }
+    .ovx-scroll  {overflow-x: scroll }
+    .ovy-scroll  {overflow-y: scroll }
+    .ovx-auto    {overflow-x: auto   }
+    .ovy-auto    {overflow-y: auto   }
+    .ovx-overlay {overflow-x: overlay}
+    .ovy-overlay {overflow-y: overlay}
+    .ovx-visible {overflow-x: visible}
+    .ovy-visible {overflow-y: visible}
 }
