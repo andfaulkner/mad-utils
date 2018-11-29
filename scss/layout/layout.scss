@@ -11,18 +11,16 @@
 
 :global {
     /***************************************** DISPLAYS *******************************************/
-    .display-inline,       .inline       {display: inline      }
-    .display-block,        .block        {display: block       }
-    .display-none,         .none         {display: none        }
-    .display-inline-block, .inline-block {display: inline-block}
+    .inline              {display: inline      }
+    .block               {display: block       }
+    .inline-block        {display: inline-block}
+    .display-none, .none {display: none        }
 
-    .flex,       .display-flex        {display: flex}
-    .inflex,     .inline-flex,
-    .inlineflex, .display-inline-flex {display: inline-flex }
+    .flex {display: flex}
+    .inline-flex, .inlineflex {display: inline-flex }
 
     /************ table ************/
-    .table,
-    .display-table        {display: table       }
+    .table        {display: table}
 
     .table-col,
     .table-column,
