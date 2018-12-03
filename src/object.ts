@@ -141,21 +141,23 @@ export {hasKey as containsKey};
 export {hasKey as includesKey};
 
 /*********************************** ADD NEW OBJECT PROPERTIES ************************************/
-// Select correct defineProperty (for use with defineImmutableProp)
+/**
+ * Select correct defineProperty (for use with defineImmutableProp)
+ */
 const defineProperty = (Reflect && Reflect.defineProperty) || Object.defineProperty;
 
 /**
  * Define a new property on an object without overwriting existing property
  *
  * @param {Object} obj Object being merged into
- * @param {string} keyName Name of property to assign value at
+ * @param {string|number|symbol} keyName Name of property to assign value at
  * @param {RealAny} value Value to assign to property on object 'obj' (first param)
  * @param {boolean} mutable If true, make new property mutable [Default: false]
  * @return {Object} with new property added
  */
 export const defineProp = <R extends object = any>(
     obj: object,
-    keyName: string,
+    keyName: string | number | symbol,
     value: RealAny,
     mutable: false | true | 'deletable' | 'mutable' | 'immutable' = 'immutable',
     enumerable: boolean = true
@@ -176,13 +178,13 @@ export {defineProp as defineProperty};
  * Must be a function
  *
  * @param {Object} obj Object being merged into
- * @param {string} keyName Name of property to add function at
+ * @param {string|number|symbol} keyName Name of property to add function at
  * @param {Function} value Function to assign to key on object 'obj' (1st param in NewKVPair)
  * @return {Object} with new property added
  */
 export const defineMethod = <R extends object = any>(
     obj: object,
-    keyName: string,
+    keyName: string | number | symbol,
     func: Function
 ): R => {
     defineProperty(obj, keyName, {
@@ -199,13 +201,13 @@ export const defineMethod = <R extends object = any>(
  * Does not overwrite existing property
  *
  * @prop {Object} obj - Object being merged into.
- * @prop {string} keyName - Name of new prop to add to the gven object.
+ * @prop {string|number|symbol} keyName - Name of new prop to add to the gven object.
  * @prop {string} propVal - Actual value to assign to the new property.
  * @return {Object} Initial object with given property added
  */
 export const defineImmutableProp = <R extends object = any>(
     obj: object,
-    keyName: string,
+    keyName: string | number | symbol,
     propVal: RealAny
 ): R => {
     const res = defineProp(obj, keyName, propVal, 'immutable');
@@ -221,13 +223,13 @@ export {defineImmutableProp as addImmutableMethod};
  * overwriting existing props
  *
  * @prop {Object} obj Object being merged into
- * @prop {string} keyName Name of new prop to add to the gven object
+ * @prop {string|number|symbol} keyName Name of new prop to add to the gven object
  * @prop {string} propVal Actual value to assign to the new property
  * @return {Object} Initial object with given property added
  */
 export const defineMutableProp = <R extends object = any>(
     obj: object,
-    keyName: string,
+    keyName: string | number | symbol,
     propVal: RealAny
 ): R => {
     defineProp(obj, keyName, propVal, 'mutable');
@@ -243,13 +245,13 @@ export {defineMutableProp as addMutableMethod};
  * overwriting existing props
  *
  * @prop {Object} obj Object being merged into
- * @prop {string} keyName Name of new prop to add to the gven object
+ * @prop {string|number|symbol} keyName Name of new prop to add to the gven object
  * @prop {string} propVal Actual value to assign to the new property
  * @return {Object} Initial object with given property added
  */
 export const defineDeletableProp = <R extends object = any>(
     obj: object,
-    keyName: string,
+    keyName: string | number | symbol,
     propVal: RealAny
 ): R => {
     defineProp(obj, keyName, propVal, 'deletable');
@@ -265,14 +267,14 @@ export {defineDeletableProp as addDeletableMethod};
  * @generic <R> Return object
  *
  * @prop {Object} obj Object being merged into
- * @prop {string} keyName Name of new getter prop to add to the gven object
+ * @prop {string|number|symbol} keyName Name of new getter prop to add to the gven object
  * @prop {string} propVal Actual value to assign to the new getter property
  *
  * @return {Object} Initial object with given property added
  */
 export const defineGetterProp = <R extends object = any>(
     obj: object,
-    keyName: string,
+    keyName: string|number|symbol,
     propVal: () => any
 ): R => {
     defineProperty(obj, keyName, {enumerable: true, configurable: true, get: propVal});
