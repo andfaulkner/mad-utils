@@ -1,3 +1,13 @@
+0.87.1
+======
+### Allow symbols and numbers in:
+-   defineProp
+-   defineMethod
+-   defineImmutableProp
+-   defineMutableProp
+-   defineDeletableProp
+-   defineGetterProp
+
 0.87.0
 ======
 ### Remove layout SCSS utils:
