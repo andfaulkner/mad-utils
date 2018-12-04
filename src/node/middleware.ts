@@ -1,28 +1,32 @@
-import { ApplyMiddlewareFn, ExpressApp, MWare } from './types-node';
-
+import {ApplyMiddlewareFn, ExpressApp, MWare} from './types-node';
 import connect from 'connect';
 
 /**
- * Returns an Express-consumable middleware if NODE_ENV is 'production'.
- * @param {Object} opts Middleware config. Normally passed directly to the middleware function.
- * @return {Function} signature: (middleware: connect.HandleFunction) => express.Application
- *   |> @param {Middleware} middleware - Express middleware to conditionally apply.
- *   |> @return {Middleware} In production: returns param 'middleware' with param 'opts' passed in.
- *                           In development: returns a 'passthrough' middleware that does nothing.
+ * Returns an Express-consumable middleware if NODE_ENV is 'production'
  *
- * @example Apply "helmet" middleware to an Express Application or Router in production only:
+ * @param {Object} opts
+ *                 Middleware config
+ *                 Normally passed directly to the middleware function
+ * @return {Function} signature: (middleware: connect.HandleFunction) => express.Application
+ *   |> @param {Middleware} middleware
+ *              Express middleware to conditionally apply
+ *   |> @return {Middleware}
+ *              In production: returns param 'middleware' with param 'opts' passed in
+ *              In development: returns a 'passthrough' middleware that does nothing
+ *
+ * Example: Apply "helmet" middleware to an Express Application or Router in production only:
  *              app.use(useMiddlewareInProdOnly()(helmet));
  *
- * @example Apply middleware only in production, with options provided to the middleware:
+ * Example: Apply middleware only in production, with options provided to the middleware:
  *              app.use(useMiddlewareInProdOnly(helmetConfig)(helmet));
  *          Above is equivalent to the following Express middleware application pattern:
  *              app.use(helmet(helmetConfig));
  *
- * @example With chaining:
+ * Example: With chaining:
  *              app.use(useMiddlewareInProdOnly(faviconPath)(expressFavicon))
  *                 .use(useMiddlewareInProdOnly()(helmet))
  *                 .use(morganLogging)
- *                 .use(useMiddlewareInProdOnly()(productionLogger))
+ *                 .use(useMiddlewareInProdOnly()(productionLogger));
  */
 export const useMiddlewareInProdOnly = <T>(opts?: T) => (middleware: MWare<T>): connect.Server => {
     const chain = connect();
@@ -33,15 +37,16 @@ export const useMiddlewareInProdOnly = <T>(opts?: T) => (middleware: MWare<T>): 
 };
 
 /**
- * @alias for useMiddlewareInProdOnly
+ * Alias for useMiddlewareInProdOnly
  */
-export const useMiddlewareInProductionOnly = useMiddlewareInProdOnly;
+export {useMiddlewareInProdOnly as useMiddlewareInProductionOnly};
 
 /**
- * Apply any number of middlewares to the given express application.
+ * Apply any number of middlewares to the given express application
  */
-export const composeExpressMiddlewares =
-    <T extends ExpressApp>(app: T, ...midwareApplicators: ApplyMiddlewareFn[]): T =>
-        midwareApplicators.reduce((acc, midwareAdder: ApplyMiddlewareFn) => midwareAdder(acc), app);
+export const composeExpressMiddlewares = <T extends ExpressApp>(
+    app: T,
+    ...midwareApplicators: ApplyMiddlewareFn[]
+): T => midwareApplicators.reduce((acc, midwareAdder: ApplyMiddlewareFn) => midwareAdder(acc), app);
 
-export { composeExpressMiddlewares as composeExpressMiddlewareApplicators }
+export {composeExpressMiddlewares as composeExpressMiddlewareApplicators};
