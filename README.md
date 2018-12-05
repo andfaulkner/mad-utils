@@ -198,7 +198,7 @@ Isomorphic
 import {m_} from 'mad-utils';
 
 // Import isomorphic namespaces
-import {array, json, enum, number, object, query, string, types, decorator} from 'mad-utils';
+import {array, json, enum, number, object, query, string, types} from 'mad-utils';
 
 // Import individual isomorphic functions, types, classes, etc.
 import {first, isNumberLike, parseQueryParams, castToNum, stringToEnumVal} from 'mad-utils';
@@ -209,7 +209,6 @@ import {first, isNumberLike, parseQueryParams, castToNum, stringToEnumVal} from 
 ### Isomorphic namespaces
 *   array
 *   date
-*   decorator
 *   enum
 *   error
 *   func / functionUtils
@@ -282,20 +281,19 @@ Browser submodule
 import {m_} from 'mad-utils/lib/browser';
 
 // Import namespaces from browser (and isomorphic) submodules
-import {dom, event, localStorageUtils, types} from 'mad-utils/lib/node';
+import {dom, types} from 'mad-utils/lib/node';
 
 // Import individual browser (and isomorphic) functions, types, classes, etc.
 import {
-    removeClickEventFromId,
-    addClickEventToId,
+    browserVersion,
+    browserEngineVersion,
+    getUserAgentString,
     assignFrozenClone
 } from 'mad-utils/lib/node';
 ```
 
 ### Browser namespaces
 *   dom
-*   event
-*   localStorageUtils
 *   types (expanded to include both isomorphic and Browser-specific types)
 
 
@@ -661,36 +659,8 @@ now(`YYYY/MM hh:mm`); // => 2017/02 02:51
 
 
 ----------------------------------------------------------------------------------------------------
-Namespace: decorator (isomorphic)
-=================================
-### DecoratorError
-*   WIP documentation
-
-### notForWebUse
-*   WIP documentation
-
-### singleton
-*   WIP documentation
-
-
-
-----------------------------------------------------------------------------------------------------
 Namespace: dom (browser)
 ========================
-### parseUserAgent :: () => {ParsedUserAgent object}
-Parse the browser's user agent and return an object containing the most useful user agent properties.
-
-ParsedUserAgent object shape:
-```
-{
-    raw:     string
-    ua:      string
-    os:      {name: string, version: string}
-    browser: {name: string, version: string}
-    engine:  {name: string, version: string}
-}
-```
-
 ### getUserAgentString :: () => string
 Return raw and unparsed browser user agent string (convenience function)
 
@@ -813,21 +783,6 @@ Examples:
 globalActivateCleanStack();
 // /\-- This is literally the only way to use it.
 ```
-
-
-
-----------------------------------------------------------------------------------------------------
-Namespace: event (browser)
-==========================
-### mouseEventFactory
-WIP documentation
-
-### removeClickEventFromId
-WIP documentation
-
-### addClickEventToId
-WIP documentation
-
 
 
 ----------------------------------------------------------------------------------------------------
@@ -999,36 +954,6 @@ jsonStringifyWFuncs({a: 123, b: 'asdf', c: () => 'asdf'})
     '{"a":123,"b":"asdf","c":"function () { return \'asdf\'; }"}'
 ```
 
-WIP documentation
-
-
-
-----------------------------------------------------------------------------------------------------
-Namespace: localStore (browser)
-===============================
-### getFromStorage :: (string, store?: Object) => string
-Get value associated with given key in any of the storage locations, in the following priority:
-1. Given store object.
-2. 'this' value the function getFromStorage function has access to (only relevant if call, apply, or bind are used to call it).
-3. local or session store.
-
-Returns null if value not found.
-
-Examples:
-```
-window.localStorage.setItem('key1', "value_of_key_1");
-getFromStorage('key1'); // => 'value_of_key_1'
-
-class Store {
-    public keyOne = 'value_of_key_one'
-}
-const store = new Store();
-getFromStorage('keyOne', store);      // => value_of_key_one
-
-getFromStorage.call(store, 'keyOne'); // => value_of_key_one
-```
-
-### isAuthenticated
 WIP documentation
 
 
