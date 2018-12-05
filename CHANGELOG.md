@@ -1,3 +1,7 @@
+0.88.1
+======
+-   Add `fuzzySearch` function - does a fuzzy search for string `needle` in string `haystack`.
+
 0.88.0 [BREAKING CHANGES]
 =========================
 -   Remove from `dom.ts`:
