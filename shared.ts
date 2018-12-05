@@ -10,10 +10,6 @@ import * as date from './src/date';
 export * from './src/date';
 export {date};
 
-import * as decorator from './src/decorator';
-export * from './src/decorator';
-export {decorator};
-
 import * as Enum from './src/enum';
 export * from './src/enum';
 export {Enum};
@@ -84,8 +80,6 @@ export const mUtils = {
     date,
     commonDataTypes: dataTypes,
     dataTypes,
-    decorator,
-    decorators: decorator,
     enum: Enum,
     Enum,
     err: error,
