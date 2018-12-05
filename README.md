@@ -222,7 +222,7 @@ import {first, isNumberLike, parseQueryParams, castToNum, stringToEnumVal} from 
 *   types
 *   validation
 
-All of the above namesapaces are also importable from the NodeJS and Browser modules.
+All of the above namespaces are also importable from the NodeJS and Browser modules.
 
 NodeJS submodule
 ----------------
