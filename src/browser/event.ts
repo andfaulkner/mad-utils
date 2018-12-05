@@ -26,28 +26,6 @@ export type EventFunction = (ev: MouseEvent) => void;
 
 /**************************************** EXPORT FUNCTIONS ****************************************/
 /**
- * Construct a new click event. Can optionally pass in a global object.
- * Generic event remover. Only works in browser unless allowInNode set.
- * @return {MouseEvent} Browser: newly constructed MouseEvent object. Node: null.
- * @param {boolean} allowInNode - If set to true, let this run in Node anyway. Defaults to false.
- */
-export const mouseEventFactory: ((globalTarget?: any) => MouseEvent) =
-    // Adjust behaviour based on whether this is running in Node or browser.
-    isNode
-        // Return null and show a warning if run in Node.
-        ? (globalTarget = global): MouseEvent => {
-            browserOnly('mouseEventFactory');
-            return null;
-        }
-        // Return triggerable built-in event if run in browser.
-        : (globalTarget = window): MouseEvent =>
-              new MouseEvent('click', {
-                  'view': globalTarget,
-                  'bubbles': true,
-                  'cancelable': true
-              })
-
-/**
  * Generic event remover.
  * In Node: returns null and emits warning that this can only works in the browser.
  * In browser: return function w signature:

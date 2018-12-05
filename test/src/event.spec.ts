@@ -17,11 +17,6 @@ describe(`event sub-module`, function() {
     expectNonEmptyObjectExists(eventModule, 'event (import all from event.ts file)');
     expectNonEmptyObjectExists(eventFromBrowser, 'event (from Browser export)');
 
-    it('has function mouseEventFactory, which creates mouse events builder that emits MouseEvent objects if run in browser, but does nothing in Node', function() {
-        const mouseEvent = m_.event.mouseEventFactory();
-        expect(mouseEvent).to.be.null; // in node it shouldn't work
-        // TODO test new allowInNode param
-    });
     it('has function removeClickEventFromId, which removes click events in browser but does nothing in Node', function() {
         expect(removeClickEventFromId()).to.be.null;
         expect(event.removeClickEventFromId()).to.be.null;
