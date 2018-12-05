@@ -24,7 +24,7 @@ export type ParsedUserAgent = IUAParser.IResult & {raw: string};
  *                            browser: {name: string, version: string}
  *                            engine:  {name: string, version: string}}
  */
-export const parseUserAgent = (userAgent = window.navigator.userAgent): ParsedUserAgent => {
+const parseUserAgent = (userAgent = window.navigator.userAgent): ParsedUserAgent => {
     const ua = UserAgentParser(userAgent) as ParsedUserAgent;
     ua.raw = ua.ua;
     return ua;
@@ -38,7 +38,7 @@ let userAgentLocal: ParsedUserAgent;
 /**
  * Return memoized parsed browser user agent
  */
-export const getUserAgentParsed = (): ParsedUserAgent => {
+const getUserAgentParsed = (): ParsedUserAgent => {
     userAgentLocal = userAgentLocal || parseUserAgent();
     return userAgentLocal;
 };

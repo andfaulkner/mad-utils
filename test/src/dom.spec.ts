@@ -11,8 +11,6 @@ import {expect} from 'chai';
 import {
     m_,
     dom,
-    getUserAgentParsed,
-    parseUserAgent,
     getUserAgentString,
     osName,
     osVersion,
@@ -33,33 +31,6 @@ describe(`dom sub-module`, function() {
     expectNonEmptyObjectExists(m_.dom, `dom (from m_ top-level namespace)`);
     expectNonEmptyObjectExists(domModule, `dom (import all from dom.ts file)`);
     expectNonEmptyObjectExists(domFromBrowser, `dom (from Browser export)`);
-    expectFunctionExists(getUserAgentParsed, `dom->getUserAgentParsed`);
-
-    describe(`getUserAgentParsed`, function() {
-        it(`should contain keys ua, browser, engine, os, device, cpu, raw, ua`, function() {
-            expect(getUserAgentParsed()).to.contain.keys([
-                `ua`,
-                `browser`,
-                `engine`,
-                `os`,
-                `device`,
-                `cpu`,
-                `raw`,
-                `ua`
-            ]);
-        });
-        it(`should have objects at all keys except raw & ua (which should be strings)`, function() {
-            Object.keys(getUserAgentParsed()).forEach(key => {
-                if (key === `raw` || key === `ua`) {
-                    expect(getUserAgentParsed()[key]).to.be.a(`string`);
-                } else {
-                    expect(getUserAgentParsed()[key]).to.be.a(`object`);
-                    expect(getUserAgentParsed()[key]).to.not.be.a(`string`);
-                    expect(Object.keys(getUserAgentParsed()[key]).length).to.be.greaterThan(0);
-                }
-            });
-        });
-    });
 
     describe(`UserAgent functions`, function() {
         const userAgent =
@@ -72,23 +43,6 @@ describe(`dom sub-module`, function() {
         const mockBrowserVersion = `59.0.3071.115`;
         const mockEngineName = `WebKit`;
         const mockEngineVersion = `537.36`;
-
-        describe(`-- #parseUserAgent`, function() {
-            let uaMockParsed: ParsedUserAgent;
-
-            before(function() {
-                uaMockParsed = parseUserAgent(userAgent);
-            });
-
-            it(`given a string, should return obj w raw UserAgent plus browser & OS info:`, function() {
-                expect(uaMockParsed.browser.major).to.eql(`59`);
-                expect(uaMockParsed.browser.version).to.eql(mockBrowserVersion);
-                expect(uaMockParsed.os.version).to.eql(mockOSVersion);
-                expect(uaMockParsed.engine.version).to.eql(mockEngineVersion);
-                expect(uaMockParsed.raw).to.eql(userAgent);
-                expect(uaMockParsed.ua).to.eql(userAgent);
-            });
-        });
 
         it(`-- #getUserAgentString: returns raw user agent str from window.navigator object`, function() {
             expect(getUserAgentString()).to.equal(mockUserAgent);

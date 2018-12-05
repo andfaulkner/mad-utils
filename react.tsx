@@ -93,7 +93,6 @@ export const {
     chomp,
     getLangFromUrlPathname,
     parseQueryParams,
-    parseUserAgent,
     deepFreeze,
     assignFrozenClone,
     isArray,
