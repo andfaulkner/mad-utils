@@ -31,11 +31,6 @@ import * as dom from './src/browser/dom';
 export * from './src/browser/dom';
 export {dom};
 
-// Import event module
-import * as event from './src/browser/event';
-export * from './src/browser/event';
-export {event};
-
 // Import local-store module
 import * as localStore from './src/browser/local-store';
 export * from './src/browser/local-store';
@@ -52,7 +47,6 @@ export {localStore as localStorageUtils};
 export const mUtils = {
     ...m_,
     dom,
-    event,
     localStore,
     localStoreUtils: localStore,
     localStorage: localStore,
