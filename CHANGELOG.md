@@ -1,3 +1,26 @@
+0.88.0
+======
+-   Remove from `dom.ts`:
+    -   Export `parseUserAgent`
+    -   Export `getUserAgentParsed`
+
+-   Remove module `event.ts`, including:
+    -   `mouseEventFactory` function
+    -   `removeClickEventFromId` function
+    -   `addClickEventToId` function
+    -   `EventFunction` type
+
+-   Remove module `local-store.ts`, including:
+    -   `getFromStorage` function
+    -   `isAuthenticated` function
+
+-   Remove `decorator.ts` module, including:
+    -   `notForWebUse` and `methodNotForWebUse` decorators
+    -   `getDecoratorType` function
+    -   Secondary export of `singleton` decorator (still present in types-iso.ts)
+
+---
+
 0.87.1
 ======
 ### Allow symbols and numbers in:
