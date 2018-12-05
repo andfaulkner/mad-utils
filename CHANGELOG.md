@@ -1,5 +1,5 @@
-0.88.0
-======
+0.88.0 [BREAKING CHANGES]
+=========================
 -   Remove from `dom.ts`:
     -   Export `parseUserAgent`
     -   Export `getUserAgentParsed`
