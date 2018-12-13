@@ -1,6 +1,3 @@
-// TODO Add display: flex to all utils prefixed by `flex-` e.g. `flex-as-center`
-//  Example:  .flex-as-center {display: flex; align-self: center}
-
 @import './margin.scss';
 @import './padding.scss';
 @import './border.scss';
@@ -11,90 +8,28 @@
 
 :global {
     /***************************************** DISPLAYS *******************************************/
-    .display-inline,       .inline       {display: inline      }
-    .display-block,        .block        {display: block       }
-    .display-none,         .none         {display: none        }
-    .display-inline-block, .inline-block {display: inline-block}
+    .inline       {display: inline      }
+    .block        {display: block       }
+    .inline-block {display: inline-block}
+    .none         {display: none        }
 
-    .flex,       .display-flex        {display: flex}
-    .inflex,     .inline-flex,
-    .inlineflex, .display-inline-flex {display: inline-flex }
+    .flex        {display: flex}
+    .inline-flex {display: inline-flex }
 
     /************ table ************/
-    .table,
-    .display-table        {display: table       }
-
+    .table        {display: table}
     .table-col,
-    .table-column,
-    .display-col,
-    .display-td,
-    .display-table-col,
-    .display-table-column {display: table-column}
-
-    .table-row,
-    .display-row,
-    .display-tr,
-    .display-table-row    {display: table-row   }
-
-    .table-cell,
-    .display-cell,
-    .display-table-cell   {display: table-cell  }
+    .table-column {display: table-column}
+    .table-row    {display: table-row   }
+    .table-cell   {display: table-cell  }
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
-    .flex-justify-content-fs,      .flex.justify-content-fs,
-    .flex-justify-content-start,   .flex.justify-content-start         {justify-content: flex-start   }
-    .flex-justify-content-fe,      .flex.justify-content-fe,
-    .flex-justify-content-end,     .flex.justify-content-end           {justify-content: flex-end     }
-    .flex-justify-content-middle,  .flex.justify-content-middle,
-    .flex-justify-content-center,  .flex.justify-content-center,
-    .flex-justify-content-mid,     .flex.justify-content-mid           {justify-content: center       }
-    .flex-justify-content-sa,      .flex.justify-content-sa,
-    .flex-justify-content-around,  .flex.justify-content-around,
-    .flex-justify-content-space,   .flex.justify-content-space-around  {justify-content: space-around }
-    .flex-justify-content-sb,      .flex.justify-content-sb,
-    .flex-justify-content-between, .flex.justify-content-between,
-    .flex-justify-content-space,   .flex.justify-content-space-between {justify-content: space-between}
-
-    .flex-jc-fs,            .flex.jc-fs,
-    .flex-jc-start,         .flex.jc-start         {justify-content: flex-start   }
-    .flex-jc-fe,            .flex.jc-fe,
-    .flex-jc-end,           .flex.jc-end           {justify-content: flex-end     }
-    .flex-jc-center,        .flex.jc-center,
-    .flex-jc-middle,        .flex.jc-middle,
-    .flex-jc-mid,           .flex.jc-mid           {justify-content: center       }
-    .flex-jc-sa,            .flex.jc-sa,
-    .flex-jc-around,        .flex.jc-around,
-    .flex-jc-space-around,  .flex.jc-space-around  {justify-content: space-around }
-    .flex-jc-sb,            .flex.jc-sb,
-    .flex-jc-between,       .flex.jc-between,
-    .flex-jc-space-between, .flex.jc-space-between {justify-content: space-between}
-
-    .flex-justifycontent-fs,            .flex.justifycontent-fs,
-    .flex-justifycontent-start,         .flex.justifycontent-start         {justify-content: flex-start   }
-    .flex-justifycontent-fe,            .flex.justifycontent-fe,
-    .flex-justifycontent-end,           .flex.justifycontent-end           {justify-content: flex-end     }
-    .flex-justifycontent-center,        .flex.justifycontent-center,
-    .flex-justifycontent-middle,        .flex.justifycontent-middle,
-    .flex-justifycontent-mid,           .flex.justifycontent-mid           {justify-content: center       }
-    .flex-justifycontent-sa,            .flex.justifycontent-sa,
-    .flex-justifycontent-around,        .flex.justifycontent-around,
-    .flex-justifycontent-space-around,  .flex.justifycontent-space-around  {justify-content: space-around }
-    .flex-justifycontent-sb,            .flex.justifycontent-sb,
-    .flex-justifycontent-between,       .flex.justifycontent-between,
-    .flex-justifycontent-space-between, .flex.justifycontent-space-between {justify-content: space-between}
-
-    .flex-start,         .flex.start         {justify-content: flex-start   }
-    .flex-end,           .flex.end           {justify-content: flex-end     }
-    .flex-center,        .flex.center,
-    .flex-middle,        .flex.middle,
-    .flex-mid,           .flex.mid           {justify-content: center       }
-    .flex-sa,            .flex.sa,
-    .flex-spacearound,   .flex.spacearound,
-    .flex-space-around,  .flex.space-around  {justify-content: space-around }
-    .flex-sb,            .flex.sb,
-    .flex-spacebetween,  .flex.spacebetween,
-    .flex-space-between, .flex.space-between {justify-content: space-between}
+    .flex.start         {justify-content: flex-start   }
+    .flex.end           {justify-content: flex-end     }
+    .flex.center        {justify-content: center       }
+    .flex.space-around  {justify-content: space-around }
+    .flex.space-between {justify-content: space-between}
 
 
     /************ flex :: flex-grow **************/
@@ -124,80 +59,20 @@
     .flex-shrink-10 {flex-shrink: 10}
 
     /************ flex :: align-items ************/
-    .flex-ai-mid,       .flex.ai-mid,
-    .flex-ai-middle,    .flex.ai-middle,
-    .flex-ai-center,    .flex.ai-center    {align-items: center    }
-    .flex-ai-fe,        .flex.ai-fe,
-    .flex-ai-end,       .flex.ai-end,
-    .flex-ai-flexend,   .flex.ai-flexend   {align-items: flex-end  }
-    .flex-ai-fs,        .flex.ai-fs,
-    .flex-ai-start,     .flex.ai-start,
-    .flex-ai-flexstart, .flex.ai-flexstart {align-items: flex-start}
-
-    .flex-alignitems-mid,       .flex.alignitems-mid,
-    .flex-alignitems-middle,    .flex.alignitems-middle,
-    .flex-alignitems-center,    .flex.alignitems-center     {align-items: center     }
-    .flex-alignitems-fe,        .flex.alignitems-fe,
-    .flex-alignitems-end,       .flex.alignitems-end,
-    .flex-alignitems-flexend,   .flex.alignitems-flexend    {align-items: flex-end   }
-    .flex-alignitems-fs,        .flex.alignitems-fs,
-    .flex-alignitems-start,     .flex.alignitems-start,
-    .flex-alignitems-flexstart, .flex.alignitems-flexstart  {align-items: flex-start }
-
-    .flex-align-items-mid,       .flex.align-items-mid,
-    .flex-align-items-middle,    .flex.align-items-middle,
-    .flex-align-items-center,    .flex.align-items-center    {align-items: center    }
-    .flex-align-items-fe,        .flex.align-items-fe,
-    .flex-align-items-end,       .flex.align-items-end,
-    .flex-align-items-flexend,   .flex.align-items-flexend   {align-items: flex-end  }
-    .flex-align-items-fs,        .flex.align-items-fs,
-    .flex-align-items-start,     .flex.align-items-start,
-    .flex-align-items-flexstart, .flex.align-items-flexstart {align-items: flex-start}
+    .flex.ai-center, .flex.align-items-center {align-items: center    }
+    .flex.ai-end,    .flex.align-items-end    {align-items: flex-end  }
+    .flex.ai-start,  .flex.align-items-start  {align-items: flex-start}
 
     /************ flex :: align-self ************/
-    .flex-as-mid,     .flex.as-mid,
-    .flex-as-middle,  .flex.as-middle,
-    .flex-as-center,  .flex.as-center  {align-self: center    }
-    .flex-as-fs,      .flex.as-fs,
-    .flex-as-fstart,  .flex.as-fstart,
-    .flex-as-start,   .flex.as-start   {align-self: flex-start}
-    .flex-as-fe,      .flex.as-fe,
-    .flex-as-fend,    .flex.as-fend,
-    .flex-as-end,     .flex.as-end     {align-self: flex-end  }
-    .flex-as-stretch, .flex.as-stretch {align-self: stretch   }
-
-    .flex-alignself-mid,     .alignself-mid,
-    .flex-alignself-middle,  .alignself-middle,
-    .flex-alignself-center,  .alignself-center  {align-self: center    }
-    .flex-alignself-fs,      .alignself-fs,
-    .flex-alignself-start,   .alignself-start,
-    .flex-alignself-fstart,  .alignself-fstart  {align-self: flex-start}
-    .flex-alignself-fe,      .alignself-fe,
-    .flex-alignself-end,     .alignself-end,
-    .flex-alignself-fend,    .alignself-fend    {align-self: flex-end  }
-    .flex-alignself-stretch, .alignself-stretch {align-self: stretch   }
-
-    .flex-align-self-mid,     .align-self-mid,
-    .flex-align-self-middle,  .align-self-middle,
-    .flex-align-self-center,  .align-self-center  {align-self: center    }
-    .flex-align-self-fs,      .align-self-fs,
-    .flex-align-self-fstart,  .align-self-fstart,
-    .flex-align-self-start,   .align-self-start   {align-self: flex-start}
-    .flex-align-self-fe,      .align-self-fe,
-    .flex-align-self-fend,    .align-self-fend,
-    .flex-align-self-end,     .align-self-end     {align-self: flex-end  }
-    .flex-align-self-stretch, .align-self-stretch {align-self: stretch   }
+    .align-self-center  {align-self: center    }
+    .align-self-start   {align-self: flex-start}
+    .align-self-end     {align-self: flex-end  }
+    .align-self-stretch {align-self: stretch   }
 
     /************ flex :: flex-direction ************/
-    .flex-col,              .flex.col,
-    .flex-column,           .flex.column,
-    .flex-dir-col,          .flex.dir-col,
-    .flex-dir-column,       .flex.dir-column,
-    .flex-direction-col,    .flex.direction-col,
-    .flex-direction-column, .flex.direction-column {flex-direction: column}
-    .flex-row,              .flex.row,
-    .flex-dir-row,          .flex.dir-row,
-    .flex-direction-row,    .flex.direction-row    {flex-direction: row   }
+    .flex.col,
+    .flex.column {flex-direction: column}
+    .flex.row    {flex-direction: row   }
 
     /************ flex :: flex-wrap *****************/
     .flex-wrap,         .flex.wrap,        {flex-wrap: wrap        }
@@ -249,14 +124,14 @@
     .rotate-315deg {transform: rotate(315deg)}
 
     /****************************************** OVERFLOW ******************************************/
-    .overflow-x-hidden,  .ovx-hidden  {overflow-x: hidden }
-    .overflow-y-hidden,  .ovy-hidden  {overflow-y: hidden }
-    .overflow-x-scroll,  .ovx-scroll  {overflow-x: scroll }
-    .overflow-y-scroll,  .ovy-scroll  {overflow-y: scroll }
-    .overflow-x-auto,    .ovx-auto    {overflow-x: auto   }
-    .overflow-y-auto,    .ovy-auto    {overflow-y: auto   }
-    .overflow-x-overlay, .ovx-overlay {overflow-x: overlay}
-    .overflow-y-overlay, .ovy-overlay {overflow-y: overlay}
-    .overflow-x-visible, .ovx-visible {overflow-x: visible}
-    .overflow-y-visible, .ovy-visible {overflow-y: visible}
+    .ovx-hidden  {overflow-x: hidden }
+    .ovy-hidden  {overflow-y: hidden }
+    .ovx-scroll  {overflow-x: scroll }
+    .ovy-scroll  {overflow-y: scroll }
+    .ovx-auto    {overflow-x: auto   }
+    .ovy-auto    {overflow-y: auto   }
+    .ovx-overlay {overflow-x: overlay}
+    .ovy-overlay {overflow-y: overlay}
+    .ovx-visible {overflow-x: visible}
+    .ovy-visible {overflow-y: visible}
 }

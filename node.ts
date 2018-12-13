@@ -9,7 +9,6 @@ export * from './shared';
 import {
     array,
     date,
-    decorator,
     Enum,
     error,
     func,

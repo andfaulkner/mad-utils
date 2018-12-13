@@ -3,8 +3,8 @@
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
 /******************************************** LOGGING *********************************************/
-import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
-const log = nodeLogFactory(buildFileTag('enum.spec.ts', colors.blue.bgMagenta));
+import {logFactory, Styles} from 'mad-logs/lib/shared';
+const log = logFactory(`enum.spec.ts`, Styles.bracelet);
 
 /******************************** IMPORT ENUM MODULE FOR TESTING **********************************/
 import {expect} from 'chai';

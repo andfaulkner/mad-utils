@@ -17,8 +17,8 @@ import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/t
 import {IfTruthy, IfFalsy, Switch, Case, Default} from '../../src/react/components';
 
 /******************************************** LOGGING *********************************************/
-import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
-const log = nodeLogFactory(buildFileTag('react--components.spec.tsx', colors.black.bgCyan));
+import {logFactory, Styles} from 'mad-logs/lib/shared';
+const log = logFactory(`react--components.spec.tsx`, Styles.hatBlock);
 
 /******************************************** HELPERS *********************************************/
 /**

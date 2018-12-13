@@ -1,3 +1,7 @@
+//
+// TODO Rethink entire locale.ts module - it's not localized at all
+//
+
 /***************************************** ALL LANGUAGES ******************************************/
 /**
  * Object mapping the most common languages to their abbreviations

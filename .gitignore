@@ -17,6 +17,8 @@ pids
 # Dependencies
 node_modules/
 
+# Environment variables
+script/.env
 
 ##### LOCAL BACKUP #####
 # Backups

@@ -1,40 +1,40 @@
 :global {
     /********************************************* TEXT **********************************************/
-    div div div .fs-9,  div div .fs-9,  div .fs-9,  .fs-9  {font-size: 9px }
-    div div div .fs-10, div div .fs-10, div .fs-10, .fs-10 {font-size: 10px}
-    div div div .fs-11, div div .fs-11, div .fs-11, .fs-11 {font-size: 11px}
-    div div div .fs-12, div div .fs-12, div .fs-12, .fs-12 {font-size: 12px}
-    div div div .fs-13, div div .fs-13, div .fs-13, .fs-13 {font-size: 13px}
-    div div div .fs-14, div div .fs-14, div .fs-14, .fs-14 {font-size: 14px}
-    div div div .fs-15, div div .fs-15, div .fs-15, .fs-15 {font-size: 15px}
-    div div div .fs-16, div div .fs-16, div .fs-16, .fs-16 {font-size: 16px}
-    div div div .fs-17, div div .fs-17, div .fs-17, .fs-17 {font-size: 17px}
-    div div div .fs-18, div div .fs-18, div .fs-18, .fs-18 {font-size: 18px}
-    div div div .fs-19, div div .fs-19, div .fs-19, .fs-19 {font-size: 19px}
-    div div div .fs-20, div div .fs-20, div .fs-20, .fs-20 {font-size: 20px}
-    div div div .fs-21, div div .fs-21, div .fs-21, .fs-21 {font-size: 21px}
-    div div div .fs-22, div div .fs-22, div .fs-22, .fs-22 {font-size: 22px}
-    div div div .fs-23, div div .fs-23, div .fs-23, .fs-23 {font-size: 23px}
-    div div div .fs-24, div div .fs-24, div .fs-24, .fs-24 {font-size: 24px}
-    div div div .fs-25, div div .fs-25, div .fs-25, .fs-25 {font-size: 25px}
-    div div div .fs-26, div div .fs-26, div .fs-26, .fs-26 {font-size: 26px}
-    div div div .fs-27, div div .fs-27, div .fs-27, .fs-27 {font-size: 27px}
-    div div div .fs-28, div div .fs-28, div .fs-28, .fs-28 {font-size: 28px}
-    div div div .fs-29, div div .fs-29, div .fs-29, .fs-29 {font-size: 29px}
-    div div div .fs-30, div div .fs-30, div .fs-30, .fs-30 {font-size: 30px}
-    div div div .fs-35, div div .fs-35, div .fs-35, .fs-35 {font-size: 35px}
-    div div div .fs-40, div div .fs-40, div .fs-40, .fs-40 {font-size: 40px}
-    div div div .fs-50, div div .fs-50, div .fs-50, .fs-50 {font-size: 50px}
+    * * *.fs-9  {font-size: 9px }
+    * * *.fs-10 {font-size: 10px}
+    * * *.fs-11 {font-size: 11px}
+    * * *.fs-12 {font-size: 12px}
+    * * *.fs-13 {font-size: 13px}
+    * * *.fs-14 {font-size: 14px}
+    * * *.fs-15 {font-size: 15px}
+    * * *.fs-16 {font-size: 16px}
+    * * *.fs-17 {font-size: 17px}
+    * * *.fs-18 {font-size: 18px}
+    * * *.fs-19 {font-size: 19px}
+    * * *.fs-20 {font-size: 20px}
+    * * *.fs-21 {font-size: 21px}
+    * * *.fs-22 {font-size: 22px}
+    * * *.fs-23 {font-size: 23px}
+    * * *.fs-24 {font-size: 24px}
+    * * *.fs-25 {font-size: 25px}
+    * * *.fs-26 {font-size: 26px}
+    * * *.fs-27 {font-size: 27px}
+    * * *.fs-28 {font-size: 28px}
+    * * *.fs-29 {font-size: 29px}
+    * * *.fs-30 {font-size: 30px}
+    * * *.fs-35 {font-size: 35px}
+    * * *.fs-40 {font-size: 40px}
+    * * *.fs-50 {font-size: 50px}
 
     /**************************************** FONT WEIGHT *****************************************/
-    div div .fw-300, div .fw-300, .fw-300 {font-weight: 300}
-    div div .fw-400, div .fw-400, .fw-400 {font-weight: 400}
-    div div .fw-500, div .fw-500, .fw-500 {font-weight: 500}
-    div div .fw-600, div .fw-600, .fw-600 {font-weight: 600}
-    div div .fw-700, div .fw-700, .fw-700 {font-weight: 700}
+    * * *.fw-300 {font-weight: 300}
+    * * *.fw-400 {font-weight: 400}
+    * * *.fw-500 {font-weight: 500}
+    * * *.fw-600 {font-weight: 600}
+    * * *.fw-700 {font-weight: 700}
 
-    div div .fw-normal, div .fw-normal, .fw-normal {font-weight: normal}
-    div div .bold,      div .bold,      .bold      {font-weight: bold}
+    * * *.fw-normal {font-weight: normal}
+    * * *.bold      {font-weight: bold}
 
     /************************************** FONT DECORATION ***************************************/
     .underline                {text-decoration: underline}
@@ -125,41 +125,29 @@
     .ls-3               {letter-spacing: 3px   }
 
     /**************************************** FONT FAMILY *****************************************/
-    .better-helvetica,
-    div .better-helvetica,
-    div div .better-helvetica {
+    * * *.better-helvetica {
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica,
             Arial, "Lucida Grande", sans-serif;
     }
 
-    .helvetica-neue-medium,
-    div .helvetica-neue-medium,
-    div div .helvetica-neue-medium {
+    * * *.helvetica-neue-medium {
         font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica,
             Arial, "Lucida Grande", sans-serif;
     }
 
-    .helvetica-neue,
-    div .helvetica-neue,
-    div div .helvetica-neue {
+    * * *.helvetica-neue {
         font-family: "Helvetica Neue", sans-serif;
     }
 
-    .helvetica-neue-serif,
-    div .helvetica-neue-serif,
-    div div .helvetica-neue-serif {
+    * * *.helvetica-neue-serif {
         font-family: "Helvetica Neue";
     }
 
-    .helvetica-neue-light,
-    div .helvetica-neue-light,
-    div div .helvetica-neue-light {
+    * * *.helvetica-neue-light {
         font-family: "Helvetica Neue Light", sans-serif;
     }
 
-    .helvetica-neue-light-serif,
-    div .helvetica-neue-light-serif,
-    div div .helvetica-neue-light-serif {
+    * * *.helvetica-neue-light-serif {
         font-family: "Helvetica Neue Light";
     }
 
@@ -167,9 +155,9 @@
     .ts-none {text-shadow: none}
 
     /***************************************** ALIGNMENT ******************************************/
-    div div .ta-left,   div .ta-left,   .ta-left   {text-align: left  }
-    div div .ta-center, div .ta-center, .ta-center {text-align: center}
-    div div .ta-right,  div .ta-right,  .ta-right  {text-align: right }
+    * * *.ta-left   {text-align: left  }
+    * * *.ta-center {text-align: center}
+    * * *.ta-right  {text-align: right }
 
     /* Utilities */
     .ellipsize {

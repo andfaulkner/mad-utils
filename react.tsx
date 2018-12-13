@@ -53,11 +53,9 @@ import * as arrayUtils from './src/array';
 import * as objUtils from './src/object';
 import * as urlUtils from './src/url';
 import * as domUtils from './src/browser/dom';
-import * as localStoreUtils from './src/browser/local-store';
 import * as numberUtils from './src/number';
 import * as functionUtils from './src/function';
 import * as dateUtils from './src/date';
-import * as decoratorUtils from './src/decorator';
 import * as stringUtils from './src/string';
 import * as isoTypesUtils from './src/types-iso';
 
@@ -93,7 +91,6 @@ export const {
     chomp,
     getLangFromUrlPathname,
     parseQueryParams,
-    parseUserAgent,
     deepFreeze,
     assignFrozenClone,
     isArray,
@@ -109,7 +106,6 @@ export const {
     isDataEnumItem,
     isIndexEnumItem,
     isNumericEnumItem,
-    getFromStorage,
     uuid,
     eachPair,
     replaceAll,

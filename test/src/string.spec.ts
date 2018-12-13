@@ -52,8 +52,8 @@ const {
 } = str;
 
 /******************************************** LOGGING *********************************************/
-import {buildFileTag, nodeLogFactory, colors} from 'mad-logs/lib/node';
-const log = nodeLogFactory(buildFileTag('string.spec.ts', colors.magenta.bgWhite));
+import {logFactory, Styles} from 'mad-logs/lib/shared';
+const log = logFactory(`string.spec.ts`, Styles.arrow);
 
 /********************************************* TESTS **********************************************/
 describe(`string sub-module`, function() {

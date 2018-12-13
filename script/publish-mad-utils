@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO make this repo-agnostic - remove refs to Javelin & web client
+
 #==== SCRIPT ===========================================================
 #        NAME:  publish-mad-utils
 #
@@ -14,19 +16,19 @@
 #
 #    @FLAG $2:  --local-reinstalls If set, try to reinstall mad-utils in
 #                                  Javelin and webclient projects. Must
-#                                  set paths JAVELIN_DIR & WEBCLIENT_DIR
+#                                  set paths JAVELINSCRIPT_DIR & WEBCLIENT_DIR
 #                                  in script/.env for this to work
 #
 #=======================================================================
 
 ############################################# HELPERS ##############################################
 function local_reinstalls_usage {
-    echo "JAVELIN_DIR or WEBCLIENT_DIR is not set"
-    echo "Please add JAVELIN_DIR & WEBCLIENT_DIR vars to .env file."
+    echo "JAVELINSCRIPT_DIR or WEBCLIENT_DIR is not set"
+    echo "Please add JAVELINSCRIPT_DIR & WEBCLIENT_DIR vars to .env file."
     echo "Set their paths to the Javelin and webclient repos, respectively."
     echo ""
     echo "e.g.:"
-    echo "JAVELIN_DIR=~/projects/ohri/CANImmunize-Javelin"
+    echo "JAVELINSCRIPT_DIR=~/projects/ohri/CANImmunize-Javelin"
     echo "WEBCLIENT_DIR=~/projects/ohri/canimmunize-web-client-v2"
     echo ""
     exit
@@ -54,7 +56,7 @@ fi
 
 # Check whether script should install in Javelin & webclient locations
 if [[ "$2" == "--local-reinstalls" ]]; then
-    if [[ ! -n "$JAVELIN_DIR" ]] || [[ ! -n "$WEBCLIENT_DIR" ]]; then
+    if [[ ! -n "$JAVELINSCRIPT_DIR" ]] || [[ ! -n "$WEBCLIENT_DIR" ]]; then
         local_reinstalls_usage
         exit
     fi
@@ -94,7 +96,7 @@ if [[ "$2" != "--local-reinstalls" ]]; then
 fi
 
 # Install in Javelin dir
-pushd $JAVELIN_DIR
+pushd $JAVELINSCRIPT_DIR
 yarn remove mad-utils
 yarn add mad-utils
 git add package.json yarn.lock
