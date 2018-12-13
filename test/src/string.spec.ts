@@ -514,6 +514,15 @@ describe(`string sub-module`, function() {
             expect(toCamelCase('   someTestString      ')).to.eql('someTestString');
             expect(toCamelCase('        Some test string.')).to.eql('someTestString');
         });
+
+        it(`returns camelCase form of snake_case or LOUD_SNAKE_CASE string`, function() {
+            expect(toCamelCase('some_test_string')).to.eql('someTestString');
+            expect(toCamelCase('_mystring_ ')).to.eql('mystring');
+            expect(toCamelCase('_my_string_ ')).to.eql('myString');
+            expect(toCamelCase('ok__asdf')).to.eql('okAsdf');
+            expect(toCamelCase('ok__a_sdf')).to.eql('okASdf');
+            expect(toCamelCase('SOME_TEST_STRING')).to.eql('someTestString');
+        });
     });
 
     describe('matchesIgnoreCase', function() {
