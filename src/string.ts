@@ -245,7 +245,7 @@ export const toDashCase = (str: string): string => toSnakeCase(str).replace(/_/g
  * @return {string} String converted to camelCase format
  */
 export const toCamelCase = (str: string): string => {
-    const midStr = str
+    const midStr = toDashCase(str)
         .replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match: string, idx: number) => {
             if (+match === 0) return ``;
             return idx === 0 ? match.toLowerCase() : match.toUpperCase();
