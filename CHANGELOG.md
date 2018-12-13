@@ -1,3 +1,9 @@
+0.89.0
+======
+Fix toCamelCase to work correctly when given snake_case strings.
+- Previously it didn't capitalize the character after each `_`.
+
+----------------------------------------------------------------------------------------------------
 0.88.1
 ======
 -   Add `fuzzySearch` function - does a fuzzy search for string `needle` in string `haystack`.
