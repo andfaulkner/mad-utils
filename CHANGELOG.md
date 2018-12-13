@@ -3,6 +3,7 @@
 Fix toCamelCase to work correctly when given snake_case strings.
 - Previously it didn't capitalize the character after each `_`.
 
+
 ----------------------------------------------------------------------------------------------------
 0.88.1
 ======
@@ -29,8 +30,8 @@ Fix toCamelCase to work correctly when given snake_case strings.
     -   `getDecoratorType` function
     -   Secondary export of `singleton` decorator (still present in types-iso.ts)
 
----
 
+----------------------------------------------------------------------------------------------------
 0.87.1
 ======
 ### Allow symbols and numbers in:
@@ -101,8 +102,8 @@ Fix toCamelCase to work correctly when given snake_case strings.
 
 ### Remove "overflow-" prefixed SCSS util aliases (use `.ovx-*` and `.ovy-*` utils instead)
 
-----------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------
 0.86.1
 ======
 Replace use of specific elements (`div`, `span`, etc) to increase selectivity in SCSS utils with use of `*`s.
@@ -132,15 +133,15 @@ Add colour darkerRed to SCSS, including utils:
 ======
 Migrate to use esModuleInterop=true in TS config 
 
-----------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------
 0.84.0
 ======
 Renamed `condSwitch` to `switchExpr`
 *   Deprecated `condSwitch`
 
-----------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------
 0.83.0
 ======
 Remove getBaseFilenameFromPath function (it's already in Node as path.basename)
