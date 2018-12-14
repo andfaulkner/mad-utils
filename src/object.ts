@@ -274,7 +274,7 @@ export {defineDeletableProp as addDeletableMethod};
  */
 export const defineGetterProp = <R extends object = any>(
     obj: object,
-    keyName: string|number|symbol,
+    keyName: string | number | symbol,
     propVal: () => any
 ): R => {
     defineProperty(obj, keyName, {enumerable: true, configurable: true, get: propVal});
@@ -408,9 +408,10 @@ export function omit<O extends object = Object, T = any>(
  * Safely get the given prop (via array of path props or 'access string') from
  * the given object
  *
- * @param {string[]|string} propPath String in 'key1.key2.etc' form, or array of strings
- *                                   where each item is a key to traverse into:
- *                                   e.g.: ['key1', 'key2', 'etc'] refers to key1.key2.etc
+ * @param {string[]|string|number} propPath String in 'key1.key2.etc' form, number,
+ *                                 or array of strings where each item is a key
+ *                                 to traverse into:
+ *                                 e.g.: ['key1', 'key2', 'etc'] refers to key1.key2.etc
  * @param {Object} obj Object to get the value from using the given path
  * @return {any} Value found at the given path
  */
@@ -419,38 +420,40 @@ export const get = <
     O extends object | number | string | Function | Symbol | boolean = {}
 >(
     obj: O,
-    propPath: string[] | string,
+    propPath: string[] | string | number,
     defaultValue: RV = undefined
 ): RV => {
     // Handle obj value of null
     if (obj === null) return obj as null;
 
     // Handle undefined obj
-    if (typeof obj === 'undefined') return defaultValue;
+    if (typeof obj === `undefined`) return defaultValue;
 
     // Handle bad or empty prop paths
-    if (propPath === '' || propPath == null || typeof propPath === 'undefined') return defaultValue;
+    if (propPath === `` || propPath == null || typeof propPath === `undefined`) return defaultValue;
+
+    const cPropPath = typeof propPath === `number` ? propPath.toString() : propPath;
 
     // Parse property path
     const propArr =
-        typeof propPath === 'string'
+        typeof cPropPath === `string`
             ? rmAllFalsy(
                   flatten(
-                      propPath
-                          .replace(/\.\.+/g, '.')
-                          .split('.')
+                      cPropPath
+                          .replace(/\.\.+/g, `.`)
+                          .split(`.`)
                           .map(str => {
                               const match = str.match(braceMatchRegex);
-                              return match && match.filter(s => s !== ']' && s !== '[');
+                              return match && match.filter(s => s !== `]` && s !== `[`);
                           })
                   )
               )
-            : propPath;
+            : cPropPath;
 
     // Walk obj by property path array
     return (propArr as Array<string>).reduce((acc, key: string) => {
-        if (typeof acc === 'undefined' || acc === null) return defaultValue;
-        if (typeof acc[key] === 'undefined') return defaultValue;
+        if (typeof acc === `undefined` || acc === null) return defaultValue;
+        if (typeof acc[key] === `undefined`) return defaultValue;
         return acc[key];
     }, obj);
 };
