@@ -237,6 +237,14 @@ describe(`object sub-module`, function() {
             const boola = true;
             expect(get(boola, 'constructor.name')).to.eql('Boolean');
         });
+
+        // Non-standard input
+        it(`handles numbers as property paths`, function() {
+            expect(get(['a', 'b', 'c'], 0)).to.eql('a');
+            expect(get(['a', 'b', 'c'], 2)).to.eql('c');
+            expect(get(['a', 'b', 'c'], 3)).to.be.undefined;
+            expect(get({'0': 'a', '1': 'b', '2': 'c'}, 1)).to.eql('b');
+        });
     });
 
     describe(`defineImmutableProp`, function() {
