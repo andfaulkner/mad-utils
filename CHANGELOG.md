@@ -1,3 +1,7 @@
+0.89.1
+======
+Add number handling to get function
+
 0.89.0
 ======
 Fix toCamelCase to work correctly when given snake_case strings.
