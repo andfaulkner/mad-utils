@@ -432,14 +432,15 @@ export const get = <
     // Handle bad or empty prop paths
     if (propPath === `` || propPath == null || typeof propPath === `undefined`) return defaultValue;
 
-    const cPropPath = typeof propPath === `number` ? propPath.toString() : propPath;
+    // Handle numeric prop paths
+    if (typeof propPath === `number`) return obj[propPath.toString()];
 
     // Parse property path
     const propArr =
-        typeof cPropPath === `string`
+        typeof propPath === `string`
             ? rmAllFalsy(
                   flatten(
-                      cPropPath
+                      propPath
                           .replace(/\.\.+/g, `.`)
                           .split(`.`)
                           .map(str => {
@@ -448,7 +449,7 @@ export const get = <
                           })
                   )
               )
-            : cPropPath;
+            : propPath;
 
     // Walk obj by property path array
     return (propArr as Array<string>).reduce((acc, key: string) => {
