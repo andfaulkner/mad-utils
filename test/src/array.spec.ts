@@ -659,6 +659,13 @@ describe(`array sub-module`, function() {
             arrayRemove(testArr5, 'a', true);
             expect(testArr5).to.eql(['b', 'c', 'd', 'b']);
         });
+
+        it(`Treats functions given as 2nd arg as predicate, runs on each item, removes all that return true`, function() {
+            const testArr6 = [25, -10, -5, 5, 10, 20, 50, 3, 100];
+            const testArr6Rem = arrayRemove(testArr6, num => num > 15, true);
+            expect(testArr6Rem).to.eql([25, 20, 50, 100]);
+            expect(testArr6).to.eql([-10, -5, 5, 10, 3]);
+        });
     });
 
     describe(`-- matchAny`, function() {
