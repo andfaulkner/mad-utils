@@ -351,6 +351,30 @@ export function removeMatches(arr1: RealAny[], arr2: RealAny[] | any): RealAny[]
 
 export type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
 
+type _NotFunctionNotArray = object | Object | number | string | boolean | undefined | null | void;
+type NonFunction = _NotFunctionNotArray | any[];
+
+/**
+ * [MUTATIVE]
+ * Mutatively removes all items in array where predicate returned true
+ * Return new array, or array of deleted elements if returnRemovals is true
+ *
+ * Example: arrayRemove([-5, 0, 3, 3, 3, 8, 12, 15], (num => num > 10), true);
+ *          // => [12, 15]
+ *
+ * @param {Array} haystack Array to remove items from
+ * @param {any} predicate Remove item for each case where this returns true
+ * @param {boolean} returnRemovals If true, return removed elements instead of
+ *                                 new array
+ * @return {Array} haystack with all predicate matches removed, or array of all
+ *                 removed elements if returnRemovals is true
+ */
+export function arrayRemove<T = RealAny>(
+    haystack: T[],
+    predicate: (item: T) => boolean,
+    returnRemovals?: boolean
+): T[];
+
 /**
  * [MUTATIVE]
  * Mutatively removes all matches of given value from array
@@ -366,22 +390,37 @@ export type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
  * @return {Array} array from haystack property with all "needle"s removed, or
  *                 if returnRemovals is true, array of all removed elements
  */
-export const arrayRemove = <T = RealAny>(haystack: T[], needle: T, returnRemovals = false): T[] => {
+export function arrayRemove<T = NonFunction>(haystack: T[], needle: T, returnRemovals?: boolean): T[];
+
+/**
+ * arrayRemove implementation
+ */
+export function arrayRemove<T = NonFunction>(
+    haystack: T[],
+    needle: ((item: T) => boolean) | NonFunction,
+    returnRemovals = false
+): T[] {
     const matchingIdxes = [];
 
-    haystack.forEach((item, idx) => {
-        if (item === needle) matchingIdxes.push(idx);
-    });
+    if (typeof needle === `function`) {
+        haystack.forEach((item, idx) => {
+            if (needle(item)) matchingIdxes.push(idx);
+        });
+    } else {
+        haystack.forEach((item, idx) => {
+            if (item === needle) matchingIdxes.push(idx);
+        });
+    }
 
-    matchingIdxes.reverse();
+    matchingIdxes.reverse(); // Required (Relates to upcoming splicing?)
 
     let deleted = [];
     matchingIdxes.forEach(matchingIdx => {
         deleted.push(haystack.splice(matchingIdx, 1)[0]);
-    });
+    })
 
-    return returnRemovals ? deleted : haystack;
-};
+    return returnRemovals ? deleted.reverse() : haystack;
+}
 
 /**
  * Remove falsy values from given array [arr]
