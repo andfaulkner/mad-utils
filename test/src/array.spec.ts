@@ -647,6 +647,18 @@ describe(`array sub-module`, function() {
             expect(testArr4).to.eql([]);
             expect(testArr4Ret).to.eql([]);
         });
+
+        it(`Returns removed elements (not new array) when given true as last arg`, function() {
+            const testArr4 = ['a', 'b', 'c', 'd', 'a', 'b', 'a'];
+            const testArr4Ret = arrayRemove(testArr4, 'a', true);
+            expect(testArr4Ret).to.eql(['a', 'a', 'a']);
+        });
+
+        it(`Still removes elements from original array when true given as last arg`, function() {
+            const testArr5 = ['a', 'b', 'c', 'd', 'a', 'b', 'a'];
+            arrayRemove(testArr5, 'a', true);
+            expect(testArr5).to.eql(['b', 'c', 'd', 'b']);
+        });
     });
 
     describe(`-- matchAny`, function() {
