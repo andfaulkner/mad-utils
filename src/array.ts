@@ -32,8 +32,8 @@ export const matchAny = (matchVals: any[]) => (valToFind: any): boolean => {
  * @param {string} value Value to search for in the array
  * @return {boolean} true if arr contains val
  */
-export const contains = (arr: any[], value: any): boolean =>
-    arr.some(
+export const contains = (arr: any[] | string, value: any): boolean =>
+    (typeof arr === `string` ? arr.split(``) : arr).some(
         item =>
             item === value ||
             (typeof item === 'number' && typeof value === 'number' && isNaN(item) && isNaN(value))
@@ -354,16 +354,19 @@ export type _FalsyType = 'allFalsy' | 'nullUndef' | 'keep0' | 'keepStr';
 /**
  * [MUTATIVE]
  * Mutatively removes all matches of given value from array
- * Return new array
+ * Return new array, or array of deleted elements if returnRemovals is true
  *
  * Example: arrayRemove(['a', 'b', 'c', 'd', 'b'], 'b');
  *          // => ['a', 'c', 'd']
  *
  * @param {Array} haystack Array to remove items from
  * @param {any} needle Item to remove from array (remove ALL matches)
- * @return {Array} array from haystack property with all "needle"s removed
+ * @param {boolean} returnRemovals If true, return removed elements instead of
+ *                                 new array
+ * @return {Array} array from haystack property with all "needle"s removed, or
+ *                 if returnRemovals is true, array of all removed elements
  */
-export const arrayRemove = <T = RealAny>(haystack: T[], needle: T): T[] => {
+export const arrayRemove = <T = RealAny>(haystack: T[], needle: T, returnRemovals = false): T[] => {
     const matchingIdxes = [];
 
     haystack.forEach((item, idx) => {
@@ -372,11 +375,12 @@ export const arrayRemove = <T = RealAny>(haystack: T[], needle: T): T[] => {
 
     matchingIdxes.reverse();
 
+    let deleted = [];
     matchingIdxes.forEach(matchingIdx => {
-        haystack.splice(matchingIdx, 1)[0];
+        deleted.push(haystack.splice(matchingIdx, 1)[0]);
     });
 
-    return haystack;
+    return returnRemovals ? deleted : haystack;
 };
 
 /**
