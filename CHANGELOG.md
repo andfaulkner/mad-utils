@@ -1,3 +1,8 @@
+0.89.3
+======
+arrayRemove function can now take predicate that removes elements that return true. New signature:
+    arrayRemove(haystack, needle: (NonFunction | (item) => boolean), returnRemovals? = false)
+
 0.89.2
 ======
 Add 3rd param to arrayRemove function, to return the removed elements from the array.
