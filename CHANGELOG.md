@@ -1,3 +1,9 @@
+0.89.2
+======
+Add 3rd param to arrayRemove function, to return the removed elements from the array.
+- ...instead of the new value of the array, as displayed if true not passed as 3rd arg.
+- New signature: arrayRemove(haystack, needle, returnRemovals? = false).
+
 0.89.1
 ======
 Add number handling to get function
