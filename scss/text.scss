@@ -179,4 +179,7 @@
     .ws-pre-line, .ws-preline, .ws-pl {white-space: pre-line}
     .ws-pre-wrap, .ws-prewrap, .ws-pw {white-space: pre-wrap}
     .ws-unset,    .ws-us              {white-space: unset}
+
+    .ov-wrap-break-word, .break-word, .ov-word-break, .word-break-wrap,
+    .wrap-word, .overflow-word-break, .wrap-break-word, .wrap-word-break {overflow-wrap: break-word}
 }

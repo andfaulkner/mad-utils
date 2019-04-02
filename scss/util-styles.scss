@@ -223,6 +223,8 @@
  * vis:        visibility. e.g. vis-hidden. Also .hidden, .visible, .collapse
  * z, zi:      z-index. e.g. z-n100, zi-1000, z-0, zi-1, z-5
  * ovx, ovy:   overflow. e.g. ovx-auto, ovy-hidden, ovx-visible, ovy-overlay, ovx-scroll
+ *
+ * overflow-word-break: Break a word to wrap.
  */
 
 :global {
