@@ -7,6 +7,7 @@
   "files": [
     "lib/",
     "scss/",
+    "tsconfig.json",
     ".util-styles.scss",
     "root.scss"
   ],
