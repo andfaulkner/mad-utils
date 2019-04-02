@@ -1,3 +1,13 @@
+0.89.4
+======
+Add .overflow-word-break scss utils, including aliases:
+    .ov-wrap-break-word, .break-word, .word-break-wrap, .wrap-word
+    .ov-word-break, .wrap-break-word, .wrap-word-break
+
+Add postinstall to ensure typings install always works with npm (as opposed to only yarn).
+
+Minor typing fix.
+
 0.89.3
 ======
 arrayRemove function can now take predicate that removes elements that return true. New signature:
