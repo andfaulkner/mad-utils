@@ -363,7 +363,7 @@ type NonFunction = _NotFunctionNotArray | any[];
  *          // => [12, 15]
  *
  * @param {Array} haystack Array to remove items from
- * @param {any} predicate Remove item for each case where this returns true
+ * @param {Function} predicate Remove item for each case where this returns true
  * @param {boolean} returnRemovals If true, return removed elements instead of
  *                                 new array
  * @return {Array} haystack with all predicate matches removed, or array of all
