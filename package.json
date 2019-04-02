@@ -7,7 +7,6 @@
   "files": [
     "lib/",
     "scss/",
-    "tsconfig.json",
     ".util-styles.scss",
     "root.scss"
   ],
@@ -16,7 +15,6 @@
     "compile-ts": "tsc -p tsconfig.json",
     "prepublish": "npm run compile-ts",
     "publish": "./script/publish-mad-utils",
-    "postinstall": "npm run compile-ts",
     "repl": "ts-node ./mad-utils-repl.ts",
     "setup": "yarn; git remote remove origin; npm run compile-ts",
     "start": "npm run watch-test",

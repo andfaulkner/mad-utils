@@ -1,3 +1,7 @@
+0.89.5
+======
+Remove postinstall - it causes install fail in receiving project
+
 0.89.4
 ======
 Add .overflow-word-break scss utils, including aliases:
