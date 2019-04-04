@@ -1,3 +1,7 @@
+0.89.6
+======
+Add isObject function to types-iso
+
 0.89.5
 ======
 Remove postinstall - it causes install fail in receiving project
