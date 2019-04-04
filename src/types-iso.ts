@@ -311,8 +311,9 @@ export const isArray = <T = any>(val: RealAny): val is T[] => {
  * @return {boolean} True if value is an object.
  */
 export const isObject = <T extends Object = Object>(val: any, trueForArrays = false): val is T => {
-    if (typeof val !== `object`) return false;
+    if (val === null) return false;
     if (!trueForArrays && isArray(val)) return false;
+    if (typeof val !== `object`) return false;
     return true;
 };
 
