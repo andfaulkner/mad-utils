@@ -303,6 +303,20 @@ export const isArray = <T = any>(val: RealAny): val is T[] => {
 };
 
 /**
+ * Returns true for objects - including false for arrays.
+ *
+ * @param {any} val Check if this value is an object.
+ * @param {boolean} trueForArrays If true, arrays are treated as objects. Default: false.
+ *
+ * @return {boolean} True if value is an object.
+ */
+export const isObject = <T extends Object = Object>(val: any, trueForArrays = false): val is T => {
+    if (typeof val !== `object`) return false;
+    if (!trueForArrays && isArray(val)) return false;
+    return true;
+};
+
+/**
  * True if the given value is any variant of true:
  *     `true`, `True`, `TRUE`, `T`, `t`, or true
  * @param {any} val Check if this is a variant of true
