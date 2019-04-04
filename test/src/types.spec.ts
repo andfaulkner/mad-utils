@@ -582,6 +582,65 @@ describe(`types sub-modules`, function() {
             });
         });
 
+        describe(`isObject`, function(){
+            it(`Returns true for empty objects`, function() {
+                expect(typesIso.isObject({})).to.eql(true);
+            });
+            it(`Returns true for objects with keys`, function() {
+                expect(typesIso.isObject({a: 1, b: `bee`})).to.eql(true);
+            });
+            it(`Returns true for class instances`, function() {
+                class TestClass { }
+                expect(typesIso.isObject(new TestClass())).to.eql(true);
+            });
+            it(`Returns true for non-Array global object prototypes (Array.prototype is an actual array)`, function() {
+                expect(typesIso.isObject(Object.prototype)).to.eql(true);
+                expect(typesIso.isObject(Number.prototype)).to.eql(true);
+                expect(typesIso.isObject(Boolean.prototype)).to.eql(true);
+                expect(typesIso.isObject(String.prototype)).to.eql(true);
+            });
+            it(`Returns false for global Array prototypes by default`, function() {
+                expect(typesIso.isObject(Array.prototype, false)).to.eql(false);
+            });
+            it(`Returns true for global Array prototypes if 2nd arg is true`, function() {
+                expect(typesIso.isObject(Array.prototype, true)).to.eql(true);
+            });
+            it(`Returns false for empty strings`, function() {
+                expect(typesIso.isObject(``)).to.eql(false);
+            });
+            it(`Returns false for non-empty strings`, function() {
+                expect(typesIso.isObject(`Test`)).to.eql(false);
+            });
+            it(`Returns false for numbers`, function() {
+                expect(typesIso.isObject(0)).to.eql(false);
+                expect(typesIso.isObject(-1)).to.eql(false);
+                expect(typesIso.isObject(9)).to.eql(false);
+            });
+            it(`Returns false for booleans`, function() {
+                expect(typesIso.isObject(false)).to.eql(false);
+                expect(typesIso.isObject(true)).to.eql(false);
+            });
+            it(`Returns false for null`, function() {
+                expect(typesIso.isObject(null)).to.eql(false);
+            });
+            it(`Returns false for undefined`, function() {
+                expect(typesIso.isObject(undefined)).to.eql(false);
+            });
+            it(`Returns false for functions`, function() {
+                const testFn = () => ({});
+                expect(typesIso.isObject(() => '')).to.eql(false);
+                expect(typesIso.isObject(testFn)).to.eql(false);
+            });
+            it(`Returns false for arrays by default`, function() {
+                expect(typesIso.isObject([])).to.eql(false);
+                expect(typesIso.isObject([1, 2, 3])).to.eql(false);
+            });
+            it(`Returns true for arrays if passed true as 2nd arg`, function() {
+                expect(typesIso.isObject([], true)).to.eql(true);
+                expect(typesIso.isObject([1, 2, 3], true)).to.eql(true);
+            });
+        });
+
         describe(`isDateLike function`, function() {
             expectFunctionExists(typesIso.isDateLike);
             it(`should return true for dates & moment objects`, function() {
