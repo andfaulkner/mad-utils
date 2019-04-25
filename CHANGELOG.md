@@ -1,3 +1,15 @@
+0.90.0 [BREAKING CHANGES]
+=========================
+Upgrade Typescript to v3.3.3
+Upgrade Node to v10.15.0
+
+Add getType function to types-iso, to get the "extended" type (in string form).
+    - Adds types 'null', 'nan', 'regexp', 'array'; detects 'symbol' & 'bigint' in all environments.
+
+Breaking change: Swap 1st & 2nd generic in `omit` function, to work with Typescript 3.3+.
+
+
+----------------------------------------------------------------------------------------------------
 0.89.6
 ======
 Add isObject function to types-iso
