@@ -7,9 +7,10 @@ import {expect} from 'chai';
 import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
 import moment from 'moment';
 import _ from 'lodash';
+import {observable, isObservableArray} from 'mobx';
 
 /******************************* IMPORT TYPES MODULES FOR TESTING *********************************/
-import {m_, types as typesIso, types, isBoolean, isString, isUndefined} from '../../shared';
+import {m_, types as typesIso, types, isBoolean, isString, getType} from '../../shared';
 import {types as typesNode} from '../../node';
 import {types as typesBrowser} from '../../browser';
 import * as typesModule from '../../src/types-iso';
@@ -931,6 +932,85 @@ describe(`types sub-modules`, function() {
             expect(() => (boolStringToBool as any)(1, false)).to.not.throw();
         });
     });
+
+    describe(`getType`, function(){
+        it(`exists`, function() {
+            expect(getType).to.exist;
+        });
+        it(`returns 'regexp' when given a regular expression`, function() {
+            expect(getType(/asdf/)).to.eql(`regexp`);
+            expect(getType(/[^1-5]+999$/gi)).to.eql(`regexp`);
+            expect(getType(new RegExp(`[12345]+`))).to.eql(`regexp`);
+            expect(getType(new RegExp(`^[a-z]+`, `g`))).to.eql(`regexp`);
+        });
+        it(`returns 'nan' when given NaN`, function() {
+            expect(getType(NaN)).to.eql(`nan`);
+            expect(getType((`z` as any) / 100)).to.eql(`nan`);
+        });
+        it(`returns 'null' when given null`, function() {
+            expect(getType(null)).to.eql(`null`);
+        });
+        it(`returns 'undefined' when given undefined or no arguments`, function() {
+            expect(getType(undefined)).to.eql(`undefined`);
+            expect((getType as any)()).to.eql(`undefined`);
+        });
+        it(`returns 'number' when given a number that isn't a bigint or NaN`, function() {
+            expect(getType(0)).to.eql(`number`);
+            expect(getType(-1)).to.eql(`number`);
+            expect(getType(1)).to.eql(`number`);
+            expect(getType(123456789)).to.eql(`number`);
+            expect(getType(12.5)).to.eql(`number`);
+            expect(getType(0.225)).to.eql(`number`);
+            expect(getType(-414.5346)).to.eql(`number`);
+        });
+        it(`returns 'string' if given a string (including empty strings) or character`, function() {
+            expect(getType(``)).to.eql(`string`);
+            expect(getType(` `)).to.eql(`string`);
+            expect(getType(`z`)).to.eql(`string`);
+            expect(getType(`0`)).to.eql(`string`);
+            expect(getType(`asdf`)).to.eql(`string`);
+            expect(getType(`123`)).to.eql(`string`);
+        });
+        it(`returns 'array' if given an array (including an empty array)`, function() {
+            expect(getType([])).to.eql(`array`);
+            expect(getType([null])).to.eql(`array`);
+            expect(getType([undefined, undefined])).to.eql(`array`);
+            expect(getType([{}])).to.eql(`array`);
+            expect(getType([1, 2, 3, 4, 5])).to.eql(`array`);
+            expect(getType([`ok`, {a: `eh`}])).to.eql(`array`);
+        });
+        it(`returns 'array' if given a MobX array & isObservableArray as 2nd arg`, function() {
+            expect(getType(observable.array([1, 2, 3]), isObservableArray)).to.eql(`array`);
+        });
+        it(`returns 'function' if given a function or class, including built-ins`, function() {
+            function myTestFunction() {
+                return null;
+            }
+            expect(getType(() => null)).to.eql(`function`);
+            expect(getType(() => "return value")).to.eql(`function`);
+            expect(getType(myTestFunction)).to.eql(`function`);
+            expect(getType(Object.keys)).to.eql(`function`);
+            expect(getType(Boolean)).to.eql(`function`);
+            expect(getType(class TestClass {})).to.eql(`function`);
+        });
+        it(`returns 'symbol' if given a symbol`, function() {
+            expect(getType(Symbol())).to.eql(`symbol`);
+            expect(getType(Symbol(`my-symbol`))).to.eql(`symbol`);
+            expect(getType(Symbol.for(`another-symbol`))).to.eql(`symbol`);
+        });
+        it(`returns 'bigint' if given a BigInt`, function() {
+            expect(getType(BigInt(12345678999999))).to.eql(`bigint`);
+            expect(getType(BigInt(1))).to.eql(`bigint`);
+            expect(getType(BigInt(-58324754236895265))).to.eql(`bigint`);
+        });
+        it(`returns 'object' for objects that aren't a function, array, or primitive`, function() {
+            expect(getType({})).to.eql(`object`);
+            expect(getType({a: `eh`, b: `bee`})).to.eql(`object`);
+            expect(getType(new Object())).to.eql(`object`);
+            expect(getType(new Object({}))).to.eql(`object`);
+        });
+    });
+
     describe(`types-browser sub-module`, function() {
         it(`exists`, function() {
             expect(typesBrowser).to.exist;
