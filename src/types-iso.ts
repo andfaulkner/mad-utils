@@ -351,7 +351,7 @@ export const isFalse = <T extends false | string | String = false>(
  * @param {Any} val Return true if this value is a function
  * @return {boolean} True if val is a function, otherwise false
  */
-export const isFunction = <T extends Function = ((...args: any[]) => any)>(
+export const isFunction = <T extends Function = (...args: any[]) => any>(
     val: RealAny
 ): val is T => {
     const str = {}.toString.call(val);
@@ -439,3 +439,53 @@ export const boolStringToBool = (
 };
 
 export {boolStringToBool as toBoolFromBoolString};
+
+/**
+ * String names of all primitive types, plus a few sane additional types:
+ * `nan`, `null`, `regexp`, and `array`.
+ */
+export type DataTypesExpanded =
+    | 'null'
+    | 'undefined'
+    | 'boolean'
+    | 'symbol'
+    | 'string'
+    | 'number'
+    | 'bigint'
+    | 'nan'
+    | 'regexp'
+    | 'function'
+    | 'object'
+    | 'array';
+
+/**
+ * Get expanded type of given value as a string.
+ *
+ * Expands on "typeof" to include 'regexp', 'nan', 'array', & 'null' (also
+ * polyfills 'symbol' & 'bigint' detection).
+ *
+ * @param {any} val Value to get type of
+ * @param {Function} extraArrayDetectCb Extra function for detecting special arrays.
+ *                   Use to handle wrapped arrays, e.g. MobX's IObservableArray.
+ *                   Example value: `isObservableArray` function (from mobX)
+ * @return {string} Type of [val], in string form
+ */
+export const getType = (val: any, extraArrayDetectCb?: (val) => boolean): DataTypesExpanded => {
+    // Detect "empty" values
+    if (val === null) return `null`;
+    if (typeof val === `undefined`) return `undefined`;
+
+    // Detect arrays
+    if (Array.isArray(val) || (extraArrayDetectCb && extraArrayDetectCb(val))) return `array`;
+
+    // Detect all other types (including regexp, bigint, & symbol) besides NaN
+    const baseType = {}.toString
+        .call(val)
+        .match(/\s([a-zA-Z]+)/)[1]
+        .toLowerCase();
+
+    // Special detector for nan
+    if (baseType === `number` && isNaN(val)) return `nan`;
+
+    return baseType;
+};
