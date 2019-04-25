@@ -26,7 +26,7 @@ export function logOnRender(
         class Enhancer extends WrappedComponent {
             render() {
                 const parentName = Object.getPrototypeOf(this.constructor).name;
-                logger[verbosity](`Rendering ${parentName} with this.props:`, this.props);
+                logger[verbosity](`Rendering ${parentName} with this.props:`, (this as any).props);
                 return super.render();
             }
         }

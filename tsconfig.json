@@ -1,5 +1,5 @@
 {
-    "version": "2.9.2",
+    "version": "3.3.3",
     "compilerOptions": {
         "module": "commonjs",
         "noImplicitAny": false,

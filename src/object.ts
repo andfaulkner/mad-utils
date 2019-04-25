@@ -336,19 +336,19 @@ export type OmitPred<T = any> = (val: T, key?: string, obj?: Object) => boolean;
  * Omit property with the given key from obj
  * @param {string[]} prop Key to omit from the given object
  */
-export function omit<R = O, O extends object = Object>(obj: O, prop: string): R;
+export function omit<O extends object = Object, R = O>(obj: O, prop: string): R;
 
 /**
  * Omit all properties with keys matching strings in the given array, from obj
  * @param {string[]} props Keys to omit from the given object
  */
-export function omit<R = O, O extends object = Object>(obj: O, props: string[]): R;
+export function omit<O extends object = Object, R = O>(obj: O, props: string[]): R;
 
 /**
  * Omit all properties from obj, where predicate doesn't return true
  * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
-export function omit<R = O, O extends object = Object, T = any>(obj: O, predicate: OmitPred<T>): R;
+export function omit<O extends object = Object, R = O, T = any>(obj: O, predicate: OmitPred<T>): R;
 
 /**
  * Omit all properties from obj, where a) predicate returns falsy; or b) key
@@ -357,7 +357,7 @@ export function omit<R = O, O extends object = Object, T = any>(obj: O, predicat
  * @param {string[]} prop Key to omit from the given object
  * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
-export function omit<R = O, O extends object = Object, T = any>(
+export function omit<O extends object = Object, R = O, T = any>(
     obj: O,
     prop: string,
     predicate: OmitPred<T>
@@ -370,7 +370,7 @@ export function omit<R = O, O extends object = Object, T = any>(
  * @param {string[]} props Keys to omit from the given object
  * @param {Function} predicate :: (val: any, key: string, coll?) => boolean
  */
-export function omit<R = O, O extends object = Object, T = any>(
+export function omit<O extends object = Object, R = O, T = any>(
     obj: O,
     props: string[],
     predicate: OmitPred<T>
