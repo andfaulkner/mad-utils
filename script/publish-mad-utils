@@ -54,10 +54,10 @@ fi
 NEW_VERSION_NUMBER=$1
 
 # Ensure 1st argument is semver number
-if (echo "$NEW_VERSION_NUMBER" | grep -Eq *[a-zA-Z].*) || (echo "$NEW_VERSION_NUMBER" | grep -v -Eq ^[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?$); then
-  echo "New version number must be in semver format e.g.:"
-  echo "0.10.3"
-  exit
+if (echo "$NEW_VERSION_NUMBER" | grep -Eq *[a-zA-Z].*) || (echo "$NEW_VERSION_NUMBER" | grep -v -Eq ^[0-9]+\.[0-9]+\.[0-9]+\(\.[0-9]+\)?$); then
+    echo "New version number must be in semver format e.g.:"
+    echo "0.10.3"
+    exit
 fi
 
 # Get values from .env config (dependent projects' locations)
