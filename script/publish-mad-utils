@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# TODO make this repo-agnostic - remove refs to Javelin & web client
+# TODO allow more than 2 dependent projects
 
 #==== SCRIPT ===========================================================
 #        NAME:  publish-mad-utils
 #
 # DESCRIPTION:  Publish mad-utils to npm (git commit & push to master) &
-#               optionally reinstall in Javelin & webclient projects
+#               optionally reinstall in 2 dependent projects
 #
 #     EXAMPLE:  publish-mad-utils 1.10.2
 #     EXAMPLE:  publish-mad-utils 0.52.6 --local-reinstalls
@@ -14,29 +14,38 @@
 #   @PARAM $1:  NEW_VERISON_NUMBER Version number to upgrade to. Must be
 #                                  semver e.g. 0.41.22
 #
-#    @FLAG $2:  --local-reinstalls If set, try to reinstall mad-utils in
-#                                  Javelin and webclient projects. Must
-#                                  set paths JAVELINSCRIPT_DIR & WEBCLIENT_DIR
-#                                  in script/.env for this to work
+#    @FLAG $2:  --local-reinstalls If set, try to reinstall mad-utils in 2
+#                                  dependent projects. Must set paths
+#                                  DEPENDENT_PROJ_DIR_1 & DEPENDENT_PROJ_DIR_2
+#                                  in script/.env for this to work.
+#
 #
 #=======================================================================
 
 ############################################# HELPERS ##############################################
 function local_reinstalls_usage {
-    echo "JAVELINSCRIPT_DIR or WEBCLIENT_DIR is not set"
-    echo "Please add JAVELINSCRIPT_DIR & WEBCLIENT_DIR vars to .env file."
-    echo "Set their paths to the Javelin and webclient repos, respectively."
+    echo "Neither DEPENDENT_PROJ_DIR_1 or DEPENDENT_PROJ_DIR_2 are set in .env,"
+    echo "but the script was the passed --local-reinstalls flag."
+    echo ""
+    echo "Please either add run publish-mad-utils without the --local-reinstalls flag, or"
+    echo "add DEPENDENT_PROJ_DIR_1 and/or DEPENDENT_PROJ_DIR_2 vars to ./script/.env file,"
+    echo "with the value set to the path to the root dir of the respective dependent project."
     echo ""
     echo "e.g.:"
-    echo "JAVELINSCRIPT_DIR=~/projects/ohri/CANImmunize-Javelin"
-    echo "WEBCLIENT_DIR=~/projects/ohri/canimmunize-web-client-v2"
+    echo "DEPENDENT_PROJ_DIR_1=~/projects/work-projects/Javelin"
+    echo "DEPENDENT_PROJ_DIR_2=~/projects/work-projects/web-client-v2"
     echo ""
+    echo "You may also optionally add DEP_1_BUILD_CMD and/or DEP_2_BUILD_CMD to .env, providing"
+    echo "a build command to run when mad-utils has been upgraded in the respective project"
+    echo ""
+    echo "e.g.:"
+    echo "DEP_1_BUILD_CMD=\"npm run clean\""
     exit
 }
 
 ######################################## ARGUMENT HANDLING #########################################
 # Ensure 1st argument given
-if [[ ! -n "$1" ]]; then
+if [ ! -n "$1" ]; then
     echo "Must call with new version number as first arg. e.g.:"
     echo "  publish.sh 0.52.5"
     exit
@@ -45,24 +54,24 @@ fi
 NEW_VERSION_NUMBER=$1
 
 # Ensure 1st argument is semver number
-if [[ $NEW_VERSION_NUMBER =~ .*[a-zA-Z].* ]] || [[ ! $NEW_VERSION_NUMBER =~ ^[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+if (echo "$NEW_VERSION_NUMBER" | grep -Eq *[a-zA-Z].*) || (echo "$NEW_VERSION_NUMBER" | grep -v -Eq ^[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?$); then
   echo "New version number must be in semver format e.g.:"
   echo "0.10.3"
   exit
 fi
 
-# Get values from .env config (Javelin and webclient locations)
+# Get values from .env config (dependent projects' locations)
 . ./script/.env
 
-# Check whether script should install in Javelin & webclient locations
-if [[ "$2" == "--local-reinstalls" ]]; then
-    if [[ ! -n "$JAVELINSCRIPT_DIR" ]] || [[ ! -n "$WEBCLIENT_DIR" ]]; then
+# Check whether script should install in dependent projects' locations
+if [ "$2" = "--local-reinstalls" ]; then
+    if [ ! -n "$DEPENDENT_PROJ_DIR_1" ] && [ ! -n "$DEPENDENT_PROJ_DIR_2" ]; then
         local_reinstalls_usage
         exit
     fi
-    echo "Will reinstall in Javelin & webclient dirs (--local-reinstalls set)"
+    echo "Will reinstall in dependent projects' dirs (--local-reinstalls set)"
 else
-    echo "Skipping installation in Javelin & webclient dirs (--local-reinstalls not set)"
+    echo "Skipping installation in dependent projects' dirs (--local-reinstalls not set)"
 fi
 
 ####################################### CONVENIENCE ALIASES ########################################
@@ -90,32 +99,49 @@ echo "Published v$1 of mad-utils!"
 ###################################### UPGRADE IN OTHER REPOS ######################################
 # Exit if --local-reinstalls not set
 # Script won't try to reinstall mad-utils in other repos in this case
-if [[ "$2" != "--local-reinstalls" ]]; then
-    echo "Done! (skipped install in Javelin & webclient dirs, since --local-reinstalls not set)"
+if [ "$2" != "--local-reinstalls" ]; then
+    echo "Done! (skipped install in dependent projects' dirs, since --local-reinstalls not set)"
     exit
 fi
 
-# Install in Javelin dir
-pushd $JAVELINSCRIPT_DIR
-yarn remove mad-utils
-yarn add mad-utils
-git add package.json yarn.lock
-git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
-gpocur
-popd
+# Install in dependent project 1 dir, if available
+if [ -n "$DEPENDENT_PROJ_DIR_1" ]; then
+    pushd $DEPENDENT_PROJ_DIR_1
+    # yarn remove mad-utils
+    # yarn add mad-utils
+    # git add package.json yarn.lock
+    npm uninstall mad-utils
+    npm install mad-utils
+    git add package.json package-lock.json
+    git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
+    gpocur
+    popd
 
-# Install in Webclient dir
-pushd $WEBCLIENT_DIR
-yarn remove mad-utils
-yarn add mad-utils
-git add package.json yarn.lock
-git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
-gpocur
+    # Start/restart dependent project 1 build, if build cmd set in env vars
+    if [ ! -z "$DEP_1_BUILD_CMD" ]; then
+        $DEP_1_BUILD_CMD
+    fi
+fi
 
-# Start webclient build again
-./common-cmds clean
+# Install in dependent project 2 dir, if available
+if [ -n "$DEPENDENT_PROJ_DIR_2" ]; then
+    pushd $DEPENDENT_PROJ_DIR_2
+    # yarn remove mad-utils
+    # yarn add mad-utils
+    # git add package.json yarn.lock
+    npm uninstall mad-utils
+    npm install mad-utils
+    git add package.json package-lock.json
+    git commit -m "Upgraded mad-utils to v$NEW_VERSION_NUMBER"
+    gpocur
+
+    # Start/restart dependent project 2 build, if build cmd set in env vars
+    if [ ! -z "$DEP_2_BUILD_CMD" ]; then
+        $DEP_2_BUILD_CMD
+    fi
+fi
 
 # Return to mad-utils
 popd
 
-echo "publish complete! Bumped to version $NEW_VERSION_NUMBER, published to npm, installed in Javelin & webclient projects"
+echo "publish complete! Bumped to version $NEW_VERSION_NUMBER, published to npm, installed in dependent projects"

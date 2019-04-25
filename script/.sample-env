@@ -1,2 +1,5 @@
-JAVELINSCRIPT_DIR=~/projects/ohri/CANImmunize-Javelin
-WEBCLIENT_DIR=~/projects/ohri/canimmunize-web-client-v2
+DEPENDENT_PROJ_DIR_1=~/projects/work-projects/Javelin
+DEPENDENT_PROJ_DIR_2=~/projects/work-projects/web-client-v2
+
+# Note that DEP_1_BUILD_CMD & DEP_2_BUILD_CMD are optional
+DEP_2_BUILD_CMD="./common-cmds clean"
