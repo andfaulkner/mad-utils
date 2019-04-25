@@ -6,6 +6,8 @@ Upgrade Node to v10.15.0
 Add getType function to types-iso, to get the "extended" type (in string form).
     - Adds types 'null', 'nan', 'regexp', 'array'; detects 'symbol' & 'bigint' in all environments.
 
+Add DataTypesExpanded type to types-iso, containing extended list of types emitted by new getType function.
+
 Breaking change: Swap 1st & 2nd generic in `omit` function, to work with Typescript 3.3+.
 
 
