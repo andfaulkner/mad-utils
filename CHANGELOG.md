@@ -1,3 +1,8 @@
+0.90.1
+======
+Add more specificiity to opacity, visibility, and z-index SCSS utilities
+i.e. .opa-7 became * * *.opa-7
+
 0.90.0 [BREAKING CHANGES]
 =========================
 Upgrade Typescript to v3.3.3
