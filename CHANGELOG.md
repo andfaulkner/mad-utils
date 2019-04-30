@@ -1,3 +1,13 @@
+0.90.2
+======
+Add new colour: slightDarkPink: #f9adba
+Includes CSS classes:
+-   slight-dark-pink
+-   bg-slight-dark-pink
+-   bg-slight-dark-pink-hover
+-   bg-slight-dark-pink-active
+-   border-slight-dark-pink-active
+
 0.90.1
 ======
 Add more specificiity to opacity, visibility, and z-index SCSS utilities
