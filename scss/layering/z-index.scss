@@ -1,25 +1,25 @@
 :global {
-    .z-10000,  .zi-10000{ z-index: 10000 }
-    .z-1000,  .zi-1000  { z-index: 1000  }
-    .z-500,   .zi-500   { z-index: 500   }
-    .z-100,   .zi-100   { z-index: 100   }
-    .z-10,    .zi-10    { z-index: 10    }
-    .z-6,     .zi-6     { z-index: 6     }
-    .z-5,     .zi-5     { z-index: 5     }
-    .z-4,     .zi-4     { z-index: 4     }
-    .z-3,     .zi-3     { z-index: 3     }
-    .z-2,     .zi-2     { z-index: 2     }
-    .z-1,     .zi-1     { z-index: 1     }
-    .z-0,     .zi-0     { z-index: 0     }
-    .z-n1,    .zi-n1    { z-index: -1    }
-    .z-n2,    .zi-n2    { z-index: -2    }
-    .z-n3,    .zi-n3    { z-index: -3    }
-    .z-n4,    .zi-n4    { z-index: -4    }
-    .z-n5,    .zi-n5    { z-index: -5    }
-    .z-n6,    .zi-n6    { z-index: -6    }
-    .z-n10,   .zi-n10   { z-index: -10   }
-    .z-n100,  .zi-n100  { z-index: -100  }
-    .z-n500,  .zi-n500  { z-index: -500  }
-    .z-n1000, .zi-n1000 { z-index: -1000 }
-    .z-n10000,.zi-n10000{ z-index: 10000 }
+    * * *.z-10000,  * * *.zi-10000{ z-index: 10000 }
+    * * *.z-1000,  * * *.zi-1000  { z-index: 1000  }
+    * * *.z-500,   * * *.zi-500   { z-index: 500   }
+    * * *.z-100,   * * *.zi-100   { z-index: 100   }
+    * * *.z-10,    * * *.zi-10    { z-index: 10    }
+    * * *.z-6,     * * *.zi-6     { z-index: 6     }
+    * * *.z-5,     * * *.zi-5     { z-index: 5     }
+    * * *.z-4,     * * *.zi-4     { z-index: 4     }
+    * * *.z-3,     * * *.zi-3     { z-index: 3     }
+    * * *.z-2,     * * *.zi-2     { z-index: 2     }
+    * * *.z-1,     * * *.zi-1     { z-index: 1     }
+    * * *.z-0,     * * *.zi-0     { z-index: 0     }
+    * * *.z-n1,    * * *.zi-n1    { z-index: -1    }
+    * * *.z-n2,    * * *.zi-n2    { z-index: -2    }
+    * * *.z-n3,    * * *.zi-n3    { z-index: -3    }
+    * * *.z-n4,    * * *.zi-n4    { z-index: -4    }
+    * * *.z-n5,    * * *.zi-n5    { z-index: -5    }
+    * * *.z-n6,    * * *.zi-n6    { z-index: -6    }
+    * * *.z-n10,   * * *.zi-n10   { z-index: -10   }
+    * * *.z-n100,  * * *.zi-n100  { z-index: -100  }
+    * * *.z-n500,  * * *.zi-n500  { z-index: -500  }
+    * * *.z-n1000, * * *.zi-n1000 { z-index: -1000 }
+    * * *.z-n10000,* * *.zi-n10000{ z-index: 10000 }
 }
