@@ -160,6 +160,13 @@
     .bg-dark-pink-active:active { background-color: $darkPink }
     .border-dark-pink-active:active { border-color: $darkPink }
 
+    // #f9adba
+    .slight-dark-pink { color: $slightDarkPink }
+    .bg-slight-dark-pink { background-color: $slightDarkPink }
+    .bg-slight-dark-pink-hover:hover { background-color: $slightDarkPink }
+    .bg-slight-dark-pink-active:active { background-color: $slightDarkPink }
+    .border-slight-dark-pink-active:active { border-color: $slightDarkPink }
+
     // #ff0000
     .red { color: $red }
     .bg-red { background-color: $red }
