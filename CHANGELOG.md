@@ -1,3 +1,14 @@
+0.91.0
+======
+Add new debounce function:
+    Arguments:
+        cb: (...fnArgs: A[]) => any,
+        wait: number,
+        immediate: boolean = false
+
+    Returns:
+        type of cb, but with return type replaced with void
+
 0.90.2
 ======
 Add new colour: slightDarkPink: #f9adba
@@ -7,6 +18,7 @@ Includes CSS classes:
 -   bg-slight-dark-pink-hover
 -   bg-slight-dark-pink-active
 -   border-slight-dark-pink-active
+produce<T extends ProduceConditions, U extends { [key in keyof T]: any }>(conditions: T, input: any): Promise<U> | U
 
 0.90.1
 ======
