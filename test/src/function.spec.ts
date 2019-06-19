@@ -18,6 +18,7 @@ import {
     loop4,
     loop5,
     throttle,
+    debounce,
     getArgNames,
     runAll,
 } from '../../shared';
@@ -271,6 +272,67 @@ describe(`function sub-module`, function() {
             throttledFn();
             setTimeout(() => throttledFn(), 100);
             setTimeout(() => expect(arr).to.eql(['VALUE', 'VALUE']), 150);
+        });
+    });
+
+    describe(`debounce`, function() {
+        it(`runs given function only after [wait] ms have passed, not immediately`, function(done) {
+            let val = false;
+            const debouncedFn = debounce(() => (val = true), 200);
+            debouncedFn();
+            expect(val).to.be.false;
+
+            setTimeout(() => {
+                expect(val).to.be.true;
+                done();
+            }, 250);
+        });
+
+        it(`runs given function immediately if true given as 3rd arg`, function() {
+            let val = false;
+            const debouncedFn2 = debounce(() => (val = true), 200, true);
+            debouncedFn2();
+            expect(val).to.be.true;
+        });
+
+        it(`doesn't run given function immediately if immediate param = false`, function(done) {
+            let val = false;
+            const debouncedFn = debounce(() => (val = true), 200);
+            debouncedFn();
+            expect(val).to.be.false;
+
+            setTimeout(() => {
+                expect(val).to.be.true;
+                done();
+            }, 250);
+        });
+
+        it(`runs function 1X even if multiple requests received to run it before before [wait]ms elapses`, function(done) {
+            let val = 0;
+            const debouncedFn = debounce(() => val++, 200, true);
+            debouncedFn();
+            debouncedFn();
+            debouncedFn();
+            setTimeout(() => {
+                expect(val).to.eql(1);
+                done();
+            }, 250);
+        });
+
+        it(`runs function again if request to run occurs after [wait]ms elapses`, function(done) {
+            let val = 0;
+            const debouncedFn = debounce(() => val++, 50, true);
+            debouncedFn();
+
+            setTimeout(() => debouncedFn(), 100);
+
+            debouncedFn();
+            debouncedFn();
+
+            setTimeout(() => {
+                expect(val).to.eql(2);
+                done();
+            }, 150);
         });
     });
 
