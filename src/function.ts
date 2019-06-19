@@ -15,7 +15,7 @@ export {getFnAsArr as getFunctionSrcAsArray};
  * @param {Function} func Function to repeatedly run
  * @return {Array<any>} Array containing function return values
  */
-export const loopN = <T>(n: number, func: ((...args) => T)): T[] => {
+export const loopN = <T>(n: number, func: (...args) => T): T[] => {
     let retArr = [];
     for (let i = 0; i < n; i++) retArr.push(func());
     return retArr;
@@ -26,28 +26,28 @@ export const loopN = <T>(n: number, func: ((...args) => T)): T[] => {
  * @param {Function} func Function to run 2X
  * @return {T[]} Array of return values (one from each run of the function)
  */
-export const loop2 = <T>(func: ((...args) => T)): T[] => loopN(2, func);
+export const loop2 = <T>(func: (...args) => T): T[] => loopN(2, func);
 
 /**
  * Run given function 3X, returning results as an array containing all 3 return vals
  * @param {Function} func Function to run 3X
  * @return {T[]} Array of return values (one from each run of the function)
  */
-export const loop3 = <T>(func: ((...args) => T)): T[] => loopN(3, func);
+export const loop3 = <T>(func: (...args) => T): T[] => loopN(3, func);
 
 /**
  * Run given function 4X, returning results as an array containing all 4 return vals
  * @param {Function} func Function to run 4X
  * @return {T[]} Array of return values (one from each run of the function)
  */
-export const loop4 = <T>(func: ((...args) => T)): T[] => loopN(4, func);
+export const loop4 = <T>(func: (...args) => T): T[] => loopN(4, func);
 
 /**
  * Run given function 5X, returning results as an array containing all 5 return vals
  * @param {Function} func Function to run 5X
  * @return {T[]} Array of return values (one from each run of the function)
  */
-export const loop5 = <T>(func: ((...args) => T)): T[] => loopN(5, func);
+export const loop5 = <T>(func: (...args) => T): T[] => loopN(5, func);
 
 /**
  * Rough method to list a function's arguments/parameters (untyped)
@@ -122,16 +122,12 @@ export function switchExpr(
  * DEPRECATED
  * Deprecated form of switchExpr - use switchExpr instead
  */
-function condSwitch(
-    cond: boolean | RealAny,
-    val: RealAny,
-    ...condValPairsAndOrDefVal: RealAny[]
-) {
+function condSwitch(cond: boolean | RealAny, val: RealAny, ...condValPairsAndOrDefVal: RealAny[]) {
     console.warn(`WARNING: condSwitch is deprecated, use switchExpr instead`);
     return switchExpr(cond, val, ...condValPairsAndOrDefVal);
 }
 
-export {switchExpr as condSwitch}
+export {switchExpr as condSwitch};
 
 /************************************* RUN TIMING / LIMITING **************************************/
 /**
@@ -208,6 +204,45 @@ export function throttle<A>(
 
     return retFn;
 }
+
+/**
+ * Wrap function [cb] to make it run after (and only after) it stops being invoked for at
+ * least [wait] ms. Also run initially if [immediate] is true, trigger function
+ * at the beginning, instead of at the end.
+ */
+export const debounce = <A, R = any>(
+    cb: (...fnArgs: A[]) => R,
+    wait: number,
+    immediate: boolean = false
+): ((...fnArgs: A[]) => R) => {
+    let timeout: number;
+
+    const retFn = function debouncedFn(...fnArgs: A[]) {
+        const self = this;
+
+        clearTimeout(timeout);
+
+        const runAfterWait = () => {
+            timeout = null;
+            if (!immediate) return cb.apply(self, fnArgs);
+        };
+
+        const runImmediately = immediate && !timeout;
+
+        timeout = setTimeout(runAfterWait, wait);
+
+        if (runImmediately) return cb.apply(self, fnArgs);
+    };
+
+    /*----- Make returned function behave like original -----*/
+    // Assign cb's prototype to retFn
+    retFn.prototype = Object.create(cb.prototype);
+
+    // Hoist keys from cb onto retFn
+    Object.keys(cb).forEach(k => (retFn[k] = cb[k]));
+
+    return retFn;
+};
 
 /**
  * Run all functions in given array [arr], optionally with each argument after
