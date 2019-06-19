@@ -205,16 +205,19 @@ export function throttle<A>(
     return retFn;
 }
 
+type ArgumentTypes<T> = T extends (...args: infer U) => infer R ? U : never;
+type ReplaceReturnType<T, TNewReturn> = (...a: ArgumentTypes<T>) => TNewReturn;
+
 /**
  * Wrap function [cb] to make it run after (and only after) it stops being invoked for at
  * least [wait] ms. Also run initially if [immediate] is true, trigger function
  * at the beginning, instead of at the end.
  */
-export const debounce = <A, R = any>(
-    cb: (...fnArgs: A[]) => R,
+export const debounce = <A, CB extends (...fnArgs: A[]) => any = (...fnArgs: A[]) => any>(
+    cb: CB,
     wait: number,
     immediate: boolean = false
-): ((...fnArgs: A[]) => R) => {
+): {[K in keyof CB]: CB[K]} & ReplaceReturnType<CB, void> => {
     let timeout: number;
 
     const retFn = function debouncedFn(...fnArgs: A[]) {
@@ -224,14 +227,14 @@ export const debounce = <A, R = any>(
 
         const runAfterWait = () => {
             timeout = null;
-            if (!immediate) return cb.apply(self, fnArgs);
+            if (!immediate) cb.apply(self, fnArgs);
         };
 
         const runImmediately = immediate && !timeout;
 
         timeout = setTimeout(runAfterWait, wait);
 
-        if (runImmediately) return cb.apply(self, fnArgs);
+        if (runImmediately) cb.apply(self, fnArgs);
     };
 
     /*----- Make returned function behave like original -----*/
@@ -241,7 +244,7 @@ export const debounce = <A, R = any>(
     // Hoist keys from cb onto retFn
     Object.keys(cb).forEach(k => (retFn[k] = cb[k]));
 
-    return retFn;
+    return retFn as {[K in keyof CB]: CB[K]} & ReplaceReturnType<CB, void>;
 };
 
 /**

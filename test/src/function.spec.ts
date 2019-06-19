@@ -334,6 +334,39 @@ describe(`function sub-module`, function() {
                 done();
             }, 150);
         });
+
+        it(`requires the correct arguments for the created 'debounced' function`, function(done) {
+            let arr = [];
+            const debouncedFn = debounce((str: string) => arr.push(str), 50, true);
+            debouncedFn('First'); // Include after initial wait (50ms)
+            debouncedFn("WON'T BE INCLUDED");
+
+            setTimeout(() => debouncedFn('Second'), 100);
+            debouncedFn("ALSO WON'T BE INCLUDED");
+            debouncedFn("ALSO ALSO WON'T BE INCLUDED");
+
+            setTimeout(() => {
+                expect(arr).to.eql(['First', 'Second']);
+                done();
+            }, 150);
+        });
+
+        it(`transfers data keys from [cb] to debounced function`, function(done) {
+            const arr = [];
+            const fn = Object.assign(() => arr.push(fn.dataVal), {dataVal: 'VALUE'});
+
+            const debouncedFn = debounce(fn, 50, true);
+            expect(debouncedFn.dataVal).to.eql(`VALUE`);
+
+            debouncedFn();
+            debouncedFn();
+
+            setTimeout(() => debouncedFn(), 100);
+            setTimeout(() => {
+                expect(arr).to.eql(['VALUE', 'VALUE']);
+                done();
+            }, 170);
+        });
     });
 
     describe('getArgNames', function() {
