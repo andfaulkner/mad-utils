@@ -1,3 +1,9 @@
+0.91.1
+======
+Apply all SCSS utils dependent on flex to work with inline-flex.
+
+Minor documentation fixes.
+
 0.91.0
 ======
 Add new debounce function:
