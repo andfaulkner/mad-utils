@@ -1,9 +1,9 @@
-/******************************************** IMPORTS *********************************************/
+/*------------------------------------------- IMPORTS --------------------------------------------*/
 export {isInt, isInteger, isIntegerLike, isNumberLike, isNumLike} from './types-iso';
 
 import uuidImport from 'uuid';
 
-/**************************************** TYPE DEFINITIONS ****************************************/
+/*--------------------------------------- TYPE DEFINITIONS ---------------------------------------*/
 export interface UUIDNamespace {
     (): string;
     len8: () => string;
@@ -65,7 +65,7 @@ export {UUID as UID};
 export {UUID as Uuid};
 export {UUID as Uid};
 
-/********************************************* RANDOM *********************************************/
+/*-------------------------------------------- RANDOM --------------------------------------------*/
 /**
  * Randomly get HEADS or TAILS. 50-50 chance of either.
  * @return {'HEADS'|'TAILS'} 'HEADS' or 'TAILS' - at random.
@@ -101,7 +101,7 @@ export const getRandomInt = (min: Int, max: Int): Int => {
     return Math.round(Math.random() * (maxInt - minInt)) + minInt;
 };
 
-/********************************************** UUID **********************************************/
+/*--------------------------------------------- UUID ---------------------------------------------*/
 const uuidBase = (): string => uuidImport();
 
 /**
@@ -143,7 +143,7 @@ export const uuidRegex = /^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]
 export const isUUID = (value: any): value is string =>
     typeof value === `string` ? !!value.match(uuidRegex) : false;
 
-/********************************************* RANGE **********************************************/
+/*-------------------------------------------- RANGE ---------------------------------------------*/
 /**
  * Create range between given numbers, with the provided interval.
  * @param {number} start Number to start at.

@@ -4,10 +4,12 @@
  * Character input stream.
  * Allows you to iterate through and read a string one character at a time.
  *
- * @returns {Object { peek:  Show next value without removing it from the stream.
- *                    next:  Show the next value and discards it from the stream.
- *                    isEOF: Returns true if stream is at end.
- *                    throw: Throw input stream errors. }
+ * @return {Object} keys: {
+ *                     peek: Show next value without removing it from the stream.
+ *                     next:  Show the next value and discards it from the stream.
+ *                     isEOF: Returns true if stream is at end.
+ *                     throw: Throw input stream errors. }
+ *                   }
  */
 export class CharInputStream {
     chr: string                            // Current character
