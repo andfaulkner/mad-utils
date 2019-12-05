@@ -25,11 +25,11 @@
 
 /********************************************** FLEX **********************************************/
     /************ justify-content ************/
-    .flex.start         {justify-content: flex-start   }
-    .flex.end           {justify-content: flex-end     }
-    .flex.center        {justify-content: center       }
-    .flex.space-around  {justify-content: space-around }
-    .flex.space-between {justify-content: space-between}
+    .inline-flex.start,         .flex.start         {justify-content: flex-start   }
+    .inline-flex.end,           .flex.end           {justify-content: flex-end     }
+    .inline-flex.center,        .flex.center        {justify-content: center       }
+    .inline-flex.space-around,  .flex.space-around  {justify-content: space-around }
+    .inline-flex.space-between, .flex.space-between {justify-content: space-between}
 
 
     /************ flex :: flex-grow **************/
@@ -59,9 +59,14 @@
     .flex-shrink-10 {flex-shrink: 10}
 
     /************ flex :: align-items ************/
-    .flex.ai-center, .flex.align-items-center {align-items: center    }
-    .flex.ai-end,    .flex.align-items-end    {align-items: flex-end  }
-    .flex.ai-start,  .flex.align-items-start  {align-items: flex-start}
+    .flex.ai-center,          .inline-flex.ai-center,
+    .flex.align-items-center, .inline-flex.align-items-center {align-items: center    }
+
+    .flex.ai-end,             .inline-flex.ai-end,
+    .flex.align-items-end,    .inline-flex.align-items-end    {align-items: flex-end  }
+
+    .flex.ai-start,           .inline-flex.ai-start,
+    .flex.align-items-start,  .inline-flex.align-items-start  {align-items: flex-start}
 
     /************ flex :: align-self ************/
     .align-self-center  {align-self: center    }
@@ -70,15 +75,16 @@
     .align-self-stretch {align-self: stretch   }
 
     /************ flex :: flex-direction ************/
-    .flex.col,
-    .flex.column {flex-direction: column}
-    .flex.row    {flex-direction: row   }
+    .inline-flex.col,    .flex.col,
+    .inline-flex.column, .flex.column {flex-direction: column}
+    .inline-flex.row,    .flex.row    {flex-direction: row   }
 
     /************ flex :: flex-wrap *****************/
-    .flex-wrap,         .flex.wrap,        {flex-wrap: wrap        }
-    .flex-no-wrap,      .flex.no-wrap      {flex-wrap: nowrap      }
-    .flex-wrap-rev,     .flex.wrap-rev,
-    .flex-wrap-reverse, .flex.wrap-reverse {flex-wrap: wrap-reverse}
+    .flex-wrap,         .flex.wrap,    .inline-flex.wrap              {flex-wrap: wrap        }
+    .flex-no-wrap,      .flex.no-wrap, .inline-flex.no-wrap           {flex-wrap: nowrap      }
+
+    .flex-wrap-rev,     .flex.wrap-rev,     .inline-flex.wrap-rev,
+    .flex-wrap-reverse, .flex.wrap-reverse, .inline-flex.wrap-reverse {flex-wrap: wrap-reverse}
 
     /************************************** VERTICAL-ALIGN ****************************************/
     .va-middle {vertical-align: middle}
