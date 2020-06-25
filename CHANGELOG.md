@@ -1,3 +1,7 @@
+0.91.2
+======
+Fix typings and docs in stream module.
+
 0.91.1
 ======
 Apply all SCSS utils dependent on flex to work with inline-flex.
