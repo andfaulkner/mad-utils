@@ -888,21 +888,21 @@ describe(`types sub-modules`, function() {
         });
 
         it(`throws if given a non-boolean non-string in strict mode`, function() {
-            expect(() => (boolStringToBool as any)({})).to.throw();
-            expect(() => (boolStringToBool as any)(() => 'value')).to.throw();
-            expect(() => (boolStringToBool as any)('BAD_STRING')).to.throw();
-            expect(() => (boolStringToBool as any)('')).to.throw();
-            expect(() => (boolStringToBool as any)({false: false})).to.throw();
-            expect(() => (boolStringToBool as any)([])).to.throw();
-            expect(() => (boolStringToBool as any)([{false: false}])).to.throw();
-            expect(() => (boolStringToBool as any)(null)).to.throw();
-            expect(() => (boolStringToBool as any)(undefined)).to.throw();
-            expect(() => (boolStringToBool as any)(123)).to.throw();
-            expect(() => (boolStringToBool as any)(0)).to.throw();
-            expect(() => (boolStringToBool as any)(1)).to.throw();
+            expect(() => (boolStringToBool as any)({}, true)).to.throw();
+            expect(() => (boolStringToBool as any)(() => 'value', true)).to.throw();
+            expect(() => (boolStringToBool as any)('BAD_STRING', true)).to.throw();
+            expect(() => (boolStringToBool as any)('', true)).to.throw();
+            expect(() => (boolStringToBool as any)({false: false}, true)).to.throw();
+            expect(() => (boolStringToBool as any)([], true)).to.throw();
+            expect(() => (boolStringToBool as any)([{false: false}], true)).to.throw();
+            expect(() => (boolStringToBool as any)(null, true)).to.throw();
+            expect(() => (boolStringToBool as any)(undefined, true)).to.throw();
+            expect(() => (boolStringToBool as any)(123, true)).to.throw();
+            expect(() => (boolStringToBool as any)(0, true)).to.throw();
+            expect(() => (boolStringToBool as any)(1, true)).to.throw();
         });
 
-        it(`does not throw if given a non-boolean non-string in strict mode`, function() {
+        it(`does not throw if given a non-boolean non-string when not in strict mode`, function() {
             expect(() => (boolStringToBool as any)({}, false)).to.not.throw();
             expect(() => (boolStringToBool as any)(() => 'value', false)).to.not.throw();
             expect(() => (boolStringToBool as any)('BAD_STRING', false)).to.not.throw();
@@ -917,19 +917,25 @@ describe(`types sub-modules`, function() {
             expect(() => (boolStringToBool as any)(1, false)).to.not.throw();
         });
 
-        it(`returns null if given a non-boolean non-string in strict mode`, function() {
-            expect(() => (boolStringToBool as any)({}, false)).to.not.throw();
-            expect(() => (boolStringToBool as any)(() => 'value', false)).to.not.throw();
-            expect(() => (boolStringToBool as any)('BAD_STRING', false)).to.not.throw();
-            expect(() => (boolStringToBool as any)('', false)).to.not.throw();
-            expect(() => (boolStringToBool as any)({false: false}, false)).to.not.throw();
-            expect(() => (boolStringToBool as any)([], false)).to.not.throw();
-            expect(() => (boolStringToBool as any)([{false: false}], false)).to.not.throw();
-            expect(() => (boolStringToBool as any)(null, false)).to.not.throw();
-            expect(() => (boolStringToBool as any)(undefined, false)).to.not.throw();
-            expect(() => (boolStringToBool as any)(123, false)).to.not.throw();
-            expect(() => (boolStringToBool as any)(0, false)).to.not.throw();
-            expect(() => (boolStringToBool as any)(1, false)).to.not.throw();
+        it(`returns null if given a non-boolean non-string in non-strict mode`, function() {
+            expect((boolStringToBool as any)({}, false)).to.be.null;
+            expect((boolStringToBool as any)('value', false)).to.be.null;
+            expect((boolStringToBool as any)('BAD_STRING', false)).to.be.null;
+            expect((boolStringToBool as any)('', false)).to.be.null;
+            expect((boolStringToBool as any)({false: false}, false)).to.be.null;
+            expect((boolStringToBool as any)([], false)).to.be.null;
+            expect((boolStringToBool as any)([{false: false}], false)).to.be.null;
+            expect((boolStringToBool as any)(null, false)).to.be.null;
+            expect((boolStringToBool as any)(undefined, false)).to.be.null;
+            expect((boolStringToBool as any)(123, false)).to.be.null;
+            expect((boolStringToBool as any)(0, false)).to.be.null;
+            expect((boolStringToBool as any)(1, false)).to.be.null;
+        });
+
+        it(`uses non-strict mode by default`, function() {
+            expect((boolStringToBool as any)({})).to.be.null;
+            expect((boolStringToBool as any)(null)).to.be.null;
+            expect((boolStringToBool as any)(1)).to.be.null;
         });
     });
 

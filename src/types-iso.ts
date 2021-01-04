@@ -403,19 +403,31 @@ export const singleton = <T extends ClassConstructor>(constructor: T) => {
 const bstbErrMsg = `Must input true, false, t, f, y, n, yes, or no`;
 
 /**
- * Convert string representation of a boolean value to a boolean value
- * Throw error if conversion isn't possible
- * Passes boolean values through as-is
- * Example: converts `yes` to true, `f` to false, `true` to true, true to true, `n` to false, etc
+ * Convert string representation of a boolean value to a boolean value.
+ * Passes boolean values through as-is.
+ * If strict is true, throws error if conversion isn't possible. Otherwise return null.
+ *
+ * Converts `yes` to true, `f` to false, `true` to true, true to true, `n` to false, etc
+ *
+ * Examples:
+ *     boolStringToBool('okokok', false); // => null
+ *     boolStringToBool('no'); // => false
+ *     boolStringToBool('yes'); // => true
+ *     boolStringToBool('TRUE'); // => true
+ *     boolStringToBool('true'); // => true
+ *     boolStringToBool('f'); // => false
+ *
  * @param {string|boolean} val Value to convert to string or boolean; Must be `y`, `n`, `t`, `f`,
- *                             `yes`, no`, `true`, or `false` (case-insensitive), or a boolean
- * @return {boolean|Error} true if val is y, t, yes, or true
- *                         false if it's n, f, no, or false
- *                         Otherwise throw
+ *                             `yes`, no`, `true`, or `false` (case-insensitive), or a boolean.
+ *
+ * @param {boolean} [strict] If set to true, throw if conversion is impossible.
+ *
+ * @return {boolean|Error} true if val is y, t, yes, or true. false if it's n, f, no, or false.
+ *                         Otherwise throw if strict is set to true, or return null if set to false.
  */
 export const boolStringToBool = (
     val: string | boolean,
-    strict: boolean = true
+    strict: boolean = false
 ): boolean | null | never => {
     // Ensure not void, undefined, or NaN, and that toString doesn`t return null
     if (
