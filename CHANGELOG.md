@@ -1,3 +1,12 @@
+0.92.0
+======
+For boolStringToBool:
+-   Better docs.
+-   Strict mode now off by default.
+-   Tests for correct strict mode default state.
+
+
+----------------------------------------------------------------------------------------------------
 0.91.2
 ======
 Fix typings and docs in stream module.
@@ -19,6 +28,8 @@ Add new debounce function:
     Returns:
         type of cb, but with return type replaced with void
 
+
+----------------------------------------------------------------------------------------------------
 0.90.2
 ======
 Add new colour: slightDarkPink: #f9adba
@@ -33,7 +44,7 @@ produce<T extends ProduceConditions, U extends { [key in keyof T]: any }>(condit
 0.90.1
 ======
 Add more specificiity to opacity, visibility, and z-index SCSS utilities
-i.e. .opa-7 became * * *.opa-7
+i.e. `.opa-7` became `* * *.opa-7`
 
 0.90.0 [BREAKING CHANGES]
 =========================
