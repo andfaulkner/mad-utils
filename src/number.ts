@@ -6,8 +6,10 @@ import uuidImport from 'uuid';
 /*--------------------------------------- TYPE DEFINITIONS ---------------------------------------*/
 export interface UUIDNamespace {
     (): string;
-    len8: () => string;
+    len4: () => string;
     len6: () => string;
+    len8: () => string;
+    len16: () => string;
     noDashes: () => string;
 }
 
@@ -105,18 +107,6 @@ export const getRandomInt = (min: Int, max: Int): Int => {
 const uuidBase = (): string => uuidImport();
 
 /**
- * Generate 6-char UUID e.g. `AB790517`
- * @return {string} Randomly generated sequence 6 characters long
- */
-const len6 = (): string => len8().slice(0, -2);
-
-/**
- * Generate 8-char UUID e.g. `0E8526`
- * @return {string} Randomly generated sequence 8 characters long
- */
-const len8 = (): string => uuidBase().split('-')[0];
-
-/**
  * Generate full UUID with no dashes e.g. `505BB6B57D684C2488DD1522B34CF539`
  * @return {string} Generate a UUID without any dashes
  */
@@ -126,11 +116,35 @@ const noDashes = (): string =>
         .join('');
 
 /**
+ * Generate 16-char UUID e.g. `7JX4L2Z3J44OQ9C5`
+ * @return {string} Randomly generated sequence 16 characters long
+ */
+const len16 = (): string => noDashes().slice(0, 16);
+
+/**
+ * Generate 8-char UUID e.g. `0E8526U3`
+ * @return {string} Randomly generated sequence 8 characters long
+ */
+const len8 = (): string => uuidBase().split('-')[0];
+
+/**
+ * Generate 6-char UUID e.g. `AB790517`
+ * @return {string} Randomly generated sequence 6 characters long
+ */
+const len6 = (): string => len8().slice(0, -2);
+
+/**
+ * Generate 4-char UUID e.g. `V0S1`
+ * @return {string} Randomly generated sequence 4 characters long
+ */
+const len4 = (): string => len8().slice(0, -4);
+
+/**
  * Export UUID
  * If uuid itself is run as a function, it generates a UUID
  * uuid object contains child functions uuid.len6, uuid.len8, & uuid.noDashes
  */
-export const uuid = Object.assign(uuidBase, {len6, len8, noDashes}) as UUIDNamespace;
+export const uuid = Object.assign(uuidBase, {noDashes, len4, len6, len8, len16}) as UUIDNamespace;
 
 /**
  * Regex for detecting UUID

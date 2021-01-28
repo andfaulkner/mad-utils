@@ -36,9 +36,16 @@ describe(`number sub-module`, function() {
             );
         });
 
+        expectFunctionExists(uuid.len4, 'uuid.len4');
         expectFunctionExists(uuid.len6, 'uuid.len6');
         expectFunctionExists(uuid.len8, 'uuid.len8');
+        expectFunctionExists(uuid.len16, 'uuid.len16');
         expectFunctionExists(uuid.noDashes, 'uuid.noDashes');
+
+        it(`.len4 -- `, function() {
+            expect(uuid.len4()).to.be.a('string');
+            expect(uuid.len4()).to.have.length(4);
+        });
 
         it(`.len6 -- `, function() {
             expect(uuid.len6()).to.be.a('string');
@@ -48,6 +55,11 @@ describe(`number sub-module`, function() {
         it(`.len8 -- `, function() {
             expect(uuid.len8()).to.be.a('string');
             expect(uuid.len8()).to.have.length(8);
+        });
+
+        it(`.len16 -- `, function() {
+            expect(uuid.len16()).to.be.a('string');
+            expect(uuid.len16()).to.have.length(16);
         });
 
         it(`.noDashes -- `, function() {

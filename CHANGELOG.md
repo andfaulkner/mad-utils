@@ -1,3 +1,11 @@
+0.92.1
+======
+Add new len4 & len16 functions to uuid namespace that generates a 4 and 16-character UUIDs (respectively).
+
+Fix doc for len8 method.
+
+
+----------------------------------------------------------------------------------------------------
 0.92.0
 ======
 For boolStringToBool:
