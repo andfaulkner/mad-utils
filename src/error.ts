@@ -69,7 +69,7 @@ export function removeFromStack(stack: string, libsToRm: Array<string> = defLibs
 export function getFirstStackItem(stack: string): string;
 export function getFirstStackItem<T extends Error>(error: T): string;
 export function getFirstStackItem<T extends Error>(stackOrError: string | T): string {
-    return (typeof stackOrError === 'string')
+    return typeof stackOrError === 'string'
         ? stackOrError.split('\n    at ')[0]
         : stackOrError.stack.split('\n    at ')[0];
 }
@@ -80,7 +80,7 @@ export function getFirstStackItem<T extends Error>(stackOrError: string | T): st
 export function getSecondStackItem(stack: string): string;
 export function getSecondStackItem<T extends Error>(error: T): string;
 export function getSecondStackItem<T extends Error>(stackOrError: string | T): string {
-    return (typeof stackOrError === 'string')
+    return typeof stackOrError === 'string'
         ? stackOrError.split('\n    at ')[1]
         : stackOrError.stack.split('\n    at ')[1];
 }
@@ -91,7 +91,7 @@ export function getSecondStackItem<T extends Error>(stackOrError: string | T): s
 export function getThirdStackItem(stack: string): string;
 export function getThirdStackItem<T extends Error>(error: T): string;
 export function getThirdStackItem<T extends Error>(stackOrError: string | T): string {
-    return (typeof stackOrError === 'string')
+    return typeof stackOrError === 'string'
         ? stackOrError.split('\n    at ')[2]
         : stackOrError.stack.split('\n    at ')[2];
 }

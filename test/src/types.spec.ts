@@ -583,7 +583,7 @@ describe(`types sub-modules`, function() {
             });
         });
 
-        describe(`isObject`, function(){
+        describe(`isObject`, function() {
             it(`Returns true for empty objects`, function() {
                 expect(typesIso.isObject({})).to.eql(true);
             });
@@ -591,7 +591,7 @@ describe(`types sub-modules`, function() {
                 expect(typesIso.isObject({a: 1, b: `bee`})).to.eql(true);
             });
             it(`Returns true for class instances`, function() {
-                class TestClass { }
+                class TestClass {}
                 expect(typesIso.isObject(new TestClass())).to.eql(true);
             });
             it(`Returns true for non-Array global object prototypes (Array.prototype is an actual array)`, function() {
@@ -939,7 +939,7 @@ describe(`types sub-modules`, function() {
         });
     });
 
-    describe(`getType`, function(){
+    describe(`getType`, function() {
         it(`exists`, function() {
             expect(getType).to.exist;
         });
@@ -993,7 +993,7 @@ describe(`types sub-modules`, function() {
                 return null;
             }
             expect(getType(() => null)).to.eql(`function`);
-            expect(getType(() => "return value")).to.eql(`function`);
+            expect(getType(() => 'return value')).to.eql(`function`);
             expect(getType(myTestFunction)).to.eql(`function`);
             expect(getType(Object.keys)).to.eql(`function`);
             expect(getType(Boolean)).to.eql(`function`);

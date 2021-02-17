@@ -206,10 +206,10 @@ describe(`string sub-module`, function() {
 
         it(`returns empty string given null`, function() {
             expect(toSnakeCase(null)).to.eql('');
-        })
+        });
         it(`returns empty string given empty string or null`, function() {
             expect(toSnakeCase('')).to.eql('');
-        })
+        });
         it(`returns empty string given just -, _, or space`, function() {
             expect(toSnakeCase(' ')).to.eql('');
             expect(toSnakeCase('_')).to.eql('');
@@ -316,10 +316,10 @@ describe(`string sub-module`, function() {
         expectFunctionExists(toDashCase);
         it(`returns empty string given null`, function() {
             expect(toDashCase(null)).to.eql('');
-        })
+        });
         it(`returns empty string given empty string or null`, function() {
             expect(toDashCase('')).to.eql('');
-        })
+        });
         it(`returns empty string given just -, _, or space`, function() {
             expect(toDashCase(' ')).to.eql('');
             expect(toDashCase('_')).to.eql('');

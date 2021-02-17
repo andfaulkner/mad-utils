@@ -390,7 +390,11 @@ export function arrayRemove<T = RealAny>(
  * @return {Array} array from haystack property with all "needle"s removed, or
  *                 if returnRemovals is true, array of all removed elements
  */
-export function arrayRemove<T = NonFunction>(haystack: T[], needle: T, returnRemovals?: boolean): T[];
+export function arrayRemove<T = NonFunction>(
+    haystack: T[],
+    needle: T,
+    returnRemovals?: boolean
+): T[];
 
 /**
  * arrayRemove implementation
@@ -417,7 +421,7 @@ export function arrayRemove<T = NonFunction>(
     let deleted = [];
     matchingIdxes.forEach(matchingIdx => {
         deleted.push(haystack.splice(matchingIdx, 1)[0]);
-    })
+    });
 
     return returnRemovals ? deleted.reverse() : haystack;
 }

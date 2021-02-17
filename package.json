@@ -14,6 +14,7 @@
     "boilerplate-check": "./script/ensure-fully-implemented.rb",
     "compile-ts": "tsc -p tsconfig.json",
     "prepublish": "npm run compile-ts",
+    "prettier": "prettier --config .prettierrc --write \"./@(src|typings|test)/**/*.@(js|jsx|ts|tsx)\"; prettier --config .prettierrc --write \"./*.@(js|jsx|ts|tsx)\"",
     "publish": "./script/publish-mad-utils",
     "repl": "ts-node ./mad-utils-repl.ts",
     "setup": "npm install; git remote remove origin; npm run compile-ts",

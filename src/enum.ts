@@ -1,5 +1,5 @@
-import { scrubStackTrace } from './error';
-import { isVerbose, isMocha, isWarn } from 'env-var-helpers';
+import {scrubStackTrace} from './error';
+import {isVerbose, isMocha, isWarn} from 'env-var-helpers';
 
 const fn = `mad-utils::enum --`;
 
@@ -36,13 +36,16 @@ export const isDataEnumItem = (val: any, Enum): boolean => typeof Enum[val] === 
  * Useful for cases where you're uncertain whether the value is in its numeric or string form.
  */
 export const enumValToString = <E>(Enum, val, caps: 'lower' | 'upper' | null = null): string => {
-    const outVal: string = (typeof val === 'string') ? val : Enum[val] as string;
-    switch(caps) {
-        case 'lower': return outVal.toLowerCase();
-        case 'upper': return outVal.toUpperCase();
-        default: return outVal;
+    const outVal: string = typeof val === 'string' ? val : (Enum[val] as string);
+    switch (caps) {
+        case 'lower':
+            return outVal.toLowerCase();
+        case 'upper':
+            return outVal.toUpperCase();
+        default:
+            return outVal;
     }
-}
+};
 
 /**
  * Convert given enum value in string form to its numeric index.
@@ -55,21 +58,26 @@ export const stringToEnumVal = (val: string, Enum): number => {
         }
     }
 
-    if (isMocha && isWarn) console.warn(`${fn} stringToEnumVal ::
+    if (isMocha && isWarn)
+        console.warn(`${fn} stringToEnumVal ::
         WARNING: stringToEnumVal: no matches of given value - ${val} - in given enum:
             ${JSON.stringify(Enum)}
         ...returning 99999.`);
 
     let stack;
     // NOTE: NOT AN ACTUAL ERROR CALL. THIS IS DONE TO ACQUIRE THE STACKTRACE.
-    try { throw new Error() } catch (e) { stack = e.stack; }
+    try {
+        throw new Error();
+    } catch (e) {
+        stack = e.stack;
+    }
 
     // Display clean stack trace up to point of 'Error' creation.
     const cleanStack = scrubStackTrace(stack, 'stringToEnumVal');
     if (isVerbose && isMocha) console.log(cleanStack, '\n');
 
     return 99999;
-}
+};
 
 /**
  * Convert given enum to an array of strings, where each potential option is one item.

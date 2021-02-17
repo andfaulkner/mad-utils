@@ -179,7 +179,6 @@ describe(`number sub-module`, function() {
             expect(res).to.include(1);
             expect(res).to.include(2);
             expect(res).to.include(3);
-
         });
     });
 });
