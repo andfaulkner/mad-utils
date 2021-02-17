@@ -27,3 +27,6 @@ overrides:
 - files: '*.js'
   options:
     trailingComma: 'none'
+- files: '.nodeplus'
+  options:
+    trailingComma: 'none'
