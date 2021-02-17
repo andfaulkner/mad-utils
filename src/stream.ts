@@ -29,6 +29,17 @@ export class CharInputStream {
     /** Return the next value without removing it from the stream. */
     public peek = (): string => this.input.charAt(this.pos);
 
+    /**
+     * Peek ahead multiple [numToPeek] chars.
+     */
+    public peekMulti = (numToPeek: number): string => {
+        let chars = '';
+        for (let idx = 0; idx < numToPeek; idx++) {
+            chars += this.input.charAt(this.pos + idx);
+        }
+        return chars;
+    };
+
     /** Return the next value and discards it from the stream. */
     public next = (): string => {
         // Get chr, store in object, shift pos
@@ -64,3 +75,5 @@ export class CharInputStream {
         this.line++;
     };
 }
+
+export {CharInputStream as CharStream};
