@@ -1,3 +1,23 @@
+0.93.0
+======
+WIP
+
+MINI-UTILS EDIT
+---------------
+-   opacity.scss (1643 -> 454 chars) - Removed most non-multiples of 5
+-   z-index.scss: 1231 -> 239 chars
+    - Removed all negative z-indexes and most non-exponents of 10 (besides zi-5)
+    - Removed z- namespace, left only zi-
+-   border.scss (21740 -> 9084)
+    -   Removed border radiuses above 100 (`br-*`)
+    -   Removed most % border radiuses (`br-*p`)
+    -   Removed all border styles besides none, hidden, and solid
+    -   Removed "all but last/first in list" border style classes (e.g. `bs-hidden-nl:no(:last-child)`)
+    -   Removed all single-side border style classes e.g. .bts-none, .border-right-solid
+    -   Removed all single-side border colour classes e.g. .bbc-dark-purple (border-bottom-colour dark purple)
+
+
+----------------------------------------------------------------------------------------------------
 0.92.2
 ======
 -   Add new peekMulti method to CharInputStream

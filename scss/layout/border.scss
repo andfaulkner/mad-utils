@@ -160,152 +160,21 @@
     .br-90 {border-radius: 90px}
     .br-95 {border-radius: 95px}
     .br-100 {border-radius: 100px}
-    .br-125 {border-radius: 125px}
-    .br-150 {border-radius: 150px}
-    .br-175 {border-radius: 175px}
-    .br-200 {border-radius: 200px}
-    .br-225 {border-radius: 225px}
-    .br-250 {border-radius: 250px}
-    .br-275 {border-radius: 275px}
-    .br-300 {border-radius: 300px}
-    .br-350 {border-radius: 350px}
-    .br-400 {border-radius: 400px}
-    .br-450 {border-radius: 450px}
-    .br-500 {border-radius: 500px}
-    .br-600 {border-radius: 600px}
-    .br-700 {border-radius: 700px}
-    .br-750 {border-radius: 750px}
-    .br-800 {border-radius: 800px}
-    .br-900 {border-radius: 900px}
-    .br-1000 {border-radius: 1000px}
-    .br-1250 {border-radius: 1250px}
-    .br-1500 {border-radius: 1500px}
-    .br-1750 {border-radius: 1750px}
-    .br-2000 {border-radius: 2000px}
 
     // border-radius by %
     .br-0p   {border-radius: 0%  }
-    .br-1p   {border-radius: 1%  }
-    .br-2p   {border-radius: 2%  }
-    .br-5p   {border-radius: 5%  }
     .br-10p  {border-radius: 10% }
-    .br-20p  {border-radius: 20% }
     .br-25p  {border-radius: 25% }
     .br-50p  {border-radius: 50% }
     .br-75p  {border-radius: 75% }
-    .br-95p  {border-radius: 95% }
-    .br-98p  {border-radius: 98% }
-    .br-99p  {border-radius: 99% }
+    .br-90p  {border-radius: 90% }
     .br-100p {border-radius: 100%}
 
     /****************************************** BORDER STYLE ******************************************/
     /*********** BORDER STYLE - ALL ***********/
     .bs-none,   .border-none   {border-style: none}
     .bs-hidden, .border-hidden {border-style: hidden}
-    .bs-dotted, .border-dotted {border-style: dotted}
-    .bs-dashed, .border-dashed {border-style: dashed}
     .bs-solid,  .border-solid  {border-style: solid}
-    .bs-double, .border-double {border-style: double}
-    .bs-groove, .border-groove {border-style: groove}
-    .bs-ridge,  .border-ridge  {border-style: ridge}
-    .bs-inset,  .border-inset  {border-style: double}
-    .bs-outset, .border-outset {border-style: outset}
-
-    /*** Border-style: all but last in list ***/
-    .bs-none-nl:no(:last-child) {border-style: none}
-    .bs-hidden-nl:no(:last-child) {border-style: hidden}
-    .bs-dotted-nl:no(:last-child) {border-style: dotted}
-    .bs-dashed-nl:no(:last-child) {border-style: dashed}
-    .bs-solid-nl:no(:last-child) {border-style: solid}
-    .bs-double-nl:no(:last-child) {border-style: double}
-    .bs-groove-nl:no(:last-child) {border-style: groove}
-    .bs-ridge-nl:no(:last-child) {border-style: ridge}
-    .bs-inset-nl:no(:last-child) {border-style: double}
-    .bs-outset-nl:no(:last-child) {border-style: outset}
-
-    /*** Border-style: all but first in list ***/
-    .bs-none-nf:no(:first-child) {border-style: none}
-    .bs-hidden-nf:no(:first-child) {border-style: hidden}
-    .bs-dotted-nf:no(:first-child) {border-style: dotted}
-    .bs-dashed-nf:no(:first-child) {border-style: dashed}
-    .bs-solid-nf:no(:first-child) {border-style: solid}
-    .bs-double-nf:no(:first-child) {border-style: double}
-    .bs-groove-nf:no(:first-child) {border-style: groove}
-    .bs-ridge-nf:no(:first-child) {border-style: ridge}
-    .bs-inset-nf:no(:first-child) {border-style: double}
-    .bs-outset-nf:no(:first-child) {border-style: outset}
-
-    /*********** BORDER STYLE - LEFT ***********/
-    .bls-none, .border-left-none {border-left-style: none}
-    .bls-hidden, .border-left-hidden {border-left-style: hidden}
-    .bls-dotted, .border-left-dotted {border-left-style: dotted}
-    .bls-dashed, .border-left-dashed {border-left-style: dashed}
-    .bls-solid, .border-left-solid {border-left-style: solid}
-    .bls-double, .border-left-double {border-left-style: double}
-    .bls-groove, .border-left-groove {border-left-style: groove}
-    .bls-ridge, .border-left-ridge {border-left-style: ridge}
-    .bls-inset, .border-left-inset {border-left-style: double}
-    .bls-outset, .border-left-outset {border-left-style: outset}
-
-    /*********** BORDER STYLE - RIGHT ***********/
-    .brs-none, .border-right-none {border-right-style: none}
-    .brs-hidden, .border-right-hidden {border-right-style: hidden}
-    .brs-dotted, .border-right-dotted {border-right-style: dotted}
-    .brs-dashed, .border-right-dashed {border-right-style: dashed}
-    .brs-solid, .border-right-solid {border-right-style: solid}
-    .brs-double, .border-right-double {border-right-style: double}
-    .brs-groove, .border-right-groove {border-right-style: groove}
-    .brs-ridge, .border-right-ridge {border-right-style: ridge}
-    .brs-inset, .border-right-inset {border-right-style: double}
-    .brs-outset, .border-right-outset {border-right-style: outset}
-
-    /*********** BORDER STYLE - BOTTOM ***********/
-    .bbs-none, .border-bottom-none {border-bottom-style: none}
-    .bbs-hidden, .border-bottom-hidden {border-bottom-style: hidden}
-    .bbs-dotted, .border-bottom-dotted {border-bottom-style: dotted}
-    .bbs-dashed, .border-bottom-dashed {border-bottom-style: dashed}
-    .bbs-solid, .border-bottom-solid {border-bottom-style: solid}
-    .bbs-double, .border-bottom-double {border-bottom-style: double}
-    .bbs-groove, .border-bottom-groove {border-bottom-style: groove}
-    .bbs-ridge, .border-bottom-ridge {border-bottom-style: ridge}
-    .bbs-inset, .border-bottom-inset {border-bottom-style: double}
-    .bbs-outset, .border-bottom-outset {border-bottom-style: outset}
-
-    /*** Border-style-bottom: all but last in list ***/
-    .bbs-none-nl:no(:last-child) {border-bottom-style: none}
-    .bbs-hidden-nl:no(:last-child) {border-bottom-style: hidden}
-    .bbs-dotted-nl:no(:last-child) {border-bottom-style: dotted}
-    .bbs-dashed-nl:no(:last-child) {border-bottom-style: dashed}
-    .bbs-solid-nl:no(:last-child) {border-bottom-style: solid}
-    .bbs-double-nl:no(:last-child) {border-bottom-style: double}
-    .bbs-groove-nl:no(:last-child) {border-bottom-style: groove}
-    .bbs-ridge-nl:no(:last-child) {border-bottom-style: ridge}
-    .bbs-inset-nl:no(:last-child) {border-bottom-style: double}
-    .bbs-outset-nl:no(:last-child) {border-bottom-style: outset}
-
-    /*********** BORDER STYLE - TOP ***********/
-    .bts-none, .border-top-none {border-top-style: none}
-    .bts-hidden, .border-top-hidden {border-top-style: hidden}
-    .bts-dotted, .border-top-dotted {border-top-style: dotted}
-    .bts-dashed, .border-top-dashed {border-top-style: dashed}
-    .bts-solid, .border-top-solid {border-top-style: solid}
-    .bts-double, .border-top-double {border-top-style: double}
-    .bts-groove, .border-top-groove {border-top-style: groove}
-    .bts-ridge, .border-top-ridge {border-top-style: ridge}
-    .bts-inset, .border-top-inset {border-top-style: double}
-    .bts-outset, .border-top-outset {border-top-style: outset}
-
-    /*** Border-style-top: all but last in list ***/
-    .bts-none-nl:no(:last-child) {border-top-style: none}
-    .bts-hidden-nl:no(:last-child) {border-top-style: hidden}
-    .bts-dotted-nl:no(:last-child) {border-top-style: dotted}
-    .bts-dashed-nl:no(:last-child) {border-top-style: dashed}
-    .bts-solid-nl:no(:last-child) {border-top-style: solid}
-    .bts-double-nl:no(:last-child) {border-top-style: double}
-    .bts-groove-nl:no(:last-child) {border-top-style: groove}
-    .bts-ridge-nl:no(:last-child) {border-top-style: ridge}
-    .bts-inset-nl:no(:last-child) {border-top-style: double}
-    .bts-outset-nl:no(:last-child) {border-top-style: outset}
 
     /* Border left extras */
     .bl-5 {
@@ -349,125 +218,6 @@
     .bc-dark-purple {border-color: $darkPurple}
     .bc-mid-purple {border-color: $midPurple}
     .bc-light-purple {border-color: $lightPurple}
-
-    /** BORDER COLOR -- RIGHT */
-    .brc-black {border-right-color: black}
-    .brc-faintest-gray {border-right-color: $faintestGray}
-    .brc-fainter-gray {border-right-color: $fainterGray}
-    .brc-faint-gray {border-right-color: $faintGray}
-    .brc-lightest-gray {border-right-color: $lightestGray}
-    .brc-lighter-gray {border-right-color: $lighterGray}
-    .brc-lighterish-gray {border-right-color: $lighterishGray}
-    .brc-light-gray {border-right-color: $lightGray}
-    .brc-dim-gray {border-right-color: $dimGray}
-    .brc-upper-light-gray {border-right-color: $upperLightGray}
-    .brc-light-mid-gray {border-right-color: $lightMidGray}
-    .brc-gray {border-right-color: $gray}
-    .brc-faint-gray {border-right-color: $faintGray}
-    .brc-light-gray {border-right-color: $lightGray}
-    .brc-white {border-right-color: $white}
-    .brc-red {border-right-color: $red}
-    .brc-mid-purple {border-right-color: $midPurple}
-    .brc-mid-green {border-right-color: $midGreen}
-    .brc-yellow {border-right-color: $yellow}
-    .brc-cyan {border-right-color: $cyan}
-    .brc-faintest-blue {border-right-color: $faintestBlue}
-    .brc-blue {border-right-color: $blue}
-    .brc-mid-near-dark-blue {border-right-color: $midNearDarkBlue}
-    .brc-dark-blue {border-right-color: $darkBlue}
-    .brc-dark-purple {border-right-color: $darkPurple}
-    .brc-mid-purple {border-right-color: $midPurple}
-    .brc-light-purple {border-right-color: $lightPurple}
-
-    /** BORDER COLOR -- LEFT */
-    .blc-black {border-left-color: black}
-    .blc-faintest-gray {border-left-color: $faintestGray}
-    .blc-fainter-gray {border-left-color: $fainterGray}
-    .blc-faint-gray {border-left-color: $faintGray}
-    .blc-lightest-gray {border-left-color: $lightestGray}
-    .blc-lighter-gray {border-left-color: $lighterGray}
-    .blc-lighterish-gray {border-left-color: $lighterishGray}
-    .blc-light-gray {border-left-color: $lightGray}
-    .blc-dim-gray {border-left-color: $dimGray}
-    .blc-upper-light-gray {border-left-color: $upperLightGray}
-    .blc-light-mid-gray {border-left-color: $lightMidGray}
-    .blc-gray {border-left-color: $gray}
-    .blc-faint-gray {border-left-color: $faintGray}
-    .blc-light-gray {border-left-color: $lightGray}
-    .blc-white {border-left-color: $white}
-    .blc-red {border-left-color: $red}
-    .blc-mid-purple {border-left-color: $midPurple}
-    .blc-mid-green {border-left-color: $midGreen}
-    .blc-yellow {border-left-color: $yellow}
-    .blc-cyan {border-left-color: $cyan}
-    .blc-faintest-blue {border-left-color: $faintestBlue}
-    .blc-blue {border-left-color: $blue}
-    .blc-mid-near-dark-blue {border-left-color: $midNearDarkBlue}
-    .blc-dark-blue {border-left-color: $darkBlue}
-    .blc-dark-purple {border-left-color: $darkPurple}
-    .blc-mid-purple {border-left-color: $midPurple}
-    .blc-light-purple {border-left-color: $lightPurple}
-
-    /** BORDER COLOR -- TOP */
-    .btc-black {border-top-color: black}
-    .btc-faintest-gray {border-top-color: $faintestGray}
-    .btc-fainter-gray {border-top-color: $fainterGray}
-    .btc-faint-gray {border-top-color: $faintGray}
-    .btc-lightest-gray {border-top-color: $lightestGray}
-    .btc-lighter-gray {border-top-color: $lighterGray}
-    .btc-lighterish-gray {border-top-color: $lighterishGray}
-    .btc-light-gray {border-top-color: $lightGray}
-    .btc-dim-gray {border-top-color: $dimGray}
-    .btc-upper-light-gray {border-top-color: $upperLightGray}
-    .btc-light-mid-gray {border-top-color: $lightMidGray}
-    .btc-gray {border-top-color: $gray}
-    .btc-faint-gray {border-top-color: $faintGray}
-    .btc-light-gray {border-top-color: $lightGray}
-    .btc-white {border-top-color: $white}
-    .btc-red {border-top-color: $red}
-    .btc-mid-purple {border-top-color: $midPurple}
-    .btc-mid-green {border-top-color: $midGreen}
-    .btc-yellow {border-top-color: $yellow}
-    .btc-cyan {border-top-color: $cyan}
-    .btc-faintest-blue {border-top-color: $faintestBlue}
-    .btc-blue {border-top-color: $blue}
-    .btc-mid-near-dark-blue {border-top-color: $midNearDarkBlue}
-    .btc-dark-blue {border-top-color: $darkBlue}
-    .btc-dark-purple {border-top-color: $darkPurple}
-    .btc-mid-purple {border-top-color: $midPurple}
-    .btc-light-purple {border-top-color: $lightPurple}
-
-    /** BORDER COLOR -- BOTTOM */
-    .bbc-black {border-bottom-color: black}
-    .bbc-light-gray {border-bottom-color: $lightGray}
-    .bbc-faintest-gray {border-bottom-color: $faintestGray}
-    .bbc-fainter-gray {border-bottom-color: $fainterGray}
-    .bbc-faint-gray {border-bottom-color: $faintGray}
-    .bbc-lightest-gray {border-bottom-color: $lightestGray}
-    .bbc-lighter-gray {border-bottom-color: $lighterGray}
-    .bbc-lighterish-gray {border-bottom-color: $lighterishGray}
-    .bbc-light-gray {border-bottom-color: $lightGray}
-    .bbc-dim-gray {border-bottom-color: $dimGray}
-    .bbc-upper-light-gray {border-bottom-color: $upperLightGray}
-    .bbc-light-mid-gray {border-bottom-color: $lightMidGray}
-    .bbc-gray {border-bottom-color: $gray}
-    .bbc-faint-gray {border-bottom-color: $faintGray}
-    .bbc-light-gray {border-bottom-color: $lightGray}
-    .bbc-white {border-bottom-color: $white}
-    .bbc-red {border-bottom-color: $red}
-    .bbc-mid-purple {border-bottom-color: $midPurple}
-    .bbc-mid-green {border-bottom-color: $midGreen}
-    .bbc-yellow {border-bottom-color: $yellow}
-    .bbc-cyan {border-bottom-color: $cyan}
-    .bbc-faintest-blue {border-bottom-color: $faintestBlue}
-    .bbc-blue {border-bottom-color: $blue}
-    .bbc-mid-near-dark-blue {border-bottom-color: $midNearDarkBlue}
-    .bbc-dark-blue {border-bottom-color: $darkBlue}
-    .bbc-dark-purple {border-bottom-color: $darkPurple}
-    .bbc-mid-purple {border-bottom-color: $midPurple}
-    .bbc-light-purple {border-bottom-color: $lightPurple}
-
-    .border-bottom-color-lightgray {border-bottom-color: lightgray}
 
     /***************************************** BOX SHADOW *****************************************/
     .box-shadow-none {box-shadow: none}
