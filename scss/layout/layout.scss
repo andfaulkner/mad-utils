@@ -1,11 +1,3 @@
-@import './margin.scss';
-@import './padding.scss';
-@import './border.scss';
-
-@import './margin.scss';
-@import './padding.scss';
-@import './border.scss';
-
 :global {
     /***************************************** DISPLAYS *******************************************/
     .inline       {display: inline      }
@@ -16,7 +8,7 @@
     .flex        {display: flex}
     .inline-flex {display: inline-flex }
 
-    /************ table ************/
+    /************ TABLE ************/
     .table        {display: table}
     .table-col,
     .table-column {display: table-column}
@@ -31,33 +23,6 @@
     .inline-flex.space-around,  .flex.space-around  {justify-content: space-around }
     .inline-flex.space-between, .flex.space-between {justify-content: space-between}
 
-
-    /************ flex :: flex-grow **************/
-    .flex-grow-0  {flex-grow: 0 }
-    .flex-grow-1  {flex-grow: 1 }
-    .flex-grow-2  {flex-grow: 2 }
-    .flex-grow-3  {flex-grow: 3 }
-    .flex-grow-4  {flex-grow: 4 }
-    .flex-grow-5  {flex-grow: 5 }
-    .flex-grow-6  {flex-grow: 6 }
-    .flex-grow-7  {flex-grow: 7 }
-    .flex-grow-8  {flex-grow: 8 }
-    .flex-grow-9  {flex-grow: 9 }
-    .flex-grow-10 {flex-grow: 10}
-
-    /************ flex :: flex-shrink ************/
-    .flex-shrink-0  {flex-shrink: 0 }
-    .flex-shrink-1  {flex-shrink: 1 }
-    .flex-shrink-2  {flex-shrink: 2 }
-    .flex-shrink-3  {flex-shrink: 3 }
-    .flex-shrink-4  {flex-shrink: 4 }
-    .flex-shrink-5  {flex-shrink: 5 }
-    .flex-shrink-6  {flex-shrink: 6 }
-    .flex-shrink-7  {flex-shrink: 7 }
-    .flex-shrink-8  {flex-shrink: 8 }
-    .flex-shrink-9  {flex-shrink: 9 }
-    .flex-shrink-10 {flex-shrink: 10}
-
     /************ flex :: align-items ************/
     .flex.ai-center,          .inline-flex.ai-center,
     .flex.align-items-center, .inline-flex.align-items-center {align-items: center    }
@@ -67,12 +32,6 @@
 
     .flex.ai-start,           .inline-flex.ai-start,
     .flex.align-items-start,  .inline-flex.align-items-start  {align-items: flex-start}
-
-    /************ flex :: align-self ************/
-    .align-self-center  {align-self: center    }
-    .align-self-start   {align-self: flex-start}
-    .align-self-end     {align-self: flex-end  }
-    .align-self-stretch {align-self: stretch   }
 
     /************ flex :: flex-direction ************/
     .inline-flex.col,    .flex.col,
@@ -90,44 +49,6 @@
     .va-middle {vertical-align: middle}
     .va-bottom {vertical-align: bottom}
     .va-top    {vertical-align: top   }
-
-    /*************************************** STYLE GROUPS *****************************************/
-    /** Faint bottom border */
-    .bb-theme-faint {
-        border-bottom: #eee 1px solid;
-    }
-
-    /**************************************** POSITIONING ******************************************/
-    .center-horizontal {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /****** CENTER-VERTICAL COLLECTION ******/
-    // [1] Set as parent
-    .center-vertical-parent {position: relative}
-
-    // [2] Set as child, to be vertically centered in parents
-    .center-vertical-child {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    /********************** TRANSLATION **********************/
-    .transform-translate-y-n50p {transform: translateY(-50%)  }
-    .transform-translate-0n50p  {transform: translate(0, -50%)}
-
-    /********************** ROTATION **********************/
-    .rotate-0deg   {transform: rotate(0deg)  }
-    .rotate-45deg  {transform: rotate(45deg) }
-    .rotate-90deg  {transform: rotate(90deg) }
-    .rotate-135deg {transform: rotate(135deg)}
-    .rotate-180deg {transform: rotate(180deg)}
-    .rotate-225deg {transform: rotate(225deg)}
-    .rotate-270deg {transform: rotate(270deg)}
-    .rotate-315deg {transform: rotate(315deg)}
 
     /****************************************** OVERFLOW ******************************************/
     .ovx-hidden  {overflow-x: hidden }

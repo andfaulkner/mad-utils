@@ -8,13 +8,21 @@ MINI-UTILS EDIT
 -   z-index.scss: 1231 -> 239 chars
     - Removed all negative z-indexes and most non-exponents of 10 (besides zi-5)
     - Removed z- namespace, left only zi-
--   border.scss (21740 -> 9084)
+-   border.scss (21740 -> 9084 chars)
     -   Removed border radiuses above 100 (`br-*`)
     -   Removed most % border radiuses (`br-*p`)
     -   Removed all border styles besides none, hidden, and solid
     -   Removed "all but last/first in list" border style classes (e.g. `bs-hidden-nl:no(:last-child)`)
     -   Removed all single-side border style classes e.g. .bts-none, .border-right-solid
     -   Removed all single-side border colour classes e.g. .bbc-dark-purple (border-bottom-colour dark purple)
+-   layout.scss (5621 -> 2968 chars)
+    -   Removed rotate CSS classes
+    -   Removed center-vertical and center-horizontal collection
+    -   Removed duplicate imports
+    -   Removed flex-grow and flex-shrink series
+    -   Removed align-self series
+    -   Removed transform-translate-* series
+    -   Removed border-bottom-theme-faint
 
 
 ----------------------------------------------------------------------------------------------------
