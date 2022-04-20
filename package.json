@@ -142,7 +142,7 @@
     "express": "^4.16.4",
     "fs-extra-promise": "^1.0.1",
     "handlebars-webpack-plugin": "^1.2.0",
-    "reflect-metadata": "^0.1.10",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "6.1",
     "ua-parser-js": "^0.7.19",
     "uuid": "^3.3.2"
