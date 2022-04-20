@@ -1,3 +1,10 @@
+0.93.1
+======
+-   Upgrade reflect-metadata to 0.1.13 (potential breaking change)
+
+
+
+----------------------------------------------------------------------------------------------------
 0.92.2
 ======
 -   Add new peekMulti method to CharInputStream

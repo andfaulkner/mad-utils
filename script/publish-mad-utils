@@ -2,6 +2,13 @@
 
 # TODO allow more than 2 dependent projects
 
+g_curbr() {
+    git status | head -1 | awk '{print $3}'
+}
+gpocur() {
+    echo "$(g_curbr)" | xargs git push origin
+}
+
 #==== SCRIPT ===========================================================
 #        NAME:  publish-mad-utils
 #
