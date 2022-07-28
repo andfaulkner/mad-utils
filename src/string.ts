@@ -721,6 +721,23 @@ export const removeIndent = (str: string): string => {
     return slicedStr.join(`\n`);
 };
 
+/**
+ * Make string sit on one line (remove all `\n`) and remove whitespace
+ * of more than 1 space.
+ *
+ *   e.g.: `
+ *          a    b
+ *          aeowf
+ *          rf `
+ *          // => `a b aeowf rf`
+ *
+ * Purpose: handling multiline strings
+ *
+ * @param {string} str String to turn into a single-line string.
+ * @return {string} Single-line string built from str.
+ */
+export const oneLine = (str: string): string => str.replace(/\n|\t|\r/g, ` `).replace(/ {2,}/g, ` `);
+
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export {countOccurrences as countChars} from './array';
 export {countOccurrences as countCharOccurrences} from './array';
