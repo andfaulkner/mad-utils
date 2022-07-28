@@ -18,7 +18,7 @@ gpocur() {
 #     EXAMPLE:  publish-mad-utils 1.10.2
 #     EXAMPLE:  publish-mad-utils 0.52.6 --local-reinstalls
 #
-#   @PARAM $1:  NEW_VERISON_NUMBER Version number to upgrade to. Must be
+#   @PARAM $1:  NEW_VERSION_NUMBER Version number to upgrade to. Must be
 #                                  semver e.g. 0.41.22
 #
 #    @FLAG $2:  --local-reinstalls If set, try to reinstall mad-utils in 2
