@@ -3,7 +3,7 @@ import {accentToNoneCharMap} from './internal/accent-to-none-char-map';
 
 import {StrOrNum} from './types-iso';
 import {Int} from './number';
-import {withoutFirst, arrayN} from './array';
+import {withoutFirst, arrayN, compact} from './array';
 
 export type Char = string;
 export type Chars = string;
@@ -52,15 +52,17 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
  * @param {string|number} valToSearchIn string or number to match against
  * @return {boolean} true if a match is found
  */
-export const matches = (valToFind: StrOrNum | RegExp) => (valToSearchIn: StrOrNum): boolean => {
-    if (typeof valToFind !== typeof valToSearchIn && !(valToFind instanceof RegExp)) {
-        return false;
-    }
-    if (valToFind instanceof RegExp) {
-        return valToFind.test(valToSearchIn.toString());
-    }
-    return !!valToSearchIn.toString().match(valToFind.toString());
-};
+export const matches =
+    (valToFind: StrOrNum | RegExp) =>
+    (valToSearchIn: StrOrNum): boolean => {
+        if (typeof valToFind !== typeof valToSearchIn && !(valToFind instanceof RegExp)) {
+            return false;
+        }
+        if (valToFind instanceof RegExp) {
+            return valToFind.test(valToSearchIn.toString());
+        }
+        return !!valToSearchIn.toString().match(valToFind.toString());
+    };
 
 /**
  * Get first substring to match the given string or RegExp
@@ -98,8 +100,10 @@ export const escapeRegExp = (regexStr: string): string =>
  *
  * Example usage: [`gr`, `HeLLo`].find(matchesIgnoreCase(`hello`)); // => true
  */
-export const matchesIgnoreCase = (matchOn: string) => (val: string): boolean =>
-    !!val.toLowerCase().match(matchOn.toLowerCase());
+export const matchesIgnoreCase =
+    (matchOn: string) =>
+    (val: string): boolean =>
+        !!val.toLowerCase().match(matchOn.toLowerCase());
 
 /**
  * String that creates a blank line without using \n
@@ -549,7 +553,7 @@ const RegExpFlags = `yumig`;
  */
 export const removeSurroundingQuotes = (str: string): string => {
     if (
-        (str.length > 1 && (str[0] === '`' && str[str.length - 1] === '`')) ||
+        (str.length > 1 && str[0] === '`' && str[str.length - 1] === '`') ||
         (str[0] === `'` && str[str.length - 1] === `'`) ||
         (str[0] === `"` && str[str.length - 1] === `"`)
     ) {
@@ -638,6 +642,84 @@ function _cleanCharToPadWith(padChar: string | number = ` `) {
 
 export {leftPad as padLeft};
 export {rightPad as padRight};
+
+/**
+ * Remove indents and empty lines before and after the given string.
+ *
+ * Indent removal process:
+ *    1. Removes empty lines at start and finish of string.
+ *    2. Checks each line to find the smallest number of spaces from
+ *       line start to the first letter.
+ *    3. Removes that number of spaces from the start of each line.
+ *
+ * Example:
+ *     removeIndent(
+ *     `
+ *             Hello!
+ *                 This line is double intended.
+ *             Back to indent level 1`);
+ *
+ * Result:
+ *     Hello
+ *         This line is double intended.
+ *     Back to indent level 1`);
+ *
+ * @param {string} str String to remove indents from.
+ */
+export const removeIndent = (str: string): string => {
+    const baseStrArr = str.split(/\n/g);
+
+    // Clone the array
+    const filteredStrArr = baseStrArr.slice(0);
+
+    // Remove blank lines at start
+    let fromStartIdx = 0;
+    while (fromStartIdx < baseStrArr.length) {
+        if (baseStrArr[fromStartIdx].match(/^\s+$/) || baseStrArr[fromStartIdx] === ``) {
+            filteredStrArr[fromStartIdx] = null;
+        } else {
+            break;
+        }
+        fromStartIdx++;
+    }
+
+    // Remove blank lines at end
+    let fromEndIdx = baseStrArr.length - 1;
+    while (fromEndIdx > 0) {
+        if (baseStrArr[fromEndIdx].match(/^\s+$/) || baseStrArr[fromEndIdx] === ``) {
+            filteredStrArr[fromEndIdx] = null;
+        } else {
+            break;
+        }
+        fromEndIdx--;
+    }
+
+    const strArr = compact(filteredStrArr, 'nullUndef');
+
+    // Calculate minimum number of spaces at start of string
+    let minLength = null;
+    for (const line of strArr) {
+        // Don't count blank lines in the middle
+        if (line.length === 0 || line.match(/^ *$/)) continue;
+
+        const spacesAtStartMatches = line.match(/^\s+(?=[^\s])/g);
+        if (spacesAtStartMatches === null || spacesAtStartMatches.length === 0) {
+            minLength = 0;
+            break;
+        }
+
+        const spacesAtStart = spacesAtStartMatches[0];
+        if (minLength === null) {
+            minLength = spacesAtStart.length;
+        } else if (spacesAtStart.length < minLength) {
+            minLength = spacesAtStart.length;
+        }
+    }
+
+    // Slice off correct # of spaces from each line then merge lines into single string.
+    const slicedStr = strArr.map(line => line.slice(minLength));
+    return slicedStr.join(`\n`);
+};
 
 /*********************************** EXPORTS FROM OTHER MODULES ***********************************/
 export {countOccurrences as countChars} from './array';
