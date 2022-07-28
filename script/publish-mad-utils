@@ -91,8 +91,8 @@ alias gpocur='echo "$(g_curbr)" | xargs git push origin'
 gpocur
 
 # Replace the version number in package.json
-replace-in-file /\"version\":\ *\"[0-9]+\.[0-9]+\.[0-9]+\.?[0-9]?[0-9]?[0-9]?[0-9]?/g "\"version\": \"$NEW_VERSION_NUMBER\"" package.json --isRegex
-replace-in-file /mad\-utils\.git#v[0-9]+\.[0-9]+\.[0-9]+\.?[0-9]?[0-9]?[0-9]?[0-9]?\"/g "mad-utils.git#v$NEW_VERSION_NUMBER\"" package.json --isRegex
+npx replace-in-file /\"version\":\ *\"[0-9]+\.[0-9]+\.[0-9]+\.?[0-9]?[0-9]?[0-9]?[0-9]?/g "\"version\": \"$NEW_VERSION_NUMBER\"" package.json --isRegex
+npx replace-in-file /mad\-utils\.git#v[0-9]+\.[0-9]+\.[0-9]+\.?[0-9]?[0-9]?[0-9]?[0-9]?\"/g "mad-utils.git#v$NEW_VERSION_NUMBER\"" package.json --isRegex
 
 # git: Add, commit, and push package.json change to repo, then publish new version
 git add package.json
