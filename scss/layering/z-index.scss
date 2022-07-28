@@ -1,4 +1,5 @@
 :global {
+    // [PRUNE] Prune in shrunken version
     * * *.z-10000,  * * *.zi-10000{ z-index: 10000 }
     * * *.z-1000,  * * *.zi-1000  { z-index: 1000  }
     * * *.z-500,   * * *.zi-500   { z-index: 500   }
