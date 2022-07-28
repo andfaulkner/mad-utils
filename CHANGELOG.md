@@ -1,3 +1,10 @@
+0.94.0
+======
+-   Add removeIndent string function, for removing indents from tag templates.
+-   Add oneLine string function, for converting multiline strings into single-line strings.
+
+
+----------------------------------------------------------------------------------------------------
 0.93.1
 ======
 -   Upgrade reflect-metadata to 0.1.13 (potential breaking change)
