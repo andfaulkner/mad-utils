@@ -1,3 +1,11 @@
+0.94.1
+======
+-   Recompile
+-   Allow publish script to run without global replace-in-file package
+-   Fix typo in publish script
+
+
+----------------------------------------------------------------------------------------------------
 0.94.0
 ======
 -   Add removeIndent string function, for removing indents from tag templates.
