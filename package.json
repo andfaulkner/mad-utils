@@ -1,6 +1,6 @@
 {
   "name": "mad-utils",
-  "version": "0.94.1",
+  "version": "0.95.0",
   "description": "A set of misc utilties I find myself repeatedly re-writing between projects.",
   "main": "lib/shared.js",
   "typings": "lib/shared",
