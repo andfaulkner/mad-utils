@@ -1,3 +1,10 @@
+0.95.0
+======
+-   Remove .static CSS class (it causes some compilers to fail)
+    -   Renamed it to .stat
+
+
+-----------------------------------------------------------------------------------------------------
 0.94.1
 ======
 -   Recompile
