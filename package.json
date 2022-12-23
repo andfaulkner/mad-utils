@@ -138,7 +138,6 @@
     "connect": "^3.6.2",
     "deep-freeze-strict": "^1.1.1",
     "detect-node": "^2.0.4",
-    "express": "^4.16.4",
     "fs-extra-promise": "^1.0.1",
     "handlebars-webpack-plugin": "^1.2.0",
     "reflect-metadata": "^0.1.13",
@@ -184,6 +183,7 @@
     "vrsource-tslint-rules": "^5.8.2"
   },
   "peerDependencies": {
+    "express": ">=4.0.0",
     "moment": ">=2.0.0",
     "pretty-error": ">=2.1.1",
     "react": ">=16.0.0",
