@@ -1,3 +1,44 @@
+0.96.0
+======
+[MAJOR CHANGE]
+
+Module dependency changes
+-------------------------
+-   Upgrade uuid module to v9.0.0
+    -   This will break older browsers (IE 11)
+-   Move express & React to peerDependencies
+-   Allow any React version >= 16 (instead of explicitly 16)
+-   Move express into peerDependencies, allow any version >= 4
+-   Move ts-node into devDependencies
+-   Move @types/chai, @types/react, and @types/react-dom to devDependencies
+    -   Also move @types/react, and @types/react-dom to peerDependencies
+
+### Module removals
+-   Remove chokidar, remove watch-test script
+-   Remove all uses of Enzyme
+-   Remove handlebars-webpack-plugin
+-   Remove supertest
+-   Remove test-console
+-   Remove sinon
+-   Remove uglifyjs-webpack-plugin
+
+Function & type removals
+------------------------
+-   Remove incredibly silly and outdated sex & gender types & objects:
+    -   biologicalSexes, biologicalSexesWithBoth, biologicalSexesWithOther, genderFull, BiologicalSex
+        BiologicalSexWithOther, BiologicalSexWithBoth, commonBiologicalSexes, sexes, commonSexes
+        commonBiologicalSexesWithBoth, sexesWithBoth, commonSexesWithBoth, sexWithBoth, sexesWithOther,
+        commonSexesWithOther, commonBiologicalSexesWithOther, Sex, CommonSex, BinarySex, SexWithOther,
+        CommonSexWithOther, SexWithBoth, CommonSexWithBoth, VaccineSex, VaccineSexes, Gender, GenderCommon,
+        GenderWithBoth, GenderCommonWithBoth, gender, genderCommon, genderWithBoth, genderCommonWithBoth,
+        GenderExtensive, GenderExtended
+
+Docs
+----
+-   Minor doc & type fixes in string.ts
+-   Partial conversion of "=======.." style headers to "-------.."
+
+----------------------------------------------------------------------------------------------------
 0.95.0
 ======
 -   Remove .static CSS class (it causes some compilers to fail)
