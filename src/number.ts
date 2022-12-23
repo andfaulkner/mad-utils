@@ -1,7 +1,7 @@
 /*------------------------------------------- IMPORTS --------------------------------------------*/
 export {isInt, isInteger, isIntegerLike, isNumberLike, isNumLike} from './types-iso';
 
-import uuidImport from 'uuid';
+import {v4 as uuidImport} from 'uuid';
 
 /*--------------------------------------- TYPE DEFINITIONS ---------------------------------------*/
 export interface UUIDNamespace {

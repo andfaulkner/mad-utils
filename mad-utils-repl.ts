@@ -1,29 +1,27 @@
 /// <reference path="./node_modules/@types/node/index.d.ts" />
 declare function require(name: string);
 
-/************************************** THIRD-PARTY IMPORTS ***************************************/
+/*------------------------------------- THIRD-PARTY MODULES --------------------------------------*/
 import lodash from 'lodash';
 import util from 'util';
 import repl from 'repl';
 import path from 'path';
-import fs from 'fs';
 import {path as rootPath} from 'app-root-path';
 import isNode from 'detect-node';
 
-/********************************** REPL NODE ENVIRONMENT SETUP ***********************************/
+/*--------------------------------- REPL NODE ENVIRONMENT SETUP ----------------------------------*/
 util.inspect.defaultOptions.colors = true;
 util.inspect.defaultOptions.depth = 10;
 util.inspect.defaultOptions.breakLength = 100;
 util.inspect.defaultOptions.showHidden = true;
 
-/**************************************** PROJECT IMPORTS *****************************************/
-/******************************************** LOGGING *********************************************/
+/*------------------------------------------- LOGGING --------------------------------------------*/
 import {logFactory, Styles} from 'mad-logs/lib/shared';
 const log = logFactory('mad-utils-repl.ts', Styles.angryBird);
 
 import m_ from './node';
 
-/****************************************** CONFIG REPL *******************************************/
+/*----------------------------------------- CONFIG REPL ------------------------------------------*/
 const packageJson = require('./package.json');
 const {defineProperty} = Object;
 
@@ -57,7 +55,7 @@ export const inspect = (...args) => {
     return util.inspect(args[0]);
 };
 
-/****************************************** CREATE REPL *******************************************/
+/*----------------------------------------- CREATE REPL ------------------------------------------*/
 export const r = repl.start({useColors: true});
 
 // Add REPL history file
@@ -67,7 +65,7 @@ require('repl.history')(r, historyFile);
 // Add IN_REPL property to repl environment. Acts as identifier that REPL is currently running
 defineProperty(r.context.process.env, 'IN_REPL', defPropConfig.immutable(true));
 
-/****************************************** REPL HELPERS ******************************************/
+/*----------------------------------------- REPL HELPERS -----------------------------------------*/
 /**
  * Bind given properties to the repl context, with the given values
  * Display as list on repl load, with descriptions for each specified in descriptions prop
@@ -103,7 +101,7 @@ export const bindPropsToRepl = (ctxProps: Object, descriptions: {[key: string]: 
     console.log(`> `);
 };
 
-/***************************************** PROPS TO BIND ******************************************/
+/*---------------------------------------- PROPS TO BIND -----------------------------------------*/
 /**
  * Properties to bind to repl context (available at top level in repl)
  */

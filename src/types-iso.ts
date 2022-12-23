@@ -1,9 +1,8 @@
-/******************************************** IMPORTS *********************************************/
+/*------------------------------------- THIRD-PARTY MODULES --------------------------------------*/
 import moment from 'moment';
 import {isVerbose} from 'env-var-helpers';
-import {matches} from './string';
 
-/************************************ COMMON TYPE DEFINITIONS *************************************/
+/*--------------------------------------- TYPE DEFINITIONS ---------------------------------------*/
 export interface ClassConstructor {
     new (...args: any[]): {};
 }
@@ -51,7 +50,25 @@ export type StringNumHash = Record<string, number>;
  */
 export type BoolOrError = boolean | Error;
 
-/*************************************** HTTP REQUEST TYPES ***************************************/
+/**
+ * String names of all primitive types, plus a few sane additional types:
+ * `nan`, `null`, `regexp`, and `array`.
+ */
+export type DataTypesExpanded =
+    | 'null'
+    | 'undefined'
+    | 'boolean'
+    | 'symbol'
+    | 'string'
+    | 'number'
+    | 'bigint'
+    | 'nan'
+    | 'regexp'
+    | 'function'
+    | 'object'
+    | 'array';
+
+/*-------------------------------------- HTTP REQUEST TYPES --------------------------------------*/
 /**
  * Most commonly used HTTP Request types
  */
@@ -66,7 +83,7 @@ export type AnyHTTPReqType = CommonHTTPRequestType | 'OPTIONS' | 'TRACE' | 'CONN
 export {AnyHTTPReqType as HTTPRequestType};
 export {AnyHTTPReqType as RequestType};
 
-/***************************************** TYPE HANDLERS ******************************************/
+/*---------------------------------------- TYPE HANDLERS -----------------------------------------*/
 /**
  *  Returns true if [value] is undefined
  *  @param {void|RealAny} value Value to type check
@@ -451,24 +468,6 @@ export const boolStringToBool = (
 };
 
 export {boolStringToBool as toBoolFromBoolString};
-
-/**
- * String names of all primitive types, plus a few sane additional types:
- * `nan`, `null`, `regexp`, and `array`.
- */
-export type DataTypesExpanded =
-    | 'null'
-    | 'undefined'
-    | 'boolean'
-    | 'symbol'
-    | 'string'
-    | 'number'
-    | 'bigint'
-    | 'nan'
-    | 'regexp'
-    | 'function'
-    | 'object'
-    | 'array';
 
 /**
  * Get expanded type of given value as a string.

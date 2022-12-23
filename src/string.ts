@@ -1,16 +1,17 @@
-/******************************************** IMPORTS *********************************************/
+/*--------------------------------------- PROJECT MODULES ----------------------------------------*/
 import {accentToNoneCharMap} from './internal/accent-to-none-char-map';
 
 import {StrOrNum} from './types-iso';
 import {Int} from './number';
 import {withoutFirst, arrayN, compact} from './array';
 
+/*------------------------------------------ CHAR TYPES ------------------------------------------*/
 export type Char = string;
 export type Chars = string;
 export type Character = string;
 export type Characters = string;
 
-/*********************************** EXPORTED STRING FUNCTIONS ************************************/
+/*---------------------------------- EXPORTED STRING FUNCTIONS -----------------------------------*/
 /**
  * Capitalize the first letter of a string, and convert other letters in the string to lowercase
  */
@@ -25,16 +26,16 @@ export const capitalize = (str: string): string =>
     !str ? `` : str.charAt(0).toUpperCase() + str.slice(1);
 
 /**
- * Replace all matching strings in a text segment with a given replacement string
- * Can also match against a regex
- * Main benefit: *ALL* matching strings get replaced
+ * Replace all matching strings in a text segment with a given replacement string.
+ * Can also match against a regex.
+ * Main benefit: *ALL* matching strings get replaced.
  *
  * @param {string} text String to search and replace in
  * @param {string|RegExp} find String or RegExp to match against
  * @param {string} replace Replacement text
  * @return {string} original text with replacements made
  */
-export const replaceAll = (text: string, find: string | RegExp, replace: string) =>
+export const replaceAll = (text: string, find: string | RegExp, replace: string): string =>
     typeof find === `string`
         ? text.replace(new RegExp(escapeRegExp(find), `g`), replace)
         : text.replace(find, replace);
@@ -50,7 +51,7 @@ export const replaceAll = (text: string, find: string | RegExp, replace: string)
  *
  * @param {string|number|RegExp} valToFind Value to search for in valToSearchIn
  * @param {string|number} valToSearchIn string or number to match against
- * @return {boolean} true if a match is found
+ * @return true if a match is found
  */
 export const matches =
     (valToFind: StrOrNum | RegExp) =>
@@ -96,7 +97,7 @@ export const escapeRegExp = (regexStr: string): string =>
 /**
  * Curried (for use as a predicate) & case-insensitive version of String.prototype.match
  * @param {string} matchAgainst String to match against
- * @return {boolean} true if a match is found
+ * @return true if a match is found
  *
  * Example usage: [`gr`, `HeLLo`].find(matchesIgnoreCase(`hello`)); // => true
  */
@@ -271,7 +272,7 @@ export const toCamelCase = (str: string): string => {
 export const removeMatchingText = (str: string, matcherToRm: string | RegExp): string =>
     replaceAll(str, matcherToRm, ``);
 
-/************************************** STRING INTERPOLATION **************************************/
+/*------------------------------------- STRING INTERPOLATION -------------------------------------*/
 /**
  * Perform string deindenting for exported deindent function
  */
@@ -322,7 +323,7 @@ export const deindent = (input: TemplateStringsArray | Function, ...args: any[])
     );
 };
 
-/****************************************** REPEAT CHARS ******************************************/
+/*----------------------------------------- REPEAT CHARS -----------------------------------------*/
 /**
  * Create string consisting of [len] number of repeats of [charToRepeat] character
  *
@@ -332,7 +333,7 @@ export const deindent = (input: TemplateStringsArray | Function, ...args: any[])
  */
 export const repeatChars = (repStr: string, len: Int): string => arrayN(len, repStr).join(``);
 
-/*************************************** FILE PATH STRINGS ****************************************/
+/*-------------------------------------- FILE PATH STRINGS ---------------------------------------*/
 /**
  * If given string ends in given substring preceded by a `.`, returns true
  * Note: only works for extensions with up to 4 parts e.g. .b.c.d.e
@@ -373,49 +374,49 @@ export const endsWithExt = (inode: string, ext: string) => {
  * @param {string} inode Any string, but it's intended for a file/directory path
  * @return {boolean} true if file ends in .js
  */
-export const endsInDotJs = (inode: string) => endsWithExt(inode, `js`);
+export const endsInDotJs = (inode: string): boolean => endsWithExt(inode, `js`);
 /**
  * If given string ends in .jsx, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .jsx
  */
-export const endsInDotJsx = (inode: string) => endsWithExt(inode, `jsx`);
+export const endsInDotJsx = (inode: string): boolean => endsWithExt(inode, `jsx`);
 /**
  * If given string ends in .ts, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .ts
  */
-export const endsInDotTs = (inode: string) => endsWithExt(inode, `ts`);
+export const endsInDotTs = (inode: string): boolean => endsWithExt(inode, `ts`);
 /**
  * If given string ends in .tsx, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .tsx
  */
-export const endsInDotTsx = (inode: string) => endsWithExt(inode, `tsx`);
+export const endsInDotTsx = (inode: string): boolean => endsWithExt(inode, `tsx`);
 /**
  * If given string ends in .json, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .json
  */
-export const endsInDotJson = (inode: string) => endsWithExt(inode, `json`);
+export const endsInDotJson = (inode: string): boolean => endsWithExt(inode, `json`);
 /**
  * If given string ends in .hbs, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .hbs
  */
-export const endsInDotHbs = (inode: string) => endsWithExt(inode, `hbs`);
+export const endsInDotHbs = (inode: string): boolean => endsWithExt(inode, `hbs`);
 /**
  * If given string ends in .css, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .css
  */
-export const endsInDotCss = (inode: string) => endsWithExt(inode, `css`);
+export const endsInDotCss = (inode: string): boolean => endsWithExt(inode, `css`);
 /**
  * If given string ends in .scss, returns true
  * @param {string} inode Any string, but it`s intended for a file/directory path
  * @return {boolean} true if file ends in .scss
  */
-export const endsInDotScss = (inode: string) => endsWithExt(inode, `scss`);
+export const endsInDotScss = (inode: string): boolean => endsWithExt(inode, `scss`);
 
 /**
  * Return true if string doesn't have .min as a secondary extension
@@ -428,7 +429,7 @@ export const endsInDotScss = (inode: string) => endsWithExt(inode, `scss`);
  */
 export const isNonMinFile = (inode: string) => inode.split(/\./g).reverse()[1] !== `min`;
 
-/***************************************** STRING PADDING *****************************************/
+/*---------------------------------------- STRING PADDING ----------------------------------------*/
 export type Sides = 'left' | 'right' | 'center';
 
 /**
@@ -452,7 +453,7 @@ export const pad = (
     outWidth: number = 0,
     padChar: string = ` `,
     side: Sides = `center`
-) => {
+): string => {
     const cleanStr = strToPad.toString();
     if (typeof outWidth === `undefined` || outWidth == null) return cleanStr;
 
@@ -492,8 +493,11 @@ const _centerPad = (strToPad: string = ``, outWidth: number = 0, padChar: string
  *
  * @return {string} strToPad padded to outWidth length via leftside repeats of padChar
  */
-export const leftPad = (strToPad: string = ``, outWidth: number = 0, padChar: string = ` `) =>
-    pad(strToPad, outWidth, padChar, `left`);
+export const leftPad = (
+    strToPad: string = ``,
+    outWidth: number = 0,
+    padChar: string = ` `
+): string => pad(strToPad, outWidth, padChar, `left`);
 
 /**
  * Pad string to the given length, with additional characters added to right side
@@ -505,8 +509,11 @@ export const leftPad = (strToPad: string = ``, outWidth: number = 0, padChar: st
  *
  * @return {string} strToPad padded to outWidth length via rightside repeats of padChar
  */
-export const rightPad = (strToPad: string = ``, outWidth: number = 0, padChar: string = ` `) =>
-    pad(strToPad, outWidth, padChar, `right`);
+export const rightPad = (
+    strToPad: string = ``,
+    outWidth: number = 0,
+    padChar: string = ` `
+): string => pad(strToPad, outWidth, padChar, `right`);
 
 /**
  * Pad string to the given length, with additional characters added to both sides
@@ -519,10 +526,13 @@ export const rightPad = (strToPad: string = ``, outWidth: number = 0, padChar: s
  *
  * @return {string} strToPad padded w/ padChar to outWidth (each side gets ~1/2 of the added chars)
  */
-export const centerPad = (strToPad: string = ``, outWidth: number = 0, padChar: string = ` `) =>
-    pad(strToPad, outWidth, padChar, `center`);
+export const centerPad = (
+    strToPad: string = ``,
+    outWidth: number = 0,
+    padChar: string = ` `
+): string => pad(strToPad, outWidth, padChar, `center`);
 
-/**************************************** CHARACTER TESTS *****************************************/
+/*--------------------------------------- CHARACTER TESTS ----------------------------------------*/
 /**
  * @return {boolean} If given string is a whitespace character, return true
  */
@@ -540,7 +550,7 @@ export const isAlphanumericChar = (matchChar: Char): boolean => /^[a-zA-Z0-9]$/.
 export const isOperatorChar = (matchChar: Char): boolean =>
     !!matchChar && matchChar.length === 1 && `+-*=|&<>?:/!%^~]`.indexOf(matchChar) >= 0;
 
-/**************************************** STRING -> REGEX *****************************************/
+/*--------------------------------------- STRING -> REGEX ----------------------------------------*/
 const RegExpFlags = `yumig`;
 
 /**
@@ -736,9 +746,10 @@ export const removeIndent = (str: string): string => {
  * @param {string} str String to turn into a single-line string.
  * @return {string} Single-line string built from str.
  */
-export const oneLine = (str: string): string => str.replace(/\n|\t|\r/g, ` `).replace(/ {2,}/g, ` `);
+export const oneLine = (str: string): string =>
+    str.replace(/\n|\t|\r/g, ` `).replace(/ {2,}/g, ` `);
 
-/*********************************** EXPORTS FROM OTHER MODULES ***********************************/
+/*---------------------------------- EXPORTS FROM OTHER MODULES ----------------------------------*/
 export {countOccurrences as countChars} from './array';
 export {countOccurrences as countCharOccurrences} from './array';
 export {countOccurrences as charOccurrences} from './array';
