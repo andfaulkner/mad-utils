@@ -1,19 +1,15 @@
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 /// <reference path="../../node_modules/typescript/lib/lib.es2015.d.ts" />
 
-/*************************************** IMPORT TEST UTILS ****************************************/
-import {expect} from 'chai';
+// TODO test more than just "logOnRender" from hocs.
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {mount, shallow, ShallowWrapper} from 'enzyme';
+/*-------------------------------------- IMPORT TEST UTILS ---------------------------------------*/
+import {expectFunctionExists} from '../../src/node/test';
 
-import {expectFunctionExists, expectNonEmptyObjectExists} from '../../src/node/test';
-
-/******************************** IMPORT NUMBER MODULE FOR TESTING ********************************/
+/*-------------------------------- IMPORT HOCS MODULE FOR TESTING --------------------------------*/
 import {logOnRender} from '../../src/react/hocs';
 
-/********************************************* TESTS **********************************************/
+/*-------------------------------------------- TESTS ---------------------------------------------*/
 describe(`React module`, function() {
     expectFunctionExists(logOnRender, 'logOnRender', '(React utility component)');
 });
