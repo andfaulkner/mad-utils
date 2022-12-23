@@ -21,8 +21,7 @@
     "start": "npm run watch-test",
     "test": "npm run compile-ts; mocha --opts test/mocha.opts test/",
     "test-coverage": "npm run compile-ts; nyc npm test",
-    "watch-compile-ts": "tsc -p tsconfig.json --watch",
-    "watch-test": "chokidar ./test/** ./src/** ./*.ts -i *.d.ts -i \"/.*.((d.ts)|(js)|(map)|(opts)|(json)|(md))$/\" --initial -c \"npm run test\""
+    "watch-compile-ts": "tsc -p tsconfig.json --watch"
   },
   "repository": {
     "type": "git",
@@ -145,7 +144,7 @@
     "reflect-metadata": "^0.1.13",
     "ts-node": "6.1",
     "ua-parser-js": "^0.7.19",
-    "uuid": "^3.3.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.2",
@@ -158,7 +157,6 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^10.14.5",
     "cheerio": "^1.0.0-rc.2",
-    "chokidar": "^2.0.3",
     "colors": "^1.2.4",
     "env-var-helpers": "^5.2.0",
     "enzyme": "^3.2.0",
@@ -175,8 +173,6 @@
     "nodemon": "^1.18.3",
     "nyc": "^10.3.2",
     "prettier": "^1.14.2",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
     "repl.history": "^0.1.4",
     "replace-in-file": "^3.4.0",
     "sinon": "^6.1.5",
@@ -191,8 +187,10 @@
     "vrsource-tslint-rules": "^5.8.2"
   },
   "peerDependencies": {
-    "moment": "^2.22.2",
-    "pretty-error": ">=2.1.1"
+    "moment": ">=2.0.0",
+    "pretty-error": ">=2.1.1",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "nyc": {
     "exclude": [
