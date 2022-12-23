@@ -2,16 +2,18 @@
 // TODO Test inspectKeyTree
 // TODO Consider returning isObject, and make it a proper "is"-typed function
 
-/******************************************** IMPORTS *********************************************/
-import {RealAny, isArray, isFunction} from './types-iso';
-import {flatten, rmAllFalsy} from './array';
-import deepFreezeStrict = require('deep-freeze-strict');
+/*------------------------------------- THIRD-PARTY MODULES --------------------------------------*/
+import deepFreezeStrict from 'deep-freeze-strict';
 
-/********************************************* CONFIG *********************************************/
+/*--------------------------------------- PROJECT MODULES ----------------------------------------*/
+import {RealAny, isFunction} from './types-iso';
+import {flatten, rmAllFalsy} from './array';
+
+/*-------------------------------------------- CONFIG --------------------------------------------*/
 const {assign, keys} = Object;
 const braceMatchRegex = /(([^\[\]]+)|([[^\[\]]*\]))/g;
 
-/********************************************* OBJECT *********************************************/
+/*--------------------------------------- OBJECT FUNCTIONS ---------------------------------------*/
 /**
  * Return a deep-frozen clone of a group of objects
  * Completely safe, doesn't freeze the original object
@@ -140,7 +142,7 @@ export const hasKey = <T extends Object>(obj: T, matchKey: string): boolean => {
 export {hasKey as containsKey};
 export {hasKey as includesKey};
 
-/*********************************** ADD NEW OBJECT PROPERTIES ************************************/
+/*---------------------------------- ADD NEW OBJECT PROPERTIES -----------------------------------*/
 /**
  * Select correct defineProperty (for use with defineImmutableProp)
  */
@@ -287,7 +289,7 @@ export {defineGetterProp as defineGetter};
 export {defineGetterProp as addGetProp};
 export {defineGetterProp as defineGetProp};
 
-/******************************************** SORTING *********************************************/
+/*------------------------------------------- SORTING --------------------------------------------*/
 /**
  * Sort an object by its keys, return duplicate object
  *
@@ -299,7 +301,7 @@ export const sortObject = (obj: Record<string, any>): Record<string, any> =>
         .sort()
         .reduce((acc, key) => assign(acc, {[key]: obj[key]}), {});
 
-/********************************************** OMIT **********************************************/
+/*--------------------------------------------- OMIT ---------------------------------------------*/
 function isNonArrayOrFuncObj(val: RealAny) {
     return val != null && typeof val === 'object' && Array.isArray(val) === false;
 }
@@ -329,7 +331,7 @@ function isObject(val: RealAny) {
     return val != null && (isPlainObject(val) || typeof val === 'function' || Array.isArray(val));
 }
 
-/********************************************** OMIT **********************************************/
+/*--------------------------------------------- OMIT ---------------------------------------------*/
 export type OmitPred<T = any> = (val: T, key?: string, obj?: Object) => boolean;
 
 /**
@@ -403,7 +405,7 @@ export function omit<O extends object = Object, T = any>(
     );
 }
 
-/************************************** SAFE PROPERTY ACCESS **************************************/
+/*------------------------------------- SAFE PROPERTY ACCESS -------------------------------------*/
 /**
  * Safely get the given prop (via array of path props or 'access string') from
  * the given object

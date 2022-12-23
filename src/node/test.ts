@@ -1,6 +1,7 @@
+/*------------------------------------- THIRD-PARTY MODULES --------------------------------------*/
 import {expect} from 'chai';
 
-/********************************** TEST (MOCHA, CHAI) UTILITIES **********************************/
+/*--------------------------------- TEST (MOCHA, CHAI) UTILITIES ---------------------------------*/
 /**
  * Expect that testValue is an empty object
  * @param {any} testValue Value to check for emptiness

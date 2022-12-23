@@ -1,4 +1,4 @@
-/*************************************** TYPE AUGMENTATION ****************************************/
+/*-------------------------------------- TYPE AUGMENTATION ---------------------------------------*/
 // Set globals to always have access to location obj w/ proper shape (even if empty e.g. in Node)
 declare global {
     // Augment Node.js `global`
@@ -12,16 +12,16 @@ declare global {
 }
 
 // Attach empty location object to global in Node (or anywhere global.location isn't present)
-const isNode = require('detect-node');
+import isNode from 'detect-node';
 if (isNode) global.location = global.location || ({href: '', pathname: '', search: ''} as any);
 
-/**************************************** PROJECT MODULES *****************************************/
+/*--------------------------------------- PROJECT MODULES ----------------------------------------*/
 import {defaultSupportedLangs} from './internal/lang-constants';
-import {last, first, matchAny, without, arrayRemove} from './array';
+import {last, first, without} from './array';
 import {removeMatchingText, chomp} from './string';
 import {StrOrErr} from './types-iso';
 
-/******************************************* NORMALIZE ********************************************/
+/*------------------------------------------ NORMALIZE -------------------------------------------*/
 /**
  * Normalize given [url] {string}, converting to this format:
  *     `/main/en/home`
@@ -57,7 +57,7 @@ export const normalizeURLPathname = (url: string): string => {
     );
 };
 
-/****************************************** QUERY PARAMS ******************************************/
+/*----------------------------------------- QUERY PARAMS -----------------------------------------*/
 /**
  * Turn query params into JS obj - splits on , & =
  * Return null if no query params
@@ -97,7 +97,7 @@ export const parseQueryParams = <T>(queryParamsStr?: string): T => {
         ) as T;
 };
 
-/******************************************** LANGUAGE ********************************************/
+/*------------------------------------------- LANGUAGE -------------------------------------------*/
 /**
  * Get current language from URL
  * Assumes language stored in its own path, and that 2-letter form used - e.g. `/en/`, `/fr/`
@@ -110,7 +110,7 @@ export const parseQueryParams = <T>(queryParamsStr?: string): T => {
  */
 export const getLangFromURLPathname = (
     urlPath?: string,
-    supportedLangs = defaultSupportedLangs,
+    supportedLangs: Array<string> = defaultSupportedLangs,
     defaultLang: string = 'en'
 ): string => {
     const cleanUrlPath: string = typeof urlPath === 'string' ? urlPath : global.location.pathname;
@@ -426,7 +426,7 @@ export {swapMatchingURLPaths as replaceURLPaths};
 export {swapMatchingURLPaths as urlReplacePathMatches};
 export {swapMatchingURLPaths as urlReplaceMatchingPaths};
 
-/*************************************** EXTRACTION HELPER ****************************************/
+/*--------------------------------- URL DATA EXTRACTION HELPERS ----------------------------------*/
 type URLParts = 'protocol' | 'hostname' | 'host' | 'port' | 'pathname' | 'path' | 'query';
 
 // TODO test extractFromUrl

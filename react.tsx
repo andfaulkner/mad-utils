@@ -1,6 +1,4 @@
-import {Moment} from 'moment';
-
-/******************************** EXPORT ALL FROM REACT SRC FILES *********************************/
+/*------------------------------- EXPORT ALL FROM REACT SRC FILES --------------------------------*/
 export * from './src/react/types-react';
 export * from './src/react/hocs';
 export * from './src/react/components';
@@ -44,20 +42,11 @@ export const logSyntheticEventValue = (
     }
 };
 
-/********************************* EXPORT ALL FROM BROWSER UTILS **********************************/
+/*-------------------------------- EXPORT ALL FROM BROWSER UTILS ---------------------------------*/
 export * from './browser';
 
 // Imported to appease exports below
 import * as browserUtils from './browser';
-import * as arrayUtils from './src/array';
-import * as objUtils from './src/object';
-import * as urlUtils from './src/url';
-import * as domUtils from './src/browser/dom';
-import * as numberUtils from './src/number';
-import * as functionUtils from './src/function';
-import * as dateUtils from './src/date';
-import * as stringUtils from './src/string';
-import * as isoTypesUtils from './src/types-iso';
 
 // Export types
 export {Int1To10, Int1To20, Int1To30, Int1To40, Int1To50, Int1To60, Integer} from './src/number';

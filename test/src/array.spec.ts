@@ -2,12 +2,13 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 /// <reference path="../../node_modules/@types/mocha/index.d.ts" />
 
-/************************************* IMPORT TEST UTILITIES **************************************/
+/*------------------------------------- THIRD-PARTY MODULES --------------------------------------*/
 import {expect} from 'chai';
-import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/test';
-import {inspect} from 'util';
 
-/******************************** IMPORT ARRAY MODULE FOR TESTING *********************************/
+/*--------------------------------------- PROJECT MODULES ----------------------------------------*/
+import {expectNonEmptyObjectExists, expectFunctionExists} from '../../src/node/test';
+
+/*------------------------------- IMPORT ARRAY MODULE FOR TESTING --------------------------------*/
 import {
     array,
     first,
@@ -51,7 +52,7 @@ import {m_} from '../../browser';
 
 import * as arrayModule from '../../src/array';
 
-/********************************************* TESTS **********************************************/
+/*-------------------------------------------- TESTS ---------------------------------------------*/
 describe(`array sub-module`, function() {
     expectNonEmptyObjectExists(array, 'array (from shared/base export)');
     expectNonEmptyObjectExists(m_.array, 'array (from m_ top-level namespace)');
